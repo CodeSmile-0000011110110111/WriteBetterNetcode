@@ -1,0 +1,16 @@
+{
+    "name": "CodeSmile.SceneTools",
+    "rootNamespace": "CodeSmile.SceneTools",
+    "references": [
+        "GUID:e24f30608cf04354be70b7062aa0ad2b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

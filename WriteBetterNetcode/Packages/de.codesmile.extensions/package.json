@@ -1,0 +1,22 @@
+{
+  "name": "de.codesmile.extensions",
+  "displayName": "CodeSmile Extensions",
+  "description": "Unity package with commonly used C# extension and utility methods.",
+  "version": "1.3.0",
+  "unity": "2021.3",
+  "unityRelease": "3f1",
+  "author": {
+    "name": "Steffen Itterheim aka 'CodeSmile' (Unity MVP, Self-Employed)",
+    "email": "steffen@steffenitterheim.de",
+    "url": "https://github.com/CodeSmile-0000011110110111/de.codesmile.extensions"
+  },
+  "changelogUrl": "https://github.com/CodeSmile-0000011110110111/de.codesmile.extensions",
+  "documentationUrl": "https://github.com/CodeSmile-0000011110110111/de.codesmile.extensions",
+  "licensesUrl": "https://github.com/CodeSmile-0000011110110111/de.codesmile.extensions",
+  "relatedPackages": {},
+  "dependencies": {
+    "de.codesmile.testtools": "1.1.1",
+    "com.unity.test-framework": "1.4.1",
+    "com.unity.editorcoroutines": "1.0.0"
+  }
+}
