@@ -1,0 +1,20 @@
+{
+  "name": "de.codesmile.testtools",
+  "displayName": "CodeSmile TestTools",
+  "description": "Improvements to Unity's TestRunner and NUnit.",
+  "version": "1.1.1",
+  "unity": "2021.3",
+  "unityRelease": "3f1",
+  "author": {
+    "name": "Steffen Itterheim aka 'CodeSmile' (Unity MVP, Self-Employed)",
+    "email": "steffen@steffenitterheim.de",
+    "url": "https://codesmile.de"
+  },
+  "changelogUrl": "https://codesmile.de",
+  "documentationUrl": "https://codesmile.de",
+  "licensesUrl": "https://codesmile.de",
+  "dependencies": {
+    "com.unity.test-framework": "1.4.1"
+  },
+  "relatedPackages": {}
+}
