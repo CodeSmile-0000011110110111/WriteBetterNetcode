@@ -1,0 +1,25 @@
+{
+    "name": "CodeSmile.Netcode",
+    "rootNamespace": "CodeSmile.Netcode",
+    "references": [
+        "GUID:3b8ed52f1b5c64994af4c4e0aa4b6c4b",
+        "GUID:1491147abca9d7d4bb7105af628b223e",
+        "GUID:767f25efd20d4339a8b1683f8dc1d7d8",
+        "GUID:f2d49d9fa7e7eb3418e39723a7d3b92f",
+        "GUID:5540e30183c82e84b954c033c388e06c",
+        "GUID:fe25561d224ed4743af4c60938a59d0b",
+        "GUID:03058786646e84a4587858e9302c3f41",
+        "GUID:e24f30608cf04354be70b7062aa0ad2b",
+        "GUID:f74b9f973d314074b78950ab842866ef",
+        "GUID:ff210dc63eba436aa09344401bf11438"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

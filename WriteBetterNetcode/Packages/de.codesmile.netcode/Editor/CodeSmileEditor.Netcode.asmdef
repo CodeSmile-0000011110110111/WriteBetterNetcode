@@ -1,0 +1,21 @@
+{
+    "name": "CodeSmileEditor.Netcode",
+    "rootNamespace": "CodeSmileEditor.Netcode",
+    "references": [
+        "GUID:f2ddabe9e0aaa1c499a086b54a197337",
+        "GUID:767f25efd20d4339a8b1683f8dc1d7d8",
+        "GUID:6de109969b540475999d74a2c104b89e",
+        "GUID:8c3daf4cba81217489e3f4033777f5c7"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
