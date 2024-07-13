@@ -1,0 +1,22 @@
+{
+    "name": "CodeSmile.UnityEngine.Extensions.Tests",
+    "rootNamespace": "CodeSmile.Tests",
+    "references": [
+        "UnityEngine.TestRunner",
+        "CodeSmile.UnityEngine.Extensions",
+        "CodeSmile.TestTools"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
