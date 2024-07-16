@@ -58,8 +58,8 @@ MultiplayerManager:
     - UnityEngine.AudioModule:UnityEngine:AudioBehaviour
     - UnityEngine.UI:UnityEngine.UI:Scrollbar
     - UnityEngine.UI:UnityEngine.UI:Text
-    - UnityEngine.UI:UnityEngine.UI:VerticalLayoutGroup
     - UnityEngine.UI:UnityEngine.UI:GridLayoutGroup
+    - UnityEngine.UI:UnityEngine.UI:VerticalLayoutGroup
     - UnityEngine.UI:UnityEngine.UI:Mask
     - UnityEngine.AudioModule:UnityEngine:AudioListener
     - UnityEngine.CoreModule:UnityEngine:BillboardRenderer
