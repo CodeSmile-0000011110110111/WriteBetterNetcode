@@ -1,0 +1,29 @@
+﻿@startuml
+'https://plantuml.com/state-diagram
+
+!theme blueprint
+hide empty description
+title Scene Flow
+scale 500 width
+
+state "Launch Scene" as launch {
+    state "DontDestroyOnLoad" as persistent
+    note right of persistent : NetworkManager ..
+}
+
+state "Offline Scene" as offline {
+    state "Additive Scenes" as pregame
+    note right of pregame : Menu ..
+}
+
+state "Online Scene" as online {
+    state "Additive Scenes" as ingame
+    note right of ingame : World, HUD ..
+}
+
+[*] -> launch
+launch --> offline : next Update()
+offline --> online : Start Network
+online --> offline : Disconnect
+
+@enduml
