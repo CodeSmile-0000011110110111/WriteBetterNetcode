@@ -1,0 +1,52 @@
+﻿@startuml
+'https://plantuml.com/state-diagram
+
+!theme blueprint
+hide empty description
+title Additive Level Load (no spike)
+scale 612 width
+
+
+concise "Loading Scene" as loading
+concise "Current Level" as current
+concise "Next Level" as next
+concise "UnloadUnusedAssets()" as unload
+robust "Memory Usage" as memory
+
+memory has Higher
+memory has Normal
+memory has Lower
+
+current is Loaded
+memory is Normal
+
+@0
+loading is Load
+
+@2
+loading is ""
+current is UnloadAsync
+
+@4
+current is {hidden}
+unload is Runs
+memory is Lower
+
+@5
+unload is {hidden}
+next is LoadAsync
+memory is Normal
+
+@8
+next is Loaded
+loading is Unload
+
+@9
+
+@10
+loading is {hidden}
+
+
+highlight 2 to 8 #336699;line:DimGrey : "User sees loading screen ..."
+
+@enduml

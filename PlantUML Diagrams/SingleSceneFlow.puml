@@ -1,0 +1,28 @@
+﻿@startuml
+'https://plantuml.com/state-diagram
+
+!theme blueprint
+hide empty description
+title "Single Scene" Concept
+scale 612 width
+
+state "The Everything Scene" as game {
+    state "Game Objects" as objects {
+    }
+    state "Additive Scenes" as additive {
+    }
+}
+
+[*] --> game : Launch
+objects : **NetworkManager**
+objects : **Global Game State**
+objects : **DDOL Objects**
+objects : **Add. Scene Loader**
+objects : ...
+additive : Server-Only Scene
+additive : Client-Only Scene
+additive : Debug Scene
+additive : Content Scenes
+additive : ...
+
+@enduml

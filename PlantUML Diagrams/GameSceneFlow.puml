@@ -1,0 +1,28 @@
+﻿@startuml
+'https://plantuml.com/state-diagram
+
+!theme blueprint
+hide empty description
+title "Game Scene" Concept
+scale 612 width
+
+state "Game Scene" as game {
+    state "Game Objects" as objects {
+    }
+    state "Additive Scenes" as additive {
+    }
+}
+
+[*] --> game : Single-Load
+objects : **Game State**
+objects : **Player**
+objects : **HUD**
+objects : **Level Loader**
+objects : ...
+additive : Level1
+additive : **Level2**
+additive : Level3
+additive : Boss Level A
+additive : ...
+
+@enduml

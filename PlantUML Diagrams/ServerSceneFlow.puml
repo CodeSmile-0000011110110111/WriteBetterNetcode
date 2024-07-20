@@ -3,27 +3,21 @@
 
 !theme blueprint
 hide empty description
-title Scene Flow
-scale 500 width
+title Server Scene Flow
+scale 612 width
 
 state "Launch Scene" as launch {
     state "DontDestroyOnLoad" as persistent
     note right of persistent : NetworkManager ..
 }
 
-state "Offline Scene" as offline {
-    state "Additive Scenes" as pregame
-    note right of pregame : Menu ..
-}
-
 state "Online Scene" as online {
     state "Additive Scenes" as ingame
-    note right of ingame : World, HUD ..
+    note right of ingame : World, Server Logic ..
 }
 
 [*] -> launch
-launch --> offline : next Update()
-offline --> online : Start Network
-online --> offline : Disconnect
+launch --> online : StartServer()
+online --> online : Restart Session
 
 @enduml
