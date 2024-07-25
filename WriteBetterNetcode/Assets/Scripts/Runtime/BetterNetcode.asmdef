@@ -3,7 +3,8 @@
     "rootNamespace": "CodeSmile.BetterNetcode",
     "references": [
         "GUID:1491147abca9d7d4bb7105af628b223e",
-        "GUID:f2ddabe9e0aaa1c499a086b54a197337"
+        "GUID:f2ddabe9e0aaa1c499a086b54a197337",
+        "GUID:767f25efd20d4339a8b1683f8dc1d7d8"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
