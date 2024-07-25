@@ -1,3 +1,17 @@
 {
-	"name": "BetterNetcode"
+    "name": "BetterNetcode",
+    "rootNamespace": "CodeSmile.BetterNetcode",
+    "references": [
+        "GUID:1491147abca9d7d4bb7105af628b223e",
+        "GUID:f2ddabe9e0aaa1c499a086b54a197337"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

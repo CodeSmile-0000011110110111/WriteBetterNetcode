@@ -1,6 +1,6 @@
 {
     "name": "BetterNetcodeEditor",
-    "rootNamespace": "",
+    "rootNamespace": "CodeSmileEditor.BetterNetcode",
     "references": [
         "GUID:b01e7d37c21f68947a05cebbc3f902f2"
     ],
