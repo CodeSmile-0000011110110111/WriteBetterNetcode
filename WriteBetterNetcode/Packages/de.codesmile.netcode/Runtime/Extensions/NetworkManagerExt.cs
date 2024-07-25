@@ -23,7 +23,7 @@ namespace CodeSmile.Netcode.Extensions
 		private static HashSet<Action> OnSingletonReadyCallbacks;
 
 		/// <summary>
-		///     Shorthand for calling: NetworkManager.Singleton.GetComponent<UnityTransport>()
+		///     Shorthand for calling: NetworkManager.Singleton.GetComponent&lt;UnityTransport&gt;();
 		/// </summary>
 		/// <returns></returns>
 		/// <returns>The UnityTransport component.</returns>
