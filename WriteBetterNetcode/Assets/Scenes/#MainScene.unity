@@ -383,6 +383,10 @@ PrefabInstance:
       propertyPath: m_UseWebSockets
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7022099372292573425, guid: 82151d0ead3e1b24ebad47dea3f9acab, type: 3}
+      propertyPath: ConnectionData.ServerListenAddress
+      value: 127.0.0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

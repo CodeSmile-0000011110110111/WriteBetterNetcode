@@ -56,6 +56,7 @@ namespace CodeSmile.BetterNetcode.Network
 			net.OnClientStopped += OnClientStopped;
 			net.OnServerStarted += OnServerStarted;
 			net.OnServerStopped += OnServerStopped;
+			net.OnTransportFailure += OnTransportFailure;
 
 			OnStateChanged += OnNetworkStateChanged;
 
@@ -147,12 +148,14 @@ namespace CodeSmile.BetterNetcode.Network
 
 		private void OnClientStopped(Boolean isHost)
 		{
+			// for hosts we'll wait for the OnServerStopped event
 			if (isHost == false)
 				GoOfflineAtEndOfFrame();
 		}
 
 		private void OnServerStarted() => ChangeState(State.Online);
 		private void OnServerStopped(Boolean isHost) => GoOfflineAtEndOfFrame();
+		private void OnTransportFailure() => ChangeState(State.ShuttingDown); // will internally call Shutdown()
 
 		private void GoOfflineAtEndOfFrame()
 		{
