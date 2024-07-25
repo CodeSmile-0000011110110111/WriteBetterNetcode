@@ -30,19 +30,17 @@ namespace CodeSmile.Netcode.Extensions
 		public static UnityTransport GetTransport(this NetworkManager netMan) => netMan.GetComponent<UnityTransport>();
 
 		/// <summary>
-		///     Subscribe to NetworkManager's OnSingletonReady event, which is internal as of v1.8.
+		///     Subscribe to NetworkManager's OnSingletonReady event, which is internal as of v1.8 (still internal in v2.0).
 		///     Will continue to work even if OnSingletonReady may become public in the future.
-		///     Will break if Unity were to rename the event. ;)
+		///     Will break if Unity were to rename the OnSingletonReady event.
 		/// </summary>
 		/// <example>
-		///     Usage: call this in either the Awake or OnEnable method!
+		///     Usage: use this in either the Awake or OnEnable method!
 		///     Because in Start and later, NetworkManager.Singleton can no longer be null - unless there is no NetworkManager.
 		/// </example>
 		/// <remarks>
-		///     The callback need only be used to subscribe to NetworkManager events that are raised instantly after
-		///     StartServer, StartHost or StartClient when those are called from a component's OnEnable method.
-		///     This mainly concerns the OnServerStarted and OnClientStarted events, which run immediately.
-		///     By using this event handler you do not need to put scripts in the Script Execution Order.
+		///     By using this event handler you do not need to put your NetworkManager initialization dependent scripts
+		///     in the Script Execution Order.
 		/// </remarks>
 		/// <remarks>
 		///     The callback action will be invoked directly in case NetworkManager.Singleton is already non-null.
@@ -110,7 +108,14 @@ namespace CodeSmile.Netcode.Extensions
 		}
 
 #if UNITY_EDITOR
-		[InitializeOnLoadMethod] private static void ResetStaticFields() => OnSingletonReadyCallbacks = null;
+		[InitializeOnLoadMethod] private static void ResetStaticFields() =>
+			EditorApplication.playModeStateChanged += OnPlaymodeStateChanged;
+
+		private static void OnPlaymodeStateChanged(PlayModeStateChange playModeState)
+		{
+			if (playModeState == PlayModeStateChange.ExitingPlayMode)
+				OnSingletonReadyCallbacks = null;
+		}
 #endif
 	}
 }
