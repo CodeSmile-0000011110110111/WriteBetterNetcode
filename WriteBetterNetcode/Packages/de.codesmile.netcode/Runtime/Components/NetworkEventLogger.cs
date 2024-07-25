@@ -18,24 +18,29 @@ namespace CodeSmile.Netcode.Components
 		private Boolean m_ShutdownInProgressState;
 		private String LogPrefix => $"[{nameof(NetworkEventLogger)}] ";
 
-		private void Awake() => NetworkManagerExt.InvokeWhenSingletonReady(() =>
+		private void Awake()
 		{
-			LogSingletonReady();
+			NetworkManagerExt.InvokeWhenSingletonReady(() =>
+			{
+				LogSingletonReady();
 
-			var net = NetworkManager.Singleton;
-			m_ListeningState = net.IsListening;
-			m_ShutdownInProgressState = net.ShutdownInProgress;
+				var net = NetworkManager.Singleton;
+				m_ListeningState = net.IsListening;
+				m_ShutdownInProgressState = net.ShutdownInProgress;
 
-			net.OnServerStarted += OnServerStarted;
-			net.OnServerStopped += OnServerStopped;
-			net.OnClientStarted += OnClientStarted;
-			net.OnClientStopped += OnClientStopped;
-			net.OnClientConnectedCallback += OnClientConnected;
-			net.OnClientDisconnectCallback += OnClientDisconnect;
-			net.OnConnectionEvent += OnConnectionEvent;
-			net.OnTransportFailure += OnTransportFailure;
-			net.OnSessionOwnerPromoted += OnSessionOwnerPromoted;
-		});
+				net.OnServerStarted += OnServerStarted;
+				net.OnServerStopped += OnServerStopped;
+				net.OnClientStarted += OnClientStarted;
+				net.OnClientStopped += OnClientStopped;
+				net.OnClientConnectedCallback += OnClientConnected;
+				net.OnClientDisconnectCallback += OnClientDisconnect;
+				net.OnConnectionEvent += OnConnectionEvent;
+				net.OnTransportFailure += OnTransportFailure;
+
+				// Netcode 2.0+
+				//net.OnSessionOwnerPromoted += OnSessionOwnerPromoted;
+			});
+		}
 
 		private void OnDestroy()
 		{
@@ -50,7 +55,7 @@ namespace CodeSmile.Netcode.Components
 				net.OnClientDisconnectCallback -= OnClientDisconnect;
 				net.OnConnectionEvent -= OnConnectionEvent;
 				net.OnTransportFailure -= OnTransportFailure;
-				net.OnSessionOwnerPromoted -= OnSessionOwnerPromoted;
+				//net.OnSessionOwnerPromoted -= OnSessionOwnerPromoted;
 			}
 		}
 
