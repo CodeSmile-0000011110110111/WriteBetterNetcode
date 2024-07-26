@@ -1,16 +1,37 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Netcode.Extensions;
 using System;
 using System.Collections;
 using System.Linq;
 using Unity.Multiplayer.Playmode;
 using Unity.Netcode;
+using Unity.Netcode.Transports.UTP;
 using UnityEditor;
 using UnityEngine;
 
 namespace CodeSmile.BetterNetcode.Network
 {
+	public enum NetworkRole
+	{
+		Client,
+		Host,
+		Server,
+	}
+
+	[Serializable]
+	public struct NetworkConfig
+	{
+		[HideInInspector] public NetworkRole Role;
+		public UnityTransport.ConnectionAddressData AddressData;
+		public Boolean UseWebSockets;
+		public Boolean UseEncryption;
+
+		public override String ToString() => $"NetworkConfig(Role={Role}, Address={AddressData.Address}:{AddressData.Port}, " +
+		                                     $"Listen={AddressData.ServerListenAddress}, WebSockets={UseWebSockets}, Encryption={UseEncryption})";
+	}
+
 	public class NetworkState : MonoBehaviour
 	{
 		/// <summary>
@@ -27,22 +48,18 @@ namespace CodeSmile.BetterNetcode.Network
 			ShuttingDown,
 		}
 
-		public enum Role
-		{
-			Client,
-			Host,
-			Server,
-		}
+		[SerializeField] private NetworkConfig m_ServerConfig = new() { Role = NetworkRole.Server };
+		[SerializeField] private NetworkConfig m_HostConfig = new() { Role = NetworkRole.Host };
+		[SerializeField] private NetworkConfig m_ClientConfig = new() { Role = NetworkRole.Client };
 
 		public State CurrentState { get; private set; } = State.Initializing;
-		public Role CurrentRole { get; private set; } = Role.Client;
 
 		private Boolean IsMppmServer
 		{
 			get
 			{
 #if UNITY_EDITOR
-				return CurrentPlayer.ReadOnlyTags().Contains(Role.Server.ToString());
+				return CurrentPlayer.ReadOnlyTags().Contains(NetworkRole.Server.ToString());
 #else
 				return false;
 #endif
@@ -63,17 +80,17 @@ namespace CodeSmile.BetterNetcode.Network
 			ChangeState(State.Offline);
 		}
 
-		private Boolean RoleFromMppmTags(out Role role)
+		private Boolean NetworkConfigFromMppmTags(out NetworkConfig config)
 		{
-			role = Role.Client;
+			var role = NetworkRole.Client;
 			var foundRole = false;
 
 #if UNITY_EDITOR
 			var tags = CurrentPlayer.ReadOnlyTags();
 			for (var r = 0; r < 3; r++)
 			{
-				role = (Role)r;
-				if (tags.Contains(((Role)r).ToString()))
+				role = (NetworkRole)r;
+				if (tags.Contains(((NetworkRole)r).ToString()))
 				{
 					foundRole = true;
 					break;
@@ -81,22 +98,23 @@ namespace CodeSmile.BetterNetcode.Network
 			}
 #endif
 
+			config = role == NetworkRole.Server ? m_ServerConfig : role == NetworkRole.Host ? m_HostConfig : m_ClientConfig;
 			return foundRole;
 		}
 
 		private void OnNetworkStateChanged(StateChangedEventArgs args)
 		{
-			Debug.Log($"NetworkState changed from {args.previousState} to {args.newState}");
+			//Debug.Log($"NetworkState changed from {args.previousState} to {args.newState}");
 
 			switch (args.newState)
 			{
 				case State.Offline:
-					if (RoleFromMppmTags(out var role))
-						StartNetworking(role);
+					if (NetworkConfigFromMppmTags(out var config))
+						StartNetworking(config);
 					break;
 
 				case State.Online:
-					StopNetworking();
+					//StopNetworking();
 					break;
 			}
 		}
@@ -107,31 +125,43 @@ namespace CodeSmile.BetterNetcode.Network
 				throw new Exception($"State mismatch! Expected state: {expectedState} - Current state: {CurrentState}");
 		}
 
-		public void StartNetworking(Role role)
+		public void StartNetworking(NetworkConfig config)
 		{
+			Debug.Log($"StartNetworking({config})");
 			CheckNetworkStateIs(State.Offline);
-
-			Debug.Log($"Start networking with role: {role}");
-			CurrentRole = role;
 			ChangeState(State.Starting);
 
 			var net = NetworkManager.Singleton;
-			switch (role)
+			var transport = net.GetTransport();
+			transport.ConnectionData = config.AddressData;
+			transport.UseWebSockets = config.UseWebSockets;
+			transport.UseEncryption = config.UseEncryption;
+
+			switch (config.Role)
 			{
-				case Role.Client:
-					if (net.StartClient())
+				case NetworkRole.Client:
+					if (net.StartClient() == false)
+					{
+						Debug.LogWarning("StartClient failed");
 						ChangeState(State.ShuttingDown);
+					}
 					break;
-				case Role.Host:
-					if (net.StartHost())
+				case NetworkRole.Host:
+					if (net.StartHost() == false)
+					{
+						Debug.LogWarning("StartHost failed");
 						ChangeState(State.ShuttingDown);
+					}
 					break;
-				case Role.Server:
-					if (net.StartServer())
+				case NetworkRole.Server:
+					if (net.StartServer() == false)
+					{
+						Debug.LogWarning("StartServer failed");
 						ChangeState(State.ShuttingDown);
+					}
 					break;
 				default:
-					throw new ArgumentOutOfRangeException(nameof(role), role, null);
+					throw new ArgumentOutOfRangeException(nameof(config.Role), config.Role, null);
 			}
 		}
 
