@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CodeSmile.FSM
 {
-	public sealed class Statemachine
+	public sealed partial class Statemachine
 	{
 		public event Action<StateChangeEventArgs> OnStateChanged;
 
@@ -99,126 +99,6 @@ namespace CodeSmile.FSM
 		{
 			public State PreviousState;
 			public State ActiveState;
-		}
-
-		public sealed class State
-		{
-			public String Name { get; }
-			public Transition[] Transitions { get; }
-
-			public State(String stateName)
-				: this(stateName, null) {}
-
-			public State(String stateName, Transition[] transitions)
-			{
-				if (String.IsNullOrWhiteSpace(stateName))
-					throw new ArgumentException("invalid name", nameof(stateName));
-
-				Name = stateName;
-				Transitions = transitions ?? new Transition[0];
-			}
-
-			public Boolean IsFinalState() => Transitions.Length == 0;
-
-			public void Update(Statemachine sm)
-			{
-				foreach (var transition in Transitions)
-				{
-					transition.Update(sm);
-
-					// stop evaluating further transitions if the current transition caused a state change
-					if (sm.DidChangeState)
-						break;
-				}
-			}
-		}
-
-		public sealed class Transition
-		{
-			public ICondition[] Conditions { get; }
-			public IAction[] Actions { get; }
-			public String GotoStateName { get; }
-
-			public Transition(ICondition[] conditions, IAction[] actions)
-				: this(conditions, actions, null) {}
-
-			public Transition(ICondition[] conditions, IAction[] actions, String gotoStateName)
-			{
-				Conditions = conditions ?? new ICondition[0];
-				Actions = actions ?? new IAction[0];
-				GotoStateName = gotoStateName;
-			}
-
-			public void Update(Statemachine sm)
-			{
-				if (ConditionsSatisfied())
-				{
-					ExecuteActions();
-					TryChangeState(sm);
-				}
-			}
-
-			private Boolean ConditionsSatisfied()
-			{
-				foreach (var condition in Conditions)
-				{
-					if (condition.IsSatisfied() == false)
-						return false; // early out
-				}
-				return true;
-			}
-
-			private void ExecuteActions()
-			{
-				foreach (var action in Actions)
-					action.Execute();
-			}
-
-			private void TryChangeState(Statemachine sm)
-			{
-				if (GotoStateName != null)
-					sm.SetActiveState(GotoStateName);
-			}
-		}
-
-		public interface ICondition
-		{
-			public Boolean IsSatisfied();
-		}
-
-		public interface IAction
-		{
-			public void Execute();
-		}
-
-		public sealed class Condition : ICondition
-		{
-			private readonly Func<Boolean> m_Condition;
-
-			public Condition(Func<Boolean> condition)
-			{
-				if (condition == null)
-					throw new ArgumentNullException(nameof(condition));
-
-				m_Condition = condition;
-			}
-
-			public Boolean IsSatisfied() => m_Condition.Invoke();
-		}
-
-		public sealed class Action : IAction
-		{
-			private readonly System.Action m_Action;
-
-			public Action(System.Action action)
-			{
-				if (action == null)
-					throw new ArgumentNullException(nameof(action));
-
-				m_Action = action;
-			}
-
-			public void Execute() => m_Action.Invoke();
 		}
 	}
 }
