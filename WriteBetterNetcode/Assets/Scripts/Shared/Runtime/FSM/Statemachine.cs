@@ -11,16 +11,24 @@ namespace CodeSmile.FSM
 	{
 		public event Action<StateChangeEventArgs> OnStateChanged;
 
-		private Int32 m_ActiveStateIndex;
-		public String Name { get; }
-		public State[] States { get; }
+		// Global (world) variables
+		private static readonly Variables s_GlobalVars = new();
 
-		public State ActiveState => States[m_ActiveStateIndex];
-		public Boolean IsFinished => ActiveState.IsFinalState();
+		private readonly String m_Name;
+		private readonly State[] m_States;
+
+		// Per statemachine variables
+		private readonly Variables m_LocalVars = new();
+
+		private Int32 m_ActiveStateIndex;
 
 		internal Boolean DidChangeState { get; private set; }
 
-		public State this[String stateName] => States[FindStateIndexByName(stateName)];
+		public String Name => m_Name;
+		public State ActiveState => m_States[m_ActiveStateIndex];
+		public Boolean IsFinished => ActiveState.IsFinalState();
+
+		public State this[String stateName] => m_States[FindStateIndexByName(stateName)];
 
 		public Statemachine(String statemachineName, State[] states)
 		{
@@ -29,24 +37,10 @@ namespace CodeSmile.FSM
 			if (states == null || states.Length == 0)
 				throw new ArgumentException("no states provided", nameof(states));
 
-			Name = statemachineName;
-			States = states;
+			m_Name = statemachineName;
+			m_States = states;
 
 			ValidateStateNames();
-		}
-
-		private void ValidateStateNames()
-		{
-#if DEBUG || DEVELOPMENT_BUILD
-			foreach (var state in States)
-			{
-				foreach (var transition in state.Transitions)
-				{
-					if (transition.GotoStateName != null)
-						FindStateIndexByName(transition.GotoStateName);
-				}
-			}
-#endif
 		}
 
 		public void Update()
@@ -73,7 +67,7 @@ namespace CodeSmile.FSM
 
 		private Int32 FindStateIndexByName(String stateName)
 		{
-			var newStateIndex = Array.FindIndex(States, s => s.Name.Equals(stateName));
+			var newStateIndex = Array.FindIndex(m_States, s => s.Name.Equals(stateName));
 			if (newStateIndex < 0)
 				throw new ArgumentException($"Statemachine '{Name}' does not contain state named '{stateName}'");
 
@@ -93,6 +87,20 @@ namespace CodeSmile.FSM
 				Debug.LogWarning($"Statemachine '{Name}' transition changed state to already active state '{stateName}'." +
 				                 "If a self-transition was intended, leave the state name empty instead.");
 			}
+		}
+
+		private void ValidateStateNames()
+		{
+#if DEBUG || DEVELOPMENT_BUILD
+			foreach (var state in m_States)
+			{
+				foreach (var transition in state.Transitions)
+				{
+					if (transition.GotoStateName != null)
+						FindStateIndexByName(transition.GotoStateName);
+				}
+			}
+#endif
 		}
 
 		public struct StateChangeEventArgs
