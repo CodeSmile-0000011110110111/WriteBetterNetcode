@@ -16,7 +16,7 @@ namespace CodeSmile.Statemachine
 		{
 			internal ICondition[] Conditions { get; }
 			internal IAction[] Actions { get; }
-			internal String GotoStateName { get; }
+			internal State GotoState { get; }
 
 			/// <summary>
 			///     Creates a self-transition that does not change the current state if its conditions are satisfied.
@@ -31,12 +31,12 @@ namespace CodeSmile.Statemachine
 			/// </summary>
 			/// <param name="conditions"></param>
 			/// <param name="actions"></param>
-			/// <param name="gotoStateName"></param>
-			public Transition(ICondition[] conditions, IAction[] actions, String gotoStateName)
+			/// <param name="gotoState"></param>
+			public Transition(ICondition[] conditions, IAction[] actions, State gotoState)
 			{
 				Conditions = conditions ?? new ICondition[0];
 				Actions = actions ?? new IAction[0];
-				GotoStateName = gotoStateName;
+				GotoState = gotoState;
 			}
 
 			internal void Update(FSM sm)
@@ -45,8 +45,8 @@ namespace CodeSmile.Statemachine
 				{
 					ExecuteActions(sm);
 
-					if (GotoStateName != null)
-						sm.SetActiveState(GotoStateName);
+					if (GotoState != null)
+						sm.SetActiveState(GotoState);
 				}
 			}
 

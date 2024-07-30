@@ -15,18 +15,24 @@ namespace CodeSmile.Statemachine
 		public sealed class State
 		{
 			public String Name { get; }
-			public Transition[] Transitions { get; }
+			internal Transition[] Transitions { get; private set; }
 
 			public State(String stateName)
-				: this(stateName, null) {}
-
-			public State(String stateName, Transition[] transitions)
 			{
 				if (String.IsNullOrWhiteSpace(stateName))
 					throw new ArgumentException("invalid name", nameof(stateName));
 
 				Name = stateName;
+				Transitions = new Transition[0];
+			}
+
+			public State WithTransitions(Transition[] transitions)
+			{
+				if (Transitions.Length > 0)
+					throw new InvalidOperationException("transitions already set");
+
 				Transitions = transitions ?? new Transition[0];
+				return this;
 			}
 
 			public Boolean IsFinalState() => Transitions.Length == 0;

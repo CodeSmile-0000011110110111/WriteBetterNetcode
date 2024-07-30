@@ -46,45 +46,40 @@ namespace CodeSmile.Statemachine
 		public State ActiveState => m_States[m_ActiveStateIndex];
 		public Boolean IsStopped => ActiveState.IsFinalState();
 
-		public State this[String stateName] => m_States[FindStateIndexByName(stateName)];
+		//public State this[String stateName] => m_States[FindStateIndexByName(stateName)];
 
 		public FSM(String statemachineName)
 		{
 			if (String.IsNullOrWhiteSpace(statemachineName))
-				throw new ArgumentException("invalid name", nameof(statemachineName));
+				throw new ArgumentException("name cannot be null or empty", nameof(statemachineName));
 
 			m_Name = statemachineName;
 		}
 
-		public FSM SetStates(State[] states)
+		public FSM WithStates(params State[] states)
 		{
 			if (m_States != null)
-				throw new InvalidOperationException("States already initialized!");
+				throw new InvalidOperationException("States already set!");
 			if (states == null || states.Length == 0)
 				throw new ArgumentException("no states provided", nameof(states));
 
 			m_States = states;
-			ValidateStateNames();
 
 			return this;
 		}
 
-		public FSM StartWithStates(State[] states)
+		public FSM Start()
 		{
-			SetStates(states);
-			Start();
+			Validate();
 
-			return this;
-		}
-
-		public void Start()
-		{
 			m_ActiveStateIndex = 0;
 
 			foreach (var state in m_States)
 				state.OnStart(this);
 
 			ActiveState.OnEnterState(this);
+
+			return this;
 		}
 
 		private void Stop()
@@ -124,15 +119,15 @@ namespace CodeSmile.Statemachine
 			}
 		}
 
-		internal void SetActiveState(String stateName)
+		internal void SetActiveState(State state)
 		{
 			ThrowIfAlreadyChangedState();
 
-			var newStateIndex = FindStateIndexByName(stateName);
+			var newStateIndex = FindStateIndexByName(state.Name);
 			m_DidChangeState = newStateIndex != m_ActiveStateIndex;
 			m_ActiveStateIndex = newStateIndex;
 
-			WarnIfStateDidNotChange(stateName);
+			WarnIfStateDidNotChange(state.Name);
 		}
 
 		private Int32 FindStateIndexByName(String stateName)
@@ -159,15 +154,26 @@ namespace CodeSmile.Statemachine
 			}
 		}
 
-		private void ValidateStateNames()
+		private void Validate()
 		{
 #if DEBUG || DEVELOPMENT_BUILD
+			if (m_States == null)
+				throw new Exception($"{m_Name}: no states");
+
 			foreach (var state in m_States)
 			{
+				if (state == null)
+					throw new Exception($"{m_Name}: state is null");
+				if (state.Transitions == null)
+					throw new Exception($"{m_Name}: state {state.Name} transitions are null");
+
 				foreach (var transition in state.Transitions)
 				{
-					if (transition.GotoStateName != null)
-						FindStateIndexByName(transition.GotoStateName);
+					if (transition == null)
+						throw new Exception($"{m_Name}: state {state.Name}: a transition is null");
+
+					if (transition.GotoState != null)
+						FindStateIndexByName(transition.GotoState.Name);
 				}
 			}
 #endif
