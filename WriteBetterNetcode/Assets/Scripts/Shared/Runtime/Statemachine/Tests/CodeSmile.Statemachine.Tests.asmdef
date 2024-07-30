@@ -1,10 +1,10 @@
 {
-    "name": "CodeSmile.FSM.Tests",
+    "name": "CodeSmile.Statemachine.Tests",
     "rootNamespace": "CodeSmile",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "CodeSmile.FSM"
+        "CodeSmile.Statemachine"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

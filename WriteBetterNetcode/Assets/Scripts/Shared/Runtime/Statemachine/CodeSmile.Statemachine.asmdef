@@ -1,5 +1,5 @@
 {
-    "name": "CodeSmile.FSM",
+    "name": "CodeSmile.Statemachine",
     "rootNamespace": "CodeSmile",
     "references": [],
     "includePlatforms": [],

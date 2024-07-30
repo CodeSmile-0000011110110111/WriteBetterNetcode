@@ -5,10 +5,13 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.FSM
+namespace CodeSmile.Statemachine
 {
-	public sealed partial class Statemachine
+	public sealed partial class FSM
 	{
+		/// <summary>
+		/// Represents a state in a statemachine.
+		/// </summary>
 		public sealed class State
 		{
 			public String Name { get; }
@@ -28,7 +31,7 @@ namespace CodeSmile.FSM
 
 			public Boolean IsFinalState() => Transitions.Length == 0;
 
-			public void Update(Statemachine sm)
+			public void Update(FSM sm)
 			{
 				foreach (var transition in Transitions)
 				{
@@ -38,6 +41,30 @@ namespace CodeSmile.FSM
 					if (sm.DidChangeState)
 						break;
 				}
+			}
+
+			internal void OnExitState(FSM sm)
+			{
+				foreach (var transition in Transitions)
+					transition.OnExitState(sm);
+			}
+
+			internal void OnEnterState(FSM sm)
+			{
+				foreach (var transition in Transitions)
+					transition.OnEnterState(sm);
+			}
+
+			internal void OnStart(FSM sm)
+			{
+				foreach (var transition in Transitions)
+					transition.OnStart(sm);
+			}
+
+			internal void OnStop(FSM sm)
+			{
+				foreach (var transition in Transitions)
+					transition.OnStop(sm);
 			}
 		}
 	}

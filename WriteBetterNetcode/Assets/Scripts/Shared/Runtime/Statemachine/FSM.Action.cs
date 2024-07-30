@@ -5,13 +5,17 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.FSM
+namespace CodeSmile.Statemachine
 {
-	public sealed partial class Statemachine
+	public sealed partial class FSM
 	{
 		public interface IAction
 		{
-			public void Execute(Statemachine sm);
+			void Execute(FSM sm);
+			void OnStart(FSM sm) {}
+			void OnStop(FSM sm) {}
+			void OnEnterState(FSM sm) {}
+			void OnExitState(FSM sm) {}
 		}
 
 		public sealed class Action : IAction
@@ -26,7 +30,7 @@ namespace CodeSmile.FSM
 				m_Action = action;
 			}
 
-			public void Execute(Statemachine sm) => m_Action.Invoke();
+			public void Execute(FSM sm) => m_Action.Invoke();
 		}
 
 		public abstract class VariableActionBase : IAction
@@ -41,53 +45,48 @@ namespace CodeSmile.FSM
 				Negate,
 			}
 
-			private readonly String m_VarName;
+			private readonly Variable m_Variable;
 			private readonly Variable m_Operand;
 			private readonly Operator m_Operator;
-			private readonly VariableScope m_Scope;
 
-			internal VariableActionBase(String varName, Variable operand, Operator @operator, VariableScope scope)
+			internal VariableActionBase(Variable variable, Variable operand, Operator @operator)
 			{
 				if (operand.Type == Variable.ValueType.Bool && @operator != Operator.Set)
 					throw new ArgumentException($"Invalid operator for Bool vars: {@operator}");
-				if (@operator != Operator.Negate && operand.Type != Variable.ValueType.Bool)
+				if (@operator == Operator.Negate && operand.Type != Variable.ValueType.Bool)
 					throw new ArgumentException($"Invalid operator for non-Bool vars: {@operator}");
+
+				m_Variable = variable;
+				m_Operand = operand;
+				m_Operator = @operator;
 			}
 
-			public void Execute(Statemachine sm)
+			public void Execute(FSM sm)
 			{
-				var variable = m_Scope == VariableScope.Local ? sm.LocalVars[m_VarName] : sm.GlobalVars[m_VarName];
 				switch (m_Operator)
 				{
 					case Operator.Set:
-						variable.Set(m_Operand);
+						m_Variable.Set(m_Operand);
 						break;
 					case Operator.Add:
-						variable.Add(m_Operand);
+						m_Variable.Add(m_Operand);
 						break;
 					case Operator.Subtract:
-						variable.Sub(m_Operand);
+						m_Variable.Sub(m_Operand);
 						break;
 					case Operator.Multiply:
-						variable.Mul(m_Operand);
+						m_Variable.Mul(m_Operand);
 						break;
 					case Operator.Divide:
-						variable.Div(m_Operand);
+						m_Variable.Div(m_Operand);
 						break;
 					case Operator.Negate:
-						variable.BoolValue = !variable.BoolValue;
+						m_Variable.BoolValue = !m_Variable.BoolValue;
 						break;
 					default:
 						throw new ArgumentOutOfRangeException();
 				}
 			}
 		}
-
-	}
-
-	public sealed class SetInt : Statemachine.VariableActionBase
-	{
-		public SetInt(String varName, Int32 value)
-			: base(varName, Statemachine.Variable.Int(value), Operator.Set, Statemachine.VariableScope.Local) {}
 	}
 }

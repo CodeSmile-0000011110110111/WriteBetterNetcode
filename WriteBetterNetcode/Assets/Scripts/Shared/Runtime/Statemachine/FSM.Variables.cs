@@ -9,9 +9,9 @@ using UnityEditor;
 using UnityEngine;
 using Object = System.Object;
 
-namespace CodeSmile.FSM
+namespace CodeSmile.Statemachine
 {
-	public sealed partial class Statemachine
+	public sealed partial class FSM
 	{
 		public class Variables
 		{
@@ -31,22 +31,31 @@ namespace CodeSmile.FSM
 				}
 			}
 
-			public void DefineBool(String name, Boolean value = false)
+			public Variable DefineBool(String name, Boolean value = false)
 			{
 				ThrowIfVariableNameAlreadyExists(name);
-				m_Variables.Add(name, Variable.Bool(value));
+
+				var variable = Variable.Bool(value);
+				m_Variables.Add(name, variable);
+				return variable;
 			}
 
-			public void DefineFloat(String name, Single value = 0f)
+			public Variable DefineFloat(String name, Single value = 0f)
 			{
 				ThrowIfVariableNameAlreadyExists(name);
-				m_Variables.Add(name, Variable.Float(value));
+
+				var variable = Variable.Float(value);
+				m_Variables.Add(name, variable);
+				return variable;
 			}
 
-			public void DefineInt(String name, Int32 value = 0)
+			public Variable DefineInt(String name, Int32 value = 0)
 			{
 				ThrowIfVariableNameAlreadyExists(name);
-				m_Variables.Add(name, Variable.Int(value));
+
+				var variable = Variable.Int(value);
+				m_Variables.Add(name, variable);
+				return variable;
 			}
 
 			public void Clear() => m_Variables.Clear();
@@ -69,13 +78,13 @@ namespace CodeSmile.FSM
 			{
 				get
 				{
-					AssignTypeIfUnset(ValueType.Bool);
+					SetTypeIfNone(ValueType.Bool);
 					ThrowIfTypeMismatch(ValueType.Bool);
 					return m_Value.BoolValue;
 				}
 				set
 				{
-					AssignTypeIfUnset(ValueType.Bool);
+					SetTypeIfNone(ValueType.Bool);
 					ThrowIfTypeMismatch(ValueType.Bool);
 					m_Value.BoolValue = value;
 				}
@@ -85,13 +94,13 @@ namespace CodeSmile.FSM
 			{
 				get
 				{
-					AssignTypeIfUnset(ValueType.Float);
+					SetTypeIfNone(ValueType.Float);
 					ThrowIfTypeMismatch(ValueType.Float);
 					return m_Value.FloatValue;
 				}
 				set
 				{
-					AssignTypeIfUnset(ValueType.Float);
+					SetTypeIfNone(ValueType.Float);
 					ThrowIfTypeMismatch(ValueType.Float);
 					m_Value.FloatValue = value;
 				}
@@ -101,13 +110,13 @@ namespace CodeSmile.FSM
 			{
 				get
 				{
-					AssignTypeIfUnset(ValueType.Int);
+					SetTypeIfNone(ValueType.Int);
 					ThrowIfTypeMismatch(ValueType.Int);
 					return m_Value.IntValue;
 				}
 				set
 				{
-					AssignTypeIfUnset(ValueType.Int);
+					SetTypeIfNone(ValueType.Int);
 					ThrowIfTypeMismatch(ValueType.Int);
 					m_Value.IntValue = value;
 				}
@@ -287,7 +296,7 @@ namespace CodeSmile.FSM
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			private void AssignTypeIfUnset(ValueType valueType)
+			internal void SetTypeIfNone(ValueType valueType)
 			{
 				if (m_ValueType == ValueType.None)
 					m_ValueType = valueType;
@@ -305,6 +314,45 @@ namespace CodeSmile.FSM
 			public override String ToString() => $"Value={m_Value} ({m_ValueType})";
 			public override Boolean Equals(Object obj) => ReferenceEquals(this, obj) || obj is Variable other && Equals(other);
 			public override Int32 GetHashCode() => HashCode.Combine((Int32)m_ValueType, m_Value);
+
+			public sealed class IsTrue : VariableConditionBase
+			{
+				public IsTrue(Variable variable)
+					: base(variable, Bool(true), Comparator.Equal) {}
+			}
+
+			public sealed class IsFalse : VariableConditionBase
+			{
+				public IsFalse(Variable variable)
+					: base(variable, Bool(false), Comparator.Equal) {}
+			}
+
+			public sealed class IsEqual : VariableConditionBase
+			{
+				public IsEqual(Variable variable, Int32 value)
+					: base(variable, Int(value), Comparator.Equal) {}
+
+				public IsEqual(Variable variable, Single value)
+					: base(variable, Float(value), Comparator.Equal) {}
+			}
+
+			public sealed class SetTrue : VariableActionBase
+			{
+				public SetTrue(Variable variable)
+					: base(variable, Bool(true), Operator.Set) {}
+			}
+
+			public sealed class SetFalse : VariableActionBase
+			{
+				public SetFalse(Variable variable)
+					: base(variable, Bool(false), Operator.Set) {}
+			}
+
+			public sealed class SetInt : VariableActionBase
+			{
+				public SetInt(Variable variable, Int32 value)
+					: base(variable, Int(value), Operator.Set) {}
+			}
 
 			internal enum ValueType
 			{
