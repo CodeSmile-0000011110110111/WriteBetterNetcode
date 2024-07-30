@@ -27,27 +27,27 @@ namespace CodeSmile.FSM
 
 			public void Update(Statemachine sm)
 			{
-				if (ConditionsSatisfied())
+				if (ConditionsSatisfied(sm))
 				{
-					ExecuteActions();
+					ExecuteActions(sm);
 					TryChangeState(sm);
 				}
 			}
 
-			private Boolean ConditionsSatisfied()
+			private Boolean ConditionsSatisfied(Statemachine sm)
 			{
 				foreach (var condition in Conditions)
 				{
-					if (condition.IsSatisfied() == false)
+					if (condition.IsSatisfied(sm) == false)
 						return false; // early out
 				}
 				return true;
 			}
 
-			private void ExecuteActions()
+			private void ExecuteActions(Statemachine sm)
 			{
 				foreach (var action in Actions)
-					action.Execute();
+					action.Execute(sm);
 			}
 
 			private void TryChangeState(Statemachine sm)

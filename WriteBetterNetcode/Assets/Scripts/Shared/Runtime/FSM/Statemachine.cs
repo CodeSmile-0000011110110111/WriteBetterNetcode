@@ -11,16 +11,17 @@ namespace CodeSmile.FSM
 	{
 		public event Action<StateChangeEventArgs> OnStateChanged;
 
-		// Global (world) variables
-		private static readonly Variables s_GlobalVars = new();
-
 		private readonly String m_Name;
-		private readonly State[] m_States;
-
-		// Per statemachine variables
-		private readonly Variables m_LocalVars = new();
+		private State[] m_States;
 
 		private Int32 m_ActiveStateIndex;
+
+		// Global (world) variables
+		public static Variables Vars { get; } = new();
+		public Variables GlobalVars => Vars;
+
+		// Per statemachine variables
+		public Variables LocalVars { get; } = new();
 
 		internal Boolean DidChangeState { get; private set; }
 
@@ -30,17 +31,25 @@ namespace CodeSmile.FSM
 
 		public State this[String stateName] => m_States[FindStateIndexByName(stateName)];
 
-		public Statemachine(String statemachineName, State[] states)
+		public Statemachine(String statemachineName)
 		{
 			if (String.IsNullOrWhiteSpace(statemachineName))
 				throw new ArgumentException("invalid name", nameof(statemachineName));
+
+			m_Name = statemachineName;
+		}
+
+		public Statemachine InitStates(State[] states)
+		{
+			if (m_States != null)
+				throw new InvalidOperationException("States already initialized!");
 			if (states == null || states.Length == 0)
 				throw new ArgumentException("no states provided", nameof(states));
 
-			m_Name = statemachineName;
 			m_States = states;
-
 			ValidateStateNames();
+
+			return this;
 		}
 
 		public void Update()
@@ -103,10 +112,27 @@ namespace CodeSmile.FSM
 #endif
 		}
 
+		internal enum VariableScope
+		{
+			Local,
+			Global,
+		}
+
 		public struct StateChangeEventArgs
 		{
 			public State PreviousState;
 			public State ActiveState;
 		}
+
+#if UNITY_EDITOR
+		[InitializeOnLoadMethod] private static void ResetStaticFields() =>
+			EditorApplication.playModeStateChanged += OnPlaymodeStateChanged;
+
+		private static void OnPlaymodeStateChanged(PlayModeStateChange playModeState)
+		{
+			if (playModeState == PlayModeStateChange.ExitingPlayMode)
+				Vars.Clear();
+		}
+#endif
 	}
 }

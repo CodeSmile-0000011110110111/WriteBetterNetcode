@@ -128,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 81953659}
   m_Layer: 0
-  m_Name: Global Objects
+  m_Name: Netcode Objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2143178688}
-  - {fileID: 2085682751}
+  - {fileID: 101005171}
+  - {fileID: 1027000998}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &101005170
@@ -181,7 +182,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2085682751}
+  m_Father: {fileID: 81953659}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &101005172
 MonoBehaviour:
@@ -197,7 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PresetAsset: {fileID: 0}
   m_PresetReference:
-    rid: 1162466961927700669
+    rid: 1162467052246794326
   m_Scenario:
     rid: -2
   m_IsScenarioSettingsFolded: 0
@@ -207,16 +208,61 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 1162466961927700669
+    - rid: 1162467052246794326
       type: {class: NetworkSimulatorPreset, ns: Unity.Multiplayer.Tools.NetworkSimulator.Runtime, asm: Unity.Multiplayer.Tools.NetworkSimulator.Runtime}
       data:
-        <Name>k__BackingField: 'Home Fiber [Best real-world scenario]'
-        <Description>k__BackingField: Best case scenario for desktop and console
-          platforms. Excellent ping, excellent jitter and no packet loss.
-        <PacketDelayMs>k__BackingField: 10
-        <PacketJitterMs>k__BackingField: 1
+        <Name>k__BackingField: 'Home DSL [ADSL or VDSL]'
+        <Description>k__BackingField: Average scenario for desktop and console platforms.
+          Good ping, good jitter and no packet loss.
+        <PacketDelayMs>k__BackingField: 30
+        <PacketJitterMs>k__BackingField: 10
         <PacketLossInterval>k__BackingField: 0
         <PacketLossPercent>k__BackingField: 0
+--- !u!1 &277872503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 277872504}
+  - component: {fileID: 277872505}
+  m_Layer: 0
+  m_Name: Press Escape To Quit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &277872504
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277872503}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2085682751}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &277872505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277872503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51eba3a25848b9e44a09478759578a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QuitKey: 27
 --- !u!1 &512638983
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +276,7 @@ GameObject:
   - component: {fileID: 512638985}
   - component: {fileID: 512638984}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Default Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -385,7 +431,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2085682751}
+  m_Father: {fileID: 81953659}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1027000999
 MonoBehaviour:
@@ -460,7 +506,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2061108204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27016912b7774f29bac5f5a00ec378aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 671066261d0db1e48a3e864bf051b0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2085682750
@@ -487,15 +533,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2085682750}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2061108205}
-  - {fileID: 101005171}
-  - {fileID: 1027000998}
-  m_Father: {fileID: 81953659}
+  - {fileID: 277872504}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2143178687
 GameObject:
@@ -628,7 +673,7 @@ GameObject:
   - component: {fileID: 2100322526572039505}
   - component: {fileID: 48163973242718940}
   - component: {fileID: 2697057450401653007}
-  - component: {fileID: 5458233705156257443}
+  - component: {fileID: 2697057450401653008}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -665,7 +710,7 @@ MonoBehaviour:
     PacketDelayMS: 0
     PacketJitterMS: 0
     PacketDropRate: 0
---- !u!114 &5458233705156257443
+--- !u!114 &2697057450401653008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -674,7 +719,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2209666323821430953}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af9aec37a81340f9b91c10ec65af539d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7aa7a9370208ced4db319c647667f124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_LogPropertyChanges: 1
@@ -684,4 +729,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 2100322526572039505}
   - {fileID: 81953659}
+  - {fileID: 2085682751}
   - {fileID: 512638987}

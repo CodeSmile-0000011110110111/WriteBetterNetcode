@@ -10,14 +10,19 @@ namespace CodeSmile.FSM.Tests
 {
 	public class StatemachineTests
 	{
+		private static readonly String TestVar1 = "Test1";
+		private static readonly String TestVar2 = "Test2";
+
 		[Test]
-		public void Statemachine_StartEndStates_RunsToEndAndRaisesStateChangeEvent()
+		public void SM_StartEndStates_RunsToEndAndRaisesStateChangeEvent()
 		{
 			var didExecuteActions = false;
 
-			var sm = new Statemachine("Test FSM", new Statemachine.State[]
+			var startState = "START";
+			var endState = "END";
+			var sm = new Statemachine("Test FSM").InitStates(new Statemachine.State[]
 			{
-				new("START", new Statemachine.Transition[]
+				new(startState, new Statemachine.Transition[]
 				{
 					new(new Statemachine.ICondition[]
 						{
@@ -28,39 +33,41 @@ namespace CodeSmile.FSM.Tests
 						{
 							new Statemachine.Action(() => didExecuteActions = true),
 						},
-						"END"),
+						endState),
 				}),
-				new("END"),
+				new(endState),
 			});
 
-			Assert.AreEqual("START", sm.ActiveState.Name);
+			Assert.AreEqual(startState, sm.ActiveState.Name);
 			Assert.IsFalse(didExecuteActions);
 			sm.Update();
 
-			Assert.AreEqual("END", sm.ActiveState.Name);
+			Assert.AreEqual(endState, sm.ActiveState.Name);
 			Assert.IsTrue(sm.IsFinished);
 			Assert.IsTrue(didExecuteActions);
 		}
 
 		[Test]
-		public void Statemachine_StartEndStates_InvokesStateChangeEvent()
+		public void SM_StateChange_InvokesStateChangeEvent()
 		{
 			var didInvokeStateChangedEvent = false;
 
-			var sm = new Statemachine("Test FSM", new Statemachine.State[]
+			var startState = "START";
+			var endState = "END";
+			var sm = new Statemachine("Test FSM").InitStates(new Statemachine.State[]
 			{
-				new("START", new Statemachine.Transition[]
+				new(startState, new Statemachine.Transition[]
 				{
-					new(null,null, "END"),
+					new(null, null, endState),
 				}),
-				new("END"),
+				new(endState),
 			});
 
 			sm.OnStateChanged += args =>
 			{
 				didInvokeStateChangedEvent = true;
-				Assert.AreEqual(args.PreviousState, sm["START"]);
-				Assert.AreEqual(args.ActiveState, sm["END"]);
+				Assert.AreEqual(args.PreviousState, sm[startState]);
+				Assert.AreEqual(args.ActiveState, sm[endState]);
 			};
 
 			sm.Update();
@@ -68,23 +75,98 @@ namespace CodeSmile.FSM.Tests
 			Assert.IsTrue(didInvokeStateChangedEvent);
 		}
 
-
 		[Test]
-		public void Statemachine_NonExistingGotoStateName_Throws()
+		public void SM_NonExistingGotoStateName_Throws()
 		{
 #if DEBUG || DEVELOPMENT_BUILD
 			Assert.Throws<ArgumentException>(() =>
 			{
-				new Statemachine("Test FSM", new Statemachine.State[]
+				var startState = "START";
+				var endState = "END";
+				new Statemachine("Test FSM").InitStates(new Statemachine.State[]
 				{
-					new("START", new Statemachine.Transition[]
+					new(startState, new Statemachine.Transition[]
 					{
 						new(null, null, "THIS STATE DOES NOT EXIST"),
 					}),
-					new("END"),
+					new(endState),
 				});
 			});
 #endif
+		}
+
+		[Test]
+		public void SMVar_LocalIntEquals_IsTrue()
+		{
+			var startState = "START";
+			var endState = "END";
+			var expectedValue = -111111;
+			var didExecute = "didExecute";
+
+			var sm = new Statemachine("Test FSM");
+			sm.LocalVars.DefineInt(TestVar1, expectedValue);
+
+			sm.InitStates(new Statemachine.State[]
+			{
+				new(startState, new Statemachine.Transition[]
+				{
+					new(new Statemachine.ICondition[]
+						{
+							new IsEqual(TestVar1, expectedValue),
+						},
+						new Statemachine.IAction[]
+						{
+							new Statemachine.Action(() =>
+							{
+								sm.LocalVars[didExecute].BoolValue = true;
+							}),
+						},
+						endState),
+				}),
+				new(endState),
+			});
+
+			sm.Update();
+
+			Assert.IsTrue(sm.LocalVars[didExecute].BoolValue);
+		}
+
+		[Test]
+		public void SMVar_VarCondition_SetsExpectedValue()
+		{
+			var startState = "START";
+			var endState = "END";
+			var expectedValue = 12345;
+
+			var sm = new Statemachine("Test FSM");
+			sm.LocalVars.DefineBool(TestVar1, true);
+
+			sm.InitStates(new Statemachine.State[]
+			{
+				new(startState, new Statemachine.Transition[]
+				{
+					new(new Statemachine.ICondition[]
+						{
+							new Statemachine.Condition(() =>
+							{
+								return sm.LocalVars[TestVar1].BoolValue;
+							}),
+						},
+						new Statemachine.IAction[]
+						{
+							new Statemachine.Action(() =>
+							{
+								sm.LocalVars[TestVar2].IntValue = expectedValue;
+							}),
+						},
+						endState),
+				}),
+				new(endState),
+			});
+
+			sm.Update();
+
+			Assert.AreEqual(expectedValue, sm.LocalVars[TestVar2].IntValue);
 		}
 	}
 }
