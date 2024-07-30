@@ -442,38 +442,6 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
-    "de.codesmile.extensions": {
-      "version": "file:de.codesmile.extensions",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "de.codesmile.testtools": "1.1.1",
-        "com.unity.test-framework": "1.4.1",
-        "com.unity.editorcoroutines": "1.0.0"
-      }
-    },
-    "de.codesmile.netcode": {
-      "version": "file:de.codesmile.netcode",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.unity.netcode.gameobjects": "1.8.1",
-        "com.unity.services.relay": "1.0.5",
-        "com.unity.multiplayer.playmode": "1.0.0",
-        "com.unity.dedicated-server": "1.0.0",
-        "com.unity.multiplayer.tools": "2.1.0",
-        "com.unity.test-framework": "1.4.1",
-        "de.codesmile.extensions": "1.2.0"
-      }
-    },
-    "de.codesmile.testtools": {
-      "version": "file:de.codesmile.testtools",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.unity.test-framework": "1.4.1"
-      }
-    },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
       "depth": 0,
