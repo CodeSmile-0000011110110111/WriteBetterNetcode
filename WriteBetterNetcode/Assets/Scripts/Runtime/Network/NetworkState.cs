@@ -54,18 +54,6 @@ namespace CodeSmile.BetterNetcode.Network
 
 		public State CurrentState { get; private set; } = State.Initializing;
 
-		private Boolean IsMppmServer
-		{
-			get
-			{
-#if UNITY_EDITOR
-				return CurrentPlayer.ReadOnlyTags().Contains(NetworkRole.Server.ToString());
-#else
-				return false;
-#endif
-			}
-		}
-
 		private void Start()
 		{
 			var net = NetworkManager.Singleton;
