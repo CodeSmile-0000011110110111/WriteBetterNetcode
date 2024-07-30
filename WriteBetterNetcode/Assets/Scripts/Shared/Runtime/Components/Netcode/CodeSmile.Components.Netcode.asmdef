@@ -1,0 +1,17 @@
+{
+    "name": "CodeSmile.Components.Netcode",
+    "rootNamespace": "CodeSmile",
+    "references": [
+        "GUID:5fbc1161fd95d8a42a39e1b6800dffb6",
+        "GUID:1491147abca9d7d4bb7105af628b223e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
