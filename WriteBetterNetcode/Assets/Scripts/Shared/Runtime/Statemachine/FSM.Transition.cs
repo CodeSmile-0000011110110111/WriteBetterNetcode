@@ -10,13 +10,33 @@ namespace CodeSmile.Statemachine
 	public sealed partial class FSM
 	{
 		/// <summary>
-		/// Represents a transition in a statemachine. A transition can also be a self-transition that does not change state.
+		///     Represents a transition in a statemachine. A transition can also be a self-transition that does not change state.
 		/// </summary>
 		public sealed class Transition
 		{
+			public String Name { get; }
 			internal ICondition[] Conditions { get; }
 			internal IAction[] Actions { get; }
 			internal State GotoState { get; }
+
+			private Transition() {} // forbidden default ctor
+
+			/// <summary>
+			///     Creates a transition without actions whose purpose is to just change state if its conditions are satisfied.
+			/// </summary>
+			/// <param name="conditions"></param>
+			/// <param name="gotoState"></param>
+			public Transition(ICondition[] conditions, State gotoState)
+				: this(conditions, null, gotoState) {}
+
+			/// <summary>
+			///     Creates a named transition without actions whose purpose is to just change state if its conditions are satisfied.
+			/// </summary>
+			/// <param name="transitionName"></param>
+			/// <param name="conditions"></param>
+			/// <param name="gotoState"></param>
+			public Transition(String transitionName, ICondition[] conditions, State gotoState)
+				: this(transitionName, conditions, null, gotoState) {}
 
 			/// <summary>
 			///     Creates a self-transition that does not change the current state if its conditions are satisfied.
@@ -33,8 +53,23 @@ namespace CodeSmile.Statemachine
 			/// <param name="actions"></param>
 			/// <param name="gotoState"></param>
 			public Transition(ICondition[] conditions, IAction[] actions, State gotoState)
+				: this(null, conditions, actions, gotoState) {}
+
+			/// <summary>
+			///     Creates a named transition that changes state to the given gotoState if conditions are satisfied.
+			/// </summary>
+			/// <remarks>
+			///     The transition name should be used to annotate or summarize the purpose of the transition.
+			///     The name is also instrumental for debugging and appears in diagrams.
+			/// </remarks>
+			/// <param name="transitionName"></param>
+			/// <param name="conditions"></param>
+			/// <param name="actions"></param>
+			/// <param name="gotoState"></param>
+			public Transition(String transitionName, ICondition[] conditions, IAction[] actions, State gotoState)
 			{
-				Conditions = conditions ?? new ICondition[0];
+				Name = transitionName ?? String.Empty;
+				Conditions = conditions;
 				Actions = actions ?? new IAction[0];
 				GotoState = gotoState;
 			}

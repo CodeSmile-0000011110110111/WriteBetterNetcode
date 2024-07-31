@@ -22,6 +22,8 @@ namespace CodeSmile.Statemachine
 		{
 			private readonly Func<Boolean> m_Condition;
 
+			private Condition() {} // forbidden default ctor
+
 			public Condition(Func<Boolean> condition)
 			{
 				if (condition == null)
@@ -37,6 +39,8 @@ namespace CodeSmile.Statemachine
 		{
 			private readonly ICondition m_Condition;
 
+			private NOT() {} // forbidden default ctor
+
 			public NOT(ICondition condition)
 			{
 				if (condition == null)
@@ -51,6 +55,8 @@ namespace CodeSmile.Statemachine
 		public sealed class OR : ICondition
 		{
 			private readonly ICondition[] m_Conditions;
+
+			private OR() {} // forbidden default ctor
 
 			public OR(params ICondition[] conditions)
 			{
@@ -82,6 +88,8 @@ namespace CodeSmile.Statemachine
 		public sealed class AND : ICondition
 		{
 			private readonly ICondition[] m_Conditions;
+
+			private AND() {} // forbidden default ctor
 
 			public AND(params ICondition[] conditions)
 			{
@@ -124,6 +132,8 @@ namespace CodeSmile.Statemachine
 			private readonly Variable m_Variable;
 			private readonly Variable m_Comparand;
 			private readonly Comparator m_Comparator;
+
+			private VariableConditionBase() {} // forbidden default ctor
 
 			internal VariableConditionBase(Variable variable, Variable comparand, Comparator comparator)
 			{

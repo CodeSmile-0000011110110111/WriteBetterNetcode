@@ -22,6 +22,8 @@ namespace CodeSmile.Statemachine
 		{
 			private readonly System.Action m_Action;
 
+			private Action() {} // forbidden default ctor
+
 			public Action(System.Action action)
 			{
 				if (action == null)
@@ -48,6 +50,8 @@ namespace CodeSmile.Statemachine
 			private readonly Variable m_Variable;
 			private readonly Variable m_Operand;
 			private readonly Operator m_Operator;
+
+			private VariableActionBase() {} // forbidden default ctor
 
 			internal VariableActionBase(Variable variable, Variable operand, Operator @operator)
 			{

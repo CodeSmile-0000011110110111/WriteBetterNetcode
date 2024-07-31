@@ -24,14 +24,19 @@ namespace CodeSmile.Statemachine
 
 		private static readonly Variables s_GlobalVars = new();
 
-		private readonly String m_Name;
 		private State[] m_States;
 
-		private Int32 m_ActiveStateIndex;
+		private Int32 m_ActiveStateIndex = -1;
 
-		private Boolean m_DidChangeState;
-		internal Boolean DidChangeState => m_DidChangeState;
-
+		public String Name { get; }
+		public State ActiveState
+		{
+			get
+			{
+				ThrowIfStatemachineNotStarted();
+				return m_States[m_ActiveStateIndex];
+			}
+		}
 		/// <summary>
 		///     Global variables are available for all statemachines (be mindful!).
 		/// </summary>
@@ -42,35 +47,30 @@ namespace CodeSmile.Statemachine
 		/// </summary>
 		public Variables LocalVars { get; } = new();
 
-		public String Name => m_Name;
-		public State ActiveState => m_States[m_ActiveStateIndex];
 		public Boolean IsStopped => ActiveState.IsFinalState();
+		public Boolean DidChangeState { get; private set; }
 
-		//public State this[String stateName] => m_States[FindStateIndexByName(stateName)];
+		private FSM() {} // forbidden default ctor
 
-		public FSM(String statemachineName)
-		{
-			if (String.IsNullOrWhiteSpace(statemachineName))
-				throw new ArgumentException("name cannot be null or empty", nameof(statemachineName));
-
-			m_Name = statemachineName;
-		}
+		public FSM(String statemachineName) => Name = statemachineName;
 
 		public FSM WithStates(params State[] states)
 		{
 			if (m_States != null)
 				throw new InvalidOperationException("States already set!");
-			if (states == null || states.Length == 0)
-				throw new ArgumentException("no states provided", nameof(states));
 
 			m_States = states;
 
 			return this;
 		}
 
+		/// <summary>
+		///     Initializes the statemachine.
+		/// </summary>
+		/// <returns></returns>
 		public FSM Start()
 		{
-			Validate();
+			ValidateStatemachine();
 
 			m_ActiveStateIndex = 0;
 
@@ -90,18 +90,24 @@ namespace CodeSmile.Statemachine
 				state.OnStop(this);
 		}
 
-		public void Update()
+		/// <summary>
+		///     Evaluates the current state's transitions.
+		/// </summary>
+		public void Evaluate()
 		{
+			// TODO: allow evaluation of multiple state changes (configurable)
+
+			ThrowIfStatemachineNotStarted();
+
+			DidChangeState = false;
+
 			if (IsStopped)
-			{
-				Debug.LogWarning($"called Update() on stopped Statemachine: {m_Name}");
 				return;
-			}
 
 			var updatingState = ActiveState;
 			updatingState.Update(this);
 
-			if (m_DidChangeState)
+			if (DidChangeState)
 			{
 				updatingState.OnExitState(this);
 				ActiveState.OnEnterState(this);
@@ -114,76 +120,17 @@ namespace CodeSmile.Statemachine
 					Stop();
 					OnStopped?.Invoke(new StatemachineStoppedEventArgs { Fsm = this, FinalState = ActiveState });
 				}
-
-				m_DidChangeState = false;
 			}
 		}
 
 		internal void SetActiveState(State state)
 		{
-			ThrowIfAlreadyChangedState();
-
-			var newStateIndex = FindStateIndexByName(state.Name);
-			m_DidChangeState = newStateIndex != m_ActiveStateIndex;
+			var newStateIndex = FindStateIndex(state);
+			DidChangeState = newStateIndex != m_ActiveStateIndex;
 			m_ActiveStateIndex = newStateIndex;
-
-			WarnIfStateDidNotChange(state.Name);
 		}
 
-		private Int32 FindStateIndexByName(String stateName)
-		{
-			var newStateIndex = Array.FindIndex(m_States, s => s.Name.Equals(stateName));
-			if (newStateIndex < 0)
-				throw new ArgumentException($"Statemachine '{Name}' does not contain state named '{stateName}'");
-
-			return newStateIndex;
-		}
-
-		private void ThrowIfAlreadyChangedState()
-		{
-			if (m_DidChangeState)
-				throw new InvalidOperationException("state change already occured this update!");
-		}
-
-		private void WarnIfStateDidNotChange(String stateName)
-		{
-			if (m_DidChangeState == false)
-			{
-				Debug.LogWarning($"Statemachine '{Name}' transition changed state to already active state '{stateName}'." +
-				                 "If a self-transition was intended, leave the state name empty instead.");
-			}
-		}
-
-		private void Validate()
-		{
-#if DEBUG || DEVELOPMENT_BUILD
-			if (m_States == null)
-				throw new Exception($"{m_Name}: no states");
-
-			foreach (var state in m_States)
-			{
-				if (state == null)
-					throw new Exception($"{m_Name}: state is null");
-				if (state.Transitions == null)
-					throw new Exception($"{m_Name}: state {state.Name} transitions are null");
-
-				foreach (var transition in state.Transitions)
-				{
-					if (transition == null)
-						throw new Exception($"{m_Name}: state {state.Name}: a transition is null");
-
-					if (transition.GotoState != null)
-						FindStateIndexByName(transition.GotoState.Name);
-				}
-			}
-#endif
-		}
-
-		internal enum VariableScope
-		{
-			Local,
-			Global,
-		}
+		private Int32 FindStateIndex(State searchForState) => Array.FindIndex(m_States, s => s == searchForState);
 
 		public struct StateChangeEventArgs
 		{
@@ -197,16 +144,5 @@ namespace CodeSmile.Statemachine
 			public FSM Fsm;
 			public State FinalState;
 		}
-
-#if UNITY_EDITOR
-		[InitializeOnLoadMethod] private static void ResetStaticFields() =>
-			EditorApplication.playModeStateChanged += OnPlaymodeStateChanged;
-
-		private static void OnPlaymodeStateChanged(PlayModeStateChange playModeState)
-		{
-			if (playModeState == PlayModeStateChange.ExitingPlayMode)
-				s_GlobalVars.Clear();
-		}
-#endif
 	}
 }

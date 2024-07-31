@@ -31,6 +31,8 @@ namespace CodeSmile.Statemachine
 				}
 			}
 
+			internal Variables() {} // forbidden default ctor
+
 			public Variable DefineBool(String name, Boolean value = false)
 			{
 				ThrowIfVariableNameAlreadyExists(name);
@@ -188,7 +190,7 @@ namespace CodeSmile.Statemachine
 				m_Value = new UnionValue32();
 			}
 
-			private Variable(Variable other)
+			internal Variable(Variable other)
 			{
 				m_ValueType = other.m_ValueType;
 				m_Value = other.m_Value;

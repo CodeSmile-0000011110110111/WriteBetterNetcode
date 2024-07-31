@@ -14,7 +14,7 @@ namespace CodeSmile.Statemachine.Tests
 		private static readonly String TestVar2 = "Test2";
 
 		[Test]
-		public void SMVars_UndefinedVariables_ReturnDefaultValues()
+		public void FSMVars_UndefinedVariables_ReturnDefaultValues()
 		{
 			var sm = new FSM("Test FSM");
 			sm.GlobalVars.Clear();
@@ -28,7 +28,7 @@ namespace CodeSmile.Statemachine.Tests
 		}
 
 		[Test]
-		public void SMVars_UndefinedVariables_CanBeAssignedTo()
+		public void FSMVars_UndefinedVariables_CanBeAssignedTo()
 		{
 			var sm = new FSM("Test FSM");
 			sm.GlobalVars.Clear();
@@ -48,7 +48,7 @@ namespace CodeSmile.Statemachine.Tests
 		}
 
 		[TestCase(false)] [TestCase(true)]
-		public void SMLocalVar_DefineBool_ReturnsExpectedValue(Boolean value)
+		public void FSMLocalVar_DefineBool_ReturnsExpectedValue(Boolean value)
 		{
 			var sm = new FSM("Test FSM");
 
@@ -58,7 +58,7 @@ namespace CodeSmile.Statemachine.Tests
 		}
 
 		[TestCase(0f)] [TestCase(Single.MinValue)] [TestCase(Single.MaxValue)]
-		public void SMLocalVar_DefineFloat_ReturnsExpectedValue(Single value)
+		public void FSMLocalVar_DefineFloat_ReturnsExpectedValue(Single value)
 		{
 			var sm = new FSM("Test FSM");
 
@@ -68,7 +68,7 @@ namespace CodeSmile.Statemachine.Tests
 		}
 
 		[TestCase(0)] [TestCase(Int32.MinValue)] [TestCase(Int32.MaxValue)]
-		public void SMLocalVar_DefineInt_ReturnsExpectedValue(Int32 value)
+		public void FSMLocalVar_DefineInt_ReturnsExpectedValue(Int32 value)
 		{
 			var sm = new FSM("Test FSM");
 

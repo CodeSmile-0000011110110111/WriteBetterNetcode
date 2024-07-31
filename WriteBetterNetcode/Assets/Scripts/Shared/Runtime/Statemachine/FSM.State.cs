@@ -4,34 +4,52 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using Object = System.Object;
 
 namespace CodeSmile.Statemachine
 {
 	public sealed partial class FSM
 	{
 		/// <summary>
-		/// Represents a state in a statemachine.
+		///     Represents a state in a statemachine.
 		/// </summary>
-		public sealed class State
+		public sealed class State : IEquatable<State>
 		{
 			public String Name { get; }
 			internal Transition[] Transitions { get; private set; }
 
-			public State(String stateName)
-			{
-				if (String.IsNullOrWhiteSpace(stateName))
-					throw new ArgumentException("invalid name", nameof(stateName));
+			public static Boolean operator ==(State left, State right) => Equals(left, right);
+			public static Boolean operator !=(State left, State right) => !Equals(left, right);
 
+			private State() {} // forbidden default ctor
+
+			public State(String stateName)
+				: this(stateName, null) {}
+
+			public State(String stateName, Transition[] transitions)
+			{
 				Name = stateName;
-				Transitions = new Transition[0];
+				Transitions = transitions ?? new Transition[0];
+			}
+
+			public Boolean Equals(State other)
+			{
+				if (ReferenceEquals(null, other))
+					return false;
+				if (ReferenceEquals(this, other))
+					return true;
+
+				return Name == other.Name;
 			}
 
 			public State WithTransitions(Transition[] transitions)
 			{
-				if (Transitions.Length > 0)
-					throw new InvalidOperationException("transitions already set");
+				if (transitions == null || transitions.Length == 0)
+					throw new ArgumentException($"State '{Name}': transitions are null or empty");
+				if (Transitions != null && Transitions.Length > 0)
+					throw new ArgumentException($"State '{Name}': transitions already set");
 
-				Transitions = transitions ?? new Transition[0];
+				Transitions = transitions;
 				return this;
 			}
 
@@ -72,6 +90,10 @@ namespace CodeSmile.Statemachine
 				foreach (var transition in Transitions)
 					transition.OnStop(sm);
 			}
+
+			public override Boolean Equals(Object obj) => ReferenceEquals(this, obj) || obj is State other && Equals(other);
+
+			public override Int32 GetHashCode() => Name.GetHashCode();
 		}
 	}
 }
