@@ -47,12 +47,28 @@ namespace CodeSmile.Statemachine
 		/// </summary>
 		public Variables LocalVars { get; } = new();
 
+		public Int32 MaxStateChangesPerEvaluate { get; set; } = 100;
+		public Boolean AllowMultipleStateChanges { get; set; }
 		public Boolean IsStopped => ActiveState.IsFinalState();
 		public Boolean DidChangeState { get; private set; }
 
 		private FSM() {} // forbidden default ctor
 
 		public FSM(String statemachineName) => Name = statemachineName;
+
+		public State[] WithStateNames(params String[] stateNames)
+		{
+			if (m_States != null)
+				throw new InvalidOperationException("States already set!");
+			if (stateNames == null || stateNames.Length == 0)
+				throw new ArgumentException("No state names provided");
+
+			m_States = new State[stateNames.Length];
+			for (var i = 0; i < stateNames.Length; i++)
+				m_States[i] = new State(stateNames[i]);
+
+			return m_States;
+		}
 
 		public FSM WithStates(params State[] states)
 		{
@@ -95,32 +111,39 @@ namespace CodeSmile.Statemachine
 		/// </summary>
 		public void Evaluate()
 		{
-			// TODO: allow evaluation of multiple state changes (configurable)
-
 			ThrowIfStatemachineNotStarted();
-
-			DidChangeState = false;
 
 			if (IsStopped)
 				return;
 
-			var updatingState = ActiveState;
-			updatingState.Update(this);
-
-			if (DidChangeState)
+			var iterations = AllowMultipleStateChanges ? MaxStateChangesPerEvaluate : 0;
+			do
 			{
-				updatingState.OnExitState(this);
-				ActiveState.OnEnterState(this);
+				DidChangeState = false;
 
-				OnStateChanged?.Invoke(new StateChangeEventArgs
-					{ Fsm = this, PreviousState = updatingState, ActiveState = ActiveState });
+				var updatingState = ActiveState;
+				updatingState.Update(this);
 
-				if (ActiveState.IsFinalState())
+				if (DidChangeState)
 				{
-					Stop();
-					OnStopped?.Invoke(new StatemachineStoppedEventArgs { Fsm = this, FinalState = ActiveState });
+					updatingState.OnExitState(this);
+					ActiveState.OnEnterState(this);
+
+					OnStateChanged?.Invoke(new StateChangeEventArgs
+						{ Fsm = this, PreviousState = updatingState, ActiveState = ActiveState });
+
+					if (ActiveState.IsFinalState())
+					{
+						Stop();
+						OnStopped?.Invoke(new StatemachineStoppedEventArgs { Fsm = this, FinalState = ActiveState });
+					}
+
+					iterations--;
 				}
-			}
+
+				if (IsStopped || DidChangeState == false)
+					break;
+			} while (iterations > 0);
 		}
 
 		internal void SetActiveState(State state)

@@ -15,11 +15,14 @@ namespace CodeSmile.Statemachine
 		public sealed class Transition
 		{
 			public String Name { get; }
-			internal ICondition[] Conditions { get; }
-			internal IAction[] Actions { get; }
+			internal ICondition[] Conditions { get; private set; }
+			internal IAction[] Actions { get; private set; }
 			internal State GotoState { get; }
 
 			private Transition() {} // forbidden default ctor
+
+			public Transition(String transitionName, State gotoState)
+				: this(transitionName, null, null, gotoState) {}
 
 			/// <summary>
 			///     Creates a transition without actions whose purpose is to just change state if its conditions are satisfied.
@@ -72,6 +75,30 @@ namespace CodeSmile.Statemachine
 				Conditions = conditions;
 				Actions = actions ?? new IAction[0];
 				GotoState = gotoState;
+			}
+
+			public override String ToString() => $"Transition({Name})";
+
+			public Transition WithConditions(params ICondition[] conditions)
+			{
+				if (Conditions != null && Conditions.Length > 0)
+					throw new InvalidOperationException("Conditions already set");
+				if (conditions == null || conditions.Length == 0)
+					throw new ArgumentException(nameof(conditions));
+
+				Conditions = conditions;
+				return this;
+			}
+
+			public Transition WithActions(params IAction[] actions)
+			{
+				if (Actions != null && Actions.Length > 0)
+					throw new InvalidOperationException("Actions already set");
+				if (actions == null || actions.Length == 0)
+					throw new ArgumentException(nameof(actions));
+
+				Actions = actions;
+				return this;
 			}
 
 			internal void Update(FSM sm)

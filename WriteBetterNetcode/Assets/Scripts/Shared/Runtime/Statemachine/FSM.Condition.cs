@@ -33,15 +33,17 @@ namespace CodeSmile.Statemachine
 			}
 
 			public Boolean IsSatisfied(FSM sm) => m_Condition.Invoke();
+
+			public static NotCondition NOT(ICondition condition) => new NotCondition(condition);
 		}
 
-		public sealed class NOT : ICondition
+		public sealed class NotCondition : ICondition
 		{
 			private readonly ICondition m_Condition;
 
-			private NOT() {} // forbidden default ctor
+			private NotCondition() {} // forbidden default ctor
 
-			public NOT(ICondition condition)
+			internal NotCondition(ICondition condition)
 			{
 				if (condition == null)
 					throw new ArgumentNullException(nameof(condition));
@@ -118,54 +120,5 @@ namespace CodeSmile.Statemachine
 			}
 		}
 
-		public abstract class VariableConditionBase : ICondition
-		{
-			public enum Comparator
-			{
-				Equal,
-				GreaterThan,
-				GreaterThanOrEqual,
-				LessThan,
-				LessThanOrEqual,
-			}
-
-			private readonly Variable m_Variable;
-			private readonly Variable m_Comparand;
-			private readonly Comparator m_Comparator;
-
-			private VariableConditionBase() {} // forbidden default ctor
-
-			internal VariableConditionBase(Variable variable, Variable comparand, Comparator comparator)
-			{
-				if (comparand.Type == Variable.ValueType.Bool && comparator != Comparator.Equal)
-					throw new ArgumentException($"Bool vars can only be compared for equality, not: {comparator}");
-
-				m_Variable = variable;
-				m_Comparand = comparand;
-				m_Comparator = comparator;
-			}
-
-			public Boolean IsSatisfied(FSM sm)
-			{
-				switch (m_Comparator)
-				{
-					case Comparator.Equal:
-						if (m_Variable.Type == Variable.ValueType.Float)
-							return Mathf.Approximately(m_Variable.FloatValue, m_Comparand.FloatValue);
-
-						return m_Variable == m_Comparand;
-					case Comparator.GreaterThan:
-						return m_Variable > m_Comparand;
-					case Comparator.GreaterThanOrEqual:
-						return m_Variable >= m_Comparand;
-					case Comparator.LessThan:
-						return m_Variable < m_Comparand;
-					case Comparator.LessThanOrEqual:
-						return m_Variable <= m_Comparand;
-					default:
-						throw new ArgumentOutOfRangeException();
-				}
-			}
-		}
 	}
 }

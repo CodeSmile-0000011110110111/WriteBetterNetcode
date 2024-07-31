@@ -21,7 +21,7 @@ namespace CodeSmile.Statemachine.Tests
 				var testVar = sm.LocalVars.DefineBool("TestVar", true);
 				startState.WithTransitions(new FSM.Transition[]
 				{
-					new(new FSM.ICondition[] { new FSM.Variable.IsTrue(testVar) }, new FSM.State("MISS")),
+					new(new FSM.ICondition[] { FSM.Variable.IsTrue(testVar) }, new FSM.State("MISS")),
 				});
 
 				sm.Evaluate();
@@ -40,7 +40,7 @@ namespace CodeSmile.Statemachine.Tests
 				var testVar = sm.LocalVars.DefineBool("TestVar", true);
 				startState.WithTransitions(new FSM.Transition[]
 				{
-					new(new FSM.ICondition[] { new FSM.Variable.IsTrue(testVar) }, new FSM.State("MISS")),
+					new(new FSM.ICondition[] { FSM.Variable.IsTrue(testVar) }, new FSM.State("MISS")),
 				});
 
 				sm.Start();
@@ -60,7 +60,7 @@ namespace CodeSmile.Statemachine.Tests
 				var testVar = sm.LocalVars.DefineBool("TestVar", true);
 				startState.WithTransitions(new FSM.Transition[]
 				{
-					new(new FSM.ICondition[] { new FSM.Variable.IsTrue(testVar) }, endState),
+					new(new FSM.ICondition[] { FSM.Variable.IsTrue(testVar) }, endState),
 				});
 
 				sm.Start();
@@ -79,7 +79,7 @@ namespace CodeSmile.Statemachine.Tests
 				var testVar = sm.LocalVars.DefineBool("TestVar", true);
 				startState.WithTransitions(new FSM.Transition[]
 				{
-					new(new FSM.ICondition[] { new FSM.Variable.IsTrue(testVar) }, null, new FSM.State("MISS")),
+					new(new FSM.ICondition[] { FSM.Variable.IsTrue(testVar) }, null, new FSM.State("MISS")),
 				});
 
 				sm.Start();
@@ -132,7 +132,7 @@ namespace CodeSmile.Statemachine.Tests
 			{
 				new(new FSM.ICondition[]
 				{
-					new FSM.Variable.IsTrue(testVar),
+					FSM.Variable.IsTrue(testVar),
 				}, null, endState),
 			});
 
@@ -164,11 +164,11 @@ namespace CodeSmile.Statemachine.Tests
 			{
 				new(new FSM.ICondition[]
 					{
-						new FSM.Variable.IsEqual(testVar1, expectedValue),
+						FSM.Variable.IsEqual(testVar1, expectedValue),
 					},
 					new FSM.IAction[]
 					{
-						new FSM.Variable.SetTrue(didExecute),
+						FSM.Variable.SetTrue(didExecute),
 					},
 					endState),
 			});
@@ -195,12 +195,12 @@ namespace CodeSmile.Statemachine.Tests
 			{
 				new(new FSM.ICondition[]
 					{
-						new FSM.Variable.IsTrue(testVar1),
+						FSM.Variable.IsTrue(testVar1),
 					},
 					new FSM.IAction[]
 					{
-						new FSM.Variable.SetInt(testVar2, expectedValue),
-						new FSM.Variable.SetTrue(didExecute),
+						FSM.Variable.SetInt(testVar2, expectedValue),
+						FSM.Variable.SetTrue(didExecute),
 					},
 					endState),
 			});

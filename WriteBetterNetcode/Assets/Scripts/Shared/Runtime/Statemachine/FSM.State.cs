@@ -42,7 +42,9 @@ namespace CodeSmile.Statemachine
 				return Name == other.Name;
 			}
 
-			public State WithTransitions(Transition[] transitions)
+			public override String ToString() => $"State({Name})";
+
+			public State WithTransitions(params Transition[] transitions)
 			{
 				if (transitions == null || transitions.Length == 0)
 					throw new ArgumentException($"State '{Name}': transitions are null or empty");

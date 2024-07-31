@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ namespace CodeSmile.Statemachine
 {
 	public sealed partial class FSM
 	{
+		public override String ToString() => $"FSM({Name})";
+
 		private void ThrowIfStatemachineNotStarted()
 		{
 #if DEBUG || DEVELOPMENT_BUILD
@@ -28,6 +31,7 @@ namespace CodeSmile.Statemachine
 				throw new ArgumentException($"FSM '{Name}': has no states");
 
 			var stateNames = new HashSet<String>();
+			var statesUsed = new HashSet<String>();
 
 			for (var stateIndex = 0; stateIndex < m_States.Length; stateIndex++)
 			{
@@ -42,6 +46,10 @@ namespace CodeSmile.Statemachine
 					throw new ArgumentException($"FSM '{Name}': state with same name '{state.Name}' already exists!");
 
 				stateNames.Add(state.Name);
+
+				// first state is always used (start state)
+				if (stateIndex == 0)
+					statesUsed.Add(state.Name);
 
 				for (var transIndex = 0; transIndex < state.Transitions.Length; transIndex++)
 				{
@@ -74,8 +82,29 @@ namespace CodeSmile.Statemachine
 							throw new ArgumentException($"FSM '{Name}': {state.Name} transition at index {transIndex}" +
 							                            $" points to non-existing state '{transition.GotoState.Name}'");
 						}
+
+						statesUsed.Add(transition.GotoState.Name);
 					}
 				}
+			}
+
+			if (stateNames.Count != statesUsed.Count)
+			{
+				var first = true;
+				var sb = new StringBuilder($"FSM '{Name}': States w/o transitions leading to them: ");
+				foreach (var stateName in stateNames)
+				{
+					if (statesUsed.Contains(stateName) == false)
+					{
+						if (!first)
+							sb.Append(", ");
+						first = false;
+
+						sb.Append(stateName);
+					}
+				}
+
+				Debug.LogWarning(sb.ToString());
 			}
 #endif
 		}

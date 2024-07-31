@@ -2,6 +2,9 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Extensions.Netcode;
+using CodeSmile.Statemachine;
+using CodeSmile.Statemachine.Netcode;
+using CodeSmile.Statemachine.Netcode.Actions;
 using System;
 using System.Collections;
 using System.Linq;
@@ -25,11 +28,19 @@ namespace CodeSmile.BetterNetcode.Network
 	{
 		[HideInInspector] public NetworkRole Role;
 		public UnityTransport.ConnectionAddressData AddressData;
+		//public RelayConfig RelayConfig;
 		public Boolean UseWebSockets;
 		public Boolean UseEncryption;
 
 		public override String ToString() => $"NetworkConfig(Role={Role}, Address={AddressData.Address}:{AddressData.Port}, " +
 		                                     $"Listen={AddressData.ServerListenAddress}, WebSockets={UseWebSockets}, Encryption={UseEncryption})";
+	}
+
+	[Serializable]
+	public struct RelayConfig
+	{
+		public Boolean UseRelayService;
+		public String RelayJoinCode;
 	}
 
 	public class NetworkState : MonoBehaviour
@@ -43,16 +54,34 @@ namespace CodeSmile.BetterNetcode.Network
 		{
 			Initializing,
 			Offline,
+
 			Starting,
 			Online,
 			ShuttingDown,
+
+			ServerStarting,
+			ServerOnline,
+			ServerShuttingDown,
+
+			HostStarting,
+			HostOnline,
+			HostShuttingDown,
+
+			ClientConnecting,
+			ClientConnected,
+			ClientDisconnecting,
 		}
 
 		[SerializeField] private NetworkConfig m_ServerConfig = new() { Role = NetworkRole.Server };
 		[SerializeField] private NetworkConfig m_HostConfig = new() { Role = NetworkRole.Host };
 		[SerializeField] private NetworkConfig m_ClientConfig = new() { Role = NetworkRole.Client };
 
+		public FSM m_Statemachine = new(nameof(NetworkState));
+		private FSM.Variable m_StartServerVar;
+
 		public State CurrentState { get; private set; } = State.Initializing;
+
+		private void Awake() => SetupStatemachine();
 
 		private void Start()
 		{
@@ -63,10 +92,47 @@ namespace CodeSmile.BetterNetcode.Network
 			net.OnServerStopped += OnServerStopped;
 			net.OnTransportFailure += OnTransportFailure;
 
-			OnStateChanged += OnNetworkStateChanged;
+			// OnStateChanged += OnNetworkStateChanged;
+			// ChangeState(State.Offline);
 
-			ChangeState(State.Offline);
+			m_Statemachine.Start().Evaluate();
+			StartServer();
 		}
+
+		private void Update() => m_Statemachine.Evaluate();
+
+		private void SetupStatemachine()
+		{
+			m_Statemachine.OnStateChanged += args =>
+				Debug.LogWarning($"{m_Statemachine} change: {args.PreviousState} to {args.ActiveState}");
+
+			m_Statemachine.AllowMultipleStateChanges = true;
+			m_StartServerVar = m_Statemachine.LocalVars.DefineBool("StartServerRequest");
+
+			var states = m_Statemachine.WithStateNames(Enum.GetNames(typeof(State)));
+			var initState = states[(Int32)State.Initializing];
+			var offlineState = states[(Int32)State.Offline];
+			var serverStartingState = states[(Int32)State.ServerStarting];
+			var serverOnlineState = states[(Int32)State.ServerOnline];
+			var serverShuttingDownState = states[(Int32)State.ServerShuttingDown];
+
+			initState.WithTransitions(new FSM.Transition("Goto Offline", offlineState)
+				.WithConditions(new IsNetworkManagerReady()));
+
+			offlineState.WithTransitions(new FSM.Transition("StartServer", serverStartingState)
+				.WithConditions(FSM.Variable.IsTrue(m_StartServerVar))
+				.WithActions(new NetworkManagerStartServer()));
+
+			serverStartingState.WithTransitions(new FSM.Transition("Server started", serverOnlineState)
+				.WithConditions(new IsServerOnline()));
+			serverOnlineState.WithTransitions(new FSM.Transition("Server stopped", serverShuttingDownState)
+				.WithConditions(FSM.Condition.NOT(new IsServerOnline()))
+				.WithActions(new NetworkManagerShutdown()));
+			serverShuttingDownState.WithTransitions(new FSM.Transition("NetworkManager shutdown complete", offlineState)
+				.WithConditions(new IsNetworkManagerReady()));
+		}
+
+		public void StartServer() => m_StartServerVar.BoolValue = true;
 
 		private Boolean NetworkConfigFromMppmTags(out NetworkConfig config)
 		{
@@ -94,17 +160,17 @@ namespace CodeSmile.BetterNetcode.Network
 		{
 			//Debug.Log($"NetworkState changed from {args.previousState} to {args.newState}");
 
-			switch (args.newState)
-			{
-				case State.Offline:
-					if (NetworkConfigFromMppmTags(out var config))
-						StartNetworking(config);
-					break;
-
-				case State.Online:
-					//StopNetworking();
-					break;
-			}
+			// switch (args.newState)
+			// {
+			// 	case State.Offline:
+			// 		if (NetworkConfigFromMppmTags(out var config))
+			// 			StartNetworking(config);
+			// 		break;
+			//
+			// 	case State.Online:
+			// 		//StopNetworking();
+			// 		break;
+			// }
 		}
 
 		private void CheckNetworkStateIs(State expectedState)
