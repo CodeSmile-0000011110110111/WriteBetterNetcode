@@ -9,15 +9,6 @@ namespace CodeSmile.Statemachine
 {
 	public sealed partial class FSM
 	{
-		public interface ICondition
-		{
-			Boolean IsSatisfied(FSM sm);
-			void OnStart(FSM sm) {}
-			void OnStop(FSM sm) {}
-			void OnEnterState(FSM sm) {}
-			void OnExitState(FSM sm) {}
-		}
-
 		public sealed class Condition : ICondition
 		{
 			private readonly Func<Boolean> m_Condition;

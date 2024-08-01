@@ -13,12 +13,14 @@ namespace CodeSmile.Statemachine
 	public sealed partial class FSM
 	{
 		/// <summary>
-		///     Encapsulated variable for use within and outside a statemachine.
+		///     Encapsulates a FSM variable (value) for use within and outside a statemachine.
 		/// </summary>
 		/// <remarks>
-		///     Variables are part of a Statemachine and can be logged, inspected, debugged alongside with the FSM state.
+		///     Variables are part of a Statemachine and their major benefit is that they can be easily logged, inspected,
+		///     and debugged alongside with the FSM and its active state. If you were to rely on fields it makes analyzing
+		///     the Statemachine harder.
 		/// </remarks>
-		public sealed class Variable : IEquatable<Variable>
+		public sealed partial class Variable : IEquatable<Variable>
 		{
 			private ValueType m_ValueType;
 			private UnionValue32 m_Value;
@@ -267,128 +269,20 @@ namespace CodeSmile.Statemachine
 			public override Boolean Equals(Object obj) => ReferenceEquals(this, obj) || obj is Variable other && Equals(other);
 			public override Int32 GetHashCode() => HashCode.Combine((Int32)m_ValueType, m_Value);
 
-			[StructLayout(LayoutKind.Explicit)]
-			internal struct UnionValue32
-			{
-				[FieldOffset(0)] public Boolean BoolValue;
-				[FieldOffset(0)] public Single FloatValue;
-				[FieldOffset(0)] public Int32 IntValue;
-			}
-
-			public sealed class CompareCondition : ICondition
-			{
-				public enum Comparator
-				{
-					Equal,
-					GreaterThan,
-					GreaterThanOrEqual,
-					LessThan,
-					LessThanOrEqual,
-				}
-
-				private readonly Variable m_Variable;
-				private readonly Variable m_Comparand;
-				private readonly Comparator m_Comparator;
-
-				private CompareCondition() {} // forbidden default ctor
-
-				internal CompareCondition(Variable variable, Variable comparand, Comparator comparator = Comparator.Equal)
-				{
-					if (comparand.Type == ValueType.Bool && comparator != Comparator.Equal)
-						throw new ArgumentException($"Bool vars can only be compared for equality, not: {comparator}");
-
-					m_Variable = variable;
-					m_Comparand = comparand;
-					m_Comparator = comparator;
-				}
-
-				public Boolean IsSatisfied(FSM sm)
-				{
-					switch (m_Comparator)
-					{
-						case Comparator.Equal:
-							if (m_Variable.Type == ValueType.Float)
-								return Mathf.Approximately(m_Variable.FloatValue, m_Comparand.FloatValue);
-
-							return m_Variable == m_Comparand;
-						case Comparator.GreaterThan:
-							return m_Variable > m_Comparand;
-						case Comparator.GreaterThanOrEqual:
-							return m_Variable >= m_Comparand;
-						case Comparator.LessThan:
-							return m_Variable < m_Comparand;
-						case Comparator.LessThanOrEqual:
-							return m_Variable <= m_Comparand;
-						default:
-							throw new ArgumentOutOfRangeException();
-					}
-				}
-			}
-
-			public sealed class ModifyAction : IAction
-			{
-				public enum Operator
-				{
-					Set,
-					Add,
-					Subtract,
-					Multiply,
-					Divide,
-					// Negate,
-				}
-
-				private readonly Variable m_Variable;
-				private readonly Variable m_Operand;
-				private readonly Operator m_Operator;
-
-				private ModifyAction() {} // forbidden default ctor
-
-				internal ModifyAction(Variable variable, Variable operand, Operator @operator = Operator.Set)
-				{
-					if (operand.Type == ValueType.Bool && @operator != Operator.Set)
-						throw new ArgumentException($"Invalid operator for Bool vars: {@operator}");
-					// if (@operator == Operator.Negate && operand.Type != ValueType.Bool)
-					// 	throw new ArgumentException($"Invalid operator for non-Bool vars: {@operator}");
-
-					m_Variable = variable;
-					m_Operand = operand;
-					m_Operator = @operator;
-				}
-
-				public void Execute(FSM sm)
-				{
-					switch (m_Operator)
-					{
-						case Operator.Set:
-							m_Variable.Set(m_Operand);
-							break;
-						case Operator.Add:
-							m_Variable.Add(m_Operand);
-							break;
-						case Operator.Subtract:
-							m_Variable.Sub(m_Operand);
-							break;
-						case Operator.Multiply:
-							m_Variable.Mul(m_Operand);
-							break;
-						case Operator.Divide:
-							m_Variable.Div(m_Operand);
-							break;
-						// case Operator.Negate:
-						// 	m_Variable.BoolValue = !m_Variable.BoolValue;
-						// 	break;
-						default:
-							throw new ArgumentOutOfRangeException();
-					}
-				}
-			}
-
 			internal enum ValueType
 			{
 				None,
 				Bool,
 				Float,
 				Int,
+			}
+
+			[StructLayout(LayoutKind.Explicit)]
+			internal struct UnionValue32
+			{
+				[FieldOffset(0)] public Boolean BoolValue;
+				[FieldOffset(0)] public Single FloatValue;
+				[FieldOffset(0)] public Int32 IntValue;
 			}
 		}
 	}

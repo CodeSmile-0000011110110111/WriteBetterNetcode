@@ -9,15 +9,6 @@ namespace CodeSmile.Statemachine
 {
 	public sealed partial class FSM
 	{
-		public interface IAction
-		{
-			void Execute(FSM sm);
-			void OnStart(FSM sm) {}
-			void OnStop(FSM sm) {}
-			void OnEnterState(FSM sm) {}
-			void OnExitState(FSM sm) {}
-		}
-
 		public sealed class Action : IAction
 		{
 			private readonly System.Action m_Action;
