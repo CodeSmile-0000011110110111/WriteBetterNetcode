@@ -107,7 +107,7 @@ namespace CodeSmile.BetterNetcode.Network
 				Debug.LogWarning($"{m_Statemachine} change: {args.PreviousState} to {args.ActiveState}");
 
 			m_Statemachine.AllowMultipleStateChanges = true;
-			m_StartServerVar = m_Statemachine.LocalVars.DefineBool("StartServerRequest");
+			m_StartServerVar = m_Statemachine.Vars.DefineBool("StartServerRequest");
 
 			var states = FSM.S(Enum.GetNames(typeof(State)));
 			m_Statemachine.WithStates(states);

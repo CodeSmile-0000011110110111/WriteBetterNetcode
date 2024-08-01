@@ -106,8 +106,8 @@ namespace CodeSmile.Statemachine.Tests
 			var startState = FSM.S("START");
 			var endState = FSM.S("END");
 			var sm = new FSM("FSM").WithStates(startState, endState);
-			var testVar = sm.LocalVars.DefineInt("TestVar", expectedValue);
-			var didExecute = sm.LocalVars.DefineBool("didExecute");
+			var testVar = sm.Vars.DefineInt("TestVar", expectedValue);
+			var didExecute = sm.Vars.DefineBool("didExecute");
 
 			startState.WithTransitions(FSM.T(endState)
 				.WithConditions(FSM.Variable.IsEqual(testVar, expectedValue))
@@ -124,9 +124,9 @@ namespace CodeSmile.Statemachine.Tests
 			var startState = FSM.S("START");
 			var endState = FSM.S("END");
 			var sm = new FSM("FSM").WithStates(startState, endState);
-			var testVar1 = sm.LocalVars.DefineBool("TestVar1", true);
-			var testVar2 = sm.LocalVars.DefineInt("TestVar2");
-			var didExecute = sm.LocalVars.DefineBool("did execute");
+			var testVar1 = sm.Vars.DefineBool("TestVar1", true);
+			var testVar2 = sm.Vars.DefineInt("TestVar2");
+			var didExecute = sm.Vars.DefineBool("did execute");
 
 			var expectedValue = 12345;
 			startState.WithTransitions(FSM.T(endState)
