@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine
 {
-	public class IsNetworkManagerReady : FSM.ICondition
+	public class IsNetworkManagerOffline : FSM.ICondition
 	{
 		public Boolean IsSatisfied(FSM sm)
 		{
@@ -18,5 +18,7 @@ namespace CodeSmile.Statemachine
 
 			return !(net.ShutdownInProgress || net.IsListening || net.IsServer || net.IsHost || net.IsClient);
 		}
+
+		public override String ToString() => nameof(IsNetworkManagerOffline);
 	}
 }

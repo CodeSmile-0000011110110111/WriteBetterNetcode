@@ -11,19 +11,26 @@ namespace CodeSmile.Statemachine
 	{
 		public sealed class LogicalNotCondition : ICondition
 		{
-			private readonly ICondition m_Condition;
+			private readonly ICondition m_InnerCondition;
+			internal ICondition InnerCondition => m_InnerCondition;
+
+			private static void VerifyParameter(ICondition notCondition)
+			{
+#if DEBUG || DEVELOPMENT_BUILD
+				if (notCondition == null)
+					throw new ArgumentNullException(nameof(notCondition));
+#endif
+			}
 
 			private LogicalNotCondition() {} // forbidden default ctor
 
-			internal LogicalNotCondition(ICondition condition)
+			internal LogicalNotCondition(ICondition notCondition)
 			{
-				if (condition == null)
-					throw new ArgumentNullException(nameof(condition));
-
-				m_Condition = condition;
+				VerifyParameter(notCondition);
+				m_InnerCondition = notCondition;
 			}
 
-			public Boolean IsSatisfied(FSM sm) => !m_Condition.IsSatisfied(sm);
+			public Boolean IsSatisfied(FSM sm) => !InnerCondition.IsSatisfied(sm);
 		}
 	}
 }

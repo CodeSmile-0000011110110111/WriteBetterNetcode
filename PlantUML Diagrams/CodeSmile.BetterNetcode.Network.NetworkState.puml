@@ -1,0 +1,61 @@
+@startuml
+
+!theme blueprint
+hide empty description
+
+title FSM: NetworkState
+
+state "Initializing" as state0
+state state0 {
+	state "Goto Offline" as state0_trans0
+	state state0_trans0 #line.dotted {
+		state0_trans0 : IsNetworkManagerOffline | ""True""
+		state0_trans0 : ----
+	}
+}
+state "Offline" as state1
+state state1 {
+	state "Start Server" as state1_trans0
+	state state1_trans0 #line.dotted {
+		state1_trans0 : IsVariable "Request to Start Server" == True | ""False""
+		state1_trans0 : ----
+		state1_trans0 : NetworkManager.StartServer()
+	}
+}
+state "ServerStarting" as state2
+state state2 {
+	state "Server started" as state2_trans0
+	state state2_trans0 #line.dotted {
+		state2_trans0 : IsServerOnline | ""False""
+		state2_trans0 : ----
+	}
+}
+state "ServerOnline" as state3
+state state3 {
+	state "Server stopped" as state3_trans0
+	state state3_trans0 #line.dotted {
+		state3_trans0 : !IsServerOnline | ""True""
+		state3_trans0 : ----
+		state3_trans0 : NetworkManager.Shutdown(False)
+	}
+}
+state "ServerShuttingDown" as state4
+state state4 {
+	state "NetworkManager shut down" as state4_trans0
+	state state4_trans0 #line.dotted {
+		state4_trans0 : IsNetworkManagerOffline | ""True""
+		state4_trans0 : ----
+		state4_trans0 : Variable "Request to Start Server" = False
+	}
+}
+
+
+[*] -> state0
+state0 --> state1 : Goto Offline
+state1 --> state2 : Start Server
+state2 --> state3 : Server started
+state3 --> state4 : Server stopped
+state4 --> state1 : NetworkManager shut down
+
+
+@enduml

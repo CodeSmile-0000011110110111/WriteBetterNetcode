@@ -11,6 +11,7 @@ namespace CodeSmile.Statemachine
 		public interface IAction : IStatemachineEvents
 		{
 			void Execute(FSM sm);
+			string ToDebugString(FSM sm) { return ToString(); }
 		}
 	}
 }

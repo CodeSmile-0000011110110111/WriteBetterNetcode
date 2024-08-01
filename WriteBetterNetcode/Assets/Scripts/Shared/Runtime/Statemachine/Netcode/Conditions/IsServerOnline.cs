@@ -36,5 +36,7 @@ namespace CodeSmile.Statemachine.Netcode
 		private void OnServerStarted() => m_IsOnline = true;
 		private void OnServerStopped(Boolean isHost) => m_IsOnline = false;
 		private void OnTransportFailure() => m_IsOnline = false;
+
+		public override String ToString() => nameof(IsServerOnline);
 	}
 }

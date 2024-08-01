@@ -50,7 +50,7 @@ namespace CodeSmile.Statemachine
 			/// <param name="gotoState"></param>
 			public Transition(String transitionName, ICondition[] conditions, IAction[] actions, State gotoState)
 			{
-				Name = transitionName ?? String.Empty;
+				Name = transitionName;
 				Conditions = conditions ?? new ICondition[0];
 				Actions = actions ?? new IAction[0];
 				GotoState = gotoState;

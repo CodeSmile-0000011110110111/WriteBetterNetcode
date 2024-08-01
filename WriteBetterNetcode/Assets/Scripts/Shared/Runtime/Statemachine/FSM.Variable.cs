@@ -128,13 +128,22 @@ namespace CodeSmile.Statemachine
 			public static Variable Bool(Boolean value) => new(ValueType.Bool, value);
 			public static Variable Float(Single value) => new(ValueType.Float, value);
 			public static Variable Int(Int32 value) => new(ValueType.Int, value);
-			public static CompareCondition IsTrue(Variable variable) => new(variable, Bool(true));
-			public static CompareCondition IsFalse(Variable variable) => new(variable, Bool(false));
-			public static CompareCondition IsEqual(Variable variable, Int32 value) => new(variable, Int(value));
+			public static CompareVariableCondition IsTrue(Variable variable) => new(variable, Bool(true));
+			public static CompareVariableCondition IsFalse(Variable variable) => new(variable, Bool(false));
+			public static CompareVariableCondition IsEqual(Variable variable, Int32 value) => new(variable, Int(value));
 
-			public static ModifyAction SetTrue(Variable variable) => new(variable, Bool(true));
-			public static ModifyAction SetFalse(Variable variable) => new(variable, Bool(false));
-			public static ModifyAction SetInt(Variable variable, Int32 value) => new(variable, Int(value));
+			public static ModifyVariableAction SetTrue(Variable variable) => new(variable, Bool(true));
+			public static ModifyVariableAction SetFalse(Variable variable) => new(variable, Bool(false));
+			public static ModifyVariableAction SetInt(Variable variable, Int32 value) => new(variable, Int(value));
+
+			public String GetValue() => m_ValueType switch
+			{
+				ValueType.None => "None",
+				ValueType.Bool => $"{m_Value.BoolValue}",
+				ValueType.Float => $"{m_Value.FloatValue}",
+				ValueType.Int => $"{m_Value.IntValue}",
+				_ => "",
+			};
 
 			internal Variable()
 			{

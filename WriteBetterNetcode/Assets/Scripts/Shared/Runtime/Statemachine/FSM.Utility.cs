@@ -13,10 +13,79 @@ namespace CodeSmile.Statemachine
 	{
 		public override String ToString() => $"FSM({Name})";
 
+		public String ToPlantUml()
+		{
+			if (!Started)
+				throw new Exception($"FSM '{Name}': can only generate PlantUML after statemachine started");
+
+			var statesBuilder = new StringBuilder();
+			var transBuilder = new StringBuilder();
+
+			for (var stateIndex = 0; stateIndex < m_States.Length; stateIndex++)
+			{
+				var state = m_States[stateIndex];
+				var stateId = $"state{stateIndex}";
+
+				statesBuilder.AppendLine($"state \"{state.Name}\" as {stateId}");
+				statesBuilder.AppendLine($"state {stateId} {{");
+
+				if (stateIndex == 0)
+					transBuilder.AppendLine($"[*] -> {stateId}");
+
+				for (var transIndex = 0; transIndex < state.Transitions.Length; transIndex++)
+				{
+					var trans = state.Transitions[transIndex];
+					var transId = $"trans{transIndex}";
+
+					var transName = $"{trans.Name}";
+					statesBuilder.AppendLine($"\tstate \"{transName}\" as {stateId}_{transId}");
+					statesBuilder.AppendLine($"\tstate {stateId}_{transId} #line.dotted {{");
+
+					for (int condIndex = 0; condIndex < trans.Conditions.Length; condIndex++)
+					{
+						var cond = trans.Conditions[condIndex];
+						var satisfied = cond.IsSatisfied(this);
+
+						var prefix = "";
+						if (cond is LogicalNotCondition notCondition)
+						{
+							cond = notCondition.InnerCondition;
+							prefix = "!";
+						}
+						// TODO: AND, OR
+
+						statesBuilder.AppendLine($"\t\t{stateId}_{transId} : {prefix}{cond.ToDebugString(this)} | \"\"{satisfied}\"\"");
+					}
+
+					statesBuilder.AppendLine($"\t\t{stateId}_{transId} : ----");
+
+					for (int actIndex = 0; actIndex < trans.Actions.Length; actIndex++)
+					{
+						var act = trans.Actions[actIndex];
+						statesBuilder.AppendLine($"\t\t{stateId}_{transId} : {act.ToDebugString(this)}");
+					}
+
+					statesBuilder.AppendLine("\t}");
+
+					if (trans.GotoState != null)
+					{
+						var transStateId = $"state{FindStateIndex(trans.GotoState)}";
+						transBuilder.AppendLine($"{stateId} --> {transStateId} : {transName}");
+					}
+				}
+
+				statesBuilder.AppendLine("}");
+			}
+
+			statesBuilder.AppendLine();
+
+			return $"title {nameof(FSM)}: {Name}\n\n{statesBuilder}\n{transBuilder}";
+		}
+
 		private void ThrowIfStatemachineNotStarted()
 		{
 #if DEBUG || DEVELOPMENT_BUILD
-			if (m_ActiveStateIndex < 0)
+			if (!Started)
 				throw new InvalidOperationException($"FSM '{Name}': Start() not called before Evaluate()!");
 #endif
 		}
@@ -26,9 +95,6 @@ namespace CodeSmile.Statemachine
 #if DEBUG || DEVELOPMENT_BUILD
 			if (String.IsNullOrWhiteSpace(Name))
 				throw new ArgumentException("FSM has no name");
-
-			if (m_ActiveStateIndex >= 0)
-				throw new InvalidOperationException($"FSM '{Name}': Start() must only be called once");
 
 			if (m_States == null || m_States.Length == 0)
 				throw new ArgumentException($"FSM '{Name}': has no states");

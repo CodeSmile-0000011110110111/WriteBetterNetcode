@@ -31,6 +31,8 @@ namespace CodeSmile.Statemachine
 			}
 
 			public void Execute(FSM sm) => m_Callback.Invoke();
+
+			public override String ToString() => "Lambda Action";
 		}
 	}
 }

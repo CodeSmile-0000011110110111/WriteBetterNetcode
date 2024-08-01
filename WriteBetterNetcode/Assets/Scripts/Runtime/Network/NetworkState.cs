@@ -1,12 +1,12 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.Extensions.Netcode;
 using CodeSmile.Statemachine;
 using CodeSmile.Statemachine.Netcode;
 using CodeSmile.Statemachine.Netcode.Actions;
 using System;
 using System.Collections;
+using System.IO;
 using System.Linq;
 using Unity.Multiplayer.Playmode;
 using Unity.Netcode;
@@ -55,21 +55,17 @@ namespace CodeSmile.BetterNetcode.Network
 			Initializing,
 			Offline,
 
-			Starting,
-			Online,
-			ShuttingDown,
-
 			ServerStarting,
 			ServerOnline,
 			ServerShuttingDown,
 
-			HostStarting,
-			HostOnline,
-			HostShuttingDown,
-
-			ClientConnecting,
-			ClientConnected,
-			ClientDisconnecting,
+			// HostStarting,
+			// HostOnline,
+			// HostShuttingDown,
+			//
+			// ClientConnecting,
+			// ClientConnected,
+			// ClientDisconnecting,
 		}
 
 		[SerializeField] private NetworkConfig m_ServerConfig = new() { Role = NetworkRole.Server };
@@ -86,16 +82,21 @@ namespace CodeSmile.BetterNetcode.Network
 		private void Start()
 		{
 			var net = NetworkManager.Singleton;
-			net.OnClientStarted += OnClientStarted;
-			net.OnClientStopped += OnClientStopped;
-			net.OnServerStarted += OnServerStarted;
-			net.OnServerStopped += OnServerStopped;
-			net.OnTransportFailure += OnTransportFailure;
+			// net.OnClientStarted += OnClientStarted;
+			// net.OnClientStopped += OnClientStopped;
+			// net.OnServerStarted += OnServerStarted;
+			// net.OnServerStopped += OnServerStopped;
+			// net.OnTransportFailure += OnTransportFailure;
 
 			// OnStateChanged += OnNetworkStateChanged;
 			// ChangeState(State.Offline);
 
-			m_Statemachine.Start().Evaluate();
+			m_Statemachine.Start();
+			var puml = m_Statemachine.ToPlantUml();
+			File.WriteAllText($"{Application.dataPath}/../../PlantUML Diagrams/{GetType().FullName}.puml",
+				$"@startuml\n\n!theme blueprint\nhide empty description\n\n{puml}\n\n@enduml");
+
+			m_Statemachine.Evaluate();
 			StartServer();
 		}
 
@@ -107,7 +108,7 @@ namespace CodeSmile.BetterNetcode.Network
 				Debug.LogWarning($"{m_Statemachine} change: {args.PreviousState} to {args.ActiveState}");
 
 			m_Statemachine.AllowMultipleStateChanges = true;
-			m_StartServerVar = m_Statemachine.Vars.DefineBool("StartServerRequest");
+			m_StartServerVar = m_Statemachine.Vars.DefineBool("Request to Start Server");
 
 			var states = FSM.S(Enum.GetNames(typeof(State)));
 			m_Statemachine.WithStates(states);
@@ -118,20 +119,19 @@ namespace CodeSmile.BetterNetcode.Network
 			var serverOnlineState = states[(Int32)State.ServerOnline];
 			var serverShuttingDownState = states[(Int32)State.ServerShuttingDown];
 
-			initState.WithTransitions(new FSM.Transition("Goto Offline", offlineState)
-				.WithConditions(new IsNetworkManagerReady()));
-
-			offlineState.WithTransitions(new FSM.Transition("StartServer", serverStartingState)
+			initState.WithTransitions(FSM.T("Goto Offline", offlineState)
+				.WithConditions(new IsNetworkManagerOffline()));
+			offlineState.WithTransitions(FSM.T("Start Server", serverStartingState)
 				.WithConditions(FSM.Variable.IsTrue(m_StartServerVar))
 				.WithActions(new NetworkManagerStartServer()));
-
-			serverStartingState.WithTransitions(new FSM.Transition("Server started", serverOnlineState)
+			serverStartingState.WithTransitions(FSM.T("Server started", serverOnlineState)
 				.WithConditions(new IsServerOnline()));
-			serverOnlineState.WithTransitions(new FSM.Transition("Server stopped", serverShuttingDownState)
+			serverOnlineState.WithTransitions(FSM.T("Server stopped", serverShuttingDownState)
 				.WithConditions(FSM.NOT(new IsServerOnline()))
 				.WithActions(new NetworkManagerShutdown()));
-			serverShuttingDownState.WithTransitions(new FSM.Transition("NetworkManager shutdown complete", offlineState)
-				.WithConditions(new IsNetworkManagerReady()));
+			serverShuttingDownState.WithTransitions(FSM.T("NetworkManager shut down", offlineState)
+				.WithConditions(new IsNetworkManagerOffline())
+				.WithActions(FSM.Variable.SetFalse(m_StartServerVar)));
 		}
 
 		public void StartServer() => m_StartServerVar.BoolValue = true;
@@ -183,6 +183,7 @@ namespace CodeSmile.BetterNetcode.Network
 
 		public void StartNetworking(NetworkConfig config)
 		{
+			/*
 			Debug.Log($"StartNetworking({config})");
 			CheckNetworkStateIs(State.Offline);
 			ChangeState(State.Starting);
@@ -219,17 +220,21 @@ namespace CodeSmile.BetterNetcode.Network
 				default:
 					throw new ArgumentOutOfRangeException(nameof(config.Role), config.Role, null);
 			}
+		*/
 		}
 
 		private void StopNetworking()
 		{
+			/*
 			CheckNetworkStateIs(State.Online);
 
 			ChangeState(State.ShuttingDown);
 			var net = NetworkManager.Singleton;
 			net.Shutdown();
+		*/
 		}
 
+		/*
 		private void OnClientStarted() => ChangeState(State.Online);
 
 		private void OnClientStopped(Boolean isHost)
@@ -242,6 +247,7 @@ namespace CodeSmile.BetterNetcode.Network
 		private void OnServerStarted() => ChangeState(State.Online);
 		private void OnServerStopped(Boolean isHost) => GoOfflineAtEndOfFrame();
 		private void OnTransportFailure() => ChangeState(State.ShuttingDown); // will internally call Shutdown()
+		*/
 
 		private void GoOfflineAtEndOfFrame()
 		{

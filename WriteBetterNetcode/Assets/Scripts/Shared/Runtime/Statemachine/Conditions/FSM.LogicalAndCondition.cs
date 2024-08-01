@@ -11,29 +11,36 @@ namespace CodeSmile.Statemachine
 	{
 		internal sealed class LogicalAndCondition : ICondition
 		{
-			private readonly ICondition[] m_Conditions;
+			private readonly ICondition[] m_InnerConditions;
+			internal ICondition[] InnerConditions => m_InnerConditions;
+
+			private static void VerifyParameters(ICondition[] andConditions)
+			{
+#if DEBUG || DEVELOPMENT_BUILD
+				if (andConditions == null)
+					throw new ArgumentNullException(nameof(andConditions));
+				if (andConditions.Length < 2)
+					throw new ArgumentException("AND: at least two conditions required!");
+
+				foreach (var cond in andConditions)
+				{
+					if (cond == null)
+						throw new ArgumentNullException($"{nameof(andConditions)} contains null");
+				}
+#endif
+			}
 
 			private LogicalAndCondition() {} // forbidden default ctor
 
-			internal LogicalAndCondition(params ICondition[] conditions)
+			internal LogicalAndCondition(params ICondition[] andConditions)
 			{
-				if (conditions == null)
-					throw new ArgumentNullException(nameof(conditions));
-				if (conditions.Length < 2)
-					throw new ArgumentException("AND: at least two conditions required!");
-
-				foreach (var condition in conditions)
-				{
-					if (condition == null)
-						throw new ArgumentNullException("conditions must not be null");
-				}
-
-				m_Conditions = conditions;
+				VerifyParameters(andConditions);
+				m_InnerConditions = andConditions;
 			}
 
 			public Boolean IsSatisfied(FSM sm)
 			{
-				foreach (var condition in m_Conditions)
+				foreach (var condition in InnerConditions)
 				{
 					if (condition.IsSatisfied(sm) == false)
 						return false;

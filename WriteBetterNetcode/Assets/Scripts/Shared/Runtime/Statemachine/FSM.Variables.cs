@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -58,6 +59,8 @@ namespace CodeSmile.Statemachine
 			}
 
 			public void Clear() => m_Variables.Clear();
+
+			internal String FindName(Variable variable) => m_Variables.FirstOrDefault(kvp => kvp.Value == variable).Key;
 
 			private void ThrowIfVariableNameAlreadyExists(String name)
 			{

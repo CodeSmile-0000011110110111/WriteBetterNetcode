@@ -11,7 +11,7 @@ namespace CodeSmile.Statemachine
 	{
 		public sealed partial class Variable
 		{
-			public sealed class ModifyAction : IAction
+			public sealed class ModifyVariableAction : IAction
 			{
 				public enum Operator
 				{
@@ -20,21 +20,20 @@ namespace CodeSmile.Statemachine
 					Subtract,
 					Multiply,
 					Divide,
-					// Negate,
 				}
 
 				private readonly Variable m_Variable;
 				private readonly Variable m_Operand;
 				private readonly Operator m_Operator;
 
-				private ModifyAction() {} // forbidden default ctor
+				private ModifyVariableAction() {} // forbidden default ctor
 
-				internal ModifyAction(Variable variable, Variable operand, Operator @operator = Operator.Set)
+				internal ModifyVariableAction(Variable variable, Variable operand, Operator @operator = Operator.Set)
 				{
+#if DEBUG || DEVELOPMENT_BUILD
 					if (operand.Type == ValueType.Bool && @operator != Operator.Set)
 						throw new ArgumentException($"Invalid operator for Bool vars: {@operator}");
-					// if (@operator == Operator.Negate && operand.Type != ValueType.Bool)
-					// 	throw new ArgumentException($"Invalid operator for non-Bool vars: {@operator}");
+#endif
 
 					m_Variable = variable;
 					m_Operand = operand;
@@ -60,12 +59,46 @@ namespace CodeSmile.Statemachine
 						case Operator.Divide:
 							m_Variable.Div(m_Operand);
 							break;
-						// case Operator.Negate:
-						// 	m_Variable.BoolValue = !m_Variable.BoolValue;
-						// 	break;
 						default:
 							throw new ArgumentOutOfRangeException();
 					}
+				}
+
+				public String ToDebugString(FSM sm)
+				{
+					var isGlobal = false;
+					var varName = sm.Vars.FindName(m_Variable);
+					if (varName == null)
+					{
+						isGlobal = true;
+						varName = sm.GlobalVars.FindName(m_Variable);
+					}
+
+					String op;
+					switch (m_Operator)
+					{
+						case Operator.Set:
+							op = "=";
+							break;
+						case Operator.Add:
+							op = "+";
+							break;
+						case Operator.Subtract:
+							op = "-";
+							break;
+						case Operator.Multiply:
+							op = "*";
+							break;
+						case Operator.Divide:
+							op = "/";
+							break;
+						default:
+							op = "?";
+							break;
+					}
+
+					var scope = isGlobal ? "Global" : "";
+					return $"{scope}Variable \"{varName}\" {op} {m_Operand.GetValue()}";
 				}
 			}
 		}

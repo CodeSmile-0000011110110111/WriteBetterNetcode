@@ -27,6 +27,7 @@ namespace CodeSmile.Statemachine
 		private State[] m_States;
 
 		private Int32 m_ActiveStateIndex = -1;
+		private bool Started => !(m_ActiveStateIndex < 0);
 
 		/// <summary>
 		///     Name of the Statemachine
@@ -185,6 +186,9 @@ namespace CodeSmile.Statemachine
 		/// <returns></returns>
 		public FSM Start()
 		{
+			if (Started)
+				throw new InvalidOperationException($"FSM '{Name}': Start() must only be called once");
+
 			ValidateStatemachine();
 
 			m_ActiveStateIndex = 0;
