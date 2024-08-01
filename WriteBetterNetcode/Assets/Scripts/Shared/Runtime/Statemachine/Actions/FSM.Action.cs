@@ -9,6 +9,13 @@ namespace CodeSmile.Statemachine
 {
 	public sealed partial class FSM
 	{
+		/// <summary>
+		///     Generic Action that simply executes a lambda.
+		/// </summary>
+		/// <remarks>
+		///     This allows for quick and dirty tests but should be avoided for production code, as using a custom
+		///     IAction implementation will provide re-usability and make the intent of the Action clear, specifically in logs.
+		/// </remarks>
 		public sealed class Action : IAction
 		{
 			private readonly System.Action m_Action;

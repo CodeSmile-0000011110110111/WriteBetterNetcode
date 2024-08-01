@@ -9,9 +9,41 @@ namespace CodeSmile.Statemachine
 {
 	public sealed partial class FSM
 	{
+		/// <summary>
+		///     Generic Condition that simply executes a lambda. Provides static methods for related operators AND, OR, NOT.
+		/// </summary>
+		/// <remarks>
+		///     This allows for quick and dirty tests but should be avoided for production code, as using a custom ICondition
+		///     implementation will provide re-usability and make the intent of the Condition clear, specifically in logs.
+		/// </remarks>
 		public sealed class Condition : ICondition
 		{
 			private readonly Func<Boolean> m_Condition;
+
+			/// <summary>
+			///     Logical NOT operator negates the result of the containing condition.
+			/// </summary>
+			/// <param name="condition"></param>
+			/// <returns></returns>
+			public static LogicalNotCondition NOT(ICondition condition) => new(condition);
+
+			/// <summary>
+			///     Logical OR operator will be true if one or more of the containing conditions are true.
+			/// </summary>
+			/// <param name="conditions">Two or more ICondition instances.</param>
+			/// <returns></returns>
+			public static LogicalOrCondition OR(params ICondition[] conditions) => new(conditions);
+
+			/// <summary>
+			///     Logical AND operator will be true if all of the containing conditions are true.
+			/// </summary>
+			/// <remarks>
+			///     Logical AND is the default operation for Conditions. This AND operator is intended to be used within
+			///     an OR condition to express more complex conditions like so: OR(AND(a,b), AND(c,d), AND(e,f,g,h))
+			/// </remarks>
+			/// <param name="conditions">Two or more ICondition instances.</param>
+			/// <returns></returns>
+			public static LogicalOrCondition AND(params ICondition[] conditions) => new(conditions);
 
 			private Condition() {} // forbidden default ctor
 
@@ -24,92 +56,6 @@ namespace CodeSmile.Statemachine
 			}
 
 			public Boolean IsSatisfied(FSM sm) => m_Condition.Invoke();
-
-			public static NotCondition NOT(ICondition condition) => new NotCondition(condition);
 		}
-
-		public sealed class NotCondition : ICondition
-		{
-			private readonly ICondition m_Condition;
-
-			private NotCondition() {} // forbidden default ctor
-
-			internal NotCondition(ICondition condition)
-			{
-				if (condition == null)
-					throw new ArgumentNullException(nameof(condition));
-
-				m_Condition = condition;
-			}
-
-			public Boolean IsSatisfied(FSM sm) => !m_Condition.IsSatisfied(sm);
-		}
-
-		public sealed class OR : ICondition
-		{
-			private readonly ICondition[] m_Conditions;
-
-			private OR() {} // forbidden default ctor
-
-			public OR(params ICondition[] conditions)
-			{
-				if (conditions == null)
-					throw new ArgumentNullException(nameof(conditions));
-				if (conditions.Length < 2)
-					throw new ArgumentException("OR: at least two conditions required!");
-
-				foreach (var condition in conditions)
-				{
-					if (condition == null)
-						throw new ArgumentNullException("conditions must not be null");
-				}
-
-				m_Conditions = conditions;
-			}
-
-			public Boolean IsSatisfied(FSM sm)
-			{
-				foreach (var condition in m_Conditions)
-				{
-					if (condition.IsSatisfied(sm))
-						return true;
-				}
-				return false;
-			}
-		}
-
-		public sealed class AND : ICondition
-		{
-			private readonly ICondition[] m_Conditions;
-
-			private AND() {} // forbidden default ctor
-
-			public AND(params ICondition[] conditions)
-			{
-				if (conditions == null)
-					throw new ArgumentNullException(nameof(conditions));
-				if (conditions.Length < 2)
-					throw new ArgumentException("AND: at least two conditions required!");
-
-				foreach (var condition in conditions)
-				{
-					if (condition == null)
-						throw new ArgumentNullException("conditions must not be null");
-				}
-
-				m_Conditions = conditions;
-			}
-
-			public Boolean IsSatisfied(FSM sm)
-			{
-				foreach (var condition in m_Conditions)
-				{
-					if (condition.IsSatisfied(sm) == false)
-						return false;
-				}
-				return true;
-			}
-		}
-
 	}
 }
