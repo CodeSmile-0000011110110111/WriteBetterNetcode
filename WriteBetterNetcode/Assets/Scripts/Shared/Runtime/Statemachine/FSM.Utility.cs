@@ -27,6 +27,9 @@ namespace CodeSmile.Statemachine
 			if (String.IsNullOrWhiteSpace(Name))
 				throw new ArgumentException("FSM has no name");
 
+			if (m_ActiveStateIndex >= 0)
+				throw new InvalidOperationException($"FSM '{Name}': Start() must only be called once");
+
 			if (m_States == null || m_States.Length == 0)
 				throw new ArgumentException($"FSM '{Name}': has no states");
 
@@ -63,8 +66,8 @@ namespace CodeSmile.Statemachine
 					var conditions = transition.Conditions;
 					if (conditions == null || conditions.Length == 0)
 					{
-						throw new ArgumentException($"FSM '{Name}': {state.Name} transition '{transition.Name}' at index" +
-						                            $" {transIndex} has no conditions, this is not allowed!");
+						Debug.LogWarning($"FSM '{Name}': {state.Name} transition '{transition.Name}' at index" +
+						                 $" {transIndex} has no conditions, transition will be taken instantly!");
 					}
 
 					if (transition.GotoState != null)

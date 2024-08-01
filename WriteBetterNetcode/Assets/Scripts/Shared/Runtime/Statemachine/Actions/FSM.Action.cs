@@ -18,19 +18,19 @@ namespace CodeSmile.Statemachine
 		/// </remarks>
 		public sealed class Action : IAction
 		{
-			private readonly System.Action m_Action;
+			private readonly System.Action m_Callback;
 
 			private Action() {} // forbidden default ctor
 
-			public Action(System.Action action)
+			public Action(System.Action callback)
 			{
-				if (action == null)
-					throw new ArgumentNullException(nameof(action));
+				if (callback == null)
+					throw new ArgumentNullException(nameof(callback));
 
-				m_Action = action;
+				m_Callback = callback;
 			}
 
-			public void Execute(FSM sm) => m_Action.Invoke();
+			public void Execute(FSM sm) => m_Callback.Invoke();
 		}
 	}
 }

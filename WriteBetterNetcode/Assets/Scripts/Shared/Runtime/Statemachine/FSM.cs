@@ -15,7 +15,7 @@ namespace CodeSmile.Statemachine
 		/// <summary>
 		///     Invoked after each state change.
 		/// </summary>
-		public event Action<StateChangeEventArgs> OnStateChanged;
+		public event Action<StateChangeEventArgs> OnStateChange;
 
 		/// <summary>
 		///     Invoked when the statemachine entered a final state (state without any transitions).
@@ -52,23 +52,51 @@ namespace CodeSmile.Statemachine
 		public Boolean IsStopped => ActiveState.IsFinalState();
 		public Boolean DidChangeState { get; private set; }
 
+		public static State S(String stateName) => new(stateName);
+
+		public static State[] S(params String[] stateNames)
+		{
+			var states = new State[stateNames.Length];
+			for (var i = 0; i < stateNames.Length; i++)
+				states[i] = new State(stateNames[i]);
+
+			return states;
+		}
+
+		public static Transition T() => new();
+		public static Transition T(State gotoState) => new(gotoState);
+		public static Transition T(String transitionName, State gotoState) => new(transitionName, gotoState);
+		public static Condition C(Func<Boolean> callback) => new(callback);
+		public static Action A(System.Action callback) => new(callback);
+
+		/// <summary>
+		///     Logical OR operator will be true if one or more of the containing conditions are true.
+		/// </summary>
+		/// <param name="conditions">Two or more ICondition instances.</param>
+		/// <returns></returns>
+		public static LogicalOrCondition OR(params ICondition[] conditions) => new(conditions);
+
+		/// <summary>
+		///     Logical AND operator will be true if all of the containing conditions are true.
+		/// </summary>
+		/// <remarks>
+		///     Logical AND is the default operation for Conditions. This AND operator is intended to be used within
+		///     an OR condition to express more complex conditions like so: OR(AND(a,b), AND(c,d), AND(e,f,g,h))
+		/// </remarks>
+		/// <param name="conditions">Two or more ICondition instances.</param>
+		/// <returns></returns>
+		public static LogicalOrCondition AND(params ICondition[] conditions) => new(conditions);
+
+		/// <summary>
+		///     Logical NOT operator negates the result of the containing condition.
+		/// </summary>
+		/// <param name="condition"></param>
+		/// <returns></returns>
+		public static LogicalNotCondition NOT(ICondition condition) => new(condition);
+
 		private FSM() {} // forbidden default ctor
 
 		public FSM(String statemachineName) => Name = statemachineName;
-
-		public State[] WithStateNames(params String[] stateNames)
-		{
-			if (m_States != null)
-				throw new InvalidOperationException("States already set!");
-			if (stateNames == null || stateNames.Length == 0)
-				throw new ArgumentException("No state names provided");
-
-			m_States = new State[stateNames.Length];
-			for (var i = 0; i < stateNames.Length; i++)
-				m_States[i] = new State(stateNames[i]);
-
-			return m_States;
-		}
 
 		public FSM WithStates(params State[] states)
 		{
@@ -129,7 +157,7 @@ namespace CodeSmile.Statemachine
 					updatingState.OnExitState(this);
 					ActiveState.OnEnterState(this);
 
-					OnStateChanged?.Invoke(new StateChangeEventArgs
+					OnStateChange?.Invoke(new StateChangeEventArgs
 						{ Fsm = this, PreviousState = updatingState, ActiveState = ActiveState });
 
 					if (ActiveState.IsFinalState())

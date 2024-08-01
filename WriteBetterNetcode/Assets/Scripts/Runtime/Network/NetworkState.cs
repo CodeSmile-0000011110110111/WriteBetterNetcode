@@ -103,13 +103,15 @@ namespace CodeSmile.BetterNetcode.Network
 
 		private void SetupStatemachine()
 		{
-			m_Statemachine.OnStateChanged += args =>
+			m_Statemachine.OnStateChange += args =>
 				Debug.LogWarning($"{m_Statemachine} change: {args.PreviousState} to {args.ActiveState}");
 
 			m_Statemachine.AllowMultipleStateChanges = true;
 			m_StartServerVar = m_Statemachine.LocalVars.DefineBool("StartServerRequest");
 
-			var states = m_Statemachine.WithStateNames(Enum.GetNames(typeof(State)));
+			var states = FSM.S(Enum.GetNames(typeof(State)));
+			m_Statemachine.WithStates(states);
+
 			var initState = states[(Int32)State.Initializing];
 			var offlineState = states[(Int32)State.Offline];
 			var serverStartingState = states[(Int32)State.ServerStarting];
@@ -126,7 +128,7 @@ namespace CodeSmile.BetterNetcode.Network
 			serverStartingState.WithTransitions(new FSM.Transition("Server started", serverOnlineState)
 				.WithConditions(new IsServerOnline()));
 			serverOnlineState.WithTransitions(new FSM.Transition("Server stopped", serverShuttingDownState)
-				.WithConditions(FSM.Condition.NOT(new IsServerOnline()))
+				.WithConditions(FSM.NOT(new IsServerOnline()))
 				.WithActions(new NetworkManagerShutdown()));
 			serverShuttingDownState.WithTransitions(new FSM.Transition("NetworkManager shutdown complete", offlineState)
 				.WithConditions(new IsNetworkManagerReady()));

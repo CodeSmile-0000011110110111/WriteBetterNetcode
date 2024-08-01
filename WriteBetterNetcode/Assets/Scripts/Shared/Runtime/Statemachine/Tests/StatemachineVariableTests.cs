@@ -16,7 +16,7 @@ namespace CodeSmile.Statemachine.Tests
 		[Test]
 		public void FSMVars_UndefinedVariables_ReturnDefaultValues()
 		{
-			var sm = new FSM("Test FSM");
+			var sm = new FSM("FSM");
 			sm.GlobalVars.Clear();
 			Assert.AreEqual(false, sm.GlobalVars["undefined-bool"].BoolValue);
 			Assert.AreEqual(0f, sm.GlobalVars["undefined-float"].FloatValue);
@@ -30,7 +30,7 @@ namespace CodeSmile.Statemachine.Tests
 		[Test]
 		public void FSMVars_UndefinedVariables_CanBeAssignedTo()
 		{
-			var sm = new FSM("Test FSM");
+			var sm = new FSM("FSM");
 			sm.GlobalVars.Clear();
 			sm.GlobalVars["undefined-bool"].BoolValue = true;
 			sm.GlobalVars["undefined-float"].FloatValue = 1.2345f;
@@ -50,8 +50,7 @@ namespace CodeSmile.Statemachine.Tests
 		[TestCase(false)] [TestCase(true)]
 		public void FSMLocalVar_DefineBool_ReturnsExpectedValue(Boolean value)
 		{
-			var sm = new FSM("Test FSM");
-
+			var sm = new FSM("FSM");
 			sm.LocalVars.DefineBool(TestVar1, value);
 
 			Assert.AreEqual(value, sm.LocalVars[TestVar1].BoolValue);
@@ -60,8 +59,7 @@ namespace CodeSmile.Statemachine.Tests
 		[TestCase(0f)] [TestCase(Single.MinValue)] [TestCase(Single.MaxValue)]
 		public void FSMLocalVar_DefineFloat_ReturnsExpectedValue(Single value)
 		{
-			var sm = new FSM("Test FSM");
-
+			var sm = new FSM("FSM");
 			sm.LocalVars.DefineFloat(TestVar1, value);
 
 			Assert.AreEqual(value, sm.LocalVars[TestVar1].FloatValue);
@@ -70,8 +68,7 @@ namespace CodeSmile.Statemachine.Tests
 		[TestCase(0)] [TestCase(Int32.MinValue)] [TestCase(Int32.MaxValue)]
 		public void FSMLocalVar_DefineInt_ReturnsExpectedValue(Int32 value)
 		{
-			var sm = new FSM("Test FSM");
-
+			var sm = new FSM("FSM");
 			sm.LocalVars.DefineFloat(TestVar1, value);
 
 			Assert.AreEqual(value, sm.LocalVars[TestVar1].FloatValue);

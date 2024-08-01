@@ -18,44 +18,19 @@ namespace CodeSmile.Statemachine
 		/// </remarks>
 		public sealed class Condition : ICondition
 		{
-			private readonly Func<Boolean> m_Condition;
-
-			/// <summary>
-			///     Logical NOT operator negates the result of the containing condition.
-			/// </summary>
-			/// <param name="condition"></param>
-			/// <returns></returns>
-			public static LogicalNotCondition NOT(ICondition condition) => new(condition);
-
-			/// <summary>
-			///     Logical OR operator will be true if one or more of the containing conditions are true.
-			/// </summary>
-			/// <param name="conditions">Two or more ICondition instances.</param>
-			/// <returns></returns>
-			public static LogicalOrCondition OR(params ICondition[] conditions) => new(conditions);
-
-			/// <summary>
-			///     Logical AND operator will be true if all of the containing conditions are true.
-			/// </summary>
-			/// <remarks>
-			///     Logical AND is the default operation for Conditions. This AND operator is intended to be used within
-			///     an OR condition to express more complex conditions like so: OR(AND(a,b), AND(c,d), AND(e,f,g,h))
-			/// </remarks>
-			/// <param name="conditions">Two or more ICondition instances.</param>
-			/// <returns></returns>
-			public static LogicalOrCondition AND(params ICondition[] conditions) => new(conditions);
+			private readonly Func<Boolean> m_Callback;
 
 			private Condition() {} // forbidden default ctor
 
-			public Condition(Func<Boolean> condition)
+			public Condition(Func<Boolean> callback)
 			{
-				if (condition == null)
-					throw new ArgumentNullException(nameof(condition));
+				if (callback == null)
+					throw new ArgumentNullException(nameof(callback));
 
-				m_Condition = condition;
+				m_Callback = callback;
 			}
 
-			public Boolean IsSatisfied(FSM sm) => m_Condition.Invoke();
+			public Boolean IsSatisfied(FSM sm) => m_Callback.Invoke();
 		}
 	}
 }

@@ -10,61 +10,27 @@ namespace CodeSmile.Statemachine.Tests
 {
 	public class StatemachineTests
 	{
+		[TestCase(null)] [TestCase("")]
+		public void FSM_InvalidStatemachineName_Throws(String fsmName)
+		{
+#if DEBUG || DEVELOPMENT_BUILD
+			Assert.Throws<ArgumentException>(() => new FSM(fsmName).WithStates(FSM.S("X")).Start());
+#endif
+		}
+
+		[TestCase(null)] [TestCase("")]
+		public void FSM_InvalidStateName_Throws(String stateName)
+		{
+#if DEBUG || DEVELOPMENT_BUILD
+			Assert.Throws<ArgumentException>(() => new FSM("FSM").WithStates(FSM.S(stateName)).Start());
+#endif
+		}
+
 		[Test]
 		public void FSM_StartNotCalledBeforeEvaluate_Throws()
 		{
 #if DEBUG || DEVELOPMENT_BUILD
-			Assert.Throws<InvalidOperationException>(() =>
-			{
-				var startState = new FSM.State("START");
-				var sm = new FSM("FSM").WithStates(startState);
-				var testVar = sm.LocalVars.DefineBool("TestVar", true);
-				startState.WithTransitions(new FSM.Transition[]
-				{
-					new(new FSM.ICondition[] { FSM.Variable.IsTrue(testVar) }, new FSM.State("MISS")),
-				});
-
-				sm.Evaluate();
-			});
-#endif
-		}
-
-		[TestCase(null), TestCase("")]
-		public void FSM_NoStatemachineName_Throws(string fsmName)
-		{
-#if DEBUG || DEVELOPMENT_BUILD
-			Assert.Throws<ArgumentException>(() =>
-			{
-				var startState = new FSM.State("START");
-				var sm = new FSM(fsmName).WithStates(startState);
-				var testVar = sm.LocalVars.DefineBool("TestVar", true);
-				startState.WithTransitions(new FSM.Transition[]
-				{
-					new(new FSM.ICondition[] { FSM.Variable.IsTrue(testVar) }, new FSM.State("MISS")),
-				});
-
-				sm.Start();
-			});
-#endif
-		}
-
-		[TestCase(null), TestCase("")]
-		public void FSM_NoStateName_Throws(string stateName)
-		{
-#if DEBUG || DEVELOPMENT_BUILD
-			Assert.Throws<ArgumentException>(() =>
-			{
-				var startState = new FSM.State(stateName);
-				var endState = new FSM.State("END");
-				var sm = new FSM("FSM").WithStates(startState, endState);
-				var testVar = sm.LocalVars.DefineBool("TestVar", true);
-				startState.WithTransitions(new FSM.Transition[]
-				{
-					new(new FSM.ICondition[] { FSM.Variable.IsTrue(testVar) }, endState),
-				});
-
-				sm.Start();
-			});
+			Assert.Throws<InvalidOperationException>(() => new FSM("FSM").WithStates(FSM.S("X")).Evaluate());
 #endif
 		}
 
@@ -73,17 +39,7 @@ namespace CodeSmile.Statemachine.Tests
 		{
 #if DEBUG || DEVELOPMENT_BUILD
 			Assert.Throws<ArgumentException>(() =>
-			{
-				var startState = new FSM.State("START");
-				var sm = new FSM("Test FSM").WithStates(startState);
-				var testVar = sm.LocalVars.DefineBool("TestVar", true);
-				startState.WithTransitions(new FSM.Transition[]
-				{
-					new(new FSM.ICondition[] { FSM.Variable.IsTrue(testVar) }, null, new FSM.State("MISS")),
-				});
-
-				sm.Start();
-			});
+				new FSM("FSM").WithStates(FSM.S("X").WithTransitions(FSM.T(FSM.S("?")))).Start());
 #endif
 		}
 
@@ -91,26 +47,12 @@ namespace CodeSmile.Statemachine.Tests
 		public void FSM_StartEndStates_RunsToEndAndRaisesStateChangeEvent()
 		{
 			var didExecuteActions = false;
+			var endState = FSM.S("END");
+			var startState = FSM.S("START")
+				.WithTransitions(FSM.T(endState)
+					.WithActions(FSM.A(() => didExecuteActions = true)));
+			var sm = new FSM("FSM").WithStates(startState, endState);
 
-			var startState = new FSM.State("START");
-			var endState = new FSM.State("END");
-			var sm = new FSM("Test FSM").WithStates(startState, endState);
-
-			startState.WithTransitions(new FSM.Transition[]
-			{
-				new(new FSM.ICondition[]
-					{
-						new FSM.Condition(() => true),
-						new FSM.Condition(() => true),
-					},
-					new FSM.IAction[]
-					{
-						new FSM.Action(() => didExecuteActions = true),
-					},
-					endState),
-			});
-
-			Assert.IsFalse(didExecuteActions);
 			sm.Start().Evaluate();
 
 			Assert.AreEqual(endState, sm.ActiveState);
@@ -121,22 +63,13 @@ namespace CodeSmile.Statemachine.Tests
 		[Test]
 		public void FSM_StateChange_InvokesStateChangeEvent()
 		{
+			var startState = FSM.S("START");
+			var endState = FSM.S("END");
+			var sm = new FSM("FSM").WithStates(startState, endState);
+			startState.WithTransitions(FSM.T(endState));
+
 			var didInvokeStateChangedEvent = false;
-
-			var startState = new FSM.State("START");
-			var endState = new FSM.State("END");
-			var sm = new FSM("Test FSM").WithStates(startState, endState);
-			var testVar = sm.LocalVars.DefineBool("TestVar", true);
-
-			startState.WithTransitions(new FSM.Transition[]
-			{
-				new(new FSM.ICondition[]
-				{
-					FSM.Variable.IsTrue(testVar),
-				}, null, endState),
-			});
-
-			sm.OnStateChanged += args =>
+			sm.OnStateChange += args =>
 			{
 				didInvokeStateChangedEvent = true;
 				Assert.AreEqual(args.PreviousState, startState);
@@ -148,30 +81,37 @@ namespace CodeSmile.Statemachine.Tests
 			Assert.IsTrue(didInvokeStateChangedEvent);
 		}
 
+		[TestCase(false, false, false)]
+		[TestCase(true, false, true)]
+		[TestCase(false, true, true)]
+		[TestCase(true, true, true)]
+		public void FSM_LogicalOrCondition_ExpectedOutcome(Boolean condition1, Boolean condition2, Boolean expected)
+		{
+			var actual = false;
+			var startState = FSM.S("START")
+				.WithTransitions(FSM.T()
+					.WithConditions(FSM.OR(FSM.C(() => condition1), FSM.C(() => condition2)))
+					.WithActions(FSM.A(() => actual = true)));
+
+			new FSM("Test FSM").WithStates(startState).Start().Evaluate();
+
+			Assert.AreEqual(expected, actual);
+		}
+
 		[Test]
 		public void FSMVar_LocalIntEquals_IsTrue()
 		{
 			var expectedValue = -111111;
 
-			var startState = new FSM.State("START");
-			var endState = new FSM.State("END");
-			var sm = new FSM("Test FSM").WithStates(startState, endState);
-
-			var testVar1 = sm.LocalVars.DefineInt("TestVar1", expectedValue);
+			var startState = FSM.S("START");
+			var endState = FSM.S("END");
+			var sm = new FSM("FSM").WithStates(startState, endState);
+			var testVar = sm.LocalVars.DefineInt("TestVar", expectedValue);
 			var didExecute = sm.LocalVars.DefineBool("didExecute");
 
-			startState.WithTransitions(new FSM.Transition[]
-			{
-				new(new FSM.ICondition[]
-					{
-						FSM.Variable.IsEqual(testVar1, expectedValue),
-					},
-					new FSM.IAction[]
-					{
-						FSM.Variable.SetTrue(didExecute),
-					},
-					endState),
-			});
+			startState.WithTransitions(FSM.T(endState)
+				.WithConditions(FSM.Variable.IsEqual(testVar, expectedValue))
+				.WithActions(FSM.Variable.SetTrue(didExecute)));
 
 			sm.Start().Evaluate();
 
@@ -181,29 +121,17 @@ namespace CodeSmile.Statemachine.Tests
 		[Test]
 		public void FSMVar_VarCondition_SetsExpectedValue()
 		{
-			var expectedValue = 12345;
-
-			var startState = new FSM.State("START");
-			var endState = new FSM.State("END");
-			var sm = new FSM("Test FSM").WithStates(startState, endState);
-
+			var startState = FSM.S("START");
+			var endState = FSM.S("END");
+			var sm = new FSM("FSM").WithStates(startState, endState);
 			var testVar1 = sm.LocalVars.DefineBool("TestVar1", true);
 			var testVar2 = sm.LocalVars.DefineInt("TestVar2");
 			var didExecute = sm.LocalVars.DefineBool("did execute");
 
-			startState.WithTransitions(new FSM.Transition[]
-			{
-				new(new FSM.ICondition[]
-					{
-						FSM.Variable.IsTrue(testVar1),
-					},
-					new FSM.IAction[]
-					{
-						FSM.Variable.SetInt(testVar2, expectedValue),
-						FSM.Variable.SetTrue(didExecute),
-					},
-					endState),
-			});
+			var expectedValue = 12345;
+			startState.WithTransitions(FSM.T(endState)
+				.WithConditions(FSM.Variable.IsTrue(testVar1))
+				.WithActions(FSM.Variable.SetInt(testVar2, expectedValue), FSM.Variable.SetTrue(didExecute)));
 
 			sm.Start().Evaluate();
 

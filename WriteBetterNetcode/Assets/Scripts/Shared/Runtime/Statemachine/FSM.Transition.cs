@@ -19,35 +19,14 @@ namespace CodeSmile.Statemachine
 			internal IAction[] Actions { get; private set; }
 			internal State GotoState { get; }
 
-			private Transition() {} // forbidden default ctor
+			public Transition()
+				: this(null, null, null, null) {}
+
+			public Transition(State gotoState)
+				: this(null, null, null, gotoState) {}
 
 			public Transition(String transitionName, State gotoState)
 				: this(transitionName, null, null, gotoState) {}
-
-			/// <summary>
-			///     Creates a transition without actions whose purpose is to just change state if its conditions are satisfied.
-			/// </summary>
-			/// <param name="conditions"></param>
-			/// <param name="gotoState"></param>
-			public Transition(ICondition[] conditions, State gotoState)
-				: this(conditions, null, gotoState) {}
-
-			/// <summary>
-			///     Creates a named transition without actions whose purpose is to just change state if its conditions are satisfied.
-			/// </summary>
-			/// <param name="transitionName"></param>
-			/// <param name="conditions"></param>
-			/// <param name="gotoState"></param>
-			public Transition(String transitionName, ICondition[] conditions, State gotoState)
-				: this(transitionName, conditions, null, gotoState) {}
-
-			/// <summary>
-			///     Creates a self-transition that does not change the current state if its conditions are satisfied.
-			/// </summary>
-			/// <param name="conditions"></param>
-			/// <param name="actions"></param>
-			public Transition(ICondition[] conditions, IAction[] actions)
-				: this(conditions, actions, null) {}
 
 			/// <summary>
 			///     Creates a transition that changes state to the given gotoState if conditions are satisfied.
@@ -72,7 +51,7 @@ namespace CodeSmile.Statemachine
 			public Transition(String transitionName, ICondition[] conditions, IAction[] actions, State gotoState)
 			{
 				Name = transitionName ?? String.Empty;
-				Conditions = conditions;
+				Conditions = conditions ?? new ICondition[0];
 				Actions = actions ?? new IAction[0];
 				GotoState = gotoState;
 			}
