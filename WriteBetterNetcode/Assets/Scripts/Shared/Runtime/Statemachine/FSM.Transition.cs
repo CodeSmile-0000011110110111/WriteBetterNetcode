@@ -29,15 +29,6 @@ namespace CodeSmile.Statemachine
 				: this(transitionName, null, null, gotoState) {}
 
 			/// <summary>
-			///     Creates a transition that changes state to the given gotoState if conditions are satisfied.
-			/// </summary>
-			/// <param name="conditions"></param>
-			/// <param name="actions"></param>
-			/// <param name="gotoState"></param>
-			public Transition(ICondition[] conditions, IAction[] actions, State gotoState)
-				: this(null, conditions, actions, gotoState) {}
-
-			/// <summary>
 			///     Creates a named transition that changes state to the given gotoState if conditions are satisfied.
 			/// </summary>
 			/// <remarks>
@@ -87,7 +78,10 @@ namespace CodeSmile.Statemachine
 					ExecuteActions(sm);
 
 					if (GotoState != null)
+					{
+						Debug.Log($"Transition '{Name}' changes state to {GotoState.Name}");
 						sm.SetActiveState(GotoState);
+					}
 				}
 			}
 
@@ -107,22 +101,6 @@ namespace CodeSmile.Statemachine
 					action.Execute(sm);
 			}
 
-			internal void OnExitState(FSM sm)
-			{
-				foreach (var condition in Conditions)
-					condition.OnExitState(sm);
-				foreach (var action in Actions)
-					action.OnExitState(sm);
-			}
-
-			internal void OnEnterState(FSM sm)
-			{
-				foreach (var condition in Conditions)
-					condition.OnEnterState(sm);
-				foreach (var action in Actions)
-					action.OnEnterState(sm);
-			}
-
 			internal void OnStart(FSM sm)
 			{
 				foreach (var condition in Conditions)
@@ -137,6 +115,22 @@ namespace CodeSmile.Statemachine
 					condition.OnStop(sm);
 				foreach (var action in Actions)
 					action.OnStop(sm);
+			}
+
+			internal void OnEnterState(FSM sm)
+			{
+				foreach (var condition in Conditions)
+					condition.OnEnterState(sm);
+				foreach (var action in Actions)
+					action.OnEnterState(sm);
+			}
+
+			internal void OnExitState(FSM sm)
+			{
+				foreach (var condition in Conditions)
+					condition.OnExitState(sm);
+				foreach (var action in Actions)
+					action.OnExitState(sm);
 			}
 		}
 	}

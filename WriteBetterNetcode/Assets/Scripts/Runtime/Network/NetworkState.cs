@@ -4,25 +4,17 @@
 using CodeSmile.Statemachine;
 using CodeSmile.Statemachine.Netcode;
 using CodeSmile.Statemachine.Netcode.Actions;
+using CodeSmile.Statemachine.Netcode.Conditions;
 using System;
-using System.Collections;
 using System.IO;
 using System.Linq;
 using Unity.Multiplayer.Playmode;
-using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEditor;
 using UnityEngine;
 
 namespace CodeSmile.BetterNetcode.Network
 {
-	public enum NetworkRole
-	{
-		Client,
-		Host,
-		Server,
-	}
-
 	[Serializable]
 	public struct NetworkConfig
 	{
@@ -37,6 +29,12 @@ namespace CodeSmile.BetterNetcode.Network
 	}
 
 	[Serializable]
+	public struct ServerConfig
+	{
+		public Int32 MaxPlayers;
+	}
+
+	[Serializable]
 	public struct RelayConfig
 	{
 		public Boolean UseRelayService;
@@ -45,27 +43,20 @@ namespace CodeSmile.BetterNetcode.Network
 
 	public class NetworkState : MonoBehaviour
 	{
-		/// <summary>
-		///     Raised whenever the network state changes.
-		/// </summary>
-		public event Action<StateChangedEventArgs> OnStateChanged;
-
 		public enum State
 		{
 			Initializing,
 			Offline,
+			Configure,
+			Stopping,
 
 			ServerStarting,
-			ServerOnline,
-			ServerShuttingDown,
+			ServerStarted,
 
-			// HostStarting,
-			// HostOnline,
-			// HostShuttingDown,
-			//
-			// ClientConnecting,
-			// ClientConnected,
-			// ClientDisconnecting,
+			ClientStarting,
+			ClientStarted,
+			ClientConnected,
+			ClientDisconnected,
 		}
 
 		[SerializeField] private NetworkConfig m_ServerConfig = new() { Role = NetworkRole.Server };
@@ -73,34 +64,48 @@ namespace CodeSmile.BetterNetcode.Network
 		[SerializeField] private NetworkConfig m_ClientConfig = new() { Role = NetworkRole.Client };
 
 		public FSM m_Statemachine = new(nameof(NetworkState));
-		private FSM.Variable m_StartServerVar;
-
-		public State CurrentState { get; private set; } = State.Initializing;
+		private FSM.Variable m_NetworkRole;
 
 		private void Awake() => SetupStatemachine();
 
 		private void Start()
 		{
-			var net = NetworkManager.Singleton;
-			// net.OnClientStarted += OnClientStarted;
-			// net.OnClientStopped += OnClientStopped;
-			// net.OnServerStarted += OnServerStarted;
-			// net.OnServerStopped += OnServerStopped;
-			// net.OnTransportFailure += OnTransportFailure;
-
-			// OnStateChanged += OnNetworkStateChanged;
-			// ChangeState(State.Offline);
-
 			m_Statemachine.Start();
-			var puml = m_Statemachine.ToPlantUml();
-			File.WriteAllText($"{Application.dataPath}/../../PlantUML Diagrams/{GetType().FullName}.puml",
-				$"@startuml\n\n!theme blueprint\nhide empty description\n\n{puml}\n\n@enduml");
 
-			m_Statemachine.Evaluate();
-			StartServer();
+			try
+			{
+				var puml = m_Statemachine.ToPlantUml();
+				File.WriteAllText($"{Application.dataPath}/../../PlantUML Diagrams/{GetType().FullName}.puml",
+					$"@startuml\n\n!theme blueprint\nhide empty description\n\n{puml}\n\n@enduml");
+			}
+			catch (Exception e)
+			{
+				Debug.LogWarning(e);
+			}
+
+			m_Statemachine.Update();
+
+			var mppmRole = GetNetworkRoleFromMppmTags();
+			Debug.LogWarning("Network Role: " + mppmRole);
+
+			switch (mppmRole)
+			{
+				case NetworkRole.Client:
+					StartClient();
+					break;
+				case NetworkRole.Host:
+					StartHost();
+					break;
+				case NetworkRole.Server:
+					StartServer();
+					break;
+				case NetworkRole.None:
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
 		}
 
-		private void Update() => m_Statemachine.Evaluate();
+		private void Update() => m_Statemachine.Update();
 
 		private void SetupStatemachine()
 		{
@@ -108,7 +113,7 @@ namespace CodeSmile.BetterNetcode.Network
 				Debug.LogWarning($"{m_Statemachine} change: {args.PreviousState} to {args.ActiveState}");
 
 			m_Statemachine.AllowMultipleStateChanges = true;
-			m_StartServerVar = m_Statemachine.Vars.DefineBool("Request to Start Server");
+			m_NetworkRole = m_Statemachine.Vars.DefineInt("NetworkRole");
 
 			var states = FSM.S(Enum.GetNames(typeof(State)));
 			m_Statemachine.WithStates(states);
@@ -116,185 +121,88 @@ namespace CodeSmile.BetterNetcode.Network
 			var initState = states[(Int32)State.Initializing];
 			var offlineState = states[(Int32)State.Offline];
 			var serverStartingState = states[(Int32)State.ServerStarting];
-			var serverOnlineState = states[(Int32)State.ServerOnline];
-			var serverShuttingDownState = states[(Int32)State.ServerShuttingDown];
+			var serverStartedState = states[(Int32)State.ServerStarted];
 
+			// Init state
 			initState.WithTransitions(FSM.T("Goto Offline", offlineState)
-				.WithConditions(new IsNetworkManagerOffline()));
+				.WithConditions(new IsNetworkShutDown()));
+
+			// Shutdown state
+			var stoppingState = states[(Int32)State.Stopping];
+			stoppingState.WithTransitions(FSM.T("Network stopping", offlineState)
+				.WithConditions(new IsNetworkShutDown())
+				.WithActions(FSM.SetValue(m_NetworkRole, (Int32)NetworkRole.None)));
+
+			// Server States
 			offlineState.WithTransitions(FSM.T("Start Server", serverStartingState)
-				.WithConditions(FSM.Variable.IsTrue(m_StartServerVar))
-				.WithActions(new NetworkManagerStartServer()));
-			serverStartingState.WithTransitions(FSM.T("Server started", serverOnlineState)
-				.WithConditions(new IsServerOnline()));
-			serverOnlineState.WithTransitions(FSM.T("Server stopped", serverShuttingDownState)
-				.WithConditions(FSM.NOT(new IsServerOnline()))
-				.WithActions(new NetworkManagerShutdown()));
-			serverShuttingDownState.WithTransitions(FSM.T("NetworkManager shut down", offlineState)
-				.WithConditions(new IsNetworkManagerOffline())
-				.WithActions(FSM.Variable.SetFalse(m_StartServerVar)));
+				.WithConditions(FSM.IsEqual(m_NetworkRole, (Int32)NetworkRole.Server))
+				.WithActions(new NetworkStart(NetworkRole.Server)));
+
+			serverStartingState.WithTransitions(
+				FSM.T("Server started", serverStartedState)
+					.WithConditions(new IsLocalServerStarted()));
+
+			serverStartedState.WithTransitions(FSM.T("Server stopping", stoppingState)
+				.WithConditions(FSM.OR(FSM.NOT(new IsLocalServerStarted()), FSM.IsEqual(m_NetworkRole, (Int32)NetworkRole.None)))
+				.WithActions(new NetworkShutdown()));
+
+			// Host States (for all intents and purposes of network state, the host is the server)
+			offlineState.WithTransitions(FSM.T("Start Host", serverStartingState)
+				.WithConditions(FSM.IsEqual(m_NetworkRole, (Int32)NetworkRole.Host))
+				.WithActions(new NetworkStart(NetworkRole.Host)));
+
+			// Client States
+			var clientStartingState = states[(Int32)State.ClientStarting];
+			var clientStartedState = states[(Int32)State.ClientStarted];
+			var clientConnectedState = states[(Int32)State.ClientConnected];
+			var clientDisconnectedState = states[(Int32)State.ClientDisconnected];
+
+			var clientStopTransition = FSM.T("Client stopping", stoppingState)
+				.WithConditions(FSM.OR(FSM.NOT(new IsLocalClientStarted()), FSM.IsEqual(m_NetworkRole, (Int32)NetworkRole.None)))
+				.WithActions(new NetworkShutdown());
+
+			offlineState.WithTransitions(FSM.T("Start Client", clientStartingState)
+				.WithConditions(FSM.IsEqual(m_NetworkRole, (Int32)NetworkRole.Client))
+				.WithActions(new NetworkStart(NetworkRole.Client)));
+
+			clientStartingState.WithTransitions(FSM.T("Client started", clientStartedState)
+				.WithConditions(new IsLocalClientStarted()));
+
+			clientStartedState.WithTransitions(FSM.T("Client connected", clientConnectedState)
+				.WithConditions(new IsLocalClientConnected()), clientStopTransition);
+
+			clientConnectedState.WithTransitions(FSM.T("Client disconnected", clientDisconnectedState)
+				.WithConditions(FSM.NOT(new IsLocalClientConnected())), clientStopTransition);
+
+			clientDisconnectedState.WithTransitions(clientStopTransition);
 		}
 
-		public void StartServer() => m_StartServerVar.BoolValue = true;
+		public void StartServer() => m_NetworkRole.IntValue = (Int32)NetworkRole.Server;
+		public void StartHost() => m_NetworkRole.IntValue = (Int32)NetworkRole.Host;
+		public void StartClient() => m_NetworkRole.IntValue = (Int32)NetworkRole.Client;
+		public void StopNetwork() => m_NetworkRole.IntValue = (int)NetworkRole.None;
 
-		private Boolean NetworkConfigFromMppmTags(out NetworkConfig config)
+		private NetworkRole GetNetworkRoleFromMppmTags()
 		{
-			var role = NetworkRole.Client;
-			var foundRole = false;
-
 #if UNITY_EDITOR
 			var tags = CurrentPlayer.ReadOnlyTags();
-			for (var r = 0; r < 3; r++)
-			{
-				role = (NetworkRole)r;
+			var roleCount = Enum.GetValues(typeof(NetworkRole)).Length;
+			for (var r = 0; r < roleCount; r++)
 				if (tags.Contains(((NetworkRole)r).ToString()))
-				{
-					foundRole = true;
-					break;
-				}
-			}
+					return (NetworkRole)r;
 #endif
-
-			config = role == NetworkRole.Server ? m_ServerConfig : role == NetworkRole.Host ? m_HostConfig : m_ClientConfig;
-			return foundRole;
-		}
-
-		private void OnNetworkStateChanged(StateChangedEventArgs args)
-		{
-			//Debug.Log($"NetworkState changed from {args.previousState} to {args.newState}");
-
-			// switch (args.newState)
-			// {
-			// 	case State.Offline:
-			// 		if (NetworkConfigFromMppmTags(out var config))
-			// 			StartNetworking(config);
-			// 		break;
-			//
-			// 	case State.Online:
-			// 		//StopNetworking();
-			// 		break;
-			// }
-		}
-
-		private void CheckNetworkStateIs(State expectedState)
-		{
-			if (CurrentState != expectedState)
-				throw new Exception($"State mismatch! Expected state: {expectedState} - Current state: {CurrentState}");
+			return NetworkRole.None;
 		}
 
 		public void StartNetworking(NetworkConfig config)
 		{
 			/*
-			Debug.Log($"StartNetworking({config})");
-			CheckNetworkStateIs(State.Offline);
-			ChangeState(State.Starting);
-
 			var net = NetworkManager.Singleton;
 			var transport = net.GetTransport();
 			transport.ConnectionData = config.AddressData;
 			transport.UseWebSockets = config.UseWebSockets;
 			transport.UseEncryption = config.UseEncryption;
-
-			switch (config.Role)
-			{
-				case NetworkRole.Client:
-					if (net.StartClient() == false)
-					{
-						Debug.LogWarning("StartClient failed");
-						ChangeState(State.ShuttingDown);
-					}
-					break;
-				case NetworkRole.Host:
-					if (net.StartHost() == false)
-					{
-						Debug.LogWarning("StartHost failed");
-						ChangeState(State.ShuttingDown);
-					}
-					break;
-				case NetworkRole.Server:
-					if (net.StartServer() == false)
-					{
-						Debug.LogWarning("StartServer failed");
-						ChangeState(State.ShuttingDown);
-					}
-					break;
-				default:
-					throw new ArgumentOutOfRangeException(nameof(config.Role), config.Role, null);
-			}
 		*/
-		}
-
-		private void StopNetworking()
-		{
-			/*
-			CheckNetworkStateIs(State.Online);
-
-			ChangeState(State.ShuttingDown);
-			var net = NetworkManager.Singleton;
-			net.Shutdown();
-		*/
-		}
-
-		/*
-		private void OnClientStarted() => ChangeState(State.Online);
-
-		private void OnClientStopped(Boolean isHost)
-		{
-			// for hosts we'll wait for the OnServerStopped event
-			if (isHost == false)
-				GoOfflineAtEndOfFrame();
-		}
-
-		private void OnServerStarted() => ChangeState(State.Online);
-		private void OnServerStopped(Boolean isHost) => GoOfflineAtEndOfFrame();
-		private void OnTransportFailure() => ChangeState(State.ShuttingDown); // will internally call Shutdown()
-		*/
-
-		private void GoOfflineAtEndOfFrame()
-		{
-			// in case we ever call this twice in a row (ie for the host)
-			StopAllCoroutines();
-
-			// After NetworkManager.Shutdown() and subsequent OnServerStopped / OnClientStopped events
-			// we MUST wait for the shutdown to complete before we can start a network session again!
-			StartCoroutine(GoOfflineAtEndOfFrameCoroutine());
-		}
-
-		private IEnumerator GoOfflineAtEndOfFrameCoroutine()
-		{
-			yield return new WaitUntil(() =>
-			{
-				var net = NetworkManager.Singleton;
-				return net == null ||
-				       (net.ShutdownInProgress || net.IsListening || net.IsServer || net.IsHost || net.IsClient) == false;
-			});
-
-			// then also wait until after Update, LateUpdate, Rendering of current frame
-			yield return new WaitForEndOfFrame();
-
-			ChangeState(State.Offline);
-		}
-
-		private void ChangeState(State newState)
-		{
-			if (CurrentState != newState)
-			{
-				var stateChangeEventArgs = new StateChangedEventArgs { previousState = CurrentState, newState = newState };
-
-				CurrentState = newState;
-				OnStateChanged?.Invoke(stateChangeEventArgs);
-			}
-		}
-
-		public struct StateChangedEventArgs
-		{
-			/// <summary>
-			///     Previous state
-			/// </summary>
-			public State previousState;
-			/// <summary>
-			///     Current state
-			/// </summary>
-			public State newState;
 		}
 	}
 }

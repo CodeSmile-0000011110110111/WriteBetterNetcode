@@ -27,7 +27,7 @@ namespace CodeSmile.Statemachine
 		private State[] m_States;
 
 		private Int32 m_ActiveStateIndex = -1;
-		private bool Started => !(m_ActiveStateIndex < 0);
+		private Boolean Started => !(m_ActiveStateIndex < 0);
 
 		/// <summary>
 		///     Name of the Statemachine
@@ -77,14 +77,14 @@ namespace CodeSmile.Statemachine
 		public Boolean DidChangeState { get; private set; }
 
 		/// <summary>
-		/// Creates a new State. 'FSM.S(..)' is shorthand for 'new FSM.State(..)'
+		///     Creates a new State. 'FSM.S(..)' is shorthand for 'new FSM.State(..)'
 		/// </summary>
 		/// <param name="stateName"></param>
 		/// <returns></returns>
 		public static State S(String stateName) => new(stateName);
 
 		/// <summary>
-		/// Creates several States.
+		///     Creates several States.
 		/// </summary>
 		/// <param name="stateNames"></param>
 		/// <returns></returns>
@@ -101,31 +101,35 @@ namespace CodeSmile.Statemachine
 		}
 
 		/// <summary>
-		/// Creates a new unnamed transition. 'FSM.T(..)' is shorthand for 'new FSM.Transition(..)'
+		///     Creates a new unnamed transition. 'FSM.T(..)' is shorthand for 'new FSM.Transition(..)'
 		/// </summary>
 		/// <returns></returns>
 		public static Transition T() => new();
+
 		/// <summary>
-		/// Creates a new unnamed transition to the target state. 'FSM.T(..)' is shorthand for 'new FSM.Transition(..)'
+		///     Creates a new unnamed transition to the target state. 'FSM.T(..)' is shorthand for 'new FSM.Transition(..)'
 		/// </summary>
 		/// <param name="gotoState"></param>
 		/// <returns></returns>
 		public static Transition T(State gotoState) => new(gotoState);
+
 		/// <summary>
-		/// Creates a named transition to the target state. 'FSM.T(..)' is shorthand for 'new FSM.Transition(..)'
+		///     Creates a named transition to the target state. 'FSM.T(..)' is shorthand for 'new FSM.Transition(..)'
 		/// </summary>
 		/// <param name="transitionName"></param>
 		/// <param name="gotoState"></param>
 		/// <returns></returns>
 		public static Transition T(String transitionName, State gotoState) => new(transitionName, gotoState);
+
 		/// <summary>
-		/// Creates a new generic lambda Condition. 'FSM.C(..)' is shorthand for 'new FSM.Condition(..)'
+		///     Creates a new generic lambda Condition. 'FSM.C(..)' is shorthand for 'new FSM.Condition(..)'
 		/// </summary>
 		/// <param name="callback"></param>
 		/// <returns></returns>
 		public static Condition C(Func<Boolean> callback) => new(callback);
+
 		/// <summary>
-		/// Creates a new generic lambda Action. 'FSM.A(..)' is shorthand for 'new FSM.Action(..)'
+		///     Creates a new generic lambda Action. 'FSM.A(..)' is shorthand for 'new FSM.Action(..)'
 		/// </summary>
 		/// <param name="callback"></param>
 		/// <returns></returns>
@@ -150,6 +154,13 @@ namespace CodeSmile.Statemachine
 		public static LogicalOrCondition AND(params ICondition[] conditions) => new(conditions);
 
 		/// <summary>
+		///     Logical NAND condition will be true if one or all of the containing conditions are false.
+		/// </summary>
+		/// <param name="conditions">Two or more ICondition instances.</param>
+		/// <returns></returns>
+		public static LogicalNotCondition NAND(params ICondition[] conditions) => new(new LogicalAndCondition(conditions));
+
+		/// <summary>
 		///     Logical NOT condition will be true if the containing condition evaluates to false, and vice versa.
 		/// </summary>
 		/// <param name="condition"></param>
@@ -159,13 +170,13 @@ namespace CodeSmile.Statemachine
 		private FSM() {} // forbidden default ctor
 
 		/// <summary>
-		/// Creates a named Statemachine instance.
+		///     Creates a named Statemachine instance.
 		/// </summary>
 		/// <param name="statemachineName">Name or description (required)</param>
 		public FSM(String statemachineName) => Name = statemachineName;
 
 		/// <summary>
-		/// Provides the states for the statemachine. Must only be called once per statemachine.
+		///     Provides the states for the statemachine. Must only be called once per statemachine.
 		/// </summary>
 		/// <param name="states"></param>
 		/// <returns></returns>
@@ -212,7 +223,7 @@ namespace CodeSmile.Statemachine
 		/// <summary>
 		///     Evaluates the statemachine's states and their transitions.
 		/// </summary>
-		public void Evaluate()
+		public void Update()
 		{
 			ThrowIfStatemachineNotStarted();
 
@@ -259,7 +270,7 @@ namespace CodeSmile.Statemachine
 		private Int32 FindStateIndex(State searchForState) => Array.FindIndex(m_States, s => s == searchForState);
 
 		/// <summary>
-		/// Sent with state change event.
+		///     Sent with state change event.
 		/// </summary>
 		public struct StateChangeEventArgs
 		{
@@ -269,7 +280,7 @@ namespace CodeSmile.Statemachine
 		}
 
 		/// <summary>
-		/// Sent with Statemachine stopped event.
+		///     Sent with Statemachine stopped event.
 		/// </summary>
 		public struct StatemachineStoppedEventArgs
 		{

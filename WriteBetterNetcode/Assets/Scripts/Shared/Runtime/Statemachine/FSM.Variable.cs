@@ -12,6 +12,22 @@ namespace CodeSmile.Statemachine
 {
 	public sealed partial class FSM
 	{
+		public static CompareVariableCondition IsTrue(Variable variable) => new(variable, Variable.Bool(true));
+		public static CompareVariableCondition IsFalse(Variable variable) => new(variable, Variable.Bool(false));
+		public static CompareVariableCondition IsEqual(Variable variable, Int32 value) => new(variable, Variable.Int(value));
+
+		public static CompareVariableCondition IsNotEqual(Variable variable, Int32 value) => new(variable, Variable.Int(value),
+			CompareVariableCondition.Comparator.NotEqual);
+
+		public static Variable.ModifyVariableAction SetTrue(Variable variable) => new(variable, Variable.Bool(true));
+		public static Variable.ModifyVariableAction SetFalse(Variable variable) => new(variable, Variable.Bool(false));
+
+		public static Variable.ModifyVariableAction SetValue(Variable variable, Int32 value) =>
+			new(variable, Variable.Int(value));
+
+		public static Variable.ModifyVariableAction SetValue(Variable variable, Single value) =>
+			new(variable, Variable.Float(value));
+
 		/// <summary>
 		///     Encapsulates a FSM variable (value) for use within and outside a statemachine.
 		/// </summary>
@@ -128,22 +144,6 @@ namespace CodeSmile.Statemachine
 			public static Variable Bool(Boolean value) => new(ValueType.Bool, value);
 			public static Variable Float(Single value) => new(ValueType.Float, value);
 			public static Variable Int(Int32 value) => new(ValueType.Int, value);
-			public static CompareVariableCondition IsTrue(Variable variable) => new(variable, Bool(true));
-			public static CompareVariableCondition IsFalse(Variable variable) => new(variable, Bool(false));
-			public static CompareVariableCondition IsEqual(Variable variable, Int32 value) => new(variable, Int(value));
-
-			public static ModifyVariableAction SetTrue(Variable variable) => new(variable, Bool(true));
-			public static ModifyVariableAction SetFalse(Variable variable) => new(variable, Bool(false));
-			public static ModifyVariableAction SetInt(Variable variable, Int32 value) => new(variable, Int(value));
-
-			public String GetValue() => m_ValueType switch
-			{
-				ValueType.None => "None",
-				ValueType.Bool => $"{m_Value.BoolValue}",
-				ValueType.Float => $"{m_Value.FloatValue}",
-				ValueType.Int => $"{m_Value.IntValue}",
-				_ => "",
-			};
 
 			internal Variable()
 			{
@@ -185,8 +185,20 @@ namespace CodeSmile.Statemachine
 				if (m_ValueType != other.m_ValueType)
 					throw new InvalidOperationException($"cannot compare different var types: {this} vs {other}");
 
+				if (m_ValueType == ValueType.Float)
+					return Mathf.Approximately(m_Value.FloatValue, other.m_Value.FloatValue);
+
 				return m_Value.Equals(other.m_Value);
 			}
+
+			public String GetValue() => m_ValueType switch
+			{
+				ValueType.None => "None",
+				ValueType.Bool => $"{m_Value.BoolValue}",
+				ValueType.Float => $"{m_Value.FloatValue}",
+				ValueType.Int => $"{m_Value.IntValue}",
+				_ => "",
+			};
 
 			internal void Set(Variable operand)
 			{

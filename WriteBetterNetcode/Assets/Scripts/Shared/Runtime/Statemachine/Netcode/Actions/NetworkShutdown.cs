@@ -8,15 +8,13 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode.Actions
 {
-	public class NetworkManagerShutdown : FSM.IAction
+	public sealed class NetworkShutdown : FSM.IAction
 	{
 		private readonly Boolean m_DiscardMessageQueue;
 
-		private NetworkManagerShutdown() {}
-		public NetworkManagerShutdown(Boolean discardMessageQueue = false) => m_DiscardMessageQueue = discardMessageQueue;
+		private NetworkShutdown() {}
+		public NetworkShutdown(Boolean discardMessageQueue = false) => m_DiscardMessageQueue = discardMessageQueue;
 
 		public void Execute(FSM sm) => NetworkManager.Singleton.Shutdown(m_DiscardMessageQueue);
-
-		public String ToDebugString(FSM sm) => $"NetworkManager.Shutdown({m_DiscardMessageQueue})";
 	}
 }

@@ -31,8 +31,6 @@ namespace CodeSmile.Statemachine
 			}
 
 			public Boolean IsSatisfied(FSM sm) => m_Callback.Invoke();
-
-			public override String ToString() => "Lambda Condition";
 		}
 	}
 }

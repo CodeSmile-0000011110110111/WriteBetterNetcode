@@ -610,6 +610,7 @@ MonoBehaviour:
       ServerListenAddress: 
     UseWebSockets: 0
     UseEncryption: 0
+  m_RoleForTesting: 3
 --- !u!114 &48163973242718940
 MonoBehaviour:
   m_ObjectHideFlags: 0

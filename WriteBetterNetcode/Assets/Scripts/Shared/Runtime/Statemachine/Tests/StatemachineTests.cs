@@ -30,7 +30,7 @@ namespace CodeSmile.Statemachine.Tests
 		public void FSM_StartNotCalledBeforeEvaluate_Throws()
 		{
 #if DEBUG || DEVELOPMENT_BUILD
-			Assert.Throws<InvalidOperationException>(() => new FSM("FSM").WithStates(FSM.S("X")).Evaluate());
+			Assert.Throws<InvalidOperationException>(() => new FSM("FSM").WithStates(FSM.S("X")).Update());
 #endif
 		}
 
@@ -53,7 +53,7 @@ namespace CodeSmile.Statemachine.Tests
 					.WithActions(FSM.A(() => didExecuteActions = true)));
 			var sm = new FSM("FSM").WithStates(startState, endState);
 
-			sm.Start().Evaluate();
+			sm.Start().Update();
 
 			Assert.AreEqual(endState, sm.ActiveState);
 			Assert.IsTrue(sm.IsStopped);
@@ -76,7 +76,7 @@ namespace CodeSmile.Statemachine.Tests
 				Assert.AreEqual(args.ActiveState, endState);
 			};
 
-			sm.Start().Evaluate();
+			sm.Start().Update();
 
 			Assert.IsTrue(didInvokeStateChangedEvent);
 		}
@@ -93,7 +93,7 @@ namespace CodeSmile.Statemachine.Tests
 					.WithConditions(FSM.OR(FSM.C(() => condition1), FSM.C(() => condition2)))
 					.WithActions(FSM.A(() => actual = true)));
 
-			new FSM("Test FSM").WithStates(startState).Start().Evaluate();
+			new FSM("Test FSM").WithStates(startState).Start().Update();
 
 			Assert.AreEqual(expected, actual);
 		}
@@ -110,10 +110,10 @@ namespace CodeSmile.Statemachine.Tests
 			var didExecute = sm.Vars.DefineBool("didExecute");
 
 			startState.WithTransitions(FSM.T(endState)
-				.WithConditions(FSM.Variable.IsEqual(testVar, expectedValue))
-				.WithActions(FSM.Variable.SetTrue(didExecute)));
+				.WithConditions(FSM.IsEqual(testVar, expectedValue))
+				.WithActions(FSM.SetTrue(didExecute)));
 
-			sm.Start().Evaluate();
+			sm.Start().Update();
 
 			Assert.IsTrue(didExecute.BoolValue);
 		}
@@ -130,10 +130,10 @@ namespace CodeSmile.Statemachine.Tests
 
 			var expectedValue = 12345;
 			startState.WithTransitions(FSM.T(endState)
-				.WithConditions(FSM.Variable.IsTrue(testVar1))
-				.WithActions(FSM.Variable.SetInt(testVar2, expectedValue), FSM.Variable.SetTrue(didExecute)));
+				.WithConditions(FSM.IsTrue(testVar1))
+				.WithActions(FSM.SetValue(testVar2, expectedValue), FSM.SetTrue(didExecute)));
 
-			sm.Start().Evaluate();
+			sm.Start().Update();
 
 			Assert.AreEqual(expectedValue, testVar2.IntValue);
 			Assert.IsTrue(didExecute.BoolValue);

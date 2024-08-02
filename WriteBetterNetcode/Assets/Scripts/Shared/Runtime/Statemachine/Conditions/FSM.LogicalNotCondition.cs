@@ -31,6 +31,13 @@ namespace CodeSmile.Statemachine
 			}
 
 			public Boolean IsSatisfied(FSM sm) => !InnerCondition.IsSatisfied(sm);
+
+			public String ToDebugString(FSM sm) => $"NOT({InnerCondition.ToDebugString(sm)})";
+
+			public void OnStart(FSM sm) => m_InnerCondition.OnStart(sm);
+			public void OnStop(FSM sm) => m_InnerCondition.OnStop(sm);
+			public void OnEnterState(FSM sm) => m_InnerCondition.OnEnterState(sm);
+			public void OnExitState(FSM sm) => m_InnerCondition.OnExitState(sm);
 		}
 	}
 }

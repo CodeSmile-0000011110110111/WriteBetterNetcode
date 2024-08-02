@@ -36,30 +36,44 @@ namespace CodeSmile.Statemachine
 				{
 					var trans = state.Transitions[transIndex];
 					var transId = $"trans{transIndex}";
+					var transStateId = $"{stateId}_{transId}";
 
-					var transName = $"{trans.Name}";
-					statesBuilder.AppendLine($"\tstate \"{transName}\" as {stateId}_{transId}");
-					statesBuilder.AppendLine($"\tstate {stateId}_{transId} #line.dotted {{");
+					var transName = trans.Name;
+					if (transName == null)
+					{
+						transName = trans.GotoState != null ? trans.GotoState.Name :
+							trans.Conditions.Length == 1 ? trans.Conditions[0].ToDebugString(this) : " ";
+					}
 
-					for (int condIndex = 0; condIndex < trans.Conditions.Length; condIndex++)
+					statesBuilder.AppendLine($"\tstate \"{transName}\" as {transStateId}");
+					statesBuilder.AppendLine($"\tstate {transStateId} #line.dotted {{");
+
+					for (var condIndex = 0; condIndex < trans.Conditions.Length; condIndex++)
 					{
 						var cond = trans.Conditions[condIndex];
 						var satisfied = cond.IsSatisfied(this);
 
-						var prefix = "";
+						var negated = false;
 						if (cond is LogicalNotCondition notCondition)
 						{
-							cond = notCondition.InnerCondition;
-							prefix = "!";
+							cond = notCondition;
 						}
-						// TODO: AND, OR
+						else if (cond is LogicalOrCondition orCondition)
+						{
+							cond = orCondition;
+						}
+						else if (cond is LogicalAndCondition andCondition)
+						{
+							cond = andCondition;
+						}
 
-						statesBuilder.AppendLine($"\t\t{stateId}_{transId} : {prefix}{cond.ToDebugString(this)} | \"\"{satisfied}\"\"");
+						statesBuilder.AppendLine(
+							$"\t\t{stateId}_{transId} : {cond.ToDebugString(this)} | \"\"{satisfied}\"\"");
 					}
 
-					statesBuilder.AppendLine($"\t\t{stateId}_{transId} : ----");
+					statesBuilder.AppendLine($"\t\t{stateId}_{transId} : ....");
 
-					for (int actIndex = 0; actIndex < trans.Actions.Length; actIndex++)
+					for (var actIndex = 0; actIndex < trans.Actions.Length; actIndex++)
 					{
 						var act = trans.Actions[actIndex];
 						statesBuilder.AppendLine($"\t\t{stateId}_{transId} : {act.ToDebugString(this)}");
@@ -69,8 +83,9 @@ namespace CodeSmile.Statemachine
 
 					if (trans.GotoState != null)
 					{
-						var transStateId = $"state{FindStateIndex(trans.GotoState)}";
-						transBuilder.AppendLine($"{stateId} --> {transStateId} : {transName}");
+						var gotoStateId = $"state{FindStateIndex(trans.GotoState)}";
+						transBuilder.AppendLine($"{stateId} --> {gotoStateId} : {transName}");
+						//transBuilder.AppendLine($"{transStateId} --> {gotoStateId} : {transName}");
 					}
 				}
 

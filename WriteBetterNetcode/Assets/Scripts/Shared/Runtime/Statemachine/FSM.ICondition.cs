@@ -12,7 +12,7 @@ namespace CodeSmile.Statemachine
 		public interface ICondition : IStatemachineEvents
 		{
 			Boolean IsSatisfied(FSM sm);
-			string ToDebugString(FSM sm) { return ToString(); }
+			String ToDebugString(FSM sm) => GetType().Name;
 		}
 	}
 }

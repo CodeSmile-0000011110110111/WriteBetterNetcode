@@ -9,53 +9,121 @@ state "Initializing" as state0
 state state0 {
 	state "Goto Offline" as state0_trans0
 	state state0_trans0 #line.dotted {
-		state0_trans0 : IsNetworkManagerOffline | ""True""
-		state0_trans0 : ----
+		state0_trans0 : IsNetworkShutDown | ""True""
+		state0_trans0 : ....
 	}
 }
 state "Offline" as state1
 state state1 {
 	state "Start Server" as state1_trans0
 	state state1_trans0 #line.dotted {
-		state1_trans0 : IsVariable "Request to Start Server" == True | ""False""
-		state1_trans0 : ----
-		state1_trans0 : NetworkManager.StartServer()
+		state1_trans0 : 'm_NetworkRole' == 1 | ""False""
+		state1_trans0 : ....
+		state1_trans0 : NetworkStartServer
+	}
+	state "Start Host" as state1_trans1
+	state state1_trans1 #line.dotted {
+		state1_trans1 : 'm_NetworkRole' == 2 | ""False""
+		state1_trans1 : ....
+		state1_trans1 : NetworkStartHost
+	}
+	state "Start Client" as state1_trans2
+	state state1_trans2 #line.dotted {
+		state1_trans2 : 'm_NetworkRole' == 3 | ""False""
+		state1_trans2 : ....
+		state1_trans2 : NetworkStartClient
 	}
 }
-state "ServerStarting" as state2
+state "Configure" as state2
 state state2 {
-	state "Server started" as state2_trans0
-	state state2_trans0 #line.dotted {
-		state2_trans0 : IsServerOnline | ""False""
-		state2_trans0 : ----
-	}
 }
-state "ServerOnline" as state3
+state "Stopping" as state3
 state state3 {
-	state "Server stopped" as state3_trans0
+	state "Network stopping" as state3_trans0
 	state state3_trans0 #line.dotted {
-		state3_trans0 : !IsServerOnline | ""True""
-		state3_trans0 : ----
-		state3_trans0 : NetworkManager.Shutdown(False)
+		state3_trans0 : IsNetworkShutDown | ""True""
+		state3_trans0 : ....
+		state3_trans0 : 'm_NetworkRole' = 0
 	}
 }
-state "ServerShuttingDown" as state4
+state "ServerStarting" as state4
 state state4 {
-	state "NetworkManager shut down" as state4_trans0
+	state "Server started" as state4_trans0
 	state state4_trans0 #line.dotted {
-		state4_trans0 : IsNetworkManagerOffline | ""True""
-		state4_trans0 : ----
-		state4_trans0 : Variable "Request to Start Server" = False
+		state4_trans0 : IsLocalServerStarted | ""False""
+		state4_trans0 : ....
+	}
+}
+state "ServerStarted" as state5
+state state5 {
+	state "Server stopping" as state5_trans0
+	state state5_trans0 #line.dotted {
+		state5_trans0 : OR(NOT(IsLocalServerStarted), 'm_NetworkRole' == 0) | ""True""
+		state5_trans0 : ....
+		state5_trans0 : NetworkShutdown
+	}
+}
+state "ClientStarting" as state6
+state state6 {
+	state "Client started" as state6_trans0
+	state state6_trans0 #line.dotted {
+		state6_trans0 : IsLocalClientStarted | ""False""
+		state6_trans0 : ....
+	}
+}
+state "ClientStarted" as state7
+state state7 {
+	state "Client connected" as state7_trans0
+	state state7_trans0 #line.dotted {
+		state7_trans0 : IsLocalClientConnected | ""False""
+		state7_trans0 : ....
+	}
+	state "Client stopping" as state7_trans1
+	state state7_trans1 #line.dotted {
+		state7_trans1 : OR(NOT(IsLocalClientStarted), 'm_NetworkRole' == 0) | ""True""
+		state7_trans1 : ....
+		state7_trans1 : NetworkShutdown
+	}
+}
+state "ClientConnected" as state8
+state state8 {
+	state "Client disconnected" as state8_trans0
+	state state8_trans0 #line.dotted {
+		state8_trans0 : NOT(IsLocalClientConnected) | ""True""
+		state8_trans0 : ....
+	}
+	state "Client stopping" as state8_trans1
+	state state8_trans1 #line.dotted {
+		state8_trans1 : OR(NOT(IsLocalClientStarted), 'm_NetworkRole' == 0) | ""True""
+		state8_trans1 : ....
+		state8_trans1 : NetworkShutdown
+	}
+}
+state "ClientDisconnected" as state9
+state state9 {
+	state "Client stopping" as state9_trans0
+	state state9_trans0 #line.dotted {
+		state9_trans0 : OR(NOT(IsLocalClientStarted), 'm_NetworkRole' == 0) | ""True""
+		state9_trans0 : ....
+		state9_trans0 : NetworkShutdown
 	}
 }
 
 
 [*] -> state0
 state0 --> state1 : Goto Offline
-state1 --> state2 : Start Server
-state2 --> state3 : Server started
-state3 --> state4 : Server stopped
-state4 --> state1 : NetworkManager shut down
+state1 --> state4 : Start Server
+state1 --> state4 : Start Host
+state1 --> state6 : Start Client
+state3 --> state1 : Network stopping
+state4 --> state5 : Server started
+state5 --> state3 : Server stopping
+state6 --> state7 : Client started
+state7 --> state8 : Client connected
+state7 --> state3 : Client stopping
+state8 --> state9 : Client disconnected
+state8 --> state3 : Client stopping
+state9 --> state3 : Client stopping
 
 
 @enduml

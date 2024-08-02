@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using Object = System.Object;
@@ -47,11 +48,12 @@ namespace CodeSmile.Statemachine
 			public State WithTransitions(params Transition[] transitions)
 			{
 				if (transitions == null || transitions.Length == 0)
-					throw new ArgumentException($"State '{Name}': transitions are null or empty");
-				if (Transitions != null && Transitions.Length > 0)
-					throw new ArgumentException($"State '{Name}': transitions already set");
+					throw new ArgumentNullException("transitions null or empty");
 
-				Transitions = transitions;
+				var combined = new List<Transition>(Transitions ?? new Transition[0]);
+				combined.AddRange(transitions);
+				Transitions = combined.ToArray();
+
 				return this;
 			}
 

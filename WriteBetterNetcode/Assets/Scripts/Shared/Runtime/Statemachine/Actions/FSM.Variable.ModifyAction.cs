@@ -97,8 +97,8 @@ namespace CodeSmile.Statemachine
 							break;
 					}
 
-					var scope = isGlobal ? "Global" : "";
-					return $"{scope}Variable \"{varName}\" {op} {m_Operand.GetValue()}";
+					var scope = isGlobal ? "g" : "m";
+					return $"'{scope}_{varName}' {op} {m_Operand.GetValue()}";
 				}
 			}
 		}

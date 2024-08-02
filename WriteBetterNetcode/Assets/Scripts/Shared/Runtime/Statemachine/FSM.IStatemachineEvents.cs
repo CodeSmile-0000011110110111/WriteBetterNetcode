@@ -24,9 +24,11 @@ namespace CodeSmile.Statemachine
 			///     Called when the Statemachine stops, meaning it reached a State that has no transitions.
 			/// </summary>
 			/// <remarks>Use this for final cleanup of the Action/Condition.</remarks>
-			/// <remarks>Before OnStop the OnExitState event is raised even though there is no state change, and likely
-			/// no Actions/Conditions anyway. But in case where a Statemachine is manually stopped this would ensure pairing
-			/// of OnEnterState and OnExitState.</remarks>
+			/// <remarks>
+			///     Before OnStop the OnExitState event is raised even though there is no state change, and likely
+			///     no Actions/Conditions anyway. But in case where a Statemachine is manually stopped this would ensure pairing
+			///     of OnEnterState and OnExitState.
+			/// </remarks>
 			/// <param name="sm"></param>
 			void OnStop(FSM sm) {}
 
