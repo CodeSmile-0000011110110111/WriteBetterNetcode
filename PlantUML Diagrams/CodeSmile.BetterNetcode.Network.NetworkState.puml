@@ -9,7 +9,7 @@ state "Initializing" as state0
 state state0 {
 	state "Goto Offline" as state0_trans0
 	state state0_trans0 #line.dotted {
-		state0_trans0 : IsNetworkShutDown | ""True""
+		state0_trans0 : IsNetworkOffline | ""True""
 		state0_trans0 : ....
 	}
 }
@@ -41,7 +41,7 @@ state "Stopping" as state3
 state state3 {
 	state "Network stopping" as state3_trans0
 	state state3_trans0 #line.dotted {
-		state3_trans0 : IsNetworkShutDown | ""True""
+		state3_trans0 : IsNetworkOffline | ""True""
 		state3_trans0 : ....
 		state3_trans0 : 'm_NetworkRole' = 0
 	}
@@ -60,7 +60,7 @@ state state5 {
 	state state5_trans0 #line.dotted {
 		state5_trans0 : OR(NOT(IsLocalServerStarted), 'm_NetworkRole' == 0) | ""True""
 		state5_trans0 : ....
-		state5_trans0 : NetworkShutdown
+		state5_trans0 : NetworkStop
 	}
 }
 state "ClientStarting" as state6
@@ -82,7 +82,7 @@ state state7 {
 	state state7_trans1 #line.dotted {
 		state7_trans1 : OR(NOT(IsLocalClientStarted), 'm_NetworkRole' == 0) | ""True""
 		state7_trans1 : ....
-		state7_trans1 : NetworkShutdown
+		state7_trans1 : NetworkStop
 	}
 }
 state "ClientConnected" as state8
@@ -96,7 +96,7 @@ state state8 {
 	state state8_trans1 #line.dotted {
 		state8_trans1 : OR(NOT(IsLocalClientStarted), 'm_NetworkRole' == 0) | ""True""
 		state8_trans1 : ....
-		state8_trans1 : NetworkShutdown
+		state8_trans1 : NetworkStop
 	}
 }
 state "ClientDisconnected" as state9
@@ -105,7 +105,7 @@ state state9 {
 	state state9_trans0 #line.dotted {
 		state9_trans0 : OR(NOT(IsLocalClientStarted), 'm_NetworkRole' == 0) | ""True""
 		state9_trans0 : ....
-		state9_trans0 : NetworkShutdown
+		state9_trans0 : NetworkStop
 	}
 }
 

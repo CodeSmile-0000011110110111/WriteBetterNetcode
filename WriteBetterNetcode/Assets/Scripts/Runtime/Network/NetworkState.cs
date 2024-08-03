@@ -125,12 +125,12 @@ namespace CodeSmile.BetterNetcode.Network
 
 			// Init state
 			initState.WithTransitions(FSM.T("Goto Offline", offlineState)
-				.WithConditions(new IsNetworkShutDown()));
+				.WithConditions(new IsNetworkOffline()));
 
 			// Shutdown state
 			var stoppingState = states[(Int32)State.Stopping];
 			stoppingState.WithTransitions(FSM.T("Network stopping", offlineState)
-				.WithConditions(new IsNetworkShutDown())
+				.WithConditions(new IsNetworkOffline())
 				.WithActions(FSM.SetValue(m_NetworkRole, (Int32)NetworkRole.None)));
 
 			// Server States
@@ -144,7 +144,7 @@ namespace CodeSmile.BetterNetcode.Network
 
 			serverStartedState.WithTransitions(FSM.T("Server stopping", stoppingState)
 				.WithConditions(FSM.OR(FSM.NOT(new IsLocalServerStarted()), FSM.IsEqual(m_NetworkRole, (Int32)NetworkRole.None)))
-				.WithActions(new NetworkShutdown()));
+				.WithActions(new NetworkStop()));
 
 			// Host States (for all intents and purposes of network state, the host is the server)
 			offlineState.WithTransitions(FSM.T("Start Host", serverStartingState)
@@ -159,7 +159,7 @@ namespace CodeSmile.BetterNetcode.Network
 
 			var clientStopTransition = FSM.T("Client stopping", stoppingState)
 				.WithConditions(FSM.OR(FSM.NOT(new IsLocalClientStarted()), FSM.IsEqual(m_NetworkRole, (Int32)NetworkRole.None)))
-				.WithActions(new NetworkShutdown());
+				.WithActions(new NetworkStop());
 
 			offlineState.WithTransitions(FSM.T("Start Client", clientStartingState)
 				.WithConditions(FSM.IsEqual(m_NetworkRole, (Int32)NetworkRole.Client))

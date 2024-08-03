@@ -12,22 +12,6 @@ namespace CodeSmile.Statemachine
 {
 	public sealed partial class FSM
 	{
-		public static CompareVariableCondition IsTrue(Variable variable) => new(variable, Variable.Bool(true));
-		public static CompareVariableCondition IsFalse(Variable variable) => new(variable, Variable.Bool(false));
-		public static CompareVariableCondition IsEqual(Variable variable, Int32 value) => new(variable, Variable.Int(value));
-
-		public static CompareVariableCondition IsNotEqual(Variable variable, Int32 value) => new(variable, Variable.Int(value),
-			CompareVariableCondition.Comparator.NotEqual);
-
-		public static Variable.ModifyVariableAction SetTrue(Variable variable) => new(variable, Variable.Bool(true));
-		public static Variable.ModifyVariableAction SetFalse(Variable variable) => new(variable, Variable.Bool(false));
-
-		public static Variable.ModifyVariableAction SetValue(Variable variable, Int32 value) =>
-			new(variable, Variable.Int(value));
-
-		public static Variable.ModifyVariableAction SetValue(Variable variable, Single value) =>
-			new(variable, Variable.Float(value));
-
 		/// <summary>
 		///     Encapsulates a FSM variable (value) for use within and outside a statemachine.
 		/// </summary>
@@ -36,7 +20,7 @@ namespace CodeSmile.Statemachine
 		///     and debugged alongside with the FSM and its active state. If you were to rely on fields it makes analyzing
 		///     the Statemachine harder.
 		/// </remarks>
-		public sealed partial class Variable : IEquatable<Variable>
+		public sealed class Variable : IEquatable<Variable>
 		{
 			private ValueType m_ValueType;
 			private UnionValue32 m_Value;
