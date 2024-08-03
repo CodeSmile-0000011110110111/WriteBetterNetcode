@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace CodeSmile.Statemachine
 {
 	public sealed partial class FSM
 	{
+
+
 		/// <summary>
 		///     Event methods that the Statemachine calls at specific times.
 		/// </summary>
@@ -49,6 +52,18 @@ namespace CodeSmile.Statemachine
 			/// </remarks>
 			/// <param name="sm"></param>
 			void OnExitState(FSM sm) {}
+		}
+
+		public interface ICondition : IStatemachineEvents
+		{
+			Boolean IsSatisfied(FSM sm);
+			String ToDebugString(FSM sm) => GetType().Name;
+		}
+
+		public interface IAction : IStatemachineEvents
+		{
+			void Execute(FSM sm);
+			String ToDebugString(FSM sm) => GetType().Name;
 		}
 	}
 }

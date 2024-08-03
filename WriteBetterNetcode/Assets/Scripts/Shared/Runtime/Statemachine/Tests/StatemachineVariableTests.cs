@@ -73,5 +73,18 @@ namespace CodeSmile.Statemachine.Tests
 
 			Assert.AreEqual(value, sm.Vars[TestVar1].FloatValue);
 		}
+
+		/*
+		[TestCase(false)] [TestCase(true)]
+		public void FSMLocalVar_CreateBool_ReturnsExpectedValue(Boolean value)
+		{
+			var sm = new FSM("FSM");
+			var boolVar = sm.Vars.CreateBool(TestVar1, value);
+
+			Assert.AreEqual(value, boolVar.Value);
+			Assert.AreEqual(value, sm.Vars.GetBool(TestVar1).Value);
+			Assert.AreEqual(boolVar, sm.Vars.GetBool(TestVar1));
+		}
+	*/
 	}
 }

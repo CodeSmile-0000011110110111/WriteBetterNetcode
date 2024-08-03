@@ -9,16 +9,6 @@ namespace CodeSmile.Statemachine
 {
 	public sealed class CompareVariableCondition : FSM.ICondition
 	{
-		public enum Comparator
-		{
-			Equal,
-			NotEqual,
-			Greater,
-			GreaterOrEqual,
-			Less,
-			LessOrEqual,
-		}
-
 		private readonly FSM.Variable m_Variable;
 		private readonly FSM.Variable m_Comparand;
 		private readonly Comparator m_Comparator;

@@ -136,7 +136,7 @@ namespace CodeSmile.Statemachine
 		/// <param name="value"></param>
 		/// <returns></returns>
 		public static CompareVariableCondition IsNotEqual(Variable variable, Int32 value) => new(variable, Variable.Int(value),
-			CompareVariableCondition.Comparator.NotEqual);
+			Comparator.NotEqual);
 
 		/// <summary>
 		///     Tests if the float variable approximately equals the value.
@@ -154,7 +154,7 @@ namespace CodeSmile.Statemachine
 		/// <returns></returns>
 		public static CompareVariableCondition IsNotEqual(Variable variable, Single value) => new(variable,
 			Variable.Float(value),
-			CompareVariableCondition.Comparator.NotEqual);
+			Comparator.NotEqual);
 
 		/// <summary>
 		///     Sets the bool variable to true.
