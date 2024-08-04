@@ -6,7 +6,7 @@ using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine
+namespace CodeSmile.Statemachine.Netcode.Conditions
 {
 	public sealed class IsNetworkOffline : FSM.ICondition
 	{

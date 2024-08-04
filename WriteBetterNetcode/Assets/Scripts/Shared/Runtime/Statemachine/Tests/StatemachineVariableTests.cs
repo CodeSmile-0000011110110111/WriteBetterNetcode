@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Statemachine.Conditions;
 using NUnit.Framework;
 using System;
 using UnityEditor;
@@ -10,81 +11,44 @@ namespace CodeSmile.Statemachine.Tests
 {
 	public class StatemachineVariableTests
 	{
-		private static readonly String TestVar1 = "Test1";
-		private static readonly String TestVar2 = "Test2";
+		private const String TestVar1 = "TestVar1";
 
-		[Test]
-		public void FSMVars_UndefinedVariables_ReturnDefaultValues()
-		{
-			var sm = new FSM("FSM");
-			sm.GlobalVars.Clear();
-			Assert.AreEqual(false, sm.GlobalVars["undefined-bool"].BoolValue);
-			Assert.AreEqual(0f, sm.GlobalVars["undefined-float"].FloatValue);
-			Assert.AreEqual(0, sm.GlobalVars["undefined-int"].IntValue);
-
-			Assert.AreEqual(false, sm.Vars["undefined-bool"].BoolValue);
-			Assert.AreEqual(0f, sm.Vars["undefined-float"].FloatValue);
-			Assert.AreEqual(0, sm.Vars["undefined-int"].IntValue);
-		}
-
-		[Test]
-		public void FSMVars_UndefinedVariables_CanBeAssignedTo()
-		{
-			var sm = new FSM("FSM");
-			sm.GlobalVars.Clear();
-			sm.GlobalVars["undefined-bool"].BoolValue = true;
-			sm.GlobalVars["undefined-float"].FloatValue = 1.2345f;
-			sm.GlobalVars["undefined-int"].IntValue = -123456;
-			Assert.AreEqual(true, sm.GlobalVars["undefined-bool"].BoolValue);
-			Assert.AreEqual(1.2345f, sm.GlobalVars["undefined-float"].FloatValue);
-			Assert.AreEqual(-123456, sm.GlobalVars["undefined-int"].IntValue);
-
-			sm.Vars["undefined-bool"].BoolValue = true;
-			sm.Vars["undefined-float"].FloatValue = -1.2345f;
-			sm.Vars["undefined-int"].IntValue = 123456;
-			Assert.AreEqual(true, sm.Vars["undefined-bool"].BoolValue);
-			Assert.AreEqual(-1.2345f, sm.Vars["undefined-float"].FloatValue);
-			Assert.AreEqual(123456, sm.Vars["undefined-int"].IntValue);
-		}
+		[SetUp]
+		public void SetUp() => new FSM("FSM").StaticVars.Clear();
 
 		[TestCase(false)] [TestCase(true)]
-		public void FSMLocalVar_DefineBool_ReturnsExpectedValue(Boolean value)
+		public void FSMVar_DefineBool_ReturnsExpectedValue(Boolean value)
 		{
 			var sm = new FSM("FSM");
 			sm.Vars.DefineBool(TestVar1, value);
+			sm.StaticVars.DefineBool(TestVar1, value);
 
-			Assert.AreEqual(value, sm.Vars[TestVar1].BoolValue);
-		}
-
-		[TestCase(0f)] [TestCase(Single.MinValue)] [TestCase(Single.MaxValue)]
-		public void FSMLocalVar_DefineFloat_ReturnsExpectedValue(Single value)
-		{
-			var sm = new FSM("FSM");
-			sm.Vars.DefineFloat(TestVar1, value);
-
-			Assert.AreEqual(value, sm.Vars[TestVar1].FloatValue);
-		}
-
-		[TestCase(0)] [TestCase(Int32.MinValue)] [TestCase(Int32.MaxValue)]
-		public void FSMLocalVar_DefineInt_ReturnsExpectedValue(Int32 value)
-		{
-			var sm = new FSM("FSM");
-			sm.Vars.DefineFloat(TestVar1, value);
-
-			Assert.AreEqual(value, sm.Vars[TestVar1].FloatValue);
-		}
-
-		/*
-		[TestCase(false)] [TestCase(true)]
-		public void FSMLocalVar_CreateBool_ReturnsExpectedValue(Boolean value)
-		{
-			var sm = new FSM("FSM");
-			var boolVar = sm.Vars.CreateBool(TestVar1, value);
-
-			Assert.AreEqual(value, boolVar.Value);
 			Assert.AreEqual(value, sm.Vars.GetBool(TestVar1).Value);
-			Assert.AreEqual(boolVar, sm.Vars.GetBool(TestVar1));
+			Assert.AreEqual(value, sm.StaticVars.GetBool(TestVar1).Value);
 		}
-	*/
+
+		[TestCase(true)] [TestCase(false)]
+		public void VarCondition_IsTrue_ChangesState(Boolean value)
+		{
+			var sm = new FSM("FSM").WithStates("START", "END");
+			var boolVar = sm.Vars.DefineBool(TestVar1, value);
+
+			sm.States[0].AddTransition().To(sm.States[1]).WithConditions(new IsTrue(boolVar));
+			sm.Start().Update();
+
+			Assert.AreEqual(sm.ActiveState, value ? sm.States[1] : sm.States[0]);
+		}
+
+		[TestCase(true)] [TestCase(false)]
+		public void VarCondition_IsFalse_ChangesState(Boolean value)
+		{
+			var sm = new FSM("FSM").WithStates("START", "END");
+			var boolVar = sm.Vars.DefineBool(TestVar1, value);
+
+			sm.States[0].AddTransition().To(sm.States[1]).WithConditions(new IsFalse(boolVar));
+			sm.Start().Update();
+
+			Assert.AreEqual(sm.ActiveState, value ? sm.States[0] : sm.States[1]);
+		}
 	}
 }

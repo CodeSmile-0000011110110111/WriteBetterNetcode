@@ -6,7 +6,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine
+namespace CodeSmile.Statemachine.Conditions
 {
 	public sealed class LogicalOrCondition : FSM.ICondition
 	{

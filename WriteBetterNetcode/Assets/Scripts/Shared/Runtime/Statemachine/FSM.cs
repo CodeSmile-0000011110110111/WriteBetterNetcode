@@ -22,7 +22,8 @@ namespace CodeSmile.Statemachine
 		/// </summary>
 		public event Action<StatemachineStoppedEventArgs> OnStopped;
 
-		private static readonly Variables s_GlobalVars = new();
+		private static readonly OldVariables s_OldGlobalVars = new();
+		private static readonly Variables s_StaticVars = new();
 
 		private State[] m_States;
 		public State[] States => m_States;
@@ -51,11 +52,13 @@ namespace CodeSmile.Statemachine
 		/// <summary>
 		///     Global variables are available for all statemachines (be mindful!).
 		/// </summary>
-		public Variables GlobalVars => s_GlobalVars;
+		public OldVariables OldGlobalVars => s_OldGlobalVars;
+		public Variables StaticVars => s_StaticVars;
 
 		/// <summary>
 		///     These variables are unique to the Statemachine instance.
 		/// </summary>
+		public OldVariables OldVars { get; } = new();
 		public Variables Vars { get; } = new();
 
 		/// <summary>

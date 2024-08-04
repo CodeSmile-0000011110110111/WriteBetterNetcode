@@ -5,9 +5,9 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine
+namespace CodeSmile.Statemachine.Actions
 {
-	public sealed class ModifyVariableAction : FSM.IAction
+	public sealed class ModifyOldVarAction : FSM.IAction
 	{
 		public enum Operator
 		{
@@ -18,20 +18,20 @@ namespace CodeSmile.Statemachine
 			Divide,
 		}
 
-		private readonly FSM.Variable m_Variable;
-		private readonly FSM.Variable m_Operand;
+		private readonly FSM.OldVar m_OldVar;
+		private readonly FSM.OldVar m_Operand;
 		private readonly Operator m_Operator;
 
-		private ModifyVariableAction() {} // forbidden default ctor
+		private ModifyOldVarAction() {} // forbidden default ctor
 
-		internal ModifyVariableAction(FSM.Variable variable, FSM.Variable operand, Operator @operator = Operator.Set)
+		internal ModifyOldVarAction(FSM.OldVar variable, FSM.OldVar operand, Operator @operator = Operator.Set)
 		{
 #if DEBUG || DEVELOPMENT_BUILD
-			if (operand.Type == FSM.Variable.ValueType.Bool && @operator != Operator.Set)
+			if (operand.Type == FSM.OldVar.ValueType.Bool && @operator != Operator.Set)
 				throw new ArgumentException($"Invalid operator for Bool vars: {@operator}");
 #endif
 
-			m_Variable = variable;
+			m_OldVar = variable;
 			m_Operand = operand;
 			m_Operator = @operator;
 		}
@@ -41,19 +41,19 @@ namespace CodeSmile.Statemachine
 			switch (m_Operator)
 			{
 				case Operator.Set:
-					m_Variable.Set(m_Operand);
+					m_OldVar.Set(m_Operand);
 					break;
 				case Operator.Add:
-					m_Variable.Add(m_Operand);
+					m_OldVar.Add(m_Operand);
 					break;
 				case Operator.Subtract:
-					m_Variable.Sub(m_Operand);
+					m_OldVar.Sub(m_Operand);
 					break;
 				case Operator.Multiply:
-					m_Variable.Mul(m_Operand);
+					m_OldVar.Mul(m_Operand);
 					break;
 				case Operator.Divide:
-					m_Variable.Div(m_Operand);
+					m_OldVar.Div(m_Operand);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();
@@ -63,11 +63,11 @@ namespace CodeSmile.Statemachine
 		public String ToDebugString(FSM sm)
 		{
 			var isGlobal = false;
-			var varName = sm.Vars.FindName(m_Variable);
+			var varName = sm.OldVars.FindName(m_OldVar);
 			if (varName == null)
 			{
 				isGlobal = true;
-				varName = sm.GlobalVars.FindName(m_Variable);
+				varName = sm.OldGlobalVars.FindName(m_OldVar);
 			}
 
 			String op;

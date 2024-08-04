@@ -1,30 +1,31 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Statemachine.Enums;
 using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine
+namespace CodeSmile.Statemachine.Conditions
 {
-	public sealed class CompareVariableCondition : FSM.ICondition
+	public sealed class CompareOldVarCondition : FSM.ICondition
 	{
-		private readonly FSM.Variable m_Variable;
-		private readonly FSM.Variable m_Comparand;
+		private readonly FSM.OldVar m_OldVar;
+		private readonly FSM.OldVar m_Comparand;
 		private readonly Comparator m_Comparator;
 
-		private CompareVariableCondition() {} // forbidden default ctor
+		private CompareOldVarCondition() {} // forbidden default ctor
 
-		internal CompareVariableCondition(FSM.Variable variable, FSM.Variable comparand,
+		internal CompareOldVarCondition(FSM.OldVar variable, FSM.OldVar comparand,
 			Comparator comparator = Comparator.Equal)
 		{
 #if DEBUG || DEVELOPMENT_BUILD
-			if (comparand.Type == FSM.Variable.ValueType.Bool && comparator != Comparator.Equal &&
+			if (comparand.Type == FSM.OldVar.ValueType.Bool && comparator != Comparator.Equal &&
 			    comparator != Comparator.NotEqual)
 				throw new ArgumentException($"Bool vars can only be compared for (in)equality, not: {comparator}");
 #endif
 
-			m_Variable = variable;
+			m_OldVar = variable;
 			m_Comparand = comparand;
 			m_Comparator = comparator;
 		}
@@ -34,17 +35,17 @@ namespace CodeSmile.Statemachine
 			switch (m_Comparator)
 			{
 				case Comparator.Equal:
-					return m_Variable == m_Comparand;
+					return m_OldVar == m_Comparand;
 				case Comparator.NotEqual:
-					return m_Variable != m_Comparand;
+					return m_OldVar != m_Comparand;
 				case Comparator.Greater:
-					return m_Variable > m_Comparand;
+					return m_OldVar > m_Comparand;
 				case Comparator.GreaterOrEqual:
-					return m_Variable >= m_Comparand;
+					return m_OldVar >= m_Comparand;
 				case Comparator.Less:
-					return m_Variable < m_Comparand;
+					return m_OldVar < m_Comparand;
 				case Comparator.LessOrEqual:
-					return m_Variable <= m_Comparand;
+					return m_OldVar <= m_Comparand;
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
@@ -53,11 +54,11 @@ namespace CodeSmile.Statemachine
 		public String ToDebugString(FSM sm)
 		{
 			var isGlobal = false;
-			var varName = sm.Vars.FindName(m_Variable);
+			var varName = sm.OldVars.FindName(m_OldVar);
 			if (varName == null)
 			{
 				isGlobal = true;
-				varName = sm.GlobalVars.FindName(m_Variable);
+				varName = sm.OldGlobalVars.FindName(m_OldVar);
 			}
 
 			String comp;

@@ -6,7 +6,7 @@ using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Netcode
+namespace CodeSmile.Statemachine.Netcode.Conditions
 {
 	public sealed class IsLocalServerStarted : FSM.ICondition
 	{

@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine
+namespace CodeSmile.Statemachine.Conditions
 {
 	/// <summary>
 	///     Generic Condition that simply executes a lambda. Provides static methods for related operators AND, OR, NOT.

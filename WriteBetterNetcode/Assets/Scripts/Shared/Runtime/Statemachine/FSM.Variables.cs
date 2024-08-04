@@ -64,7 +64,7 @@ namespace CodeSmile.Statemachine
 			public override Int32 GetHashCode() => Value.GetHashCode();
 		}
 
-		public class TestVariables
+		public class Variables
 		{
 			private readonly Dictionary<String, VariableBase> m_Variables = new();
 
@@ -72,33 +72,34 @@ namespace CodeSmile.Statemachine
 
 			public void Clear() => m_Variables.Clear();
 
+
 			internal String FindVariableName(VariableBase variable) =>
 				m_Variables.FirstOrDefault(kvp => kvp.Value == variable).Key;
 
-			private BoolVariable CreateBoolVar(String name, Boolean value = default)
+			public BoolVariable DefineBool(String name, Boolean value = default)
 			{
 				var boolVar = new BoolVariable(value);
 				m_Variables.Add(name, boolVar);
 				return boolVar;
 			}
 
-			private BoolVariable GetBoolVar(String name) => m_Variables[name] as BoolVariable;
+			public BoolVariable GetBool(String name) => m_Variables[name] as BoolVariable;
 
-			private StructVariable<T> CreateStructVar<T>(String name, T value) where T : struct
+			public StructVariable<T> DefineStruct<T>(String name, T value) where T : struct
 			{
 				var structVar = new StructVariable<T>(value);
 				m_Variables.Add(name, structVar);
 				return structVar;
 			}
 
-			private StructVariable<T> GetStructVar<T>(String name) where T : struct => m_Variables[name] as StructVariable<T>;
+			public StructVariable<T> GetStruct<T>(String name) where T : struct => m_Variables[name] as StructVariable<T>;
 		}
 
-		public class Variables
+		public class OldVariables
 		{
-			private readonly Dictionary<String, Variable> m_Variables = new();
+			private readonly Dictionary<String, OldVar> m_Variables = new();
 
-			public Variable this[String variableName]
+			public OldVar this[String variableName]
 			{
 				get
 				{
@@ -106,44 +107,44 @@ namespace CodeSmile.Statemachine
 						return variable;
 
 					// create a new untyped variable instead
-					variable = new Variable();
+					variable = new OldVar();
 					m_Variables.Add(variableName, variable);
 					return variable;
 				}
 			}
 
-			internal Variables() {} // forbidden default ctor
+			internal OldVariables() {} // forbidden default ctor
 
-			public Variable DefineBool(String name, Boolean value = false)
+			public OldVar DefineBool(String name, Boolean value = false)
 			{
 				ThrowIfVariableNameAlreadyExists(name);
 
-				var variable = Variable.Bool(value);
+				var variable = OldVar.Bool(value);
 				m_Variables.Add(name, variable);
 				return variable;
 			}
 
-			public Variable DefineFloat(String name, Single value = 0f)
+			public OldVar DefineFloat(String name, Single value = 0f)
 			{
 				ThrowIfVariableNameAlreadyExists(name);
 
-				var variable = Variable.Float(value);
+				var variable = OldVar.Float(value);
 				m_Variables.Add(name, variable);
 				return variable;
 			}
 
-			public Variable DefineInt(String name, Int32 value = 0)
+			public OldVar DefineInt(String name, Int32 value = 0)
 			{
 				ThrowIfVariableNameAlreadyExists(name);
 
-				var variable = Variable.Int(value);
+				var variable = OldVar.Int(value);
 				m_Variables.Add(name, variable);
 				return variable;
 			}
 
 			public void Clear() => m_Variables.Clear();
 
-			internal String FindName(Variable variable) => m_Variables.FirstOrDefault(kvp => kvp.Value == variable).Key;
+			internal String FindName(OldVar variable) => m_Variables.FirstOrDefault(kvp => kvp.Value == variable).Key;
 
 			private void ThrowIfVariableNameAlreadyExists(String name)
 			{

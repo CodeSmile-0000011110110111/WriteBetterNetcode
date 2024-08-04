@@ -106,12 +106,12 @@ namespace CodeSmile.Statemachine.Tests
 			var expectedValue = -111111;
 
 			var sm = new FSM("FSM").WithStates("START", "END");
-			var testVar = sm.Vars.DefineInt("TestVar", expectedValue);
-			var didExecute = sm.Vars.DefineBool("didExecute");
+			var testVar = sm.OldVars.DefineInt("TestVar", expectedValue);
+			var didExecute = sm.OldVars.DefineBool("didExecute");
 
 			sm.States[0].AddTransition().To(sm.States[1])
-				.WithConditions(FSM.IsVarEqual(testVar, expectedValue))
-				.WithActions(FSM.SetVarTrue(didExecute));
+				.WithConditions(FSM.IsOldVarEqual(testVar, expectedValue))
+				.WithActions(FSM.SetOldVarTrue(didExecute));
 
 			sm.Start().Update();
 
@@ -122,14 +122,14 @@ namespace CodeSmile.Statemachine.Tests
 		public void FSMVar_VarCondition_SetsExpectedValue()
 		{
 			var sm = new FSM("FSM").WithStates("START", "END");
-			var testVar1 = sm.Vars.DefineBool("TestVar1", true);
-			var testVar2 = sm.Vars.DefineInt("TestVar2");
-			var didExecute = sm.Vars.DefineBool("did execute");
+			var testVar1 = sm.OldVars.DefineBool("TestVar1", true);
+			var testVar2 = sm.OldVars.DefineInt("TestVar2");
+			var didExecute = sm.OldVars.DefineBool("did execute");
 
 			var expectedValue = 12345;
 			sm.States[0].AddTransition().To(sm.States[1])
-				.WithConditions(FSM.IsVarTrue(testVar1))
-				.WithActions(FSM.SetVarValue(testVar2, expectedValue), FSM.SetVarTrue(didExecute));
+				.WithConditions(FSM.IsOldVarTrue(testVar1))
+				.WithActions(FSM.SetOldVarValue(testVar2, expectedValue), FSM.SetOldVarTrue(didExecute));
 
 			sm.Start().Update();
 

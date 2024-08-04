@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Statemachine.Conditions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -55,17 +56,11 @@ namespace CodeSmile.Statemachine
 
 						var negated = false;
 						if (cond is LogicalNotCondition notCondition)
-						{
 							cond = notCondition;
-						}
 						else if (cond is LogicalOrCondition orCondition)
-						{
 							cond = orCondition;
-						}
 						else if (cond is LogicalAndCondition andCondition)
-						{
 							cond = andCondition;
-						}
 
 						statesBuilder.AppendLine(
 							$"\t\t{stateId}_{transId} : {cond.ToDebugString(this)} | \"\"{satisfied}\"\"");
@@ -193,15 +188,36 @@ namespace CodeSmile.Statemachine
 #endif
 		}
 
-#if UNITY_EDITOR
-		[InitializeOnLoadMethod] private static void ResetStaticFields() =>
-			EditorApplication.playModeStateChanged += OnPlaymodeStateChanged;
-
-		private static void OnPlaymodeStateChanged(PlayModeStateChange playModeState)
+		internal String GetDebugVarName(VariableBase variable)
 		{
-			if (playModeState == PlayModeStateChange.ExitingPlayMode)
-				s_GlobalVars.Clear();
+			var isGlobal = false;
+			var varName = Vars.FindVariableName(variable);
+			if (varName == null)
+			{
+				varName = StaticVars.FindVariableName(variable);
+
+				if (varName != null)
+					isGlobal = true;
+				else
+					varName = "<not found>";
+			}
+
+			var scope = isGlobal ? "s" : "m";
+			return $"{scope}_{varName}";
 		}
+
+#if UNITY_EDITOR
+		[InitializeOnLoadMethod] private static void ResetOldGlobalVars() => EditorApplication.playModeStateChanged += state =>
+		{
+			if (state == PlayModeStateChange.EnteredEditMode || state == PlayModeStateChange.ExitingEditMode)
+				s_OldGlobalVars.Clear();
+		};
+
+		[InitializeOnLoadMethod] private static void ResetGlobalVars() => EditorApplication.playModeStateChanged += state =>
+		{
+			if (state == PlayModeStateChange.EnteredEditMode || state == PlayModeStateChange.ExitingEditMode)
+				s_StaticVars.Clear();
+		};
 #endif
 	}
 }

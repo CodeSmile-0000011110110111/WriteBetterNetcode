@@ -1,6 +1,9 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Statemachine.Actions;
+using CodeSmile.Statemachine.Conditions;
+using CodeSmile.Statemachine.Enums;
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -88,14 +91,14 @@ namespace CodeSmile.Statemachine
 		/// </summary>
 		/// <param name="variable"></param>
 		/// <returns></returns>
-		public static CompareVariableCondition IsVarTrue(Variable variable) => new(variable, Variable.Bool(true));
+		public static CompareOldVarCondition IsOldVarTrue(OldVar variable) => new(variable, OldVar.Bool(true));
 
 		/// <summary>
 		///     Tests if the bool variable is false.
 		/// </summary>
 		/// <param name="variable"></param>
 		/// <returns></returns>
-		public static CompareVariableCondition IsVarFalse(Variable variable) => new(variable, Variable.Bool(false));
+		public static CompareOldVarCondition IsOldVarFalse(OldVar variable) => new(variable, OldVar.Bool(false));
 
 		/// <summary>
 		///     Tests if the int variable equals the value.
@@ -103,7 +106,7 @@ namespace CodeSmile.Statemachine
 		/// <param name="variable"></param>
 		/// <param name="value"></param>
 		/// <returns></returns>
-		public static CompareVariableCondition IsVarEqual(Variable variable, Int32 value) => new(variable, Variable.Int(value));
+		public static CompareOldVarCondition IsOldVarEqual(OldVar variable, Int32 value) => new(variable, OldVar.Int(value));
 
 		/// <summary>
 		///     Tests if the int variable does not equal the value.
@@ -111,8 +114,8 @@ namespace CodeSmile.Statemachine
 		/// <param name="variable"></param>
 		/// <param name="value"></param>
 		/// <returns></returns>
-		public static CompareVariableCondition IsVarNotEqual(Variable variable, Int32 value) => new(variable,
-			Variable.Int(value),
+		public static CompareOldVarCondition IsOldVarNotEqual(OldVar variable, Int32 value) => new(variable,
+			OldVar.Int(value),
 			Comparator.NotEqual);
 
 		/// <summary>
@@ -121,8 +124,8 @@ namespace CodeSmile.Statemachine
 		/// <param name="variable"></param>
 		/// <param name="value"></param>
 		/// <returns></returns>
-		public static CompareVariableCondition IsVarEqual(Variable variable, Single value) =>
-			new(variable, Variable.Float(value));
+		public static CompareOldVarCondition IsOldVarEqual(OldVar variable, Single value) =>
+			new(variable, OldVar.Float(value));
 
 		/// <summary>
 		///     Tests if the float variable does not approximately equal the value.
@@ -130,8 +133,8 @@ namespace CodeSmile.Statemachine
 		/// <param name="variable"></param>
 		/// <param name="value"></param>
 		/// <returns></returns>
-		public static CompareVariableCondition IsVarNotEqual(Variable variable, Single value) => new(variable,
-			Variable.Float(value),
+		public static CompareOldVarCondition IsOldVarNotEqual(OldVar variable, Single value) => new(variable,
+			OldVar.Float(value),
 			Comparator.NotEqual);
 
 		/// <summary>
@@ -139,14 +142,14 @@ namespace CodeSmile.Statemachine
 		/// </summary>
 		/// <param name="variable"></param>
 		/// <returns></returns>
-		public static ModifyVariableAction SetVarTrue(Variable variable) => new(variable, Variable.Bool(true));
+		public static ModifyOldVarAction SetOldVarTrue(OldVar variable) => new(variable, OldVar.Bool(true));
 
 		/// <summary>
 		///     Sets the bool variable to false.
 		/// </summary>
 		/// <param name="variable"></param>
 		/// <returns></returns>
-		public static ModifyVariableAction SetVarFalse(Variable variable) => new(variable, Variable.Bool(false));
+		public static ModifyOldVarAction SetOldVarFalse(OldVar variable) => new(variable, OldVar.Bool(false));
 
 		/// <summary>
 		///     Sets the int variable to the value.
@@ -154,7 +157,7 @@ namespace CodeSmile.Statemachine
 		/// <param name="variable"></param>
 		/// <param name="value"></param>
 		/// <returns></returns>
-		public static ModifyVariableAction SetVarValue(Variable variable, Int32 value) => new(variable, Variable.Int(value));
+		public static ModifyOldVarAction SetOldVarValue(OldVar variable, Int32 value) => new(variable, OldVar.Int(value));
 
 		/// <summary>
 		///     Sets the float variable to the value.
@@ -162,6 +165,6 @@ namespace CodeSmile.Statemachine
 		/// <param name="variable"></param>
 		/// <param name="value"></param>
 		/// <returns></returns>
-		public static ModifyVariableAction SetVarValue(Variable variable, Single value) => new(variable, Variable.Float(value));
+		public static ModifyOldVarAction SetOldVarValue(OldVar variable, Single value) => new(variable, OldVar.Float(value));
 	}
 }

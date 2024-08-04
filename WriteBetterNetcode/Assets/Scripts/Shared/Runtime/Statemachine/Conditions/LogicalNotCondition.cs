@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine
+namespace CodeSmile.Statemachine.Conditions
 {
 	public sealed class LogicalNotCondition : FSM.ICondition
 	{

@@ -5,6 +5,7 @@ using CodeSmile.Statemachine;
 using CodeSmile.Statemachine.Netcode;
 using CodeSmile.Statemachine.Netcode.Actions;
 using CodeSmile.Statemachine.Netcode.Conditions;
+using CodeSmile.Statemachine.Netcode.Enums;
 using System;
 using System.IO;
 using System.Linq;
@@ -64,7 +65,7 @@ namespace CodeSmile.BetterNetcode.Network
 		[SerializeField] private NetworkConfig m_ClientConfig = new() { Role = NetworkRole.Client };
 
 		public FSM m_Statemachine;
-		private FSM.Variable m_NetworkRole;
+		private FSM.OldVar m_NetworkRole;
 
 		private void Awake() => SetupStatemachine();
 
@@ -114,7 +115,7 @@ namespace CodeSmile.BetterNetcode.Network
 			m_Statemachine.OnStateChange += args =>
 				Debug.LogWarning($"{m_Statemachine} change: {args.PreviousState} to {args.ActiveState}");
 
-			m_NetworkRole = m_Statemachine.Vars.DefineInt("NetworkRole");
+			m_NetworkRole = m_Statemachine.OldVars.DefineInt("NetworkRole");
 
 			var states = m_Statemachine.States;
 			var initState = states[(Int32)State.Initializing];
@@ -128,23 +129,23 @@ namespace CodeSmile.BetterNetcode.Network
 				.WithConditions(new IsNetworkOffline());
 			stoppingState.AddTransition("Network stopping").To(offlineState)
 				.WithConditions(new IsNetworkOffline())
-				.WithActions(FSM.SetVarValue(m_NetworkRole, (Int32)NetworkRole.None));
+				.WithActions(FSM.SetOldVarValue(m_NetworkRole, (Int32)NetworkRole.None));
 
 			// Server States
 			offlineState.AddTransition("Start Server").To(serverStartingState)
-				.WithConditions(FSM.IsVarEqual(m_NetworkRole, (Int32)NetworkRole.Server))
+				.WithConditions(FSM.IsOldVarEqual(m_NetworkRole, (Int32)NetworkRole.Server))
 				.WithActions(new NetworkStart(NetworkRole.Server));
 			serverStartingState.AddTransition("Server started").To(serverStartedState)
 				.WithConditions(new IsLocalServerStarted());
 			serverStartedState.AddTransition("Server stopping").To(stoppingState)
 				.WithConditions(FSM.OR(
 					FSM.NOT(new IsLocalServerStarted()),
-					FSM.IsVarEqual(m_NetworkRole, (Int32)NetworkRole.None)))
+					FSM.IsOldVarEqual(m_NetworkRole, (Int32)NetworkRole.None)))
 				.WithActions(new NetworkStop());
 
 			// Host States (for all intents and purposes of network state, the host is the server)
 			offlineState.AddTransition("Start Host").To(serverStartingState)
-				.WithConditions(FSM.IsVarEqual(m_NetworkRole, (Int32)NetworkRole.Host))
+				.WithConditions(FSM.IsOldVarEqual(m_NetworkRole, (Int32)NetworkRole.Host))
 				.WithActions(new NetworkStart(NetworkRole.Host));
 
 			// Client States
@@ -154,7 +155,7 @@ namespace CodeSmile.BetterNetcode.Network
 			var clientDisconnectedState = states[(Int32)State.ClientDisconnected];
 
 			offlineState.AddTransition("Start Client").To(clientStartingState)
-				.WithConditions(FSM.IsVarEqual(m_NetworkRole, (Int32)NetworkRole.Client))
+				.WithConditions(FSM.IsOldVarEqual(m_NetworkRole, (Int32)NetworkRole.Client))
 				.WithActions(new NetworkStart(NetworkRole.Client));
 			clientStartingState.AddTransition("Client started").To(clientStartedState)
 				.WithConditions(new IsLocalClientStarted());
@@ -168,7 +169,7 @@ namespace CodeSmile.BetterNetcode.Network
 				.AddToStates(clientStartedState, clientConnectedState, clientDisconnectedState)
 				.WithConditions(FSM.OR(
 					FSM.NOT(new IsLocalClientStarted()),
-					FSM.IsVarEqual(m_NetworkRole, (Int32)NetworkRole.None)))
+					FSM.IsOldVarEqual(m_NetworkRole, (Int32)NetworkRole.None)))
 				.WithActions(new NetworkStop());
 		}
 
