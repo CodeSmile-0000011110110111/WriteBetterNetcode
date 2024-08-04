@@ -37,6 +37,6 @@ namespace CodeSmile.Statemachine.Actions
 
 		public void Execute(FSM sm) => m_Variable.MultiplyValue(m_Operand);
 
-		public String ToDebugString(FSM sm) => $"{sm.GetDebugVarName(m_Variable)} = {sm.GetDebugVarName(m_Operand)}";
+		public String ToDebugString(FSM sm) => $"{sm.GetDebugVarName(m_Variable)} = {m_Operand}";
 	}
 }

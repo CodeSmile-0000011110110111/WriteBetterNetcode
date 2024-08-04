@@ -199,7 +199,7 @@ namespace CodeSmile.Statemachine
 			}
 
 			if (varName == null)
-				return "<unnamed>";
+				return variable.ToString();
 
 			var scope = isGlobal ? "s" : "m";
 			return $"{scope}_{varName}";

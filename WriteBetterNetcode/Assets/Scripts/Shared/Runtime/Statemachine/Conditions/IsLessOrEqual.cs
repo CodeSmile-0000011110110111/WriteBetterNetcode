@@ -37,6 +37,6 @@ namespace CodeSmile.Statemachine.Conditions
 
 		public Boolean IsSatisfied(FSM sm) => m_Variable <= m_Comparand;
 
-		public String ToDebugString(FSM sm) => $"{sm.GetDebugVarName(m_Variable)} <= {sm.GetDebugVarName(m_Comparand)}";
+		public String ToDebugString(FSM sm) => $"{sm.GetDebugVarName(m_Variable)} <= {m_Comparand}";
 	}
 }

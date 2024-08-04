@@ -29,7 +29,7 @@ namespace CodeSmile.Statemachine.Actions
 		public Assign(FSM.FloatVariable variable, FSM.FloatVariable operand)
 			: this((FSM.VariableBase)variable, operand) {}
 
-		private Assign(FSM.VariableBase variable, FSM.VariableBase operand)
+		public Assign(FSM.VariableBase variable, FSM.VariableBase operand)
 		{
 			m_Variable = variable;
 			m_Operand = operand;
@@ -37,6 +37,6 @@ namespace CodeSmile.Statemachine.Actions
 
 		public void Execute(FSM sm) => m_Variable.SetValue(m_Operand);
 
-		public String ToDebugString(FSM sm) => $"{sm.GetDebugVarName(m_Variable)} = {sm.GetDebugVarName(m_Operand)}";
+		public String ToDebugString(FSM sm) => $"{sm.GetDebugVarName(m_Variable)} = {m_Operand}";
 	}
 }

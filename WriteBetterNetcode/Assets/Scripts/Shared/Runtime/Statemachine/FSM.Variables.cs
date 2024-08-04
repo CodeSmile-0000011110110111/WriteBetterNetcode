@@ -74,6 +74,7 @@ namespace CodeSmile.Statemachine
 			public Boolean Equals(BoolVariable other) => !ReferenceEquals(null, other) && Value == other.Value;
 			public override Boolean Equals(Object obj) => obj is BoolVariable other && Equals(other);
 			public override Int32 GetHashCode() => Value.GetHashCode();
+			public override String ToString() => Value.ToString();
 
 			public override void SetValue(VariableBase variable) => Value = ((BoolVariable)variable).Value;
 			public override void AddValue(VariableBase variable) => throw new NotSupportedException();
@@ -93,6 +94,7 @@ namespace CodeSmile.Statemachine
 			public Boolean Equals(IntVariable other) => !ReferenceEquals(null, other) && Value.Equals(other.Value);
 			public override Boolean Equals(Object obj) => obj is IntVariable other && Equals(other);
 			public override Int32 GetHashCode() => Value;
+			public override String ToString() => Value.ToString();
 
 			public override void SetValue(VariableBase variable) => Value = ((IntVariable)variable).Value;
 			public override void AddValue(VariableBase variable) => Value += ((IntVariable)variable).Value;
@@ -112,6 +114,7 @@ namespace CodeSmile.Statemachine
 			public Boolean Equals(FloatVariable other) => !ReferenceEquals(null, other) && Value.Equals(other.Value);
 			public override Boolean Equals(Object obj) => obj is FloatVariable other && Equals(other);
 			public override Int32 GetHashCode() => Value.GetHashCode();
+			public override String ToString() => Value.ToString();
 
 			public override void SetValue(VariableBase variable) => Value = ((FloatVariable)variable).Value;
 			public override void AddValue(VariableBase variable) => Value += ((FloatVariable)variable).Value;
@@ -127,6 +130,7 @@ namespace CodeSmile.Statemachine
 			public Boolean Equals(StructVariable<T> other) => !ReferenceEquals(null, other) && Value.Equals(other.Value);
 			public override Boolean Equals(Object obj) => obj is StructVariable<T> other && Equals(other);
 			public override Int32 GetHashCode() => Value.GetHashCode();
+			public override String ToString() => Value.ToString();
 
 			public override void SetValue(VariableBase variable) => Value = ((StructVariable<T>)variable).Value;
 			public override void AddValue(VariableBase variable) => throw new NotSupportedException();
@@ -167,7 +171,7 @@ namespace CodeSmile.Statemachine
 
 			public FloatVariable GetFloat(String name) => m_Variables[name] as FloatVariable;
 
-			public StructVariable<T> DefineStruct<T>(String name, T value) where T : struct =>
+			public StructVariable<T> DefineStruct<T>(String name, T value = default) where T : struct =>
 				AddVariable(name, new StructVariable<T>(value));
 
 			public StructVariable<T> GetStruct<T>(String name) where T : struct => m_Variables[name] as StructVariable<T>;

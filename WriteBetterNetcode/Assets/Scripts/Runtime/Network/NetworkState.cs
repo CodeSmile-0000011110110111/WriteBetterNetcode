@@ -1,6 +1,8 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Statemachine.Actions;
+using CodeSmile.Statemachine.Conditions;
 using CodeSmile.Statemachine.Netcode.Actions;
 using CodeSmile.Statemachine.Netcode.Conditions;
 using CodeSmile.Statemachine.Netcode.Enums;
@@ -64,7 +66,7 @@ namespace CodeSmile.BetterNetcode.Network
 		[SerializeField] private NetworkConfig m_ClientConfig = new() { Role = NetworkRole.Client };
 
 		public FSM m_Statemachine;
-		private FSM.OldVar m_NetworkRole;
+		private FSM.IntVariable m_NetworkRole;
 
 		private void Awake() => SetupStatemachine();
 
@@ -114,7 +116,7 @@ namespace CodeSmile.BetterNetcode.Network
 			m_Statemachine.OnStateChange += args =>
 				Debug.LogWarning($"{m_Statemachine} change: {args.PreviousState} to {args.ActiveState}");
 
-			m_NetworkRole = m_Statemachine.OldVars.DefineInt("NetworkRole");
+			m_NetworkRole = m_Statemachine.Vars.DefineInt(nameof(NetworkRole));
 
 			var states = m_Statemachine.States;
 			var initState = states[(Int32)State.Initializing];
@@ -130,27 +132,26 @@ namespace CodeSmile.BetterNetcode.Network
 			stoppingState.AddTransition("Network stopping")
 				.To(offlineState)
 				.WithConditions(new IsNetworkOffline())
-				.WithActions(FSM.SetOldVarValue(m_NetworkRole, (Int32)NetworkRole.None));
+				.WithActions(new Assign(m_NetworkRole, (Int32)NetworkRole.None));
 
 			// Server States
 			offlineState.AddTransition("Start Server")
 				.To(serverStartingState)
-				.WithConditions(FSM.IsOldVarEqual(m_NetworkRole, (Int32)NetworkRole.Server))
+				.WithConditions(new IsEqual(m_NetworkRole, (Int32)NetworkRole.Server))
 				.WithActions(new NetworkStart(NetworkRole.Server));
 			serverStartingState.AddTransition("Server started")
 				.To(serverStartedState)
 				.WithConditions(new IsLocalServerStarted());
 			serverStartedState.AddTransition("Server stopping")
 				.To(stoppingState)
-				.WithConditions(FSM.OR(
-					FSM.NOT(new IsLocalServerStarted()),
-					FSM.IsOldVarEqual(m_NetworkRole, (Int32)NetworkRole.None)))
+				.WithConditions(FSM.OR(FSM.NOT(new IsLocalServerStarted()),
+					new IsEqual(m_NetworkRole, (Int32)NetworkRole.None)))
 				.WithActions(new NetworkStop());
 
 			// Host States (for all intents and purposes of network state, the host is the server)
 			offlineState.AddTransition("Start Host")
 				.To(serverStartingState)
-				.WithConditions(FSM.IsOldVarEqual(m_NetworkRole, (Int32)NetworkRole.Host))
+				.WithConditions(new IsEqual(m_NetworkRole, (Int32)NetworkRole.Host))
 				.WithActions(new NetworkStart(NetworkRole.Host));
 
 			// Client States
@@ -161,7 +162,7 @@ namespace CodeSmile.BetterNetcode.Network
 
 			offlineState.AddTransition("Start Client")
 				.To(clientStartingState)
-				.WithConditions(FSM.IsOldVarEqual(m_NetworkRole, (Int32)NetworkRole.Client))
+				.WithConditions(new IsEqual(m_NetworkRole, (Int32)NetworkRole.Client))
 				.WithActions(new NetworkStart(NetworkRole.Client));
 			clientStartingState.AddTransition("Client started")
 				.To(clientStartedState)
@@ -177,16 +178,15 @@ namespace CodeSmile.BetterNetcode.Network
 			FSM.CreateTransition("Client stopping")
 				.To(stoppingState)
 				.AddToStates(clientStartedState, clientConnectedState, clientDisconnectedState)
-				.WithConditions(FSM.OR(
-					FSM.NOT(new IsLocalClientStarted()),
-					FSM.IsOldVarEqual(m_NetworkRole, (Int32)NetworkRole.None)))
+				.WithConditions(FSM.OR(FSM.NOT(new IsLocalClientStarted()),
+					new IsEqual(m_NetworkRole, (Int32)NetworkRole.None)))
 				.WithActions(new NetworkStop());
 		}
 
-		public void RequestStartServer() => m_NetworkRole.IntValue = (Int32)NetworkRole.Server;
-		public void RequestStartHost() => m_NetworkRole.IntValue = (Int32)NetworkRole.Host;
-		public void RequestStartClient() => m_NetworkRole.IntValue = (Int32)NetworkRole.Client;
-		public void RequestStopNetwork() => m_NetworkRole.IntValue = (Int32)NetworkRole.None;
+		public void RequestStartServer() => m_NetworkRole.Value = (Int32)NetworkRole.Server;
+		public void RequestStartHost() => m_NetworkRole.Value = (Int32)NetworkRole.Host;
+		public void RequestStartClient() => m_NetworkRole.Value = (Int32)NetworkRole.Client;
+		public void RequestStopNetwork() => m_NetworkRole.Value = (Int32)NetworkRole.None;
 
 		private NetworkRole GetNetworkRoleFromMppmTags()
 		{

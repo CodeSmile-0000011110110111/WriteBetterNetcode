@@ -17,19 +17,19 @@ state "Offline" as state1
 state state1 {
 	state "Start Server" as state1_trans0
 	state state1_trans0 #line.dotted {
-		state1_trans0 : 'm_NetworkRole' == 1 | ""False""
+		state1_trans0 : m_NetworkRole == 1 | ""False""
 		state1_trans0 : ....
 		state1_trans0 : NetworkStartServer
 	}
 	state "Start Host" as state1_trans1
 	state state1_trans1 #line.dotted {
-		state1_trans1 : 'm_NetworkRole' == 2 | ""False""
+		state1_trans1 : m_NetworkRole == 2 | ""False""
 		state1_trans1 : ....
 		state1_trans1 : NetworkStartHost
 	}
 	state "Start Client" as state1_trans2
 	state state1_trans2 #line.dotted {
-		state1_trans2 : 'm_NetworkRole' == 3 | ""False""
+		state1_trans2 : m_NetworkRole == 3 | ""False""
 		state1_trans2 : ....
 		state1_trans2 : NetworkStartClient
 	}
@@ -43,7 +43,7 @@ state state3 {
 	state state3_trans0 #line.dotted {
 		state3_trans0 : IsNetworkOffline | ""True""
 		state3_trans0 : ....
-		state3_trans0 : 'm_NetworkRole' = 0
+		state3_trans0 : m_NetworkRole = 0
 	}
 }
 state "ServerStarting" as state4
@@ -58,7 +58,7 @@ state "ServerStarted" as state5
 state state5 {
 	state "Server stopping" as state5_trans0
 	state state5_trans0 #line.dotted {
-		state5_trans0 : OR(NOT(IsLocalServerStarted), 'm_NetworkRole' == 0) | ""True""
+		state5_trans0 : OR(NOT(IsLocalServerStarted), m_NetworkRole == 0) | ""True""
 		state5_trans0 : ....
 		state5_trans0 : NetworkStop
 	}
@@ -80,7 +80,7 @@ state state7 {
 	}
 	state "Client stopping" as state7_trans1
 	state state7_trans1 #line.dotted {
-		state7_trans1 : OR(NOT(IsLocalClientStarted), 'm_NetworkRole' == 0) | ""True""
+		state7_trans1 : OR(NOT(IsLocalClientStarted), m_NetworkRole == 0) | ""True""
 		state7_trans1 : ....
 		state7_trans1 : NetworkStop
 	}
@@ -94,7 +94,7 @@ state state8 {
 	}
 	state "Client stopping" as state8_trans1
 	state state8_trans1 #line.dotted {
-		state8_trans1 : OR(NOT(IsLocalClientStarted), 'm_NetworkRole' == 0) | ""True""
+		state8_trans1 : OR(NOT(IsLocalClientStarted), m_NetworkRole == 0) | ""True""
 		state8_trans1 : ....
 		state8_trans1 : NetworkStop
 	}
@@ -103,7 +103,7 @@ state "ClientDisconnected" as state9
 state state9 {
 	state "Client stopping" as state9_trans0
 	state state9_trans0 #line.dotted {
-		state9_trans0 : OR(NOT(IsLocalClientStarted), 'm_NetworkRole' == 0) | ""True""
+		state9_trans0 : OR(NOT(IsLocalClientStarted), m_NetworkRole == 0) | ""True""
 		state9_trans0 : ....
 		state9_trans0 : NetworkStop
 	}
