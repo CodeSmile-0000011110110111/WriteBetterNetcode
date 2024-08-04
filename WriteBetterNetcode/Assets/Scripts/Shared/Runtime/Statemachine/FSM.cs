@@ -133,12 +133,12 @@ namespace CodeSmile.Statemachine
 			if (IsStarted)
 				throw new InvalidOperationException($"FSM '{Name}': Start() must only be called once");
 
-			ValidateStatemachine();
-
 			m_ActiveStateIndex = 0;
 
 			foreach (var state in States)
 				state.OnStart(this);
+
+			ValidateStatemachine();
 
 			ActiveState.OnEnterState(this);
 

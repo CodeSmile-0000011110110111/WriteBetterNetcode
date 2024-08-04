@@ -16,22 +16,15 @@ namespace CodeSmile.Statemachine
 		public sealed class State : IEquatable<State>
 		{
 			private Transition[] m_Transitions;
+			internal Transition[] Transitions => m_Transitions;
 			public String Name { get; }
-			internal Transition[] Transitions { get => m_Transitions; private set => m_Transitions = value; }
 
 			public static Boolean operator ==(State left, State right) => Equals(left, right);
 			public static Boolean operator !=(State left, State right) => !Equals(left, right);
 
 			private State() {} // forbidden default ctor
 
-			public State(String stateName)
-				: this(stateName, null) {}
-
-			public State(String stateName, Transition[] transitions)
-			{
-				Name = stateName;
-				Transitions = transitions ?? new Transition[0];
-			}
+			public State(String stateName) => Name = stateName;
 
 			public Boolean Equals(State other)
 			{
@@ -58,14 +51,19 @@ namespace CodeSmile.Statemachine
 			public State AddTransitions(params Transition[] transitions)
 			{
 				if (transitions == null || transitions.Length == 0)
-					throw new ArgumentNullException("transitions null or empty");
+					throw new ArgumentException("transitions null or empty");
 
-				var startIndex = m_Transitions.Length;
-				var addCount = transitions.Length;
-				Array.Resize(ref m_Transitions, startIndex + addCount);
+				if (m_Transitions == null)
+					m_Transitions = transitions;
+				else
+				{
+					var startIndex = m_Transitions.Length;
+					var addCount = transitions.Length;
+					Array.Resize(ref m_Transitions, startIndex + addCount);
 
-				for (var i = 0; i < addCount; i++)
-					m_Transitions[startIndex + i] = transitions[i];
+					for (var i = 0; i < addCount; i++)
+						m_Transitions[startIndex + i] = transitions[i];
+				}
 
 				return this;
 			}
@@ -84,6 +82,21 @@ namespace CodeSmile.Statemachine
 				}
 			}
 
+			internal void OnStart(FSM sm)
+			{
+				if (m_Transitions == null)
+					m_Transitions = new Transition[0];
+
+				foreach (var transition in Transitions)
+					transition.OnStart(sm);
+			}
+
+			internal void OnStop(FSM sm)
+			{
+				foreach (var transition in Transitions)
+					transition.OnStop(sm);
+			}
+
 			internal void OnExitState(FSM sm)
 			{
 				foreach (var transition in Transitions)
@@ -94,18 +107,6 @@ namespace CodeSmile.Statemachine
 			{
 				foreach (var transition in Transitions)
 					transition.OnEnterState(sm);
-			}
-
-			internal void OnStart(FSM sm)
-			{
-				foreach (var transition in Transitions)
-					transition.OnStart(sm);
-			}
-
-			internal void OnStop(FSM sm)
-			{
-				foreach (var transition in Transitions)
-					transition.OnStop(sm);
 			}
 
 			public override Boolean Equals(Object obj) => ReferenceEquals(this, obj) || obj is State other && Equals(other);
