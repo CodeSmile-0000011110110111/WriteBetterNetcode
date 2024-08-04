@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine
 {
-	public sealed class CompareOldVarCondition : Statemachine.FSM.ICondition
+	public sealed class CompareOldVarCondition : FSM.ICondition
 	{
 		private readonly FSM.OldVar m_OldVar;
 		private readonly FSM.OldVar m_Comparand;

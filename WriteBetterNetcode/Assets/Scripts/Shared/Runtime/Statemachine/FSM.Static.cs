@@ -124,8 +124,7 @@ namespace CodeSmile.Statemachine
 		/// <param name="variable"></param>
 		/// <param name="value"></param>
 		/// <returns></returns>
-		public static CompareOldVarCondition IsOldVarEqual(OldVar variable, Single value) =>
-			new(variable, OldVar.Float(value));
+		public static CompareOldVarCondition IsOldVarEqual(OldVar variable, Single value) => new(variable, OldVar.Float(value));
 
 		/// <summary>
 		///     Tests if the float variable does not approximately equal the value.

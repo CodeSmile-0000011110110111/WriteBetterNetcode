@@ -13,8 +13,7 @@ namespace CodeSmile.Statemachine.Conditions
 
 		private LogicalNand() {} // forbidden default ctor
 
-		internal LogicalNand(params FSM.ICondition[] nandConditions) =>
-			m_AndCondition = new LogicalAnd(nandConditions);
+		internal LogicalNand(params FSM.ICondition[] nandConditions) => m_AndCondition = new LogicalAnd(nandConditions);
 
 		public Boolean IsSatisfied(FSM sm) => !m_AndCondition.IsSatisfied(sm);
 

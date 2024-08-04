@@ -13,8 +13,7 @@ namespace CodeSmile.Statemachine.Conditions
 
 		private LogicalNor() {} // forbidden default ctor
 
-		internal LogicalNor(params FSM.ICondition[] norConditions) =>
-			m_OrCondition = new LogicalOr(norConditions);
+		internal LogicalNor(params FSM.ICondition[] norConditions) => m_OrCondition = new LogicalOr(norConditions);
 
 		public Boolean IsSatisfied(FSM sm) => !m_OrCondition.IsSatisfied(sm);
 

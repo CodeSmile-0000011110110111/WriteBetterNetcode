@@ -9,8 +9,6 @@ namespace CodeSmile.Statemachine
 {
 	public sealed partial class FSM
 	{
-
-
 		/// <summary>
 		///     Event methods that the Statemachine calls at specific times.
 		/// </summary>

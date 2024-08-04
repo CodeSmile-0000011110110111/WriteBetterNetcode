@@ -26,9 +26,9 @@ namespace CodeSmile.Statemachine
 		private static readonly Variables s_StaticVars = new();
 
 		private State[] m_States;
-		public State[] States => m_States;
 
 		private Int32 m_ActiveStateIndex = -1;
+		public State[] States => m_States;
 		private Boolean IsStarted => !(m_ActiveStateIndex < 0);
 
 		/// <summary>

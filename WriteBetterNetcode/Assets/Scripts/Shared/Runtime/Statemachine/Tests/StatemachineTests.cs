@@ -109,7 +109,9 @@ namespace CodeSmile.Statemachine.Tests
 			var testVar = sm.OldVars.DefineInt("TestVar", expectedValue);
 			var didExecute = sm.OldVars.DefineBool("didExecute");
 
-			sm.States[0].AddTransition().To(sm.States[1])
+			sm.States[0]
+				.AddTransition()
+				.To(sm.States[1])
 				.WithConditions(FSM.IsOldVarEqual(testVar, expectedValue))
 				.WithActions(FSM.SetOldVarTrue(didExecute));
 
@@ -127,7 +129,9 @@ namespace CodeSmile.Statemachine.Tests
 			var didExecute = sm.OldVars.DefineBool("did execute");
 
 			var expectedValue = 12345;
-			sm.States[0].AddTransition().To(sm.States[1])
+			sm.States[0]
+				.AddTransition()
+				.To(sm.States[1])
 				.WithConditions(FSM.IsOldVarTrue(testVar1))
 				.WithActions(FSM.SetOldVarValue(testVar2, expectedValue), FSM.SetOldVarTrue(didExecute));
 

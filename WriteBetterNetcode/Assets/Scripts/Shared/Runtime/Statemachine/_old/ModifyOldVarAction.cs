@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine
 {
-	public sealed class ModifyOldVarAction : Statemachine.FSM.IAction
+	public sealed class ModifyOldVarAction : FSM.IAction
 	{
 		private readonly FSM.OldVar m_OldVar;
 		private readonly FSM.OldVar m_Operand;
