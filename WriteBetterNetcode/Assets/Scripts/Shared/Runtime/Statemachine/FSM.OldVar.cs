@@ -3,7 +3,6 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using UnityEditor;
 using UnityEngine;
 using Object = System.Object;
@@ -280,14 +279,6 @@ namespace CodeSmile.Statemachine
 				Bool,
 				Float,
 				Int,
-			}
-
-			[StructLayout(LayoutKind.Explicit)]
-			internal struct UnionValue32
-			{
-				[FieldOffset(0)] public Boolean BoolValue;
-				[FieldOffset(0)] public Single FloatValue;
-				[FieldOffset(0)] public Int32 IntValue;
 			}
 		}
 	}

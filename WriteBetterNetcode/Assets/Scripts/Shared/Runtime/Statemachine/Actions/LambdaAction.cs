@@ -19,7 +19,6 @@ namespace CodeSmile.Statemachine.Actions
 		private readonly Action m_Callback;
 
 		private LambdaAction() {} // forbidden default ctor
-
 		public LambdaAction(Action callback)
 		{
 			if (callback == null)

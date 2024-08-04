@@ -55,11 +55,11 @@ namespace CodeSmile.Statemachine
 						var satisfied = cond.IsSatisfied(this);
 
 						var negated = false;
-						if (cond is LogicalNotCondition notCondition)
+						if (cond is LogicalNot notCondition)
 							cond = notCondition;
-						else if (cond is LogicalOrCondition orCondition)
+						else if (cond is LogicalOr orCondition)
 							cond = orCondition;
-						else if (cond is LogicalAndCondition andCondition)
+						else if (cond is LogicalAnd andCondition)
 							cond = andCondition;
 
 						statesBuilder.AppendLine(
@@ -195,12 +195,11 @@ namespace CodeSmile.Statemachine
 			if (varName == null)
 			{
 				varName = StaticVars.FindVariableName(variable);
-
-				if (varName != null)
-					isGlobal = true;
-				else
-					varName = "<not found>";
+				isGlobal = true;
 			}
+
+			if (varName == null)
+				return "<unnamed>";
 
 			var scope = isGlobal ? "s" : "m";
 			return $"{scope}_{varName}";

@@ -6,9 +6,9 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Conditions
+namespace CodeSmile.Statemachine
 {
-	public sealed class CompareOldVarCondition : FSM.ICondition
+	public sealed class CompareOldVarCondition : Statemachine.FSM.ICondition
 	{
 		private readonly FSM.OldVar m_OldVar;
 		private readonly FSM.OldVar m_Comparand;

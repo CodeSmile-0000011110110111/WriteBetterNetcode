@@ -7,14 +7,14 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Conditions
 {
-	public class LogicalNandCondition : FSM.ICondition
+	public class LogicalNand : FSM.ICondition
 	{
 		private readonly FSM.ICondition m_AndCondition;
 
-		private LogicalNandCondition() {} // forbidden default ctor
+		private LogicalNand() {} // forbidden default ctor
 
-		internal LogicalNandCondition(params FSM.ICondition[] nandConditions) =>
-			m_AndCondition = new LogicalAndCondition(nandConditions);
+		internal LogicalNand(params FSM.ICondition[] nandConditions) =>
+			m_AndCondition = new LogicalAnd(nandConditions);
 
 		public Boolean IsSatisfied(FSM sm) => !m_AndCondition.IsSatisfied(sm);
 

@@ -1,8 +1,6 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.Statemachine;
-using CodeSmile.Statemachine.Netcode;
 using CodeSmile.Statemachine.Netcode.Actions;
 using CodeSmile.Statemachine.Netcode.Conditions;
 using CodeSmile.Statemachine.Netcode.Enums;
@@ -13,6 +11,7 @@ using Unity.Multiplayer.Playmode;
 using Unity.Netcode.Transports.UTP;
 using UnityEditor;
 using UnityEngine;
+using FSM = CodeSmile.Statemachine.FSM;
 
 namespace CodeSmile.BetterNetcode.Network
 {
@@ -110,7 +109,7 @@ namespace CodeSmile.BetterNetcode.Network
 
 		private void SetupStatemachine()
 		{
-			m_Statemachine = new FSM(new(nameof(NetworkState))).WithStates(Enum.GetNames(typeof(State)));
+			m_Statemachine = new FSM(new String(nameof(NetworkState))).WithStates(Enum.GetNames(typeof(State)));
 			m_Statemachine.AllowMultipleStateChanges = true;
 			m_Statemachine.OnStateChange += args =>
 				Debug.LogWarning($"{m_Statemachine} change: {args.PreviousState} to {args.ActiveState}");
@@ -125,26 +124,32 @@ namespace CodeSmile.BetterNetcode.Network
 			var stoppingState = states[(Int32)State.Stopping];
 
 			// Init & stopping states
-			initState.AddTransition("Init Complete").To(offlineState)
+			initState.AddTransition("Init Complete")
+				.To(offlineState)
 				.WithConditions(new IsNetworkOffline());
-			stoppingState.AddTransition("Network stopping").To(offlineState)
+			stoppingState.AddTransition("Network stopping")
+				.To(offlineState)
 				.WithConditions(new IsNetworkOffline())
 				.WithActions(FSM.SetOldVarValue(m_NetworkRole, (Int32)NetworkRole.None));
 
 			// Server States
-			offlineState.AddTransition("Start Server").To(serverStartingState)
+			offlineState.AddTransition("Start Server")
+				.To(serverStartingState)
 				.WithConditions(FSM.IsOldVarEqual(m_NetworkRole, (Int32)NetworkRole.Server))
 				.WithActions(new NetworkStart(NetworkRole.Server));
-			serverStartingState.AddTransition("Server started").To(serverStartedState)
+			serverStartingState.AddTransition("Server started")
+				.To(serverStartedState)
 				.WithConditions(new IsLocalServerStarted());
-			serverStartedState.AddTransition("Server stopping").To(stoppingState)
+			serverStartedState.AddTransition("Server stopping")
+				.To(stoppingState)
 				.WithConditions(FSM.OR(
 					FSM.NOT(new IsLocalServerStarted()),
 					FSM.IsOldVarEqual(m_NetworkRole, (Int32)NetworkRole.None)))
 				.WithActions(new NetworkStop());
 
 			// Host States (for all intents and purposes of network state, the host is the server)
-			offlineState.AddTransition("Start Host").To(serverStartingState)
+			offlineState.AddTransition("Start Host")
+				.To(serverStartingState)
 				.WithConditions(FSM.IsOldVarEqual(m_NetworkRole, (Int32)NetworkRole.Host))
 				.WithActions(new NetworkStart(NetworkRole.Host));
 
@@ -154,18 +159,23 @@ namespace CodeSmile.BetterNetcode.Network
 			var clientConnectedState = states[(Int32)State.ClientConnected];
 			var clientDisconnectedState = states[(Int32)State.ClientDisconnected];
 
-			offlineState.AddTransition("Start Client").To(clientStartingState)
+			offlineState.AddTransition("Start Client")
+				.To(clientStartingState)
 				.WithConditions(FSM.IsOldVarEqual(m_NetworkRole, (Int32)NetworkRole.Client))
 				.WithActions(new NetworkStart(NetworkRole.Client));
-			clientStartingState.AddTransition("Client started").To(clientStartedState)
+			clientStartingState.AddTransition("Client started")
+				.To(clientStartedState)
 				.WithConditions(new IsLocalClientStarted());
-			clientStartedState.AddTransition("Client connected").To(clientConnectedState)
+			clientStartedState.AddTransition("Client connected")
+				.To(clientConnectedState)
 				.WithConditions(new IsLocalClientConnected());
-			clientConnectedState.AddTransition("Client disconnected").To(clientDisconnectedState)
+			clientConnectedState.AddTransition("Client disconnected")
+				.To(clientDisconnectedState)
 				.WithConditions(FSM.NOT(new IsLocalClientConnected()));
 
 			// stop transition gets added to multiple states
-			FSM.CreateTransition("Client stopping").To(stoppingState)
+			FSM.CreateTransition("Client stopping")
+				.To(stoppingState)
 				.AddToStates(clientStartedState, clientConnectedState, clientDisconnectedState)
 				.WithConditions(FSM.OR(
 					FSM.NOT(new IsLocalClientStarted()),

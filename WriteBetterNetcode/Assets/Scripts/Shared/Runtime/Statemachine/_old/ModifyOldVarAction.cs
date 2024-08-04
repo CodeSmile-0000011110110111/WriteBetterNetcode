@@ -1,23 +1,15 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Statemachine.Enums;
 using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Actions
+namespace CodeSmile.Statemachine
 {
-	public sealed class ModifyOldVarAction : FSM.IAction
+	public sealed class ModifyOldVarAction : Statemachine.FSM.IAction
 	{
-		public enum Operator
-		{
-			Set,
-			Add,
-			Subtract,
-			Multiply,
-			Divide,
-		}
-
 		private readonly FSM.OldVar m_OldVar;
 		private readonly FSM.OldVar m_Operand;
 		private readonly Operator m_Operator;

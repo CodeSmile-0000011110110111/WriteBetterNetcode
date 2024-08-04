@@ -12,56 +12,127 @@ namespace CodeSmile.Statemachine
 {
 	public sealed partial class FSM
 	{
-		public enum VariableScope
+		public abstract class VariableBase
 		{
-			Local,
-			Global,
-		}
+			public static Boolean operator ==(VariableBase left, VariableBase right) => Equals(left, right);
+			public static Boolean operator !=(VariableBase left, VariableBase right) => !Equals(left, right);
 
-		public abstract class VariableBase {}
+			public static Boolean operator <(VariableBase left, VariableBase right)
+			{
+				if (left is IntVariable leftInt && right is IntVariable rightInt)
+					return leftInt < rightInt;
+				if (left is FloatVariable leftFloat && right is FloatVariable rightFloat)
+					return leftFloat < rightFloat;
+
+				throw new InvalidOperationException(GetCompareExceptionMessage(left, right, "<"));
+			}
+
+			public static Boolean operator >(VariableBase left, VariableBase right)
+			{
+				if (left is IntVariable leftInt && right is IntVariable rightInt)
+					return leftInt > rightInt;
+				if (left is FloatVariable leftFloat && right is FloatVariable rightFloat)
+					return leftFloat > rightFloat;
+
+				throw new InvalidOperationException(GetCompareExceptionMessage(left, right, ">"));
+			}
+
+			public static Boolean operator <=(VariableBase left, VariableBase right)
+			{
+				if (left is IntVariable leftInt && right is IntVariable rightInt)
+					return leftInt <= rightInt;
+				if (left is FloatVariable leftFloat && right is FloatVariable rightFloat)
+					return leftFloat <= rightFloat;
+
+				throw new InvalidOperationException(GetCompareExceptionMessage(left, right, "<="));
+			}
+
+			public static Boolean operator >=(VariableBase left, VariableBase right)
+			{
+				if (left is IntVariable leftInt && right is IntVariable rightInt)
+					return leftInt >= rightInt;
+				if (left is FloatVariable leftFloat && right is FloatVariable rightFloat)
+					return leftFloat >= rightFloat;
+
+				throw new InvalidOperationException(GetCompareExceptionMessage(left, right, ">="));
+			}
+
+			private static String GetCompareExceptionMessage(VariableBase left, VariableBase right, String op) =>
+				$"cannot compare: {left?.GetType().Name}({left}) {op} {right?.GetType().Name}({right})";
+
+			public abstract void SetValue(VariableBase variable);
+			public abstract void AddValue(VariableBase variable);
+			public abstract void SubtractValue(VariableBase variable);
+			public abstract void MultiplyValue(VariableBase variable);
+			public abstract void DivideValue(VariableBase variable);
+		}
 
 		public sealed class BoolVariable : VariableBase, IEquatable<BoolVariable>
 		{
 			public Boolean Value { get; set; }
-			public static Boolean operator ==(BoolVariable left, BoolVariable right) => Equals(left, right);
-			public static Boolean operator !=(BoolVariable left, BoolVariable right) => !Equals(left, right);
 			public BoolVariable(Boolean value = default) => Value = value;
-			public Boolean Equals(BoolVariable other) => other != null && Value == other.Value;
+			public Boolean Equals(BoolVariable other) => !ReferenceEquals(null, other) && Value == other.Value;
 			public override Boolean Equals(Object obj) => obj is BoolVariable other && Equals(other);
 			public override Int32 GetHashCode() => Value.GetHashCode();
+
+			public override void SetValue(VariableBase variable) => Value = ((BoolVariable)variable).Value;
+			public override void AddValue(VariableBase variable) => throw new NotSupportedException();
+			public override void SubtractValue(VariableBase variable) => throw new NotSupportedException();
+			public override void MultiplyValue(VariableBase variable) => throw new NotSupportedException();
+			public override void DivideValue(VariableBase variable) => throw new NotSupportedException();
 		}
 
 		public sealed class IntVariable : VariableBase, IEquatable<IntVariable>
 		{
 			public Int32 Value { get; set; }
-			public static Boolean operator ==(IntVariable left, IntVariable right) => Equals(left, right);
-			public static Boolean operator !=(IntVariable left, IntVariable right) => !Equals(left, right);
+			public static Boolean operator <(IntVariable left, IntVariable right) => left.Value < right.Value;
+			public static Boolean operator >(IntVariable left, IntVariable right) => left.Value > right.Value;
+			public static Boolean operator <=(IntVariable left, IntVariable right) => left.Value <= right.Value;
+			public static Boolean operator >=(IntVariable left, IntVariable right) => left.Value >= right.Value;
 			public IntVariable(Int32 value = default) => Value = value;
-			public Boolean Equals(IntVariable other) => other != null && Value == other.Value;
+			public Boolean Equals(IntVariable other) => !ReferenceEquals(null, other) && Value.Equals(other.Value);
 			public override Boolean Equals(Object obj) => obj is IntVariable other && Equals(other);
 			public override Int32 GetHashCode() => Value;
+
+			public override void SetValue(VariableBase variable) => Value = ((IntVariable)variable).Value;
+			public override void AddValue(VariableBase variable) => Value += ((IntVariable)variable).Value;
+			public override void SubtractValue(VariableBase variable) => Value -= ((IntVariable)variable).Value;
+			public override void MultiplyValue(VariableBase variable) => Value *= ((IntVariable)variable).Value;
+			public override void DivideValue(VariableBase variable) => Value /= ((IntVariable)variable).Value;
 		}
 
 		public sealed class FloatVariable : VariableBase, IEquatable<FloatVariable>
 		{
 			public Single Value { get; set; }
-			public static Boolean operator ==(FloatVariable left, FloatVariable right) => Equals(left, right);
-			public static Boolean operator !=(FloatVariable left, FloatVariable right) => !Equals(left, right);
+			public static Boolean operator <(FloatVariable left, FloatVariable right) => left.Value < right.Value;
+			public static Boolean operator >(FloatVariable left, FloatVariable right) => left.Value > right.Value;
+			public static Boolean operator <=(FloatVariable left, FloatVariable right) => left.Value <= right.Value;
+			public static Boolean operator >=(FloatVariable left, FloatVariable right) => left.Value >= right.Value;
 			public FloatVariable(Single value = default) => Value = value;
-			public Boolean Equals(FloatVariable other) => other != null && Value == other.Value;
+			public Boolean Equals(FloatVariable other) => !ReferenceEquals(null, other) && Value.Equals(other.Value);
 			public override Boolean Equals(Object obj) => obj is FloatVariable other && Equals(other);
 			public override Int32 GetHashCode() => Value.GetHashCode();
+
+			public override void SetValue(VariableBase variable) => Value = ((FloatVariable)variable).Value;
+			public override void AddValue(VariableBase variable) => Value += ((FloatVariable)variable).Value;
+			public override void SubtractValue(VariableBase variable) => Value -= ((FloatVariable)variable).Value;
+			public override void MultiplyValue(VariableBase variable) => Value *= ((FloatVariable)variable).Value;
+			public override void DivideValue(VariableBase variable) => Value /= ((FloatVariable)variable).Value;
 		}
 
 		public sealed class StructVariable<T> : VariableBase, IEquatable<StructVariable<T>> where T : struct
 		{
 			public T Value { get; set; }
-			public static Boolean operator ==(StructVariable<T> left, StructVariable<T> right) => Equals(left, right);
-			public static Boolean operator !=(StructVariable<T> left, StructVariable<T> right) => !Equals(left, right);
 			public StructVariable(T value = default) => Value = value;
-			public Boolean Equals(StructVariable<T> other) => other != null && Value.Equals(other.Value);
+			public Boolean Equals(StructVariable<T> other) => !ReferenceEquals(null, other) && Value.Equals(other.Value);
 			public override Boolean Equals(Object obj) => obj is StructVariable<T> other && Equals(other);
 			public override Int32 GetHashCode() => Value.GetHashCode();
+
+			public override void SetValue(VariableBase variable) => Value = ((StructVariable<T>)variable).Value;
+			public override void AddValue(VariableBase variable) => throw new NotSupportedException();
+			public override void SubtractValue(VariableBase variable) => throw new NotSupportedException();
+			public override void MultiplyValue(VariableBase variable) => throw new NotSupportedException();
+			public override void DivideValue(VariableBase variable) => throw new NotSupportedException();
 		}
 
 		public class Variables
@@ -72,25 +143,32 @@ namespace CodeSmile.Statemachine
 
 			public void Clear() => m_Variables.Clear();
 
-
 			internal String FindVariableName(VariableBase variable) =>
 				m_Variables.FirstOrDefault(kvp => kvp.Value == variable).Key;
 
-			public BoolVariable DefineBool(String name, Boolean value = default)
+			private T AddVariable<T>(String name, T variable) where T : VariableBase
 			{
-				var boolVar = new BoolVariable(value);
-				m_Variables.Add(name, boolVar);
-				return boolVar;
+				m_Variables.Add(name, variable);
+				return variable;
 			}
+
+			public BoolVariable DefineBool(String name, Boolean value = default) => AddVariable(name, new BoolVariable(value));
 
 			public BoolVariable GetBool(String name) => m_Variables[name] as BoolVariable;
 
-			public StructVariable<T> DefineStruct<T>(String name, T value) where T : struct
-			{
-				var structVar = new StructVariable<T>(value);
-				m_Variables.Add(name, structVar);
-				return structVar;
-			}
+			public IntVariable DefineInt(String name, Int32 value = default) => AddVariable(name, new IntVariable(value));
+
+			public IntVariable GetInt(String name) => m_Variables[name] as IntVariable;
+
+			public FloatVariable DefineFloat(String name, Single value = default) =>
+				AddVariable(name, new FloatVariable(value));
+
+			public FloatVariable DefineFloat(String name, Int32 value) => AddVariable(name, new FloatVariable(value));
+
+			public FloatVariable GetFloat(String name) => m_Variables[name] as FloatVariable;
+
+			public StructVariable<T> DefineStruct<T>(String name, T value) where T : struct =>
+				AddVariable(name, new StructVariable<T>(value));
 
 			public StructVariable<T> GetStruct<T>(String name) where T : struct => m_Variables[name] as StructVariable<T>;
 		}

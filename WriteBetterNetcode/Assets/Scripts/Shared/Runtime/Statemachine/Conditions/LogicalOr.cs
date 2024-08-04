@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Conditions
 {
-	public sealed class LogicalOrCondition : FSM.ICondition
+	public sealed class LogicalOr : FSM.ICondition
 	{
 		private readonly FSM.ICondition[] m_InnerConditions;
 		internal FSM.ICondition[] InnerConditions => m_InnerConditions;
@@ -29,9 +29,9 @@ namespace CodeSmile.Statemachine.Conditions
 #endif
 		}
 
-		private LogicalOrCondition() {} // forbidden default ctor
+		private LogicalOr() {} // forbidden default ctor
 
-		internal LogicalOrCondition(params FSM.ICondition[] orConditions)
+		internal LogicalOr(params FSM.ICondition[] orConditions)
 		{
 			VerifyParameters(orConditions);
 			m_InnerConditions = orConditions;

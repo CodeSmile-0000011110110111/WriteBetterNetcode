@@ -51,7 +51,7 @@ namespace CodeSmile.Statemachine
 		/// </summary>
 		/// <param name="condition"></param>
 		/// <returns></returns>
-		public static LogicalNotCondition NOT(ICondition condition) => new(condition);
+		public static LogicalNot NOT(ICondition condition) => new(condition);
 
 		/// <summary>
 		///     Logical OR condition will be true if one or more of the containing conditions are true.
@@ -59,14 +59,14 @@ namespace CodeSmile.Statemachine
 		/// <param name="conditions">Two or more ICondition instances.</param>
 		/// <returns></returns>
 		/// <summary>
-		public static LogicalOrCondition OR(params ICondition[] conditions) => new(conditions);
+		public static LogicalOr OR(params ICondition[] conditions) => new(conditions);
 
 		/// <summary>
 		///     Logical NOR condition will be true only if both conditions are false.
 		/// </summary>
 		/// <param name="conditions"></param>
 		/// <returns></returns>
-		public static LogicalNorCondition NOR(params ICondition[] conditions) => new(conditions);
+		public static LogicalNor NOR(params ICondition[] conditions) => new(conditions);
 
 		/// <summary>
 		///     Logical AND condition will be true if all of the containing conditions are true.
@@ -77,14 +77,14 @@ namespace CodeSmile.Statemachine
 		/// </remarks>
 		/// <param name="conditions">Two or more ICondition instances.</param>
 		/// <returns></returns>
-		public static LogicalAndCondition AND(params ICondition[] conditions) => new(conditions);
+		public static LogicalAnd AND(params ICondition[] conditions) => new(conditions);
 
 		/// <summary>
 		///     Logical NAND condition will be true if one or all of the containing conditions are false.
 		/// </summary>
 		/// <param name="conditions">Two or more ICondition instances.</param>
 		/// <returns></returns>
-		public static LogicalNandCondition NAND(params ICondition[] conditions) => new(conditions);
+		public static LogicalNand NAND(params ICondition[] conditions) => new(conditions);
 
 		/// <summary>
 		///     Tests if the bool variable is true.
