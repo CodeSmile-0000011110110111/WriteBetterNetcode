@@ -17,44 +17,54 @@ namespace CodeSmile.Statemachine
 			public String Name { get; }
 			internal ICondition[] Conditions { get; private set; }
 			internal IAction[] Actions { get; private set; }
-			internal State GotoState { get; }
-
-			public Transition()
-				: this(null, null, null, null) {}
-
-			public Transition(State gotoState)
-				: this(null, null, null, gotoState) {}
-
-			public Transition(String transitionName, State gotoState)
-				: this(transitionName, null, null, gotoState) {}
+			internal State GotoState { get; private set; }
 
 			/// <summary>
-			///     Creates a named transition that changes state to the given gotoState if conditions are satisfied.
+			///     Creates an unnamed transition that executes its actions if its conditions are satisfied.
+			///     If GotoState is non-null will also change state if conditions are satisfied.
+			/// </summary>
+			public Transition()
+				: this(null) {}
+
+			/// <summary>
+			///     Creates a named transition that executes its actions if its conditions are satisfied.
+			///     If GotoState is non-null will also change state if conditions are satisfied.
 			/// </summary>
 			/// <remarks>
 			///     The transition name should be used to annotate or summarize the purpose of the transition.
 			///     The name is also instrumental for debugging and appears in diagrams.
 			/// </remarks>
 			/// <param name="transitionName"></param>
-			/// <param name="conditions"></param>
-			/// <param name="actions"></param>
-			/// <param name="gotoState"></param>
-			public Transition(String transitionName, ICondition[] conditions, IAction[] actions, State gotoState)
-			{
-				Name = transitionName;
-				Conditions = conditions ?? new ICondition[0];
-				Actions = actions ?? new IAction[0];
-				GotoState = gotoState;
-			}
+			public Transition(String transitionName) => Name = transitionName;
 
 			public override String ToString() => $"Transition({Name})";
 
+			public Transition To(State gotoState)
+			{
+				if (GotoState != null)
+					throw new InvalidOperationException("GotoState already set");
+
+				GotoState = gotoState;
+				return this;
+			}
+
+			public Transition AddToStates(params State[] states)
+			{
+				if (states == null)
+					throw new ArgumentNullException(nameof(states));
+
+				foreach (var state in states)
+					state.AddTransitions(this);
+
+				return this;
+			}
+
 			public Transition WithConditions(params ICondition[] conditions)
 			{
-				if (Conditions != null && Conditions.Length > 0)
+				if (Conditions != null)
 					throw new InvalidOperationException("Conditions already set");
-				if (conditions == null || conditions.Length == 0)
-					throw new ArgumentException(nameof(conditions));
+				if (conditions == null)
+					throw new ArgumentNullException(nameof(conditions));
 
 				Conditions = conditions;
 				return this;
@@ -62,10 +72,10 @@ namespace CodeSmile.Statemachine
 
 			public Transition WithActions(params IAction[] actions)
 			{
-				if (Actions != null && Actions.Length > 0)
+				if (Actions != null)
 					throw new InvalidOperationException("Actions already set");
-				if (actions == null || actions.Length == 0)
-					throw new ArgumentException(nameof(actions));
+				if (actions == null)
+					throw new ArgumentNullException(nameof(actions));
 
 				Actions = actions;
 				return this;
@@ -103,6 +113,11 @@ namespace CodeSmile.Statemachine
 
 			internal void OnStart(FSM sm)
 			{
+				if (Conditions == null)
+					Conditions = new ICondition[0];
+				if (Actions == null)
+					Actions = new IAction[0];
+
 				foreach (var condition in Conditions)
 					condition.OnStart(sm);
 				foreach (var action in Actions)

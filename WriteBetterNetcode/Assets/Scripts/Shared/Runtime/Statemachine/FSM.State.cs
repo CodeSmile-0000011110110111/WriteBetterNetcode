@@ -2,7 +2,6 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using System;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using Object = System.Object;
@@ -16,8 +15,9 @@ namespace CodeSmile.Statemachine
 		/// </summary>
 		public sealed class State : IEquatable<State>
 		{
+			private Transition[] m_Transitions;
 			public String Name { get; }
-			internal Transition[] Transitions { get; private set; }
+			internal Transition[] Transitions { get => m_Transitions; private set => m_Transitions = value; }
 
 			public static Boolean operator ==(State left, State right) => Equals(left, right);
 			public static Boolean operator !=(State left, State right) => !Equals(left, right);
@@ -45,14 +45,27 @@ namespace CodeSmile.Statemachine
 
 			public override String ToString() => $"State({Name})";
 
-			public State WithTransitions(params Transition[] transitions)
+			public Transition AddTransition() => AddTransition(new Transition());
+
+			public Transition AddTransition(String transitionName) => AddTransition(new Transition(transitionName));
+
+			public Transition AddTransition(Transition transition)
+			{
+				AddTransitions(transition);
+				return transition;
+			}
+
+			public State AddTransitions(params Transition[] transitions)
 			{
 				if (transitions == null || transitions.Length == 0)
 					throw new ArgumentNullException("transitions null or empty");
 
-				var combined = new List<Transition>(Transitions ?? new Transition[0]);
-				combined.AddRange(transitions);
-				Transitions = combined.ToArray();
+				var startIndex = m_Transitions.Length;
+				var addCount = transitions.Length;
+				Array.Resize(ref m_Transitions, startIndex + addCount);
+
+				for (var i = 0; i < addCount; i++)
+					m_Transitions[startIndex + i] = transitions[i];
 
 				return this;
 			}

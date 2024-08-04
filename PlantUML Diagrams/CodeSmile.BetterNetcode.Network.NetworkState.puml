@@ -7,7 +7,7 @@ title FSM: NetworkState
 
 state "Initializing" as state0
 state state0 {
-	state "Goto Offline" as state0_trans0
+	state "Init Complete" as state0_trans0
 	state state0_trans0 #line.dotted {
 		state0_trans0 : IsNetworkOffline | ""True""
 		state0_trans0 : ....
@@ -111,7 +111,7 @@ state state9 {
 
 
 [*] -> state0
-state0 --> state1 : Goto Offline
+state0 --> state1 : Init Complete
 state1 --> state4 : Start Server
 state1 --> state4 : Start Host
 state1 --> state6 : Start Client

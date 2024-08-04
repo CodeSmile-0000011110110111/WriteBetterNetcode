@@ -15,15 +15,15 @@ namespace CodeSmile.Statemachine
 
 		public String ToPlantUml()
 		{
-			if (!Started)
+			if (!IsStarted)
 				throw new Exception($"FSM '{Name}': can only generate PlantUML after statemachine started");
 
 			var statesBuilder = new StringBuilder();
 			var transBuilder = new StringBuilder();
 
-			for (var stateIndex = 0; stateIndex < m_States.Length; stateIndex++)
+			for (var stateIndex = 0; stateIndex < States.Length; stateIndex++)
 			{
-				var state = m_States[stateIndex];
+				var state = States[stateIndex];
 				var stateId = $"state{stateIndex}";
 
 				statesBuilder.AppendLine($"state \"{state.Name}\" as {stateId}");
@@ -100,7 +100,7 @@ namespace CodeSmile.Statemachine
 		private void ThrowIfStatemachineNotStarted()
 		{
 #if DEBUG || DEVELOPMENT_BUILD
-			if (!Started)
+			if (!IsStarted)
 				throw new InvalidOperationException($"FSM '{Name}': Start() not called before Evaluate()!");
 #endif
 		}
@@ -111,15 +111,15 @@ namespace CodeSmile.Statemachine
 			if (String.IsNullOrWhiteSpace(Name))
 				throw new ArgumentException("FSM has no name");
 
-			if (m_States == null || m_States.Length == 0)
+			if (States == null || States.Length == 0)
 				throw new ArgumentException($"FSM '{Name}': has no states");
 
 			var stateNames = new HashSet<String>();
 			var statesUsed = new HashSet<String>();
 
-			for (var stateIndex = 0; stateIndex < m_States.Length; stateIndex++)
+			for (var stateIndex = 0; stateIndex < States.Length; stateIndex++)
 			{
-				var state = m_States[stateIndex];
+				var state = States[stateIndex];
 				if (state == null)
 					throw new ArgumentException($"FSM '{Name}': state at index {stateIndex} is null");
 				if (String.IsNullOrWhiteSpace(state.Name))

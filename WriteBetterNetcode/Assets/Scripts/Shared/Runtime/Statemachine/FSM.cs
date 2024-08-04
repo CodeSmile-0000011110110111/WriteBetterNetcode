@@ -25,9 +25,10 @@ namespace CodeSmile.Statemachine
 		private static readonly Variables s_GlobalVars = new();
 
 		private State[] m_States;
+		public State[] States => m_States;
 
 		private Int32 m_ActiveStateIndex = -1;
-		private Boolean Started => !(m_ActiveStateIndex < 0);
+		private Boolean IsStarted => !(m_ActiveStateIndex < 0);
 
 		/// <summary>
 		///     Name of the Statemachine
@@ -43,7 +44,7 @@ namespace CodeSmile.Statemachine
 			get
 			{
 				ThrowIfStatemachineNotStarted();
-				return m_States[m_ActiveStateIndex];
+				return States[m_ActiveStateIndex];
 			}
 		}
 
@@ -85,6 +86,27 @@ namespace CodeSmile.Statemachine
 		public FSM(String statemachineName) => Name = statemachineName;
 
 		/// <summary>
+		///     Creates several named States. For use with Enum.GetNames().
+		/// </summary>
+		/// <remarks>Ideal for use with Enum.GetNames().</remarks>
+		/// <param name="stateNames"></param>
+		/// <returns></returns>
+		public FSM WithStates(params String[] stateNames)
+		{
+			if (stateNames == null)
+				throw new ArgumentNullException(nameof(stateNames));
+
+			var stateCount = stateNames.Length;
+			var states = new State[stateCount];
+			for (var i = 0; i < stateCount; i++)
+				states[i] = new State(stateNames[i]);
+
+			WithStates(states);
+
+			return this;
+		}
+
+		/// <summary>
 		///     Provides the states for the statemachine. Must only be called once per statemachine.
 		/// </summary>
 		/// <param name="states"></param>
@@ -92,8 +114,10 @@ namespace CodeSmile.Statemachine
 		/// <exception cref="InvalidOperationException"></exception>
 		public FSM WithStates(params State[] states)
 		{
-			if (m_States != null)
+			if (States != null)
 				throw new InvalidOperationException("States already set!");
+			if (states == null)
+				throw new ArgumentNullException(nameof(states));
 
 			m_States = states;
 
@@ -106,14 +130,14 @@ namespace CodeSmile.Statemachine
 		/// <returns></returns>
 		public FSM Start()
 		{
-			if (Started)
+			if (IsStarted)
 				throw new InvalidOperationException($"FSM '{Name}': Start() must only be called once");
 
 			ValidateStatemachine();
 
 			m_ActiveStateIndex = 0;
 
-			foreach (var state in m_States)
+			foreach (var state in States)
 				state.OnStart(this);
 
 			ActiveState.OnEnterState(this);
@@ -125,7 +149,7 @@ namespace CodeSmile.Statemachine
 		{
 			ActiveState.OnExitState(this);
 
-			foreach (var state in m_States)
+			foreach (var state in States)
 				state.OnStop(this);
 		}
 
@@ -176,7 +200,7 @@ namespace CodeSmile.Statemachine
 			m_ActiveStateIndex = newStateIndex;
 		}
 
-		private Int32 FindStateIndex(State searchForState) => Array.FindIndex(m_States, s => s == searchForState);
+		private Int32 FindStateIndex(State searchForState) => Array.FindIndex(States, s => s == searchForState);
 
 		/// <summary>
 		///     Sent with state change event.
