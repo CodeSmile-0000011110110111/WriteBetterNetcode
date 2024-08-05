@@ -12,6 +12,13 @@ namespace CodeSmile.Statemachine
 {
 	public sealed partial class FSM
 	{
+#if UNITY_EDITOR
+		[InitializeOnLoadMethod] private static void ResetGlobalVars() => EditorApplication.playModeStateChanged += state =>
+		{
+			if (state == PlayModeStateChange.EnteredEditMode || state == PlayModeStateChange.ExitingEditMode)
+				s_StaticVars.Clear();
+		};
+#endif
 		public override String ToString() => $"FSM({Name})";
 
 		public String ToPlantUml()
@@ -204,19 +211,5 @@ namespace CodeSmile.Statemachine
 			var scope = isGlobal ? "s" : "m";
 			return $"{scope}_{varName}";
 		}
-
-#if UNITY_EDITOR
-		[InitializeOnLoadMethod] private static void ResetOldGlobalVars() => EditorApplication.playModeStateChanged += state =>
-		{
-			if (state == PlayModeStateChange.EnteredEditMode || state == PlayModeStateChange.ExitingEditMode)
-				s_OldGlobalVars.Clear();
-		};
-
-		[InitializeOnLoadMethod] private static void ResetGlobalVars() => EditorApplication.playModeStateChanged += state =>
-		{
-			if (state == PlayModeStateChange.EnteredEditMode || state == PlayModeStateChange.ExitingEditMode)
-				s_StaticVars.Clear();
-		};
-#endif
 	}
 }

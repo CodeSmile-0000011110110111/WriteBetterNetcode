@@ -3,7 +3,6 @@
 
 using CodeSmile.Statemachine.Actions;
 using CodeSmile.Statemachine.Conditions;
-using CodeSmile.Statemachine.Enums;
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -85,85 +84,5 @@ namespace CodeSmile.Statemachine
 		/// <param name="conditions">Two or more ICondition instances.</param>
 		/// <returns></returns>
 		public static LogicalNand NAND(params ICondition[] conditions) => new(conditions);
-
-		/// <summary>
-		///     Tests if the bool variable is true.
-		/// </summary>
-		/// <param name="variable"></param>
-		/// <returns></returns>
-		public static CompareOldVarCondition IsOldVarTrue(OldVar variable) => new(variable, OldVar.Bool(true));
-
-		/// <summary>
-		///     Tests if the bool variable is false.
-		/// </summary>
-		/// <param name="variable"></param>
-		/// <returns></returns>
-		public static CompareOldVarCondition IsOldVarFalse(OldVar variable) => new(variable, OldVar.Bool(false));
-
-		/// <summary>
-		///     Tests if the int variable equals the value.
-		/// </summary>
-		/// <param name="variable"></param>
-		/// <param name="value"></param>
-		/// <returns></returns>
-		public static CompareOldVarCondition IsOldVarEqual(OldVar variable, Int32 value) => new(variable, OldVar.Int(value));
-
-		/// <summary>
-		///     Tests if the int variable does not equal the value.
-		/// </summary>
-		/// <param name="variable"></param>
-		/// <param name="value"></param>
-		/// <returns></returns>
-		public static CompareOldVarCondition IsOldVarNotEqual(OldVar variable, Int32 value) => new(variable,
-			OldVar.Int(value),
-			Comparator.NotEqual);
-
-		/// <summary>
-		///     Tests if the float variable approximately equals the value.
-		/// </summary>
-		/// <param name="variable"></param>
-		/// <param name="value"></param>
-		/// <returns></returns>
-		public static CompareOldVarCondition IsOldVarEqual(OldVar variable, Single value) => new(variable, OldVar.Float(value));
-
-		/// <summary>
-		///     Tests if the float variable does not approximately equal the value.
-		/// </summary>
-		/// <param name="variable"></param>
-		/// <param name="value"></param>
-		/// <returns></returns>
-		public static CompareOldVarCondition IsOldVarNotEqual(OldVar variable, Single value) => new(variable,
-			OldVar.Float(value),
-			Comparator.NotEqual);
-
-		/// <summary>
-		///     Sets the bool variable to true.
-		/// </summary>
-		/// <param name="variable"></param>
-		/// <returns></returns>
-		public static ModifyOldVarAction SetOldVarTrue(OldVar variable) => new(variable, OldVar.Bool(true));
-
-		/// <summary>
-		///     Sets the bool variable to false.
-		/// </summary>
-		/// <param name="variable"></param>
-		/// <returns></returns>
-		public static ModifyOldVarAction SetOldVarFalse(OldVar variable) => new(variable, OldVar.Bool(false));
-
-		/// <summary>
-		///     Sets the int variable to the value.
-		/// </summary>
-		/// <param name="variable"></param>
-		/// <param name="value"></param>
-		/// <returns></returns>
-		public static ModifyOldVarAction SetOldVarValue(OldVar variable, Int32 value) => new(variable, OldVar.Int(value));
-
-		/// <summary>
-		///     Sets the float variable to the value.
-		/// </summary>
-		/// <param name="variable"></param>
-		/// <param name="value"></param>
-		/// <returns></returns>
-		public static ModifyOldVarAction SetOldVarValue(OldVar variable, Single value) => new(variable, OldVar.Float(value));
 	}
 }

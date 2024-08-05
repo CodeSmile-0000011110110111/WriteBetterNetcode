@@ -99,46 +99,5 @@ namespace CodeSmile.Statemachine.Tests
 
 			Assert.AreEqual(expected, actual);
 		}
-
-		[Test]
-		public void FSMVar_LocalIntEquals_IsTrue()
-		{
-			var expectedValue = -111111;
-
-			var sm = new FSM("FSM").WithStates("START", "END");
-			var testVar = sm.OldVars.DefineInt("TestVar", expectedValue);
-			var didExecute = sm.OldVars.DefineBool("didExecute");
-
-			sm.States[0]
-				.AddTransition()
-				.To(sm.States[1])
-				.WithConditions(FSM.IsOldVarEqual(testVar, expectedValue))
-				.WithActions(FSM.SetOldVarTrue(didExecute));
-
-			sm.Start().Update();
-
-			Assert.IsTrue(didExecute.BoolValue);
-		}
-
-		[Test]
-		public void FSMVar_VarCondition_SetsExpectedValue()
-		{
-			var sm = new FSM("FSM").WithStates("START", "END");
-			var testVar1 = sm.OldVars.DefineBool("TestVar1", true);
-			var testVar2 = sm.OldVars.DefineInt("TestVar2");
-			var didExecute = sm.OldVars.DefineBool("did execute");
-
-			var expectedValue = 12345;
-			sm.States[0]
-				.AddTransition()
-				.To(sm.States[1])
-				.WithConditions(FSM.IsOldVarTrue(testVar1))
-				.WithActions(FSM.SetOldVarValue(testVar2, expectedValue), FSM.SetOldVarTrue(didExecute));
-
-			sm.Start().Update();
-
-			Assert.AreEqual(expectedValue, testVar2.IntValue);
-			Assert.IsTrue(didExecute.BoolValue);
-		}
 	}
 }
