@@ -4,7 +4,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Netcode.Enums
+namespace CodeSmile.Statemachine.Netcode
 {
 	public enum NetworkRole
 	{

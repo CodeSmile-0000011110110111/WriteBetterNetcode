@@ -1,0 +1,18 @@
+{
+    "name": "CodeSmile.Statemachine.Services",
+    "rootNamespace": "CodeSmile",
+    "references": [
+        "GUID:416cc8b34229a5b488e6e2d2975cfa2c",
+        "GUID:fe25561d224ed4743af4c60938a59d0b",
+        "GUID:5540e30183c82e84b954c033c388e06c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

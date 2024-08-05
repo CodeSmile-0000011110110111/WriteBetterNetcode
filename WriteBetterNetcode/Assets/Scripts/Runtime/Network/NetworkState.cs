@@ -3,14 +3,15 @@
 
 using CodeSmile.Statemachine.Actions;
 using CodeSmile.Statemachine.Conditions;
+using CodeSmile.Statemachine.Netcode;
 using CodeSmile.Statemachine.Netcode.Actions;
 using CodeSmile.Statemachine.Netcode.Conditions;
-using CodeSmile.Statemachine.Netcode.Enums;
+using CodeSmile.Statemachine.Services.Authentication.Actions;
+using CodeSmile.Statemachine.Services.Authentication.Conditions;
 using System;
 using System.IO;
 using System.Linq;
 using Unity.Multiplayer.Playmode;
-using Unity.Netcode.Transports.UTP;
 using UnityEditor;
 using UnityEngine;
 using FSM = CodeSmile.Statemachine.FSM;
@@ -18,29 +19,9 @@ using FSM = CodeSmile.Statemachine.FSM;
 namespace CodeSmile.BetterNetcode.Network
 {
 	[Serializable]
-	public struct NetworkConfig
-	{
-		[HideInInspector] public NetworkRole Role;
-		public UnityTransport.ConnectionAddressData AddressData;
-		//public RelayConfig RelayConfig;
-		public Boolean UseWebSockets;
-		public Boolean UseEncryption;
-
-		public override String ToString() => $"NetworkConfig(Role={Role}, Address={AddressData.Address}:{AddressData.Port}, " +
-		                                     $"Listen={AddressData.ServerListenAddress}, WebSockets={UseWebSockets}, Encryption={UseEncryption})";
-	}
-
-	[Serializable]
 	public struct ServerConfig
 	{
-		public Int32 MaxPlayers;
-	}
-
-	[Serializable]
-	public struct RelayConfig
-	{
-		public Boolean UseRelayService;
-		public String RelayJoinCode;
+		public Int32 MaxClients;
 	}
 
 	public class NetworkState : MonoBehaviour
@@ -49,8 +30,6 @@ namespace CodeSmile.BetterNetcode.Network
 		{
 			Initializing,
 			Offline,
-			Configure,
-			Stopping,
 
 			ServerStarting,
 			ServerStarted,
@@ -59,14 +38,17 @@ namespace CodeSmile.BetterNetcode.Network
 			ClientStarted,
 			ClientConnected,
 			ClientDisconnected,
+
+			Stopping,
 		}
 
-		[SerializeField] private NetworkConfig m_ServerConfig = new() { Role = NetworkRole.Server };
-		[SerializeField] private NetworkConfig m_HostConfig = new() { Role = NetworkRole.Host };
-		[SerializeField] private NetworkConfig m_ClientConfig = new() { Role = NetworkRole.Client };
+		// [SerializeField] private NetworkConfig m_ServerConfig = new() { Role = NetworkRole.Server };
+		// [SerializeField] private NetworkConfig m_HostConfig = new() { Role = NetworkRole.Host };
+		// [SerializeField] private NetworkConfig m_ClientConfig = new() { Role = NetworkRole.Client };
 
 		public FSM m_Statemachine;
-		private FSM.IntVariable m_NetworkRole;
+		private FSM.IntVariable m_NetworkRoleVar;
+		private FSM.StructVariable<TransportConfig> m_TransportConfigVar;
 
 		private void Awake() => SetupStatemachine();
 
@@ -116,54 +98,61 @@ namespace CodeSmile.BetterNetcode.Network
 			m_Statemachine.OnStateChange += args =>
 				Debug.LogWarning($"{m_Statemachine} change: {args.PreviousState} to {args.ActiveState}");
 
-			m_NetworkRole = m_Statemachine.Vars.DefineInt(nameof(NetworkRole));
+			m_NetworkRoleVar = m_Statemachine.Vars.DefineInt(nameof(NetworkRole));
+			m_TransportConfigVar = m_Statemachine.Vars.DefineStruct<TransportConfig>(nameof(TransportConfig));
 
 			var states = m_Statemachine.States;
 			var initState = states[(Int32)State.Initializing];
 			var offlineState = states[(Int32)State.Offline];
 			var serverStartingState = states[(Int32)State.ServerStarting];
 			var serverStartedState = states[(Int32)State.ServerStarted];
+			var clientStartingState = states[(Int32)State.ClientStarting];
+			var clientStartedState = states[(Int32)State.ClientStarted];
+			var clientConnectedState = states[(Int32)State.ClientConnected];
+			var clientDisconnectedState = states[(Int32)State.ClientDisconnected];
 			var stoppingState = states[(Int32)State.Stopping];
 
-			// Init & stopping states
+			// Init state
 			initState.AddTransition("Init Complete")
 				.To(offlineState)
-				.WithConditions(new IsNetworkOffline());
-			stoppingState.AddTransition("Network stopping")
-				.To(offlineState)
 				.WithConditions(new IsNetworkOffline())
-				.WithActions(new Assign(m_NetworkRole, (Int32)NetworkRole.None));
+				.WithActions(new UnityServicesInit());
 
-			// Server States
+			// Offline state
+			offlineState.AddTransition("SignInAnonymously")
+				.WithConditions(new IsNotSignedIn(),
+					new IsNotEqual(m_NetworkRoleVar, (Int32)NetworkRole.None))
+				.WithActions(new SignInAnonymously());
 			offlineState.AddTransition("Start Server")
 				.To(serverStartingState)
-				.WithConditions(new IsEqual(m_NetworkRole, (Int32)NetworkRole.Server))
-				.WithActions(new NetworkStart(NetworkRole.Server));
+				.WithConditions(new IsSignedIn(),
+					new IsEqual(m_NetworkRoleVar, (Int32)NetworkRole.Server))
+				.WithActions(new ApplyTransportConfig(m_TransportConfigVar),
+					new NetworkStart(NetworkRole.Server));
+			offlineState.AddTransition("Start Host")
+				.To(serverStartingState)
+				.WithConditions(new IsSignedIn(),
+					new IsEqual(m_NetworkRoleVar, (Int32)NetworkRole.Host))
+				.WithActions(new ApplyTransportConfig(m_TransportConfigVar),
+					new NetworkStart(NetworkRole.Host));
+			offlineState.AddTransition("Start Client")
+				.To(clientStartingState)
+				.WithConditions(new IsSignedIn(),
+					new IsEqual(m_NetworkRoleVar, (Int32)NetworkRole.Client))
+				.WithActions(new ApplyTransportConfig(m_TransportConfigVar),
+					new NetworkStart(NetworkRole.Client));
+
+			// Server States
 			serverStartingState.AddTransition("Server started")
 				.To(serverStartedState)
 				.WithConditions(new IsLocalServerStarted());
 			serverStartedState.AddTransition("Server stopping")
 				.To(stoppingState)
 				.WithConditions(FSM.OR(FSM.NOT(new IsLocalServerStarted()),
-					new IsEqual(m_NetworkRole, (Int32)NetworkRole.None)))
+					new IsEqual(m_NetworkRoleVar, (Int32)NetworkRole.None)))
 				.WithActions(new NetworkStop());
 
-			// Host States (for all intents and purposes of network state, the host is the server)
-			offlineState.AddTransition("Start Host")
-				.To(serverStartingState)
-				.WithConditions(new IsEqual(m_NetworkRole, (Int32)NetworkRole.Host))
-				.WithActions(new NetworkStart(NetworkRole.Host));
-
 			// Client States
-			var clientStartingState = states[(Int32)State.ClientStarting];
-			var clientStartedState = states[(Int32)State.ClientStarted];
-			var clientConnectedState = states[(Int32)State.ClientConnected];
-			var clientDisconnectedState = states[(Int32)State.ClientDisconnected];
-
-			offlineState.AddTransition("Start Client")
-				.To(clientStartingState)
-				.WithConditions(new IsEqual(m_NetworkRole, (Int32)NetworkRole.Client))
-				.WithActions(new NetworkStart(NetworkRole.Client));
 			clientStartingState.AddTransition("Client started")
 				.To(clientStartedState)
 				.WithConditions(new IsLocalClientStarted());
@@ -174,19 +163,33 @@ namespace CodeSmile.BetterNetcode.Network
 				.To(clientDisconnectedState)
 				.WithConditions(FSM.NOT(new IsLocalClientConnected()));
 
+			// Stopping state
+			stoppingState.AddTransition("Network stopping")
+				.To(offlineState)
+				.WithConditions(new IsNetworkOffline())
+				.WithActions(new Assign(m_NetworkRoleVar, (Int32)NetworkRole.None));
+
 			// stop transition gets added to multiple states
 			FSM.CreateTransition("Client stopping")
 				.To(stoppingState)
 				.AddToStates(clientStartedState, clientConnectedState, clientDisconnectedState)
 				.WithConditions(FSM.OR(FSM.NOT(new IsLocalClientStarted()),
-					new IsEqual(m_NetworkRole, (Int32)NetworkRole.None)))
+					new IsEqual(m_NetworkRoleVar, (Int32)NetworkRole.None)))
 				.WithActions(new NetworkStop());
 		}
 
-		public void RequestStartServer() => m_NetworkRole.Value = (Int32)NetworkRole.Server;
-		public void RequestStartHost() => m_NetworkRole.Value = (Int32)NetworkRole.Host;
-		public void RequestStartClient() => m_NetworkRole.Value = (Int32)NetworkRole.Client;
-		public void RequestStopNetwork() => m_NetworkRole.Value = (Int32)NetworkRole.None;
+		public void RequestStartServer()
+		{
+			m_NetworkRoleVar.Value = (Int32)NetworkRole.Server;
+			m_TransportConfigVar.Value = new TransportConfig
+			{
+				Role = NetworkRole.Server,
+			};
+		}
+
+		public void RequestStartHost() => m_NetworkRoleVar.Value = (Int32)NetworkRole.Host;
+		public void RequestStartClient() => m_NetworkRoleVar.Value = (Int32)NetworkRole.Client;
+		public void RequestStopNetwork() => m_NetworkRoleVar.Value = (Int32)NetworkRole.None;
 
 		private NetworkRole GetNetworkRoleFromMppmTags()
 		{
@@ -200,7 +203,7 @@ namespace CodeSmile.BetterNetcode.Network
 			return NetworkRole.None;
 		}
 
-		public void StartNetworking(NetworkConfig config)
+		public void StartNetworking(TransportConfig config)
 		{
 			/*
 			var net = NetworkManager.Singleton;

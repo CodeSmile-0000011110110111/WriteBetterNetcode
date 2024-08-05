@@ -7,11 +7,11 @@ using UnityEngine;
 namespace CodeSmile.Components.Utility
 {
 	/// <summary>
-	/// Marks the GameObject this script is on as "Don't Destroy On Load".
+	///     Marks the GameObject this script is on as "Don't Destroy On Load".
 	/// </summary>
 	/// <remarks>
-	/// DDoL is applied in Start(), not Awake(), to allow Multiplayer Roles to strip components during Awake().
-	/// This script will also move the GameObject to the root since DDoL only works on root game objects.
+	///     DDoL is applied in Start(), not Awake(), to allow Multiplayer Roles to strip components during Awake().
+	///     This script will also move the GameObject to the root since DDoL only works on root game objects.
 	/// </remarks>
 	public class DontDestroyOnLoad : MonoBehaviour
 	{
