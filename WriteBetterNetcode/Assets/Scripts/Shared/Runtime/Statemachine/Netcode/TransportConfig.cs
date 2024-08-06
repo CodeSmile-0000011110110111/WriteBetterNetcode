@@ -2,7 +2,6 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using System;
-using Unity.Netcode.Transports.UTP;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,16 +10,14 @@ namespace CodeSmile.Statemachine.Netcode
 	[Serializable]
 	public struct TransportConfig
 	{
-		public NetworkRole Role;
-		public UnityTransport.ConnectionAddressData ConnectionData;
-		public Boolean AllowWebConnections;
+		public String Address;
+		public UInt16 Port;
+		public String ServerListenAddress;
 		public Boolean UseEncryption;
-		public Boolean UseRelayService;
-		public String RelayJoinCode;
+		public Boolean UseWebSockets;
 
 		public override String ToString() =>
-			$"{nameof(TransportConfig)}(Role={Role}, Address={ConnectionData.Address}:{ConnectionData.Port}, " +
-			$"Listen={ConnectionData.ServerListenAddress}, WebSockets={AllowWebConnections}, " +
-			$"Encryption={UseEncryption}, Relay={UseRelayService}, JoinCode={RelayJoinCode})";
+			$"{nameof(TransportConfig)}(Address={Address}:{Port}, ListenAddress={ServerListenAddress}, " +
+			$"UseWebSockets={UseWebSockets}, UseEncryption={UseEncryption})";
 	}
 }

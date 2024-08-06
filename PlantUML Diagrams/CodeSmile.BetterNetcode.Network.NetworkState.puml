@@ -19,14 +19,14 @@ state state1 {
 	state "SignInAnonymously" as state1_trans0
 	state state1_trans0 #line.dotted {
 		state1_trans0 : IsNotSignedIn | ""False""
-		state1_trans0 : m_NetworkRole != 0 | ""False""
+		state1_trans0 : IsRelayEnabled | ""False""
 		state1_trans0 : ....
 		state1_trans0 : SignInAnonymously
 	}
 	state "Start Server" as state1_trans1
 	state state1_trans1 #line.dotted {
 		state1_trans1 : IsSignedIn | ""False""
-		state1_trans1 : m_NetworkRole == 1 | ""False""
+		state1_trans1 : IsNetcodeRole | ""False""
 		state1_trans1 : ....
 		state1_trans1 : ApplyTransportConfig
 		state1_trans1 : NetworkStartServer
@@ -34,7 +34,7 @@ state state1 {
 	state "Start Host" as state1_trans2
 	state state1_trans2 #line.dotted {
 		state1_trans2 : IsSignedIn | ""False""
-		state1_trans2 : m_NetworkRole == 2 | ""False""
+		state1_trans2 : IsNetcodeRole | ""False""
 		state1_trans2 : ....
 		state1_trans2 : ApplyTransportConfig
 		state1_trans2 : NetworkStartHost
@@ -42,99 +42,109 @@ state state1 {
 	state "Start Client" as state1_trans3
 	state state1_trans3 #line.dotted {
 		state1_trans3 : IsSignedIn | ""False""
-		state1_trans3 : m_NetworkRole == 3 | ""False""
+		state1_trans3 : IsNetcodeRole | ""False""
 		state1_trans3 : ....
 		state1_trans3 : ApplyTransportConfig
 		state1_trans3 : NetworkStartClient
 	}
 }
-state "ServerStarting" as state2
+state "SigningIn" as state2
 state state2 {
-	state "Server started" as state2_trans0
+	state "SignedIn" as state2_trans0
 	state state2_trans0 #line.dotted {
-		state2_trans0 : IsLocalServerStarted | ""False""
+		state2_trans0 : IsSignedIn | ""False""
 		state2_trans0 : ....
 	}
 }
-state "ServerStarted" as state3
+state "ServerStarting" as state3
 state state3 {
-	state "Server stopping" as state3_trans0
+	state "Server started" as state3_trans0
 	state state3_trans0 #line.dotted {
-		state3_trans0 : OR(NOT(IsLocalServerStarted), m_NetworkRole == 0) | ""True""
+		state3_trans0 : IsLocalServerStarted | ""False""
 		state3_trans0 : ....
-		state3_trans0 : NetworkStop
 	}
 }
-state "ClientStarting" as state4
+state "ServerStarted" as state4
 state state4 {
-	state "Client started" as state4_trans0
+	state "Server stopping" as state4_trans0
 	state state4_trans0 #line.dotted {
-		state4_trans0 : IsLocalClientStarted | ""False""
+		state4_trans0 : OR(NOT(IsLocalServerStarted), IsNetcodeRole) | ""True""
 		state4_trans0 : ....
+		state4_trans0 : NetworkStop
 	}
 }
-state "ClientStarted" as state5
+state "ClientStarting" as state5
 state state5 {
-	state "Client connected" as state5_trans0
+	state "Client started" as state5_trans0
 	state state5_trans0 #line.dotted {
-		state5_trans0 : IsLocalClientConnected | ""False""
+		state5_trans0 : IsLocalClientStarted | ""False""
 		state5_trans0 : ....
 	}
-	state "Client stopping" as state5_trans1
-	state state5_trans1 #line.dotted {
-		state5_trans1 : OR(NOT(IsLocalClientStarted), m_NetworkRole == 0) | ""True""
-		state5_trans1 : ....
-		state5_trans1 : NetworkStop
-	}
 }
-state "ClientConnected" as state6
+state "ClientStarted" as state6
 state state6 {
-	state "Client disconnected" as state6_trans0
+	state "Client connected" as state6_trans0
 	state state6_trans0 #line.dotted {
-		state6_trans0 : NOT(IsLocalClientConnected) | ""True""
+		state6_trans0 : IsLocalClientConnected | ""False""
 		state6_trans0 : ....
 	}
 	state "Client stopping" as state6_trans1
 	state state6_trans1 #line.dotted {
-		state6_trans1 : OR(NOT(IsLocalClientStarted), m_NetworkRole == 0) | ""True""
+		state6_trans1 : OR(NOT(IsLocalClientStarted), IsNetcodeRole) | ""True""
 		state6_trans1 : ....
 		state6_trans1 : NetworkStop
 	}
 }
-state "ClientDisconnected" as state7
+state "ClientConnected" as state7
 state state7 {
-	state "Client stopping" as state7_trans0
+	state "Client disconnected" as state7_trans0
 	state state7_trans0 #line.dotted {
-		state7_trans0 : OR(NOT(IsLocalClientStarted), m_NetworkRole == 0) | ""True""
+		state7_trans0 : NOT(IsLocalClientConnected) | ""True""
 		state7_trans0 : ....
-		state7_trans0 : NetworkStop
+	}
+	state "Client stopping" as state7_trans1
+	state state7_trans1 #line.dotted {
+		state7_trans1 : OR(NOT(IsLocalClientStarted), IsNetcodeRole) | ""True""
+		state7_trans1 : ....
+		state7_trans1 : NetworkStop
 	}
 }
-state "Stopping" as state8
+state "ClientDisconnected" as state8
 state state8 {
-	state "Network stopping" as state8_trans0
+	state "Client stopping" as state8_trans0
 	state state8_trans0 #line.dotted {
-		state8_trans0 : IsNetworkOffline | ""True""
+		state8_trans0 : OR(NOT(IsLocalClientStarted), IsNetcodeRole) | ""True""
 		state8_trans0 : ....
-		state8_trans0 : m_NetworkRole = 0
+		state8_trans0 : NetworkStop
+	}
+}
+state "Stopping" as state9
+state state9 {
+	state "Network stopping" as state9_trans0
+	state state9_trans0 #line.dotted {
+		state9_trans0 : IsNetworkOffline | ""True""
+		state9_trans0 : ....
+		state9_trans0 : SetNetcodeRole
 	}
 }
 
 
 [*] -> state0
 state0 --> state1 : Init Complete
-state1 --> state2 : Start Server
-state1 --> state2 : Start Host
-state1 --> state4 : Start Client
-state2 --> state3 : Server started
-state3 --> state8 : Server stopping
-state4 --> state5 : Client started
-state5 --> state6 : Client connected
-state5 --> state8 : Client stopping
-state6 --> state7 : Client disconnected
-state6 --> state8 : Client stopping
-state7 --> state8 : Client stopping
-state8 --> state1 : Network stopping
+state1 --> state2 : SignInAnonymously
+state1 --> state3 : Start Server
+state1 --> state3 : Start Host
+state1 --> state5 : Start Client
+state2 --> state1 : SignedIn
+state3 --> state4 : Server started
+state4 --> state9 : Server stopping
+state5 --> state6 : Client started
+state6 --> state7 : Client connected
+state6 --> state9 : Client stopping
+state7 --> state8 : Client disconnected
+state7 --> state9 : Client stopping
+state8 --> state9 : Client stopping
+state9 --> state1 : Network stopping
 
 
 @enduml

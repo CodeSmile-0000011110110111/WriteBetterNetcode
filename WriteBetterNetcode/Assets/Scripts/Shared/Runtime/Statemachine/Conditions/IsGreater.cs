@@ -14,19 +14,19 @@ namespace CodeSmile.Statemachine.Conditions
 
 		private IsGreater() {} // forbidden default ctor
 
-		public IsGreater(FSM.IntVariable variable, Int32 compareValue)
-			: this(variable, new FSM.IntVariable(compareValue)) {}
+		public IsGreater(FSM.IntVar variable, Int32 compareValue)
+			: this(variable, new FSM.IntVar(compareValue)) {}
 
-		public IsGreater(FSM.FloatVariable variable, Single compareValue)
-			: this(variable, new FSM.FloatVariable(compareValue)) {}
+		public IsGreater(FSM.FloatVar variable, Single compareValue)
+			: this(variable, new FSM.FloatVar(compareValue)) {}
 
-		public IsGreater(FSM.FloatVariable variable, Int32 compareValue)
-			: this(variable, new FSM.FloatVariable(compareValue)) {}
+		public IsGreater(FSM.FloatVar variable, Int32 compareValue)
+			: this(variable, new FSM.FloatVar(compareValue)) {}
 
-		public IsGreater(FSM.IntVariable variable, FSM.IntVariable comparand)
+		public IsGreater(FSM.IntVar variable, FSM.IntVar comparand)
 			: this((FSM.VariableBase)variable, comparand) {}
 
-		public IsGreater(FSM.FloatVariable variable, FSM.FloatVariable comparand)
+		public IsGreater(FSM.FloatVar variable, FSM.FloatVar comparand)
 			: this((FSM.VariableBase)variable, comparand) {}
 
 		private IsGreater(FSM.VariableBase variable, FSM.VariableBase comparand)

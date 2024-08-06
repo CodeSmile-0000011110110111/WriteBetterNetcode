@@ -14,19 +14,19 @@ namespace CodeSmile.Statemachine.Actions
 
 		private Divide() {} // forbidden default ctor
 
-		public Divide(FSM.IntVariable variable, Int32 value)
-			: this(variable, new FSM.IntVariable(value)) {}
+		public Divide(FSM.IntVar variable, Int32 value)
+			: this(variable, new FSM.IntVar(value)) {}
 
-		public Divide(FSM.IntVariable variable, FSM.IntVariable operand)
+		public Divide(FSM.IntVar variable, FSM.IntVar operand)
 			: this((FSM.VariableBase)variable, operand) {}
 
-		public Divide(FSM.FloatVariable variable, Int32 value)
-			: this(variable, new FSM.FloatVariable(value)) {}
+		public Divide(FSM.FloatVar variable, Int32 value)
+			: this(variable, new FSM.FloatVar(value)) {}
 
-		public Divide(FSM.FloatVariable variable, Single value)
-			: this(variable, new FSM.FloatVariable(value)) {}
+		public Divide(FSM.FloatVar variable, Single value)
+			: this(variable, new FSM.FloatVar(value)) {}
 
-		public Divide(FSM.FloatVariable variable, FSM.FloatVariable operand)
+		public Divide(FSM.FloatVar variable, FSM.FloatVar operand)
 			: this((FSM.VariableBase)variable, operand) {}
 
 		private Divide(FSM.VariableBase variable, FSM.VariableBase operand)

@@ -14,19 +14,19 @@ namespace CodeSmile.Statemachine.Conditions
 
 		private IsLessOrEqual() {} // forbidden default ctor
 
-		public IsLessOrEqual(FSM.IntVariable variable, Int32 compareValue)
-			: this(variable, new FSM.IntVariable(compareValue)) {}
+		public IsLessOrEqual(FSM.IntVar variable, Int32 compareValue)
+			: this(variable, new FSM.IntVar(compareValue)) {}
 
-		public IsLessOrEqual(FSM.FloatVariable variable, Single compareValue)
-			: this(variable, new FSM.FloatVariable(compareValue)) {}
+		public IsLessOrEqual(FSM.FloatVar variable, Single compareValue)
+			: this(variable, new FSM.FloatVar(compareValue)) {}
 
-		public IsLessOrEqual(FSM.FloatVariable variable, Int32 compareValue)
-			: this(variable, new FSM.FloatVariable(compareValue)) {}
+		public IsLessOrEqual(FSM.FloatVar variable, Int32 compareValue)
+			: this(variable, new FSM.FloatVar(compareValue)) {}
 
-		public IsLessOrEqual(FSM.IntVariable variable, FSM.IntVariable comparand)
+		public IsLessOrEqual(FSM.IntVar variable, FSM.IntVar comparand)
 			: this((FSM.VariableBase)variable, comparand) {}
 
-		public IsLessOrEqual(FSM.FloatVariable variable, FSM.FloatVariable comparand)
+		public IsLessOrEqual(FSM.FloatVar variable, FSM.FloatVar comparand)
 			: this((FSM.VariableBase)variable, comparand) {}
 
 		private IsLessOrEqual(FSM.VariableBase variable, FSM.VariableBase comparand)

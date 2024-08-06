@@ -166,6 +166,8 @@ namespace CodeSmile.Statemachine
 			var iterations = AllowMultipleStateChanges ? MaxStateChangesPerEvaluate : 0;
 			do
 			{
+				//Debug.Log($"[{Time.frameCount}] FSM Update: iteration #{MaxStateChangesPerEvaluate-iterations}");
+
 				DidChangeState = false;
 
 				var updatingState = ActiveState;

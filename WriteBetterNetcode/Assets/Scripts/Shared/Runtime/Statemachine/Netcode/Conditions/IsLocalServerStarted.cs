@@ -14,7 +14,6 @@ namespace CodeSmile.Statemachine.Netcode.Conditions
 
 		public void OnStart(FSM sm)
 		{
-			Debug.LogWarning("IsServerStarted starting .. " + GetHashCode());
 			m_IsServerStarted = false;
 
 			var net = NetworkManager.Singleton;
@@ -36,12 +35,7 @@ namespace CodeSmile.Statemachine.Netcode.Conditions
 
 		public Boolean IsSatisfied(FSM sm) => m_IsServerStarted;
 
-		private void OnServerStartedEvent()
-		{
-			Debug.LogWarning("IsServerStarted OnServerStartedEvent .. " + GetHashCode());
-
-			m_IsServerStarted = true;
-		}
+		private void OnServerStartedEvent() => m_IsServerStarted = true;
 
 		private void OnServerStoppedEvent(Boolean isHost) => m_IsServerStarted = false;
 		private void OnTransportFailureEvent() => m_IsServerStarted = false;

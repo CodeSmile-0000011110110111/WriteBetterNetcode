@@ -9,10 +9,10 @@ namespace CodeSmile.Statemachine.Conditions
 {
 	public class IsTrue : FSM.ICondition
 	{
-		private readonly FSM.BoolVariable m_Variable;
+		private readonly FSM.BoolVar m_Variable;
 
 		private IsTrue() {} // forbidden default ctor
-		public IsTrue(FSM.BoolVariable variable) => m_Variable = variable;
+		public IsTrue(FSM.BoolVar variable) => m_Variable = variable;
 
 		public Boolean IsSatisfied(FSM sm) => m_Variable.Value;
 

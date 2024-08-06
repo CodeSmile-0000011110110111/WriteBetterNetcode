@@ -14,19 +14,19 @@ namespace CodeSmile.Statemachine.Actions
 
 		private Subtract() {} // forbidden default ctor
 
-		public Subtract(FSM.IntVariable variable, Int32 value)
-			: this(variable, new FSM.IntVariable(value)) {}
+		public Subtract(FSM.IntVar variable, Int32 value)
+			: this(variable, new FSM.IntVar(value)) {}
 
-		public Subtract(FSM.IntVariable variable, FSM.IntVariable operand)
+		public Subtract(FSM.IntVar variable, FSM.IntVar operand)
 			: this((FSM.VariableBase)variable, operand) {}
 
-		public Subtract(FSM.FloatVariable variable, Int32 value)
-			: this(variable, new FSM.FloatVariable(value)) {}
+		public Subtract(FSM.FloatVar variable, Int32 value)
+			: this(variable, new FSM.FloatVar(value)) {}
 
-		public Subtract(FSM.FloatVariable variable, Single value)
-			: this(variable, new FSM.FloatVariable(value)) {}
+		public Subtract(FSM.FloatVar variable, Single value)
+			: this(variable, new FSM.FloatVar(value)) {}
 
-		public Subtract(FSM.FloatVariable variable, FSM.FloatVariable operand)
+		public Subtract(FSM.FloatVar variable, FSM.FloatVar operand)
 			: this((FSM.VariableBase)variable, operand) {}
 
 		private Subtract(FSM.VariableBase variable, FSM.VariableBase operand)

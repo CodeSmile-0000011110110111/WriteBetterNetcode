@@ -1,8 +1,6 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.Statemachine.Actions;
-using CodeSmile.Statemachine.Conditions;
 using CodeSmile.Statemachine.Netcode;
 using CodeSmile.Statemachine.Netcode.Actions;
 using CodeSmile.Statemachine.Netcode.Conditions;
@@ -30,6 +28,7 @@ namespace CodeSmile.BetterNetcode.Network
 		{
 			Initializing,
 			Offline,
+			SigningIn,
 
 			ServerStarting,
 			ServerStarted,
@@ -47,8 +46,9 @@ namespace CodeSmile.BetterNetcode.Network
 		// [SerializeField] private NetworkConfig m_ClientConfig = new() { Role = NetworkRole.Client };
 
 		public FSM m_Statemachine;
-		private FSM.IntVariable m_NetworkRoleVar;
-		private FSM.StructVariable<TransportConfig> m_TransportConfigVar;
+		private FSM.StructVar<NetcodeConfig> m_NetcodeConfigVar;
+		private FSM.StructVar<RelayConfig> m_RelayConfigVar;
+		private FSM.StructVar<TransportConfig> m_TransportConfigVar;
 
 		private void Awake() => SetupStatemachine();
 
@@ -74,16 +74,16 @@ namespace CodeSmile.BetterNetcode.Network
 
 			switch (mppmRole)
 			{
-				case NetworkRole.Client:
+				case NetcodeRole.Client:
 					RequestStartClient();
 					break;
-				case NetworkRole.Host:
+				case NetcodeRole.Host:
 					RequestStartHost();
 					break;
-				case NetworkRole.Server:
+				case NetcodeRole.Server:
 					RequestStartServer();
 					break;
-				case NetworkRole.None:
+				case NetcodeRole.None:
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
@@ -98,12 +98,14 @@ namespace CodeSmile.BetterNetcode.Network
 			m_Statemachine.OnStateChange += args =>
 				Debug.LogWarning($"{m_Statemachine} change: {args.PreviousState} to {args.ActiveState}");
 
-			m_NetworkRoleVar = m_Statemachine.Vars.DefineInt(nameof(NetworkRole));
+			m_NetcodeConfigVar = m_Statemachine.Vars.DefineStruct<NetcodeConfig>(nameof(NetcodeConfig));
+			m_RelayConfigVar = m_Statemachine.Vars.DefineStruct<RelayConfig>(nameof(RelayConfig));
 			m_TransportConfigVar = m_Statemachine.Vars.DefineStruct<TransportConfig>(nameof(TransportConfig));
 
 			var states = m_Statemachine.States;
 			var initState = states[(Int32)State.Initializing];
 			var offlineState = states[(Int32)State.Offline];
+			var signInState = states[(Int32)State.SigningIn];
 			var serverStartingState = states[(Int32)State.ServerStarting];
 			var serverStartedState = states[(Int32)State.ServerStarted];
 			var clientStartingState = states[(Int32)State.ClientStarting];
@@ -114,93 +116,114 @@ namespace CodeSmile.BetterNetcode.Network
 
 			// Init state
 			initState.AddTransition("Init Complete")
-				.To(offlineState)
+				.ToState(offlineState)
 				.WithConditions(new IsNetworkOffline())
 				.WithActions(new UnityServicesInit());
 
-			// Offline state
+			// Sign In
+			// TODO: handle signIn throwing an exception!!
 			offlineState.AddTransition("SignInAnonymously")
-				.WithConditions(new IsNotSignedIn(),
-					new IsNotEqual(m_NetworkRoleVar, (Int32)NetworkRole.None))
+				.ToState(signInState)
+				.WithConditions(
+					new IsNotSignedIn(),
+					new IsRelayEnabled(m_RelayConfigVar))
 				.WithActions(new SignInAnonymously());
+			signInState.AddTransition("SignedIn")
+				.ToState(offlineState)
+				.WithConditions(new IsSignedIn());
+
+			// Offline state
 			offlineState.AddTransition("Start Server")
-				.To(serverStartingState)
-				.WithConditions(new IsSignedIn(),
-					new IsEqual(m_NetworkRoleVar, (Int32)NetworkRole.Server))
-				.WithActions(new ApplyTransportConfig(m_TransportConfigVar),
-					new NetworkStart(NetworkRole.Server));
+				.ToState(serverStartingState)
+				.WithConditions(
+					new IsSignedIn(),
+					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.Server))
+				.WithActions(
+					new ApplyTransportConfig(m_TransportConfigVar),
+					new NetworkStart(NetcodeRole.Server));
 			offlineState.AddTransition("Start Host")
-				.To(serverStartingState)
-				.WithConditions(new IsSignedIn(),
-					new IsEqual(m_NetworkRoleVar, (Int32)NetworkRole.Host))
-				.WithActions(new ApplyTransportConfig(m_TransportConfigVar),
-					new NetworkStart(NetworkRole.Host));
+				.ToState(serverStartingState)
+				.WithConditions(
+					new IsSignedIn(),
+					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.Host))
+				.WithActions(
+					new ApplyTransportConfig(m_TransportConfigVar),
+					new NetworkStart(NetcodeRole.Host));
 			offlineState.AddTransition("Start Client")
-				.To(clientStartingState)
-				.WithConditions(new IsSignedIn(),
-					new IsEqual(m_NetworkRoleVar, (Int32)NetworkRole.Client))
-				.WithActions(new ApplyTransportConfig(m_TransportConfigVar),
-					new NetworkStart(NetworkRole.Client));
+				.ToState(clientStartingState)
+				.WithConditions(
+					new IsSignedIn(),
+					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.Client))
+				.WithActions(
+					new ApplyTransportConfig(m_TransportConfigVar),
+					new NetworkStart(NetcodeRole.Client));
 
 			// Server States
 			serverStartingState.AddTransition("Server started")
-				.To(serverStartedState)
+				.ToState(serverStartedState)
 				.WithConditions(new IsLocalServerStarted());
 			serverStartedState.AddTransition("Server stopping")
-				.To(stoppingState)
-				.WithConditions(FSM.OR(FSM.NOT(new IsLocalServerStarted()),
-					new IsEqual(m_NetworkRoleVar, (Int32)NetworkRole.None)))
+				.ToState(stoppingState)
+				.WithConditions(FSM.OR(
+					FSM.NOT(new IsLocalServerStarted()),
+					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None)))
 				.WithActions(new NetworkStop());
 
 			// Client States
 			clientStartingState.AddTransition("Client started")
-				.To(clientStartedState)
+				.ToState(clientStartedState)
 				.WithConditions(new IsLocalClientStarted());
 			clientStartedState.AddTransition("Client connected")
-				.To(clientConnectedState)
+				.ToState(clientConnectedState)
 				.WithConditions(new IsLocalClientConnected());
 			clientConnectedState.AddTransition("Client disconnected")
-				.To(clientDisconnectedState)
+				.ToState(clientDisconnectedState)
 				.WithConditions(FSM.NOT(new IsLocalClientConnected()));
 
 			// Stopping state
 			stoppingState.AddTransition("Network stopping")
-				.To(offlineState)
+				.ToState(offlineState)
 				.WithConditions(new IsNetworkOffline())
-				.WithActions(new Assign(m_NetworkRoleVar, (Int32)NetworkRole.None));
+				.WithActions(new SetNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None));
 
 			// stop transition gets added to multiple states
 			FSM.CreateTransition("Client stopping")
-				.To(stoppingState)
+				.ToState(stoppingState)
 				.AddToStates(clientStartedState, clientConnectedState, clientDisconnectedState)
-				.WithConditions(FSM.OR(FSM.NOT(new IsLocalClientStarted()),
-					new IsEqual(m_NetworkRoleVar, (Int32)NetworkRole.None)))
+				.WithConditions(FSM.OR(
+					FSM.NOT(new IsLocalClientStarted()),
+					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None)))
 				.WithActions(new NetworkStop());
 		}
 
 		public void RequestStartServer()
 		{
-			m_NetworkRoleVar.Value = (Int32)NetworkRole.Server;
+			m_NetcodeConfigVar.Value = new NetcodeConfig { Role = NetcodeRole.Server };
+			m_RelayConfigVar.Value = new RelayConfig { UseRelayService = true };
 			m_TransportConfigVar.Value = new TransportConfig
 			{
-				Role = NetworkRole.Server,
+				Address = "127.0.0.1",
+				Port = 7777,
+				ServerListenAddress = "0.0.0.0",
+				UseEncryption = false,
+				UseWebSockets = false,
 			};
 		}
 
-		public void RequestStartHost() => m_NetworkRoleVar.Value = (Int32)NetworkRole.Host;
-		public void RequestStartClient() => m_NetworkRoleVar.Value = (Int32)NetworkRole.Client;
-		public void RequestStopNetwork() => m_NetworkRoleVar.Value = (Int32)NetworkRole.None;
+		public void RequestStartHost() => throw new NotImplementedException();
+		public void RequestStartClient() => throw new NotImplementedException();
+		public void RequestStopNetwork() => throw new NotImplementedException();
 
-		private NetworkRole GetNetworkRoleFromMppmTags()
+		private NetcodeRole GetNetworkRoleFromMppmTags()
 		{
 #if UNITY_EDITOR
 			var tags = CurrentPlayer.ReadOnlyTags();
-			var roleCount = Enum.GetValues(typeof(NetworkRole)).Length;
+			var roleCount = Enum.GetValues(typeof(NetcodeRole)).Length;
 			for (var r = 0; r < roleCount; r++)
-				if (tags.Contains(((NetworkRole)r).ToString()))
-					return (NetworkRole)r;
+				if (tags.Contains(((NetcodeRole)r).ToString()))
+					return (NetcodeRole)r;
 #endif
-			return NetworkRole.None;
+			return NetcodeRole.None;
 		}
 
 		public void StartNetworking(TransportConfig config)

@@ -14,19 +14,19 @@ namespace CodeSmile.Statemachine.Actions
 
 		private Multiply() {} // forbidden default ctor
 
-		public Multiply(FSM.IntVariable variable, Int32 value)
-			: this(variable, new FSM.IntVariable(value)) {}
+		public Multiply(FSM.IntVar variable, Int32 value)
+			: this(variable, new FSM.IntVar(value)) {}
 
-		public Multiply(FSM.IntVariable variable, FSM.IntVariable operand)
+		public Multiply(FSM.IntVar variable, FSM.IntVar operand)
 			: this((FSM.VariableBase)variable, operand) {}
 
-		public Multiply(FSM.FloatVariable variable, Int32 value)
-			: this(variable, new FSM.FloatVariable(value)) {}
+		public Multiply(FSM.FloatVar variable, Int32 value)
+			: this(variable, new FSM.FloatVar(value)) {}
 
-		public Multiply(FSM.FloatVariable variable, Single value)
-			: this(variable, new FSM.FloatVariable(value)) {}
+		public Multiply(FSM.FloatVar variable, Single value)
+			: this(variable, new FSM.FloatVar(value)) {}
 
-		public Multiply(FSM.FloatVariable variable, FSM.FloatVariable operand)
+		public Multiply(FSM.FloatVar variable, FSM.FloatVar operand)
 			: this((FSM.VariableBase)variable, operand) {}
 
 		private Multiply(FSM.VariableBase variable, FSM.VariableBase operand)

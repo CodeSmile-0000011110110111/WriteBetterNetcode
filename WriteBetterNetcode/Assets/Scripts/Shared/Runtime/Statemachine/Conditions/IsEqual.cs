@@ -14,22 +14,22 @@ namespace CodeSmile.Statemachine.Conditions
 
 		private IsEqual() {} // forbidden default ctor
 
-		public IsEqual(FSM.IntVariable variable, Int32 compareValue)
-			: this(variable, new FSM.IntVariable(compareValue)) {}
+		public IsEqual(FSM.IntVar variable, Int32 compareValue)
+			: this(variable, new FSM.IntVar(compareValue)) {}
 
-		public IsEqual(FSM.FloatVariable variable, Int32 compareValue)
-			: this(variable, new FSM.FloatVariable(compareValue)) {}
+		public IsEqual(FSM.FloatVar variable, Int32 compareValue)
+			: this(variable, new FSM.FloatVar(compareValue)) {}
 
-		public IsEqual(FSM.FloatVariable variable, Single compareValue)
-			: this(variable, new FSM.FloatVariable(compareValue)) {}
+		public IsEqual(FSM.FloatVar variable, Single compareValue)
+			: this(variable, new FSM.FloatVar(compareValue)) {}
 
-		public IsEqual(FSM.BoolVariable variable, FSM.BoolVariable comparand)
+		public IsEqual(FSM.BoolVar variable, FSM.BoolVar comparand)
 			: this((FSM.VariableBase)variable, comparand) {}
 
-		public IsEqual(FSM.IntVariable variable, FSM.IntVariable comparand)
+		public IsEqual(FSM.IntVar variable, FSM.IntVar comparand)
 			: this((FSM.VariableBase)variable, comparand) {}
 
-		public IsEqual(FSM.FloatVariable variable, FSM.FloatVariable comparand)
+		public IsEqual(FSM.FloatVar variable, FSM.FloatVar comparand)
 			: this((FSM.VariableBase)variable, comparand) {}
 
 		private IsEqual(FSM.VariableBase variable, FSM.VariableBase comparand)

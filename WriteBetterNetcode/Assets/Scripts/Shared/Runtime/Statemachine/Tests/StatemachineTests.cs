@@ -41,7 +41,7 @@ namespace CodeSmile.Statemachine.Tests
 			Assert.Throws<ArgumentException>(() =>
 			{
 				var state = FSM.CreateState("X");
-				state.AddTransition().To(FSM.CreateState("?"));
+				state.AddTransition().ToState(FSM.CreateState("?"));
 				new FSM("FSM").WithStates(state).Start();
 			});
 #endif
@@ -53,7 +53,7 @@ namespace CodeSmile.Statemachine.Tests
 			var didExecuteActions = false;
 
 			var sm = new FSM("FSM").WithStates("START", "END");
-			sm.States[0].AddTransition().To(sm.States[1]).WithActions(FSM.Action(() => didExecuteActions = true));
+			sm.States[0].AddTransition().ToState(sm.States[1]).WithActions(FSM.Action(() => didExecuteActions = true));
 
 			sm.Start().Update();
 
@@ -66,7 +66,7 @@ namespace CodeSmile.Statemachine.Tests
 		public void FSM_StateChange_InvokesStateChangeEvent()
 		{
 			var sm = new FSM("FSM").WithStates("START", "END");
-			sm.States[0].AddTransition().To(sm.States[1]);
+			sm.States[0].AddTransition().ToState(sm.States[1]);
 
 			var didInvokeStateChangedEvent = false;
 			sm.OnStateChange += args =>

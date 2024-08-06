@@ -10,9 +10,9 @@ namespace CodeSmile.Statemachine.Netcode.Actions
 {
 	public sealed class NetworkStart : FSM.IAction
 	{
-		private readonly NetworkRole m_Role;
+		private readonly NetcodeRole m_Role;
 
-		public NetworkStart(NetworkRole role) => m_Role = role;
+		public NetworkStart(NetcodeRole role) => m_Role = role;
 
 		public void Execute(FSM sm)
 		{
@@ -20,17 +20,17 @@ namespace CodeSmile.Statemachine.Netcode.Actions
 			{
 				switch (m_Role)
 				{
-					case NetworkRole.Client:
+					case NetcodeRole.Client:
 						NetworkManager.Singleton.StartClient();
 						break;
-					case NetworkRole.Host:
+					case NetcodeRole.Host:
 						NetworkManager.Singleton.StartHost();
 						break;
-					case NetworkRole.Server:
+					case NetcodeRole.Server:
 						NetworkManager.Singleton.StartServer();
 						break;
 
-					case NetworkRole.None:
+					case NetcodeRole.None:
 					default:
 						throw new ArgumentOutOfRangeException(nameof(m_Role), m_Role.ToString());
 				}

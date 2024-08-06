@@ -9,10 +9,10 @@ namespace CodeSmile.Statemachine.Actions
 {
 	public class SetFalse : FSM.IAction
 	{
-		private readonly FSM.BoolVariable m_Variable;
+		private readonly FSM.BoolVar m_Variable;
 
 		private SetFalse() {} // forbidden default ctor
-		public SetFalse(FSM.BoolVariable variable) => m_Variable = variable;
+		public SetFalse(FSM.BoolVar variable) => m_Variable = variable;
 
 		public void Execute(FSM sm) => m_Variable.Value = false;
 

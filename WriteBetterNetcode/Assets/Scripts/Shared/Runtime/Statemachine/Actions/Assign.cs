@@ -14,19 +14,19 @@ namespace CodeSmile.Statemachine.Actions
 
 		private Assign() {} // forbidden default ctor
 
-		public Assign(FSM.IntVariable variable, Int32 value)
-			: this(variable, new FSM.IntVariable(value)) {}
+		public Assign(FSM.IntVar variable, Int32 value)
+			: this(variable, new FSM.IntVar(value)) {}
 
-		public Assign(FSM.IntVariable variable, FSM.IntVariable operand)
+		public Assign(FSM.IntVar variable, FSM.IntVar operand)
 			: this((FSM.VariableBase)variable, operand) {}
 
-		public Assign(FSM.FloatVariable variable, Int32 value)
-			: this(variable, new FSM.FloatVariable(value)) {}
+		public Assign(FSM.FloatVar variable, Int32 value)
+			: this(variable, new FSM.FloatVar(value)) {}
 
-		public Assign(FSM.FloatVariable variable, Single value)
-			: this(variable, new FSM.FloatVariable(value)) {}
+		public Assign(FSM.FloatVar variable, Single value)
+			: this(variable, new FSM.FloatVar(value)) {}
 
-		public Assign(FSM.FloatVariable variable, FSM.FloatVariable operand)
+		public Assign(FSM.FloatVar variable, FSM.FloatVar operand)
 			: this((FSM.VariableBase)variable, operand) {}
 
 		public Assign(FSM.VariableBase variable, FSM.VariableBase operand)

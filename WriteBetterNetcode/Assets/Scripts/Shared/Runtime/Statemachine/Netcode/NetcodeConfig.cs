@@ -1,16 +1,17 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using System;
 using UnityEditor;
 using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode
 {
-	public enum NetworkRole
+	[Serializable]
+	public struct NetcodeConfig
 	{
-		None,
-		Server,
-		Host,
-		Client,
+		public NetcodeRole Role;
+
+		public override String ToString() => $"{nameof(NetcodeConfig)}(Role={Role})";
 	}
 }

@@ -39,7 +39,7 @@ namespace CodeSmile.Statemachine
 
 			public override String ToString() => $"Transition({Name})";
 
-			public Transition To(State gotoState)
+			public Transition ToState(State gotoState)
 			{
 				if (GotoState != null)
 					throw new InvalidOperationException("GotoState already set");
@@ -89,7 +89,7 @@ namespace CodeSmile.Statemachine
 
 					if (GotoState != null)
 					{
-						Debug.Log($"Transition '{Name}' changes state to {GotoState.Name}");
+						//Debug.Log($"Transition '{Name}' changes state to {GotoState.Name}");
 						sm.SetActiveState(GotoState);
 					}
 				}

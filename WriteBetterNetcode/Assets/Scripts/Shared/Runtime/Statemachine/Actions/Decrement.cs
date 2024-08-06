@@ -9,11 +9,11 @@ namespace CodeSmile.Statemachine.Actions
 {
 	public class Decrement : FSM.IAction
 	{
-		private readonly FSM.IntVariable m_Variable;
+		private readonly FSM.IntVar m_Variable;
 
 		private Decrement() {} // forbidden default ctor
 
-		private Decrement(FSM.IntVariable variable) => m_Variable = variable;
+		private Decrement(FSM.IntVar variable) => m_Variable = variable;
 
 		public void Execute(FSM sm) => m_Variable.Value--;
 
