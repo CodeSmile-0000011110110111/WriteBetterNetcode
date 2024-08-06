@@ -41,10 +41,10 @@ namespace CodeSmile.Statemachine
 
 		public FloatVar GetFloat(String name) => m_Variables[name] as FloatVar;
 
-		public StructVar<T> DefineStruct<T>(String name, T value = default) where T : struct =>
-			AddVariable(name, new StructVar<T>(value));
+		public Var<T> DefineStruct<T>(String name, T value = default) where T : struct =>
+			AddVariable(name, new Var<T>(value));
 
-		public StructVar<T> GetStruct<T>(String name) where T : struct => m_Variables[name] as StructVar<T>;
+		public Var<T> GetStruct<T>(String name) where T : struct => m_Variables[name] as Var<T>;
 	}
 
 	public abstract class VariableBase
@@ -144,16 +144,16 @@ namespace CodeSmile.Statemachine
 		public override void DivideValue(VariableBase variable) => Value /= ((FloatVar)variable).Value;
 	}
 
-	public sealed class StructVar<T> : VariableBase, IEquatable<StructVar<T>> where T : struct
+	public sealed class Var<T> : VariableBase, IEquatable<Var<T>> where T : struct
 	{
 		public T Value { get; set; }
-		public StructVar(T value = default) => Value = value;
-		public Boolean Equals(StructVar<T> other) => !ReferenceEquals(null, other) && Value.Equals(other.Value);
-		public override Boolean Equals(Object obj) => obj is StructVar<T> other && Equals(other);
+		public Var(T value = default) => Value = value;
+		public Boolean Equals(Var<T> other) => !ReferenceEquals(null, other) && Value.Equals(other.Value);
+		public override Boolean Equals(Object obj) => obj is Var<T> other && Equals(other);
 		public override Int32 GetHashCode() => Value.GetHashCode();
 		public override String ToString() => Value.ToString();
 
-		public override void SetValue(VariableBase variable) => Value = ((StructVar<T>)variable).Value;
+		public override void SetValue(VariableBase variable) => Value = ((Var<T>)variable).Value;
 		public override void AddValue(VariableBase variable) => throw new NotSupportedException();
 		public override void SubtractValue(VariableBase variable) => throw new NotSupportedException();
 		public override void MultiplyValue(VariableBase variable) => throw new NotSupportedException();

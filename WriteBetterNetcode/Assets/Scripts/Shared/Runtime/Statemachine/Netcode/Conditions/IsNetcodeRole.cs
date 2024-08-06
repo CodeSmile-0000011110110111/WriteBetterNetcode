@@ -9,20 +9,19 @@ namespace CodeSmile.Statemachine.Netcode.Conditions
 {
 	public class IsNetcodeRole : ICondition
 	{
-		private readonly StructVar<NetcodeConfig> m_RoleVar;
-		private readonly StructVar<NetcodeConfig> m_CompareVar;
+		private readonly Var<NetcodeConfig> m_RoleVar;
+		private readonly NetcodeRole m_Role;
 
 		private IsNetcodeRole() {} // forbidden ctor
 
-		public IsNetcodeRole(StructVar<NetcodeConfig> roleVar, NetcodeRole role)
-			: this(roleVar, new StructVar<NetcodeConfig>(new NetcodeConfig { Role = role })) {}
-
-		public IsNetcodeRole(StructVar<NetcodeConfig> roleVar, StructVar<NetcodeConfig> compareVar)
+		public IsNetcodeRole(Var<NetcodeConfig> roleVar, NetcodeRole role)
 		{
 			m_RoleVar = roleVar;
-			m_CompareVar = compareVar;
+			m_Role = role;
 		}
 
-		public Boolean IsSatisfied(FSM sm) => m_RoleVar.Value.Role == m_CompareVar.Value.Role;
+		public Boolean IsSatisfied(FSM sm) => m_RoleVar.Value.Role == m_Role;
+
+		public String ToDebugString(FSM sm) => $"{nameof(IsNetcodeRole)} == {m_Role}";
 	}
 }

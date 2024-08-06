@@ -21,7 +21,7 @@ namespace CodeSmile.Statemachine
 #endif
 		public override String ToString() => $"FSM({Name})";
 
-		public String ToPlantUml()
+		public String ToPlantUml(Boolean showCurrentTruthValues = false)
 		{
 			if (!IsStarted)
 				throw new Exception($"FSM '{Name}': can only generate PlantUML after statemachine started");
@@ -68,7 +68,8 @@ namespace CodeSmile.Statemachine
 						else if (cond is LogicalAnd andCondition)
 							cond = andCondition;
 
-						statesBuilder.AppendLine($"\t\t{stateId}_{transId} : {cond.ToDebugString(this)} | \"\"{satisfied}\"\"");
+						statesBuilder.Append($"\t\t{stateId}_{transId} : {cond.ToDebugString(this)}");
+						statesBuilder.AppendLine(showCurrentTruthValues ? $" | \"\"{satisfied}\"\"" : "");
 					}
 
 					statesBuilder.AppendLine($"\t\t{stateId}_{transId} : ....");

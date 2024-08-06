@@ -5,8 +5,11 @@ using CodeSmile.Statemachine;
 using CodeSmile.Statemachine.Netcode;
 using CodeSmile.Statemachine.Netcode.Actions;
 using CodeSmile.Statemachine.Netcode.Conditions;
+using CodeSmile.Statemachine.Services;
 using CodeSmile.Statemachine.Services.Authentication.Actions;
 using CodeSmile.Statemachine.Services.Authentication.Conditions;
+using CodeSmile.Statemachine.Services.Relay.Actions;
+using CodeSmile.Statemachine.Services.Relay.Conditions;
 using System;
 using System.IO;
 using System.Linq;
@@ -29,20 +32,11 @@ namespace CodeSmile.BetterNetcode.Network
 		{
 			Initializing,
 			Offline,
-
-			SignIn,
-			RelayAllocation,
-
+			RelayAllocating,
 			Starting,
-
-			ServerStarting,
 			ServerStarted,
-
-			ClientStarting,
 			ClientStarted,
 			ClientConnected,
-			ClientDisconnected,
-
 			Stopping,
 		}
 
@@ -51,15 +45,15 @@ namespace CodeSmile.BetterNetcode.Network
 		// [SerializeField] private NetworkConfig m_ClientConfig = new() { Role = NetworkRole.Client };
 
 		public FSM m_Statemachine;
-		private StructVar<NetcodeConfig> m_NetcodeConfigVar;
-		private StructVar<RelayConfig> m_RelayConfigVar;
-		private StructVar<TransportConfig> m_TransportConfigVar;
+		private Var<NetcodeConfig> m_NetcodeConfigVar;
+		private Var<RelayConfig> m_RelayConfigVar;
+		private Var<TransportConfig> m_TransportConfigVar;
 
 		private void Awake() => SetupStatemachine();
 
 		private void Start()
 		{
-			m_Statemachine.Start();
+			m_Statemachine.Start().Update();
 
 			try
 			{
@@ -69,10 +63,8 @@ namespace CodeSmile.BetterNetcode.Network
 			}
 			catch (Exception e)
 			{
-				Debug.LogWarning(e);
+				Debug.LogError(e);
 			}
-
-			m_Statemachine.Update();
 
 			var mppmRole = GetNetworkRoleFromMppmTags();
 			//Debug.Log("Network Role: " + mppmRole);
@@ -94,11 +86,8 @@ namespace CodeSmile.BetterNetcode.Network
 			}
 		}
 
-		private void Update() =>
-			//Debug.Log($"[{Time.frameCount}] {m_Statemachine.Name} updating ...");
-			m_Statemachine.Update();
+		private void Update() => m_Statemachine.Update();
 
-		//Debug.Log($"[{Time.frameCount}] {m_Statemachine.Name} updating DONE ...");
 		private void SetupStatemachine()
 		{
 			m_Statemachine = new FSM(new String(nameof(NetworkState))).WithStates(Enum.GetNames(typeof(State)));
@@ -113,16 +102,21 @@ namespace CodeSmile.BetterNetcode.Network
 			var states = m_Statemachine.States;
 			var initState = states[(Int32)State.Initializing];
 			var offlineState = states[(Int32)State.Offline];
-			var signInState = states[(Int32)State.SignIn];
-			var relayAllocState = states[(Int32)State.RelayAllocation];
+			var relayAllocState = states[(Int32)State.RelayAllocating];
 			var startingState = states[(Int32)State.Starting];
-			var serverStartingState = states[(Int32)State.ServerStarting];
 			var serverStartedState = states[(Int32)State.ServerStarted];
-			var clientStartingState = states[(Int32)State.ClientStarting];
 			var clientStartedState = states[(Int32)State.ClientStarted];
 			var clientConnectedState = states[(Int32)State.ClientConnected];
-			var clientDisconnectedState = states[(Int32)State.ClientDisconnected];
 			var stoppingState = states[(Int32)State.Stopping];
+
+			/* TODO (MAJOR ONES)
+			 * - how to handle action exceptions?
+			 *		transition => ToErrorState ?? (handle exception where it occurs)
+			 *		state => OnErrorTransition ?? (hmmmm)
+			 * - forward events (eg join code available)
+			 *		route through config object ... BUT: config is a struct
+			 * - Var<T> allow classes?
+			 */
 
 			// Init state
 			initState.AddTransition("Init Complete")
@@ -130,46 +124,44 @@ namespace CodeSmile.BetterNetcode.Network
 				.WithConditions(new IsNetworkOffline())
 				.WithActions(new UnityServicesInit());
 
-			// To relay or not to relay ...
-			offlineState.AddTransition("StartWithoutRelay")
-				.ToState(startingState)
-				.WithConditions(FSM.NOT(new IsRelayEnabled(m_RelayConfigVar)));
-			// TODO: handle signIn throwing an exception!!
-			offlineState.AddTransition("StartWithRelay")
-				.ToState(signInState)
-				.WithConditions(new IsRelayEnabled(m_RelayConfigVar))
-				.WithActions(new SignInAnonymously());
-			signInState.AddTransition("SignedIn")
-				.ToState(startingState)
-				.WithConditions(new IsSignedIn());
-
 			// Offline state
-			startingState.AddTransition("Start Server")
-				.ToState(serverStartingState)
+			offlineState.AddTransition("Start with Relay")
+				.ToState(relayAllocState)
 				.WithConditions(
-					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.Server))
+					FSM.NOT(new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None)),
+					new IsRelayEnabled(m_RelayConfigVar))
 				.WithActions(
-					new ApplyTransportConfig(m_TransportConfigVar),
-					new NetworkStart(NetcodeRole.Server));
-			startingState.AddTransition("Start Host")
-				.ToState(serverStartingState)
+					new SignInAnonymously(),
+					new RelayCreateOrJoinAllocation(m_NetcodeConfigVar, m_RelayConfigVar));
+			offlineState.AddTransition("Start w/o Relay")
+				.ToState(startingState)
 				.WithConditions(
-					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.Host))
+					FSM.NOT(new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None)),
+					FSM.NOT(new IsRelayEnabled(m_RelayConfigVar)))
 				.WithActions(
-					new ApplyTransportConfig(m_TransportConfigVar),
-					new NetworkStart(NetcodeRole.Host));
-			startingState.AddTransition("Start Client")
-				.ToState(clientStartingState)
-				.WithConditions(
-					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.Client))
-				.WithActions(
-					new ApplyTransportConfig(m_TransportConfigVar),
-					new NetworkStart(NetcodeRole.Client));
+					new TransportSetup(m_NetcodeConfigVar, m_TransportConfigVar, m_RelayConfigVar),
+					new NetworkStart(m_NetcodeConfigVar));
 
-			// Server States
-			serverStartingState.AddTransition("Server started")
+			// Relay state
+			// TODO: handle signIn & relay failing or throwing an exception!!
+			relayAllocState.AddTransition("Relay Allocated")
+				.ToState(startingState)
+				.WithConditions(
+					new IsSignedIn(),
+					new IsRelayReady(m_RelayConfigVar))
+				.WithActions(
+					new TransportSetup(m_NetcodeConfigVar, m_TransportConfigVar, m_RelayConfigVar),
+					new NetworkStart(m_NetcodeConfigVar));
+
+			// Starting state
+			startingState.AddTransition("Server started")
 				.ToState(serverStartedState)
 				.WithConditions(new IsLocalServerStarted());
+			startingState.AddTransition("Client started")
+				.ToState(clientStartedState)
+				.WithConditions(new IsLocalClientStarted());
+
+			// Server States
 			serverStartedState.AddTransition("Server stopping")
 				.ToState(stoppingState)
 				.WithConditions(FSM.OR(
@@ -178,15 +170,13 @@ namespace CodeSmile.BetterNetcode.Network
 				.WithActions(new NetworkStop());
 
 			// Client States
-			clientStartingState.AddTransition("Client started")
-				.ToState(clientStartedState)
-				.WithConditions(new IsLocalClientStarted());
 			clientStartedState.AddTransition("Client connected")
 				.ToState(clientConnectedState)
 				.WithConditions(new IsLocalClientConnected());
 			clientConnectedState.AddTransition("Client disconnected")
-				.ToState(clientDisconnectedState)
-				.WithConditions(FSM.NOT(new IsLocalClientConnected()));
+				.ToState(stoppingState)
+				.WithConditions(FSM.NOT(new IsLocalClientConnected()))
+				.WithActions(new NetworkStop());
 
 			// Stopping state
 			stoppingState.AddTransition("Network stopping")
@@ -197,7 +187,7 @@ namespace CodeSmile.BetterNetcode.Network
 			// stop transition gets added to multiple states
 			FSM.CreateTransition("Client stopping")
 				.ToState(stoppingState)
-				.AddToStates(clientStartedState, clientConnectedState, clientDisconnectedState)
+				.AddToStates(clientStartedState, clientConnectedState)
 				.WithConditions(FSM.OR(
 					FSM.NOT(new IsLocalClientStarted()),
 					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None)))
@@ -207,7 +197,11 @@ namespace CodeSmile.BetterNetcode.Network
 		public void RequestStartServer()
 		{
 			m_NetcodeConfigVar.Value = new NetcodeConfig { Role = NetcodeRole.Server };
-			m_RelayConfigVar.Value = new RelayConfig { UseRelayService = true };
+			m_RelayConfigVar.Value = new RelayConfig
+			{
+				UseRelayService = true,
+				MaxConnections = 4,
+			};
 			m_TransportConfigVar.Value = new TransportConfig
 			{
 				Address = "127.0.0.1",

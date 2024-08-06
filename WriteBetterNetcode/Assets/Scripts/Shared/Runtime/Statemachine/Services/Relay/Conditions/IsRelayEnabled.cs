@@ -5,15 +5,15 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Netcode.Conditions
+namespace CodeSmile.Statemachine.Services.Relay.Conditions
 {
 	public class IsRelayEnabled : ICondition
 	{
-		private readonly StructVar<RelayConfig> m_RelayConfig;
+		private readonly Var<RelayConfig> m_RelayConfig;
 
 		private IsRelayEnabled() {} // forbidden
 
-		public IsRelayEnabled(StructVar<RelayConfig> relayConfig) => m_RelayConfig = relayConfig;
+		public IsRelayEnabled(Var<RelayConfig> relayConfig) => m_RelayConfig = relayConfig;
 
 		public Boolean IsSatisfied(FSM sm) => m_RelayConfig.Value.UseRelayService;
 	}

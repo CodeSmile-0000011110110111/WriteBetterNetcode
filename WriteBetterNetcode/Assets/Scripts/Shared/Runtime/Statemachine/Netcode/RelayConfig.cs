@@ -2,17 +2,46 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using System;
+using Unity.Services.Relay.Models;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Netcode
+namespace CodeSmile.Statemachine.Services
 {
 	[Serializable]
 	public struct RelayConfig
 	{
 		public Boolean UseRelayService;
-		public String RelayJoinCode;
+		[Range(1, 100)]
+		public Byte MaxConnections;
+		public String Region;
 
-		public override String ToString() => $"{nameof(RelayConfig)}(Relay={UseRelayService}, JoinCode={RelayJoinCode})";
+		public String JoinCode { get; private set; }
+		public Allocation HostAllocation { get; private set; }
+		public JoinAllocation JoinAllocation { get; private set; }
+
+		public Boolean IsReady => HostAllocation != null || JoinAllocation != null;
+
+		public void SetHostAllocation(Allocation alloc, String joinCode)
+		{
+			HostAllocation = alloc;
+			JoinCode = joinCode;
+			// TODO: invoke event here
+		}
+
+		// TODO: invoke event here
+		public void SetJoinAllocation(JoinAllocation alloc) => JoinAllocation = alloc;
+
+		public void ClearAllocationData()
+		{
+			JoinCode = null;
+			HostAllocation = null;
+			JoinAllocation = null;
+			// TODO: invoke event here
+		}
+
+		public override String ToString() =>
+			$"{nameof(RelayConfig)}(Relay={UseRelayService}, MaxConnections={MaxConnections}, Region={Region}, " +
+			$"JoinCode={JoinCode}, HostAllocation={HostAllocation}, JoinAllocation={JoinAllocation})";
 	}
 }

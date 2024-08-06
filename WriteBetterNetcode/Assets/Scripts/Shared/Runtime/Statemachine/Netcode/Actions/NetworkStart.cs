@@ -10,15 +10,16 @@ namespace CodeSmile.Statemachine.Netcode.Actions
 {
 	public sealed class NetworkStart : IAction
 	{
-		private readonly NetcodeRole m_Role;
+		private readonly Var<NetcodeConfig> m_NetcodeConfigVar;
 
-		public NetworkStart(NetcodeRole role) => m_Role = role;
+		public NetworkStart(Var<NetcodeConfig> netcodeConfigVar) => m_NetcodeConfigVar = netcodeConfigVar;
 
 		public void Execute(FSM sm)
 		{
+			var role = m_NetcodeConfigVar.Value.Role;
 			try
 			{
-				switch (m_Role)
+				switch (role)
 				{
 					case NetcodeRole.Client:
 						NetworkManager.Singleton.StartClient();
@@ -32,15 +33,13 @@ namespace CodeSmile.Statemachine.Netcode.Actions
 
 					case NetcodeRole.None:
 					default:
-						throw new ArgumentOutOfRangeException(nameof(m_Role), m_Role.ToString());
+						throw new ArgumentOutOfRangeException(nameof(role), role.ToString());
 				}
 			}
 			catch (Exception e)
 			{
-				Debug.LogError($"NetworkStart {m_Role} failed: {e}");
+				Debug.LogError($"{nameof(NetworkStart)} {role} failed: {e}");
 			}
 		}
-
-		public String ToDebugString(FSM sm) => $"{nameof(NetworkStart)}{m_Role}";
 	}
 }

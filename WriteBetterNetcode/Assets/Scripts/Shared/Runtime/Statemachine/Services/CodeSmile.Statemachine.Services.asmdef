@@ -3,8 +3,10 @@
     "rootNamespace": "CodeSmile",
     "references": [
         "GUID:416cc8b34229a5b488e6e2d2975cfa2c",
+        "GUID:3d5bff556afff2147a1fe3a1e33d394d",
         "GUID:fe25561d224ed4743af4c60938a59d0b",
-        "GUID:5540e30183c82e84b954c033c388e06c"
+        "GUID:5540e30183c82e84b954c033c388e06c",
+        "GUID:03058786646e84a4587858e9302c3f41"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
