@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Actions
+namespace CodeSmile.Statemachine.Variable.Actions
 {
 	public class SetFalse : FSM.IAction
 	{

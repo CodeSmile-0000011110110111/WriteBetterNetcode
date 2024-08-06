@@ -5,37 +5,37 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Actions
+namespace CodeSmile.Statemachine.Variable.Actions
 {
-	public class SetValue : FSM.IAction
+	public class MulValue : FSM.IAction
 	{
 		private readonly FSM.VariableBase m_Variable;
 		private readonly FSM.VariableBase m_Operand;
 
-		private SetValue() {} // forbidden default ctor
+		private MulValue() {} // forbidden default ctor
 
-		public SetValue(FSM.IntVar variable, Int32 value)
+		public MulValue(FSM.IntVar variable, Int32 value)
 			: this(variable, new FSM.IntVar(value)) {}
 
-		public SetValue(FSM.IntVar variable, FSM.IntVar operand)
+		public MulValue(FSM.IntVar variable, FSM.IntVar operand)
 			: this((FSM.VariableBase)variable, operand) {}
 
-		public SetValue(FSM.FloatVar variable, Int32 value)
+		public MulValue(FSM.FloatVar variable, Int32 value)
 			: this(variable, new FSM.FloatVar(value)) {}
 
-		public SetValue(FSM.FloatVar variable, Single value)
+		public MulValue(FSM.FloatVar variable, Single value)
 			: this(variable, new FSM.FloatVar(value)) {}
 
-		public SetValue(FSM.FloatVar variable, FSM.FloatVar operand)
+		public MulValue(FSM.FloatVar variable, FSM.FloatVar operand)
 			: this((FSM.VariableBase)variable, operand) {}
 
-		public SetValue(FSM.VariableBase variable, FSM.VariableBase operand)
+		private MulValue(FSM.VariableBase variable, FSM.VariableBase operand)
 		{
 			m_Variable = variable;
 			m_Operand = operand;
 		}
 
-		public void Execute(FSM sm) => m_Variable.SetValue(m_Operand);
+		public void Execute(FSM sm) => m_Variable.MultiplyValue(m_Operand);
 
 		public String ToDebugString(FSM sm) => $"{sm.GetDebugVarName(m_Variable)} = {m_Operand}";
 	}

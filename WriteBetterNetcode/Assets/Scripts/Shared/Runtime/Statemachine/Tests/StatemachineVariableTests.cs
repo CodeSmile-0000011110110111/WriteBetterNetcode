@@ -3,6 +3,8 @@
 
 using CodeSmile.Statemachine.Actions;
 using CodeSmile.Statemachine.Conditions;
+using CodeSmile.Statemachine.Variable.Actions;
+using CodeSmile.Statemachine.Variable.Conditions;
 using NUnit.Framework;
 using System;
 using UnityEditor;

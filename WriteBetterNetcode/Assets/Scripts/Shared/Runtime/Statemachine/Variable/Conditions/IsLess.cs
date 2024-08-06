@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Conditions
+namespace CodeSmile.Statemachine.Variable.Conditions
 {
 	public class IsLess : FSM.ICondition
 	{
