@@ -7,13 +7,13 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Variable.Actions
 {
-	public class IncValue : FSM.IAction
+	public class IncValue : IAction
 	{
-		private readonly FSM.IntVar m_Variable;
+		private readonly IntVar m_Variable;
 
 		private IncValue() {} // forbidden default ctor
 
-		private IncValue(FSM.IntVar variable) => m_Variable = variable;
+		private IncValue(IntVar variable) => m_Variable = variable;
 
 		public void Execute(FSM sm) => m_Variable.Value++;
 

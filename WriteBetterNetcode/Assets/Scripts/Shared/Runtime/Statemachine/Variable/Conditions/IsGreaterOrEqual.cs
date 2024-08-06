@@ -7,29 +7,29 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Variable.Conditions
 {
-	public class IsGreaterOrEqual : FSM.ICondition
+	public class IsGreaterOrEqual : ICondition
 	{
-		private readonly FSM.VariableBase m_Variable;
-		private readonly FSM.VariableBase m_Comparand;
+		private readonly VariableBase m_Variable;
+		private readonly VariableBase m_Comparand;
 
 		private IsGreaterOrEqual() {} // forbidden default ctor
 
-		public IsGreaterOrEqual(FSM.IntVar variable, Int32 compareValue)
-			: this(variable, new FSM.IntVar(compareValue)) {}
+		public IsGreaterOrEqual(IntVar variable, Int32 compareValue)
+			: this(variable, new IntVar(compareValue)) {}
 
-		public IsGreaterOrEqual(FSM.FloatVar variable, Single compareValue)
-			: this(variable, new FSM.FloatVar(compareValue)) {}
+		public IsGreaterOrEqual(FloatVar variable, Single compareValue)
+			: this(variable, new FloatVar(compareValue)) {}
 
-		public IsGreaterOrEqual(FSM.FloatVar variable, Int32 compareValue)
-			: this(variable, new FSM.FloatVar(compareValue)) {}
+		public IsGreaterOrEqual(FloatVar variable, Int32 compareValue)
+			: this(variable, new FloatVar(compareValue)) {}
 
-		public IsGreaterOrEqual(FSM.IntVar variable, FSM.IntVar comparand)
-			: this((FSM.VariableBase)variable, comparand) {}
+		public IsGreaterOrEqual(IntVar variable, IntVar comparand)
+			: this((VariableBase)variable, comparand) {}
 
-		public IsGreaterOrEqual(FSM.FloatVar variable, FSM.FloatVar comparand)
-			: this((FSM.VariableBase)variable, comparand) {}
+		public IsGreaterOrEqual(FloatVar variable, FloatVar comparand)
+			: this((VariableBase)variable, comparand) {}
 
-		private IsGreaterOrEqual(FSM.VariableBase variable, FSM.VariableBase comparand)
+		private IsGreaterOrEqual(VariableBase variable, VariableBase comparand)
 		{
 			m_Variable = variable;
 			m_Comparand = comparand;

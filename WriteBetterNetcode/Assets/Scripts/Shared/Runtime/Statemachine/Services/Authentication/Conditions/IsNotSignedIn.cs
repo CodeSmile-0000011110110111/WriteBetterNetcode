@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Services.Authentication.Conditions
 {
-	public class IsNotSignedIn : FSM.ICondition
+	public class IsNotSignedIn : ICondition
 	{
 		public Boolean IsSatisfied(FSM sm) => !AuthenticationService.Instance.IsSignedIn;
 	}

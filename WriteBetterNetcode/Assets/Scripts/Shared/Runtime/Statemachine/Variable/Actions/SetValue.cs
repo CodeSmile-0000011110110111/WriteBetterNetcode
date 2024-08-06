@@ -7,29 +7,29 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Variable.Actions
 {
-	public class SetValue : FSM.IAction
+	public class SetValue : IAction
 	{
-		private readonly FSM.VariableBase m_Variable;
-		private readonly FSM.VariableBase m_Operand;
+		private readonly VariableBase m_Variable;
+		private readonly VariableBase m_Operand;
 
 		private SetValue() {} // forbidden default ctor
 
-		public SetValue(FSM.IntVar variable, Int32 value)
-			: this(variable, new FSM.IntVar(value)) {}
+		public SetValue(IntVar variable, Int32 value)
+			: this(variable, new IntVar(value)) {}
 
-		public SetValue(FSM.IntVar variable, FSM.IntVar operand)
-			: this((FSM.VariableBase)variable, operand) {}
+		public SetValue(IntVar variable, IntVar operand)
+			: this((VariableBase)variable, operand) {}
 
-		public SetValue(FSM.FloatVar variable, Int32 value)
-			: this(variable, new FSM.FloatVar(value)) {}
+		public SetValue(FloatVar variable, Int32 value)
+			: this(variable, new FloatVar(value)) {}
 
-		public SetValue(FSM.FloatVar variable, Single value)
-			: this(variable, new FSM.FloatVar(value)) {}
+		public SetValue(FloatVar variable, Single value)
+			: this(variable, new FloatVar(value)) {}
 
-		public SetValue(FSM.FloatVar variable, FSM.FloatVar operand)
-			: this((FSM.VariableBase)variable, operand) {}
+		public SetValue(FloatVar variable, FloatVar operand)
+			: this((VariableBase)variable, operand) {}
 
-		public SetValue(FSM.VariableBase variable, FSM.VariableBase operand)
+		public SetValue(VariableBase variable, VariableBase operand)
 		{
 			m_Variable = variable;
 			m_Operand = operand;

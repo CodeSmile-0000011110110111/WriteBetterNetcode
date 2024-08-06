@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode.Conditions
 {
-	public sealed class OnTransportFailure : FSM.ICondition
+	public sealed class OnTransportFailure : ICondition
 	{
 		private Boolean m_DidTransportFailureOccur;
 

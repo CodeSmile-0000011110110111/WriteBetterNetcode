@@ -7,35 +7,35 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Variable.Conditions
 {
-	public class IsNotEqual : FSM.ICondition
+	public class IsNotEqual : ICondition
 	{
-		private readonly FSM.VariableBase m_Variable;
-		private readonly FSM.VariableBase m_Comparand;
+		private readonly VariableBase m_Variable;
+		private readonly VariableBase m_Comparand;
 
 		private IsNotEqual() {} // forbidden default ctor
 
-		public IsNotEqual(FSM.BoolVar variable, Boolean compareValue)
-			: this(variable, new FSM.BoolVar(compareValue)) {}
+		public IsNotEqual(BoolVar variable, Boolean compareValue)
+			: this(variable, new BoolVar(compareValue)) {}
 
-		public IsNotEqual(FSM.IntVar variable, Int32 compareValue)
-			: this(variable, new FSM.IntVar(compareValue)) {}
+		public IsNotEqual(IntVar variable, Int32 compareValue)
+			: this(variable, new IntVar(compareValue)) {}
 
-		public IsNotEqual(FSM.FloatVar variable, Int32 compareValue)
-			: this(variable, new FSM.FloatVar(compareValue)) {}
+		public IsNotEqual(FloatVar variable, Int32 compareValue)
+			: this(variable, new FloatVar(compareValue)) {}
 
-		public IsNotEqual(FSM.FloatVar variable, Single compareValue)
-			: this(variable, new FSM.FloatVar(compareValue)) {}
+		public IsNotEqual(FloatVar variable, Single compareValue)
+			: this(variable, new FloatVar(compareValue)) {}
 
-		public IsNotEqual(FSM.BoolVar variable, FSM.BoolVar comparand)
-			: this((FSM.VariableBase)variable, comparand) {}
+		public IsNotEqual(BoolVar variable, BoolVar comparand)
+			: this((VariableBase)variable, comparand) {}
 
-		public IsNotEqual(FSM.IntVar variable, FSM.IntVar comparand)
-			: this((FSM.VariableBase)variable, comparand) {}
+		public IsNotEqual(IntVar variable, IntVar comparand)
+			: this((VariableBase)variable, comparand) {}
 
-		public IsNotEqual(FSM.FloatVar variable, FSM.FloatVar comparand)
-			: this((FSM.VariableBase)variable, comparand) {}
+		public IsNotEqual(FloatVar variable, FloatVar comparand)
+			: this((VariableBase)variable, comparand) {}
 
-		private IsNotEqual(FSM.VariableBase variable, FSM.VariableBase comparand)
+		private IsNotEqual(VariableBase variable, VariableBase comparand)
 		{
 			m_Variable = variable;
 			m_Comparand = comparand;

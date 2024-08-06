@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode.Actions
 {
-	public sealed class NetworkStart : FSM.IAction
+	public sealed class NetworkStart : IAction
 	{
 		private readonly NetcodeRole m_Role;
 

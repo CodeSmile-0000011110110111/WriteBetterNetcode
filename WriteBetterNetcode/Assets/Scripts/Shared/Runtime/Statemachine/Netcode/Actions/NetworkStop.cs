@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode.Actions
 {
-	public sealed class NetworkStop : FSM.IAction
+	public sealed class NetworkStop : IAction
 	{
 		private readonly Boolean m_DiscardMessageQueue;
 

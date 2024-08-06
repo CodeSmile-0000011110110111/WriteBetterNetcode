@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode.Conditions
 {
-	public sealed class IsLocalServerStarted : FSM.ICondition
+	public sealed class IsLocalServerStarted : ICondition
 	{
 		private Boolean m_IsServerStarted;
 

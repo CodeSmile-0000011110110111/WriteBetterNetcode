@@ -7,29 +7,29 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Variable.Actions
 {
-	public class SubValue : FSM.IAction
+	public class SubValue : IAction
 	{
-		private readonly FSM.VariableBase m_Variable;
-		private readonly FSM.VariableBase m_Operand;
+		private readonly VariableBase m_Variable;
+		private readonly VariableBase m_Operand;
 
 		private SubValue() {} // forbidden default ctor
 
-		public SubValue(FSM.IntVar variable, Int32 value)
-			: this(variable, new FSM.IntVar(value)) {}
+		public SubValue(IntVar variable, Int32 value)
+			: this(variable, new IntVar(value)) {}
 
-		public SubValue(FSM.IntVar variable, FSM.IntVar operand)
-			: this((FSM.VariableBase)variable, operand) {}
+		public SubValue(IntVar variable, IntVar operand)
+			: this((VariableBase)variable, operand) {}
 
-		public SubValue(FSM.FloatVar variable, Int32 value)
-			: this(variable, new FSM.FloatVar(value)) {}
+		public SubValue(FloatVar variable, Int32 value)
+			: this(variable, new FloatVar(value)) {}
 
-		public SubValue(FSM.FloatVar variable, Single value)
-			: this(variable, new FSM.FloatVar(value)) {}
+		public SubValue(FloatVar variable, Single value)
+			: this(variable, new FloatVar(value)) {}
 
-		public SubValue(FSM.FloatVar variable, FSM.FloatVar operand)
-			: this((FSM.VariableBase)variable, operand) {}
+		public SubValue(FloatVar variable, FloatVar operand)
+			: this((VariableBase)variable, operand) {}
 
-		private SubValue(FSM.VariableBase variable, FSM.VariableBase operand)
+		private SubValue(VariableBase variable, VariableBase operand)
 		{
 			m_Variable = variable;
 			m_Operand = operand;

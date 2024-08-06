@@ -14,7 +14,7 @@ namespace CodeSmile.Statemachine.Actions
 	///     This allows for quick and dirty tests but should be avoided for production code, as using a custom
 	///     IAction implementation will provide re-usability and make the intent of the Action clear, specifically in logs.
 	/// </remarks>
-	public sealed class LambdaAction : FSM.IAction
+	public sealed class LambdaAction : IAction
 	{
 		private readonly Action m_Callback;
 

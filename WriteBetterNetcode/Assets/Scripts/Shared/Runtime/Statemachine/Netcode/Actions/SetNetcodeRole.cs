@@ -6,14 +6,14 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode.Actions
 {
-	public class SetNetcodeRole : FSM.IAction
+	public class SetNetcodeRole : IAction
 	{
-		private readonly FSM.StructVar<NetcodeConfig> m_RoleVar;
+		private readonly StructVar<NetcodeConfig> m_RoleVar;
 		private readonly NetcodeRole m_Role;
 
 		private SetNetcodeRole() {} // forbidden ctor
 
-		public SetNetcodeRole(FSM.StructVar<NetcodeConfig> roleVar, NetcodeRole role)
+		public SetNetcodeRole(StructVar<NetcodeConfig> roleVar, NetcodeRole role)
 		{
 			m_RoleVar = roleVar;
 			m_Role = role;

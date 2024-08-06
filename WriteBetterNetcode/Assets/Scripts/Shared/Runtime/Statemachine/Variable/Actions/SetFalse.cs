@@ -7,12 +7,12 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Variable.Actions
 {
-	public class SetFalse : FSM.IAction
+	public class SetFalse : IAction
 	{
-		private readonly FSM.BoolVar m_Variable;
+		private readonly BoolVar m_Variable;
 
 		private SetFalse() {} // forbidden default ctor
-		public SetFalse(FSM.BoolVar variable) => m_Variable = variable;
+		public SetFalse(BoolVar variable) => m_Variable = variable;
 
 		public void Execute(FSM sm) => m_Variable.Value = false;
 

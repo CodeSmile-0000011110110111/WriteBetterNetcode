@@ -7,12 +7,12 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Variable.Conditions
 {
-	public class IsFalse : FSM.ICondition
+	public class IsFalse : ICondition
 	{
-		private readonly FSM.BoolVar m_Variable;
+		private readonly BoolVar m_Variable;
 
 		private IsFalse() {} // forbidden default ctor
-		public IsFalse(FSM.BoolVar variable) => m_Variable = variable;
+		public IsFalse(BoolVar variable) => m_Variable = variable;
 
 		public Boolean IsSatisfied(FSM sm) => m_Variable.Value == false;
 

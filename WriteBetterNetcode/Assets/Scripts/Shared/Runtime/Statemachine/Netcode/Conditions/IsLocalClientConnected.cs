@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode.Conditions
 {
-	public sealed class IsLocalClientConnected : FSM.ICondition
+	public sealed class IsLocalClientConnected : ICondition
 	{
 		private Boolean m_IsClientConnected;
 

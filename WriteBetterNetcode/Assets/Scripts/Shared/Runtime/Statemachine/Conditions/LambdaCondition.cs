@@ -14,7 +14,7 @@ namespace CodeSmile.Statemachine.Conditions
 	///     This allows for quick and dirty tests but should be avoided for production code, as using a custom ICondition
 	///     implementation will provide re-usability and make the intent of the Condition clear, specifically in logs.
 	/// </remarks>
-	public sealed class LambdaCondition : FSM.ICondition
+	public sealed class LambdaCondition : ICondition
 	{
 		private readonly Func<Boolean> m_Callback;
 

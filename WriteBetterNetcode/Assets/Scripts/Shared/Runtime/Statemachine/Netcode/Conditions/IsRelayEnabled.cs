@@ -7,13 +7,13 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode.Conditions
 {
-	public class IsRelayEnabled : FSM.ICondition
+	public class IsRelayEnabled : ICondition
 	{
-		private readonly FSM.StructVar<RelayConfig> m_RelayConfig;
+		private readonly StructVar<RelayConfig> m_RelayConfig;
 
 		private IsRelayEnabled() {} // forbidden
 
-		public IsRelayEnabled(FSM.StructVar<RelayConfig> relayConfig) => m_RelayConfig = relayConfig;
+		public IsRelayEnabled(StructVar<RelayConfig> relayConfig) => m_RelayConfig = relayConfig;
 
 		public Boolean IsSatisfied(FSM sm) => m_RelayConfig.Value.UseRelayService;
 	}

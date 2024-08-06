@@ -1,6 +1,7 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Statemachine;
 using CodeSmile.Statemachine.Netcode;
 using CodeSmile.Statemachine.Netcode.Actions;
 using CodeSmile.Statemachine.Netcode.Conditions;
@@ -28,7 +29,11 @@ namespace CodeSmile.BetterNetcode.Network
 		{
 			Initializing,
 			Offline,
-			SigningIn,
+
+			SignIn,
+			RelayAllocation,
+
+			Starting,
 
 			ServerStarting,
 			ServerStarted,
@@ -46,9 +51,9 @@ namespace CodeSmile.BetterNetcode.Network
 		// [SerializeField] private NetworkConfig m_ClientConfig = new() { Role = NetworkRole.Client };
 
 		public FSM m_Statemachine;
-		private FSM.StructVar<NetcodeConfig> m_NetcodeConfigVar;
-		private FSM.StructVar<RelayConfig> m_RelayConfigVar;
-		private FSM.StructVar<TransportConfig> m_TransportConfigVar;
+		private StructVar<NetcodeConfig> m_NetcodeConfigVar;
+		private StructVar<RelayConfig> m_RelayConfigVar;
+		private StructVar<TransportConfig> m_TransportConfigVar;
 
 		private void Awake() => SetupStatemachine();
 
@@ -108,7 +113,9 @@ namespace CodeSmile.BetterNetcode.Network
 			var states = m_Statemachine.States;
 			var initState = states[(Int32)State.Initializing];
 			var offlineState = states[(Int32)State.Offline];
-			var signInState = states[(Int32)State.SigningIn];
+			var signInState = states[(Int32)State.SignIn];
+			var relayAllocState = states[(Int32)State.RelayAllocation];
+			var startingState = states[(Int32)State.Starting];
 			var serverStartingState = states[(Int32)State.ServerStarting];
 			var serverStartedState = states[(Int32)State.ServerStarted];
 			var clientStartingState = states[(Int32)State.ClientStarting];
@@ -123,39 +130,37 @@ namespace CodeSmile.BetterNetcode.Network
 				.WithConditions(new IsNetworkOffline())
 				.WithActions(new UnityServicesInit());
 
-			// Sign In
+			// To relay or not to relay ...
+			offlineState.AddTransition("StartWithoutRelay")
+				.ToState(startingState)
+				.WithConditions(FSM.NOT(new IsRelayEnabled(m_RelayConfigVar)));
 			// TODO: handle signIn throwing an exception!!
-			offlineState.AddTransition("SignInAnonymously")
+			offlineState.AddTransition("StartWithRelay")
 				.ToState(signInState)
-				.WithConditions(
-					new IsNotSignedIn(),
-					new IsRelayEnabled(m_RelayConfigVar))
+				.WithConditions(new IsRelayEnabled(m_RelayConfigVar))
 				.WithActions(new SignInAnonymously());
 			signInState.AddTransition("SignedIn")
-				.ToState(offlineState)
+				.ToState(startingState)
 				.WithConditions(new IsSignedIn());
 
 			// Offline state
-			offlineState.AddTransition("Start Server")
+			startingState.AddTransition("Start Server")
 				.ToState(serverStartingState)
 				.WithConditions(
-					new IsSignedIn(),
 					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.Server))
 				.WithActions(
 					new ApplyTransportConfig(m_TransportConfigVar),
 					new NetworkStart(NetcodeRole.Server));
-			offlineState.AddTransition("Start Host")
+			startingState.AddTransition("Start Host")
 				.ToState(serverStartingState)
 				.WithConditions(
-					new IsSignedIn(),
 					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.Host))
 				.WithActions(
 					new ApplyTransportConfig(m_TransportConfigVar),
 					new NetworkStart(NetcodeRole.Host));
-			offlineState.AddTransition("Start Client")
+			startingState.AddTransition("Start Client")
 				.ToState(clientStartingState)
 				.WithConditions(
-					new IsSignedIn(),
 					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.Client))
 				.WithActions(
 					new ApplyTransportConfig(m_TransportConfigVar),

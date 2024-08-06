@@ -7,13 +7,13 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Conditions
 {
-	public class LogicalNor : FSM.ICondition
+	public class LogicalNor : ICondition
 	{
-		private readonly FSM.ICondition m_OrCondition;
+		private readonly ICondition m_OrCondition;
 
 		private LogicalNor() {} // forbidden default ctor
 
-		internal LogicalNor(params FSM.ICondition[] norConditions) => m_OrCondition = new LogicalOr(norConditions);
+		internal LogicalNor(params ICondition[] norConditions) => m_OrCondition = new LogicalOr(norConditions);
 
 		public Boolean IsSatisfied(FSM sm) => !m_OrCondition.IsSatisfied(sm);
 

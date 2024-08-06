@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode.Conditions
 {
-	public sealed class IsNetworkOffline : FSM.ICondition
+	public sealed class IsNetworkOffline : ICondition
 	{
 		public Boolean IsSatisfied(FSM sm)
 		{

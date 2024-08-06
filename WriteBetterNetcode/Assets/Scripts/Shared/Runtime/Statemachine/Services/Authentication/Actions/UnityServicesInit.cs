@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Services.Authentication.Actions
 {
-	public class UnityServicesInit : FSM.IAsyncAction
+	public class UnityServicesInit : IAsyncAction
 	{
 		public Task ExecuteAsync(FSM sm)
 		{

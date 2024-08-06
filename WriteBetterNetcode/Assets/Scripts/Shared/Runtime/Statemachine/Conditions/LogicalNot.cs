@@ -7,12 +7,12 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Conditions
 {
-	public sealed class LogicalNot : FSM.ICondition
+	public sealed class LogicalNot : ICondition
 	{
-		private readonly FSM.ICondition m_InnerCondition;
-		internal FSM.ICondition InnerCondition => m_InnerCondition;
+		private readonly ICondition m_InnerCondition;
+		internal ICondition InnerCondition => m_InnerCondition;
 
-		private static void VerifyParameter(FSM.ICondition notCondition)
+		private static void VerifyParameter(ICondition notCondition)
 		{
 #if DEBUG || DEVELOPMENT_BUILD
 			if (notCondition == null)
@@ -22,7 +22,7 @@ namespace CodeSmile.Statemachine.Conditions
 
 		private LogicalNot() {} // forbidden default ctor
 
-		internal LogicalNot(FSM.ICondition notCondition)
+		internal LogicalNot(ICondition notCondition)
 		{
 			VerifyParameter(notCondition);
 			m_InnerCondition = notCondition;

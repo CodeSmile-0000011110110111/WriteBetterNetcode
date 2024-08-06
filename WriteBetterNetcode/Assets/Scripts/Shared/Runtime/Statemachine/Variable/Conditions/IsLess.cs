@@ -7,29 +7,29 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Variable.Conditions
 {
-	public class IsLess : FSM.ICondition
+	public class IsLess : ICondition
 	{
-		private readonly FSM.VariableBase m_Variable;
-		private readonly FSM.VariableBase m_Comparand;
+		private readonly VariableBase m_Variable;
+		private readonly VariableBase m_Comparand;
 
 		private IsLess() {} // forbidden default ctor
 
-		public IsLess(FSM.IntVar variable, Int32 compareValue)
-			: this(variable, new FSM.IntVar(compareValue)) {}
+		public IsLess(IntVar variable, Int32 compareValue)
+			: this(variable, new IntVar(compareValue)) {}
 
-		public IsLess(FSM.FloatVar variable, Single compareValue)
-			: this(variable, new FSM.FloatVar(compareValue)) {}
+		public IsLess(FloatVar variable, Single compareValue)
+			: this(variable, new FloatVar(compareValue)) {}
 
-		public IsLess(FSM.FloatVar variable, Int32 compareValue)
-			: this(variable, new FSM.FloatVar(compareValue)) {}
+		public IsLess(FloatVar variable, Int32 compareValue)
+			: this(variable, new FloatVar(compareValue)) {}
 
-		public IsLess(FSM.IntVar variable, FSM.IntVar comparand)
-			: this((FSM.VariableBase)variable, comparand) {}
+		public IsLess(IntVar variable, IntVar comparand)
+			: this((VariableBase)variable, comparand) {}
 
-		public IsLess(FSM.FloatVar variable, FSM.FloatVar comparand)
-			: this((FSM.VariableBase)variable, comparand) {}
+		public IsLess(FloatVar variable, FloatVar comparand)
+			: this((VariableBase)variable, comparand) {}
 
-		private IsLess(FSM.VariableBase variable, FSM.VariableBase comparand)
+		private IsLess(VariableBase variable, VariableBase comparand)
 		{
 			m_Variable = variable;
 			m_Comparand = comparand;

@@ -7,17 +7,17 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode.Conditions
 {
-	public class IsNetcodeRole : FSM.ICondition
+	public class IsNetcodeRole : ICondition
 	{
-		private readonly FSM.StructVar<NetcodeConfig> m_RoleVar;
-		private readonly FSM.StructVar<NetcodeConfig> m_CompareVar;
+		private readonly StructVar<NetcodeConfig> m_RoleVar;
+		private readonly StructVar<NetcodeConfig> m_CompareVar;
 
 		private IsNetcodeRole() {} // forbidden ctor
 
-		public IsNetcodeRole(FSM.StructVar<NetcodeConfig> roleVar, NetcodeRole role)
-			: this(roleVar, new FSM.StructVar<NetcodeConfig>(new NetcodeConfig { Role = role })) {}
+		public IsNetcodeRole(StructVar<NetcodeConfig> roleVar, NetcodeRole role)
+			: this(roleVar, new StructVar<NetcodeConfig>(new NetcodeConfig { Role = role })) {}
 
-		public IsNetcodeRole(FSM.StructVar<NetcodeConfig> roleVar, FSM.StructVar<NetcodeConfig> compareVar)
+		public IsNetcodeRole(StructVar<NetcodeConfig> roleVar, StructVar<NetcodeConfig> compareVar)
 		{
 			m_RoleVar = roleVar;
 			m_CompareVar = compareVar;

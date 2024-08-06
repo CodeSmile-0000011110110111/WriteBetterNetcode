@@ -8,12 +8,12 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Conditions
 {
-	public sealed class LogicalAnd : FSM.ICondition
+	public sealed class LogicalAnd : ICondition
 	{
-		private readonly FSM.ICondition[] m_InnerConditions;
-		internal FSM.ICondition[] InnerConditions => m_InnerConditions;
+		private readonly ICondition[] m_InnerConditions;
+		internal ICondition[] InnerConditions => m_InnerConditions;
 
-		private static void VerifyParameters(FSM.ICondition[] andConditions)
+		private static void VerifyParameters(ICondition[] andConditions)
 		{
 #if DEBUG || DEVELOPMENT_BUILD
 			if (andConditions == null)
@@ -31,7 +31,7 @@ namespace CodeSmile.Statemachine.Conditions
 
 		private LogicalAnd() {} // forbidden default ctor
 
-		internal LogicalAnd(params FSM.ICondition[] andConditions)
+		internal LogicalAnd(params ICondition[] andConditions)
 		{
 			VerifyParameters(andConditions);
 			m_InnerConditions = andConditions;

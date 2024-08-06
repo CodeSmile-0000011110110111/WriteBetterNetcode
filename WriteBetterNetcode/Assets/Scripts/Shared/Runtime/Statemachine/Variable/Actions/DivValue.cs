@@ -7,29 +7,29 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Variable.Actions
 {
-	public class DivValue : FSM.IAction
+	public class DivValue : IAction
 	{
-		private readonly FSM.VariableBase m_Variable;
-		private readonly FSM.VariableBase m_Operand;
+		private readonly VariableBase m_Variable;
+		private readonly VariableBase m_Operand;
 
 		private DivValue() {} // forbidden default ctor
 
-		public DivValue(FSM.IntVar variable, Int32 value)
-			: this(variable, new FSM.IntVar(value)) {}
+		public DivValue(IntVar variable, Int32 value)
+			: this(variable, new IntVar(value)) {}
 
-		public DivValue(FSM.IntVar variable, FSM.IntVar operand)
-			: this((FSM.VariableBase)variable, operand) {}
+		public DivValue(IntVar variable, IntVar operand)
+			: this((VariableBase)variable, operand) {}
 
-		public DivValue(FSM.FloatVar variable, Int32 value)
-			: this(variable, new FSM.FloatVar(value)) {}
+		public DivValue(FloatVar variable, Int32 value)
+			: this(variable, new FloatVar(value)) {}
 
-		public DivValue(FSM.FloatVar variable, Single value)
-			: this(variable, new FSM.FloatVar(value)) {}
+		public DivValue(FloatVar variable, Single value)
+			: this(variable, new FloatVar(value)) {}
 
-		public DivValue(FSM.FloatVar variable, FSM.FloatVar operand)
-			: this((FSM.VariableBase)variable, operand) {}
+		public DivValue(FloatVar variable, FloatVar operand)
+			: this((VariableBase)variable, operand) {}
 
-		private DivValue(FSM.VariableBase variable, FSM.VariableBase operand)
+		private DivValue(VariableBase variable, VariableBase operand)
 		{
 			m_Variable = variable;
 			m_Operand = operand;
