@@ -18,8 +18,7 @@ namespace CodeSmile.Statemachine
 
 		public void Clear() => m_Variables.Clear();
 
-		internal String FindVariableName(VariableBase variable) =>
-			m_Variables.FirstOrDefault(kvp => kvp.Value == variable).Key;
+		internal String FindVariableName(VariableBase variable) => m_Variables.FirstOrDefault(kvp => kvp.Value == variable).Key;
 
 		private T AddVariable<T>(String name, T variable) where T : VariableBase
 		{
@@ -41,16 +40,13 @@ namespace CodeSmile.Statemachine
 
 		public FloatVar GetFloat(String name) => m_Variables[name] as FloatVar;
 
-		public Var<T> DefineStruct<T>(String name, T value = default) where T : struct =>
-			AddVariable(name, new Var<T>(value));
+		public Var<T> DefineStruct<T>(String name, T value = default) where T : struct => AddVariable(name, new Var<T>(value));
 
 		public Var<T> GetStruct<T>(String name) where T : struct => m_Variables[name] as Var<T>;
 	}
 
 	public abstract class VariableBase
 	{
-		public override Boolean Equals(Object obj) => throw new NotImplementedException();
-		public override Int32 GetHashCode() => throw new NotImplementedException();
 		public static Boolean operator ==(VariableBase left, VariableBase right) => Equals(left, right);
 		public static Boolean operator !=(VariableBase left, VariableBase right) => !Equals(left, right);
 
@@ -96,6 +92,9 @@ namespace CodeSmile.Statemachine
 
 		private static String GetCompareExceptionMessage(VariableBase left, VariableBase right, String op) =>
 			$"cannot compare: {left?.GetType().Name}({left}) {op} {right?.GetType().Name}({right})";
+
+		public override Boolean Equals(Object obj) => throw new NotImplementedException();
+		public override Int32 GetHashCode() => throw new NotImplementedException();
 
 		public abstract void SetValue(VariableBase variable);
 		public abstract void AddValue(VariableBase variable);
