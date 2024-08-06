@@ -112,7 +112,7 @@ namespace CodeSmile.BetterNetcode.Network
 			/* TODO (MAJOR ONES)
 			 * - how to handle action exceptions?
 			 *		transition => ToErrorState ?? (handle exception where it occurs)
-			 *		state => OnErrorTransition ?? (hmmmm)
+			 *		statemachine => move to fixed error state with its own transitions? (sounds good, or too brute force?)
 			 * - forward events (eg join code available)
 			 *		route through config object ... BUT: config is a struct
 			 * - Var<T> allow classes?
@@ -132,7 +132,12 @@ namespace CodeSmile.BetterNetcode.Network
 					new IsRelayEnabled(m_RelayConfigVar))
 				.WithActions(
 					new SignInAnonymously(),
-					new RelayCreateOrJoinAllocation(m_NetcodeConfigVar, m_RelayConfigVar));
+					new RelayCreateOrJoinAllocation(m_NetcodeConfigVar, m_RelayConfigVar))
+				.ToErrorState(offlineState)
+				.WithErrorActions(
+					new SetNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None),
+					new RelayClearAllocationData(m_RelayConfigVar));
+
 			offlineState.AddTransition("Start w/o Relay")
 				.ToState(startingState)
 				.WithConditions(
@@ -160,6 +165,14 @@ namespace CodeSmile.BetterNetcode.Network
 			startingState.AddTransition("Client started")
 				.ToState(clientStartedState)
 				.WithConditions(new IsLocalClientStarted());
+			startingState.AddTransition("Failed to start")
+				.ToState(offlineState)
+				.WithConditions(
+					FSM.NOT(new IsLocalServerStarted()),
+					FSM.NOT(new IsLocalClientStarted()))
+				.WithActions(
+					new SetNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None),
+					new RelayClearAllocationData(m_RelayConfigVar));
 
 			// Server States
 			serverStartedState.AddTransition("Server stopping")
@@ -213,7 +226,25 @@ namespace CodeSmile.BetterNetcode.Network
 		}
 
 		public void RequestStartHost() => throw new NotImplementedException();
-		public void RequestStartClient() => throw new NotImplementedException();
+		public void RequestStartClient()
+		{
+			m_NetcodeConfigVar.Value = new NetcodeConfig { Role = NetcodeRole.Client };
+			m_RelayConfigVar.Value = new RelayConfig
+			{
+				UseRelayService = true,
+				MaxConnections = 4,
+				JoinCode = "CDFGH78",
+			};
+			m_TransportConfigVar.Value = new TransportConfig
+			{
+				Address = "127.0.0.1",
+				Port = 7777,
+				ServerListenAddress = "0.0.0.0",
+				UseEncryption = false,
+				UseWebSockets = false,
+			};
+		}
+
 		public void RequestStopNetwork() => throw new NotImplementedException();
 
 		private NetcodeRole GetNetworkRoleFromMppmTags()

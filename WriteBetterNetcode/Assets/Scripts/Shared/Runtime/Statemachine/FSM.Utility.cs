@@ -76,17 +76,52 @@ namespace CodeSmile.Statemachine
 
 					for (var actIndex = 0; actIndex < trans.Actions.Length; actIndex++)
 					{
-						var act = trans.Actions[actIndex];
-						statesBuilder.AppendLine($"\t\t{stateId}_{transId} : {act.ToDebugString(this)}");
+						var action = trans.Actions[actIndex];
+						statesBuilder.AppendLine($"\t\t{stateId}_{transId} : {action.ToDebugString(this)}");
 					}
 
 					statesBuilder.AppendLine("\t}");
 
-					if (trans.GotoState != null)
+					if (trans.GotoState != null && trans.GotoState != state)
 					{
 						var gotoStateId = $"state{FindStateIndex(trans.GotoState)}";
 						transBuilder.AppendLine($"{stateId} --> {gotoStateId} : {transName}");
 						//transBuilder.AppendLine($"{transStateId} --> {gotoStateId} : {transName}");
+					}
+
+					// ERROR transition
+					if (trans.ErrorGotoState != null || trans.ErrorActions != null)
+					{
+						var errTransId = $"err_trans{transIndex}";
+						var errTransStateId = $"{stateId}_{errTransId}";
+
+						var errTransName = $"ERR{{{trans.Name}}}";
+						if (errTransName == null)
+						{
+							errTransName = trans.ErrorGotoState != null ? trans.ErrorGotoState.Name :
+								trans.Conditions.Length == 1 ? trans.Conditions[0].ToDebugString(this) : " ";
+						}
+
+						statesBuilder.AppendLine($"\tstate \"{errTransName}\" as {errTransStateId}");
+						statesBuilder.AppendLine($"\tstate {errTransStateId} #line.dotted {{");
+
+						if (trans.ErrorActions != null)
+						{
+							for (var actIndex = 0; actIndex < trans.ErrorActions.Length; actIndex++)
+							{
+								var errAction = trans.ErrorActions[actIndex];
+								statesBuilder.AppendLine($"\t\t{stateId}_{errTransId} : {errAction.ToDebugString(this)}");
+							}
+						}
+
+						statesBuilder.AppendLine("\t}");
+
+						if (trans.ErrorGotoState != null && trans.ErrorGotoState != state)
+						{
+							var errStateId = $"state{FindStateIndex(trans.ErrorGotoState)}";
+							transBuilder.AppendLine($"{stateId} --> {errStateId} : {errTransName}");
+							//transBuilder.AppendLine($"{transStateId} --> {gotoStateId} : {transName}");
+						}
 					}
 				}
 

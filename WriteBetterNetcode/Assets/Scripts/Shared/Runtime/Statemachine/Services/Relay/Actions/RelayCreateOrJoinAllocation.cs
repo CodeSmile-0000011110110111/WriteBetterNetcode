@@ -2,7 +2,6 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Statemachine.Netcode;
-using System;
 using System.Threading.Tasks;
 using Unity.Services.Relay;
 using UnityEditor;
@@ -25,34 +24,26 @@ namespace CodeSmile.Statemachine.Services.Relay.Actions
 
 		public async Task ExecuteAsync(FSM sm)
 		{
-			try
+			ClearRelayAllocationVar();
+
+			var role = m_NetcodeConfigVar.Value.Role;
+			var relayConfig = m_RelayConfigVar.Value;
+			var relay = RelayService.Instance;
+
+			if (role == NetcodeRole.Server || role == NetcodeRole.Host)
 			{
-				ClearRelayAllocationVar();
-
-				var role = m_NetcodeConfigVar.Value.Role;
-				var relayConfig = m_RelayConfigVar.Value;
-				var relay = RelayService.Instance;
-
-				if (role == NetcodeRole.Server || role == NetcodeRole.Host)
-				{
-					var allocation = await relay.CreateAllocationAsync(relayConfig.MaxConnections, relayConfig.Region);
-					var joinCode = await relay.GetJoinCodeAsync(allocation.AllocationId);
-					relayConfig.SetHostAllocation(allocation, joinCode);
-				}
-				else
-				{
-					var joinAlloc = await relay.JoinAllocationAsync(relayConfig.JoinCode);
-					relayConfig.SetJoinAllocation(joinAlloc);
-				}
-
-				// write back
-				m_RelayConfigVar.Value = relayConfig;
+				var allocation = await relay.CreateAllocationAsync(relayConfig.MaxConnections, relayConfig.Region);
+				var joinCode = await relay.GetJoinCodeAsync(allocation.AllocationId);
+				relayConfig.SetHostAllocation(allocation, joinCode);
 			}
-			catch (Exception e)
+			else
 			{
-				ClearRelayAllocationVar();
-				Debug.LogError(e);
+				var joinAlloc = await relay.JoinAllocationAsync(relayConfig.JoinCode);
+				relayConfig.SetJoinAllocation(joinAlloc);
 			}
+
+			// write back
+			m_RelayConfigVar.Value = relayConfig;
 		}
 
 		private void ClearRelayAllocationVar()

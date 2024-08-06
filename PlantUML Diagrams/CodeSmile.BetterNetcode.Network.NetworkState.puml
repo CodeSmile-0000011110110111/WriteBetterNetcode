@@ -24,6 +24,11 @@ state state1 {
 		state1_trans0 : SignInAnonymously
 		state1_trans0 : RelayCreateOrJoinAllocation
 	}
+	state "ERR{Start with Relay}" as state1_err_trans0
+	state state1_err_trans0 #line.dotted {
+		state1_err_trans0 : SetNetcodeRole = None
+		state1_err_trans0 : RelayClearAllocationData
+	}
 	state "Start w/o Relay" as state1_trans1
 	state state1_trans1 #line.dotted {
 		state1_trans1 : NOT(IsNetcodeRole == None)
@@ -55,6 +60,14 @@ state state3 {
 	state state3_trans1 #line.dotted {
 		state3_trans1 : IsLocalClientStarted
 		state3_trans1 : ....
+	}
+	state "Failed to start" as state3_trans2
+	state state3_trans2 #line.dotted {
+		state3_trans2 : NOT(IsLocalServerStarted)
+		state3_trans2 : NOT(IsLocalClientStarted)
+		state3_trans2 : ....
+		state3_trans2 : SetNetcodeRole = None
+		state3_trans2 : RelayClearAllocationData
 	}
 }
 state "ServerStarted" as state4
@@ -113,6 +126,7 @@ state1 --> state3 : Start w/o Relay
 state2 --> state3 : Relay Allocated
 state3 --> state4 : Server started
 state3 --> state5 : Client started
+state3 --> state1 : Failed to start
 state4 --> state7 : Server stopping
 state5 --> state6 : Client connected
 state5 --> state7 : Client stopping

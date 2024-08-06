@@ -2,8 +2,6 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
@@ -20,6 +18,9 @@ namespace CodeSmile.Statemachine
 			internal ICondition[] Conditions { get; private set; }
 			internal IAction[] Actions { get; private set; }
 			internal State GotoState { get; private set; }
+
+			internal State ErrorGotoState { get; private set; }
+			internal IAction[] ErrorActions { get; private set; }
 
 			/// <summary>
 			///     Creates an unnamed transition that executes its actions if its conditions are satisfied.
@@ -47,6 +48,15 @@ namespace CodeSmile.Statemachine
 					throw new InvalidOperationException("GotoState already set");
 
 				GotoState = gotoState;
+				return this;
+			}
+
+			public Transition ToErrorState(State errorState)
+			{
+				if (ErrorGotoState != null)
+					throw new InvalidOperationException("ErrorGotoState already set");
+
+				ErrorGotoState = errorState;
 				return this;
 			}
 
@@ -79,20 +89,29 @@ namespace CodeSmile.Statemachine
 				return this;
 			}
 
+			public Transition WithErrorActions(params IAction[] errorActions)
+			{
+				if (ErrorActions != null)
+					throw new InvalidOperationException("ErrorActions already set");
+
+				ErrorActions = errorActions ?? new IAction[0];
+				return this;
+			}
+
 			internal void Update(FSM sm)
 			{
-				if (ConditionsSatisfied(sm))
+				if (ConditionsSatisfied(sm, Conditions))
 				{
-					ExecuteActions(sm);
+					ExecuteActions(sm, Actions);
 
 					if (GotoState != null)
 						sm.SetActiveState(GotoState);
 				}
 			}
 
-			private Boolean ConditionsSatisfied(FSM sm)
+			private Boolean ConditionsSatisfied(FSM sm, ICondition[] conditions)
 			{
-				foreach (var condition in Conditions)
+				foreach (var condition in conditions)
 				{
 					if (condition.IsSatisfied(sm) == false)
 						return false; // early out
@@ -101,34 +120,39 @@ namespace CodeSmile.Statemachine
 				return true;
 			}
 
-			private async void ExecuteActions(FSM sm)
+			private async void ExecuteActions(FSM sm, IAction[] actions)
 			{
-				var actionCount = Actions.Length;
+				if (actions == null)
+					return;
+
+				var actionCount = actions.Length;
 				if (actionCount == 0)
 					return;
 
-				Debug.Log($"[{Time.frameCount}, {Time.realtimeSinceStartup}] {Name} exec actions ...");
-
-				List<Task> tasks = null;
-				for (var i = 0; i < actionCount; i++)
+				try
 				{
-					var action = Actions[i];
-					if (action is IAsyncAction)
+					for (var i = 0; i < actionCount; i++)
 					{
-						Debug.Log($"awaitable action: {action}");
-						// tasks ??= new List<Task>();
-						// tasks.Add((action as IAsyncAction).ExecuteAsync(sm));
+						var action = actions[i];
+						if (action is IAsyncAction)
+							await (action as IAsyncAction).ExecuteAsync(sm);
+						else
+							action.Execute(sm);
+					}
+				}
+				catch (Exception e)
+				{
+					if (ErrorActions != null || ErrorGotoState != null)
+					{
+						Debug.LogWarning($"{Name}: ErrorActions due to {e}");
+						ExecuteActions(sm, ErrorActions);
 
-						await (action as IAsyncAction).ExecuteAsync(sm);
+						if (ErrorGotoState != null)
+							sm.SetActiveState(ErrorGotoState);
 					}
 					else
-						action.Execute(sm);
+						throw;
 				}
-
-				if (tasks != null)
-					await Task.WhenAll(tasks);
-
-				Debug.Log($"[{Time.frameCount}, {Time.realtimeSinceStartup}] {Name} exec actions COMPLETE ...");
 			}
 
 			internal void OnStart(FSM sm)

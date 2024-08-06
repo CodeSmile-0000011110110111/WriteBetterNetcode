@@ -15,8 +15,8 @@ namespace CodeSmile.Statemachine.Services
 		[Range(1, 100)]
 		public Byte MaxConnections;
 		public String Region;
+		public String JoinCode { get; set; }
 
-		public String JoinCode { get; private set; }
 		public Allocation HostAllocation { get; private set; }
 		public JoinAllocation JoinAllocation { get; private set; }
 
@@ -34,7 +34,6 @@ namespace CodeSmile.Statemachine.Services
 
 		public void ClearAllocationData()
 		{
-			JoinCode = null;
 			HostAllocation = null;
 			JoinAllocation = null;
 			// TODO: invoke event here
