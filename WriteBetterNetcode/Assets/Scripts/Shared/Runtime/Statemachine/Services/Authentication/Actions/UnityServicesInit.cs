@@ -2,21 +2,22 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using System;
+using System.Threading.Tasks;
 using Unity.Services.Core;
 using UnityEditor;
 using UnityEngine;
 
 namespace CodeSmile.Statemachine.Services.Authentication.Actions
 {
-	public class UnityServicesInit : FSM.IAction
+	public class UnityServicesInit : FSM.IAsyncAction
 	{
-		public async void Execute(FSM sm)
+		public Task ExecuteAsync(FSM sm)
 		{
 			if (UnityServices.State == ServicesInitializationState.Uninitialized)
 			{
 				try
 				{
-					await UnityServices.InitializeAsync();
+					return UnityServices.InitializeAsync();
 				}
 				catch (Exception e)
 				{
@@ -24,6 +25,8 @@ namespace CodeSmile.Statemachine.Services.Authentication.Actions
 					throw;
 				}
 			}
+
+			return null;
 		}
 	}
 }

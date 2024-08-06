@@ -14,6 +14,8 @@ namespace CodeSmile.Statemachine
 	{
 		public abstract class VariableBase
 		{
+			public override Boolean Equals(Object obj) => throw new NotImplementedException();
+			public override Int32 GetHashCode() => throw new NotImplementedException();
 			public static Boolean operator ==(VariableBase left, VariableBase right) => Equals(left, right);
 			public static Boolean operator !=(VariableBase left, VariableBase right) => !Equals(left, right);
 

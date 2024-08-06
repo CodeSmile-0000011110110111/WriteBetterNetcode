@@ -131,10 +131,10 @@ namespace CodeSmile.Statemachine.Tests
 		{
 			var intVar = new FSM.IntVar();
 
-			new Assign(intVar, 1).Execute(null);
+			new SetValue(intVar, 1).Execute(null);
 			Assert.AreEqual(1, intVar.Value);
 
-			new Assign(intVar, new FSM.IntVar(2)).Execute(null);
+			new SetValue(intVar, new FSM.IntVar(2)).Execute(null);
 			Assert.AreEqual(2, intVar.Value);
 		}
 
@@ -174,10 +174,10 @@ namespace CodeSmile.Statemachine.Tests
 			var floatVar = new FSM.FloatVar();
 			var expected = -1.2345f;
 
-			new Assign(floatVar, expected).Execute(null);
+			new SetValue(floatVar, expected).Execute(null);
 			Assert.AreEqual(expected, floatVar.Value);
 
-			new Assign(floatVar, new FSM.FloatVar(expected * 2f)).Execute(null);
+			new SetValue(floatVar, new FSM.FloatVar(expected * 2f)).Execute(null);
 			Assert.AreEqual(expected * 2f, floatVar.Value);
 		}
 	}

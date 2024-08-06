@@ -25,7 +25,7 @@ state state1 {
 	}
 	state "Start Server" as state1_trans1
 	state state1_trans1 #line.dotted {
-		state1_trans1 : IsSignedIn | ""False""
+		state1_trans1 : IsSignedIn | ""True""
 		state1_trans1 : IsNetcodeRole | ""False""
 		state1_trans1 : ....
 		state1_trans1 : ApplyTransportConfig
@@ -33,7 +33,7 @@ state state1 {
 	}
 	state "Start Host" as state1_trans2
 	state state1_trans2 #line.dotted {
-		state1_trans2 : IsSignedIn | ""False""
+		state1_trans2 : IsSignedIn | ""True""
 		state1_trans2 : IsNetcodeRole | ""False""
 		state1_trans2 : ....
 		state1_trans2 : ApplyTransportConfig
@@ -41,7 +41,7 @@ state state1 {
 	}
 	state "Start Client" as state1_trans3
 	state state1_trans3 #line.dotted {
-		state1_trans3 : IsSignedIn | ""False""
+		state1_trans3 : IsSignedIn | ""True""
 		state1_trans3 : IsNetcodeRole | ""False""
 		state1_trans3 : ....
 		state1_trans3 : ApplyTransportConfig
@@ -52,7 +52,7 @@ state "SigningIn" as state2
 state state2 {
 	state "SignedIn" as state2_trans0
 	state state2_trans0 #line.dotted {
-		state2_trans0 : IsSignedIn | ""False""
+		state2_trans0 : IsSignedIn | ""True""
 		state2_trans0 : ....
 	}
 }

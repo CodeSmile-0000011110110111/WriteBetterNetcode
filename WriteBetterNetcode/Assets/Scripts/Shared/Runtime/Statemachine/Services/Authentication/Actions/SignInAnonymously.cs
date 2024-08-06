@@ -2,29 +2,32 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using System;
+using System.Threading.Tasks;
 using Unity.Services.Authentication;
 using UnityEditor;
 using UnityEngine;
 
 namespace CodeSmile.Statemachine.Services.Authentication.Actions
 {
-	public class SignInAnonymously : FSM.IAction
+	public class SignInAnonymously : FSM.IAsyncAction
 	{
-		public async void Execute(FSM sm)
+		public Task ExecuteAsync(FSM sm)
 		{
 			var authService = AuthenticationService.Instance;
-			if (authService.IsSignedIn)
-				return;
+			if (authService.IsSignedIn == false)
+			{
+				try
+				{
+					return authService.SignInAnonymouslyAsync();
+				}
+				catch (Exception e)
+				{
+					Debug.LogError(e);
+					//throw;
+				}
+			}
 
-			try
-			{
-				await authService.SignInAnonymouslyAsync();
-			}
-			catch (Exception e)
-			{
-				Debug.LogError(e);
-				throw;
-			}
+			return null;
 		}
 	}
 }

@@ -61,7 +61,6 @@ namespace CodeSmile.Statemachine
 						var cond = trans.Conditions[condIndex];
 						var satisfied = cond.IsSatisfied(this);
 
-						var negated = false;
 						if (cond is LogicalNot notCondition)
 							cond = notCondition;
 						else if (cond is LogicalOr orCondition)
@@ -69,8 +68,7 @@ namespace CodeSmile.Statemachine
 						else if (cond is LogicalAnd andCondition)
 							cond = andCondition;
 
-						statesBuilder.AppendLine(
-							$"\t\t{stateId}_{transId} : {cond.ToDebugString(this)} | \"\"{satisfied}\"\"");
+						statesBuilder.AppendLine($"\t\t{stateId}_{transId} : {cond.ToDebugString(this)} | \"\"{satisfied}\"\"");
 					}
 
 					statesBuilder.AppendLine($"\t\t{stateId}_{transId} : ....");
@@ -146,12 +144,12 @@ namespace CodeSmile.Statemachine
 						                            $" {transIndex} is null");
 					}
 
-					var conditions = transition.Conditions;
-					if (conditions == null || conditions.Length == 0)
-					{
-						Debug.LogWarning($"FSM '{Name}': {state.Name} transition '{transition.Name}' at index" +
-						                 $" {transIndex} has no conditions, transition will be taken instantly!");
-					}
+					// var conditions = transition.Conditions;
+					// if (conditions == null || conditions.Length == 0)
+					// {
+					// 	Debug.LogWarning($"FSM '{Name}': {state.Name} transition '{transition.Name}' at index" +
+					// 	                 $" {transIndex} has no conditions, transition will be taken instantly!");
+					// }
 
 					if (transition.GotoState != null)
 					{

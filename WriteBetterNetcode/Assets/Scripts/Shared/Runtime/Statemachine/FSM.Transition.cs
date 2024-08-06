@@ -2,6 +2,8 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
@@ -63,10 +65,8 @@ namespace CodeSmile.Statemachine
 			{
 				if (Conditions != null)
 					throw new InvalidOperationException("Conditions already set");
-				if (conditions == null)
-					throw new ArgumentNullException(nameof(conditions));
 
-				Conditions = conditions;
+				Conditions = conditions ?? new ICondition[0];
 				return this;
 			}
 
@@ -74,10 +74,8 @@ namespace CodeSmile.Statemachine
 			{
 				if (Actions != null)
 					throw new InvalidOperationException("Actions already set");
-				if (actions == null)
-					throw new ArgumentNullException(nameof(actions));
 
-				Actions = actions;
+				Actions = actions ?? new IAction[0];
 				return this;
 			}
 
@@ -88,10 +86,7 @@ namespace CodeSmile.Statemachine
 					ExecuteActions(sm);
 
 					if (GotoState != null)
-					{
-						//Debug.Log($"Transition '{Name}' changes state to {GotoState.Name}");
 						sm.SetActiveState(GotoState);
-					}
 				}
 			}
 
@@ -102,13 +97,38 @@ namespace CodeSmile.Statemachine
 					if (condition.IsSatisfied(sm) == false)
 						return false; // early out
 				}
+
 				return true;
 			}
 
-			private void ExecuteActions(FSM sm)
+			private async void ExecuteActions(FSM sm)
 			{
-				foreach (var action in Actions)
-					action.Execute(sm);
+				var actionCount = Actions.Length;
+				if (actionCount == 0)
+					return;
+
+				Debug.Log($"[{Time.frameCount}, {Time.realtimeSinceStartup}] {Name} exec actions ...");
+
+				List<Task> tasks = null;
+				for (var i = 0; i < actionCount; i++)
+				{
+					var action = Actions[i];
+					if (action is IAsyncAction)
+					{
+						Debug.Log($"awaitable action: {action}");
+						// tasks ??= new List<Task>();
+						// tasks.Add((action as IAsyncAction).ExecuteAsync(sm));
+
+						await (action as IAsyncAction).ExecuteAsync(sm);
+					}
+					else
+						action.Execute(sm);
+				}
+
+				if (tasks != null)
+					await Task.WhenAll(tasks);
+
+				Debug.Log($"[{Time.frameCount}, {Time.realtimeSinceStartup}] {Name} exec actions COMPLETE ...");
 			}
 
 			internal void OnStart(FSM sm)

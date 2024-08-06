@@ -3,7 +3,6 @@
 
 using System;
 using Unity.Services.Authentication;
-using Unity.Services.Core;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,7 +10,6 @@ namespace CodeSmile.Statemachine.Services.Authentication.Conditions
 {
 	public class IsSignedIn : FSM.ICondition
 	{
-		public Boolean IsSatisfied(FSM sm) => UnityServices.State == ServicesInitializationState.Initialized &&
-		                                      AuthenticationService.Instance.IsSignedIn;
+		public Boolean IsSatisfied(FSM sm) => AuthenticationService.Instance.IsSignedIn;
 	}
 }

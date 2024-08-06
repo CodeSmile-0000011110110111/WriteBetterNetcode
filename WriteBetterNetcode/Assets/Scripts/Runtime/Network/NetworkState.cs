@@ -70,7 +70,7 @@ namespace CodeSmile.BetterNetcode.Network
 			m_Statemachine.Update();
 
 			var mppmRole = GetNetworkRoleFromMppmTags();
-			Debug.LogWarning("Network Role: " + mppmRole);
+			//Debug.Log("Network Role: " + mppmRole);
 
 			switch (mppmRole)
 			{
@@ -89,14 +89,17 @@ namespace CodeSmile.BetterNetcode.Network
 			}
 		}
 
-		private void Update() => m_Statemachine.Update();
+		private void Update() =>
+			//Debug.Log($"[{Time.frameCount}] {m_Statemachine.Name} updating ...");
+			m_Statemachine.Update();
 
+		//Debug.Log($"[{Time.frameCount}] {m_Statemachine.Name} updating DONE ...");
 		private void SetupStatemachine()
 		{
 			m_Statemachine = new FSM(new String(nameof(NetworkState))).WithStates(Enum.GetNames(typeof(State)));
 			m_Statemachine.AllowMultipleStateChanges = true;
 			m_Statemachine.OnStateChange += args =>
-				Debug.LogWarning($"{m_Statemachine} change: {args.PreviousState} to {args.ActiveState}");
+				Debug.LogWarning($"[{Time.frameCount}] {m_Statemachine} change: {args.PreviousState} to {args.ActiveState}");
 
 			m_NetcodeConfigVar = m_Statemachine.Vars.DefineStruct<NetcodeConfig>(nameof(NetcodeConfig));
 			m_RelayConfigVar = m_Statemachine.Vars.DefineStruct<RelayConfig>(nameof(RelayConfig));

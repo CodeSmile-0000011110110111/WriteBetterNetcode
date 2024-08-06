@@ -7,13 +7,13 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Actions
 {
-	public class Decrement : FSM.IAction
+	public class DecValue : FSM.IAction
 	{
 		private readonly FSM.IntVar m_Variable;
 
-		private Decrement() {} // forbidden default ctor
+		private DecValue() {} // forbidden default ctor
 
-		private Decrement(FSM.IntVar variable) => m_Variable = variable;
+		private DecValue(FSM.IntVar variable) => m_Variable = variable;
 
 		public void Execute(FSM sm) => m_Variable.Value--;
 
