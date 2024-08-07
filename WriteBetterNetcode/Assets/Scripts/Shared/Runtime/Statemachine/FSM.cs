@@ -230,6 +230,8 @@ namespace CodeSmile.Statemachine
 
 		private Int32 FindStateIndex(State searchForState) => Array.FindIndex(States, s => s == searchForState);
 
+		public override String ToString() => $"FSM({Name})";
+
 		/// <summary>
 		///     Sent with state change event.
 		/// </summary>

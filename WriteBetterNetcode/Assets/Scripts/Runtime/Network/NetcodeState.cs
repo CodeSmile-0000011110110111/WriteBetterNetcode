@@ -30,7 +30,7 @@ namespace CodeSmile.BetterNetcode.Network
 		public Int32 MaxClients;
 	}
 
-	public class NetworkState : MonoBehaviour
+	public class NetcodeState : MonoBehaviour
 	{
 		public enum State
 		{
@@ -94,7 +94,7 @@ namespace CodeSmile.BetterNetcode.Network
 
 		private void SetupStatemachine()
 		{
-			m_Statemachine = new FSM(new String(nameof(NetworkState))).WithStates(Enum.GetNames(typeof(State)));
+			m_Statemachine = new FSM($"{nameof(NetcodeState)}Machine").WithStates(Enum.GetNames(typeof(State)));
 			m_Statemachine.AllowMultipleStateChanges = true;
 			m_Statemachine.OnStateChange += args =>
 				Debug.LogWarning($"[{Time.frameCount}] {m_Statemachine} change: {args.PreviousState} to {args.ActiveState}");
@@ -116,7 +116,7 @@ namespace CodeSmile.BetterNetcode.Network
 
 			m_Statemachine.Logging = true;
 
-			var resetNetworkState = new GroupAction("ResetNetworkState",
+			var resetNetcodeState = new GroupAction("ResetNetcodeState",
 				new SetFalse(relayInitOnceVar),
 				new SetNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None),
 				new RelayClearAllocationData(m_RelayConfigVar));
@@ -158,7 +158,7 @@ namespace CodeSmile.BetterNetcode.Network
 					new SignInAnonymously(),
 					new RelayCreateOrJoinAllocation(m_NetcodeConfigVar, m_RelayConfigVar))
 				.ToErrorState(offlineState)
-				.WithErrorActions(resetNetworkState);
+				.WithErrorActions(resetNetcodeState);
 			relayStartState.AddTransition("Relay Started")
 				.ToState(networkStartState)
 				.WithConditions(
@@ -172,7 +172,7 @@ namespace CodeSmile.BetterNetcode.Network
 					new TransportSetup(m_NetcodeConfigVar, m_TransportConfigVar, m_RelayConfigVar),
 					new NetworkStart(m_NetcodeConfigVar))
 				.ToErrorState(offlineState)
-				.WithErrorActions(resetNetworkState);
+				.WithErrorActions(resetNetcodeState);
 			networkStartState.AddTransition("Server started")
 				.ToState(serverOnlineState)
 				.WithConditions(new IsLocalServerStarted());
@@ -211,7 +211,7 @@ namespace CodeSmile.BetterNetcode.Network
 			networkStopState.AddTransition("Network stopped")
 				.ToState(offlineState)
 				.WithConditions(new IsNetworkOffline())
-				.WithActions(resetNetworkState);
+				.WithActions(resetNetcodeState);
 		}
 
 		public void RequestStartServer()

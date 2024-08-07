@@ -31,7 +31,6 @@ namespace CodeSmile.Statemachine
 				s_StaticVars.Clear();
 		};
 #endif
-		public override String ToString() => $"FSM({Name})";
 
 		public String ToPlantUml(Boolean showCurrentTruthValues = false)
 		{
@@ -146,7 +145,7 @@ namespace CodeSmile.Statemachine
 
 			Logging = logging; // restore logging state
 
-			return $"title {nameof(FSM)}: {Name}\n\n{statesBuilder}\n{transBuilder}";
+			return $"title {Name}\n\n{statesBuilder}\n{transBuilder}";
 		}
 
 		private void ThrowIfStatemachineNotStarted()

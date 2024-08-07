@@ -3,7 +3,7 @@
 !theme blueprint
 hide empty description
 
-title FSM: NetworkState
+title NetcodeStateMachine
 
 state "Initializing" as state0
 state state0 {
@@ -40,7 +40,7 @@ state state2 {
 		state2_trans0 : RelayCreateOrJoinAllocation
 		state2_trans0 : ....
 		state2_trans0 : ==== ""ERR -> {Offline}""
-		state2_trans0 : ==== + ""ResetNetworkState""
+		state2_trans0 : ==== + ""ResetNetcodeState""
 	}
 	state "Relay Started" as state2_trans1
 	state state2_trans1 #line.dotted {
@@ -59,7 +59,7 @@ state state3 {
 		state3_trans0 : NetworkStart
 		state3_trans0 : ....
 		state3_trans0 : ==== ""ERR -> {Offline}""
-		state3_trans0 : ==== + ""ResetNetworkState""
+		state3_trans0 : ==== + ""ResetNetcodeState""
 	}
 	state "Server started" as state3_trans1
 	state state3_trans1 #line.dotted {
@@ -110,7 +110,7 @@ state state7 {
 	state state7_trans0 #line.dotted {
 		state7_trans0 : IsNetworkOffline
 		state7_trans0 : ....
-		state7_trans0 : ResetNetworkState
+		state7_trans0 : ResetNetcodeState
 	}
 }
 
