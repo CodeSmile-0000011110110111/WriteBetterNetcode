@@ -17,17 +17,19 @@ namespace CodeSmile.Statemachine.Netcode.Actions
 		public void Execute(FSM sm)
 		{
 			var succeeded = false;
+			var net = NetworkManager.Singleton;
 			var role = m_NetcodeConfigVar.Value.Role;
+
 			switch (role)
 			{
 				case NetcodeRole.Client:
-					succeeded = NetworkManager.Singleton.StartClient();
+					succeeded = net.StartClient();
 					break;
 				case NetcodeRole.Host:
-					succeeded = NetworkManager.Singleton.StartHost();
+					succeeded = net.StartHost();
 					break;
 				case NetcodeRole.Server:
-					succeeded = NetworkManager.Singleton.StartServer();
+					succeeded = net.StartServer();
 					break;
 
 				case NetcodeRole.None:

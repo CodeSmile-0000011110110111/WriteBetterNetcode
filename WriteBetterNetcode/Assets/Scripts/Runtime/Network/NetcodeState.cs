@@ -150,7 +150,6 @@ namespace CodeSmile.BetterNetcode.Network
 					FSM.NOT(new IsRelayEnabled(m_RelayConfigVar)));
 
 			// Relay state
-			// TODO: handle signIn & relay failing or throwing an exception!!
 			relayStartState.AddTransition("Relay Alloc/Join")
 				.WithConditions(new IsFalse(relayInitOnceVar))
 				.WithActions(
@@ -183,8 +182,8 @@ namespace CodeSmile.BetterNetcode.Network
 			// Server States
 			serverOnlineState.AddTransition("Server stopped")
 				.ToState(networkStopState)
-				.WithConditions(FSM.OR(
-					new IsLocalServerStopped(),
+				.WithConditions(
+					FSM.OR(new IsLocalServerStopped(),
 					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None)))
 				.WithActions(new NetworkStop());
 
@@ -194,8 +193,8 @@ namespace CodeSmile.BetterNetcode.Network
 				.WithConditions(new IsLocalClientConnected());
 			clientOnlineState.AddTransition("Client stopped")
 				.ToState(networkStopState)
-				.WithConditions(FSM.OR(
-					new IsLocalClientStopped(),
+				.WithConditions(
+					FSM.OR(new IsLocalClientStopped(),
 					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None)))
 				.WithActions(new NetworkStop());
 

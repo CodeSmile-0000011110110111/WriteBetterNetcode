@@ -27,23 +27,23 @@ namespace CodeSmile.Statemachine.Services.Relay.Actions
 			ClearRelayAllocationVar();
 
 			var role = m_NetcodeConfigVar.Value.Role;
-			var relayConfig = m_RelayConfigVar.Value;
+			var config = m_RelayConfigVar.Value;
 			var relay = RelayService.Instance;
 
 			if (role == NetcodeRole.Server || role == NetcodeRole.Host)
 			{
-				var allocation = await relay.CreateAllocationAsync(relayConfig.MaxConnections, relayConfig.Region);
+				var allocation = await relay.CreateAllocationAsync(config.MaxConnections, config.Region);
 				var joinCode = await relay.GetJoinCodeAsync(allocation.AllocationId);
-				relayConfig.SetHostAllocation(allocation, joinCode);
+				config.SetHostAllocation(allocation, joinCode);
 			}
 			else
 			{
-				var joinAlloc = await relay.JoinAllocationAsync(relayConfig.JoinCode);
-				relayConfig.SetJoinAllocation(joinAlloc);
+				var joinAlloc = await relay.JoinAllocationAsync(config.JoinCode);
+				config.SetJoinAllocation(joinAlloc);
 			}
 
 			// write back
-			m_RelayConfigVar.Value = relayConfig;
+			m_RelayConfigVar.Value = config;
 		}
 
 		private void ClearRelayAllocationVar()
