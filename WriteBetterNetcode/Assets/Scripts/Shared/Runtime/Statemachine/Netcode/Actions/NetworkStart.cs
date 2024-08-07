@@ -16,23 +16,27 @@ namespace CodeSmile.Statemachine.Netcode.Actions
 
 		public void Execute(FSM sm)
 		{
+			var succeeded = false;
 			var role = m_NetcodeConfigVar.Value.Role;
 			switch (role)
 			{
 				case NetcodeRole.Client:
-					NetworkManager.Singleton.StartClient();
+					succeeded = NetworkManager.Singleton.StartClient();
 					break;
 				case NetcodeRole.Host:
-					NetworkManager.Singleton.StartHost();
+					succeeded = NetworkManager.Singleton.StartHost();
 					break;
 				case NetcodeRole.Server:
-					NetworkManager.Singleton.StartServer();
+					succeeded = NetworkManager.Singleton.StartServer();
 					break;
 
 				case NetcodeRole.None:
 				default:
 					throw new ArgumentOutOfRangeException(nameof(role), role.ToString());
 			}
+
+			if (succeeded == false)
+				throw new Exception($"NetworkManager.Start{role} failed (returned false)");
 		}
 	}
 }

@@ -12,6 +12,18 @@ namespace CodeSmile.Statemachine
 {
 	public sealed partial class FSM
 	{
+		public static void LogCondition(FSM sm, String transitionName, ICondition condition, Boolean satisfied) => Debug.Log(
+			$"{LogPrefix(sm, transitionName)}: {(satisfied ? "TRUE" : "false")} == ({condition.ToDebugString(sm)})");
+
+		public static void LogExecuteAction(FSM sm, String transitionName, IAction action) => Debug.Log(
+			$"{LogPrefix(sm, transitionName)}: Execute{(action is IAsyncAction ? "Async" : "")}({action.ToDebugString(sm)})");
+
+		public static void LogStateChange(FSM sm, State toState, String transitionName) =>
+			Debug.Log($"{LogPrefix(sm, transitionName)} ===> {toState.Name}");
+
+		private static String LogPrefix(FSM sm, String transitionName) =>
+			$"<{Time.frameCount}> {sm.ActiveState.Name} [{(String.IsNullOrEmpty(transitionName) ? "" : transitionName)}]";
+
 #if UNITY_EDITOR
 		[InitializeOnLoadMethod] private static void ResetGlobalVars() => EditorApplication.playModeStateChanged += state =>
 		{
@@ -23,6 +35,10 @@ namespace CodeSmile.Statemachine
 
 		public String ToPlantUml(Boolean showCurrentTruthValues = false)
 		{
+			// disable logging for dump
+			var logging = Logging;
+			Logging = false;
+
 			if (!IsStarted)
 				throw new Exception($"FSM '{Name}': can only generate PlantUML after statemachine started");
 
@@ -80,6 +96,39 @@ namespace CodeSmile.Statemachine
 						statesBuilder.AppendLine($"\t\t{stateId}_{transId} : {action.ToDebugString(this)}");
 					}
 
+					// ERROR transition
+					if (trans.ErrorGotoState != null || trans.ErrorActions != null)
+					{
+						statesBuilder.AppendLine($"\t\t{stateId}_{transId} : ....");
+
+						if (trans.ErrorGotoState != null && trans.ErrorGotoState != state)
+						{
+							var errTransName = $"ERR{{{trans.Name}}}";
+							if (errTransName == null)
+							{
+								errTransName = trans.ErrorGotoState != null ? trans.ErrorGotoState.Name :
+									trans.Conditions.Length == 1 ? trans.Conditions[0].ToDebugString(this) : " ";
+							}
+
+							var errStateId = $"state{FindStateIndex(trans.ErrorGotoState)}";
+							transBuilder.AppendLine($"{stateId} --> {errStateId} : {errTransName}");
+							//transBuilder.AppendLine($"{transStateId} --> {gotoStateId} : {transName}");
+
+							statesBuilder.AppendLine(
+								$"\t\t{stateId}_{transId} : ==== \"\"ERR -> {{{trans.ErrorGotoState.Name}}}\"\"");
+						}
+
+						if (trans.ErrorActions != null)
+						{
+							for (var actIndex = 0; actIndex < trans.ErrorActions.Length; actIndex++)
+							{
+								var errAction = trans.ErrorActions[actIndex];
+								statesBuilder.AppendLine(
+									$"\t\t{stateId}_{transId} : ==== + \"\"{errAction.ToDebugString(this)}\"\"");
+							}
+						}
+					}
+
 					statesBuilder.AppendLine("\t}");
 
 					if (trans.GotoState != null && trans.GotoState != state)
@@ -88,47 +137,14 @@ namespace CodeSmile.Statemachine
 						transBuilder.AppendLine($"{stateId} --> {gotoStateId} : {transName}");
 						//transBuilder.AppendLine($"{transStateId} --> {gotoStateId} : {transName}");
 					}
-
-					// ERROR transition
-					if (trans.ErrorGotoState != null || trans.ErrorActions != null)
-					{
-						var errTransId = $"err_trans{transIndex}";
-						var errTransStateId = $"{stateId}_{errTransId}";
-
-						var errTransName = $"ERR{{{trans.Name}}}";
-						if (errTransName == null)
-						{
-							errTransName = trans.ErrorGotoState != null ? trans.ErrorGotoState.Name :
-								trans.Conditions.Length == 1 ? trans.Conditions[0].ToDebugString(this) : " ";
-						}
-
-						statesBuilder.AppendLine($"\tstate \"{errTransName}\" as {errTransStateId}");
-						statesBuilder.AppendLine($"\tstate {errTransStateId} #line.dotted {{");
-
-						if (trans.ErrorActions != null)
-						{
-							for (var actIndex = 0; actIndex < trans.ErrorActions.Length; actIndex++)
-							{
-								var errAction = trans.ErrorActions[actIndex];
-								statesBuilder.AppendLine($"\t\t{stateId}_{errTransId} : {errAction.ToDebugString(this)}");
-							}
-						}
-
-						statesBuilder.AppendLine("\t}");
-
-						if (trans.ErrorGotoState != null && trans.ErrorGotoState != state)
-						{
-							var errStateId = $"state{FindStateIndex(trans.ErrorGotoState)}";
-							transBuilder.AppendLine($"{stateId} --> {errStateId} : {errTransName}");
-							//transBuilder.AppendLine($"{transStateId} --> {gotoStateId} : {transName}");
-						}
-					}
 				}
 
 				statesBuilder.AppendLine("}");
 			}
 
 			statesBuilder.AppendLine();
+
+			Logging = logging; // restore logging state
 
 			return $"title {nameof(FSM)}: {Name}\n\n{statesBuilder}\n{transBuilder}";
 		}
@@ -231,6 +247,9 @@ namespace CodeSmile.Statemachine
 
 		internal String GetDebugVarName(VariableBase variable)
 		{
+			if (variable == null)
+				return "(null)";
+
 			var isGlobal = false;
 			var varName = Vars.FindVariableName(variable);
 			if (varName == null)
@@ -242,8 +261,11 @@ namespace CodeSmile.Statemachine
 			if (varName == null)
 				return variable.ToString();
 
-			var scope = isGlobal ? "s" : "m";
-			return $"{scope}_{varName}";
+			// remove whitespace
+			//varName = String.Join("", varName.Split(default(String[]), StringSplitOptions.RemoveEmptyEntries));
+
+			var scope = isGlobal ? "global:" : "";
+			return $"{scope}'{varName}'";
 		}
 	}
 }

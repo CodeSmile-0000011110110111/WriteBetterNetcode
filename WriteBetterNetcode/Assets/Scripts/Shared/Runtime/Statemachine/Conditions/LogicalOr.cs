@@ -37,15 +37,8 @@ namespace CodeSmile.Statemachine.Conditions
 			m_InnerConditions = orConditions;
 		}
 
-		public Boolean IsSatisfied(FSM sm)
-		{
-			foreach (var condition in InnerConditions)
-			{
-				if (condition.IsSatisfied(sm))
-					return true;
-			}
-			return false;
-		}
+		public Boolean IsSatisfied(FSM sm) =>
+			FSM.Transition.ConditionsSatisfied(sm, null, InnerConditions, sm.ActiveState.Logging, true);
 
 		public void OnStart(FSM sm)
 		{
@@ -77,8 +70,7 @@ namespace CodeSmile.Statemachine.Conditions
 			for (var i = 0; i < m_InnerConditions.Length; i++)
 			{
 				if (i > 0)
-					sb.Append(", ");
-
+					sb.Append("\\n      ");
 				sb.Append(m_InnerConditions[i].ToDebugString(sm));
 			}
 			sb.Append(")");

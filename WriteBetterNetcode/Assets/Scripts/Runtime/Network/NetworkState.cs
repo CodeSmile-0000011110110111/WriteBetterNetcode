@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Statemachine;
+using CodeSmile.Statemachine.Actions;
 using CodeSmile.Statemachine.Netcode;
 using CodeSmile.Statemachine.Netcode.Actions;
 using CodeSmile.Statemachine.Netcode.Conditions;
@@ -10,6 +11,8 @@ using CodeSmile.Statemachine.Services.Authentication.Actions;
 using CodeSmile.Statemachine.Services.Authentication.Conditions;
 using CodeSmile.Statemachine.Services.Relay.Actions;
 using CodeSmile.Statemachine.Services.Relay.Conditions;
+using CodeSmile.Statemachine.Variable.Actions;
+using CodeSmile.Statemachine.Variable.Conditions;
 using System;
 using System.IO;
 using System.Linq;
@@ -17,6 +20,7 @@ using Unity.Multiplayer.Playmode;
 using UnityEditor;
 using UnityEngine;
 using FSM = CodeSmile.Statemachine.FSM;
+using SetFalse = CodeSmile.Statemachine.Variable.Actions.SetFalse;
 
 namespace CodeSmile.BetterNetcode.Network
 {
@@ -32,12 +36,12 @@ namespace CodeSmile.BetterNetcode.Network
 		{
 			Initializing,
 			Offline,
-			RelayAllocating,
-			Starting,
-			ServerStarted,
-			ClientStarted,
-			ClientConnected,
-			Stopping,
+			RelayStarting,
+			NetworkStarting,
+			ServerOnline,
+			ClientOnline,
+			ClientPlaying,
+			NetworkStopping,
 		}
 
 		// [SerializeField] private NetworkConfig m_ServerConfig = new() { Role = NetworkRole.Server };
@@ -98,16 +102,24 @@ namespace CodeSmile.BetterNetcode.Network
 			m_NetcodeConfigVar = m_Statemachine.Vars.DefineStruct<NetcodeConfig>(nameof(NetcodeConfig));
 			m_RelayConfigVar = m_Statemachine.Vars.DefineStruct<RelayConfig>(nameof(RelayConfig));
 			m_TransportConfigVar = m_Statemachine.Vars.DefineStruct<TransportConfig>(nameof(TransportConfig));
+			var relayInitOnceVar = m_Statemachine.Vars.DefineBool("Relay Init Once");
 
 			var states = m_Statemachine.States;
 			var initState = states[(Int32)State.Initializing];
 			var offlineState = states[(Int32)State.Offline];
-			var relayAllocState = states[(Int32)State.RelayAllocating];
-			var startingState = states[(Int32)State.Starting];
-			var serverStartedState = states[(Int32)State.ServerStarted];
-			var clientStartedState = states[(Int32)State.ClientStarted];
-			var clientConnectedState = states[(Int32)State.ClientConnected];
-			var stoppingState = states[(Int32)State.Stopping];
+			var relayStartState = states[(Int32)State.RelayStarting];
+			var networkStartState = states[(Int32)State.NetworkStarting];
+			var serverOnlineState = states[(Int32)State.ServerOnline];
+			var clientOnlineState = states[(Int32)State.ClientOnline];
+			var clientPlayingState = states[(Int32)State.ClientPlaying];
+			var networkStopState = states[(Int32)State.NetworkStopping];
+
+			m_Statemachine.Logging = true;
+
+			var resetNetworkState = new GroupAction("ResetNetworkState",
+				new SetFalse(relayInitOnceVar),
+				new SetNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None),
+				new RelayClearAllocationData(m_RelayConfigVar));
 
 			/* TODO (MAJOR ONES)
 			 * - how to handle action exceptions?
@@ -126,85 +138,80 @@ namespace CodeSmile.BetterNetcode.Network
 
 			// Offline state
 			offlineState.AddTransition("Start with Relay")
-				.ToState(relayAllocState)
+				.ToState(relayStartState)
 				.WithConditions(
-					FSM.NOT(new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None)),
-					new IsRelayEnabled(m_RelayConfigVar))
-				.WithActions(
-					new SignInAnonymously(),
-					new RelayCreateOrJoinAllocation(m_NetcodeConfigVar, m_RelayConfigVar))
-				.ToErrorState(offlineState)
-				.WithErrorActions(
-					new SetNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None),
-					new RelayClearAllocationData(m_RelayConfigVar));
+					new IsNotNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None),
+					new IsRelayEnabled(m_RelayConfigVar));
 
 			offlineState.AddTransition("Start w/o Relay")
-				.ToState(startingState)
+				.ToState(networkStartState)
 				.WithConditions(
-					FSM.NOT(new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None)),
-					FSM.NOT(new IsRelayEnabled(m_RelayConfigVar)))
-				.WithActions(
-					new TransportSetup(m_NetcodeConfigVar, m_TransportConfigVar, m_RelayConfigVar),
-					new NetworkStart(m_NetcodeConfigVar));
+					new IsNotNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None),
+					FSM.NOT(new IsRelayEnabled(m_RelayConfigVar)));
 
 			// Relay state
 			// TODO: handle signIn & relay failing or throwing an exception!!
-			relayAllocState.AddTransition("Relay Allocated")
-				.ToState(startingState)
+			relayStartState.AddTransition("Relay Alloc/Join")
+				.WithConditions(new IsFalse(relayInitOnceVar))
+				.WithActions(
+					new SetTrue(relayInitOnceVar),
+					new SignInAnonymously(),
+					new RelayCreateOrJoinAllocation(m_NetcodeConfigVar, m_RelayConfigVar))
+				.ToErrorState(offlineState)
+				.WithErrorActions(resetNetworkState);
+			relayStartState.AddTransition("Relay Started")
+				.ToState(networkStartState)
 				.WithConditions(
 					new IsSignedIn(),
-					new IsRelayReady(m_RelayConfigVar))
+					new IsRelayReady(m_RelayConfigVar));
+
+			// NetworkStart state
+			networkStartState.AddTransition("Network Starting")
+				.WithConditions(new IsNotListening())
 				.WithActions(
 					new TransportSetup(m_NetcodeConfigVar, m_TransportConfigVar, m_RelayConfigVar),
-					new NetworkStart(m_NetcodeConfigVar));
-
-			// Starting state
-			startingState.AddTransition("Server started")
-				.ToState(serverStartedState)
+					new NetworkStart(m_NetcodeConfigVar))
+				.ToErrorState(offlineState)
+				.WithErrorActions(resetNetworkState);
+			networkStartState.AddTransition("Server started")
+				.ToState(serverOnlineState)
 				.WithConditions(new IsLocalServerStarted());
-			startingState.AddTransition("Client started")
-				.ToState(clientStartedState)
+			networkStartState.AddTransition("Client started")
+				.ToState(clientOnlineState)
 				.WithConditions(new IsLocalClientStarted());
-			startingState.AddTransition("Failed to start")
-				.ToState(offlineState)
-				.WithConditions(
-					FSM.NOT(new IsLocalServerStarted()),
-					FSM.NOT(new IsLocalClientStarted()))
-				.WithActions(
-					new SetNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None),
-					new RelayClearAllocationData(m_RelayConfigVar));
 
 			// Server States
-			serverStartedState.AddTransition("Server stopping")
-				.ToState(stoppingState)
+			serverOnlineState.AddTransition("Server stopped")
+				.ToState(networkStopState)
 				.WithConditions(FSM.OR(
-					FSM.NOT(new IsLocalServerStarted()),
+					new IsLocalServerStopped(),
 					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None)))
 				.WithActions(new NetworkStop());
 
 			// Client States
-			clientStartedState.AddTransition("Client connected")
-				.ToState(clientConnectedState)
+			clientOnlineState.AddTransition("Client connected")
+				.ToState(clientPlayingState)
 				.WithConditions(new IsLocalClientConnected());
-			clientConnectedState.AddTransition("Client disconnected")
-				.ToState(stoppingState)
-				.WithConditions(FSM.NOT(new IsLocalClientConnected()))
+			clientOnlineState.AddTransition("Client stopped")
+				.ToState(networkStopState)
+				.WithConditions(FSM.OR(
+					new IsLocalClientStopped(),
+					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None)))
+				.WithActions(new NetworkStop());
+
+			clientPlayingState.AddTransition("Client disconnected or stopped")
+				.ToState(networkStopState)
+				.WithConditions(FSM.OR(
+					new IsLocalClientDisconnected(),
+					new IsLocalClientStopped(),
+					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None)))
 				.WithActions(new NetworkStop());
 
 			// Stopping state
-			stoppingState.AddTransition("Network stopping")
+			networkStopState.AddTransition("Network stopped")
 				.ToState(offlineState)
 				.WithConditions(new IsNetworkOffline())
-				.WithActions(new SetNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None));
-
-			// stop transition gets added to multiple states
-			FSM.CreateTransition("Client stopping")
-				.ToState(stoppingState)
-				.AddToStates(clientStartedState, clientConnectedState)
-				.WithConditions(FSM.OR(
-					FSM.NOT(new IsLocalClientStarted()),
-					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None)))
-				.WithActions(new NetworkStop());
+				.WithActions(resetNetworkState);
 		}
 
 		public void RequestStartServer()
@@ -226,6 +233,7 @@ namespace CodeSmile.BetterNetcode.Network
 		}
 
 		public void RequestStartHost() => throw new NotImplementedException();
+
 		public void RequestStartClient()
 		{
 			m_NetcodeConfigVar.Value = new NetcodeConfig { Role = NetcodeRole.Client };

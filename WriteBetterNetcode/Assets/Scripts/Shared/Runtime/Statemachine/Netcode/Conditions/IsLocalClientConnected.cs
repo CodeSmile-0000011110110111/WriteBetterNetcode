@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode.Conditions
 {
-	public sealed class IsLocalClientConnected : ICondition
+	public class IsLocalClientConnected : ICondition
 	{
 		private Boolean m_IsClientConnected;
 
@@ -27,7 +27,7 @@ namespace CodeSmile.Statemachine.Netcode.Conditions
 				net.OnConnectionEvent -= OnConnectionEvent;
 		}
 
-		public Boolean IsSatisfied(FSM sm) => m_IsClientConnected;
+		public virtual Boolean IsSatisfied(FSM sm) => m_IsClientConnected;
 
 		private void OnConnectionEvent(NetworkManager nm, ConnectionEventData connectionData)
 		{

@@ -27,6 +27,18 @@ namespace CodeSmile.Statemachine
 		private State[] m_States;
 
 		private Int32 m_ActiveStateIndex = -1;
+
+		private Boolean m_Logging;
+		public Boolean Logging
+		{
+			get => m_Logging;
+			set
+			{
+				m_Logging = value;
+				ApplyLoggingToAllStates(m_Logging);
+			}
+		}
+
 		public State[] States => m_States;
 		private Boolean IsStarted => !(m_ActiveStateIndex < 0);
 
@@ -85,6 +97,18 @@ namespace CodeSmile.Statemachine
 		/// <param name="statemachineName">Name or description (required)</param>
 		public FSM(String statemachineName) => Name = statemachineName;
 
+		private void ApplyLoggingToAllStates(Boolean logging)
+		{
+			if (m_States == null || m_States.Length == 0)
+				return;
+
+			foreach (var state in m_States)
+			{
+				if (state != null)
+					state.Logging = logging;
+			}
+		}
+
 		/// <summary>
 		///     Creates several named States. For use with Enum.GetNames().
 		/// </summary>
@@ -134,6 +158,8 @@ namespace CodeSmile.Statemachine
 				throw new InvalidOperationException($"FSM '{Name}': Start() must only be called once");
 
 			m_ActiveStateIndex = 0;
+
+			ApplyLoggingToAllStates(Logging);
 
 			foreach (var state in States)
 				state.OnStart(this);

@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using System;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
@@ -21,6 +22,53 @@ namespace CodeSmile.Statemachine
 
 			internal State ErrorGotoState { get; private set; }
 			internal IAction[] ErrorActions { get; private set; }
+
+			internal static Boolean ConditionsSatisfied(FSM sm, String transitionName, ICondition[] conditions, Boolean logging,
+				Boolean useLogicalOr = false)
+			{
+				foreach (var condition in conditions)
+				{
+					var satisfied = condition.IsSatisfied(sm);
+
+					if (logging)
+						LogCondition(sm, transitionName, condition, satisfied);
+
+					// early out checks
+					if (useLogicalOr)
+					{
+						if (satisfied) // OR: if one is true
+							return true;
+					}
+					else if (!satisfied) // AND: if none are false
+						return false;
+				}
+
+				// if we get here: OR = all condition were false / AND = all conditions were true
+				return useLogicalOr ? false : true;
+			}
+
+			internal static async Task ExecuteActions(FSM sm, string transitionName, IAction[] actions, Boolean logging = false)
+			{
+				if (actions == null)
+					return;
+
+				var actionCount = actions.Length;
+				if (actionCount == 0)
+					return;
+
+				for (var i = 0; i < actionCount; i++)
+				{
+					var action = actions[i];
+
+					if (logging)
+						LogExecuteAction(sm, transitionName, action);
+
+					if (action is IAsyncAction asyncAction)
+						await asyncAction.ExecuteAsync(sm);
+					else
+						action.Execute(sm);
+				}
+			}
 
 			/// <summary>
 			///     Creates an unnamed transition that executes its actions if its conditions are satisfied.
@@ -100,55 +148,43 @@ namespace CodeSmile.Statemachine
 
 			internal void Update(FSM sm)
 			{
-				if (ConditionsSatisfied(sm, Conditions))
+				var logging = sm.ActiveState.Logging;
+				if (ConditionsSatisfied(sm, Name, Conditions, logging))
 				{
-					ExecuteActions(sm, Actions);
+					ExecuteActionsWithErrorHandling(sm, Actions, logging);
 
 					if (GotoState != null)
+					{
+						if (logging)
+							LogStateChange(sm, GotoState, Name);
+
 						sm.SetActiveState(GotoState);
+					}
 				}
 			}
 
-			private Boolean ConditionsSatisfied(FSM sm, ICondition[] conditions)
+			private async void ExecuteActionsWithErrorHandling(FSM sm, IAction[] actions, Boolean logging)
 			{
-				foreach (var condition in conditions)
-				{
-					if (condition.IsSatisfied(sm) == false)
-						return false; // early out
-				}
-
-				return true;
-			}
-
-			private async void ExecuteActions(FSM sm, IAction[] actions)
-			{
-				if (actions == null)
-					return;
-
-				var actionCount = actions.Length;
-				if (actionCount == 0)
-					return;
-
 				try
 				{
-					for (var i = 0; i < actionCount; i++)
-					{
-						var action = actions[i];
-						if (action is IAsyncAction)
-							await (action as IAsyncAction).ExecuteAsync(sm);
-						else
-							action.Execute(sm);
-					}
+					await ExecuteActions(sm, Name, actions, logging);
 				}
 				catch (Exception e)
 				{
 					if (ErrorActions != null || ErrorGotoState != null)
 					{
-						Debug.LogWarning($"{Name}: ErrorActions due to {e}");
-						ExecuteActions(sm, ErrorActions);
+						if (logging)
+							Debug.LogWarning($"{sm.ActiveState.Name} [{Name}]: ERROR handling => {e}");
+
+						await ExecuteActions(sm, Name, ErrorActions, logging);
 
 						if (ErrorGotoState != null)
+						{
+							if (logging)
+								LogStateChange(sm, ErrorGotoState, Name);
+
 							sm.SetActiveState(ErrorGotoState);
+						}
 					}
 					else
 						throw;

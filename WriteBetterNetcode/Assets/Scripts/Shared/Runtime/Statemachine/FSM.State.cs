@@ -16,8 +16,10 @@ namespace CodeSmile.Statemachine
 		public sealed class State : IEquatable<State>
 		{
 			private Transition[] m_Transitions;
+
 			internal Transition[] Transitions => m_Transitions;
 			public String Name { get; }
+			public Boolean Logging { get; set; }
 
 			public static Boolean operator ==(State left, State right) => Equals(left, right);
 			public static Boolean operator !=(State left, State right) => !Equals(left, right);
