@@ -12,20 +12,39 @@ namespace CodeSmile.Statemachine
 	public sealed partial class FSM
 	{
 		/// <summary>
-		///     Creates a new State. 'FSM.S(..)' is shorthand for 'new FSM.State(..)'
+		///     Creates a new State.
 		/// </summary>
 		/// <param name="stateName"></param>
 		/// <returns></returns>
 		public static State CreateState(String stateName) => new(stateName);
 
 		/// <summary>
-		///     Creates a new unnamed transition. 'FSM.T(..)' is shorthand for 'new FSM.Transition(..)'
+		///     Creates multiple States from strings.
+		/// </summary>
+		/// <param name="stateName"></param>
+		/// <returns></returns>
+		public static State[] CreateStates(params String[] stateNames)
+		{
+			if (stateNames == null)
+				throw new ArgumentNullException(nameof(stateNames));
+
+			var stateCount = stateNames.Length;
+			var states = new State[stateCount];
+
+			for (var i = 0; i < stateCount; i++)
+				states[i] = new State(stateNames[i]);
+
+			return states;
+		}
+
+		/// <summary>
+		///     Creates a new unnamed transition.
 		/// </summary>
 		/// <returns></returns>
 		public static Transition CreateTransition() => new();
 
 		/// <summary>
-		///     Creates a named transition to the target state. 'FSM.T(..)' is shorthand for 'new FSM.Transition(..)'
+		///     Creates a named transition to the target state.
 		/// </summary>
 		/// <param name="transitionName"></param>
 		/// <param name="gotoState"></param>
@@ -33,14 +52,14 @@ namespace CodeSmile.Statemachine
 		public static Transition CreateTransition(String transitionName) => new(transitionName);
 
 		/// <summary>
-		///     Creates a new generic lambda Condition. 'FSM.C(..)' is shorthand for 'new FSM.Condition(..)'
+		///     Creates a new generic lambda Condition. Mainly intended for prototyping.
 		/// </summary>
 		/// <param name="callback"></param>
 		/// <returns></returns>
 		public static LambdaCondition Condition(Func<Boolean> callback) => new(callback);
 
 		/// <summary>
-		///     Creates a new generic lambda Action. 'FSM.A(..)' is shorthand for 'new FSM.Action(..)'
+		///     Creates a new generic lambda Action. Mainly intended for prototyping.
 		/// </summary>
 		/// <param name="callback"></param>
 		/// <returns></returns>

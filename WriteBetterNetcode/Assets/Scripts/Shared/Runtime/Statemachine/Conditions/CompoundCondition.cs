@@ -6,17 +6,17 @@ using System.Text;
 
 namespace CodeSmile.Statemachine.Conditions
 {
-	public sealed class GroupCondition : ICondition
+	public sealed class CompoundCondition : ICondition
 	{
 		private readonly String m_Name;
 		private readonly ICondition[] m_Conditions;
 
-		private GroupCondition() {}
+		private CompoundCondition() {}
 
-		public GroupCondition(params ICondition[] conditions)
+		public CompoundCondition(params ICondition[] conditions)
 			: this(null, conditions) {}
 
-		public GroupCondition(String name, params ICondition[] conditions)
+		public CompoundCondition(String name, params ICondition[] conditions)
 		{
 			if (conditions == null || conditions.Length == 0)
 				throw new ArgumentException("conditions null or empty");

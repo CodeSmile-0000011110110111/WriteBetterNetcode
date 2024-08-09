@@ -56,11 +56,11 @@ namespace CodeSmile.Statemachine.Tests
 		{
 			var value = new Vector3(0f, Single.MinValue, Single.MaxValue);
 			var sm = new FSM("FSM");
-			sm.Vars.DefineStruct(TestVar1, value);
-			sm.StaticVars.DefineStruct(TestVar1, value);
+			sm.Vars.DefineVar(TestVar1, value);
+			sm.StaticVars.DefineVar(TestVar1, value);
 
-			Assert.AreEqual(value, sm.Vars.GetStruct<Vector3>(TestVar1).Value);
-			Assert.AreEqual(value, sm.StaticVars.GetStruct<Vector3>(TestVar1).Value);
+			Assert.AreEqual(value, sm.Vars.GetVar<Vector3>(TestVar1).Value);
+			Assert.AreEqual(value, sm.StaticVars.GetVar<Vector3>(TestVar1).Value);
 		}
 
 		// Bool vars

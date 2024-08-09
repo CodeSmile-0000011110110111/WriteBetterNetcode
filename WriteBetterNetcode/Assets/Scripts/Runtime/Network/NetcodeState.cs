@@ -94,15 +94,8 @@ namespace CodeSmile.BetterNetcode.Network
 
 		private void SetupStatemachine()
 		{
-			m_Statemachine = new FSM($"{nameof(NetcodeState)}Machine").WithStates(Enum.GetNames(typeof(State)));
-			m_Statemachine.AllowMultipleStateChanges = true;
-			m_Statemachine.OnStateChange += args =>
-				Debug.LogWarning($"[{Time.frameCount}] {m_Statemachine} change: {args.PreviousState} to {args.ActiveState}");
-
-			m_NetcodeConfigVar = m_Statemachine.Vars.DefineStruct<NetcodeConfig>(nameof(NetcodeConfig));
-			m_RelayConfigVar = m_Statemachine.Vars.DefineStruct<RelayConfig>(nameof(RelayConfig));
-			m_TransportConfigVar = m_Statemachine.Vars.DefineStruct<TransportConfig>(nameof(TransportConfig));
-			var relayInitOnceVar = m_Statemachine.Vars.DefineBool("Relay Init Once");
+			m_Statemachine = new FSM($"{nameof(NetcodeState)}Machine")
+				.WithStates(Enum.GetNames(typeof(State)));
 
 			var states = m_Statemachine.States;
 			var initState = states[(Int32)State.Initializing];
@@ -115,25 +108,30 @@ namespace CodeSmile.BetterNetcode.Network
 			var networkStopState = states[(Int32)State.NetworkStopping];
 
 			m_Statemachine.Logging = true;
+			m_Statemachine.AllowMultipleStateChanges = true;
+			m_Statemachine.OnStateChange += args =>
+				Debug.Log($"[{Time.frameCount}] {m_Statemachine} changed to {args.ActiveState}");
 
-			var resetNetcodeState = new GroupAction("ResetNetcodeState",
+			m_NetcodeConfigVar = m_Statemachine.Vars.DefineVar<NetcodeConfig>();
+			m_RelayConfigVar = m_Statemachine.Vars.DefineVar<RelayConfig>();
+			m_TransportConfigVar = m_Statemachine.Vars.DefineVar<TransportConfig>();
+			var relayInitOnceVar = m_Statemachine.Vars.DefineBool("RelayInitOnce");
+
+			var resetNetcodeState = new CompoundAction("ResetNetcodeState",
 				new SetFalse(relayInitOnceVar),
 				new SetNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None),
 				new RelayClearAllocationData(m_RelayConfigVar));
 
 			/* TODO (MAJOR ONES)
-			 * - how to handle action exceptions?
-			 *		transition => ToErrorState ?? (handle exception where it occurs)
-			 *		statemachine => move to fixed error state with its own transitions? (sounds good, or too brute force?)
 			 * - forward events (eg join code available)
 			 *		route through config object ... BUT: config is a struct
 			 * - Var<T> allow classes?
 			 */
 
 			// Init state
-			initState.AddTransition("Init Complete")
+			initState.AddTransition("Init Completed")
 				.ToState(offlineState)
-				.WithConditions(new IsNetworkOffline())
+				.WithConditions(new IsNetworkManagerSingletonAssigned())
 				.WithActions(new UnityServicesInit());
 
 			// Offline state

@@ -18,7 +18,5 @@ namespace CodeSmile.Statemachine.Netcode.Conditions
 
 			return !(net.ShutdownInProgress || net.IsListening || net.IsServer || net.IsHost || net.IsClient);
 		}
-
-		public override String ToString() => nameof(IsNetworkOffline);
 	}
 }

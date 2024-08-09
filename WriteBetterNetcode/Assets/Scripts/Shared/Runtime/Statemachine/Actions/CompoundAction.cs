@@ -8,17 +8,17 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Actions
 {
-	public sealed class GroupAction : IAction
+	public sealed class CompoundAction : IAction
 	{
 		private readonly String m_Name;
 		private readonly IAction[] m_Actions;
 
-		private GroupAction() {}
+		private CompoundAction() {}
 
-		public GroupAction(params IAction[] actions)
+		public CompoundAction(params IAction[] actions)
 			: this(null, actions) {}
 
-		public GroupAction(String name, params IAction[] actions)
+		public CompoundAction(String name, params IAction[] actions)
 		{
 			if (actions == null || actions.Length == 0)
 				throw new ArgumentException("actions null or empty");

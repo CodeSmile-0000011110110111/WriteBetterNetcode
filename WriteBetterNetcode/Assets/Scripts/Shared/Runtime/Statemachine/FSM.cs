@@ -117,14 +117,7 @@ namespace CodeSmile.Statemachine
 		/// <returns></returns>
 		public FSM WithStates(params String[] stateNames)
 		{
-			if (stateNames == null)
-				throw new ArgumentNullException(nameof(stateNames));
-
-			var stateCount = stateNames.Length;
-			var states = new State[stateCount];
-			for (var i = 0; i < stateCount; i++)
-				states[i] = new State(stateNames[i]);
-
+			var states = CreateStates(stateNames);
 			WithStates(states);
 
 			return this;
@@ -203,14 +196,12 @@ namespace CodeSmile.Statemachine
 				{
 					updatingState.OnExitState(this);
 					ActiveState.OnEnterState(this);
-
-					OnStateChange?.Invoke(new StateChangeEventArgs
-						{ Statemachine = this, PreviousState = updatingState, ActiveState = ActiveState });
+					InvokeOnStateChangeEvent(updatingState);
 
 					if (ActiveState.IsFinalState())
 					{
 						Stop();
-						OnStopped?.Invoke(new StatemachineStoppedEventArgs { Statemachine = this, FinalState = ActiveState });
+						InvokeOnStoppedEvent();
 					}
 
 					iterations--;
@@ -218,8 +209,32 @@ namespace CodeSmile.Statemachine
 
 				if (IsStopped || DidChangeState == false)
 					break;
+
+				if (AllowMultipleStateChanges)
+					WarnIfIterationsExceeded(iterations);
 			} while (iterations > 0);
 		}
+
+		private void WarnIfIterationsExceeded(Int32 iterations)
+		{
+#if DEBUG || DEVELOPMENT_BUILD
+			if (iterations == 0)
+				Debug.LogWarning($"{Name} exceeded {MaxStateChangesPerEvaluate} update iterations (possible flow cycle)");
+#endif
+		}
+
+		private void InvokeOnStateChangeEvent(State updatingState) => OnStateChange?.Invoke(new StateChangeEventArgs
+		{
+			Statemachine = this,
+			PreviousState = updatingState,
+			ActiveState = ActiveState,
+		});
+
+		private void InvokeOnStoppedEvent() => OnStopped?.Invoke(new StatemachineStoppedEventArgs
+		{
+			Statemachine = this,
+			FinalState = ActiveState,
+		});
 
 		internal void SetActiveState(State state)
 		{

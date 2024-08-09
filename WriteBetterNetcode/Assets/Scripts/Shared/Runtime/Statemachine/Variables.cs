@@ -40,9 +40,10 @@ namespace CodeSmile.Statemachine
 
 		public FloatVar GetFloat(String name) => m_Variables[name] as FloatVar;
 
-		public Var<T> DefineStruct<T>(String name, T value = default) where T : struct => AddVariable(name, new Var<T>(value));
+		public Var<T> DefineVar<T>() where T : struct => AddVariable(nameof(T), new Var<T>());
+		public Var<T> DefineVar<T>(String name, T value = default) where T : struct => AddVariable(name, new Var<T>(value));
 
-		public Var<T> GetStruct<T>(String name) where T : struct => m_Variables[name] as Var<T>;
+		public Var<T> GetVar<T>(String name) where T : struct => m_Variables[name] as Var<T>;
 	}
 
 	public abstract class VariableBase
