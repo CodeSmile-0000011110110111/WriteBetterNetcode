@@ -3,6 +3,8 @@
 
 using System;
 using System.Text;
+using UnityEditor;
+using UnityEngine;
 
 namespace CodeSmile.Statemachine.Conditions
 {
@@ -25,7 +27,8 @@ namespace CodeSmile.Statemachine.Conditions
 			m_Conditions = conditions;
 		}
 
-		public Boolean IsSatisfied(FSM sm) => throw new NotImplementedException();
+		public Boolean IsSatisfied(FSM sm) =>
+			FSM.Transition.ConditionsSatisfied(sm, null, m_Conditions, sm.ActiveState.Logging);
 
 		public String ToDebugString(FSM sm)
 		{
