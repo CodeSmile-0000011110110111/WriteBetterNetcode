@@ -126,13 +126,13 @@ namespace CodeSmile.BetterNetcode.Network
 			 * - forward events (eg join code available)
 			 *		route through config object ... BUT: config is a struct
 			 * - Var<T> allow classes?
+			 * - correct error handling for compound actions etc because they call the non-catching T methods!
 			 */
 
 			// Init state
 			initState.AddTransition("Init Completed")
 				.ToState(offlineState)
-				.WithConditions(new IsNetworkManagerSingletonAssigned())
-				.WithActions(new UnityServicesInit());
+				.WithConditions(new IsNetworkManagerSingletonAssigned());
 
 			// Offline state
 			offlineState.AddTransition("Start with Relay")
@@ -152,6 +152,7 @@ namespace CodeSmile.BetterNetcode.Network
 				.WithConditions(new IsFalse(relayInitOnceVar))
 				.WithActions(
 					new SetTrue(relayInitOnceVar),
+					new UnityServicesInit(),
 					new SignInAnonymously(),
 					new RelayCreateOrJoinAllocation(m_NetcodeConfigVar, m_RelayConfigVar))
 				.ToErrorState(offlineState)
