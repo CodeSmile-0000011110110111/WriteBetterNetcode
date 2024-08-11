@@ -38,7 +38,7 @@ namespace CodeSmile.Statemachine.Netcode.Actions
 			transport.UseEncryption = transportConfig.UseEncryption;
 			transport.UseWebSockets = transportConfig.UseWebSockets;
 
-			var connectionType = transportConfig.UseEncryption ? transportConfig.UseWebSockets ? "wss" : "dtls" : null;
+			var connectionType = transportConfig.UseEncryption ? transportConfig.UseWebSockets ? "wss" : "dtls" : "udp";
 
 			// TODO: transport encryption ... set secrets and such
 			if (transportConfig.UseEncryption)
