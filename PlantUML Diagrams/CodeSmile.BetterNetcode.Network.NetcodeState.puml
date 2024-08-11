@@ -7,11 +7,10 @@ title NetcodeStateMachine
 
 state "Initializing" as state0
 state state0 {
-	state "Init Complete" as state0_trans0
+	state "Init Completed" as state0_trans0
 	state state0_trans0 #line.dotted {
-		state0_trans0 : IsNetworkOffline
+		state0_trans0 : IsNetworkManagerSingletonAssigned
 		state0_trans0 : ....
-		state0_trans0 : UnityServicesInit
 	}
 }
 state "Offline" as state1
@@ -33,9 +32,10 @@ state "RelayStarting" as state2
 state state2 {
 	state "Relay Alloc/Join" as state2_trans0
 	state state2_trans0 #line.dotted {
-		state2_trans0 : 'Relay Init Once' == false
+		state2_trans0 : 'RelayInitOnce' == false
 		state2_trans0 : ....
-		state2_trans0 : 'Relay Init Once' = true
+		state2_trans0 : 'RelayInitOnce' = true
+		state2_trans0 : UnityServicesInit
 		state2_trans0 : SignInAnonymously
 		state2_trans0 : RelayCreateOrJoinAllocation
 		state2_trans0 : ....
@@ -116,7 +116,7 @@ state state7 {
 
 
 [*] -> state0
-state0 --> state1 : Init Complete
+state0 --> state1 : Init Completed
 state1 --> state2 : Start with Relay
 state1 --> state3 : Start w/o Relay
 state2 --> state1 : ERR{Relay Alloc/Join}
