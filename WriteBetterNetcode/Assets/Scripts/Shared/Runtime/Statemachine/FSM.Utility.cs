@@ -74,7 +74,9 @@ namespace CodeSmile.Statemachine
 					for (var condIndex = 0; condIndex < trans.Conditions.Length; condIndex++)
 					{
 						var cond = trans.Conditions[condIndex];
-						var satisfied = cond.IsSatisfied(this);
+						var satisfied = false;
+						if (showCurrentTruthValues)
+							satisfied = cond.IsSatisfied(this);
 
 						if (cond is LogicalNot notCondition)
 							cond = notCondition;
