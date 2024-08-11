@@ -34,11 +34,11 @@ namespace CodeSmile.Statemachine.Netcode.Actions
 
 				case NetcodeRole.None:
 				default:
-					throw new ArgumentOutOfRangeException(nameof(role), role.ToString());
+					throw new ArgumentOutOfRangeException(nameof(role));
 			}
 
 			if (succeeded == false)
-				throw new Exception($"NetworkManager.Start{role} failed (returned false)");
+				throw new Exception($"NetworkManager.Start{role} failed");
 		}
 	}
 }

@@ -15,6 +15,10 @@ namespace CodeSmile.Statemachine.Netcode.Actions
 		private NetworkStop() {}
 		public NetworkStop(Boolean discardMessageQueue = false) => m_DiscardMessageQueue = discardMessageQueue;
 
-		public void Execute(FSM sm) => NetworkManager.Singleton.Shutdown(m_DiscardMessageQueue);
+		public void Execute(FSM sm)
+		{
+			var net = NetworkManager.Singleton;
+			net.Shutdown(m_DiscardMessageQueue);
+		}
 	}
 }

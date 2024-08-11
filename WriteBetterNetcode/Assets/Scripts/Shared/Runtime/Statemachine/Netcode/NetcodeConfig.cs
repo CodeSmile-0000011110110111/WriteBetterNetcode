@@ -12,7 +12,7 @@ namespace CodeSmile.Statemachine.Netcode
 	{
 		public NetcodeRole Role;
 
-		// deliberate datatype choice! Relay limit is 100 connections and 255 clients on one server is far fetched
+		// Byte is deliberate! Relay limit is 100 connections
 		public Byte MaxConnections;
 
 		public override String ToString() => $"{nameof(NetcodeConfig)}(Role={Role})";

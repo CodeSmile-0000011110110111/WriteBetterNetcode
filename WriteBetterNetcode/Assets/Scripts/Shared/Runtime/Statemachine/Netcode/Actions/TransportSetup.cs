@@ -38,21 +38,32 @@ namespace CodeSmile.Statemachine.Netcode.Actions
 			transport.UseEncryption = transportConfig.UseEncryption;
 			transport.UseWebSockets = transportConfig.UseWebSockets;
 
-			var connectionType = transportConfig.UseEncryption ? transportConfig.UseWebSockets ? "wss" : "dtls" : "udp";
+			var connectionType = transportConfig.UseEncryption ?
+				transportConfig.UseWebSockets ? "wss" : "dtls" : "udp";
 
-			// TODO: transport encryption ... set secrets and such
+			// TODO: transport encryption ...
 			if (transportConfig.UseEncryption)
-				throw new NotImplementedException("TODO: encryption ... set secrets and such");
+				throw new NotImplementedException("TODO: encryption ... set secrets etc");
 
 			if (relayConfig.UseRelayService)
 			{
 				if (netcodeConfig.Role == NetcodeRole.Client)
-					transport.SetRelayServerData(new RelayServerData(relayConfig.JoinAllocation, connectionType));
+				{
+					transport.SetRelayServerData(
+						new RelayServerData(relayConfig.JoinAllocation, connectionType));
+				}
 				else
-					transport.SetRelayServerData(new RelayServerData(relayConfig.HostAllocation, connectionType));
+				{
+					transport.SetRelayServerData(
+						new RelayServerData(relayConfig.HostAllocation, connectionType));
+				}
 			}
 			else
-				transport.SetConnectionData(transportConfig.Address, transportConfig.Port, transportConfig.ServerListenAddress);
+			{
+				transport.SetConnectionData(transportConfig.Address,
+					transportConfig.Port,
+					transportConfig.ServerListenAddress);
+			}
 		}
 	}
 }

@@ -9,6 +9,7 @@ using CodeSmile.Statemachine.Netcode.Conditions;
 using CodeSmile.Statemachine.Services;
 using CodeSmile.Statemachine.Services.Authentication.Actions;
 using CodeSmile.Statemachine.Services.Authentication.Conditions;
+using CodeSmile.Statemachine.Services.Core.Actions;
 using CodeSmile.Statemachine.Services.Relay.Actions;
 using CodeSmile.Statemachine.Services.Relay.Conditions;
 using CodeSmile.Statemachine.Variable.Actions;
@@ -48,16 +49,16 @@ namespace CodeSmile.BetterNetcode.Network
 		// [SerializeField] private NetworkConfig m_HostConfig = new() { Role = NetworkRole.Host };
 		// [SerializeField] private NetworkConfig m_ClientConfig = new() { Role = NetworkRole.Client };
 
-		public FSM m_Statemachine;
+		private FSM m_Statemachine;
 		private Var<NetcodeConfig> m_NetcodeConfigVar;
 		private Var<RelayConfig> m_RelayConfigVar;
 		private Var<TransportConfig> m_TransportConfigVar;
 
-		private void Awake() => SetupStatemachine();
-
 		private void Start()
 		{
-			m_Statemachine.Start().Update();
+			SetupStatemachine();
+
+			m_Statemachine.Start();
 
 			try
 			{
@@ -70,6 +71,7 @@ namespace CodeSmile.BetterNetcode.Network
 				Debug.LogError(e);
 			}
 
+			// For Testing ...
 			var mppmRole = GetNetworkRoleFromMppmTags();
 			//Debug.Log("Network Role: " + mppmRole);
 
@@ -97,6 +99,8 @@ namespace CodeSmile.BetterNetcode.Network
 			m_Statemachine = new FSM($"{nameof(NetcodeState)}Machine")
 				.WithStates(Enum.GetNames(typeof(State)));
 
+			m_Statemachine.AllowMultipleStateChanges = true;
+
 			var states = m_Statemachine.States;
 			var initState = states[(Int32)State.Initializing];
 			var offlineState = states[(Int32)State.Offline];
@@ -107,15 +111,15 @@ namespace CodeSmile.BetterNetcode.Network
 			var clientPlayingState = states[(Int32)State.ClientPlaying];
 			var networkStopState = states[(Int32)State.NetworkStopping];
 
-			m_Statemachine.Logging = true;
-			m_Statemachine.AllowMultipleStateChanges = true;
-			m_Statemachine.OnStateChange += args =>
-				Debug.Log($"[{Time.frameCount}] {m_Statemachine} changed to {args.ActiveState}");
-
 			m_NetcodeConfigVar = m_Statemachine.Vars.DefineVar<NetcodeConfig>();
 			m_RelayConfigVar = m_Statemachine.Vars.DefineVar<RelayConfig>();
 			m_TransportConfigVar = m_Statemachine.Vars.DefineVar<TransportConfig>();
 			var relayInitOnceVar = m_Statemachine.Vars.DefineBool("RelayInitOnce");
+
+			// for testing
+			m_Statemachine.Logging = true;
+			m_Statemachine.OnStateChange += args =>
+				Debug.Log($"[{Time.frameCount}] {m_Statemachine} changed to {args.ActiveState}");
 
 			var resetNetcodeState = new CompoundAction("ResetNetcodeState",
 				new SetFalse(relayInitOnceVar),
@@ -157,6 +161,7 @@ namespace CodeSmile.BetterNetcode.Network
 					new RelayCreateOrJoinAllocation(m_NetcodeConfigVar, m_RelayConfigVar))
 				.ToErrorState(offlineState)
 				.WithErrorActions(resetNetcodeState);
+
 			relayStartState.AddTransition("Relay Started")
 				.ToState(networkStartState)
 				.WithConditions(
@@ -171,6 +176,7 @@ namespace CodeSmile.BetterNetcode.Network
 					new NetworkStart(m_NetcodeConfigVar))
 				.ToErrorState(offlineState)
 				.WithErrorActions(resetNetcodeState);
+
 			networkStartState.AddTransition("Server started")
 				.ToState(serverOnlineState)
 				.WithConditions(new IsLocalServerStarted());
@@ -183,7 +189,7 @@ namespace CodeSmile.BetterNetcode.Network
 				.ToState(networkStopState)
 				.WithConditions(
 					FSM.OR(new IsLocalServerStopped(),
-					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None)))
+						new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None)))
 				.WithActions(new NetworkStop());
 
 			// Client States
@@ -194,7 +200,7 @@ namespace CodeSmile.BetterNetcode.Network
 				.ToState(networkStopState)
 				.WithConditions(
 					FSM.OR(new IsLocalClientStopped(),
-					new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None)))
+						new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None)))
 				.WithActions(new NetworkStop());
 
 			clientPlayingState.AddTransition("Client disconnected or stopped")

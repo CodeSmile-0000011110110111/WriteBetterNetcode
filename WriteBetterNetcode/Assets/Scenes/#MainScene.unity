@@ -553,7 +553,7 @@ GameObject:
   - component: {fileID: 2143178688}
   - component: {fileID: 2143178689}
   m_Layer: 0
-  m_Name: NetworkState
+  m_Name: NetcodeState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -586,31 +586,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac52e56e14a7324fbf35e312bf94ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ServerConfig:
-    Role: 2
-    AddressData:
-      Address: 127.0.0.1
-      Port: 7777
-      ServerListenAddress: 
-    UseWebSockets: 0
-    UseEncryption: 0
-  m_HostConfig:
-    Role: 1
-    AddressData:
-      Address: 127.0.0.1
-      Port: 7777
-      ServerListenAddress: 
-    UseWebSockets: 0
-    UseEncryption: 0
-  m_ClientConfig:
-    Role: 0
-    AddressData:
-      Address: 127.0.0.1
-      Port: 7777
-      ServerListenAddress: 
-    UseWebSockets: 0
-    UseEncryption: 0
-  m_RoleForTesting: 3
 --- !u!114 &48163973242718940
 MonoBehaviour:
   m_ObjectHideFlags: 0

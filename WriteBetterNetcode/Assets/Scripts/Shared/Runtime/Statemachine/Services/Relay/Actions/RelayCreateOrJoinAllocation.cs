@@ -24,8 +24,6 @@ namespace CodeSmile.Statemachine.Services.Relay.Actions
 
 		public async Task ExecuteAsync(FSM sm)
 		{
-			ClearRelayAllocationVar();
-
 			var role = m_NetcodeConfigVar.Value.Role;
 			var config = m_RelayConfigVar.Value;
 			var relay = RelayService.Instance;
@@ -43,13 +41,6 @@ namespace CodeSmile.Statemachine.Services.Relay.Actions
 			}
 
 			// write back
-			m_RelayConfigVar.Value = config;
-		}
-
-		private void ClearRelayAllocationVar()
-		{
-			var config = m_RelayConfigVar.Value;
-			config.ClearAllocationData();
 			m_RelayConfigVar.Value = config;
 		}
 	}

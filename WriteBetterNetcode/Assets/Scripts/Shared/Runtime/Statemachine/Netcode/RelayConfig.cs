@@ -20,23 +20,28 @@ namespace CodeSmile.Statemachine.Services
 		public Allocation HostAllocation { get; private set; }
 		public JoinAllocation JoinAllocation { get; private set; }
 
-		public Boolean IsReady => HostAllocation != null || JoinAllocation != null;
+		public Boolean HasAllocation => HostAllocation != null || JoinAllocation != null;
 
 		public void SetHostAllocation(Allocation alloc, String joinCode)
 		{
 			HostAllocation = alloc;
+			JoinAllocation = null;
 			JoinCode = joinCode;
 			// TODO: invoke event here
 		}
 
 		// TODO: invoke event here
-		public void SetJoinAllocation(JoinAllocation alloc) => JoinAllocation = alloc;
+		public void SetJoinAllocation(JoinAllocation alloc)
+		{
+			HostAllocation = null;
+			JoinAllocation = alloc;
+		}
 
 		public void ClearAllocationData()
 		{
 			HostAllocation = null;
 			JoinAllocation = null;
-			// TODO: invoke event here
+			// TODO: invoke event here?
 		}
 
 		public override String ToString() =>
