@@ -104,6 +104,22 @@ namespace CodeSmile.Statemachine
 		public abstract void DivideValue(VariableBase variable);
 	}
 
+	public sealed class BoolVar : VariableBase, IEquatable<BoolVar>
+	{
+		public Boolean Value { get; set; }
+		public BoolVar(Boolean value = default) => Value = value;
+		public Boolean Equals(BoolVar other) => !ReferenceEquals(null, other) && Value == other.Value;
+		public override Boolean Equals(Object obj) => obj is BoolVar other && Equals(other);
+		public override Int32 GetHashCode() => Value.GetHashCode();
+		public override String ToString() => Value.ToString();
+
+		public override void SetValue(VariableBase variable) => Value = ((BoolVar)variable).Value;
+		public override void AddValue(VariableBase variable) => throw new NotSupportedException();
+		public override void SubtractValue(VariableBase variable) => throw new NotSupportedException();
+		public override void MultiplyValue(VariableBase variable) => throw new NotSupportedException();
+		public override void DivideValue(VariableBase variable) => throw new NotSupportedException();
+	}
+
 	public sealed class IntVar : VariableBase, IEquatable<IntVar>
 	{
 		public Int32 Value { get; set; }
@@ -154,22 +170,6 @@ namespace CodeSmile.Statemachine
 		public override String ToString() => Value.ToString();
 
 		public override void SetValue(VariableBase variable) => Value = ((Var<T>)variable).Value;
-		public override void AddValue(VariableBase variable) => throw new NotSupportedException();
-		public override void SubtractValue(VariableBase variable) => throw new NotSupportedException();
-		public override void MultiplyValue(VariableBase variable) => throw new NotSupportedException();
-		public override void DivideValue(VariableBase variable) => throw new NotSupportedException();
-	}
-
-	public sealed class BoolVar : VariableBase, IEquatable<BoolVar>
-	{
-		public Boolean Value { get; set; }
-		public BoolVar(Boolean value = default) => Value = value;
-		public Boolean Equals(BoolVar other) => !ReferenceEquals(null, other) && Value == other.Value;
-		public override Boolean Equals(Object obj) => obj is BoolVar other && Equals(other);
-		public override Int32 GetHashCode() => Value.GetHashCode();
-		public override String ToString() => Value.ToString();
-
-		public override void SetValue(VariableBase variable) => Value = ((BoolVar)variable).Value;
 		public override void AddValue(VariableBase variable) => throw new NotSupportedException();
 		public override void SubtractValue(VariableBase variable) => throw new NotSupportedException();
 		public override void MultiplyValue(VariableBase variable) => throw new NotSupportedException();
