@@ -131,6 +131,7 @@ namespace CodeSmile.BetterNetcode.Network
 			 *		route through config object ... BUT: config is a struct
 			 * - Var<T> allow classes?
 			 * - correct error handling for compound actions etc because they call the non-catching T methods!
+			 * - support client connection dis-approval (received client disconnect event with reason)
 			 */
 
 			// Init state

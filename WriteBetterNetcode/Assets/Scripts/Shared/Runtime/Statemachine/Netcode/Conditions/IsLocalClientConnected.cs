@@ -31,10 +31,12 @@ namespace CodeSmile.Statemachine.Netcode.Conditions
 
 		private void OnConnectionEvent(NetworkManager nm, ConnectionEventData connectionData)
 		{
-			if (connectionData.EventType == ConnectionEvent.ClientConnected)
-				m_IsClientConnected = true;
-			else if (connectionData.EventType == ConnectionEvent.ClientDisconnected)
-				m_IsClientConnected = false;
+			m_IsClientConnected = connectionData.EventType switch
+			{
+				ConnectionEvent.ClientConnected => true,
+				ConnectionEvent.ClientDisconnected => false,
+				_ => m_IsClientConnected
+			};
 		}
 	}
 }

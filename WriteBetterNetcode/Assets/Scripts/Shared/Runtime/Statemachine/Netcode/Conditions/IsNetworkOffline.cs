@@ -16,7 +16,8 @@ namespace CodeSmile.Statemachine.Netcode.Conditions
 			if (net == null)
 				return false;
 
-			return !(net.ShutdownInProgress || net.IsListening || net.IsServer || net.IsHost || net.IsClient);
+			return !(net.ShutdownInProgress || net.IsListening ||
+			         net.IsServer || net.IsHost || net.IsClient);
 		}
 	}
 }
