@@ -11,9 +11,9 @@ namespace CodeSmile.BetterNetcode
 	public class Components : MonoBehaviour
 	{
 		private static Components s_Instance;
+		[SerializeField] private NetcodeState m_NetcodeState;
 
-		public static NetcodeState NetcodeState => s_Instance.NetcodeStateComponent;
-		[field: SerializeField] private NetcodeState NetcodeStateComponent { get; set; }
+		public static NetcodeState NetcodeState => s_Instance.m_NetcodeState;
 
 		private void Awake()
 		{
@@ -24,7 +24,7 @@ namespace CodeSmile.BetterNetcode
 		private void AssignInstance()
 		{
 			if (s_Instance != null)
-				throw new InvalidOperationException("already instantiated!");
+				throw new InvalidOperationException("already exists!");
 
 			s_Instance = this;
 		}
