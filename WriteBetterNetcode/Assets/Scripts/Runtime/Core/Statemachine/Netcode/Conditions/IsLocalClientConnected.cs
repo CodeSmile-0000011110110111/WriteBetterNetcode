@@ -29,14 +29,12 @@ namespace CodeSmile.Core.Statemachine.Netcode.Conditions
 
 		public virtual Boolean IsSatisfied(FSM sm) => m_IsClientConnected;
 
-		private void OnConnectionEvent(NetworkManager nm, ConnectionEventData connectionData)
-		{
-			m_IsClientConnected = connectionData.EventType switch
+		private void OnConnectionEvent(NetworkManager nm, ConnectionEventData connectionData) => m_IsClientConnected =
+			connectionData.EventType switch
 			{
 				ConnectionEvent.ClientConnected => true,
 				ConnectionEvent.ClientDisconnected => false,
-				_ => m_IsClientConnected
+				_ => m_IsClientConnected,
 			};
-		}
 	}
 }

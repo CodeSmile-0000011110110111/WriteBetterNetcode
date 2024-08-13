@@ -55,7 +55,6 @@ namespace CodeSmile.GUI
 			HostDirectButton.clicked += OnHostDirectButtonClicked;
 		}
 
-
 		private void UnregisterGuiEvents()
 		{
 			HostRelayButton.clicked -= OnHostRelayButtonClicked;
@@ -64,6 +63,7 @@ namespace CodeSmile.GUI
 
 		private void OnHostRelayButtonClicked() => StartHost(true);
 		private void OnHostDirectButtonClicked() => StartHost(false);
+
 		private void StartHost(Boolean withRelay)
 		{
 			var netcodeConfig = NetcodeConfig.FromCmdArgs();

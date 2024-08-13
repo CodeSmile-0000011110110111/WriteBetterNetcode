@@ -47,7 +47,7 @@ namespace CodeSmile.Core.Statemachine
 				return useLogicalOr ? false : true;
 			}
 
-			internal static async Task ExecuteActions(FSM sm, string transitionName, IAction[] actions, Boolean logging = false)
+			internal static async Task ExecuteActions(FSM sm, String transitionName, IAction[] actions, Boolean logging = false)
 			{
 				if (actions == null)
 					return;

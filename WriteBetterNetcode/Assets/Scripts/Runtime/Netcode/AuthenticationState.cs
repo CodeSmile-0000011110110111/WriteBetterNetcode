@@ -33,9 +33,6 @@ namespace CodeSmile.BetterNetcode.Netcode
 			m_Statemachine.Update();
 		}
 
-		private void SetupStatemachine()
-		{
-			throw new NotImplementedException();
-		}
+		private void SetupStatemachine() => throw new NotImplementedException();
 	}
 }
