@@ -60,6 +60,7 @@ namespace CodeSmile.BetterNetcode.Network
 
 			m_Statemachine.Start();
 
+			// TODO: remove this ...
 			try
 			{
 				var puml = m_Statemachine.ToPlantUml();
@@ -68,28 +69,10 @@ namespace CodeSmile.BetterNetcode.Network
 			}
 			catch (Exception e)
 			{
-				Debug.LogError(e);
+				Debug.LogWarning(e);
 			}
 
-			// For Testing ...
-			var mppmRole = GetNetworkRoleFromMppmTags();
-			//Debug.Log("Network Role: " + mppmRole);
 
-			switch (mppmRole)
-			{
-				case NetcodeRole.Client:
-					RequestStartClient();
-					break;
-				case NetcodeRole.Host:
-					RequestStartHost();
-					break;
-				case NetcodeRole.Server:
-					RequestStartServer();
-					break;
-				case NetcodeRole.None:
-				default:
-					throw new ArgumentOutOfRangeException();
-			}
 		}
 
 		private void Update() => m_Statemachine.Update();
@@ -260,17 +243,7 @@ namespace CodeSmile.BetterNetcode.Network
 
 		public void RequestStopNetwork() => throw new NotImplementedException();
 
-		private NetcodeRole GetNetworkRoleFromMppmTags()
-		{
-#if UNITY_EDITOR
-			var tags = CurrentPlayer.ReadOnlyTags();
-			var roleCount = Enum.GetValues(typeof(NetcodeRole)).Length;
-			for (var r = 0; r < roleCount; r++)
-				if (tags.Contains(((NetcodeRole)r).ToString()))
-					return (NetcodeRole)r;
-#endif
-			return NetcodeRole.None;
-		}
+
 
 		public void StartNetworking(TransportConfig config)
 		{

@@ -16,7 +16,12 @@ MonoBehaviour:
   m_EnableEditors: 1
   m_MainEditorInstance:
     rid: 2465855238257246400
-  m_EditorInstances: []
+  m_EditorInstances:
+  - Name: Player 2
+    <CorrespondingNodeId>k__BackingField: 
+    m_Role: 3
+    m_PlayerTag: Host
+    m_InitialScene: {fileID: 0}
   m_LocalInstances: []
   m_RemoteInstances: []
   m_OverridePort: 0
@@ -27,8 +32,8 @@ MonoBehaviour:
     - rid: 2465855238257246400
       type: {class: EditorInstanceDescription, ns: Unity.Multiplayer.PlayMode.Scenarios.Editor, asm: Unity.Multiplayer.PlayMode.Scenarios.Editor}
       data:
-        Name: Editor
+        Name: Main Editor
         <CorrespondingNodeId>k__BackingField: 
         m_Role: 1
         m_PlayerTag: 
-        m_InitialScene: {fileID: 0}
+        m_InitialScene: {fileID: 102900000, guid: 9b24686a5d80d8a4bb4bb70ecefbd338, type: 3}
