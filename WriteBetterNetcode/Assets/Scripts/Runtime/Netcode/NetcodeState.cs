@@ -1,27 +1,26 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.Statemachine;
-using CodeSmile.Statemachine.Actions;
-using CodeSmile.Statemachine.Netcode;
-using CodeSmile.Statemachine.Netcode.Actions;
-using CodeSmile.Statemachine.Netcode.Conditions;
-using CodeSmile.Statemachine.Services;
-using CodeSmile.Statemachine.Services.Authentication.Actions;
-using CodeSmile.Statemachine.Services.Authentication.Conditions;
-using CodeSmile.Statemachine.Services.Core.Actions;
-using CodeSmile.Statemachine.Services.Relay.Actions;
-using CodeSmile.Statemachine.Services.Relay.Conditions;
-using CodeSmile.Statemachine.Variable.Actions;
-using CodeSmile.Statemachine.Variable.Conditions;
+using CodeSmile.Core.Statemachine;
+using CodeSmile.Core.Statemachine.Actions;
+using CodeSmile.Core.Statemachine.Netcode;
+using CodeSmile.Core.Statemachine.Netcode.Actions;
+using CodeSmile.Core.Statemachine.Netcode.Conditions;
+using CodeSmile.Core.Statemachine.Services.Authentication.Actions;
+using CodeSmile.Core.Statemachine.Services.Authentication.Conditions;
+using CodeSmile.Core.Statemachine.Services.Core.Actions;
+using CodeSmile.Core.Statemachine.Services.Relay.Actions;
+using CodeSmile.Core.Statemachine.Services.Relay.Conditions;
+using CodeSmile.Core.Statemachine.Variable.Actions;
+using CodeSmile.Core.Statemachine.Variable.Conditions;
 using System;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-using FSM = CodeSmile.Statemachine.FSM;
-using SetFalse = CodeSmile.Statemachine.Variable.Actions.SetFalse;
+using FSM = CodeSmile.Core.Statemachine.FSM;
+using SetFalse = CodeSmile.Core.Statemachine.Variable.Actions.SetFalse;
 
-namespace CodeSmile.BetterNetcode.Network
+namespace CodeSmile.BetterNetcode.Netcode
 {
 	[Serializable]
 	public struct ServerConfig

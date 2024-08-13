@@ -1,13 +1,13 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.Statemachine.Netcode;
+using CodeSmile.Core.Statemachine.Netcode;
 using System.Threading.Tasks;
 using Unity.Services.Relay;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Services.Relay.Actions
+namespace CodeSmile.Core.Statemachine.Services.Relay.Actions
 {
 	public class RelayCreateOrJoinAllocation : IAsyncAction
 	{

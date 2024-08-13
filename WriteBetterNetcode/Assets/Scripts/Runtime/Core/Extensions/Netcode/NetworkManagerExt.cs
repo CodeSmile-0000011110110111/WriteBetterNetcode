@@ -8,7 +8,7 @@ using UnityEngine;
 #if UNITY_EDITOR
 #endif
 
-namespace CodeSmile.Extensions.Netcode
+namespace CodeSmile.Core.Extensions.Netcode
 {
 	/// <summary>
 	///     Extension and utility methods for NetworkManager

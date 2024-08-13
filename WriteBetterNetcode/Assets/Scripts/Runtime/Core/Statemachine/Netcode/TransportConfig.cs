@@ -1,14 +1,14 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.Extensions.Netcode;
-using CodeSmile.Utility;
+using CodeSmile.Core.Extensions.Netcode;
+using CodeSmile.Core.Utility;
 using System;
 using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Netcode
+namespace CodeSmile.Core.Statemachine.Netcode
 {
 	[Serializable]
 	public struct TransportConfig

@@ -6,7 +6,7 @@ using Unity.Services.Authentication;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Services.Authentication.Conditions
+namespace CodeSmile.Core.Statemachine.Services.Authentication.Conditions
 {
 	public class IsNotSignedIn : ICondition
 	{

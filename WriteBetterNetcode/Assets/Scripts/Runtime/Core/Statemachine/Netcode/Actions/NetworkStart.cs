@@ -6,7 +6,7 @@ using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Netcode.Actions
+namespace CodeSmile.Core.Statemachine.Netcode.Actions
 {
 	public sealed class NetworkStart : IAction
 	{

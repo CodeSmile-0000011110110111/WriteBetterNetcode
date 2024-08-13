@@ -6,7 +6,7 @@ using Unity.Services.Authentication;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Services.Authentication.Actions
+namespace CodeSmile.Core.Statemachine.Services.Authentication.Actions
 {
 	public class SignInAnonymously : IAsyncAction
 	{

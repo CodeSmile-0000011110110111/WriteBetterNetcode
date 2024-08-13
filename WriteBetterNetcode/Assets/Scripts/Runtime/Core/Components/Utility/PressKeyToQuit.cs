@@ -4,7 +4,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Components.Utility
+namespace CodeSmile.Core.Components.Utility
 {
 	/// <summary>
 	///     Hooks the Escape key to Application.Quit.

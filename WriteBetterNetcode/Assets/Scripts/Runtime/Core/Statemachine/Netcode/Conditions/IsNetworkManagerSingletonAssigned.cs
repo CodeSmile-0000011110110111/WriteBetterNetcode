@@ -6,7 +6,7 @@ using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Netcode.Conditions
+namespace CodeSmile.Core.Statemachine.Netcode.Conditions
 {
 	public sealed class IsNetworkManagerSingletonAssigned : ICondition
 	{

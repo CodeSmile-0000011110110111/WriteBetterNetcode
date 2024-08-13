@@ -6,7 +6,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Actions
+namespace CodeSmile.Core.Statemachine.Actions
 {
 	public sealed class CompoundAction : IAction
 	{

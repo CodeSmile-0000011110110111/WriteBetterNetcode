@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Variable.Conditions
+namespace CodeSmile.Core.Statemachine.Variable.Conditions
 {
 	public class IsTrue : ICondition
 	{

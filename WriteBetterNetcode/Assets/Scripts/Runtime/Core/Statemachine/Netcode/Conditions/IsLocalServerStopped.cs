@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Netcode.Conditions
+namespace CodeSmile.Core.Statemachine.Netcode.Conditions
 {
 	public sealed class IsLocalServerStopped : IsLocalServerStarted
 	{

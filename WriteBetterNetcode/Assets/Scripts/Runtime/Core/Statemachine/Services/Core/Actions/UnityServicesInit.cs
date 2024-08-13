@@ -6,7 +6,7 @@ using Unity.Services.Core;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Services.Core.Actions
+namespace CodeSmile.Core.Statemachine.Services.Core.Actions
 {
 	public class UnityServicesInit : IAsyncAction
 	{

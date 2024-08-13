@@ -1,7 +1,6 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.Statemachine.Services;
 using System;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
@@ -9,7 +8,7 @@ using Unity.Networking.Transport.Relay;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Netcode.Actions
+namespace CodeSmile.Core.Statemachine.Netcode.Actions
 {
 	public class TransportSetup : IAction
 	{

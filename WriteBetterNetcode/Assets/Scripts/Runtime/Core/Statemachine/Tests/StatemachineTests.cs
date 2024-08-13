@@ -6,7 +6,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Tests
+namespace CodeSmile.Core.Statemachine.Tests
 {
 	public class StatemachineTests
 	{

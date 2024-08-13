@@ -6,7 +6,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Conditions
+namespace CodeSmile.Core.Statemachine.Conditions
 {
 	public sealed class CompoundCondition : ICondition
 	{

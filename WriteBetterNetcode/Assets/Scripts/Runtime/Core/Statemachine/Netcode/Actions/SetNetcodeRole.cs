@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Netcode.Actions
+namespace CodeSmile.Core.Statemachine.Netcode.Actions
 {
 	public class SetNetcodeRole : IAction
 	{

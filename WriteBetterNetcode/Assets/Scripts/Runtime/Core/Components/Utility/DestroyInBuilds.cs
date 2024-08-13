@@ -4,7 +4,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Components.Utility
+namespace CodeSmile.Core.Components.Utility
 {
 	public class DestroyInBuilds : MonoBehaviour
 	{

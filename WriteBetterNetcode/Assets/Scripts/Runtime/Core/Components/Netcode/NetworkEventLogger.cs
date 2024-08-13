@@ -7,7 +7,7 @@ using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Components.Netcode
+namespace CodeSmile.Core.Components.Netcode
 {
 	/// <summary>
 	///     Will log all NetworkManager events. Best to add this component on the same object as the NetworkManager.

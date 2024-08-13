@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Statemachine.Variable.Actions
+namespace CodeSmile.Core.Statemachine.Variable.Actions
 {
 	public class DivValue : IAction
 	{

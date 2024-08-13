@@ -1,13 +1,12 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.Statemachine.Netcode;
-using CodeSmile.Statemachine.Services;
-using CodeSmile.Utility;
+using CodeSmile.Core.Statemachine.Netcode;
+using CodeSmile.Core.Utility;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.BetterNetcode
+namespace CodeSmile.BetterNetcode.Netcode
 {
 	public class CmdLauncher : MonoBehaviour
 	{
