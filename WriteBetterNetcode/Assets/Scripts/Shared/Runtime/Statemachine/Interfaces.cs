@@ -66,6 +66,5 @@ namespace CodeSmile.Statemachine
 	public interface IAsyncAction : IAction
 	{
 		Task ExecuteAsync(FSM sm);
-		String ToDebugString(FSM sm) => GetType().Name;
 	}
 }
