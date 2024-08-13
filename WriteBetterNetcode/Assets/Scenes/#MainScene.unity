@@ -510,7 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96e8a52bfbe37a44b4df51e08c4eb45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <NetcodeStateRef>k__BackingField: {fileID: 2143178689}
+  <NetcodeStateComponent>k__BackingField: {fileID: 2143178689}
 --- !u!1 &2061108204
 GameObject:
   m_ObjectHideFlags: 0
