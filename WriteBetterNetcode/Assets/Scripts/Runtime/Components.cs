@@ -10,17 +10,29 @@ namespace CodeSmile.BetterNetcode
 {
 	public class Components : MonoBehaviour
 	{
-		private static Components Instance;
+		private static Components s_Instance;
 
-		public static NetcodeState NetcodeState => Instance.NetcodeStateComponent;
+		public static NetcodeState NetcodeState => s_Instance.NetcodeStateComponent;
 		[field: SerializeField] private NetcodeState NetcodeStateComponent { get; set; }
 
 		private void Awake()
 		{
-			if (Instance != null)
+			AssignInstance();
+			ThrowIfComponentIsNull();
+		}
+
+		private void AssignInstance()
+		{
+			if (s_Instance != null)
 				throw new InvalidOperationException("already instantiated!");
 
-			Instance = this;
+			s_Instance = this;
+		}
+
+		private void ThrowIfComponentIsNull()
+		{
+			if (NetcodeState == null)
+				throw new MissingReferenceException($"{nameof(NetcodeState)} not assigned");
 		}
 	}
 }

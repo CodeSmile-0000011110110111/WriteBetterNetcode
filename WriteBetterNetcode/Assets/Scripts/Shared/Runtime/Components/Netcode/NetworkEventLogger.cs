@@ -149,7 +149,7 @@ namespace CodeSmile.Components.Netcode
 				serverTick = net.ServerTime.Tick;
 			}
 
-			Debug.Log($"[LT:{localTick}|ST:{serverTick}|FC:{frameCount}] {message}");
+			Debug.Log($"[L:{localTick}|S:{serverTick}|F:{frameCount}] {message}");
 		}
 
 #if UNITY_EDITOR

@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 1433288289}
   - component: {fileID: 1433288290}
   m_Layer: 0
-  m_Name: ComponentRegistry
+  m_Name: Components Registry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -761,7 +761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa7a9370208ced4db319c647667f124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LogPropertyChanges: 1
+  m_LogPropertyChanges: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -16,8 +16,6 @@ using CodeSmile.Statemachine.Variable.Actions;
 using CodeSmile.Statemachine.Variable.Conditions;
 using System;
 using System.IO;
-using System.Linq;
-using Unity.Multiplayer.Playmode;
 using UnityEditor;
 using UnityEngine;
 using FSM = CodeSmile.Statemachine.FSM;
@@ -54,10 +52,10 @@ namespace CodeSmile.BetterNetcode.Network
 		private Var<RelayConfig> m_RelayConfigVar;
 		private Var<TransportConfig> m_TransportConfigVar;
 
+		private void Awake() => SetupStatemachine();
+
 		private void Start()
 		{
-			SetupStatemachine();
-
 			m_Statemachine.Start();
 
 			// TODO: remove this ...
@@ -71,14 +69,13 @@ namespace CodeSmile.BetterNetcode.Network
 			{
 				Debug.LogWarning(e);
 			}
-
-
 		}
 
 		private void Update() => m_Statemachine.Update();
 
 		private void SetupStatemachine()
 		{
+			Debug.Log("Setup Statemachine");
 			m_Statemachine = new FSM($"{nameof(NetcodeState)}Machine")
 				.WithStates(Enum.GetNames(typeof(State)));
 
@@ -100,7 +97,7 @@ namespace CodeSmile.BetterNetcode.Network
 			var relayInitOnceVar = m_Statemachine.Vars.DefineBool("RelayInitOnce");
 
 			// for testing
-			m_Statemachine.Logging = true;
+			//m_Statemachine.Logging = true;
 			m_Statemachine.OnStateChange += args =>
 				Debug.Log($"[{Time.frameCount}] {m_Statemachine} changed to {args.ActiveState}");
 
@@ -202,58 +199,22 @@ namespace CodeSmile.BetterNetcode.Network
 				.WithActions(resetNetcodeState);
 		}
 
-		public void RequestStartServer()
+		public void RequestStartNetwork(NetcodeConfig netcodeConfig, TransportConfig transportConfig,
+			RelayConfig relayConfig = default)
 		{
-			m_NetcodeConfigVar.Value = new NetcodeConfig { Role = NetcodeRole.Server };
-			m_RelayConfigVar.Value = new RelayConfig
-			{
-				UseRelayService = true,
-				MaxConnections = 4,
-			};
-			m_TransportConfigVar.Value = new TransportConfig
-			{
-				Address = "127.0.0.1",
-				Port = 7777,
-				ServerListenAddress = "0.0.0.0",
-				UseEncryption = false,
-				UseWebSockets = false,
-			};
+			if (netcodeConfig.Role == NetcodeRole.None)
+				throw new ArgumentException("cannot start network without NetcodeRole");
+
+			m_NetcodeConfigVar.Value = netcodeConfig;
+			m_TransportConfigVar.Value = transportConfig;
+			m_RelayConfigVar.Value = relayConfig;
 		}
 
-		public void RequestStartHost() => throw new NotImplementedException();
-
-		public void RequestStartClient()
+		public void RequestStopNetwork()
 		{
-			m_NetcodeConfigVar.Value = new NetcodeConfig { Role = NetcodeRole.Client };
-			m_RelayConfigVar.Value = new RelayConfig
-			{
-				UseRelayService = true,
-				MaxConnections = 4,
-				JoinCode = "CDFGH78",
-			};
-			m_TransportConfigVar.Value = new TransportConfig
-			{
-				Address = "127.0.0.1",
-				Port = 7777,
-				ServerListenAddress = "0.0.0.0",
-				UseEncryption = false,
-				UseWebSockets = false,
-			};
-		}
-
-		public void RequestStopNetwork() => throw new NotImplementedException();
-
-
-
-		public void StartNetworking(TransportConfig config)
-		{
-			/*
-			var net = NetworkManager.Singleton;
-			var transport = net.GetTransport();
-			transport.ConnectionData = config.AddressData;
-			transport.UseWebSockets = config.UseWebSockets;
-			transport.UseEncryption = config.UseEncryption;
-		*/
+			var netcodeConfig = m_NetcodeConfigVar.Value;
+			netcodeConfig.Role = NetcodeRole.None;
+			m_NetcodeConfigVar.Value = netcodeConfig;
 		}
 	}
 }
