@@ -1,0 +1,16 @@
+{
+    "name": "CodeSmile.BetterNetcode.GUI",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b01e7d37c21f68947a05cebbc3f902f2"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
