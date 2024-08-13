@@ -17,8 +17,6 @@ using System;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-using FSM = CodeSmile.Core.Statemachine.FSM;
-using SetFalse = CodeSmile.Core.Statemachine.Variable.Actions.SetFalse;
 
 namespace CodeSmile.BetterNetcode.Netcode
 {
@@ -30,6 +28,9 @@ namespace CodeSmile.BetterNetcode.Netcode
 
 	public class NetcodeState : MonoBehaviour
 	{
+		public event Action WentOffline;
+		public event Action WentOnline;
+
 		public enum State
 		{
 			Initializing,
@@ -41,10 +42,6 @@ namespace CodeSmile.BetterNetcode.Netcode
 			ClientPlaying,
 			NetworkStopping,
 		}
-
-		// [SerializeField] private NetworkConfig m_ServerConfig = new() { Role = NetworkRole.Server };
-		// [SerializeField] private NetworkConfig m_HostConfig = new() { Role = NetworkRole.Host };
-		// [SerializeField] private NetworkConfig m_ClientConfig = new() { Role = NetworkRole.Client };
 
 		private FSM m_Statemachine;
 		private Var<NetcodeConfig> m_NetcodeConfigVar;
@@ -102,7 +99,8 @@ namespace CodeSmile.BetterNetcode.Netcode
 			var resetNetcodeState = new CompoundAction("ResetNetcodeState",
 				new SetFalse(relayInitOnceVar),
 				new SetNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None),
-				new RelayClearAllocationData(m_RelayConfigVar));
+				new RelayClearAllocationData(m_RelayConfigVar),
+				new LambdaAction(() => WentOffline?.Invoke()));
 
 			/* TODO (MAJOR ONES)
 			 * - forward events (eg join code available)
@@ -115,20 +113,23 @@ namespace CodeSmile.BetterNetcode.Netcode
 			// Init state
 			initState.AddTransition("Init Completed")
 				.ToState(offlineState)
-				.WithConditions(new IsNetworkManagerSingletonAssigned());
+				.WithConditions(new IsNetworkManagerSingletonAssigned())
+				.WithActions(new LambdaAction(() => WentOffline?.Invoke()));
 
 			// Offline state
 			offlineState.AddTransition("Start with Relay")
 				.ToState(relayStartState)
 				.WithConditions(
 					new IsNotNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None),
-					new IsRelayEnabled(m_RelayConfigVar));
+					new IsRelayEnabled(m_RelayConfigVar))
+				.WithActions(new LambdaAction(() => WentOnline?.Invoke()));
 
 			offlineState.AddTransition("Start w/o Relay")
 				.ToState(networkStartState)
 				.WithConditions(
 					new IsNotNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None),
-					FSM.NOT(new IsRelayEnabled(m_RelayConfigVar)));
+					FSM.NOT(new IsRelayEnabled(m_RelayConfigVar)))
+				.WithActions(new LambdaAction(() => WentOnline?.Invoke()));
 
 			// Relay state
 			relayStartState.AddTransition("Relay Alloc/Join")
@@ -148,6 +149,11 @@ namespace CodeSmile.BetterNetcode.Netcode
 					new IsRelayReady(m_RelayConfigVar));
 
 			// NetworkStart state
+			networkStartState.AddTransition("Cancel Net Start")
+				.ToState(offlineState)
+				.WithConditions(new IsNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None))
+				.WithActions(resetNetcodeState);
+
 			networkStartState.AddTransition("Network Starting")
 				.WithConditions(new IsNotListening())
 				.WithActions(
@@ -214,6 +220,7 @@ namespace CodeSmile.BetterNetcode.Netcode
 
 		public void RequestStopNetwork()
 		{
+			Debug.Log("request stop");
 			var netcodeConfig = m_NetcodeConfigVar.Value;
 			netcodeConfig.Role = NetcodeRole.None;
 			m_NetcodeConfigVar.Value = netcodeConfig;

@@ -154,7 +154,7 @@ namespace CodeSmile.Core.Statemachine
 		{
 #if DEBUG || DEVELOPMENT_BUILD
 			if (!IsStarted)
-				throw new InvalidOperationException($"FSM '{Name}': Start() not called before Evaluate()!");
+				throw new InvalidOperationException($"FSM '{Name}': Start() not called before Update()!");
 #endif
 		}
 

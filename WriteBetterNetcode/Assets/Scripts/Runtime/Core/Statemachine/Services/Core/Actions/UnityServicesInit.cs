@@ -10,12 +10,10 @@ namespace CodeSmile.Core.Statemachine.Services.Core.Actions
 {
 	public class UnityServicesInit : IAsyncAction
 	{
-		public Task ExecuteAsync(FSM sm)
+		public async Task ExecuteAsync(FSM sm)
 		{
 			if (UnityServices.State == ServicesInitializationState.Uninitialized)
-				return UnityServices.InitializeAsync();
-
-			return null;
+				await UnityServices.InitializeAsync();
 		}
 	}
 }

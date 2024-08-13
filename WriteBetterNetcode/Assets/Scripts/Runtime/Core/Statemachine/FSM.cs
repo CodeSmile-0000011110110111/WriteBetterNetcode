@@ -26,9 +26,9 @@ namespace CodeSmile.Core.Statemachine
 
 		private State[] m_States;
 
-		private Int32 m_ActiveStateIndex = -1;
-
 		private Boolean m_Logging;
+
+		public Int32 ActiveStateIndex { get; private set; } = -1;
 		public Boolean Logging
 		{
 			get => m_Logging;
@@ -40,7 +40,7 @@ namespace CodeSmile.Core.Statemachine
 		}
 
 		public State[] States => m_States;
-		private Boolean IsStarted => !(m_ActiveStateIndex < 0);
+		private Boolean IsStarted => !(ActiveStateIndex < 0);
 
 		/// <summary>
 		///     Name of the Statemachine
@@ -56,7 +56,7 @@ namespace CodeSmile.Core.Statemachine
 			get
 			{
 				ThrowIfStatemachineNotStarted();
-				return States[m_ActiveStateIndex];
+				return States[ActiveStateIndex];
 			}
 		}
 
@@ -150,7 +150,7 @@ namespace CodeSmile.Core.Statemachine
 			if (IsStarted)
 				throw new InvalidOperationException($"FSM '{Name}': Start() must only be called once");
 
-			m_ActiveStateIndex = 0;
+			ActiveStateIndex = 0;
 
 			ApplyLoggingToAllStates(Logging);
 
@@ -239,8 +239,8 @@ namespace CodeSmile.Core.Statemachine
 		internal void SetActiveState(State state)
 		{
 			var newStateIndex = FindStateIndex(state);
-			DidChangeState = newStateIndex != m_ActiveStateIndex;
-			m_ActiveStateIndex = newStateIndex;
+			DidChangeState = newStateIndex != ActiveStateIndex;
+			ActiveStateIndex = newStateIndex;
 		}
 
 		private Int32 FindStateIndex(State searchForState) => Array.FindIndex(States, s => s == searchForState);

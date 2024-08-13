@@ -10,13 +10,11 @@ namespace CodeSmile.Core.Statemachine.Services.Authentication.Actions
 {
 	public class SignInAnonymously : IAsyncAction
 	{
-		public Task ExecuteAsync(FSM sm)
+		public async Task ExecuteAsync(FSM sm)
 		{
 			var authService = AuthenticationService.Instance;
 			if (authService.IsSignedIn == false)
-				return authService.SignInAnonymouslyAsync();
-
-			return null;
+				await authService.SignInAnonymouslyAsync();
 		}
 	}
 }
