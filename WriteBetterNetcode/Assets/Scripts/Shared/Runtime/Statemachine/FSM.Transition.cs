@@ -173,8 +173,7 @@ namespace CodeSmile.Statemachine
 				{
 					if (ErrorActions != null || ErrorGotoState != null)
 					{
-						if (logging)
-							Debug.LogWarning($"{sm.ActiveState.Name} [{Name}]: ERROR handling => {e}");
+						Debug.LogWarning($"{sm.ActiveState.Name} [{Name}]: ERROR => {e}");
 
 						await ExecuteActions(sm, Name, ErrorActions, logging);
 

@@ -75,7 +75,6 @@ namespace CodeSmile.BetterNetcode.Network
 
 		private void SetupStatemachine()
 		{
-			Debug.Log("Setup Statemachine");
 			m_Statemachine = new FSM($"{nameof(NetcodeState)}Machine")
 				.WithStates(Enum.GetNames(typeof(State)));
 
@@ -204,6 +203,10 @@ namespace CodeSmile.BetterNetcode.Network
 		{
 			if (netcodeConfig.Role == NetcodeRole.None)
 				throw new ArgumentException("cannot start network without NetcodeRole");
+
+			Debug.Log(netcodeConfig);
+			Debug.Log(transportConfig);
+			Debug.Log(relayConfig);
 
 			m_NetcodeConfigVar.Value = netcodeConfig;
 			m_TransportConfigVar.Value = transportConfig;

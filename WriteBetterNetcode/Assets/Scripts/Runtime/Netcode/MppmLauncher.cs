@@ -16,12 +16,10 @@ namespace CodeSmileEditor.BetterNetcode
 #if UNITY_EDITOR
 		private void Start()
 		{
-			var mppmRole = GetNetworkRoleFromMppmTags();
-			if (mppmRole != NetcodeRole.None)
+			var role = GetNetworkRoleFromMppmTags();
+			if (role != NetcodeRole.None)
 			{
-				Debug.Log("MPPM NetworkRole is: " + mppmRole);
-
-				var netcodeConfig = new NetcodeConfig { Role = mppmRole, MaxConnections = 0 };
+				var netcodeConfig = new NetcodeConfig { Role = role, MaxConnections = 4 };
 				var transportConfig = TransportConfig.FromNetworkManager();
 				Components.NetcodeState.RequestStartNetwork(netcodeConfig, transportConfig);
 			}

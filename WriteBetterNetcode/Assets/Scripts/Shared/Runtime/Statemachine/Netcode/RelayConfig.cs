@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Utility;
 using System;
 using Unity.Services.Relay.Models;
 using UnityEditor;
@@ -11,9 +12,11 @@ namespace CodeSmile.Statemachine.Services
 	[Serializable]
 	public struct RelayConfig
 	{
-		public Boolean UseRelayService;
-		[Range(1, 100)]
-		public Byte MaxConnections;
+		public const Int32 MinRelayConnections = 1;
+		public const Int32 MaxRelayConnections = 100;
+
+		public Boolean UseRelay;
+		[Range(MinRelayConnections, MaxRelayConnections)] public Byte MaxConnections;
 		public String Region;
 		public String JoinCode { get; set; }
 
@@ -21,6 +24,15 @@ namespace CodeSmile.Statemachine.Services
 		public JoinAllocation JoinAllocation { get; private set; }
 
 		public Boolean HasAllocation => HostAllocation != null || JoinAllocation != null;
+
+		public static RelayConfig FromCmdArgs() => new()
+		{
+			UseRelay = CmdArgs.GetBool(nameof(UseRelay)),
+			Region = CmdArgs.GetString(nameof(Region)),
+			JoinCode = CmdArgs.GetString(nameof(JoinCode)),
+			MaxConnections = (Byte)Mathf.Clamp(CmdArgs.GetInt(nameof(MaxConnections)),
+				MinRelayConnections, MaxRelayConnections),
+		};
 
 		public void SetHostAllocation(Allocation alloc, String joinCode)
 		{
@@ -44,8 +56,10 @@ namespace CodeSmile.Statemachine.Services
 			// TODO: invoke event here?
 		}
 
-		public override String ToString() =>
-			$"{nameof(RelayConfig)}(Relay={UseRelayService}, MaxConnections={MaxConnections}, Region={Region}, " +
-			$"JoinCode={JoinCode}, HostAllocation={HostAllocation}, JoinAllocation={JoinAllocation})";
+		public override String ToString() => $"{nameof(RelayConfig)}(" +
+		                                     $"{nameof(UseRelay)}={UseRelay}, " +
+		                                     $"{nameof(MaxConnections)}={MaxConnections}, " +
+		                                     $"{nameof(Region)}={Region}, " +
+		                                     $"{nameof(JoinCode)}={JoinCode})";
 	}
 }

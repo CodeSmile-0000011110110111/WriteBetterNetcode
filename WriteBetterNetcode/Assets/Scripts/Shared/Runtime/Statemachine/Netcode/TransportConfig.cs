@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Extensions.Netcode;
+using CodeSmile.Utility;
 using System;
 using Unity.Netcode;
 using UnityEditor;
@@ -34,8 +35,23 @@ namespace CodeSmile.Statemachine.Netcode
 			};
 		}
 
-		public override String ToString() =>
-			$"{nameof(TransportConfig)}(Address={Address}:{Port}, ListenAddress={ServerListenAddress}, " +
-			$"UseWebSockets={UseWebSockets}, UseEncryption={UseEncryption})";
+		public static TransportConfig FromNetworkManagerWithCmdArgOverrides()
+		{
+			var config = FromNetworkManager();
+			config.Address = CmdArgs.GetString(nameof(Address)) ?? config.Address;
+			config.Port = (UInt16)CmdArgs.GetInt(nameof(Port), config.Port);
+			config.ServerListenAddress = CmdArgs.GetString(nameof(ServerListenAddress)) ??
+			                             config.ServerListenAddress;
+			config.UseEncryption = CmdArgs.GetBool(nameof(UseEncryption), config.UseEncryption);
+			config.UseWebSockets = CmdArgs.GetBool(nameof(UseWebSockets), config.UseWebSockets);
+			return config;
+		}
+
+		public override String ToString() => $"{nameof(TransportConfig)}(" +
+		                                     $"{nameof(Address)}={Address}, " +
+		                                     $"{nameof(Port)}={Port}, " +
+		                                     $"{nameof(ServerListenAddress)}={ServerListenAddress}, " +
+		                                     $"{nameof(UseWebSockets)}={UseWebSockets}, " +
+		                                     $"{nameof(UseEncryption)}={UseEncryption})";
 	}
 }

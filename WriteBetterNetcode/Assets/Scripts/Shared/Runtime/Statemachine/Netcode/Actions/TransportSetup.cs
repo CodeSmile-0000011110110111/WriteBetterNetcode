@@ -45,7 +45,7 @@ namespace CodeSmile.Statemachine.Netcode.Actions
 			if (transportConfig.UseEncryption)
 				throw new NotImplementedException("TODO: encryption ... set secrets etc");
 
-			if (relayConfig.UseRelayService)
+			if (relayConfig.UseRelay)
 			{
 				if (netcodeConfig.Role == NetcodeRole.Client)
 				{

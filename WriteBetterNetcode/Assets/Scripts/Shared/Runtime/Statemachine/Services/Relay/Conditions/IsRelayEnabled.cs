@@ -15,6 +15,6 @@ namespace CodeSmile.Statemachine.Services.Relay.Conditions
 
 		public IsRelayEnabled(Var<RelayConfig> relayConfig) => m_RelayConfig = relayConfig;
 
-		public Boolean IsSatisfied(FSM sm) => m_RelayConfig.Value.UseRelayService;
+		public Boolean IsSatisfied(FSM sm) => m_RelayConfig.Value.UseRelay;
 	}
 }
