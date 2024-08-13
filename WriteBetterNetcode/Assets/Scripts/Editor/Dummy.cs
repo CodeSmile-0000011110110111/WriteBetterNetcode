@@ -1,6 +1,10 @@
+using UnityEditor;
 using UnityEngine;
 
-public class Dummy
+namespace CodeSmileEditor.BetterNetcode
 {
+	public class Dummy
+	{
     
+	}
 }

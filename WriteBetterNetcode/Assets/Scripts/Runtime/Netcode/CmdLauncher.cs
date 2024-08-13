@@ -2,7 +2,6 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Core.Statemachine.Netcode;
-using CodeSmile.Core.Utility;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,7 +11,9 @@ namespace CodeSmile.BetterNetcode.Netcode
 	{
 		private void Start()
 		{
+#if !UNITY_EDITOR
 			CmdArgs.Log();
+#endif
 
 			var netcodeConfig = NetcodeConfig.FromCmdArgs();
 			if (netcodeConfig.Role != NetcodeRole.None)
