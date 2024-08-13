@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a689d91966dfb46499fb63f130d9b905, type: 3}
+  m_Name: Editor-Host with 1 Client
+  m_EditorClassIdentifier: 
+  m_Description: 
+  m_EnableEditors: 1
+  m_MainEditorInstance:
+    rid: 2465855238257246399
+  m_EditorInstances:
+  - Name: Player 2
+    <CorrespondingNodeId>k__BackingField: 
+    m_Role: 1
+    m_PlayerTag: Client
+    m_InitialScene: {fileID: 0}
+  m_LocalInstances: []
+  m_RemoteInstances: []
+  m_OverridePort: 0
+  m_Port: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 2465855238257246399
+      type: {class: EditorInstanceDescription, ns: Unity.Multiplayer.PlayMode.Scenarios.Editor, asm: Unity.Multiplayer.PlayMode.Scenarios.Editor}
+      data:
+        Name: Main Editor
+        <CorrespondingNodeId>k__BackingField: 
+        m_Role: 3
+        m_PlayerTag: 
+        m_InitialScene: {fileID: 102900000, guid: 9b24686a5d80d8a4bb4bb70ecefbd338, type: 3}
