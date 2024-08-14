@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace CodeSmile.Core.Components.Utility
 {
-	public class DestroyInBuilds : MonoBehaviour
+	public class DestroyObjectInBuilds : MonoBehaviour
 	{
 #if !UNITY_EDITOR
 		private void Awake()
