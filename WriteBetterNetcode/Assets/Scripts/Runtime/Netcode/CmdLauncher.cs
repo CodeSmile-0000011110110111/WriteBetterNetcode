@@ -17,11 +17,14 @@ namespace CodeSmile.BetterNetcode.Netcode
 
 			var netcodeConfig = NetcodeConfig.FromCmdArgs();
 			if (netcodeConfig.Role != NetcodeRole.None)
-			{
-				var transportConfig = TransportConfig.FromNetworkManagerWithCmdArgOverrides();
-				var relayConfig = RelayConfig.FromCmdArgs();
-				Components.NetcodeState.RequestStartNetwork(netcodeConfig, transportConfig, relayConfig);
-			}
+				StartNetworkWithRole(netcodeConfig);
+		}
+
+		private static void StartNetworkWithRole(NetcodeConfig netcodeCfg)
+		{
+			var transportCfg = TransportConfig.FromNetworkManagerWithCmdArgOverrides();
+			var relayCfg = RelayConfig.FromCmdArgs();
+			Components.NetcodeState.RequestStartNetwork(netcodeCfg, transportCfg, relayCfg);
 		}
 	}
 }

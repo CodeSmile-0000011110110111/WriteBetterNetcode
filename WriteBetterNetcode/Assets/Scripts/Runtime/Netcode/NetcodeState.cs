@@ -203,11 +203,11 @@ namespace CodeSmile.BetterNetcode.Netcode
 				.WithActions(resetNetcodeState);
 		}
 
-		public void RequestStartNetwork(NetcodeConfig netcodeConfig, TransportConfig transportConfig,
-			RelayConfig relayConfig = default)
+		public void RequestStartNetwork(NetcodeConfig netcodeConfig,
+			TransportConfig transportConfig, RelayConfig relayConfig = default)
 		{
 			if (netcodeConfig.Role == NetcodeRole.None)
-				throw new ArgumentException("cannot start network without NetcodeRole");
+				throw new ArgumentException("cannot start without role");
 
 			Debug.Log(netcodeConfig);
 			Debug.Log(transportConfig);

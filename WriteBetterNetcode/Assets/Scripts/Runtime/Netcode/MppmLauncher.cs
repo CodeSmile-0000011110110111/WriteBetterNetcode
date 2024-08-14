@@ -17,23 +17,26 @@ namespace CodeSmile.BetterNetcode.Netcode
 		{
 			var role = GetNetworkRoleFromMppmTags();
 			if (role != NetcodeRole.None)
-			{
-				var netcodeConfig = new NetcodeConfig { Role = role, MaxConnections = 4 };
-				var transportConfig = TransportConfig.FromNetworkManager();
-				Components.NetcodeState.RequestStartNetwork(netcodeConfig, transportConfig);
-			}
+				StartNetworkWithRole(role);
 		}
 
-		private NetcodeRole GetNetworkRoleFromMppmTags()
+		private static NetcodeRole GetNetworkRoleFromMppmTags()
 		{
-			var tags = CurrentPlayer.ReadOnlyTags();
-
+			var playerTags = CurrentPlayer.ReadOnlyTags();
 			var roleCount = Enum.GetValues(typeof(NetcodeRole)).Length;
+
 			for (var roleIndex = 0; roleIndex < roleCount; roleIndex++)
-				if (tags.Contains(((NetcodeRole)roleIndex).ToString()))
+				if (playerTags.Contains(((NetcodeRole)roleIndex).ToString()))
 					return (NetcodeRole)roleIndex;
 
 			return NetcodeRole.None;
+		}
+
+		private static void StartNetworkWithRole(NetcodeRole role)
+		{
+			var netcodeConfig = new NetcodeConfig { Role = role, MaxConnections = 4 };
+			var transportConfig = TransportConfig.FromNetworkManager();
+			Components.NetcodeState.RequestStartNetwork(netcodeConfig, transportConfig);
 		}
 #endif
 	}

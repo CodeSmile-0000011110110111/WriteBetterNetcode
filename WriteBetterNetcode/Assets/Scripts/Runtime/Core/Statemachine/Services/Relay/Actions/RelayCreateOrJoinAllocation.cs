@@ -30,7 +30,8 @@ namespace CodeSmile.Core.Statemachine.Services.Relay.Actions
 
 			if (role == NetcodeRole.Server || role == NetcodeRole.Host)
 			{
-				var allocation = await relay.CreateAllocationAsync(config.MaxConnections, config.Region);
+				var connections = config.MaxConnections <= 0 ? RelayConfig.MaxRelayConnections : config.MaxConnections;
+				var allocation = await relay.CreateAllocationAsync(connections, config.Region);
 				var joinCode = await relay.GetJoinCodeAsync(allocation.AllocationId);
 				config.SetHostAllocation(allocation, joinCode);
 			}

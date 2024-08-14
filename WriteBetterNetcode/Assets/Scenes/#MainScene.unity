@@ -198,7 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PresetAsset: {fileID: 0}
   m_PresetReference:
-    rid: 1162467052246794326
+    rid: 2465855264610320576
   m_Scenario:
     rid: -2
   m_IsScenarioSettingsFolded: 0
@@ -208,7 +208,7 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 1162467052246794326
+    - rid: 2465855264610320576
       type: {class: NetworkSimulatorPreset, ns: Unity.Multiplayer.Tools.NetworkSimulator.Runtime, asm: Unity.Multiplayer.Tools.NetworkSimulator.Runtime}
       data:
         <Name>k__BackingField: 'Home DSL [ADSL or VDSL]'
@@ -759,6 +759,7 @@ GameObject:
   - component: {fileID: 2061108205}
   - component: {fileID: 2061108206}
   - component: {fileID: 2061108207}
+  - component: {fileID: 2061108208}
   m_Layer: 0
   m_Name: MPPM Launcher (Editor-only)
   m_TagString: Untagged
@@ -805,6 +806,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c7921a88e288cf4fafd7181f7ef1d2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1652712579 &2061108208
+MultiplayerRolesData:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061108204}
+  m_GameObjectRolesMask: 3
+  m_ComponentsRolesMasks: []
 --- !u!1 &2085682750
 GameObject:
   m_ObjectHideFlags: 0

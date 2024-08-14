@@ -12,11 +12,10 @@ namespace CodeSmile.Core.Statemachine.Netcode
 	[Serializable]
 	public struct RelayConfig
 	{
-		public const Int32 MinRelayConnections = 1;
 		public const Int32 MaxRelayConnections = 100;
 
 		public Boolean UseRelay;
-		[Range(MinRelayConnections, MaxRelayConnections)] public Byte MaxConnections;
+		[Range(0, MaxRelayConnections)] public Byte MaxConnections;
 		public String Region;
 		public String JoinCode { get; set; }
 
@@ -30,8 +29,9 @@ namespace CodeSmile.Core.Statemachine.Netcode
 			UseRelay = CmdArgs.GetBool(nameof(UseRelay)),
 			Region = CmdArgs.GetString(nameof(Region)),
 			JoinCode = CmdArgs.GetString(nameof(JoinCode)),
-			MaxConnections = (Byte)Mathf.Clamp(CmdArgs.GetInt(nameof(MaxConnections)),
-				MinRelayConnections, MaxRelayConnections),
+			MaxConnections = (Byte)Mathf.Clamp(
+				CmdArgs.GetInt(nameof(MaxConnections)),
+				0, MaxRelayConnections),
 		};
 
 		public void SetHostAllocation(Allocation alloc, String joinCode)

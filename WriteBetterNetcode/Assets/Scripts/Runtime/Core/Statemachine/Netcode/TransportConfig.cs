@@ -23,13 +23,11 @@ namespace CodeSmile.Core.Statemachine.Netcode
 		{
 			var transport = NetworkManager.Singleton.GetTransport();
 			var connData = transport.ConnectionData;
-
 			return new TransportConfig
 			{
 				Address = connData.Address,
 				Port = connData.Port,
 				ServerListenAddress = connData.ServerListenAddress,
-
 				UseEncryption = transport.UseEncryption,
 				UseWebSockets = transport.UseWebSockets,
 			};
@@ -38,12 +36,14 @@ namespace CodeSmile.Core.Statemachine.Netcode
 		public static TransportConfig FromNetworkManagerWithCmdArgOverrides()
 		{
 			var config = FromNetworkManager();
-			config.Address = CmdArgs.GetString(nameof(Address)) ?? config.Address;
+			config.Address = CmdArgs.GetString(nameof(Address), config.Address);
 			config.Port = (UInt16)CmdArgs.GetInt(nameof(Port), config.Port);
-			config.ServerListenAddress = CmdArgs.GetString(nameof(ServerListenAddress)) ??
-			                             config.ServerListenAddress;
-			config.UseEncryption = CmdArgs.GetBool(nameof(UseEncryption), config.UseEncryption);
-			config.UseWebSockets = CmdArgs.GetBool(nameof(UseWebSockets), config.UseWebSockets);
+			config.ServerListenAddress =
+				CmdArgs.GetString(nameof(ServerListenAddress), config.ServerListenAddress);
+			config.UseEncryption =
+				CmdArgs.GetBool(nameof(UseEncryption), config.UseEncryption);
+			config.UseWebSockets =
+				CmdArgs.GetBool(nameof(UseWebSockets), config.UseWebSockets);
 			return config;
 		}
 
