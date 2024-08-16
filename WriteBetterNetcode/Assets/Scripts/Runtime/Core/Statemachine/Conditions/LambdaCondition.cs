@@ -16,18 +16,25 @@ namespace CodeSmile.Core.Statemachine.Conditions
 	/// </remarks>
 	public sealed class LambdaCondition : ICondition
 	{
+		private readonly String m_Name;
 		private readonly Func<Boolean> m_Callback;
 
 		private LambdaCondition() {} // forbidden default ctor
 
 		public LambdaCondition(Func<Boolean> callback)
+			: this(null, callback) {}
+
+		public LambdaCondition(String name, Func<Boolean> callback)
 		{
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
+			m_Name = name;
 			m_Callback = callback;
 		}
 
 		public Boolean IsSatisfied(FSM sm) => m_Callback.Invoke();
+
+		public String ToDebugString(FSM sm) => String.IsNullOrWhiteSpace(m_Name) ? GetType().Name : m_Name;
 	}
 }

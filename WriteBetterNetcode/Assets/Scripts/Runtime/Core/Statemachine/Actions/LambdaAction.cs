@@ -16,18 +16,25 @@ namespace CodeSmile.Core.Statemachine.Actions
 	/// </remarks>
 	public sealed class LambdaAction : IAction
 	{
+		private readonly String m_Name;
 		private readonly Action m_Callback;
 
 		private LambdaAction() {} // forbidden default ctor
 
 		public LambdaAction(Action callback)
+			: this(null, callback) {}
+
+		public LambdaAction(String name, Action callback)
 		{
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
+			m_Name = name;
 			m_Callback = callback;
 		}
 
 		public void Execute(FSM sm) => m_Callback.Invoke();
+
+		public String ToDebugString(FSM sm) => String.IsNullOrWhiteSpace(m_Name) ? GetType().Name : m_Name;
 	}
 }
