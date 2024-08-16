@@ -19,6 +19,19 @@ namespace CodeSmile.Core.Utility
 		private static Dictionary<String, String> s_Args;
 		private static IDictionary<String, String> Args => s_Args != null ? s_Args : s_Args = ParseCmdLineArgs();
 
+		public static void Log()
+		{
+			var sb = new StringBuilder("CmdArgs: ");
+			var cmdArgs = Environment.GetCommandLineArgs();
+			foreach (var arg in cmdArgs)
+			{
+				sb.Append(arg.ToLower());
+				sb.Append(" ");
+			}
+
+			Debug.Log(sb.ToString());
+		}
+
 		public static Boolean Exists(String key) => Args.ContainsKey(key.ToLower());
 
 		public static String GetString(String key, String defaultValue = null) =>
@@ -37,27 +50,16 @@ namespace CodeSmile.Core.Utility
 			? TryParseFloat(str, defaultValue)
 			: defaultValue;
 
-		public static void Log()
-		{
-			var sb = new StringBuilder("CmdArgs: ");
-			var cmdArgs = Environment.GetCommandLineArgs();
-			foreach (var arg in cmdArgs)
-			{
-				sb.Append(arg.ToLower());
-				sb.Append(" ");
-			}
-
-			Debug.Log(sb.ToString());
-		}
-
 		private static Boolean TryParseBool(String str, Boolean defaultValue) =>
 			Boolean.TryParse(str, out var val) ? val : defaultValue;
 
+		private static Single TryParseFloat(String str, Single defaultValue) =>
+			Single.TryParse(str, FloatStyle, Culture, out var val)
+				? val
+				: defaultValue;
+
 		private static Int32 TryParseInt(String str, Int32 defaultValue) =>
 			Int32.TryParse(str, IntStyle, Culture, out var val) ? val : defaultValue;
-
-		private static Single TryParseFloat(String str, Single defaultValue) =>
-			Single.TryParse(str, IntStyle, Culture, out var val) ? val : defaultValue;
 
 		private static Dictionary<String, String> ParseCmdLineArgs()
 		{
