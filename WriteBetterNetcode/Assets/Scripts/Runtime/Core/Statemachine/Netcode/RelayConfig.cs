@@ -17,7 +17,9 @@ namespace CodeSmile.Core.Statemachine.Netcode
 		public Boolean UseRelay;
 		[Range(0, MaxRelayConnections)] public Byte MaxConnections;
 		public String Region;
-		public String JoinCode { get; set; }
+
+		private String m_JoinCode;
+		public String JoinCode { readonly get => m_JoinCode; set => m_JoinCode = value?.ToUpper(); }
 
 		public Allocation HostAllocation { get; private set; }
 		public JoinAllocation JoinAllocation { get; private set; }
