@@ -29,7 +29,7 @@ namespace CodeSmile.Core.Statemachine.Netcode
 				Port = connData.Port,
 				ServerListenAddress = connData.ServerListenAddress,
 				UseEncryption = transport.UseEncryption,
-				UseWebSockets = transport.UseWebSockets,
+				UseWebSockets = transport.UseWebSockets || Application.platform == RuntimePlatform.WebGLPlayer,
 			};
 		}
 

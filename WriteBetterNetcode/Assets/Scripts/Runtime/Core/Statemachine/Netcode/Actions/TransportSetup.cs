@@ -37,7 +37,9 @@ namespace CodeSmile.Core.Statemachine.Netcode.Actions
 			transport.UseEncryption = transportConfig.UseEncryption;
 			transport.UseWebSockets = transportConfig.UseWebSockets;
 
-			var connectionType = transportConfig.UseWebSockets ? "wss" : transportConfig.UseEncryption ? "dtls" : "udp";
+			var connectionType = transport.UseWebSockets ? "wss" : transport.UseEncryption ? "dtls" : "udp";
+
+			Debug.LogError($"connection type: {connectionType}, websockets: {transport.UseWebSockets}");
 
 			// TODO: transport encryption ...
 			if (transportConfig.UseEncryption)
@@ -45,16 +47,9 @@ namespace CodeSmile.Core.Statemachine.Netcode.Actions
 
 			if (relayConfig.UseRelay)
 			{
-				if (netcodeConfig.Role == NetcodeRole.Client)
-				{
-					transport.SetRelayServerData(
-						new RelayServerData(relayConfig.JoinAllocation, connectionType));
-				}
-				else
-				{
-					transport.SetRelayServerData(
-						new RelayServerData(relayConfig.HostAllocation, connectionType));
-				}
+				transport.SetRelayServerData(netcodeConfig.Role == NetcodeRole.Client
+					? new RelayServerData(relayConfig.JoinAllocation, connectionType)
+					: new RelayServerData(relayConfig.HostAllocation, connectionType));
 			}
 			else
 			{

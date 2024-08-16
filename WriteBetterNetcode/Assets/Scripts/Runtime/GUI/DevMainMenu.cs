@@ -22,11 +22,12 @@ namespace CodeSmile.GUI
 		private TextField JoinCodeField => m_Root.Q<TextField>("JoinCodeField");
 		private TextField AddressField => m_Root.Q<TextField>("AddressField");
 		private TextField PortField => m_Root.Q<TextField>("PortField");
+		private Toggle AllowWebClientsToggle => m_Root.Q<Toggle>("AllowWebClientsToggle");
 
 		private void Awake()
 		{
 			m_Root = GetComponent<UIDocument>().rootVisualElement;
-#if UNITY_WEBGL
+#if UNITY_WEBGL && !UNITY_EDITOR
 			// can't host on the web
 			HostRelayButton.SetEnabled(false);
 			HostDirectButton.SetEnabled(false);
@@ -118,6 +119,7 @@ namespace CodeSmile.GUI
 
 			var transportConfig = TransportConfig.FromNetworkManagerWithCmdArgOverrides();
 			transportConfig.ServerListenAddress = "0.0.0.0";
+			transportConfig.UseWebSockets = AllowWebClientsToggle.value;
 
 			var relayConfig = RelayConfig.FromCmdArgs();
 			relayConfig.UseRelay = withRelay;

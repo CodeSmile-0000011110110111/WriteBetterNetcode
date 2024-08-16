@@ -6,8 +6,9 @@
         </engine:GroupBox>
         <engine:GroupBox text="Online" name="PlayOnlineGroup" style="border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
             <engine:GroupBox text="Host" style="border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
-                <engine:Button text="Relay" name="HostRelayButton" />
-                <engine:Button text="Direct" name="HostDirectButton" />
+                <engine:Toggle label="Allow Web Clients (TCP WebSockets)" name="AllowWebClientsToggle" style="flex-direction: row-reverse; align-self: flex-start; margin-left: 160px;" />
+                <engine:Button text="Relay" name="HostRelayButton" enable-rich-text="false" enabled="true" />
+                <engine:Button text="Direct" name="HostDirectButton" enable-rich-text="false" />
             </engine:GroupBox>
             <engine:GroupBox text="Join (Relay)" name="GroupBox" style="border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
                 <engine:TextField label="Join Code" placeholder-text="&lt;enter join code&gt;" name="JoinCodeField" />
