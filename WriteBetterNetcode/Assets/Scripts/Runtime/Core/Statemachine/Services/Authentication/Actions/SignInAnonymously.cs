@@ -12,6 +12,8 @@ namespace CodeSmile.Core.Statemachine.Services.Authentication.Actions
 	{
 		public async Task ExecuteAsync(FSM sm)
 		{
+			// Intentional: if services not initialized, exception is thrown
+
 			var authService = AuthenticationService.Instance;
 			if (authService.IsSignedIn == false)
 				await authService.SignInAnonymouslyAsync();

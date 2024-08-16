@@ -2,7 +2,6 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using System;
-using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
@@ -47,7 +46,7 @@ namespace CodeSmile.Core.Statemachine
 				return useLogicalOr ? false : true;
 			}
 
-			internal static async Task ExecuteActions(FSM sm, String transitionName, IAction[] actions, Boolean logging = false)
+			internal static async void ExecuteActions(FSM sm, String transitionName, IAction[] actions, Boolean logging = false)
 			{
 				if (actions == null)
 					return;
@@ -163,11 +162,11 @@ namespace CodeSmile.Core.Statemachine
 				}
 			}
 
-			private async void ExecuteActionsWithErrorHandling(FSM sm, IAction[] actions, Boolean logging)
+			private void ExecuteActionsWithErrorHandling(FSM sm, IAction[] actions, Boolean logging)
 			{
 				try
 				{
-					await ExecuteActions(sm, Name, actions, logging);
+					ExecuteActions(sm, Name, actions, logging);
 				}
 				catch (Exception e)
 				{
@@ -175,7 +174,7 @@ namespace CodeSmile.Core.Statemachine
 					{
 						Debug.LogWarning($"{sm.ActiveState.Name} [{Name}]: ERROR => {e}");
 
-						await ExecuteActions(sm, Name, ErrorActions, logging);
+						ExecuteActions(sm, Name, ErrorActions, logging);
 
 						if (ErrorGotoState != null)
 						{

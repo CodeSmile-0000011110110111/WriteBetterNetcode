@@ -8,8 +8,8 @@ using UnityEngine;
 
 namespace CodeSmile.Core.Statemachine.Services.Authentication.Conditions
 {
-	public class IsNotSignedIn : ICondition
+	public class IsNotSignedIn : IsSignedIn
 	{
-		public Boolean IsSatisfied(FSM sm) => !AuthenticationService.Instance.IsSignedIn;
+		public Boolean IsSatisfied(FSM sm) => !base.IsSatisfied(sm);
 	}
 }
