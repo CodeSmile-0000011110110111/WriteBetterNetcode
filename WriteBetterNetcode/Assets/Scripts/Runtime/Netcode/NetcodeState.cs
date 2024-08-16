@@ -30,6 +30,7 @@ namespace CodeSmile.BetterNetcode.Netcode
 	{
 		public event Action WentOffline;
 		public event Action WentOnline;
+		public event Action<String> RelayJoinCodeAvailable;
 
 		public enum State
 		{
@@ -102,6 +103,13 @@ namespace CodeSmile.BetterNetcode.Netcode
 				new RelayClearAllocationData(m_RelayConfigVar),
 				new LambdaAction(() => WentOffline?.Invoke()));
 
+			var invokeWentOnline = new LambdaAction($"{nameof(WentOnline)}.Invoke",
+				() => WentOnline?.Invoke());
+			var invokeWentOffline = new LambdaAction($"{nameof(WentOffline)}.Invoke",
+				() => WentOffline?.Invoke());
+			var tryInvokeRelayJoinCodeAvailable = new LambdaAction(nameof(TryInvokeRelayJoinCodeAvailable),
+				() => TryInvokeRelayJoinCodeAvailable());
+
 			/* TODO (MAJOR ONES)
 			 * - forward events (eg join code available)
 			 *		route through config object ... BUT: config is a struct
@@ -114,7 +122,7 @@ namespace CodeSmile.BetterNetcode.Netcode
 			initState.AddTransition("Init Completed")
 				.ToState(offlineState)
 				.WithConditions(new IsNetworkManagerSingletonAssigned())
-				.WithActions(new LambdaAction(() => WentOffline?.Invoke()));
+				.WithActions(invokeWentOffline);
 
 			// Offline state
 			offlineState.AddTransition("Start with Relay")
@@ -122,14 +130,14 @@ namespace CodeSmile.BetterNetcode.Netcode
 				.WithConditions(
 					new IsNotNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None),
 					new IsRelayEnabled(m_RelayConfigVar))
-				.WithActions(new LambdaAction(() => WentOnline?.Invoke()));
+				.WithActions(invokeWentOnline);
 
 			offlineState.AddTransition("Start w/o Relay")
 				.ToState(networkStartState)
 				.WithConditions(
 					new IsNotNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None),
 					FSM.NOT(new IsRelayEnabled(m_RelayConfigVar)))
-				.WithActions(new LambdaAction(() => WentOnline?.Invoke()));
+				.WithActions(invokeWentOnline);
 
 			// Relay state
 			relayStartState.AddTransition("Relay Alloc/Join")
@@ -146,7 +154,8 @@ namespace CodeSmile.BetterNetcode.Netcode
 				.ToState(networkStartState)
 				.WithConditions(
 					new IsSignedIn(),
-					new IsRelayReady(m_RelayConfigVar));
+					new IsRelayReady(m_RelayConfigVar))
+				.WithActions(tryInvokeRelayJoinCodeAvailable);
 
 			// NetworkStart state
 			networkStartState.AddTransition("Cancel Net Start")
@@ -201,6 +210,17 @@ namespace CodeSmile.BetterNetcode.Netcode
 				.ToState(offlineState)
 				.WithConditions(new IsNetworkOffline())
 				.WithActions(resetNetcodeState);
+		}
+
+		private void TryInvokeRelayJoinCodeAvailable()
+		{
+			var role = m_NetcodeConfigVar.Value.Role;
+			if (role == NetcodeRole.Server || role == NetcodeRole.Host)
+			{
+				var joinCode = m_RelayConfigVar.Value.JoinCode;
+				if (String.IsNullOrEmpty(joinCode) == false)
+					RelayJoinCodeAvailable?.Invoke(joinCode);
+			}
 		}
 
 		public void RequestStartNetwork(NetcodeConfig netcodeConfig,
