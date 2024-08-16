@@ -39,8 +39,6 @@ namespace CodeSmile.Core.Statemachine.Netcode.Actions
 
 			var connectionType = transport.UseWebSockets ? "wss" : transport.UseEncryption ? "dtls" : "udp";
 
-			Debug.LogError($"connection type: {connectionType}, websockets: {transport.UseWebSockets}");
-
 			// TODO: transport encryption ...
 			if (transportConfig.UseEncryption)
 				throw new NotImplementedException("TODO: encryption ... set secrets etc");
