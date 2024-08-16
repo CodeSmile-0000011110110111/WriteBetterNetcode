@@ -11,7 +11,7 @@ state state0 {
 	state state0_trans0 #line.dotted {
 		state0_trans0 : IsNetworkManagerSingletonAssigned
 		state0_trans0 : ....
-		state0_trans0 : LambdaAction
+		state0_trans0 : WentOffline.Invoke
 	}
 }
 state "Offline" as state1
@@ -21,14 +21,14 @@ state state1 {
 		state1_trans0 : IsNetcodeRole != None
 		state1_trans0 : IsRelayEnabled
 		state1_trans0 : ....
-		state1_trans0 : LambdaAction
+		state1_trans0 : WentOnline.Invoke
 	}
 	state "Start w/o Relay" as state1_trans1
 	state state1_trans1 #line.dotted {
 		state1_trans1 : IsNetcodeRole != None
 		state1_trans1 : NOT(IsRelayEnabled)
 		state1_trans1 : ....
-		state1_trans1 : LambdaAction
+		state1_trans1 : WentOnline.Invoke
 	}
 }
 state "RelayStarting" as state2
@@ -50,6 +50,7 @@ state state2 {
 		state2_trans1 : IsSignedIn
 		state2_trans1 : IsRelayReady
 		state2_trans1 : ....
+		state2_trans1 : TryInvokeRelayJoinCodeAvailable
 	}
 }
 state "NetworkStarting" as state3
