@@ -20,8 +20,7 @@ namespace CodeSmile.Core.Statemachine.Netcode.Conditions
 			m_Role = role;
 		}
 
-		public Boolean IsSatisfied(FSM sm) =>
-			m_netcodeConfigVar.Value.Role != m_Role;
+		public Boolean IsSatisfied(FSM sm) => m_netcodeConfigVar.Value.Role != m_Role;
 
 		public String ToDebugString(FSM sm) => $"{nameof(IsNetcodeRole)} != {m_Role}";
 	}
