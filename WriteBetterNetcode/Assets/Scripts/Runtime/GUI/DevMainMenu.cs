@@ -27,6 +27,13 @@ namespace CodeSmile.GUI
 		private TextField PortField => m_Root.Q<TextField>("PortField");
 		private Button JoinDirectButton => m_Root.Q<Button>("JoinDirectButton");
 
+		private static void RequestStart(NetcodeConfig netcodeConfig,
+			TransportConfig transportConfig, RelayConfig relayConfig)
+		{
+			var netcodeState = Components.NetcodeState;
+			netcodeState.RequestStart(netcodeConfig, transportConfig, relayConfig);
+		}
+
 		private void Awake()
 		{
 			m_Root = GetComponent<UIDocument>().rootVisualElement;
@@ -135,13 +142,6 @@ namespace CodeSmile.GUI
 			relayConfig.UseRelay = withRelay;
 
 			RequestStart(netcodeConfig, transportConfig, relayConfig);
-		}
-
-		private static void RequestStart(NetcodeConfig netcodeConfig,
-			TransportConfig transportConfig, RelayConfig relayConfig)
-		{
-			var netcodeState = Components.NetcodeState;
-			netcodeState.RequestStart(netcodeConfig, transportConfig, relayConfig);
 		}
 
 		private void JoinWithRelay(String joinCode)

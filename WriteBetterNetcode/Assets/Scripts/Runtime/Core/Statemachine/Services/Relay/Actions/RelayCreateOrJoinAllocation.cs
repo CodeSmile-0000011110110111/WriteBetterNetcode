@@ -2,7 +2,6 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Core.Statemachine.Netcode;
-using System;
 using System.Threading.Tasks;
 using Unity.Services.Relay;
 using UnityEditor;

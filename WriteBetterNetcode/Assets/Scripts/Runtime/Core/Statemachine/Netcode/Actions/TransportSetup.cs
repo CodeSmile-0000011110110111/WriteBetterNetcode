@@ -34,7 +34,7 @@ namespace CodeSmile.Core.Statemachine.Netcode.Actions
 			var relayConfig = m_RelayConfigVar.Value;
 			var isWeb = Application.platform == RuntimePlatform.WebGLPlayer;
 
-			            var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
+			var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
 			transport.UseEncryption = transportConfig.UseEncryption;
 			transport.UseWebSockets = transportConfig.UseWebSockets || isWeb;
 

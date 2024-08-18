@@ -21,10 +21,11 @@ namespace CodeSmile.GUI
 		private void OnEnable() => RegisterGuiEvents();
 		private void OnDisable() => UnregisterGuiEvents();
 		private void OnDestroy() => UnregisterNetcodeStateEvents();
-		private void RegisterGuiEvents() =>
-			JoinCodeLabel.RegisterCallback<ClickEvent>(OnLabelClicked);
-		private void UnregisterGuiEvents() =>
-			JoinCodeLabel.UnregisterCallback<ClickEvent>(OnLabelClicked);
+
+		private void RegisterGuiEvents() => JoinCodeLabel.RegisterCallback<ClickEvent>(OnLabelClicked);
+
+		private void UnregisterGuiEvents() => JoinCodeLabel.UnregisterCallback<ClickEvent>(OnLabelClicked);
+
 		private void OnLabelClicked(ClickEvent evt) => Hide();
 
 		private void RegisterNetcodeStateEvents()
@@ -49,7 +50,6 @@ namespace CodeSmile.GUI
 				netState.RelayJoinCodeAvailable -= OnRelayJoinCodeAvailable;
 			}
 		}
-
 
 		private void Hide() => m_Root.style.display = StyleKeyword.None;
 		private void Show() => m_Root.style.display = StyleKeyword.Initial;

@@ -10,6 +10,13 @@ namespace CodeSmile.BetterNetcode.Netcode
 {
 	public class CmdLauncher : MonoBehaviour
 	{
+		private static void StartNetworkWithRole(NetcodeConfig netcodeCfg)
+		{
+			var transportCfg = TransportConfig.FromNetworkManagerWithCmdArgOverrides();
+			var relayCfg = RelayConfig.FromCmdArgs();
+			Components.NetcodeState.RequestStart(netcodeCfg, transportCfg, relayCfg);
+		}
+
 		private void Start()
 		{
 			if (Application.isEditor == false)
@@ -18,13 +25,6 @@ namespace CodeSmile.BetterNetcode.Netcode
 			var netcodeConfig = NetcodeConfig.FromCmdArgs();
 			if (netcodeConfig.Role != NetcodeRole.None)
 				StartNetworkWithRole(netcodeConfig);
-		}
-
-		private static void StartNetworkWithRole(NetcodeConfig netcodeCfg)
-		{
-			var transportCfg = TransportConfig.FromNetworkManagerWithCmdArgOverrides();
-			var relayCfg = RelayConfig.FromCmdArgs();
-			Components.NetcodeState.RequestStart(netcodeCfg, transportCfg, relayCfg);
 		}
 	}
 }

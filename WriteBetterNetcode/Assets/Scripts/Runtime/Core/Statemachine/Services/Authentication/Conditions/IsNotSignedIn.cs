@@ -2,7 +2,6 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using System;
-using Unity.Services.Authentication;
 using UnityEditor;
 using UnityEngine;
 
