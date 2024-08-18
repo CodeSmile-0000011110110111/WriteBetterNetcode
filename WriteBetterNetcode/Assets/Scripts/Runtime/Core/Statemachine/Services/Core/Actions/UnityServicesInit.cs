@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CodeSmile.Core.Statemachine.Services.Core.Actions
 {
-	public class UnityServicesInit : IAsyncAction
+	public sealed class UnityServicesInit : IAsyncAction
 	{
 		public async Task ExecuteAsync(FSM sm)
 		{

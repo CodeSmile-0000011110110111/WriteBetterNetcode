@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CodeSmile.Core.Statemachine.Services.Relay.Actions
 {
-	public class RelayClearAllocationData : IAction
+	public sealed class RelayClearAllocationData : IAction
 	{
 		private readonly Var<RelayConfig> m_RelayConfigVar;
 

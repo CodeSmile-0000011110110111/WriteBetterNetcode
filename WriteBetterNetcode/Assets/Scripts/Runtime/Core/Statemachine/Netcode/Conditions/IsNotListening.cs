@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CodeSmile.Core.Statemachine.Netcode.Conditions
 {
-	public class IsNotListening : ICondition
+	public sealed class IsNotListening : ICondition
 	{
 		public Boolean IsSatisfied(FSM sm) => !NetworkManager.Singleton.IsListening;
 	}

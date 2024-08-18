@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CodeSmile.Core.Statemachine.Services.Relay.Conditions
 {
-	public class IsRelayReady : ICondition
+	public sealed class IsRelayReady : ICondition
 	{
 		private readonly Var<RelayConfig> m_RelayConfigVar;
 		private IsRelayReady() {}

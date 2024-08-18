@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CodeSmile.Core.Statemachine.Variable.Actions
 {
-	public class DecValue : IAction
+	public sealed class DecValue : IAction
 	{
 		private readonly IntVar m_Variable;
 

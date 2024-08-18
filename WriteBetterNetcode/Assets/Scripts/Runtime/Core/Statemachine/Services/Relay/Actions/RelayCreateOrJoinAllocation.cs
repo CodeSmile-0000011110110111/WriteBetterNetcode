@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace CodeSmile.Core.Statemachine.Services.Relay.Actions
 {
-	public class RelayCreateOrJoinAllocation : IAsyncAction
+	public sealed class RelayCreateOrJoinAllocation : IAsyncAction
 	{
 		private readonly Var<RelayConfig> m_RelayConfigVar;
 		private readonly Var<NetcodeConfig> m_NetcodeConfigVar;

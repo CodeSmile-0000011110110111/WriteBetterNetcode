@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CodeSmile.Core.Statemachine.Variable.Conditions
 {
-	public class IsEqual : ICondition
+	public sealed class IsEqual : ICondition
 	{
 		private readonly VariableBase m_Variable;
 		private readonly VariableBase m_Comparand;

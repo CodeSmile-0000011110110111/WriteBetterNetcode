@@ -10,7 +10,7 @@ namespace CodeSmile.Core.Statemachine.Netcode.Conditions
 	public class IsNetcodeRole : ICondition
 	{
 		private readonly Var<NetcodeConfig> m_netcodeConfigVar;
-		private readonly NetcodeRole m_Role;
+		protected readonly NetcodeRole m_Role;
 
 		private IsNetcodeRole() {} // forbidden ctor
 
@@ -20,8 +20,8 @@ namespace CodeSmile.Core.Statemachine.Netcode.Conditions
 			m_Role = role;
 		}
 
-		public Boolean IsSatisfied(FSM sm) => m_netcodeConfigVar.Value.Role == m_Role;
+		public virtual Boolean IsSatisfied(FSM sm) => m_netcodeConfigVar.Value.Role == m_Role;
 
-		public String ToDebugString(FSM sm) => $"{nameof(IsNetcodeRole)} == {m_Role}";
+		public virtual String ToDebugString(FSM sm) => $"{nameof(IsNetcodeRole)} == {m_Role}";
 	}
 }

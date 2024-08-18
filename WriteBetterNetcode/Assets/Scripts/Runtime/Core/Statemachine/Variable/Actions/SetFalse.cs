@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CodeSmile.Core.Statemachine.Variable.Actions
 {
-	public class SetFalse : IAction
+	public sealed class SetFalse : IAction
 	{
 		private readonly BoolVar m_Variable;
 

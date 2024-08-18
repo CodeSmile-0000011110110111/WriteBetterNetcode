@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CodeSmile.Core.Statemachine.Conditions
 {
-	public class LogicalNor : ICondition
+	public sealed class LogicalNor : ICondition
 	{
 		private readonly ICondition m_OrCondition;
 

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CodeSmile.Core.Statemachine.Variable.Actions
 {
-	public class MulValue : IAction
+	public sealed class MulValue : IAction
 	{
 		private readonly VariableBase m_Variable;
 		private readonly VariableBase m_Operand;

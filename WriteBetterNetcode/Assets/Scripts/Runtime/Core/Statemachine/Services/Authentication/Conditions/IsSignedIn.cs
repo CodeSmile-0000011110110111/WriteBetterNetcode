@@ -11,7 +11,7 @@ namespace CodeSmile.Core.Statemachine.Services.Authentication.Conditions
 {
 	public class IsSignedIn : ICondition
 	{
-		public Boolean IsSatisfied(FSM sm) => UnityServices.State == ServicesInitializationState.Initialized &&
-		                                      AuthenticationService.Instance.IsSignedIn;
+		public virtual Boolean IsSatisfied(FSM sm) => UnityServices.State == ServicesInitializationState.Initialized &&
+		                                              AuthenticationService.Instance.IsSignedIn;
 	}
 }

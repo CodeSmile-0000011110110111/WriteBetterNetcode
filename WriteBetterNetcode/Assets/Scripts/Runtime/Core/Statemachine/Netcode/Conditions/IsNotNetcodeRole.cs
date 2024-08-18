@@ -7,21 +7,13 @@ using UnityEngine;
 
 namespace CodeSmile.Core.Statemachine.Netcode.Conditions
 {
-	public class IsNotNetcodeRole : ICondition
+	public class IsNotNetcodeRole : IsNetcodeRole
 	{
-		private readonly Var<NetcodeConfig> m_netcodeConfigVar;
-		private readonly NetcodeRole m_Role;
-
-		private IsNotNetcodeRole() {} // forbidden ctor
-
 		public IsNotNetcodeRole(Var<NetcodeConfig> netcodeConfigVar, NetcodeRole role)
-		{
-			m_netcodeConfigVar = netcodeConfigVar;
-			m_Role = role;
-		}
+			: base(netcodeConfigVar, role) {}
 
-		public Boolean IsSatisfied(FSM sm) => m_netcodeConfigVar.Value.Role != m_Role;
+		public override Boolean IsSatisfied(FSM sm) => !base.IsSatisfied(sm);
 
-		public String ToDebugString(FSM sm) => $"{nameof(IsNetcodeRole)} != {m_Role}";
+		public override String ToDebugString(FSM sm) => $"{nameof(IsNetcodeRole)} != {m_Role}";
 	}
 }

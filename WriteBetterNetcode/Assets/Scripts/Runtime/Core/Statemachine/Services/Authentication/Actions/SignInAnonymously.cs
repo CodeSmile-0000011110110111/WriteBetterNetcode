@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CodeSmile.Core.Statemachine.Services.Authentication.Actions
 {
-	public class SignInAnonymously : IAsyncAction
+	public sealed class SignInAnonymously : IAsyncAction
 	{
 		public async Task ExecuteAsync(FSM sm)
 		{

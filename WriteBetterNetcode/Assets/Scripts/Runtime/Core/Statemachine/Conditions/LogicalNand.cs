@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CodeSmile.Core.Statemachine.Conditions
 {
-	public class LogicalNand : ICondition
+	public sealed class LogicalNand : ICondition
 	{
 		private readonly ICondition m_AndCondition;
 
