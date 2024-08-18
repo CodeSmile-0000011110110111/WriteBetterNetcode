@@ -15,29 +15,35 @@ namespace CodeSmile.GUI
 	public class DevMainMenu : MonoBehaviour
 	{
 		private VisualElement m_Root;
+
+		private Toggle AllowWebClientsToggle => m_Root.Q<Toggle>("AllowWebClientsToggle");
 		private Button HostRelayButton => m_Root.Q<Button>("HostRelayButton");
 		private Button HostDirectButton => m_Root.Q<Button>("HostDirectButton");
-		private Button JoinRelayButton => m_Root.Q<Button>("JoinRelayButton");
-		private Button JoinDirectButton => m_Root.Q<Button>("JoinDirectButton");
+
 		private TextField JoinCodeField => m_Root.Q<TextField>("JoinCodeField");
+		private Button JoinRelayButton => m_Root.Q<Button>("JoinRelayButton");
+
 		private TextField AddressField => m_Root.Q<TextField>("AddressField");
 		private TextField PortField => m_Root.Q<TextField>("PortField");
-		private Toggle AllowWebClientsToggle => m_Root.Q<Toggle>("AllowWebClientsToggle");
+		private Button JoinDirectButton => m_Root.Q<Button>("JoinDirectButton");
 
 		private void Awake()
 		{
 			m_Root = GetComponent<UIDocument>().rootVisualElement;
+
 #if UNITY_WEBGL && !UNITY_EDITOR
 			// can't host on the web
+			AllowWebClientsToggle.SetEnabled(false);
 			HostRelayButton.SetEnabled(false);
 			HostDirectButton.SetEnabled(false);
 #endif
 		}
 
 		private void Start() => RegisterNetcodeStateEvents();
+		private void OnDestroy() => UnregisterNetcodeStateEvents();
+
 		private void OnEnable() => RegisterGuiEvents();
 		private void OnDisable() => UnregisterGuiEvents();
-		private void OnDestroy() => UnregisterNetcodeStateEvents();
 
 		private void RegisterNetcodeStateEvents()
 		{
@@ -58,6 +64,7 @@ namespace CodeSmile.GUI
 
 		private void RegisterGuiEvents()
 		{
+			Debug.Log("enable");
 			HostRelayButton.clicked += OnHostRelayButtonClicked;
 			HostDirectButton.clicked += OnHostDirectButtonClicked;
 			JoinRelayButton.clicked += OnJoinRelayButtonClicked;
@@ -69,6 +76,7 @@ namespace CodeSmile.GUI
 
 		private void UnregisterGuiEvents()
 		{
+			Debug.Log("disable");
 			HostRelayButton.clicked -= OnHostRelayButtonClicked;
 			HostDirectButton.clicked -= OnHostDirectButtonClicked;
 			JoinRelayButton.clicked -= OnJoinRelayButtonClicked;
@@ -83,7 +91,8 @@ namespace CodeSmile.GUI
 			JoinCodeField.SetValueWithoutNotify(evt.newValue.ToUpper());
 
 			var textColor = Color.black;
-			if (String.IsNullOrWhiteSpace(evt.newValue) || evt.newValue.Trim().Length != 6)
+			if (String.IsNullOrWhiteSpace(evt.newValue) ||
+			    evt.newValue.Length != 6)
 				textColor = Color.red;
 
 			JoinCodeField.style.color = textColor;
@@ -92,7 +101,7 @@ namespace CodeSmile.GUI
 		private void OnAddressFieldChanged(ChangeEvent<String> evt)
 		{
 			var textColor = Color.black;
-			if (IPAddress.TryParse(evt.newValue, out var _) == false)
+			if (!IPAddress.TryParse(evt.newValue, out var _))
 				textColor = Color.red;
 
 			AddressField.style.color = textColor;
@@ -101,7 +110,8 @@ namespace CodeSmile.GUI
 		private void OnPortFieldChanged(ChangeEvent<String> evt)
 		{
 			var textColor = Color.black;
-			if (UInt16.TryParse(evt.newValue, out var port) == false || port < 1024)
+			if (!UInt16.TryParse(evt.newValue, out var port) ||
+			    port < 1024)
 				textColor = Color.red;
 
 			PortField.style.color = textColor;
@@ -124,19 +134,18 @@ namespace CodeSmile.GUI
 			var relayConfig = RelayConfig.FromCmdArgs();
 			relayConfig.UseRelay = withRelay;
 
-			Components.NetcodeState.RequestStartNetwork(netcodeConfig, transportConfig, relayConfig);
+			RequestStart(netcodeConfig, transportConfig, relayConfig);
+		}
 
-			Hide();
+		private static void RequestStart(NetcodeConfig netcodeConfig,
+			TransportConfig transportConfig, RelayConfig relayConfig)
+		{
+			var netcodeState = Components.NetcodeState;
+			netcodeState.RequestStart(netcodeConfig, transportConfig, relayConfig);
 		}
 
 		private void JoinWithRelay(String joinCode)
 		{
-			if (String.IsNullOrWhiteSpace(joinCode) || joinCode.Length != 6)
-			{
-				Debug.LogWarning($"invalid join code: '{joinCode}'");
-				return;
-			}
-
 			var netcodeConfig = NetcodeConfig.FromCmdArgs();
 			netcodeConfig.Role = NetcodeRole.Client;
 
@@ -146,9 +155,7 @@ namespace CodeSmile.GUI
 			relayConfig.UseRelay = true;
 			relayConfig.JoinCode = joinCode;
 
-			Components.NetcodeState.RequestStartNetwork(netcodeConfig, transportConfig, relayConfig);
-
-			Hide();
+			RequestStart(netcodeConfig, transportConfig, relayConfig);
 		}
 
 		private void JoinWithAddress(String address, String portStr)
@@ -163,9 +170,7 @@ namespace CodeSmile.GUI
 
 			var relayConfig = RelayConfig.FromCmdArgs();
 
-			Components.NetcodeState.RequestStartNetwork(netcodeConfig, transportConfig, relayConfig);
-
-			Hide();
+			RequestStart(netcodeConfig, transportConfig, relayConfig);
 		}
 
 		private void Hide() => m_Root.style.display = StyleKeyword.None;

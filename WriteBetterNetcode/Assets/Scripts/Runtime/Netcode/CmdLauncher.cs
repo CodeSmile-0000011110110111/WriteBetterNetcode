@@ -24,7 +24,7 @@ namespace CodeSmile.BetterNetcode.Netcode
 		{
 			var transportCfg = TransportConfig.FromNetworkManagerWithCmdArgOverrides();
 			var relayCfg = RelayConfig.FromCmdArgs();
-			Components.NetcodeState.RequestStartNetwork(netcodeCfg, transportCfg, relayCfg);
+			Components.NetcodeState.RequestStart(netcodeCfg, transportCfg, relayCfg);
 		}
 	}
 }

@@ -32,7 +32,7 @@ namespace CodeSmile.Core.Statemachine.Netcode.Actions
 			var netcodeConfig = m_NetcodeConfigVar.Value;
 			var transportConfig = m_TransportConfigVar.Value;
 			var relayConfig = m_RelayConfigVar.Value;
-			var isWeb = Application.platform == RuntimePlatform.WebGLPlayer && Application.isEditor == false;
+			var isWeb = Application.platform == RuntimePlatform.WebGLPlayer;
 
 			            var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
 			transport.UseEncryption = transportConfig.UseEncryption;

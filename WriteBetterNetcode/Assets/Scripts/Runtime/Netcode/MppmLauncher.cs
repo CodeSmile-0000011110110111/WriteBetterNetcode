@@ -36,7 +36,7 @@ namespace CodeSmile.BetterNetcode.Netcode
 		{
 			var netcodeConfig = new NetcodeConfig { Role = role, MaxConnections = 4 };
 			var transportConfig = TransportConfig.FromNetworkManager();
-			Components.NetcodeState.RequestStartNetwork(netcodeConfig, transportConfig);
+			Components.NetcodeState.RequestStart(netcodeConfig, transportConfig);
 		}
 #endif
 	}

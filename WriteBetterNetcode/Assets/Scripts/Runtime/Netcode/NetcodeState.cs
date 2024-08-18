@@ -223,7 +223,7 @@ namespace CodeSmile.BetterNetcode.Netcode
 			}
 		}
 
-		public void RequestStartNetwork(NetcodeConfig netcodeConfig,
+		public void RequestStart(NetcodeConfig netcodeConfig,
 			TransportConfig transportConfig, RelayConfig relayConfig = default)
 		{
 			if (netcodeConfig.Role == NetcodeRole.None)
@@ -240,7 +240,6 @@ namespace CodeSmile.BetterNetcode.Netcode
 
 		public void RequestStopNetwork()
 		{
-			Debug.Log("request stop");
 			var netcodeConfig = m_NetcodeConfigVar.Value;
 			netcodeConfig.Role = NetcodeRole.None;
 			m_NetcodeConfigVar.Value = netcodeConfig;
