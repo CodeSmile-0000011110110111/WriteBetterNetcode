@@ -13,6 +13,7 @@ namespace CodeSmile.Core.Components.Utility
 	///         to quit a build except going through Task Manager.
 	///     </remarks>
 	/// </summary>
+	[DisallowMultipleComponent]
 	internal class PressKeyToQuit : MonoBehaviour
 	{
 		[Tooltip("The key that will quit if Ctrl+Alt / Cmd+Option are also held down.")]

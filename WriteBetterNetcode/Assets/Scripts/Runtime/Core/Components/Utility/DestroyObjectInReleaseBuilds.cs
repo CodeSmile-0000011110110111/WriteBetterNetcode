@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace CodeSmile.Core.Components.Utility
 {
+	[DisallowMultipleComponent]
 	public class DestroyObjectInReleaseBuilds : MonoBehaviour
 	{
 #if !UNITY_EDITOR && !DEBUG && !DEVELOPMENT_BUILD

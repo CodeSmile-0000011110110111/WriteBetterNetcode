@@ -14,6 +14,7 @@ namespace CodeSmile.Core.Components.Utility
 	///     DDoL is applied in Start(), not Awake(), to allow Multiplayer Roles to strip components during Awake().
 	///     This script will also move the GameObject to the root since DDoL only works on root game objects.
 	/// </remarks>
+	[DisallowMultipleComponent]
 	public class DontDestroyOnLoadAllChildren : MonoBehaviour
 	{
 		private void Start()

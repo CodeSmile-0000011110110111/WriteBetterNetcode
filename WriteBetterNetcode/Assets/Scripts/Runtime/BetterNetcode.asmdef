@@ -1,6 +1,6 @@
 {
     "name": "BetterNetcode",
-    "rootNamespace": "CodeSmile.BetterNetcode",
+    "rootNamespace": "CodeSmile",
     "references": [
         "GUID:1491147abca9d7d4bb7105af628b223e",
         "GUID:767f25efd20d4339a8b1683f8dc1d7d8",
