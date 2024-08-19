@@ -16,7 +16,7 @@ namespace CodeSmile.Core.Components.Netcode
 	///     The component is only active if DEBUG or DEVELOPMENT_BUILD symbols are defined.
 	/// </remarks>
 	[DisallowMultipleComponent]
-	public class NetworkEventLogger : MonoBehaviour
+	public sealed class NetworkEventLogger : MonoBehaviour
 	{
 		[SerializeField] private Boolean m_LogPropertyChanges = true;
 

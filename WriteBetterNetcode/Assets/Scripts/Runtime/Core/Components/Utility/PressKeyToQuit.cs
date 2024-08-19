@@ -14,7 +14,7 @@ namespace CodeSmile.Core.Components.Utility
 	///     </remarks>
 	/// </summary>
 	[DisallowMultipleComponent]
-	internal class PressKeyToQuit : MonoBehaviour
+	internal sealed class PressKeyToQuit : MonoBehaviour
 	{
 		[Tooltip("The key that will quit if Ctrl+Alt / Cmd+Option are also held down.")]
 		public KeyCode QuitKey = KeyCode.Escape;

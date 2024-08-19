@@ -15,7 +15,7 @@ namespace CodeSmile.Core.Components.Utility
 	///     This script will also move the GameObject to the root since DDoL only works on root game objects.
 	/// </remarks>
 	[DisallowMultipleComponent]
-	public class DontDestroyOnLoadAllChildren : MonoBehaviour
+	public sealed class DontDestroyOnLoadAllChildren : MonoBehaviour
 	{
 		private void Start()
 		{
