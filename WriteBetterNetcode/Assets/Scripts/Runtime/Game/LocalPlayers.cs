@@ -18,6 +18,8 @@ namespace CodeSmile.Game
 
 		private ClientPlayerSpawner m_Spawner;
 
+		public static LocalPlayers Instance { get; private set; }
+
 		private void Awake() => m_Spawner = GetComponent<ClientPlayerSpawner>();
 
 		public override async void OnNetworkSpawn()
@@ -26,6 +28,8 @@ namespace CodeSmile.Game
 
 			if (IsOwner)
 			{
+				Instance = this;
+
 				var posY = OwnerClientId * 2f;
 				m_Players[0] = await m_Spawner.Spawn(0, 0);
 				m_Players[0].transform.position = new Vector3(-3, posY, 0);
@@ -43,6 +47,12 @@ namespace CodeSmile.Game
 				m_Players[3].transform.position = new Vector3(3, posY, 0);
 				Debug.Log($"{Time.frameCount} player spawned: {m_Players[3]}");
 			}
+		}
+
+		public override void OnNetworkDespawn()
+		{
+			if (IsOwner)
+				Instance = null;
 		}
 	}
 }

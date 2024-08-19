@@ -55,8 +55,8 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 1
   SynchronizeTransform: 0
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 0
 --- !u!114 &1552730354818967529

@@ -46,7 +46,7 @@ namespace CodeSmile.Game
 
 			var playerPrefab = m_AvatarPrefabs[avatarIndex];
 			var playerNetObject = Instantiate(playerPrefab).GetComponent<NetworkObject>();
-			playerNetObject.SpawnAsPlayerObject(ownerId);
+			playerNetObject.SpawnWithOwnership(ownerId);
 
 			m_ClientPlayerSpawner.DidSpawnPlayerClientRpc(playerNetObject, localPlayerIndex);
 		}
