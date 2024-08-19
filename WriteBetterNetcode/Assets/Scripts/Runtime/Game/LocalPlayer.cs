@@ -1,7 +1,8 @@
 using Unity.Netcode;
+using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile
+namespace CodeSmile.Game
 {
     public sealed class LocalPlayer : NetworkBehaviour
     {

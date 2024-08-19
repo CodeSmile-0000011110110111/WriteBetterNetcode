@@ -6,53 +6,43 @@ using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile
+namespace CodeSmile.Game
 {
 	[DisallowMultipleComponent]
-	[RequireComponent(typeof(LocalPlayerSpawner))]
+	[RequireComponent(typeof(ClientPlayerSpawner))]
 	public sealed class LocalPlayers : NetworkBehaviour
 	{
 		internal const Int32 MaxLocalPlayers = 4;
 
 		private readonly LocalPlayer[] m_Players = new LocalPlayer[MaxLocalPlayers];
 
-		private LocalPlayerSpawner m_Spawner;
+		private ClientPlayerSpawner m_Spawner;
 
-		private void Awake()
-		{
-			m_Spawner = GetComponent<LocalPlayerSpawner>();
-			InitPlayers();
-		}
+		private void Awake() => m_Spawner = GetComponent<ClientPlayerSpawner>();
 
 		public override async void OnNetworkSpawn()
 		{
 			base.OnNetworkSpawn();
 
-			Debug.Log($"{Time.frameCount} request player spawn ...");
+			if (IsOwner)
+			{
+				var posY = OwnerClientId * 2f;
+				m_Players[0] = await m_Spawner.Spawn(0, 0);
+				m_Players[0].transform.position = new Vector3(-3, posY, 0);
+				Debug.Log($"{Time.frameCount} player spawned: {m_Players[0]}");
 
-			m_Players[0] = await m_Spawner.SpawnWithLocalPlayerIndex(0);
-			Debug.Log($"{Time.frameCount} player spawned: {m_Players[0]}");
-			m_Players[1] = await m_Spawner.SpawnWithLocalPlayerIndex(1);
-			Debug.Log($"{Time.frameCount} player spawned: {m_Players[1]}");
-			m_Players[2] = await m_Spawner.SpawnWithLocalPlayerIndex(2);
-			Debug.Log($"{Time.frameCount} player spawned: {m_Players[2]}");
-			m_Players[3] = await m_Spawner.SpawnWithLocalPlayerIndex(3);
-			Debug.Log($"{Time.frameCount} player spawned: {m_Players[3]}");
+				m_Players[1] = await m_Spawner.Spawn(1, 1);
+				m_Players[1].transform.position = new Vector3(-1, posY, 0);
+				Debug.Log($"{Time.frameCount} player spawned: {m_Players[1]}");
 
-			if (m_Players[0] != null)
-				m_Players[0].transform.position = new Vector3(-3, 0, 0);
-			if (m_Players[1] != null)
-				m_Players[1].transform.position = new Vector3(-1, 0, 0);
-			if (m_Players[2] != null)
-				m_Players[2].transform.position = new Vector3(1, 0, 0);
-			if (m_Players[3] != null)
-				m_Players[3].transform.position = new Vector3(3, 0, 0);
-		}
+				m_Players[2] = await m_Spawner.Spawn(2, 2);
+				m_Players[2].transform.position = new Vector3(1, posY, 0);
+				Debug.Log($"{Time.frameCount} player spawned: {m_Players[2]}");
 
-		private void InitPlayers()
-		{
-			for (var i = 0; i < MaxLocalPlayers; i++)
-				m_Players[i] = null;
+				m_Players[3] = await m_Spawner.Spawn(3, 3);
+				m_Players[3].transform.position = new Vector3(3, posY, 0);
+				Debug.Log($"{Time.frameCount} player spawned: {m_Players[3]}");
+			}
 		}
 	}
 }

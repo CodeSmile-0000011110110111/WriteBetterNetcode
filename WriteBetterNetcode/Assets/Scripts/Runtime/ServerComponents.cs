@@ -1,19 +1,15 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.Netcode;
 using System;
 using UnityEditor;
 using UnityEngine;
 
 namespace CodeSmile
 {
-	public class Components : MonoBehaviour
+	public class ServerComponents : MonoBehaviour
 	{
-		private static Components s_Instance;
-		[SerializeField] private NetcodeState m_NetcodeState;
-
-		public static NetcodeState NetcodeState => s_Instance.m_NetcodeState;
+		private static ServerComponents s_Instance;
 
 		private void Awake()
 		{
@@ -31,8 +27,8 @@ namespace CodeSmile
 
 		private void ThrowIfComponentIsNull()
 		{
-			if (NetcodeState == null)
-				throw new MissingReferenceException($"{nameof(NetcodeState)} not assigned");
+			// if (ServerPlayerSpawner == null)
+			// 	throw new MissingReferenceException($"{nameof(ServerPlayerSpawner)} not assigned");
 		}
 	}
 }

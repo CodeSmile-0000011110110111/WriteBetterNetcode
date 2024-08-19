@@ -8,7 +8,7 @@ using Unity.Multiplayer.Playmode;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.BetterNetcode.Netcode
+namespace CodeSmile.Netcode
 {
 	public class MppmLauncher : MonoBehaviour
 	{

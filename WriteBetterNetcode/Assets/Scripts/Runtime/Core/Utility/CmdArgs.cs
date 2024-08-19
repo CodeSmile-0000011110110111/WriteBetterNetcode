@@ -88,7 +88,7 @@ namespace CodeSmile.Core.Utility
 
 					if (parsedArgs.ContainsKey(argKey) == false)
 						parsedArgs.Add(argKey, argValue);
-					else
+					else if (Application.isEditor == false)
 						Debug.LogWarning($"Duplicate argument: -{argKey}");
 				}
 			}

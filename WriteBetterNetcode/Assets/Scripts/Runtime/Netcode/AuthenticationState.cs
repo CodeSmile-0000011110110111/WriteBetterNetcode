@@ -7,7 +7,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.BetterNetcode.Netcode
+namespace CodeSmile.Netcode
 {
 	public class AuthenticationState : MonoBehaviour
 	{

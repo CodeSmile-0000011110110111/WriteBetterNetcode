@@ -1,7 +1,6 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.BetterNetcode;
 using CodeSmile.Core.Statemachine.Netcode;
 using System;
 using System.Net;

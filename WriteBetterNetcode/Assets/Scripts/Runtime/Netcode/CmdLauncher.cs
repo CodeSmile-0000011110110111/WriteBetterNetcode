@@ -6,7 +6,7 @@ using CodeSmile.Core.Utility;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.BetterNetcode.Netcode
+namespace CodeSmile.Netcode
 {
 	public class CmdLauncher : MonoBehaviour
 	{
