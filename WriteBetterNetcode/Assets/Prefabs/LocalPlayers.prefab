@@ -56,7 +56,7 @@ MonoBehaviour:
   SynchronizeTransform: 0
   ActiveSceneSynchronization: 0
   SceneMigrationSynchronization: 0
-  SpawnWithObservers: 0
+  SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 0
 --- !u!114 &1552730354818967529
@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e7de015d834034bbfe8e95fbe71d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PlayerPrefab: {fileID: 6872444309775532367, guid: 8feb565c4942ec546906367ef4c7d50c, type: 3}
 --- !u!1001 &2451192949404454808
 PrefabInstance:
   m_ObjectHideFlags: 0

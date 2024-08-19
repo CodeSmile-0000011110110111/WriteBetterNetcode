@@ -70,7 +70,6 @@ namespace CodeSmile.GUI
 
 		private void RegisterGuiEvents()
 		{
-			Debug.Log("enable");
 			HostRelayButton.clicked += OnHostRelayButtonClicked;
 			HostDirectButton.clicked += OnHostDirectButtonClicked;
 			JoinRelayButton.clicked += OnJoinRelayButtonClicked;
@@ -82,7 +81,6 @@ namespace CodeSmile.GUI
 
 		private void UnregisterGuiEvents()
 		{
-			Debug.Log("disable");
 			HostRelayButton.clicked -= OnHostRelayButtonClicked;
 			HostDirectButton.clicked -= OnHostDirectButtonClicked;
 			JoinRelayButton.clicked -= OnJoinRelayButtonClicked;
