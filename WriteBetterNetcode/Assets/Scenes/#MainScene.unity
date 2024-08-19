@@ -198,26 +198,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PresetAsset: {fileID: 0}
   m_PresetReference:
-    rid: 2465855264610320576
+    rid: 2465855375810756700
   m_Scenario:
     rid: -2
-  m_IsScenarioSettingsFolded: 0
+  m_IsScenarioSettingsFolded: 1
   AutoRunScenario: 0
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 2465855264610320576
+    - rid: 2465855375810756700
       type: {class: NetworkSimulatorPreset, ns: Unity.Multiplayer.Tools.NetworkSimulator.Runtime, asm: Unity.Multiplayer.Tools.NetworkSimulator.Runtime}
       data:
-        <Name>k__BackingField: 'Home DSL [ADSL or VDSL]'
-        <Description>k__BackingField: Average scenario for desktop and console platforms.
-          Good ping, good jitter and no packet loss.
-        <PacketDelayMs>k__BackingField: 30
-        <PacketJitterMs>k__BackingField: 10
+        <Name>k__BackingField: 'Mobile 2G [CDMA & GSM, ''00]'
+        <Description>k__BackingField: Extremely poor connection, completely unsuitable
+          for synchronous multiplayer gaming due to exceptionally high ping. Turn
+          based games may work.
+        <PacketDelayMs>k__BackingField: 520
+        <PacketJitterMs>k__BackingField: 50
         <PacketLossInterval>k__BackingField: 0
-        <PacketLossPercent>k__BackingField: 0
+        <PacketLossPercent>k__BackingField: 7
 --- !u!1 &109214539
 GameObject:
   m_ObjectHideFlags: 0

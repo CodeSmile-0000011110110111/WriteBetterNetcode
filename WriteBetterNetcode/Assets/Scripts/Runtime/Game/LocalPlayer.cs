@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CodeSmile
 {
-    public class LocalPlayer : NetworkBehaviour
+    public sealed class LocalPlayer : NetworkBehaviour
     {
     }
 }
