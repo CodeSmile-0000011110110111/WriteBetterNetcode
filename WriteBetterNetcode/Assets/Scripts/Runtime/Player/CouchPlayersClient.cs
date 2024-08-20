@@ -50,9 +50,7 @@ namespace CodeSmile.Player
 				m_SpawnTcs[couchPlayerIndex] = null;
 			}
 			else
-			{
 				m_Players.RegisterRemotePlayer(player, couchPlayerIndex);
-			}
 		}
 	}
 }

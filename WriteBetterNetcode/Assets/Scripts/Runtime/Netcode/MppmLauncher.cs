@@ -40,12 +40,11 @@ namespace CodeSmile.Netcode
 		}
 
 		// ensure unsaved Material, ScriptableObject, etc changes are applied to virtual players
-		[InitializeOnLoadMethod] private static void InitOnLoad() =>
-			EditorApplication.playModeStateChanged += state =>
-			{
-				if (state == PlayModeStateChange.ExitingEditMode)
-					SaveProject();
-			};
+		[InitializeOnLoadMethod] private static void InitOnLoad() => EditorApplication.playModeStateChanged += state =>
+		{
+			if (state == PlayModeStateChange.ExitingEditMode)
+				SaveProject();
+		};
 
 		private static void SaveProject() => AssetDatabase.SaveAssets();
 #endif
