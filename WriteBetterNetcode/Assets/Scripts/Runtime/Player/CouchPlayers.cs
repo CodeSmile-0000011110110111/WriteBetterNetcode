@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
@@ -23,11 +24,9 @@ namespace CodeSmile.Player
 
 		private CouchPlayersClient m_Client;
 
-		public Player this[Int32 index] => m_Players[index];
+		public Player this[Int32 index] => index >= 0 && index < MaxCouchPlayers ? m_Players[index] : null;
 
-		public static CouchPlayers Instance { get; private set; }
-
-		private static Int32 GetNewAvatarIndex(Player playerAvatar)
+		private static Int32 Test_ShuffleAvatarIndex(Player playerAvatar)
 		{
 			var curAvatarIndex = playerAvatar.AvatarIndex;
 			var newAvatarIndex = 0;
@@ -52,47 +51,38 @@ namespace CodeSmile.Player
 
 			if (IsOwner)
 			{
-				Instance = this;
+				await Test_SpawnPlayers();
 
-				Random.InitState(DateTime.Now.Millisecond);
-
-				var posY = OwnerClientId * 2f;
-				m_Players[0] = await m_Client.Spawn(0, 0);
-				SetPlayerDebugName(m_Players[0], 0);
-				m_Players[0].transform.position = new Vector3(-3, posY, 0);
-				Debug.Log($"{Time.frameCount} player spawned: {m_Players[0].name}");
-
-				m_Players[1] = await m_Client.Spawn(1, 1);
-				SetPlayerDebugName(m_Players[1], 1);
-				m_Players[1].transform.position = new Vector3(-1, posY, 0);
-				Debug.Log($"{Time.frameCount} player spawned: {m_Players[1].name}");
-
-				m_Players[2] = await m_Client.Spawn(2, 2);
-				SetPlayerDebugName(m_Players[2], 2);
-				m_Players[2].transform.position = new Vector3(1, posY, 0);
-				Debug.Log($"{Time.frameCount} player spawned: {m_Players[2].name}");
-
-				m_Players[3] = await m_Client.Spawn(3, 3);
-				SetPlayerDebugName(m_Players[3], 3);
-				m_Players[3].transform.position = new Vector3(3, posY, 0);
-				Debug.Log($"{Time.frameCount} player spawned: {m_Players[3].name}");
-
-				StartCoroutine(RandomizeAvatar());
+				StartCoroutine(Test_ShuffleAvatar());
 			}
 		}
 
-		public override void OnNetworkDespawn()
+		private async Task Test_SpawnPlayers()
 		{
-			StopAllCoroutines();
+			Random.InitState(DateTime.Now.Millisecond);
 
-			if (IsOwner)
-				Instance = null;
+			var posY = OwnerClientId * 2f;
+			m_Players[0] = await m_Client.Spawn(0, 0);
+			SetPlayerDebugName(m_Players[0], 0);
+			m_Players[0].transform.position = new Vector3(-3, posY, 0);
+
+			m_Players[1] = await m_Client.Spawn(1, 1);
+			SetPlayerDebugName(m_Players[1], 1);
+			m_Players[1].transform.position = new Vector3(-1, posY, 0);
+
+			m_Players[2] = await m_Client.Spawn(2, 2);
+			SetPlayerDebugName(m_Players[2], 2);
+			m_Players[2].transform.position = new Vector3(1, posY, 0);
+
+			m_Players[3] = await m_Client.Spawn(3, 3);
+			SetPlayerDebugName(m_Players[3], 3);
+			m_Players[3].transform.position = new Vector3(3, posY, 0);
 		}
 
-		private IEnumerator RandomizeAvatar()
-		{
-			yield return new WaitForSecondsRealtime(1f);
+		public override void OnNetworkDespawn() => StopAllCoroutines();
 
+		private IEnumerator Test_ShuffleAvatar()
+		{
 			do
 			{
 				for (var i = 0; i < MaxCouchPlayers; i++)
@@ -101,7 +91,7 @@ namespace CodeSmile.Player
 
 					if (m_Players[i] != null)
 					{
-						var avatarIndex = GetNewAvatarIndex(m_Players[i]);
+						var avatarIndex = Test_ShuffleAvatarIndex(m_Players[i]);
 
 						//Debug.Log($"set random avatar index {avatarIndex} to player {i}, client {OwnerClientId}");
 						m_Players[i].AvatarIndex = (Byte)avatarIndex;

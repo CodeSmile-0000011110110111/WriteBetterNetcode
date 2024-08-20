@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeSmile.Player
 {
 	[DisallowMultipleComponent]
-	public class PlayerClient : NetworkBehaviour
+	internal class PlayerClient : NetworkBehaviour
 	{
 		private PlayerServer m_Server;
 

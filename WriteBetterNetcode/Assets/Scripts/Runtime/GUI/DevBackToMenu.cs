@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 
 namespace CodeSmile.GUI
 {
+	[DisallowMultipleComponent]
 	[RequireComponent(typeof(UIDocument))]
 	public class DevBackToMenu : MonoBehaviour
 	{

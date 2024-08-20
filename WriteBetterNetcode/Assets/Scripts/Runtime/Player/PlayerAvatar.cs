@@ -9,7 +9,7 @@ using UnityEngine;
 namespace CodeSmile.Player
 {
 	[DisallowMultipleComponent]
-	public sealed class PlayerAvatar : MonoBehaviour
+	internal sealed class PlayerAvatar : MonoBehaviour
 	{
 		[SerializeField] private PlayerAvatarPrefabs m_AvatarPrefabs;
 

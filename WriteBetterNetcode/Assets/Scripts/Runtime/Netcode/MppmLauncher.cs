@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace CodeSmile.Netcode
 {
-	public class MppmLauncher : MonoBehaviour
+	internal class MppmLauncher : MonoBehaviour
 	{
 #if UNITY_EDITOR
 		private void Start()

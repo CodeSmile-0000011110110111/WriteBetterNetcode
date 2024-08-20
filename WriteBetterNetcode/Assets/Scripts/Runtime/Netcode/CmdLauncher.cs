@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CodeSmile.Netcode
 {
-	public class CmdLauncher : MonoBehaviour
+	internal class CmdLauncher : MonoBehaviour
 	{
 		private static void StartNetworkWithRole(NetcodeConfig netcodeCfg)
 		{

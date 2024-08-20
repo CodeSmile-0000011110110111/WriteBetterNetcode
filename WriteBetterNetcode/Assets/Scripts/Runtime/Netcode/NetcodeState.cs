@@ -20,12 +20,6 @@ using UnityEngine;
 
 namespace CodeSmile.Netcode
 {
-	[Serializable]
-	public struct ServerConfig
-	{
-		public Int32 MaxClients;
-	}
-
 	public class NetcodeState : MonoBehaviour
 	{
 		public event Action WentOffline;

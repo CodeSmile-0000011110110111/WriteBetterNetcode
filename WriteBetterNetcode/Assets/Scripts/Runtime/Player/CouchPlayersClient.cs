@@ -24,7 +24,7 @@ namespace CodeSmile.Player
 			m_Server = GetComponent<CouchPlayersServer>();
 		}
 
-		public Task<Player> Spawn(Int32 couchPlayerIndex, Int32 avatarIndex)
+		internal Task<Player> Spawn(Int32 couchPlayerIndex, Int32 avatarIndex)
 		{
 			if (m_SpawnTcs[couchPlayerIndex] != null)
 				throw new Exception($"spawn already in progress, player index: {couchPlayerIndex}");

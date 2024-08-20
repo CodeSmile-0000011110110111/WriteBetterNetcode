@@ -14,7 +14,7 @@ namespace CodeSmile.Player
 		private readonly NetworkVariable<Byte> m_AvatarIndexVar = new();
 		private Player m_Player;
 
-		public Byte AvatarIndex
+		internal Byte AvatarIndex
 		{
 			get => m_AvatarIndexVar.Value;
 			set
