@@ -16,27 +16,29 @@ namespace CodeSmile.Player
 			new TaskCompletionSource<Player>[CouchPlayers.MaxCouchPlayers];
 
 		private CouchPlayers m_Players;
-		private CouchPlayersServer m_Server;
+		private CouchPlayersServer m_ServerSide;
 
 		private void Awake()
 		{
 			m_Players = GetComponent<CouchPlayers>();
-			m_Server = GetComponent<CouchPlayersServer>();
+			m_ServerSide = GetComponent<CouchPlayersServer>();
 		}
 
 		internal Task<Player> Spawn(Int32 couchPlayerIndex, Int32 avatarIndex)
 		{
 			if (m_SpawnTcs[couchPlayerIndex] != null)
-				throw new Exception($"spawn already in progress, player index: {couchPlayerIndex}");
+				throw new Exception($"player {couchPlayerIndex} spawn in progress");
 
-			m_Server.SpawnPlayerServerRpc(OwnerClientId, (Byte)couchPlayerIndex, (Byte)avatarIndex);
+			m_ServerSide.SpawnPlayerServerRpc(OwnerClientId,
+				(Byte)couchPlayerIndex, (Byte)avatarIndex);
 
 			m_SpawnTcs[couchPlayerIndex] = new TaskCompletionSource<Player>();
 			return m_SpawnTcs[couchPlayerIndex].Task;
 		}
 
 		[Rpc(SendTo.ClientsAndHost, DeferLocal = true)]
-		internal void DidSpawnPlayerClientRpc(NetworkObjectReference playerRef, Byte couchPlayerIndex)
+		internal void DidSpawnPlayerClientRpc(NetworkObjectReference playerRef,
+			Byte couchPlayerIndex)
 		{
 			// this should not fail thus no error check
 			playerRef.TryGet(out var playerObj);
@@ -50,7 +52,7 @@ namespace CodeSmile.Player
 				m_SpawnTcs[couchPlayerIndex] = null;
 			}
 			else
-				m_Players.RegisterRemotePlayer(player, couchPlayerIndex);
+				m_Players.AddRemotePlayer(player, couchPlayerIndex);
 		}
 	}
 }

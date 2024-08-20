@@ -13,18 +13,19 @@ namespace CodeSmile.Player
 	{
 		[SerializeField] private NetworkObject m_PlayerPrefab;
 
-		private CouchPlayersClient m_Client;
+		private CouchPlayersClient m_ClientSide;
 
 		private void Awake()
 		{
 			if (m_PlayerPrefab == null)
 				throw new MissingReferenceException(nameof(m_PlayerPrefab));
 
-			m_Client = GetComponent<CouchPlayersClient>();
+			m_ClientSide = GetComponent<CouchPlayersClient>();
 		}
 
 		[Rpc(SendTo.Server, DeferLocal = true)]
-		internal void SpawnPlayerServerRpc(UInt64 ownerId, Byte couchPlayerIndex, Byte avatarIndex)
+		internal void SpawnPlayerServerRpc(UInt64 ownerId, Byte couchPlayerIndex,
+			Byte avatarIndex)
 		{
 			var playerObj = Instantiate(m_PlayerPrefab).GetComponent<NetworkObject>();
 			playerObj.SpawnWithOwnership(ownerId);
@@ -32,7 +33,7 @@ namespace CodeSmile.Player
 			var player = playerObj.GetComponent<Player>();
 			player.AvatarIndex = avatarIndex;
 
-			m_Client.DidSpawnPlayerClientRpc(playerObj, couchPlayerIndex);
+			m_ClientSide.DidSpawnPlayerClientRpc(playerObj, couchPlayerIndex);
 		}
 	}
 }

@@ -10,8 +10,13 @@ namespace CodeSmile.Player
 	[DisallowMultipleComponent]
 	internal class PlayerServer : NetworkBehaviour
 	{
+		private PlayerClient m_ClientSide;
 		private Player m_Player;
 
-		private void Awake() => m_Player = GetComponent<Player>();
+		private void Awake()
+		{
+			m_ClientSide = GetComponent<PlayerClient>();
+			m_Player = GetComponent<Player>();
+		}
 	}
 }

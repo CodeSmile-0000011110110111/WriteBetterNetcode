@@ -14,7 +14,7 @@ namespace CodeSmile.Player
 	public sealed class Player : NetworkBehaviour
 	{
 		private PlayerAvatar m_Avatar;
-		private PlayerClient m_Client;
+		private PlayerClient m_ClientSide;
 		private PlayerVars m_Vars;
 
 		public Byte AvatarIndex { get => m_Vars.AvatarIndex; set => m_Vars.AvatarIndex = value; }
@@ -22,7 +22,7 @@ namespace CodeSmile.Player
 		private void Awake()
 		{
 			m_Avatar = GetComponent<PlayerAvatar>();
-			m_Client = GetComponent<PlayerClient>();
+			m_ClientSide = GetComponent<PlayerClient>();
 			m_Vars = GetComponent<PlayerVars>();
 		}
 
