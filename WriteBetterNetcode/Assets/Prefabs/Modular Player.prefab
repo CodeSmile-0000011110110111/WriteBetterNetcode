@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 3476758710250218621}
   - component: {fileID: 6872444309775532367}
   - component: {fileID: -4641111890979326492}
+  - component: {fileID: -3178060901017069587}
   - component: {fileID: 76815592126949633}
   m_Layer: 0
-  m_Name: Customizable Player
+  m_Name: Modular Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3267979062
+  GlobalObjectIdHash: 1324909063
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -90,6 +91,18 @@ MonoBehaviour:
   InLocalSpace: 1
   Interpolate: 0
   SlerpPosition: 0
+--- !u!114 &-3178060901017069587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6108024806492646982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e57539d5d75420e988bffc5c04fe2bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &76815592126949633
 MonoBehaviour:
   m_ObjectHideFlags: 0
