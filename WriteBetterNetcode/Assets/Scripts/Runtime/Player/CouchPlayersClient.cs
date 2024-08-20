@@ -10,18 +10,18 @@ using UnityEngine;
 namespace CodeSmile.Player
 {
 	[DisallowMultipleComponent]
-	internal sealed class LocalPlayersClient : NetworkBehaviour
+	internal sealed class CouchPlayersClient : NetworkBehaviour
 	{
 		private readonly TaskCompletionSource<Player>[] m_SpawnTcs =
-			new TaskCompletionSource<Player>[LocalPlayers.MaxLocalPlayers];
+			new TaskCompletionSource<Player>[CouchPlayers.MaxLocalPlayers];
 
-		private LocalPlayers m_Players;
-		private LocalPlayersServer m_Server;
+		private CouchPlayers m_Players;
+		private CouchPlayersServer m_Server;
 
 		private void Awake()
 		{
-			m_Players = GetComponent<LocalPlayers>();
-			m_Server = GetComponent<LocalPlayersServer>();
+			m_Players = GetComponent<CouchPlayers>();
+			m_Server = GetComponent<CouchPlayersServer>();
 		}
 
 		public Task<Player> Spawn(Int32 localPlayerIndex, Int32 avatarIndex)

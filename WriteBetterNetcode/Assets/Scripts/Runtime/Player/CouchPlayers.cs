@@ -11,18 +11,18 @@ using Random = UnityEngine.Random;
 namespace CodeSmile.Player
 {
 	[DisallowMultipleComponent]
-	[RequireComponent(typeof(LocalPlayersClient), typeof(LocalPlayersServer))]
-	public sealed class LocalPlayers : NetworkBehaviour
+	[RequireComponent(typeof(CouchPlayersClient), typeof(CouchPlayersServer))]
+	public sealed class CouchPlayers : NetworkBehaviour
 	{
 		internal const Int32 MaxLocalPlayers = 4;
 
 		private readonly Player[] m_Players = new Player[MaxLocalPlayers];
 
-		private LocalPlayersClient m_Client;
+		private CouchPlayersClient m_Client;
 
 		public Player this[Int32 index] => m_Players[index];
 
-		public static LocalPlayers Instance { get; private set; }
+		public static CouchPlayers Instance { get; private set; }
 
 		private static Int32 GetNewAvatarIndex(Player playerAvatar)
 		{
@@ -41,7 +41,7 @@ namespace CodeSmile.Player
 		private static void SetPlayerName(Player player, Int32 localPlayerIndex, String suffix = "") =>
 			player.name = player.name.Replace("(Clone)", $" #{localPlayerIndex}{suffix}");
 
-		private void Awake() => m_Client = GetComponent<LocalPlayersClient>();
+		private void Awake() => m_Client = GetComponent<CouchPlayersClient>();
 
 		public override async void OnNetworkSpawn()
 		{

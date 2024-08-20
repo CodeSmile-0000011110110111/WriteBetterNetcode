@@ -9,18 +9,18 @@ using UnityEngine;
 namespace CodeSmile.Player
 {
 	[DisallowMultipleComponent]
-	internal sealed class LocalPlayersServer : NetworkBehaviour
+	internal sealed class CouchPlayersServer : NetworkBehaviour
 	{
 		[SerializeField] private NetworkObject m_PlayerPrefab;
 
-		private LocalPlayersClient m_Client;
+		private CouchPlayersClient m_Client;
 
 		private void Awake()
 		{
 			if (m_PlayerPrefab == null)
 				throw new MissingReferenceException(nameof(m_PlayerPrefab));
 
-			m_Client = GetComponent<LocalPlayersClient>();
+			m_Client = GetComponent<CouchPlayersClient>();
 		}
 
 		[Rpc(SendTo.Server, DeferLocal = true)]
