@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace CodeSmile.Game
+namespace CodeSmile.Player
 {
 	[DisallowMultipleComponent]
 	[RequireComponent(typeof(PlayerClientRpc))]

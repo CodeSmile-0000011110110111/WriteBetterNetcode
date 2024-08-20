@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Game
+namespace CodeSmile.Settings
 {
 	[CreateAssetMenu(fileName = "Player Avatars", menuName = "CodeSmile/Player Avatars", order = 0)]
 	public sealed class PlayerAvatarPrefabs : ScriptableObject

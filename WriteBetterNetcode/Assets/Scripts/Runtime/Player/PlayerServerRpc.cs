@@ -6,7 +6,7 @@ using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Game
+namespace CodeSmile.Player
 {
 	[DisallowMultipleComponent]
 	public sealed class PlayerServerRpc : NetworkBehaviour

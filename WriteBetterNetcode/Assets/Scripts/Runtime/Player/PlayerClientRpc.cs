@@ -7,7 +7,7 @@ using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Game
+namespace CodeSmile.Player
 {
 	[DisallowMultipleComponent]
 	[RequireComponent(typeof(PlayerServerRpc))]
