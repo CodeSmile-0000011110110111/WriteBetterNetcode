@@ -6,6 +6,7 @@ using System;
 using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace CodeSmile.Player
 {
@@ -15,9 +16,33 @@ namespace CodeSmile.Player
 
 		// TODO: avater index var...
 		private NetworkVariable<Byte> m_AvatarIndex = new();
-		public LocalPlayerAvatar Avatar { get; private set; }
+		private PlayerAvatar m_Avatar;
+		public PlayerAvatar Avatar { get => m_Avatar; private set => m_Avatar = value; }
 		internal PlayerAvatarPrefabs AvatarPrefabs => m_AvatarPrefabs;
 
-		private void Awake() => Avatar = new LocalPlayerAvatar(this);
+		private void Awake() => m_Avatar = new PlayerAvatar(this);
+
+
+	}
+	public sealed class PlayerAvatar
+	{
+		private readonly LocalPlayer m_Player;
+
+		private GameObject m_Active;
+
+		private int m_ActiveIndex;
+		public Int32 ActiveIndex => m_ActiveIndex;
+
+		public PlayerAvatar(LocalPlayer player) => m_Player = player;
+
+		public void Select(Int32 avatarIndex)
+		{
+			if (m_Active != null)
+				Object.Destroy(m_Active);
+
+			var prefab = m_Player.AvatarPrefabs.GetPrefab(avatarIndex);
+			m_Active = Object.Instantiate<GameObject>(prefab, m_Player.transform);
+			m_ActiveIndex = avatarIndex;
+		}
 	}
 }
