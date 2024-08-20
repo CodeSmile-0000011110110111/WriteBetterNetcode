@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3728112273660237586}
   - component: {fileID: 4262242202822552008}
   m_Layer: 0
-  m_Name: LocalPlayers
+  m_Name: CouchPlayers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

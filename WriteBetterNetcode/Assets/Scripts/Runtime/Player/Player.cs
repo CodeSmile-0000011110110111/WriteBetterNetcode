@@ -10,25 +10,20 @@ namespace CodeSmile.Player
 {
 	[DisallowMultipleComponent]
 	[RequireComponent(typeof(PlayerAvatar))]
-	[RequireComponent(typeof(PlayerServer), typeof(PlayerClient))]
-	[RequireComponent(typeof(PlayerServerVars), typeof(PlayerOwnerVars))]
+	[RequireComponent(typeof(PlayerVars), typeof(PlayerServer), typeof(PlayerClient))]
 	public sealed class Player : NetworkBehaviour
 	{
 		private PlayerAvatar m_Avatar;
-
 		private PlayerClient m_Client;
+		private PlayerVars m_Vars;
 
-		private PlayerServerVars m_ServerVars;
-		private PlayerOwnerVars m_OwnerVars;
-
-		public Byte AvatarIndex { get => m_ServerVars.AvatarIndex; set => m_ServerVars.AvatarIndex = value; }
+		public Byte AvatarIndex { get => m_Vars.AvatarIndex; set => m_Vars.AvatarIndex = value; }
 
 		private void Awake()
 		{
 			m_Avatar = GetComponent<PlayerAvatar>();
 			m_Client = GetComponent<PlayerClient>();
-			m_ServerVars = GetComponent<PlayerServerVars>();
-			m_OwnerVars = GetComponent<PlayerOwnerVars>();
+			m_Vars = GetComponent<PlayerVars>();
 		}
 
 		public override void OnNetworkSpawn()

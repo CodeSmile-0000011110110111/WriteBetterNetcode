@@ -9,7 +9,7 @@ using UnityEngine;
 namespace CodeSmile.Player
 {
 	[DisallowMultipleComponent]
-	internal sealed class PlayerServerVars : NetworkBehaviour
+	internal sealed class PlayerVars : NetworkBehaviour
 	{
 		private readonly NetworkVariable<Byte> m_AvatarIndexVar = new();
 		private Player m_Player;
