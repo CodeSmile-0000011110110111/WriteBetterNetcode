@@ -13,7 +13,7 @@ namespace CodeSmile.Player
 	internal sealed class CouchPlayersClient : NetworkBehaviour
 	{
 		private readonly TaskCompletionSource<Player>[] m_SpawnTcs =
-			new TaskCompletionSource<Player>[CouchPlayers.MaxLocalPlayers];
+			new TaskCompletionSource<Player>[CouchPlayers.MaxCouchPlayers];
 
 		private CouchPlayers m_Players;
 		private CouchPlayersServer m_Server;
@@ -24,34 +24,34 @@ namespace CodeSmile.Player
 			m_Server = GetComponent<CouchPlayersServer>();
 		}
 
-		public Task<Player> Spawn(Int32 localPlayerIndex, Int32 avatarIndex)
+		public Task<Player> Spawn(Int32 couchPlayerIndex, Int32 avatarIndex)
 		{
-			if (m_SpawnTcs[localPlayerIndex] != null)
-				throw new Exception($"spawn already in progress, player index: {localPlayerIndex}");
+			if (m_SpawnTcs[couchPlayerIndex] != null)
+				throw new Exception($"spawn already in progress, player index: {couchPlayerIndex}");
 
-			m_SpawnTcs[localPlayerIndex] = new TaskCompletionSource<Player>();
-			m_Server.SpawnPlayerServerRpc((Byte)localPlayerIndex, (Byte)avatarIndex, OwnerClientId);
-			return m_SpawnTcs[localPlayerIndex].Task;
+			m_Server.SpawnPlayerServerRpc(OwnerClientId, (Byte)couchPlayerIndex, (Byte)avatarIndex);
+
+			m_SpawnTcs[couchPlayerIndex] = new TaskCompletionSource<Player>();
+			return m_SpawnTcs[couchPlayerIndex].Task;
 		}
 
 		[Rpc(SendTo.ClientsAndHost, DeferLocal = true)]
-		internal void DidSpawnPlayerClientRpc(NetworkObjectReference playerRef, Byte localPlayerIndex, Byte avatarIndex)
+		internal void DidSpawnPlayerClientRpc(NetworkObjectReference playerRef, Byte couchPlayerIndex)
 		{
 			// this should not fail thus no error check
 			playerRef.TryGet(out var playerObj);
 
 			var player = playerObj.GetComponent<Player>();
-			// player.AvatarIndex = avatarIndex;
 
 			if (IsOwner)
 			{
 				// end awaitable task, and discard
-				m_SpawnTcs[localPlayerIndex].SetResult(player);
-				m_SpawnTcs[localPlayerIndex] = null;
+				m_SpawnTcs[couchPlayerIndex].SetResult(player);
+				m_SpawnTcs[couchPlayerIndex] = null;
 			}
 			else
 			{
-				m_Players.RegisterRemotePlayer(player, localPlayerIndex);
+				m_Players.RegisterRemotePlayer(player, couchPlayerIndex);
 			}
 		}
 	}

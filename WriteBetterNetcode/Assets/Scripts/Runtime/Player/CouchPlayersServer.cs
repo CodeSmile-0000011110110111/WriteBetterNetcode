@@ -24,7 +24,7 @@ namespace CodeSmile.Player
 		}
 
 		[Rpc(SendTo.Server, DeferLocal = true)]
-		internal void SpawnPlayerServerRpc(Byte localPlayerIndex, Byte avatarIndex, UInt64 ownerId)
+		internal void SpawnPlayerServerRpc(UInt64 ownerId, Byte couchPlayerIndex, Byte avatarIndex)
 		{
 			var playerObj = Instantiate(m_PlayerPrefab).GetComponent<NetworkObject>();
 			playerObj.SpawnWithOwnership(ownerId);
@@ -32,7 +32,7 @@ namespace CodeSmile.Player
 			var player = playerObj.GetComponent<Player>();
 			player.AvatarIndex = avatarIndex;
 
-			m_Client.DidSpawnPlayerClientRpc(playerObj, localPlayerIndex, avatarIndex);
+			m_Client.DidSpawnPlayerClientRpc(playerObj, couchPlayerIndex);
 		}
 	}
 }
