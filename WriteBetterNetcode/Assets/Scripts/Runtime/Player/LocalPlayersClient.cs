@@ -10,14 +10,19 @@ using UnityEngine;
 namespace CodeSmile.Player
 {
 	[DisallowMultipleComponent]
-	internal sealed class LocalPlayersClientRpc : NetworkBehaviour
+	internal sealed class LocalPlayersClient : NetworkBehaviour
 	{
 		private readonly TaskCompletionSource<Player>[] m_SpawnTcs =
 			new TaskCompletionSource<Player>[LocalPlayers.MaxLocalPlayers];
 
-		private LocalPlayersServerRpc m_ServerRpc;
+		private LocalPlayers m_Players;
+		private LocalPlayersServer m_Server;
 
-		private void Awake() => m_ServerRpc = GetComponent<LocalPlayersServerRpc>();
+		private void Awake()
+		{
+			m_Players = GetComponent<LocalPlayers>();
+			m_Server = GetComponent<LocalPlayersServer>();
+		}
 
 		public Task<Player> Spawn(Int32 localPlayerIndex, Int32 avatarIndex)
 		{
@@ -25,24 +30,28 @@ namespace CodeSmile.Player
 				throw new Exception($"spawn already in progress, player index: {localPlayerIndex}");
 
 			m_SpawnTcs[localPlayerIndex] = new TaskCompletionSource<Player>();
-			m_ServerRpc.SpawnPlayerServerRpc(localPlayerIndex, (byte)avatarIndex, OwnerClientId);
+			m_Server.SpawnPlayerServerRpc((Byte)localPlayerIndex, (Byte)avatarIndex, OwnerClientId);
 			return m_SpawnTcs[localPlayerIndex].Task;
 		}
 
 		[Rpc(SendTo.ClientsAndHost, DeferLocal = true)]
-		internal void DidSpawnPlayerClientRpc(NetworkObjectReference playerRef, Int32 localPlayerIndex, byte avatarIndex)
+		internal void DidSpawnPlayerClientRpc(NetworkObjectReference playerRef, Byte localPlayerIndex, Byte avatarIndex)
 		{
+			// this should not fail thus no error check
+			playerRef.TryGet(out var playerObj);
+
+			var player = playerObj.GetComponent<Player>();
+			// player.AvatarIndex = avatarIndex;
+
 			if (IsOwner)
 			{
-				// this should not fail thus no error check
-				playerRef.TryGet(out var playerObj);
-
-				var localPlayer = playerObj.GetComponent<Player>();
-				localPlayer.AvatarIndex = avatarIndex;
-
 				// end awaitable task, and discard
-				m_SpawnTcs[localPlayerIndex].SetResult(localPlayer);
+				m_SpawnTcs[localPlayerIndex].SetResult(player);
 				m_SpawnTcs[localPlayerIndex] = null;
+			}
+			else
+			{
+				m_Players.RegisterRemotePlayer(player, localPlayerIndex);
 			}
 		}
 	}

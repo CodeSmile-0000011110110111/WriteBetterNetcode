@@ -13,21 +13,17 @@ namespace CodeSmile.Player
 	{
 		[SerializeField] private PlayerAvatarPrefabs m_AvatarPrefabs;
 
-		private GameObject m_AvatarObject;
-		private Player m_Player;
-		private PlayerAvatarPrefabs AvatarPrefabs => m_AvatarPrefabs;
+		private GameObject m_AvatarInstance;
 
-		internal void OnAvatarIndexChanged(Byte prevAvatarIndex, Byte avatarIndex)
+		internal void SetAvatar(Byte avatarIndex)
 		{
-			Debug.Log($"Avatar Index changed from {prevAvatarIndex} to {avatarIndex}");
-
-			var prefab = AvatarPrefabs.GetPrefab(avatarIndex);
+			var prefab = m_AvatarPrefabs.GetPrefab(avatarIndex);
 			if (prefab != null)
 			{
-				if (m_AvatarObject != null)
-					Destroy(m_AvatarObject);
+				if (m_AvatarInstance != null)
+					Destroy(m_AvatarInstance);
 
-				m_AvatarObject = Instantiate(prefab, transform);
+				m_AvatarInstance = Instantiate(prefab, transform);
 			}
 		}
 	}

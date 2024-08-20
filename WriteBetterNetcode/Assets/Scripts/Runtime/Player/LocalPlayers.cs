@@ -11,14 +11,14 @@ using Random = UnityEngine.Random;
 namespace CodeSmile.Player
 {
 	[DisallowMultipleComponent]
-	[RequireComponent(typeof(LocalPlayersClientRpc), typeof(LocalPlayersServerRpc))]
+	[RequireComponent(typeof(LocalPlayersClient), typeof(LocalPlayersServer))]
 	public sealed class LocalPlayers : NetworkBehaviour
 	{
 		internal const Int32 MaxLocalPlayers = 4;
 
 		private readonly Player[] m_Players = new Player[MaxLocalPlayers];
 
-		private LocalPlayersClientRpc m_ClientRpc;
+		private LocalPlayersClient m_Client;
 
 		public Player this[Int32 index] => m_Players[index];
 
@@ -38,7 +38,10 @@ namespace CodeSmile.Player
 			return newAvatarIndex;
 		}
 
-		private void Awake() => m_ClientRpc = GetComponent<LocalPlayersClientRpc>();
+		private static void SetPlayerName(Player player, Int32 localPlayerIndex, String suffix = "") =>
+			player.name = player.name.Replace("(Clone)", $" #{localPlayerIndex}{suffix}");
+
+		private void Awake() => m_Client = GetComponent<LocalPlayersClient>();
 
 		public override async void OnNetworkSpawn()
 		{
@@ -51,25 +54,25 @@ namespace CodeSmile.Player
 				Random.InitState(DateTime.Now.Millisecond);
 
 				var posY = OwnerClientId * 2f;
-				m_Players[0] = await m_ClientRpc.Spawn(0, 0);
-				m_Players[0].name = m_Players[0].name.Replace("(Clone)", " #0");
+				m_Players[0] = await m_Client.Spawn(0, 0);
+				SetPlayerName(m_Players[0], 0);
 				m_Players[0].transform.position = new Vector3(-3, posY, 0);
-				Debug.Log($"{Time.frameCount} player spawned: {m_Players[0]}");
+				Debug.Log($"{Time.frameCount} player spawned: {m_Players[0].name}");
 
-				m_Players[1] = await m_ClientRpc.Spawn(1, 1);
-				m_Players[1].name = m_Players[1].name.Replace("(Clone)", " #1");
+				m_Players[1] = await m_Client.Spawn(1, 1);
+				SetPlayerName(m_Players[1], 1);
 				m_Players[1].transform.position = new Vector3(-1, posY, 0);
-				Debug.Log($"{Time.frameCount} player spawned: {m_Players[1]}");
+				Debug.Log($"{Time.frameCount} player spawned: {m_Players[1].name}");
 
-				m_Players[2] = await m_ClientRpc.Spawn(2, 2);
-				m_Players[2].name = m_Players[2].name.Replace("(Clone)", " #2");
+				m_Players[2] = await m_Client.Spawn(2, 2);
+				SetPlayerName(m_Players[2], 2);
 				m_Players[2].transform.position = new Vector3(1, posY, 0);
-				Debug.Log($"{Time.frameCount} player spawned: {m_Players[2]}");
+				Debug.Log($"{Time.frameCount} player spawned: {m_Players[2].name}");
 
-				m_Players[3] = await m_ClientRpc.Spawn(3, 3);
-				m_Players[3].name = m_Players[3].name.Replace("(Clone)", " #3");
+				m_Players[3] = await m_Client.Spawn(3, 3);
+				SetPlayerName(m_Players[3], 3);
 				m_Players[3].transform.position = new Vector3(3, posY, 0);
-				Debug.Log($"{Time.frameCount} player spawned: {m_Players[3]}");
+				Debug.Log($"{Time.frameCount} player spawned: {m_Players[3].name}");
 
 				StartCoroutine(RandomizeAvatar());
 			}
@@ -91,15 +94,26 @@ namespace CodeSmile.Player
 			{
 				for (var i = 0; i < MaxLocalPlayers; i++)
 				{
-					yield return new WaitForSecondsRealtime(.612773199f);
+					yield return new WaitForSecondsRealtime(1.512473199f);
 
 					if (m_Players[i] != null)
 					{
 						var avatarIndex = GetNewAvatarIndex(m_Players[i]);
-						m_Players[i].AvatarIndex = avatarIndex;
+
+						//Debug.Log($"set random avatar index {avatarIndex} to player {i}, client {OwnerClientId}");
+						m_Players[i].AvatarIndex = (Byte)avatarIndex;
 					}
 				}
 			} while (true);
+		}
+
+		public void RegisterRemotePlayer(Player player, Int32 localPlayerIndex)
+		{
+			if (m_Players[localPlayerIndex] != null)
+				throw new Exception($"player {localPlayerIndex} already exists");
+
+			SetPlayerName(player, localPlayerIndex, " (Remote)");
+			m_Players[localPlayerIndex] = player;
 		}
 	}
 }

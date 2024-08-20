@@ -9,27 +9,30 @@ using UnityEngine;
 namespace CodeSmile.Player
 {
 	[DisallowMultipleComponent]
-	internal sealed class LocalPlayersServerRpc : NetworkBehaviour
+	internal sealed class LocalPlayersServer : NetworkBehaviour
 	{
 		[SerializeField] private NetworkObject m_PlayerPrefab;
 
-		private LocalPlayersClientRpc m_ClientRpc;
+		private LocalPlayersClient m_Client;
 
 		private void Awake()
 		{
 			if (m_PlayerPrefab == null)
 				throw new MissingReferenceException(nameof(m_PlayerPrefab));
 
-			m_ClientRpc = GetComponent<LocalPlayersClientRpc>();
+			m_Client = GetComponent<LocalPlayersClient>();
 		}
 
 		[Rpc(SendTo.Server, DeferLocal = true)]
-		internal void SpawnPlayerServerRpc(Int32 localPlayerIndex, byte avatarIndex, UInt64 ownerId)
+		internal void SpawnPlayerServerRpc(Byte localPlayerIndex, Byte avatarIndex, UInt64 ownerId)
 		{
 			var playerObj = Instantiate(m_PlayerPrefab).GetComponent<NetworkObject>();
 			playerObj.SpawnWithOwnership(ownerId);
 
-			m_ClientRpc.DidSpawnPlayerClientRpc(playerObj, localPlayerIndex, avatarIndex);
+			var player = playerObj.GetComponent<Player>();
+			player.AvatarIndex = avatarIndex;
+
+			m_Client.DidSpawnPlayerClientRpc(playerObj, localPlayerIndex, avatarIndex);
 		}
 	}
 }

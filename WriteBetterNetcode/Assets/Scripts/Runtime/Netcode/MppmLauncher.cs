@@ -38,6 +38,16 @@ namespace CodeSmile.Netcode
 			var transportConfig = TransportConfig.FromNetworkManager();
 			Components.NetcodeState.RequestStart(netcodeConfig, transportConfig);
 		}
+
+		// ensure unsaved Material, ScriptableObject, etc changes are applied to virtual players
+		[InitializeOnLoadMethod] private static void InitOnLoad() =>
+			EditorApplication.playModeStateChanged += state =>
+			{
+				if (state == PlayModeStateChange.ExitingEditMode)
+					SaveProject();
+			};
+
+		private static void SaveProject() => AssetDatabase.SaveAssets();
 #endif
 	}
 }
