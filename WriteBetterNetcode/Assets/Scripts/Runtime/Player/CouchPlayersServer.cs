@@ -30,10 +30,7 @@ namespace CodeSmile.Player
 			var playerObj = Instantiate(m_PlayerPrefab).GetComponent<NetworkObject>();
 			playerObj.SpawnWithOwnership(ownerId);
 
-			var player = playerObj.GetComponent<Player>();
-			player.AvatarIndex = avatarIndex;
-
-			m_ClientSide.DidSpawnPlayerClientRpc(playerObj, couchPlayerIndex);
+			m_ClientSide.DidSpawnPlayerClientRpc(playerObj, couchPlayerIndex, avatarIndex);
 		}
 	}
 }

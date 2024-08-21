@@ -38,7 +38,7 @@ namespace CodeSmile.Player
 
 		[Rpc(SendTo.ClientsAndHost, DeferLocal = true)]
 		internal void DidSpawnPlayerClientRpc(NetworkObjectReference playerRef,
-			Byte couchPlayerIndex)
+			Byte couchPlayerIndex, byte avatarIndex)
 		{
 			// this should not fail thus no error check
 			playerRef.TryGet(out var playerObj);
@@ -47,6 +47,8 @@ namespace CodeSmile.Player
 
 			if (IsOwner)
 			{
+				player.AvatarIndex = avatarIndex;
+
 				// end awaitable task, and discard
 				m_SpawnTcs[couchPlayerIndex].SetResult(player);
 				m_SpawnTcs[couchPlayerIndex] = null;

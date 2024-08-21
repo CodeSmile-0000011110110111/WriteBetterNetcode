@@ -11,23 +11,26 @@ namespace CodeSmile.Player
 	[DisallowMultipleComponent]
 	internal sealed class PlayerVars : NetworkBehaviour
 	{
-		private Player m_Player;
-
 		private readonly NetworkVariable<Byte> m_AvatarIndexVar =
 			new(writePerm: NetworkVariableWritePermission.Owner);
+		private Player m_Player;
 
 		internal Byte AvatarIndex
 		{
 			get => m_AvatarIndexVar.Value;
-			set => SetAvatarIndexOwnerRpc(value);
+			set
+			{
+				if (IsOwner)
+					SetAvatarIndexOwnerRpc(value);
+				else
+					Debug.LogWarning($"set not permitted: {nameof(AvatarIndex)}");
+			}
 		}
 
-		[Rpc(SendTo.Owner, DeferLocal = true)]
-		private void SetAvatarIndexOwnerRpc(Byte avatarIndex) =>
-			m_AvatarIndexVar.Value = avatarIndex;
-
-
 		private void Awake() => m_Player = GetComponent<Player>();
+
+		[Rpc(SendTo.Owner, DeferLocal = true)]
+		private void SetAvatarIndexOwnerRpc(Byte avatarIndex) => m_AvatarIndexVar.Value = avatarIndex;
 
 		public override void OnNetworkSpawn()
 		{
