@@ -35,7 +35,7 @@ namespace CodeSmile.Player
 			// poor dev's shuffle
 			do
 			{
-				newAvatarIndex = Random.Range(0, 4);
+				newAvatarIndex = Random.Range(0, 5);
 			} while (curAvatarIndex == newAvatarIndex);
 
 			return newAvatarIndex;
@@ -87,13 +87,11 @@ namespace CodeSmile.Player
 			{
 				for (var i = 0; i < MaxCouchPlayers; i++)
 				{
-					yield return new WaitForSecondsRealtime(1.512473199f);
+					yield return new WaitForSecondsRealtime(1.132473199f);
 
 					if (m_Players[i] != null)
 					{
 						var avatarIndex = Test_ShuffleAvatarIndex(m_Players[i]);
-
-						//Debug.Log($"set random avatar index {avatarIndex} to player {i}, client {OwnerClientId}");
 						m_Players[i].AvatarIndex = (Byte)avatarIndex;
 					}
 				}

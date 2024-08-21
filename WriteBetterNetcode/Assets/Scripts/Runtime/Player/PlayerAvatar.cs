@@ -17,7 +17,7 @@ namespace CodeSmile.Player
 
 		internal void SetAvatar(Byte avatarIndex)
 		{
-			var prefab = m_AvatarPrefabs.GetPrefab(avatarIndex);
+			var prefab = m_AvatarPrefabs[avatarIndex];
 			if (prefab != null)
 			{
 				if (m_AvatarInstance != null)

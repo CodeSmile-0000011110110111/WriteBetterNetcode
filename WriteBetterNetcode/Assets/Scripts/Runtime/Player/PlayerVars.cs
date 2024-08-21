@@ -12,7 +12,6 @@ namespace CodeSmile.Player
 	internal sealed class PlayerVars : NetworkBehaviour
 	{
 		private readonly NetworkVariable<Byte> m_AvatarIndexVar = new();
-
 		private Player m_Player;
 
 		internal Byte AvatarIndex
@@ -27,22 +26,22 @@ namespace CodeSmile.Player
 			}
 		}
 
-		private void Awake() => m_Player = GetComponent<Player>();
 
 		[Rpc(SendTo.Server, DeferLocal = true)]
-		private void SetAvatarIndexServerRpc(Byte avatarIndex) => m_AvatarIndexVar.Value = avatarIndex;
+		private void SetAvatarIndexServerRpc(Byte avatarIndex) =>
+			AvatarIndex = avatarIndex;
+
+		private void Awake() => m_Player = GetComponent<Player>();
 
 		public override void OnNetworkSpawn()
 		{
 			base.OnNetworkSpawn();
-
 			m_AvatarIndexVar.OnValueChanged += m_Player.OnAvatarIndexChanged;
 		}
 
 		public override void OnNetworkDespawn()
 		{
 			base.OnNetworkDespawn();
-
 			m_AvatarIndexVar.OnValueChanged -= m_Player.OnAvatarIndexChanged;
 		}
 	}
