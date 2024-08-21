@@ -292,13 +292,14 @@ GameObject:
   m_Component:
   - component: {fileID: 123239998}
   - component: {fileID: 123239999}
+  - component: {fileID: 123240000}
   m_Layer: 0
   m_Name: Player3 Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &123239998
 Transform:
   m_ObjectHideFlags: 0
@@ -341,9 +342,21 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
-  m_DefaultActionMap: UI
+  m_DefaultActionMap: 90ae0269-36a2-459f-a5dc-a41e6e9f24fb
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 2145309384}
+--- !u!114 &123240000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123239997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2704cfaabb04c9040aea338e595014b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &142632564
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,13 +402,14 @@ GameObject:
   m_Component:
   - component: {fileID: 216279825}
   - component: {fileID: 216279826}
+  - component: {fileID: 216279827}
   m_Layer: 0
   m_Name: Player2 Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &216279825
 Transform:
   m_ObjectHideFlags: 0
@@ -438,9 +452,21 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
-  m_DefaultActionMap: UI
+  m_DefaultActionMap: Join Session
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 243119137}
+--- !u!114 &216279827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216279824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2704cfaabb04c9040aea338e595014b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &243119134
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,13 +605,14 @@ GameObject:
   m_Component:
   - component: {fileID: 277011547}
   - component: {fileID: 277011548}
+  - component: {fileID: 277011549}
   m_Layer: 0
   m_Name: Player1 Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &277011547
 Transform:
   m_ObjectHideFlags: 0
@@ -628,9 +655,21 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
-  m_DefaultActionMap: UI
+  m_DefaultActionMap: Join Session
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 1679215497}
+--- !u!114 &277011549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277011546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2704cfaabb04c9040aea338e595014b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &277872503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1978,6 +2017,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_OfflineCamera: {fileID: 512638986}
   m_OnlineCamera: {fileID: 1511574606}
+  m_SplitscreenPlayerCameras: {fileID: 958812724}
 --- !u!1 &2143178687
 GameObject:
   m_ObjectHideFlags: 0
