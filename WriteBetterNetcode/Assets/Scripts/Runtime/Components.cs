@@ -20,6 +20,7 @@ namespace CodeSmile
 			AssignInstance();
 			ThrowIfComponentIsNull();
 		}
+		private void OnDestroy() => s_Instance = null;
 
 		private void AssignInstance()
 		{
