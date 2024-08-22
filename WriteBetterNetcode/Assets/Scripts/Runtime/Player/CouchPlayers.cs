@@ -1,9 +1,9 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Settings;
 using System;
 using System.Collections;
-using System.Threading.Tasks;
 using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
@@ -19,13 +19,11 @@ namespace CodeSmile.Player
 		typeof(CouchPlayersServer))]
 	public sealed class CouchPlayers : NetworkBehaviour
 	{
-		internal const Int32 MaxCouchPlayers = 4;
-		private readonly Player[] m_Players = new Player[MaxCouchPlayers];
-
-		public Player this[Int32 index] =>
-			index >= 0 && index < MaxCouchPlayers ? m_Players[index] : null;
+		private readonly Player[] m_Players = new Player[Constants.MaxCouchPlayers];
 
 		private CouchPlayersClient m_ClientSide;
+
+		public Player this[Int32 index] => index >= 0 && index < Constants.MaxCouchPlayers ? m_Players[index] : null;
 
 		private static Int32 Test_ShuffleAvatarIndex(Player playerAvatar)
 		{
@@ -85,7 +83,7 @@ namespace CodeSmile.Player
 		{
 			do
 			{
-				for (var i = 0; i < MaxCouchPlayers; i++)
+				for (var i = 0; i < Constants.MaxCouchPlayers; i++)
 				{
 					yield return new WaitForSecondsRealtime(1.132473199f);
 

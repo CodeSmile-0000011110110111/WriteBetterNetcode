@@ -294,12 +294,12 @@ GameObject:
   - component: {fileID: 123239999}
   - component: {fileID: 123240000}
   m_Layer: 0
-  m_Name: Player3 Input
+  m_Name: PlayerInput #3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &123239998
 Transform:
   m_ObjectHideFlags: 0
@@ -340,9 +340,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Gamepad
-  m_DefaultActionMap: 90ae0269-36a2-459f-a5dc-a41e6e9f24fb
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Join Session
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 2145309384}
 --- !u!114 &123240000
@@ -366,8 +366,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 142632565}
+  - component: {fileID: 142632566}
   m_Layer: 0
-  m_Name: Input
+  m_Name: Input Devices
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -382,7 +383,7 @@ Transform:
   m_GameObject: {fileID: 142632564}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.618826, y: -3.8163364, z: 4.5217047}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -392,6 +393,19 @@ Transform:
   - {fileID: 123239998}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &142632566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142632564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2065485a674196a8f5a0a8799f3d9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1 &216279824
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,12 +418,12 @@ GameObject:
   - component: {fileID: 216279826}
   - component: {fileID: 216279827}
   m_Layer: 0
-  m_Name: Player2 Input
+  m_Name: PlayerInput #2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &216279825
 Transform:
   m_ObjectHideFlags: 0
@@ -450,8 +464,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Gamepad
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Join Session
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 243119137}
@@ -479,7 +493,7 @@ GameObject:
   - component: {fileID: 243119137}
   - component: {fileID: 243119136}
   m_Layer: 0
-  m_Name: Player2 Camera
+  m_Name: PlayerCamera #2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -607,12 +621,12 @@ GameObject:
   - component: {fileID: 277011548}
   - component: {fileID: 277011549}
   m_Layer: 0
-  m_Name: Player1 Input
+  m_Name: PlayerInput #1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &277011547
 Transform:
   m_ObjectHideFlags: 0
@@ -653,8 +667,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Gamepad
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Join Session
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 1679215497}
@@ -727,12 +741,12 @@ GameObject:
   - component: {fileID: 456834042}
   - component: {fileID: 456834043}
   m_Layer: 0
-  m_Name: Player0 Input
+  m_Name: PlayerInput #0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &456834041
 Transform:
   m_ObjectHideFlags: 0
@@ -850,8 +864,8 @@ MonoBehaviour:
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard&Mouse
-  m_DefaultActionMap: UI
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Join Session
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 820508187}
 --- !u!114 &456834043
@@ -879,7 +893,7 @@ GameObject:
   - component: {fileID: 512638985}
   - component: {fileID: 512638984}
   m_Layer: 0
-  m_Name: Fullscreen Menu Camera
+  m_Name: Offline Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1159,7 +1173,7 @@ GameObject:
   - component: {fileID: 820508186}
   - component: {fileID: 820508185}
   m_Layer: 0
-  m_Name: Player0 Camera w/ AudioListener
+  m_Name: PlayerCamera #0 (AudioListener)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1474,7 +1488,7 @@ GameObject:
   - component: {fileID: 1511574605}
   - component: {fileID: 1511574604}
   m_Layer: 0
-  m_Name: Ingame Default Camera
+  m_Name: Online Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1709,7 +1723,7 @@ GameObject:
   - component: {fileID: 1679215497}
   - component: {fileID: 1679215496}
   m_Layer: 0
-  m_Name: Player1 Camera
+  m_Name: PlayerCamera #1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1994,7 +2008,7 @@ Transform:
   m_GameObject: {fileID: 2101685255}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.618826, y: -3.8163364, z: 4.5217047}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2017,7 +2031,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_OfflineCamera: {fileID: 512638986}
   m_OnlineCamera: {fileID: 1511574606}
-  m_SplitscreenPlayerCameras: {fileID: 958812724}
+  m_SplitscreenPlayerCameras: []
 --- !u!1 &2143178687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2074,7 +2088,7 @@ GameObject:
   - component: {fileID: 2145309384}
   - component: {fileID: 2145309383}
   m_Layer: 0
-  m_Name: Player3 Camera
+  m_Name: PlayerCamera #3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

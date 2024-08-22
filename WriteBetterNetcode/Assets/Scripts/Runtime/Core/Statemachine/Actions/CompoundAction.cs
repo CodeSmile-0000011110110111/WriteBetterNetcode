@@ -27,7 +27,7 @@ namespace CodeSmile.Core.Statemachine.Actions
 			m_Actions = actions;
 		}
 
-		public async void Execute(FSM sm) => FSM.Transition.ExecuteActions(sm, null, m_Actions, sm.ActiveState.Logging);
+		public void Execute(FSM sm) => FSM.Transition.ExecuteActions(sm, null, m_Actions, sm.ActiveState.Logging);
 
 		public String ToDebugString(FSM sm)
 		{

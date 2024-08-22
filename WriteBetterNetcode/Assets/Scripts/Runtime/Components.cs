@@ -13,7 +13,7 @@ namespace CodeSmile
 		private static Components s_Instance;
 		[SerializeField] private NetcodeState m_NetcodeState;
 
-		public static NetcodeState NetcodeState => s_Instance.m_NetcodeState;
+		public static NetcodeState NetcodeState => s_Instance?.m_NetcodeState;
 
 		private void Awake()
 		{

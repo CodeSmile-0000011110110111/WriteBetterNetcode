@@ -2,6 +2,45 @@
     "name": "InputSystem_Actions",
     "maps": [
         {
+            "name": "Join Session",
+            "id": "90ae0269-36a2-459f-a5dc-a41e6e9f24fb",
+            "actions": [
+                {
+                    "name": "JoinSession",
+                    "type": "Button",
+                    "id": "57f478a4-8226-4c43-86d4-3c5ec3e0e4e0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "34a2aba4-c1e7-460b-b54b-7db2449ce268",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Gamepad;Joystick;XR;Touch",
+                    "action": "JoinSession",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "91e3a28c-4a86-4410-b04c-ccada6480e25",
+                    "path": "<Keyboard>/insert",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
+                    "action": "JoinSession",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "UI",
             "id": "272f6d14-89ba-496f-b7ff-215263d3219f",
             "actions": [
@@ -527,10 +566,21 @@
                 {
                     "name": "",
                     "id": "4aa9e50d-2ebe-4349-8809-cedce0bf93d2",
-                    "path": "<Gamepad>/start",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad;Touch;Joystick;XR;Keyboard&Mouse",
+                    "action": "LeaveSession",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "31380afa-bce8-47f6-8c83-367399fe0d57",
+                    "path": "<Keyboard>/delete",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
                     "action": "LeaveSession",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1006,34 +1056,6 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Join Session",
-            "id": "90ae0269-36a2-459f-a5dc-a41e6e9f24fb",
-            "actions": [
-                {
-                    "name": "JoinSession",
-                    "type": "Button",
-                    "id": "57f478a4-8226-4c43-86d4-3c5ec3e0e4e0",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "34a2aba4-c1e7-460b-b54b-7db2449ce268",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse;Gamepad;Joystick;XR;Touch",
-                    "action": "JoinSession",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

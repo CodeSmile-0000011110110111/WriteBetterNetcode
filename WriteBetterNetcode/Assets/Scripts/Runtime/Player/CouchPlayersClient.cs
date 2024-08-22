@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Settings;
 using System;
 using System.Threading.Tasks;
 using Unity.Netcode;
@@ -13,7 +14,7 @@ namespace CodeSmile.Player
 	internal sealed class CouchPlayersClient : NetworkBehaviour
 	{
 		private readonly TaskCompletionSource<Player>[] m_SpawnTcs =
-			new TaskCompletionSource<Player>[CouchPlayers.MaxCouchPlayers];
+			new TaskCompletionSource<Player>[Constants.MaxCouchPlayers];
 
 		private CouchPlayers m_Players;
 		private CouchPlayersServer m_ServerSide;

@@ -2,10 +2,10 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using System;
-using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 
 namespace CodeSmile
 {
@@ -15,12 +15,11 @@ namespace CodeSmile
 	{
 		private PlayerInput m_Input;
 
-		private Boolean m_Joining;
+		private Int32 m_FrameJoined;
 
 		private void Start()
 		{
 			m_Input = GetComponent<PlayerInput>();
-			m_Input.SwitchCurrentActionMap("Join Session");
 		}
 
 		public void OnLook(InputValue dir)
@@ -30,29 +29,33 @@ namespace CodeSmile
 
 		public void OnJoinSession()
 		{
-			m_Joining = true;
+			m_FrameJoined = Time.frameCount;
 
 			m_Input.SwitchCurrentActionMap("UI");
-			Debug.Log($"OnJoinSession {name}, map: {m_Input.currentActionMap.name}");
+			Debug.Log($"OnJoinSession {name}, map: {m_Input.currentActionMap.name}, {m_Input.devices}");
 
-			StartCoroutine(WaitJoin());
+			foreach (var device in m_Input.devices)
+			{
+				Debug.Log(device);
+			}
+
+
+			//CouchPlayersInput.LogInputDevicePairing();
+
+			//m_Input.currentControlScheme
+			//InputUser.PerformPairingWithDevice()
 		}
 
 		public void OnLeaveSession()
 		{
-			if (m_Joining)
+			// to prevent instant leave because the button "was pressed this frame"
+			if (m_FrameJoined + 3 > Time.frameCount)
 				return;
 
 			m_Input.SwitchCurrentActionMap("Join Session");
 			Debug.Log($"OnLeaveSession {name}, map: {m_Input.currentActionMap.name}");
-		}
 
-		// workaround for insta-leave when using the same button, and only for the first time switching maps
-		private IEnumerator WaitJoin()
-		{
-			yield return null;
-
-			m_Joining = false;
+			//CouchPlayersInput.LogInputDevicePairing();
 		}
 	}
 }
