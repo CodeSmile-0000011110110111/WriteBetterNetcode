@@ -13,24 +13,25 @@ using Object = System.Object;
 namespace CodeSmile.Input
 {
 	[DisallowMultipleComponent]
-	public sealed class InputUserState : MonoBehaviour, GeneratedInputActions.ISessionActions
+	public sealed class InputUserState : MonoBehaviour, GeneratedInputActions.IPairingActions
 	{
 		public event Action<InputUser, InputDevice> OnDevicePaired;
 		public event Action<InputUser, InputDevice> OnDeviceUnpaired;
 
 		private readonly InputUser[] m_Users = new InputUser[Constants.MaxCouchPlayers];
-		private Boolean m_PairingEnabled;
 		private GeneratedInputActions m_InputActions;
 
 		private InputUser HostUser { get => m_Users[0]; set => m_Users[0] = value; }
 
 		public Boolean PairingEnabled
 		{
-			get => m_PairingEnabled;
+			get => m_InputActions.Pairing.enabled;
 			set
 			{
-				m_PairingEnabled = value;
-				SetPairingActionsEnabled(m_PairingEnabled);
+				if (value)
+					m_InputActions.Pairing.Enable();
+				else
+					m_InputActions.Pairing.Disable();
 			}
 		}
 
@@ -50,6 +51,9 @@ namespace CodeSmile.Input
 		{
 			CreateInputUsers();
 
+			m_InputActions = new GeneratedInputActions();
+			m_InputActions.Pairing.SetCallbacks(this);
+
 			InputSystem.onDeviceChange += OnInputDeviceChange;
 			InputSystem.onActionChange += OnInputActionChange;
 			InputUser.onChange += OnInputUserChange;
@@ -62,14 +66,6 @@ namespace CodeSmile.Input
 			InputUser.onChange -= OnInputUserChange;
 		}
 
-		private void OnEnable()
-		{
-			m_InputActions = new GeneratedInputActions();
-			m_InputActions.Session.SetCallbacks(this);
-			SetPairingActionsEnabled(m_PairingEnabled);
-		}
-
-		private void OnDisable() => SetPairingActionsEnabled(false);
 
 		private void TryPairUserDevice(InputDevice device)
 		{
@@ -144,9 +140,9 @@ namespace CodeSmile.Input
 		private void SetPairingActionsEnabled(Boolean enabled)
 		{
 			if (enabled)
-				m_InputActions.Session.Enable();
+				m_InputActions.Pairing.Enable();
 			else
-				m_InputActions.Session.Disable();
+				m_InputActions.Pairing.Disable();
 		}
 
 		private void CreateInputUsers()

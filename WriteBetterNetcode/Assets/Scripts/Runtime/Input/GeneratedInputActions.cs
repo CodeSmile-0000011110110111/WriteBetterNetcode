@@ -26,7 +26,7 @@ namespace CodeSmile.BetterNetcode.Input
     ""name"": ""InputSystem_Actions"",
     ""maps"": [
         {
-            ""name"": ""Session"",
+            ""name"": ""Pairing"",
             ""id"": ""90ae0269-36a2-459f-a5dc-a41e6e9f24fb"",
             ""actions"": [
                 {
@@ -1149,10 +1149,10 @@ namespace CodeSmile.BetterNetcode.Input
         }
     ]
 }");
-            // Session
-            m_Session = asset.FindActionMap("Session", throwIfNotFound: true);
-            m_Session_Join = m_Session.FindAction("Join", throwIfNotFound: true);
-            m_Session_Leave = m_Session.FindAction("Leave", throwIfNotFound: true);
+            // Pairing
+            m_Pairing = asset.FindActionMap("Pairing", throwIfNotFound: true);
+            m_Pairing_Join = m_Pairing.FindAction("Join", throwIfNotFound: true);
+            m_Pairing_Leave = m_Pairing.FindAction("Leave", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1180,7 +1180,7 @@ namespace CodeSmile.BetterNetcode.Input
 
         ~@GeneratedInputActions()
         {
-            UnityEngine.Debug.Assert(!m_Session.enabled, "This will cause a leak and performance issues, GeneratedInputActions.Session.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_Pairing.enabled, "This will cause a leak and performance issues, GeneratedInputActions.Pairing.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, GeneratedInputActions.UI.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, GeneratedInputActions.Player.Disable() has not been called.");
         }
@@ -1241,26 +1241,26 @@ namespace CodeSmile.BetterNetcode.Input
             return asset.FindBinding(bindingMask, out action);
         }
 
-        // Session
-        private readonly InputActionMap m_Session;
-        private List<ISessionActions> m_SessionActionsCallbackInterfaces = new List<ISessionActions>();
-        private readonly InputAction m_Session_Join;
-        private readonly InputAction m_Session_Leave;
-        public struct SessionActions
+        // Pairing
+        private readonly InputActionMap m_Pairing;
+        private List<IPairingActions> m_PairingActionsCallbackInterfaces = new List<IPairingActions>();
+        private readonly InputAction m_Pairing_Join;
+        private readonly InputAction m_Pairing_Leave;
+        public struct PairingActions
         {
             private @GeneratedInputActions m_Wrapper;
-            public SessionActions(@GeneratedInputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Join => m_Wrapper.m_Session_Join;
-            public InputAction @Leave => m_Wrapper.m_Session_Leave;
-            public InputActionMap Get() { return m_Wrapper.m_Session; }
+            public PairingActions(@GeneratedInputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Join => m_Wrapper.m_Pairing_Join;
+            public InputAction @Leave => m_Wrapper.m_Pairing_Leave;
+            public InputActionMap Get() { return m_Wrapper.m_Pairing; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(SessionActions set) { return set.Get(); }
-            public void AddCallbacks(ISessionActions instance)
+            public static implicit operator InputActionMap(PairingActions set) { return set.Get(); }
+            public void AddCallbacks(IPairingActions instance)
             {
-                if (instance == null || m_Wrapper.m_SessionActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_SessionActionsCallbackInterfaces.Add(instance);
+                if (instance == null || m_Wrapper.m_PairingActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_PairingActionsCallbackInterfaces.Add(instance);
                 @Join.started += instance.OnJoin;
                 @Join.performed += instance.OnJoin;
                 @Join.canceled += instance.OnJoin;
@@ -1269,7 +1269,7 @@ namespace CodeSmile.BetterNetcode.Input
                 @Leave.canceled += instance.OnLeave;
             }
 
-            private void UnregisterCallbacks(ISessionActions instance)
+            private void UnregisterCallbacks(IPairingActions instance)
             {
                 @Join.started -= instance.OnJoin;
                 @Join.performed -= instance.OnJoin;
@@ -1279,21 +1279,21 @@ namespace CodeSmile.BetterNetcode.Input
                 @Leave.canceled -= instance.OnLeave;
             }
 
-            public void RemoveCallbacks(ISessionActions instance)
+            public void RemoveCallbacks(IPairingActions instance)
             {
-                if (m_Wrapper.m_SessionActionsCallbackInterfaces.Remove(instance))
+                if (m_Wrapper.m_PairingActionsCallbackInterfaces.Remove(instance))
                     UnregisterCallbacks(instance);
             }
 
-            public void SetCallbacks(ISessionActions instance)
+            public void SetCallbacks(IPairingActions instance)
             {
-                foreach (var item in m_Wrapper.m_SessionActionsCallbackInterfaces)
+                foreach (var item in m_Wrapper.m_PairingActionsCallbackInterfaces)
                     UnregisterCallbacks(item);
-                m_Wrapper.m_SessionActionsCallbackInterfaces.Clear();
+                m_Wrapper.m_PairingActionsCallbackInterfaces.Clear();
                 AddCallbacks(instance);
             }
         }
-        public SessionActions @Session => new SessionActions(this);
+        public PairingActions @Pairing => new PairingActions(this);
 
         // UI
         private readonly InputActionMap m_UI;
@@ -1567,7 +1567,7 @@ namespace CodeSmile.BetterNetcode.Input
                 return asset.controlSchemes[m_XRSchemeIndex];
             }
         }
-        public interface ISessionActions
+        public interface IPairingActions
         {
             void OnJoin(InputAction.CallbackContext context);
             void OnLeave(InputAction.CallbackContext context);

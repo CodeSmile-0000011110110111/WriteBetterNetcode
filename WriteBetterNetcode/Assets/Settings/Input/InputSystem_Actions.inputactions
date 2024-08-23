@@ -2,7 +2,7 @@
     "name": "InputSystem_Actions",
     "maps": [
         {
-            "name": "Session",
+            "name": "Pairing",
             "id": "90ae0269-36a2-459f-a5dc-a41e6e9f24fb",
             "actions": [
                 {

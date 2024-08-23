@@ -40,13 +40,10 @@ namespace CodeSmile.Player
 				var userState = Components.InputUserState;
 				userState.OnDevicePaired += OnInputDevicePaired;
 				userState.OnDeviceUnpaired += OnInputDeviceUnpaired;
-				userState.PairingEnabled = true;
+				userState.PairingEnabled = Application.platform != RuntimePlatform.WebGLPlayer;
 
 				// always spawn the host player
 				await SpawnPlayer(0, 0);
-
-				//Test_SpawnPlayers();
-				//StartCoroutine(Test_ShuffleAvatar());
 			}
 		}
 
@@ -94,60 +91,5 @@ namespace CodeSmile.Player
 			m_Players[playerIndex] = player;
 			SetPlayerDebugName(playerIndex, " (Remote)");
 		}
-
-		/*
-			    private static Int32 Test_ShuffleAvatarIndex(Player playerAvatar)
-		{
-			var curAvatarIndex = playerAvatar.AvatarIndex;
-			var newAvatarIndex = 0;
-
-			// poor dev's shuffle
-			do
-			{
-				newAvatarIndex = Random.Range(0, 5);
-			} while (curAvatarIndex == newAvatarIndex);
-
-			return newAvatarIndex;
-		}
-
-		private async void Test_SpawnPlayers()
-		{
-			Random.InitState(DateTime.Now.Millisecond);
-
-			var posY = OwnerClientId * 2f;
-			m_Players[0] = await m_ClientSide.Spawn(0, 0);
-			SetPlayerDebugName(0);
-			m_Players[0].transform.position = new Vector3(-3, posY, 0);
-
-			m_Players[1] = await m_ClientSide.Spawn(1, 1);
-			SetPlayerDebugName(1);
-			m_Players[1].transform.position = new Vector3(-1, posY, 0);
-
-			m_Players[2] = await m_ClientSide.Spawn(2, 2);
-			SetPlayerDebugName(2);
-			m_Players[2].transform.position = new Vector3(1, posY, 0);
-
-			m_Players[3] = await m_ClientSide.Spawn(3, 3);
-			SetPlayerDebugName(3);
-			m_Players[3].transform.position = new Vector3(3, posY, 0);
-		}
-
-		private IEnumerator Test_ShuffleAvatar()
-		{
-			do
-			{
-				for (var i = 0; i < Constants.MaxCouchPlayers; i++)
-				{
-					yield return new WaitForSecondsRealtime(1.132473199f);
-
-					if (m_Players[i] != null)
-					{
-						var avatarIndex = Test_ShuffleAvatarIndex(m_Players[i]);
-						m_Players[i].AvatarIndex = (Byte)avatarIndex;
-					}
-				}
-			} while (true);
-		}
-		*/
 	}
 }
