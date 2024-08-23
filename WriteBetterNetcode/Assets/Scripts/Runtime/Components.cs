@@ -11,15 +11,19 @@ namespace CodeSmile
 	public class Components : MonoBehaviour
 	{
 		private static Components s_Instance;
+
 		[SerializeField] private NetcodeState m_NetcodeState;
+		[SerializeField] private InputState m_InputState;
 
 		public static NetcodeState NetcodeState => s_Instance?.m_NetcodeState;
+		public static InputState InputState => s_Instance?.m_InputState;
 
 		private void Awake()
 		{
 			AssignInstance();
 			ThrowIfComponentIsNull();
 		}
+
 		private void OnDestroy() => s_Instance = null;
 
 		private void AssignInstance()
@@ -34,6 +38,8 @@ namespace CodeSmile
 		{
 			if (NetcodeState == null)
 				throw new MissingReferenceException($"{nameof(NetcodeState)} not assigned");
+			if (m_InputState == null)
+				throw new MissingReferenceException($"{nameof(InputState)} not assigned");
 		}
 	}
 }

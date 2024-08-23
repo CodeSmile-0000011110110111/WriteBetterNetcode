@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 142632565}
   - component: {fileID: 142632566}
   m_Layer: 0
-  m_Name: Input Devices
+  m_Name: Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1475,6 +1475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NetcodeState: {fileID: 2143178689}
+  m_InputState: {fileID: 142632566}
 --- !u!1 &1511574602
 GameObject:
   m_ObjectHideFlags: 0

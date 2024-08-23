@@ -12,7 +12,7 @@ using Object = System.Object;
 namespace CodeSmile
 {
 	[DisallowMultipleComponent]
-	public sealed class CouchPlayersInput : MonoBehaviour
+	public sealed class InputState : MonoBehaviour
 	{
 		[SerializeField] private InputActionAsset m_Actions;
 
@@ -22,6 +22,8 @@ namespace CodeSmile
 			new Action<InputAction.CallbackContext>[Constants.MaxCouchPlayers];
 
 		private InputUser HostUser => m_Users[0];
+
+		public bool UserDevicePairingEnabled { get; }
 
 		private void Awake()
 		{
