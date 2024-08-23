@@ -11,8 +11,8 @@ namespace CodeSmile.Player
 	[DisallowMultipleComponent]
 	internal sealed class PlayerVars : NetworkBehaviour
 	{
-		private readonly NetworkVariable<Byte> m_AvatarIndexVar =
-			new(writePerm: NetworkVariableWritePermission.Owner);
+		private readonly NetworkVariable<Byte> m_AvatarIndexVar = new(Byte.MaxValue);
+
 		private Player m_Player;
 
 		internal Byte AvatarIndex
@@ -20,8 +20,10 @@ namespace CodeSmile.Player
 			get => m_AvatarIndexVar.Value;
 			set
 			{
-				if (IsOwner)
-					SetAvatarIndexOwnerRpc(value);
+				if (IsServer)
+				{
+					SetAvatarIndexServerRpc(value);
+				}
 				else
 					Debug.LogWarning($"set not permitted: {nameof(AvatarIndex)}");
 			}
@@ -29,13 +31,21 @@ namespace CodeSmile.Player
 
 		private void Awake() => m_Player = GetComponent<Player>();
 
-		[Rpc(SendTo.Owner, DeferLocal = true)]
-		private void SetAvatarIndexOwnerRpc(Byte avatarIndex) => m_AvatarIndexVar.Value = avatarIndex;
+		[Rpc(SendTo.Server, DeferLocal = true)]
+		private void SetAvatarIndexServerRpc(Byte avatarIndex)
+		{
+			// apply locally directly
+			//m_AvatarIndexVar.OnValueChanged.Invoke(m_AvatarIndexVar.Value, avatarIndex);
+			m_AvatarIndexVar.Value = avatarIndex;
+		}
 
 		public override void OnNetworkSpawn()
 		{
 			base.OnNetworkSpawn();
 			m_AvatarIndexVar.OnValueChanged += m_Player.OnAvatarIndexChanged;
+
+			// invoke directly for initial value
+			m_AvatarIndexVar.OnValueChanged.Invoke(m_AvatarIndexVar.Value, m_AvatarIndexVar.Value);
 		}
 
 		public override void OnNetworkDespawn()

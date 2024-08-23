@@ -37,7 +37,7 @@ namespace CodeSmile.Player
 		}
 
 		[Rpc(SendTo.ClientsAndHost, DeferLocal = true)]
-		internal void DidSpawnPlayerClientRpc(NetworkObjectReference playerRef, Byte playerIndex, Byte avatarIndex)
+		internal void DidSpawnPlayerClientRpc(NetworkObjectReference playerRef, Byte playerIndex)
 		{
 			// this should not fail thus no error check
 			playerRef.TryGet(out var playerObj);
@@ -46,8 +46,6 @@ namespace CodeSmile.Player
 
 			if (IsOwner)
 			{
-				player.AvatarIndex = avatarIndex;
-
 				// end awaitable task, and discard
 				m_SpawnTcs[playerIndex].SetResult(player);
 				m_SpawnTcs[playerIndex] = null;
@@ -56,9 +54,6 @@ namespace CodeSmile.Player
 				m_Players.AddRemotePlayer(player, playerIndex);
 		}
 
-		internal void Despawn(NetworkObject playerObj)
-		{
-			m_ServerSide.DespawnPlayerServerRpc(playerObj);
-		}
+		internal void Despawn(NetworkObject playerObj) => m_ServerSide.DespawnPlayerServerRpc(playerObj);
 	}
 }

@@ -30,7 +30,10 @@ namespace CodeSmile.Player
 			var playerObj = playerGo.GetComponent<NetworkObject>();
 			playerObj.SpawnWithOwnership(ownerId);
 
-			m_ClientSide.DidSpawnPlayerClientRpc(playerObj, playerIndex, avatarIndex);
+			var player = playerObj.GetComponent<Player>();
+			player.AvatarIndex = avatarIndex;
+
+			m_ClientSide.DidSpawnPlayerClientRpc(playerObj, playerIndex);
 		}
 
 		[Rpc(SendTo.Server, DeferLocal = true)]

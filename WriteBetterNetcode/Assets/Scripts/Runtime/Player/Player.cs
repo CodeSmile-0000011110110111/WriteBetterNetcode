@@ -17,11 +17,7 @@ namespace CodeSmile.Player
 		private PlayerClient m_ClientSide;
 		private PlayerVars m_Vars;
 
-		public Byte AvatarIndex
-		{
-			get => m_Vars.AvatarIndex;
-			set => m_Vars.AvatarIndex = value;
-		}
+		public Byte AvatarIndex { get => m_Vars.AvatarIndex; set => m_Vars.AvatarIndex = value; }
 
 		private void Awake()
 		{
@@ -30,17 +26,10 @@ namespace CodeSmile.Player
 			m_Vars = GetComponent<PlayerVars>();
 		}
 
-		public override void OnNetworkSpawn()
-		{
-			base.OnNetworkSpawn();
-
-			// apply initial value
-			m_Avatar.SetAvatar(AvatarIndex);
-		}
+		public override void OnNetworkSpawn() => base.OnNetworkSpawn();
 
 		public override void OnNetworkDespawn() => base.OnNetworkDespawn();
 
-		internal void OnAvatarIndexChanged(Byte _, Byte avatarIndex) =>
-			m_Avatar.SetAvatar(avatarIndex);
+		internal void OnAvatarIndexChanged(Byte _, Byte avatarIndex) => m_Avatar.SetAvatar(avatarIndex);
 	}
 }

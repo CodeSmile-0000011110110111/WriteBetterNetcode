@@ -14,7 +14,7 @@ namespace CodeSmile.Settings
 	{
 		[SerializeField] private List<GameObject> m_Prefabs = new();
 
-		public GameObject this[byte avatarIndex] =>
-			m_Prefabs[Mathf.Clamp(avatarIndex, 0, m_Prefabs.Count - 1)];
+		public GameObject this[Byte avatarIndex] =>
+			avatarIndex >= 0 && avatarIndex < m_Prefabs.Count ? m_Prefabs[avatarIndex] : null;
 	}
 }
