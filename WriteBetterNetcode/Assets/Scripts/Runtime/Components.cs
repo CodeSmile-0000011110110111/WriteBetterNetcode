@@ -13,10 +13,10 @@ namespace CodeSmile
 		private static Components s_Instance;
 
 		[SerializeField] private NetcodeState m_NetcodeState;
-		[SerializeField] private InputState m_InputState;
+		[SerializeField] private InputUserState m_InputUserState;
 
 		public static NetcodeState NetcodeState => s_Instance?.m_NetcodeState;
-		public static InputState InputState => s_Instance?.m_InputState;
+		public static InputUserState InputUserState => s_Instance?.m_InputUserState;
 
 		private void Awake()
 		{
@@ -38,8 +38,8 @@ namespace CodeSmile
 		{
 			if (NetcodeState == null)
 				throw new MissingReferenceException($"{nameof(NetcodeState)} not assigned");
-			if (m_InputState == null)
-				throw new MissingReferenceException($"{nameof(InputState)} not assigned");
+			if (m_InputUserState == null)
+				throw new MissingReferenceException($"{nameof(InputUserState)} not assigned");
 		}
 	}
 }
