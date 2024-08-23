@@ -405,7 +405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a2065485a674196a8f5a0a8799f3d9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1 &216279824
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,7 +1474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NetcodeState: {fileID: 2143178689}
-  m_InputSessionState: {fileID: 142632566}
+  m_InputUserState: {fileID: 142632566}
 --- !u!1 &1511574602
 GameObject:
   m_ObjectHideFlags: 0
