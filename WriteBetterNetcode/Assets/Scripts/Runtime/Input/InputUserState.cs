@@ -66,6 +66,19 @@ namespace CodeSmile.Input
 			InputUser.onChange -= OnInputUserChange;
 		}
 
+		private void CreateInputUsers()
+		{
+			// create users up-front to ensure indexes range from 0-3
+			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
+				m_Users[playerIndex] = InputUser.CreateUserWithoutPairedDevices();
+
+			// pair all unpaired devices with host user
+			var unpairedDevices = InputUser.GetUnpairedInputDevices();
+			foreach (var device in unpairedDevices)
+				HostUser = InputUser.PerformPairingWithDevice(device, HostUser);
+
+			Debug.Assert(HostUser.index == 0);
+		}
 
 		private void TryPairUserDevice(InputDevice device)
 		{
@@ -135,28 +148,6 @@ namespace CodeSmile.Input
 			}
 
 			return pairedUser;
-		}
-
-		private void SetPairingActionsEnabled(Boolean enabled)
-		{
-			if (enabled)
-				m_InputActions.Pairing.Enable();
-			else
-				m_InputActions.Pairing.Disable();
-		}
-
-		private void CreateInputUsers()
-		{
-			// create users up-front to ensure indexes range from 0-3
-			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
-				m_Users[playerIndex] = InputUser.CreateUserWithoutPairedDevices();
-
-			// pair all unpaired devices with host user
-			var unpairedDevices = InputUser.GetUnpairedInputDevices();
-			foreach (var device in unpairedDevices)
-				HostUser = InputUser.PerformPairingWithDevice(device, HostUser);
-
-			Debug.Assert(HostUser.index == 0);
 		}
 
 		private void OnActionTriggered(Int32 playerIndex, InputAction.CallbackContext ctx) =>
