@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,6 +9,6 @@ namespace CodeSmile.Settings
 {
 	public static class Constants
 	{
-		public const int MaxCouchPlayers = 4;
+		public const Int32 MaxCouchPlayers = 4;
 	}
 }

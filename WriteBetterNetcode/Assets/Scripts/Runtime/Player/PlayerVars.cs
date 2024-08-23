@@ -21,9 +21,7 @@ namespace CodeSmile.Player
 			set
 			{
 				if (IsServer)
-				{
 					SetAvatarIndexServerRpc(value);
-				}
 				else
 					Debug.LogWarning($"set not permitted: {nameof(AvatarIndex)}");
 			}
@@ -32,12 +30,10 @@ namespace CodeSmile.Player
 		private void Awake() => m_Player = GetComponent<Player>();
 
 		[Rpc(SendTo.Server, DeferLocal = true)]
-		private void SetAvatarIndexServerRpc(Byte avatarIndex)
-		{
+		private void SetAvatarIndexServerRpc(Byte avatarIndex) =>
 			// apply locally directly
 			//m_AvatarIndexVar.OnValueChanged.Invoke(m_AvatarIndexVar.Value, avatarIndex);
 			m_AvatarIndexVar.Value = avatarIndex;
-		}
 
 		public override void OnNetworkSpawn()
 		{

@@ -12,7 +12,8 @@ namespace CodeSmile.Camera
 	{
 		[SerializeField] private UnityEngine.Camera m_OfflineCamera;
 		[SerializeField] private UnityEngine.Camera m_OnlineCamera;
-		[SerializeField] private UnityEngine.Camera[] m_SplitscreenPlayerCameras = new UnityEngine.Camera[Constants.MaxCouchPlayers];
+		[SerializeField] private UnityEngine.Camera[] m_PlayerCameras =
+			new UnityEngine.Camera[Constants.MaxCouchPlayers];
 
 		private void Start()
 		{

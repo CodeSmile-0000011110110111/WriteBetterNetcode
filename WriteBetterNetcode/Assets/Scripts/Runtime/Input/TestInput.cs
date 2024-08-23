@@ -16,10 +16,7 @@ namespace CodeSmile.Input
 
 		private Int32 m_FrameJoined;
 
-		private void Start()
-		{
-			m_Input = GetComponent<PlayerInput>();
-		}
+		private void Start() => m_Input = GetComponent<PlayerInput>();
 
 		public void OnLook(InputValue dir)
 		{
@@ -34,10 +31,7 @@ namespace CodeSmile.Input
 			Debug.Log($"OnJoinSession {name}, map: {m_Input.currentActionMap.name}, {m_Input.devices}");
 
 			foreach (var device in m_Input.devices)
-			{
 				Debug.Log(device);
-			}
-
 
 			//CouchPlayersInput.LogInputDevicePairing();
 

@@ -65,8 +65,7 @@ namespace CodeSmile.Player
 			}
 		}
 
-		private async void OnInputDevicePaired(InputUser user, InputDevice device) =>
-			await SpawnPlayer(user.index, user.index);
+		private async void OnInputDevicePaired(InputUser user, InputDevice device) => await SpawnPlayer(user.index, user.index);
 
 		private void OnInputDeviceUnpaired(InputUser user, InputDevice device)
 		{
