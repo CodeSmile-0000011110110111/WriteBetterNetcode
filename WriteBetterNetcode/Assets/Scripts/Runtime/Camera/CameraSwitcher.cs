@@ -5,14 +5,14 @@ using CodeSmile.Settings;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile
+namespace CodeSmile.Camera
 {
 	[DisallowMultipleComponent]
 	public sealed class CameraSwitcher : MonoBehaviour
 	{
-		[SerializeField] private Camera m_OfflineCamera;
-		[SerializeField] private Camera m_OnlineCamera;
-		[SerializeField] private Camera[] m_SplitscreenPlayerCameras = new Camera[Constants.MaxCouchPlayers];
+		[SerializeField] private UnityEngine.Camera m_OfflineCamera;
+		[SerializeField] private UnityEngine.Camera m_OnlineCamera;
+		[SerializeField] private UnityEngine.Camera[] m_SplitscreenPlayerCameras = new UnityEngine.Camera[Constants.MaxCouchPlayers];
 
 		private void Start()
 		{

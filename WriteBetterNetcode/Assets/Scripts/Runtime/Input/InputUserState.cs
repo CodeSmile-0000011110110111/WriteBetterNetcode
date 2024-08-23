@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 using Object = System.Object;
 
-namespace CodeSmile
+namespace CodeSmile.Input
 {
 	[DisallowMultipleComponent]
 	public sealed class InputUserState : MonoBehaviour, GeneratedInputActions.ISessionActions

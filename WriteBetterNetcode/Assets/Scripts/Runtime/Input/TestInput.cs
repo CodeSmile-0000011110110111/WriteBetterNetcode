@@ -5,9 +5,8 @@ using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
 
-namespace CodeSmile
+namespace CodeSmile.Input
 {
 	[DisallowMultipleComponent]
 	[RequireComponent(typeof(PlayerInput))]
