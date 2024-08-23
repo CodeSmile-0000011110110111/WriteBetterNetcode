@@ -25,21 +25,19 @@ namespace CodeSmile.Player
 			m_ServerSide = GetComponent<CouchPlayersServer>();
 		}
 
-		internal Task<Player> Spawn(Int32 couchPlayerIndex, Int32 avatarIndex)
+		internal Task<Player> Spawn(Vector3 position, Int32 playerIndex, Int32 avatarIndex)
 		{
-			if (m_SpawnTcs[couchPlayerIndex] != null)
-				throw new Exception($"player {couchPlayerIndex} spawn in progress");
+			if (m_SpawnTcs[playerIndex] != null)
+				throw new Exception($"player {playerIndex} spawn in progress");
 
-			m_ServerSide.SpawnPlayerServerRpc(OwnerClientId,
-				(Byte)couchPlayerIndex, (Byte)avatarIndex);
+			m_ServerSide.SpawnPlayerServerRpc(OwnerClientId, position, (Byte)playerIndex, (Byte)avatarIndex);
 
-			m_SpawnTcs[couchPlayerIndex] = new TaskCompletionSource<Player>();
-			return m_SpawnTcs[couchPlayerIndex].Task;
+			m_SpawnTcs[playerIndex] = new TaskCompletionSource<Player>();
+			return m_SpawnTcs[playerIndex].Task;
 		}
 
 		[Rpc(SendTo.ClientsAndHost, DeferLocal = true)]
-		internal void DidSpawnPlayerClientRpc(NetworkObjectReference playerRef,
-			Byte couchPlayerIndex, byte avatarIndex)
+		internal void DidSpawnPlayerClientRpc(NetworkObjectReference playerRef, Byte playerIndex, Byte avatarIndex)
 		{
 			// this should not fail thus no error check
 			playerRef.TryGet(out var playerObj);
@@ -51,11 +49,16 @@ namespace CodeSmile.Player
 				player.AvatarIndex = avatarIndex;
 
 				// end awaitable task, and discard
-				m_SpawnTcs[couchPlayerIndex].SetResult(player);
-				m_SpawnTcs[couchPlayerIndex] = null;
+				m_SpawnTcs[playerIndex].SetResult(player);
+				m_SpawnTcs[playerIndex] = null;
 			}
 			else
-				m_Players.AddRemotePlayer(player, couchPlayerIndex);
+				m_Players.AddRemotePlayer(player, playerIndex);
+		}
+
+		internal void Despawn(NetworkObject playerObj)
+		{
+			m_ServerSide.DespawnPlayerServerRpc(playerObj);
 		}
 	}
 }

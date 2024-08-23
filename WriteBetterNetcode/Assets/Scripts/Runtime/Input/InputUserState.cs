@@ -19,18 +19,18 @@ namespace CodeSmile
 		public event Action<InputUser, InputDevice> OnDeviceUnpaired;
 
 		private readonly InputUser[] m_Users = new InputUser[Constants.MaxCouchPlayers];
-		private Boolean m_UserDevicePairingEnabled = true;
+		private Boolean m_PairingEnabled;
 		private GeneratedInputActions m_InputActions;
 
 		private InputUser HostUser { get => m_Users[0]; set => m_Users[0] = value; }
-		
-		public Boolean UserDevicePairingEnabled
+
+		public Boolean PairingEnabled
 		{
-			get => m_UserDevicePairingEnabled;
+			get => m_PairingEnabled;
 			set
 			{
-				m_UserDevicePairingEnabled = value;
-				SetPairingActionsEnabled(m_UserDevicePairingEnabled);
+				m_PairingEnabled = value;
+				SetPairingActionsEnabled(m_PairingEnabled);
 			}
 		}
 
@@ -66,7 +66,7 @@ namespace CodeSmile
 		{
 			m_InputActions = new GeneratedInputActions();
 			m_InputActions.Session.SetCallbacks(this);
-			SetPairingActionsEnabled(m_UserDevicePairingEnabled);
+			SetPairingActionsEnabled(m_PairingEnabled);
 		}
 
 		private void OnDisable() => SetPairingActionsEnabled(false);
@@ -166,7 +166,10 @@ namespace CodeSmile
 		private void OnActionTriggered(Int32 playerIndex, InputAction.CallbackContext ctx) =>
 			Debug.Log($"User #{playerIndex}: {ctx.action.name} {ctx.phase}");
 
-		private void OnInputActionChange(Object action, InputActionChange change) => Debug.Log($"{change}: {action}");
+		private void OnInputActionChange(Object action, InputActionChange change)
+		{
+			//Debug.Log($"{change}: {action}");
+		}
 
 		private void OnInputUserChange(InputUser user, InputUserChange change, InputDevice device) =>
 			Debug.Log($"USER {change}: {user} - {device}");

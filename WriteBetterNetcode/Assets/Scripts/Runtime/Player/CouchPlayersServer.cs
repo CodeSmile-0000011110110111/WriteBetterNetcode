@@ -24,13 +24,20 @@ namespace CodeSmile.Player
 		}
 
 		[Rpc(SendTo.Server, DeferLocal = true)]
-		internal void SpawnPlayerServerRpc(UInt64 ownerId, Byte couchPlayerIndex,
-			Byte avatarIndex)
+		internal void SpawnPlayerServerRpc(UInt64 ownerId, Vector3 position, Byte playerIndex, Byte avatarIndex)
 		{
-			var playerObj = Instantiate(m_PlayerPrefab).GetComponent<NetworkObject>();
+			var playerGo = Instantiate(m_PlayerPrefab, position, Quaternion.identity);
+			var playerObj = playerGo.GetComponent<NetworkObject>();
 			playerObj.SpawnWithOwnership(ownerId);
 
-			m_ClientSide.DidSpawnPlayerClientRpc(playerObj, couchPlayerIndex, avatarIndex);
+			m_ClientSide.DidSpawnPlayerClientRpc(playerObj, playerIndex, avatarIndex);
+		}
+
+		[Rpc(SendTo.Server, DeferLocal = true)]
+		public void DespawnPlayerServerRpc(NetworkObjectReference playerRef)
+		{
+			if (playerRef.TryGet(out var playerObj))
+				playerObj.Despawn();
 		}
 	}
 }
