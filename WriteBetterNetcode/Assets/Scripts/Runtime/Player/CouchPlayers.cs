@@ -37,10 +37,10 @@ namespace CodeSmile.Player
 
 			if (IsOwner)
 			{
-				var userState = Components.InputUserState;
-				userState.OnDevicePaired += OnInputDevicePaired;
-				userState.OnDeviceUnpaired += OnInputDeviceUnpaired;
-				userState.PairingEnabled = Application.platform != RuntimePlatform.WebGLPlayer;
+				var inputUsers = Components.InputUsers;
+				inputUsers.OnDevicePaired += OnInputDevicePaired;
+				inputUsers.OnDeviceUnpaired += OnInputDeviceUnpaired;
+				inputUsers.PairingEnabled = Application.platform != RuntimePlatform.WebGLPlayer;
 
 				// always spawn the host player
 				await SpawnPlayer(0, 0);
@@ -55,23 +55,15 @@ namespace CodeSmile.Player
 			{
 				StopAllCoroutines();
 
-				var userState = Components.InputUserState;
-				userState.PairingEnabled = false;
-				userState.OnDevicePaired -= OnInputDevicePaired;
-				userState.OnDeviceUnpaired -= OnInputDeviceUnpaired;
+				var inputUsers = Components.InputUsers;
+				inputUsers.PairingEnabled = false;
+				inputUsers.OnDevicePaired -= OnInputDevicePaired;
+				inputUsers.OnDeviceUnpaired -= OnInputDeviceUnpaired;
 			}
 		}
 
 		private async void OnInputDevicePaired(InputUser user, InputDevice device) => await SpawnPlayer(user.index, user.index);
-
-		private void OnInputDeviceUnpaired(InputUser user, InputDevice device)
-		{
-			var playerIndex = user.index;
-			var playerObj = m_Players[playerIndex].GetComponent<NetworkObject>();
-			m_Players[playerIndex] = null;
-
-			m_ClientSide.Despawn(playerObj);
-		}
+		private void OnInputDeviceUnpaired(InputUser user, InputDevice device) => DespawnPlayer(user.index);
 
 		private async Task SpawnPlayer(Int32 playerIndex, Int32 avatarIndex)
 		{
@@ -81,6 +73,18 @@ namespace CodeSmile.Player
 
 			m_Players[playerIndex] = await m_ClientSide.Spawn(position, playerIndex, avatarIndex);
 			SetPlayerDebugName(playerIndex);
+
+			Components.InputUsers.SetPlayerActionsEnabled(playerIndex, true);
+		}
+
+		private void DespawnPlayer(Int32 playerIndex)
+		{
+			var playerObj = m_Players[playerIndex].GetComponent<NetworkObject>();
+			m_Players[playerIndex] = null;
+
+			Components.InputUsers.SetPlayerActionsEnabled(playerIndex, false);
+
+			m_ClientSide.Despawn(playerObj);
 		}
 
 		public void AddRemotePlayer(Player player, Int32 playerIndex)

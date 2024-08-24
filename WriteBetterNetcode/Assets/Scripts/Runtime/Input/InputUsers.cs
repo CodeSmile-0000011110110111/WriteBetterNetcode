@@ -13,25 +13,28 @@ using Object = System.Object;
 namespace CodeSmile.Input
 {
 	[DisallowMultipleComponent]
-	public sealed class InputUserState : MonoBehaviour, GeneratedInputActions.IPairingActions
+	public sealed class InputUsers : MonoBehaviour, GeneratedInputActions.IPairingActions
 	{
 		public event Action<InputUser, InputDevice> OnDevicePaired;
 		public event Action<InputUser, InputDevice> OnDeviceUnpaired;
 
 		private readonly InputUser[] m_Users = new InputUser[Constants.MaxCouchPlayers];
-		private GeneratedInputActions m_InputActions;
+		private readonly GeneratedInputActions[] m_Actions = new GeneratedInputActions[Constants.MaxCouchPlayers];
 
 		private InputUser HostUser { get => m_Users[0]; set => m_Users[0] = value; }
 
 		public Boolean PairingEnabled
 		{
-			get => m_InputActions.Pairing.enabled;
+			get => m_Actions[0].Pairing.enabled;
 			set
 			{
-				if (value)
-					m_InputActions.Pairing.Enable();
-				else
-					m_InputActions.Pairing.Disable();
+				foreach (var actions in m_Actions)
+				{
+					if (value)
+						actions.Pairing.Enable();
+					else
+						actions.Pairing.Disable();
+				}
 			}
 		}
 
@@ -50,9 +53,7 @@ namespace CodeSmile.Input
 		private void Awake()
 		{
 			CreateInputUsers();
-
-			m_InputActions = new GeneratedInputActions();
-			m_InputActions.Pairing.SetCallbacks(this);
+			CreateInputActions();
 
 			InputSystem.onDeviceChange += OnInputDeviceChange;
 			InputSystem.onActionChange += OnInputActionChange;
@@ -80,6 +81,28 @@ namespace CodeSmile.Input
 			Debug.Assert(HostUser.index == 0);
 		}
 
+		private void CreateInputActions()
+		{
+			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
+			{
+				m_Actions[playerIndex] = new GeneratedInputActions();
+				m_Actions[playerIndex].Pairing.SetCallbacks(this);
+				// m_Actions[playerIndex].UI.SetCallbacks(GetComponent<UiInputActions>());
+				// m_Actions[playerIndex].Player.SetCallbacks(GetComponent<PlayerInputActions>());
+			}
+		}
+
+		public void SetPlayerActionsEnabled(Int32 userIndex, Boolean enabled)
+		{
+			if (userIndex >= 0 && userIndex < m_Actions.Length)
+			{
+				if (enabled)
+					m_Actions[userIndex].Player.Enable();
+				else
+					m_Actions[userIndex].Player.Disable();
+			}
+		}
+
 		private void TryPairUserDevice(InputDevice device)
 		{
 			// only binding to gamepads supported, keyboard/mouse always bound to host player
@@ -92,13 +115,14 @@ namespace CodeSmile.Input
 			// device without user => start pairing
 			if (deviceUser == null)
 			{
-				var userIndex = GetFirstUnpairedUserIndex();
+				var userIndex = GetUnpairedUserIndex();
 
 				// we may have all users already paired ..
 				if (userIndex >= 0)
 				{
 					var user = m_Users[userIndex];
 					user = InputUser.PerformPairingWithDevice(device, user);
+					user.AssociateActionsWithUser(m_Actions[userIndex]);
 					m_Users[userIndex] = user;
 
 					OnDevicePaired?.Invoke(user, device);
@@ -121,30 +145,21 @@ namespace CodeSmile.Input
 
 				// unpair and pair it with host
 				deviceUser.Value.UnpairDevice(device);
+				deviceUser.Value.AssociateActionsWithUser(null);
+
 				HostUser = InputUser.PerformPairingWithDevice(device, HostUser);
 
 				OnDeviceUnpaired?.Invoke(deviceUser.Value, device);
 			}
 		}
 
-		private Int32 GetFirstUnpairedUserIndex()
-		{
-			for (var userIndex = 0; userIndex < m_Users.Length; userIndex++)
-			{
-				var user = m_Users[userIndex];
-				if (user.pairedDevices.Count == 0)
-					return userIndex;
-			}
-
-			return -1;
-		}
-
 		private InputUser? TryUnpairDeviceFromHostUser(InputDevice device, InputUser? pairedUser)
 		{
 			if (pairedUser != null && pairedUser.Value == HostUser)
 			{
-				pairedUser.Value.UnpairDevice(device);
 				pairedUser = null;
+				HostUser.UnpairDevice(device);
+				HostUser.AssociateActionsWithUser(m_Actions[0]);
 			}
 
 			return pairedUser;
@@ -186,6 +201,21 @@ namespace CodeSmile.Input
 				case InputDeviceChange.HardReset:
 					break;
 			}
+		}
+
+		public static Int32 GetPlayerIndex(InputAction.CallbackContext context)
+		{
+			var user = InputUser.FindUserPairedToDevice(context.control.device);
+			return user != null ? user.Value.index : -1;
+		}
+
+		private Int32 GetUnpairedUserIndex()
+		{
+			for (var userIndex = 0; userIndex < m_Users.Length; userIndex++)
+				if (m_Users[userIndex].pairedDevices.Count == 0)
+					return userIndex;
+
+			return -1;
 		}
 	}
 }
