@@ -8,7 +8,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
-using Object = System.Object;
 
 namespace CodeSmile.Input
 {
@@ -17,11 +16,6 @@ namespace CodeSmile.Input
 	{
 		public event Action<InputUser, InputDevice> OnDevicePaired;
 		public event Action<InputUser, InputDevice> OnDeviceUnpaired;
-
-		private readonly InputUser[] m_Users = new InputUser[Constants.MaxCouchPlayers];
-		private readonly GeneratedInputActions[] m_Actions = new GeneratedInputActions[Constants.MaxCouchPlayers];
-
-		private InputUser HostUser { get => m_Users[0]; set => m_Users[0] = value; }
 
 		public Boolean PairingEnabled
 		{
@@ -38,33 +32,18 @@ namespace CodeSmile.Input
 			}
 		}
 
-		public void OnJoin(InputAction.CallbackContext context)
-		{
-			if (context.phase == InputActionPhase.Performed)
-				TryPairUserDevice(context.control.device);
-		}
+		private InputUser HostUser { get => m_Users[0]; set => m_Users[0] = value; }
 
-		public void OnLeave(InputAction.CallbackContext context)
-		{
-			if (context.phase == InputActionPhase.Performed)
-				TryUnpairUserDevice(context.control.device);
-		}
+		private readonly InputUser[] m_Users =
+			new InputUser[Constants.MaxCouchPlayers];
+
+		private readonly GeneratedInputActions[] m_Actions =
+			new GeneratedInputActions[Constants.MaxCouchPlayers];
 
 		private void Awake()
 		{
 			CreateInputUsers();
 			CreateInputActions();
-
-			InputSystem.onDeviceChange += OnInputDeviceChange;
-			InputSystem.onActionChange += OnInputActionChange;
-			InputUser.onChange += OnInputUserChange;
-		}
-
-		private void OnDestroy()
-		{
-			InputSystem.onDeviceChange -= OnInputDeviceChange;
-			InputSystem.onActionChange -= OnInputActionChange;
-			InputUser.onChange -= OnInputUserChange;
 		}
 
 		private void CreateInputUsers()
@@ -77,8 +56,6 @@ namespace CodeSmile.Input
 			var unpairedDevices = InputUser.GetUnpairedInputDevices();
 			foreach (var device in unpairedDevices)
 				HostUser = InputUser.PerformPairingWithDevice(device, HostUser);
-
-			Debug.Assert(HostUser.index == 0);
 		}
 
 		private void CreateInputActions()
@@ -87,47 +64,53 @@ namespace CodeSmile.Input
 			{
 				m_Actions[playerIndex] = new GeneratedInputActions();
 				m_Actions[playerIndex].Pairing.SetCallbacks(this);
-				// m_Actions[playerIndex].UI.SetCallbacks(GetComponent<UiInputActions>());
-				// m_Actions[playerIndex].Player.SetCallbacks(GetComponent<PlayerInputActions>());
 			}
 		}
 
-		public void SetPlayerActionsEnabled(Int32 userIndex, Boolean enabled)
+		public void OnJoin(InputAction.CallbackContext context)
 		{
-			if (userIndex >= 0 && userIndex < m_Actions.Length)
-			{
-				if (enabled)
-					m_Actions[userIndex].Player.Enable();
-				else
-					m_Actions[userIndex].Player.Disable();
-			}
+			if (context.phase == InputActionPhase.Performed)
+				TryPairUserDevice(context.control.device);
 		}
 
 		private void TryPairUserDevice(InputDevice device)
 		{
-			// only binding to gamepads supported, keyboard/mouse always bound to host player
+			// only pair with gamepads; keyboard/mouse always bound to host
 			if (device is not Gamepad)
 				return;
 
 			var deviceUser = InputUser.FindUserPairedToDevice(device);
-			deviceUser = TryUnpairDeviceFromHostUser(device, deviceUser);
+
+			// if device is paired with host: unpair it first
+			if (deviceUser != null && deviceUser.Value == HostUser)
+			{
+				HostUser.UnpairDevice(device);
+				HostUser.AssociateActionsWithUser(m_Actions[0]);
+				deviceUser = null;
+			}
 
 			// device without user => start pairing
 			if (deviceUser == null)
 			{
+				// userIndex is -1 if all users already paired with a device
 				var userIndex = GetUnpairedUserIndex();
-
-				// we may have all users already paired ..
 				if (userIndex >= 0)
 				{
+					// pair and assign user's copy of actions (key layout!)
 					var user = m_Users[userIndex];
 					user = InputUser.PerformPairingWithDevice(device, user);
 					user.AssociateActionsWithUser(m_Actions[userIndex]);
-					m_Users[userIndex] = user;
+					m_Users[userIndex] = user; // write-back struct
 
 					OnDevicePaired?.Invoke(user, device);
 				}
 			}
+		}
+
+		public void OnLeave(InputAction.CallbackContext context)
+		{
+			if (context.phase == InputActionPhase.Performed)
+				TryUnpairUserDevice(context.control.device);
 		}
 
 		private void TryUnpairUserDevice(InputDevice device)
@@ -136,84 +119,33 @@ namespace CodeSmile.Input
 			if (device is not Gamepad)
 				return;
 
+			// only already-paired, non-host players can unpair devices
 			var deviceUser = InputUser.FindUserPairedToDevice(device);
-			if (deviceUser != null)
+			if (deviceUser != null && deviceUser != HostUser)
 			{
-				// host cannot unpair devices
-				if (deviceUser == HostUser)
-					return;
-
-				// unpair and pair it with host
+				// unpair the device
 				deviceUser.Value.UnpairDevice(device);
 				deviceUser.Value.AssociateActionsWithUser(null);
 
+				// "re-pair" device with host
 				HostUser = InputUser.PerformPairingWithDevice(device, HostUser);
 
 				OnDeviceUnpaired?.Invoke(deviceUser.Value, device);
 			}
 		}
 
-		private InputUser? TryUnpairDeviceFromHostUser(InputDevice device, InputUser? pairedUser)
-		{
-			if (pairedUser != null && pairedUser.Value == HostUser)
-			{
-				pairedUser = null;
-				HostUser.UnpairDevice(device);
-				HostUser.AssociateActionsWithUser(m_Actions[0]);
-			}
-
-			return pairedUser;
-		}
-
-		private void OnActionTriggered(Int32 playerIndex, InputAction.CallbackContext ctx) =>
-			Debug.Log($"User #{playerIndex}: {ctx.action.name} {ctx.phase}");
-
-		private void OnInputActionChange(Object action, InputActionChange change)
-		{
-			//Debug.Log($"{change}: {action}");
-		}
-
-		private void OnInputUserChange(InputUser user, InputUserChange change, InputDevice device) =>
-			Debug.Log($"USER {change}: {user} - {device}");
-
-		private void OnInputDeviceChange(InputDevice device, InputDeviceChange change)
-		{
-			switch (change)
-			{
-				case InputDeviceChange.Added:
-				case InputDeviceChange.Reconnected:
-				case InputDeviceChange.Enabled:
-					Debug.Log($"DEVICE {change}: {device}");
-					break;
-				case InputDeviceChange.Removed:
-				case InputDeviceChange.Disconnected:
-				case InputDeviceChange.Disabled:
-					Debug.Log($"DEVICE {change}: {device}");
-					break;
-				case InputDeviceChange.UsageChanged:
-					Debug.Log($"DEVICE {change}: {device}");
-					break;
-				case InputDeviceChange.ConfigurationChanged:
-					Debug.Log($"DEVICE {change}: {device}");
-					break;
-				case InputDeviceChange.SoftReset:
-					break;
-				case InputDeviceChange.HardReset:
-					break;
-			}
-		}
-
-		public static Int32 GetPlayerIndex(InputAction.CallbackContext context)
-		{
-			var user = InputUser.FindUserPairedToDevice(context.control.device);
-			return user != null ? user.Value.index : -1;
-		}
-
+		/// <summary>
+		///     Find the index of the first user without a paired device.
+		/// </summary>
+		/// <returns>The index of an unpaired user or -1 if all users have a paired device.</returns>
 		private Int32 GetUnpairedUserIndex()
 		{
 			for (var userIndex = 0; userIndex < m_Users.Length; userIndex++)
-				if (m_Users[userIndex].pairedDevices.Count == 0)
+			{
+				var user = m_Users[userIndex];
+				if (user.pairedDevices.Count == 0 && user.lostDevices.Count == 0)
 					return userIndex;
+			}
 
 			return -1;
 		}

@@ -74,7 +74,7 @@ namespace CodeSmile.Player
 			m_Players[playerIndex] = await m_ClientSide.Spawn(position, playerIndex, avatarIndex);
 			SetPlayerDebugName(playerIndex);
 
-			Components.InputUsers.SetPlayerActionsEnabled(playerIndex, true);
+			//Components.InputUsers.SetPlayerActionsEnabled(playerIndex, true);
 		}
 
 		private void DespawnPlayer(Int32 playerIndex)
@@ -82,7 +82,7 @@ namespace CodeSmile.Player
 			var playerObj = m_Players[playerIndex].GetComponent<NetworkObject>();
 			m_Players[playerIndex] = null;
 
-			Components.InputUsers.SetPlayerActionsEnabled(playerIndex, false);
+			//Components.InputUsers.SetPlayerActionsEnabled(playerIndex, false);
 
 			m_ClientSide.Despawn(playerObj);
 		}
