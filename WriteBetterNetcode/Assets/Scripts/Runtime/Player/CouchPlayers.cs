@@ -40,10 +40,9 @@ namespace CodeSmile.Player
 				var inputUsers = Components.InputUsers;
 				inputUsers.OnDevicePaired += OnInputDevicePaired;
 				inputUsers.OnDeviceUnpaired += OnInputDeviceUnpaired;
-				inputUsers.PairingEnabled = Application.platform != RuntimePlatform.WebGLPlayer;
+				inputUsers.PairingEnabled = true;
 
-				// always spawn the host player
-				await SpawnPlayer(0, 0);
+				await SpawnPlayer(0, 0); // spawn host player
 			}
 		}
 
@@ -53,8 +52,6 @@ namespace CodeSmile.Player
 
 			if (IsOwner)
 			{
-				StopAllCoroutines();
-
 				var inputUsers = Components.InputUsers;
 				inputUsers.PairingEnabled = false;
 				inputUsers.OnDevicePaired -= OnInputDevicePaired;
@@ -63,6 +60,7 @@ namespace CodeSmile.Player
 		}
 
 		private async void OnInputDevicePaired(InputUser user, InputDevice device) => await SpawnPlayer(user.index, user.index);
+
 		private void OnInputDeviceUnpaired(InputUser user, InputDevice device) => DespawnPlayer(user.index);
 
 		private async Task SpawnPlayer(Int32 playerIndex, Int32 avatarIndex)
@@ -71,19 +69,15 @@ namespace CodeSmile.Player
 			var posY = OwnerClientId * 2f;
 			var position = new Vector3(posX, posY, 0);
 
-			m_Players[playerIndex] = await m_ClientSide.Spawn(position, playerIndex, avatarIndex);
+			m_Players[playerIndex] =
+				await m_ClientSide.Spawn(position, playerIndex, avatarIndex);
 			SetPlayerDebugName(playerIndex);
-
-			//Components.InputUsers.SetPlayerActionsEnabled(playerIndex, true);
 		}
 
 		private void DespawnPlayer(Int32 playerIndex)
 		{
 			var playerObj = m_Players[playerIndex].GetComponent<NetworkObject>();
 			m_Players[playerIndex] = null;
-
-			//Components.InputUsers.SetPlayerActionsEnabled(playerIndex, false);
-
 			m_ClientSide.Despawn(playerObj);
 		}
 

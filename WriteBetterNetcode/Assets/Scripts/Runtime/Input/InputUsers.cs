@@ -12,10 +12,17 @@ using UnityEngine.InputSystem.Users;
 namespace CodeSmile.Input
 {
 	[DisallowMultipleComponent]
-	public sealed class InputUsers : MonoBehaviour, GeneratedInputActions.IPairingActions
+	public sealed class InputUsers : MonoBehaviour,
+		GeneratedInputActions.IPairingActions
 	{
 		public event Action<InputUser, InputDevice> OnDevicePaired;
 		public event Action<InputUser, InputDevice> OnDeviceUnpaired;
+
+		private readonly InputUser[] m_Users =
+			new InputUser[Constants.MaxCouchPlayers];
+
+		private readonly GeneratedInputActions[] m_Actions =
+			new GeneratedInputActions[Constants.MaxCouchPlayers];
 
 		public Boolean PairingEnabled
 		{
@@ -34,11 +41,17 @@ namespace CodeSmile.Input
 
 		private InputUser HostUser { get => m_Users[0]; set => m_Users[0] = value; }
 
-		private readonly InputUser[] m_Users =
-			new InputUser[Constants.MaxCouchPlayers];
+		public void OnJoin(InputAction.CallbackContext context)
+		{
+			if (context.phase == InputActionPhase.Performed)
+				TryPairUserDevice(context.control.device);
+		}
 
-		private readonly GeneratedInputActions[] m_Actions =
-			new GeneratedInputActions[Constants.MaxCouchPlayers];
+		public void OnLeave(InputAction.CallbackContext context)
+		{
+			if (context.phase == InputActionPhase.Performed)
+				TryUnpairUserDevice(context.control.device);
+		}
 
 		private void Awake()
 		{
@@ -67,12 +80,6 @@ namespace CodeSmile.Input
 			}
 		}
 
-		public void OnJoin(InputAction.CallbackContext context)
-		{
-			if (context.phase == InputActionPhase.Performed)
-				TryPairUserDevice(context.control.device);
-		}
-
 		private void TryPairUserDevice(InputDevice device)
 		{
 			// only pair with gamepads; keyboard/mouse always bound to host
@@ -80,10 +87,9 @@ namespace CodeSmile.Input
 				return;
 
 			var deviceUser = InputUser.FindUserPairedToDevice(device);
-
-			// if device is paired with host: unpair it first
 			if (deviceUser != null && deviceUser.Value == HostUser)
 			{
+				// if device is paired with host: hand it over
 				HostUser.UnpairDevice(device);
 				HostUser.AssociateActionsWithUser(m_Actions[0]);
 				deviceUser = null;
@@ -105,12 +111,6 @@ namespace CodeSmile.Input
 					OnDevicePaired?.Invoke(user, device);
 				}
 			}
-		}
-
-		public void OnLeave(InputAction.CallbackContext context)
-		{
-			if (context.phase == InputActionPhase.Performed)
-				TryUnpairUserDevice(context.control.device);
 		}
 
 		private void TryUnpairUserDevice(InputDevice device)
@@ -143,7 +143,8 @@ namespace CodeSmile.Input
 			for (var userIndex = 0; userIndex < m_Users.Length; userIndex++)
 			{
 				var user = m_Users[userIndex];
-				if (user.pairedDevices.Count == 0 && user.lostDevices.Count == 0)
+				if (user.pairedDevices.Count == 0 &&
+				    user.lostDevices.Count == 0)
 					return userIndex;
 			}
 

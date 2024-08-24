@@ -32,8 +32,7 @@ namespace CodeSmile.Core.Components.Netcode
 		{
 #if !UNITY_EDITOR && !DEBUG && !DEVELOPMENT_BUILD
 			Destroy(this);
-			return;
-#endif
+#else
 			var net = GetComponent<NetworkManager>();
 			if (net == null)
 				throw new NullReferenceException($"NetworkManager component not found on object: {gameObject.name}");
@@ -53,6 +52,7 @@ namespace CodeSmile.Core.Components.Netcode
 			//net.OnSessionOwnerPromoted += OnSessionOwnerPromoted;
 
 			Log($"{nameof(NetworkEventLogger)} subscribed to NetworkManager events ...");
+#endif
 		}
 
 		private void OnDestroy()

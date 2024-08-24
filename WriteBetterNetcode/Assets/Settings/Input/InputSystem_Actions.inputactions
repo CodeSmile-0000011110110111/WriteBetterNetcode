@@ -38,33 +38,11 @@
                 },
                 {
                     "name": "",
-                    "id": "91e3a28c-4a86-4410-b04c-ccada6480e25",
-                    "path": "<Keyboard>/insert",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
-                    "action": "Join",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "461d9a4d-bcb6-4c2f-a529-d634bfce319b",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad;Touch;Joystick;XR;Keyboard&Mouse",
-                    "action": "Leave",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "51e04c8c-4322-4a80-9aac-4a911ef4d204",
-                    "path": "<Keyboard>/delete",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
                     "action": "Leave",
                     "isComposite": false,
                     "isPartOfComposite": false
