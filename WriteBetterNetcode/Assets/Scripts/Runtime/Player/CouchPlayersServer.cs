@@ -41,6 +41,10 @@ namespace CodeSmile.Player
 		{
 			if (playerRef.TryGet(out var playerObj))
 				playerObj.Despawn();
+			else
+			{
+				Debug.LogWarning($"could not despawn {playerRef.NetworkObjectId}");
+			}
 		}
 	}
 }

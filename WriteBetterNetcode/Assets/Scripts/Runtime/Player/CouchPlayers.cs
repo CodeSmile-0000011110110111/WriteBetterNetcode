@@ -12,6 +12,9 @@ using UnityEngine.InputSystem.Users;
 
 namespace CodeSmile.Player
 {
+	// TODO: detect and pair devices at runtime
+	// FIXME: on "join" prevent "leave" nullref caused by player not yet spawned
+
 	/// <summary>
 	///     Represents the group of players (1-4) playing on a single client.
 	/// </summary>
@@ -20,7 +23,15 @@ namespace CodeSmile.Player
 		typeof(CouchPlayersServer))]
 	public sealed class CouchPlayers : NetworkBehaviour
 	{
+		private enum Status
+		{
+			Available,
+			Spawning,
+			Spawned,
+		}
+
 		private readonly Player[] m_Players = new Player[Constants.MaxCouchPlayers];
+		private readonly Status[] m_PlayerStatus = new Status[Constants.MaxCouchPlayers];
 
 		private CouchPlayersClient m_ClientSide;
 
@@ -59,9 +70,16 @@ namespace CodeSmile.Player
 			}
 		}
 
-		private async void OnInputDevicePaired(InputUser user, InputDevice device) => await SpawnPlayer(user.index, user.index);
-
+		private async void OnInputDevicePaired(InputUser user, InputDevice device) => await TrySpawnPlayer(user);
 		private void OnInputDeviceUnpaired(InputUser user, InputDevice device) => DespawnPlayer(user.index);
+
+		private async Task TrySpawnPlayer(InputUser user)
+		{
+			if (m_PlayerStatus[user.index] != Status.Available)
+				return;
+
+			await SpawnPlayer(user.index, user.index);
+		}
 
 		private async Task SpawnPlayer(Int32 playerIndex, Int32 avatarIndex)
 		{
@@ -69,16 +87,23 @@ namespace CodeSmile.Player
 			var posY = OwnerClientId * 2f;
 			var position = new Vector3(posX, posY, 0);
 
-			m_Players[playerIndex] =
-				await m_ClientSide.Spawn(position, playerIndex, avatarIndex);
+			m_PlayerStatus[playerIndex] = Status.Spawning;
+			m_Players[playerIndex] = await m_ClientSide.Spawn(position, playerIndex, avatarIndex);
 			SetPlayerDebugName(playerIndex);
+			m_PlayerStatus[playerIndex] = Status.Spawned;
 		}
 
 		private void DespawnPlayer(Int32 playerIndex)
 		{
-			var playerObj = m_Players[playerIndex].GetComponent<NetworkObject>();
-			m_Players[playerIndex] = null;
-			m_ClientSide.Despawn(playerObj);
+			var player = m_Players[playerIndex];
+			if (player != null)
+			{
+				m_Players[playerIndex] = null;
+				m_PlayerStatus[playerIndex] = Status.Available;
+
+				var playerObj = player.GetComponent<NetworkObject>();
+				m_ClientSide.Despawn(playerObj);
+			}
 		}
 
 		public void AddRemotePlayer(Player player, Int32 playerIndex)
