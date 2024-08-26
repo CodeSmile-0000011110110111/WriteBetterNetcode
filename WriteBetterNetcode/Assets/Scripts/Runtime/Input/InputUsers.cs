@@ -75,6 +75,9 @@ namespace CodeSmile.Input
 
 		private void PairUnpairedDevicesWithHostUser()
 		{
+			if (HostUser.valid == false)
+				return;
+
 			var unpairedDevices = InputUser.GetUnpairedInputDevices();
 			foreach (var device in unpairedDevices)
 				HostUser = InputUser.PerformPairingWithDevice(device, HostUser);
