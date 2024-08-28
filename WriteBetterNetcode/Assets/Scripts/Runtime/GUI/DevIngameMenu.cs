@@ -34,20 +34,18 @@ namespace CodeSmile.GUI
 
 		private void OnDisable() => UnregisterGuiEvents();
 
-		private void EnablePlayerUiInput(Boolean uiInputEnabled)
+		private void SetPlayerUiInputEnabled(Boolean uiInputEnabled)
 		{
 			var inputUsers = Components.InputUsers;
 			var playerActions = inputUsers.Actions[MenuPlayerIndex];
 
-			// update everyone's Player inputs
+			// enable or disable everyone's Player inputs
 			foreach (var actions in inputUsers.Actions)
 			{
 				if (uiInputEnabled)
 					actions.Player.Disable();
 				else
 					actions.Player.Enable();
-
-				actions.UI.Disable();
 			}
 
 			// enable only the requesting player's UI input
@@ -95,11 +93,11 @@ namespace CodeSmile.GUI
 			if (IsHidden)
 			{
 				Show();
-				EnablePlayerUiInput(true);
+				SetPlayerUiInputEnabled(true);
 			}
 			else
 			{
-				EnablePlayerUiInput(false);
+				SetPlayerUiInputEnabled(false);
 				OnResumeButtonClicked();
 			}
 		}
