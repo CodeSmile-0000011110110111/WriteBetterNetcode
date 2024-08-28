@@ -4,7 +4,6 @@
 using CodeSmile.BetterNetcode.Input;
 using CodeSmile.Settings;
 using System;
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,13 +20,14 @@ namespace CodeSmile.Input
 
 		private readonly InputUser[] m_Users = new InputUser[Constants.MaxCouchPlayers];
 		private readonly GeneratedInputActions[] m_Actions = new GeneratedInputActions[Constants.MaxCouchPlayers];
+		public GeneratedInputActions[] Actions => m_Actions;
 
 		public Boolean PairingEnabled
 		{
-			get => m_Actions[0].Pairing.enabled;
+			get => Actions[0].Pairing.enabled;
 			set
 			{
-				foreach (var actions in m_Actions)
+				foreach (var actions in Actions)
 				{
 					if (value)
 						actions.Pairing.Enable();
@@ -60,12 +60,6 @@ namespace CodeSmile.Input
 			InputSystem.onDeviceChange += OnDeviceChange;
 		}
 
-		private void OnDeviceChange(InputDevice device, InputDeviceChange change)
-		{
-			if (change == InputDeviceChange.Added)
-				PairUnpairedDevicesWithHostUser();
-		}
-
 		private void CreateInputUsers()
 		{
 			// create users up-front to ensure indexes range from 0-3
@@ -87,9 +81,15 @@ namespace CodeSmile.Input
 		{
 			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
 			{
-				m_Actions[playerIndex] = new GeneratedInputActions();
-				m_Actions[playerIndex].Pairing.SetCallbacks(this);
+				Actions[playerIndex] = new GeneratedInputActions();
+				Actions[playerIndex].Pairing.SetCallbacks(this);
 			}
+		}
+
+		private void OnDeviceChange(InputDevice device, InputDeviceChange change)
+		{
+			if (change == InputDeviceChange.Added)
+				PairUnpairedDevicesWithHostUser();
 		}
 
 		private void TryPairUserDevice(InputDevice device)
@@ -103,7 +103,7 @@ namespace CodeSmile.Input
 			{
 				// if device is paired with host: unpair
 				HostUser.UnpairDevice(device);
-				HostUser.AssociateActionsWithUser(m_Actions[0]);
+				HostUser.AssociateActionsWithUser(null);
 				deviceUser = null;
 			}
 
@@ -114,11 +114,10 @@ namespace CodeSmile.Input
 				var userIndex = GetUnpairedUserIndex();
 				if (userIndex >= 0)
 				{
-
 					// pair and assign user's copy of actions (key layout!)
 					var user = m_Users[userIndex];
 					user = InputUser.PerformPairingWithDevice(device, user);
-					user.AssociateActionsWithUser(m_Actions[userIndex]);
+					user.AssociateActionsWithUser(Actions[userIndex]);
 					m_Users[userIndex] = user; // write-back struct
 
 					OnDevicePaired?.Invoke(user, device);

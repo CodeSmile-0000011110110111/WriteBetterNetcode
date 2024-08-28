@@ -89,7 +89,7 @@ namespace CodeSmile.Netcode
 			// for testing
 			//m_Statemachine.Logging = true;
 			m_Statemachine.OnStateChange += args =>
-				Debug.Log($"[{Time.frameCount}] {m_Statemachine} changed to {args.ActiveState}");
+				Debug.Log($"[{Time.frameCount}] {m_Statemachine} changed from {args.PreviousState} to {args.ActiveState}");
 
 			var resetNetcodeState = new CompoundAction("ResetNetcodeState",
 				new SetFalse(relayInitOnceVar),

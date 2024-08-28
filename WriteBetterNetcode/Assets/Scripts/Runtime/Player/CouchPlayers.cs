@@ -88,8 +88,11 @@ namespace CodeSmile.Player
 			var position = new Vector3(posX, posY, 0);
 
 			m_PlayerStatus[playerIndex] = Status.Spawning;
+
 			m_Players[playerIndex] = await m_ClientSide.Spawn(position, playerIndex, avatarIndex);
 			SetPlayerDebugName(playerIndex);
+			m_Players[playerIndex].OnCouchPlayerSpawned(playerIndex);
+
 			m_PlayerStatus[playerIndex] = Status.Spawned;
 		}
 

@@ -28,6 +28,7 @@ namespace CodeSmile.Player
 			playerIndex = user != null ? user.Value.index : -1;
 			return playerIndex >= 0;
 		}
+
 		// Player
 		public void OnMove(InputAction.CallbackContext context) => throw new System.NotImplementedException();
 		public void OnLook(InputAction.CallbackContext context) => throw new System.NotImplementedException();

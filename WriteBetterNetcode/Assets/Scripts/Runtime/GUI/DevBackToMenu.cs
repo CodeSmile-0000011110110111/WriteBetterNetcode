@@ -39,7 +39,11 @@ namespace CodeSmile.GUI
 			}
 		}
 
-		private void OnBackButtonClicked() => Components.NetcodeState.RequestStopNetwork();
+		private void OnBackButtonClicked()
+		{
+			Debug.Log("Back Button clicked");
+			Components.NetcodeState.RequestStopNetwork();
+		}
 
 		private void Hide() => m_Root.style.display = StyleKeyword.None;
 		private void Show() => m_Root.style.display = StyleKeyword.Initial;
