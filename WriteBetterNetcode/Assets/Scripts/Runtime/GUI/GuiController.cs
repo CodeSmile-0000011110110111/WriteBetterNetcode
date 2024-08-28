@@ -50,7 +50,8 @@ namespace CodeSmile.GUI
 
 		private void OnPlayerRequestPause(Player player)
 		{
-			m_IngameMenu.Show();
+			m_IngameMenu.MenuPlayerIndex = player.PlayerIndex;
+			m_IngameMenu.ToggleVisible();
 		}
 
 		private void ThrowIfNotAssigned<T>(Component component) where T : Component
