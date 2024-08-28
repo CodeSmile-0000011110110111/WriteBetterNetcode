@@ -11,10 +11,16 @@ namespace CodeSmile.GUI
 	[DisallowMultipleComponent]
 	public sealed class GuiController : MonoBehaviour
 	{
+		[SerializeField] private DevMainMenu m_MainMenu;
+		[SerializeField] private DevIngameMenu m_IngameMenu;
+
 		private CouchPlayers m_CouchPlayers;
 
 		private void Awake()
 		{
+			ThrowIfNotAssigned<DevMainMenu>(m_MainMenu);
+			ThrowIfNotAssigned<DevIngameMenu>(m_IngameMenu);
+
 			CouchPlayers.OnCouchSessionStarted += OnCouchSessionStarted;
 			CouchPlayers.OnCouchSessionStopped += OnCouchSessionStopped;
 		}
@@ -44,7 +50,15 @@ namespace CodeSmile.GUI
 
 		private void OnPlayerRequestPause(Player player)
 		{
-			Debug.Log("pause requested");
+			m_IngameMenu.Show();
+		}
+
+		private void ThrowIfNotAssigned<T>(Component component) where T : Component
+		{
+			if (component == null || component is not T)
+				throw new MissingReferenceException($"{typeof(T).Name} not assigned");
 		}
 	}
+
+	internal interface IMainMenu {}
 }

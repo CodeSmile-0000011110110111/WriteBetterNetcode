@@ -22,7 +22,9 @@ namespace CodeSmile
 		private void Awake()
 		{
 			AssignInstance();
-			ThrowIfComponentIsNull();
+
+			ThrowIfNotAssigned<NetcodeState>(m_NetcodeState);
+			ThrowIfNotAssigned<InputUsers>(m_InputUsers);
 		}
 
 		private void OnDestroy() => s_Instance = null;
@@ -35,12 +37,10 @@ namespace CodeSmile
 			s_Instance = this;
 		}
 
-		private void ThrowIfComponentIsNull()
+		private void ThrowIfNotAssigned<T>(Component component) where T : Component
 		{
-			if (NetcodeState == null)
-				throw new MissingReferenceException($"{nameof(NetcodeState)} not assigned");
-			if (m_InputUsers == null)
-				throw new MissingReferenceException($"{nameof(InputUsers)} not assigned");
+			if (component == null || component is not T)
+				throw new MissingReferenceException($"{typeof(T).Name} not assigned");
 		}
 	}
 }

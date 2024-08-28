@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 109214542}
   - component: {fileID: 109214541}
   m_Layer: 0
-  m_Name: Dev_BackToMenu
+  m_Name: Dev_IngameMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1097,7 +1097,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NetcodeState: {fileID: 2143178689}
   m_InputUsers: {fileID: 142632566}
-  m_UiInputModule: {fileID: 646058516}
 --- !u!1 &1511574602
 GameObject:
   m_ObjectHideFlags: 0
@@ -1348,6 +1347,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa1ebd9e48b4d1fb792e8d33b615ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_MainMenu: {fileID: 1598937398}
+  m_IngameMenu: {fileID: 109214541}
 --- !u!1 &1679215494
 GameObject:
   m_ObjectHideFlags: 0

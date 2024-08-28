@@ -12,10 +12,8 @@ namespace CodeSmile.GUI
 {
 	[DisallowMultipleComponent]
 	[RequireComponent(typeof(UIDocument))]
-	public class DevMainMenu : MonoBehaviour
+	public class DevMainMenu : MenuBase
 	{
-		private VisualElement m_Root;
-
 		private Toggle AllowWebClientsToggle => m_Root.Q<Toggle>("AllowWebClientsToggle");
 		private Button HostRelayButton => m_Root.Q<Button>("HostRelayButton");
 		private Button HostDirectButton => m_Root.Q<Button>("HostDirectButton");
@@ -34,9 +32,9 @@ namespace CodeSmile.GUI
 			netcodeState.RequestStart(netcodeConfig, transportConfig, relayConfig);
 		}
 
-		private void Awake()
+		protected override void Awake()
 		{
-			m_Root = GetComponent<UIDocument>().rootVisualElement;
+			base.Awake();
 
 #if UNITY_WEBGL && !UNITY_EDITOR
 			// can't host on the web
@@ -170,8 +168,5 @@ namespace CodeSmile.GUI
 
 			RequestStart(netcodeConfig, transportConfig, relayConfig);
 		}
-
-		private void Hide() => m_Root.style.display = StyleKeyword.None;
-		private void Show() => m_Root.style.display = StyleKeyword.Initial;
 	}
 }
