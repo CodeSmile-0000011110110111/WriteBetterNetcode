@@ -1,4 +1,5 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/GUI/USS/Button.uss?fileID=7433441132597879392&amp;guid=d37e4269193f54644a6cb977bfb4f1da&amp;type=3#Button" />
     <engine:VisualElement style="flex-grow: 1; width: 66%; align-self: center;">
         <engine:GroupBox text="Offline" name="PlayLocalGroup" style="border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); display: none;">
             <engine:Button text="Singleplayer" name="SingleplayerButton" />

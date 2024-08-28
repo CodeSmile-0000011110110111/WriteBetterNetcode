@@ -30,9 +30,17 @@ namespace CodeSmile.Input
 				foreach (var actions in Actions)
 				{
 					if (value)
+					{
 						actions.Pairing.Enable();
+						actions.Pairing.Join.Enable();
+						actions.Pairing.Leave.Disable();
+					}
 					else
+					{
 						actions.Pairing.Disable();
+						actions.Pairing.Join.Disable();
+						actions.Pairing.Leave.Disable();
+					}
 				}
 			}
 		}
@@ -103,7 +111,7 @@ namespace CodeSmile.Input
 			{
 				// if device is paired with host: unpair
 				HostUser.UnpairDevice(device);
-				HostUser.AssociateActionsWithUser(null);
+				HostUser.AssociateActionsWithUser(Actions[0]);
 				deviceUser = null;
 			}
 
@@ -119,6 +127,8 @@ namespace CodeSmile.Input
 					user = InputUser.PerformPairingWithDevice(device, user);
 					user.AssociateActionsWithUser(Actions[userIndex]);
 					m_Users[userIndex] = user; // write-back struct
+
+					EnableLeaveAction(userIndex);
 
 					OnDevicePaired?.Invoke(user, device);
 				}
@@ -142,8 +152,33 @@ namespace CodeSmile.Input
 				// "re-pair" device with host
 				HostUser = InputUser.PerformPairingWithDevice(device, HostUser);
 
+				EnableJoinAction(deviceUser.Value.index);
+
 				OnDeviceUnpaired?.Invoke(deviceUser.Value, device);
 			}
+		}
+
+		public void UnpairAll()
+		{
+			foreach (var user in m_Users)
+			{
+				foreach (var device in user.pairedDevices)
+					TryUnpairUserDevice(device);
+				foreach (var device in user.lostDevices)
+					TryUnpairUserDevice(device);
+			}
+		}
+
+		private void EnableLeaveAction(Int32 userIndex)
+		{
+			m_Actions[userIndex].Pairing.Join.Disable();
+			m_Actions[userIndex].Pairing.Leave.Enable();
+		}
+
+		private void EnableJoinAction(Int32 userIndex)
+		{
+			m_Actions[userIndex].Pairing.Join.Enable();
+			m_Actions[userIndex].Pairing.Leave.Disable();
 		}
 
 		/// <summary>

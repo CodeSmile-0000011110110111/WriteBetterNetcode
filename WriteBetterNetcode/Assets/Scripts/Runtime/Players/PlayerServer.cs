@@ -5,7 +5,7 @@ using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Player
+namespace CodeSmile.Players
 {
 	[DisallowMultipleComponent]
 	internal class PlayerServer : NetworkBehaviour

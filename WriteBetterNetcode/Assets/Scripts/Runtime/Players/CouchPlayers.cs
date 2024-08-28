@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 
-namespace CodeSmile.Player
+namespace CodeSmile.Players
 {
 	// TODO: detect and pair devices at runtime
 	// FIXME: on "join" prevent "leave" nullref caused by player not yet spawned
@@ -23,12 +23,11 @@ namespace CodeSmile.Player
 		typeof(CouchPlayersServer))]
 	public sealed class CouchPlayers : NetworkBehaviour
 	{
-		private enum Status
-		{
-			Available,
-			Spawning,
-			Spawned,
-		}
+		public static event Action<CouchPlayers> OnCouchSessionStarted;
+		public static event Action OnCouchSessionStopped;
+
+		public event Action<Int32> OnCouchPlayerJoin;
+		public event Action<Int32> OnCouchPlayerLeave;
 
 		private readonly Player[] m_Players = new Player[Constants.MaxCouchPlayers];
 		private readonly Status[] m_PlayerStatus = new Status[Constants.MaxCouchPlayers];
@@ -53,6 +52,8 @@ namespace CodeSmile.Player
 				inputUsers.OnDeviceUnpaired += OnInputDeviceUnpaired;
 				inputUsers.PairingEnabled = true;
 
+				OnCouchSessionStarted?.Invoke(this);
+
 				await SpawnPlayer(0, 0); // spawn host player
 			}
 		}
@@ -67,7 +68,18 @@ namespace CodeSmile.Player
 				inputUsers.PairingEnabled = false;
 				inputUsers.OnDevicePaired -= OnInputDevicePaired;
 				inputUsers.OnDeviceUnpaired -= OnInputDeviceUnpaired;
+				inputUsers.UnpairAll();
+
+				DespawnAllPlayers();
+
+				OnCouchSessionStopped?.Invoke();
 			}
+		}
+
+		private void DespawnAllPlayers()
+		{
+			for (var playerIndex = m_Players.Length - 1; playerIndex >= 0; playerIndex--)
+				DespawnPlayer(playerIndex);
 		}
 
 		private async void OnInputDevicePaired(InputUser user, InputDevice device) => await TrySpawnPlayer(user);
@@ -89,11 +101,13 @@ namespace CodeSmile.Player
 
 			m_PlayerStatus[playerIndex] = Status.Spawning;
 
-			m_Players[playerIndex] = await m_ClientSide.Spawn(position, playerIndex, avatarIndex);
-			SetPlayerDebugName(playerIndex);
-			m_Players[playerIndex].OnCouchPlayerSpawned(playerIndex);
-
+			var player = await m_ClientSide.Spawn(position, playerIndex, avatarIndex);
+			m_Players[playerIndex] = player;
 			m_PlayerStatus[playerIndex] = Status.Spawned;
+			SetPlayerDebugName(playerIndex);
+
+			player.OnCouchPlayerSpawn(playerIndex);
+			OnCouchPlayerJoin?.Invoke(playerIndex);
 		}
 
 		private void DespawnPlayer(Int32 playerIndex)
@@ -101,12 +115,19 @@ namespace CodeSmile.Player
 			var player = m_Players[playerIndex];
 			if (player != null)
 			{
-				m_Players[playerIndex] = null;
-				m_PlayerStatus[playerIndex] = Status.Available;
+				OnCouchPlayerLeave?.Invoke(playerIndex);
+				player.OnCouchPlayerDespawn();
+				ResetPlayerFields(playerIndex);
 
 				var playerObj = player.GetComponent<NetworkObject>();
 				m_ClientSide.Despawn(playerObj);
 			}
+		}
+
+		private void ResetPlayerFields(Int32 playerIndex)
+		{
+			m_Players[playerIndex] = null;
+			m_PlayerStatus[playerIndex] = Status.Available;
 		}
 
 		public void AddRemotePlayer(Player player, Int32 playerIndex)
@@ -116,6 +137,13 @@ namespace CodeSmile.Player
 
 			m_Players[playerIndex] = player;
 			SetPlayerDebugName(playerIndex, " (Remote)");
+		}
+
+		private enum Status
+		{
+			Available,
+			Spawning,
+			Spawned,
 		}
 	}
 }

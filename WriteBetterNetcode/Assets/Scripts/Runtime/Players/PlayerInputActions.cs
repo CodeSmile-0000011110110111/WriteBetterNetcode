@@ -7,23 +7,26 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace CodeSmile.Player
+namespace CodeSmile.Players
 {
-	public class PlayerInputActions : MonoBehaviour, GeneratedInputActions.IPlayerActions
+	[DisallowMultipleComponent]
+	public sealed class PlayerInputActions : MonoBehaviour, GeneratedInputActions.IPlayerActions
 	{
+		internal event Action RequestPause;
+
 		private Player m_Player;
 
 		// handle player-specific input
 		public void OnMove(InputAction.CallbackContext context)
 		{
-			if (context.performed)
-				Debug.Log($"Move: Player #{m_Player.PlayerIndex}");
+			// if (context.performed)
+			// 	Debug.Log($"Move: Player #{m_Player.PlayerIndex}");
 		}
 
 		public void OnLook(InputAction.CallbackContext context)
 		{
-			if (context.performed)
-				Debug.Log($"Look: Player #{m_Player.PlayerIndex}");
+			// if (context.performed)
+			// 	Debug.Log($"Look: Player #{m_Player.PlayerIndex}");
 		}
 
 		public void OnAttack(InputAction.CallbackContext context)
@@ -68,11 +71,19 @@ namespace CodeSmile.Player
 				Debug.Log($"Sprint: Player #{m_Player.PlayerIndex}");
 		}
 
+		public void OnPause(InputAction.CallbackContext context)
+		{
+			if (context.performed)
+			{
+				RequestPause?.Invoke();
+				Debug.Log($"Pause: Player #{m_Player.PlayerIndex}");
+			}
+		}
+
 		private void Awake() => m_Player = GetComponent<Player>();
 
 		public void RegisterCallback(Int32 playerIndex)
 		{
-			Debug.Log("PlayerInputActions REGISTER");
 			var inputActions = Components.InputUsers.Actions[playerIndex];
 			inputActions.Player.SetCallbacks(this);
 			inputActions.Player.Enable();
@@ -80,7 +91,7 @@ namespace CodeSmile.Player
 
 		public void UnregisterCallback(Int32 playerIndex)
 		{
-			Debug.Log("PlayerInputActions UNREGISTER");
+			Debug.Log($"Unregister player {playerIndex}");
 			var inputActions = Components.InputUsers.Actions[playerIndex];
 			inputActions.Player.Disable();
 			inputActions.Player.SetCallbacks(null);

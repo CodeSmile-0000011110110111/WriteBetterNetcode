@@ -6,7 +6,6 @@ using CodeSmile.Netcode;
 using System;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem.UI;
 
 namespace CodeSmile
 {
@@ -16,11 +15,9 @@ namespace CodeSmile
 
 		[SerializeField] private NetcodeState m_NetcodeState;
 		[SerializeField] private InputUsers m_InputUsers;
-		[SerializeField] private InputSystemUIInputModule m_UiInputModule;
 
 		public static NetcodeState NetcodeState => s_Instance?.m_NetcodeState;
 		public static InputUsers InputUsers => s_Instance?.m_InputUsers;
-		public static InputSystemUIInputModule UiInputModule => s_Instance?.m_UiInputModule;
 
 		private void Awake()
 		{
@@ -44,8 +41,6 @@ namespace CodeSmile
 				throw new MissingReferenceException($"{nameof(NetcodeState)} not assigned");
 			if (m_InputUsers == null)
 				throw new MissingReferenceException($"{nameof(InputUsers)} not assigned");
-			if (m_UiInputModule == null)
-				throw new MissingReferenceException($"{nameof(UiInputModule)} not assigned");
 		}
 	}
 }

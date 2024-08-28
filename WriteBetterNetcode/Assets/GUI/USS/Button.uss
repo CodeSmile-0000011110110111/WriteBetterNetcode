@@ -1,0 +1,20 @@
+Button {
+    border-top-width: 6px;
+    border-right-width: 6px;
+    border-bottom-width: 6px;
+    border-left-width: 6px;
+    border-top-left-radius: 26px;
+    border-top-right-radius: 26px;
+    border-bottom-right-radius: 26px;
+    border-bottom-left-radius: 26px;
+    border-left-color: rgba(0, 6, 255, 0.64);
+    border-right-color: rgba(0, 6, 255, 0.64);
+    border-top-color: rgba(0, 6, 255, 0.64);
+    border-bottom-color: rgba(0, 6, 255, 0.64);
+    background-color: rgb(139, 219, 213);
+    font-size: 20px;
+    -unity-font-definition: resource('FlatSkin/Font/Roboto-Black');
+    -unity-font-style: normal;
+    -unity-text-outline-width: 1px;
+    color: rgb(44, 44, 44);
+}

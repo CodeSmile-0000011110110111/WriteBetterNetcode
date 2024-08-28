@@ -8,7 +8,7 @@ using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Player
+namespace CodeSmile.Players
 {
 	[DisallowMultipleComponent]
 	internal sealed class CouchPlayersClient : NetworkBehaviour
@@ -54,6 +54,11 @@ namespace CodeSmile.Player
 				m_Players.AddRemotePlayer(player, playerIndex);
 		}
 
-		internal void Despawn(NetworkObject playerObj) => m_ServerSide.DespawnPlayerServerRpc(playerObj);
+		internal void Despawn(NetworkObject playerObj)
+		{
+			// Despawn may get invoked when session stopped, thus object may already be despawned
+			if (playerObj.IsSpawned)
+				m_ServerSide.DespawnPlayerServerRpc(playerObj);
+		}
 	}
 }

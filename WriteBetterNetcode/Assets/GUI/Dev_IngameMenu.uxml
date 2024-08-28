@@ -1,0 +1,8 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/GUI/USS/Button.uss?fileID=7433441132597879392&amp;guid=d37e4269193f54644a6cb977bfb4f1da&amp;type=3#Button" />
+    <engine:VisualElement name="VisualElement" style="flex-shrink: 0; align-items: stretch; flex-grow: 1; justify-content: center; align-self: center;">
+        <engine:Button text="Resume" name="ResumeButton" />
+        <engine:Button text="Exit to Menu" name="BackButton" />
+        <engine:Button text="Exit to Desktop" name="QuitButton" />
+    </engine:VisualElement>
+</engine:UXML>
