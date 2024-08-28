@@ -21,7 +21,7 @@ namespace CodeSmile.Players
 
 		public Byte AvatarIndex { get => m_Vars.AvatarIndex; set => m_Vars.AvatarIndex = value; }
 
-		public int PlayerIndex { get; private set; } = -1;
+		public Int32 PlayerIndex { get; private set; } = -1;
 
 		private void Awake()
 		{
@@ -32,7 +32,7 @@ namespace CodeSmile.Players
 
 		internal void OnAvatarIndexChanged(Byte _, Byte avatarIndex) => m_Avatar.SetAvatar(avatarIndex);
 
-		internal void OnCouchPlayerSpawn(int playerIndex)
+		internal void OnCouchPlayerSpawn(Int32 playerIndex)
 		{
 			PlayerIndex = playerIndex;
 
@@ -47,9 +47,6 @@ namespace CodeSmile.Players
 			input.UnregisterCallback(PlayerIndex);
 		}
 
-		private void RequestPause()
-		{
-			OnRequestPause?.Invoke(this);
-		}
+		private void RequestPause() => OnRequestPause?.Invoke(this);
 	}
 }

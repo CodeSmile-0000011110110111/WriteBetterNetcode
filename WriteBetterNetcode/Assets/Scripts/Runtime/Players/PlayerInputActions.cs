@@ -12,8 +12,6 @@ namespace CodeSmile.Players
 	[DisallowMultipleComponent]
 	public sealed class PlayerInputActions : MonoBehaviour, GeneratedInputActions.IPlayerActions
 	{
-		internal event Action RequestPause;
-
 		private Player m_Player;
 
 		// handle player-specific input
@@ -81,6 +79,7 @@ namespace CodeSmile.Players
 		}
 
 		private void Awake() => m_Player = GetComponent<Player>();
+		internal event Action RequestPause;
 
 		public void RegisterCallback(Int32 playerIndex)
 		{
