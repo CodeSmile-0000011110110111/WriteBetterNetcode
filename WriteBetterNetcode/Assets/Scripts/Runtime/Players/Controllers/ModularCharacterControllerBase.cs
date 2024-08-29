@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.BetterNetcode.Input;
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,7 +12,23 @@ namespace CodeSmile
 	[DisallowMultipleComponent]
 	public abstract class ModularCharacterControllerBase : MonoBehaviour, GeneratedInput.IPlayerActions
 	{
+		[SerializeField] private Vector3 m_MotionSensitivity = Vector3.one;
 		protected CharacterController m_CharacterController;
+
+		protected Vector3 Velocity { get; set; }
+		public Vector3 MotionSensitivity
+		{
+			get => m_MotionSensitivity;
+			set => m_MotionSensitivity = value;
+		}
+
+		/// <summary>
+		///     Gets Vector2 from an appropriate InputAction if the action is performed. Otherwise Vector2.zero.
+		/// </summary>
+		/// <param name="context"></param>
+		/// <returns>InputAction vector or Vector2.zero if action not performed</returns>
+		protected static Vector2 GetHorizontalVelocity(InputAction.CallbackContext context) =>
+			context.performed ? context.ReadValue<Vector2>() : Vector2.zero;
 
 		public virtual void OnMove(InputAction.CallbackContext context) {}
 		public virtual void OnLook(InputAction.CallbackContext context) {}
@@ -82,5 +99,48 @@ namespace CodeSmile
 			dest.excludeLayers = source.excludeLayers;
 			dest.enabled = source.enabled;
 		}
+
+		public virtual void OnPlayerSpawn(Int32 playerIndex) => EnableInputCallbacks(playerIndex);
+		public virtual void OnPlayerDespawn(Int32 playerIndex) => DisableInputCallbacks(playerIndex);
+
+		private void EnableInputCallbacks(Int32 playerIndex)
+		{
+			var inputActions = Components.InputUsers.Actions[playerIndex];
+			inputActions.Player.SetCallbacks(this);
+			inputActions.Player.Enable();
+		}
+
+		private void DisableInputCallbacks(Int32 playerIndex)
+		{
+			var inputActions = Components.InputUsers.Actions[playerIndex];
+			inputActions.Player.Disable();
+			inputActions.Player.SetCallbacks(null);
+		}
+
+		/// <summary>
+		///     Moves character with velocity.
+		/// </summary>
+		protected void Move() => m_CharacterController.Move(Velocity);
+
+		/// <summary>
+		///     Apply 2D vector's X/Y components to X/Z components of Velocity. The Y component remains unchanged.
+		/// </summary>
+		/// <param name="horizontalVelocity"></param>
+		protected void SetHorizontalVelocity(Vector2 horizontalVelocity) =>
+			Velocity = new Vector3(horizontalVelocity.x, Velocity.y, horizontalVelocity.y);
+
+		/// <summary>
+		///     Assigns value to Velocity's Y component and leaves Velocity X/Z components unchanged.
+		/// </summary>
+		/// <param name="verticalVelocity"></param>
+		protected void SetVerticalVelocity(Single verticalVelocity) =>
+			Velocity = new Vector3(Velocity.x, verticalVelocity, Velocity.z);
+
+		/// <summary>
+		///     Adds to the Velocity's Y component. Leaves X/Z unchanged.
+		/// </summary>
+		/// <param name="verticalVelocity"></param>
+		protected void AddVerticalVelocity(Single verticalVelocity) =>
+			Velocity = new Vector3(Velocity.x, Velocity.y + verticalVelocity, Velocity.z);
 	}
 }

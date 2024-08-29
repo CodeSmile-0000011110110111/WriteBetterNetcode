@@ -1,7 +1,6 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -22,14 +21,8 @@ namespace CodeSmile.GUI
 #endif
 		}
 
-		protected override void Awake()
-		{
-			base.Awake();
-			Hide();
-		}
-
+		private void Start() => Hide();
 		private void OnEnable() => RegisterGuiEvents();
-
 		private void OnDisable() => UnregisterGuiEvents();
 
 		private void RegisterGuiEvents()

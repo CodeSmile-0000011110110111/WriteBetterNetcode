@@ -13,7 +13,7 @@ namespace CodeSmile.Players
 		[SerializeField] private PlayerControllerPrefabs m_ControllerPrefabs;
 		[SerializeField] private int m_ActiveControllerIndex;
 
-		private GameObject m_ActiveController;
+		private ModularCharacterControllerBase m_ActiveController;
 
 		private void Awake()
 		{
@@ -24,24 +24,29 @@ namespace CodeSmile.Players
 		public void OnPlayerSpawn(int playerIndex)
 		{
 			SetController(m_ActiveControllerIndex);
+			m_ActiveController?.OnPlayerSpawn(playerIndex);
 		}
 
 		public void OnPlayerDespawn(int playerIndex)
 		{
+			m_ActiveController?.OnPlayerDespawn(playerIndex);
 			Destroy(m_ActiveController);
 			m_ActiveController = null;
 		}
 
 		public void SetController(int controllerIndex)
 		{
-			var prefab = m_ControllerPrefabs[m_ActiveControllerIndex];
+			var prefab = m_ControllerPrefabs[controllerIndex];
 			if (prefab == null)
-				throw new ArgumentNullException($"PlayerControllerPrefab[{m_ActiveControllerIndex}] is null");
+				throw new ArgumentNullException($"PlayerControllerPrefab[{controllerIndex}] is null");
 
 			if (m_ActiveController != null)
 				Destroy(m_ActiveController);
 
-			m_ActiveController = Instantiate(prefab, transform);
+			var controllerObj = Instantiate(prefab, transform);
+			m_ActiveController = controllerObj.GetComponent<ModularCharacterControllerBase>();
+			if (m_ActiveController == null)
+				throw new MissingComponentException($"{controllerObj.name}: missing {nameof(ModularCharacterControllerBase)}");
 		}
 	}
 }
