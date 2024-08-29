@@ -8,8 +8,8 @@ using UnityEngine;
 
 namespace CodeSmile.Settings
 {
-	[CreateAssetMenu(fileName = "Player Avatars", menuName = "CodeSmile/Player Avatars", order = 0)]
-	public sealed class PlayerAvatarPrefabs : ScriptableObject
+	[CreateAssetMenu(fileName = "Player Controllers", menuName = "CodeSmile/Player Controllers", order = 1)]
+	public sealed class PlayerControllerPrefabs : ScriptableObject
 	{
 		[SerializeField] private List<GameObject> m_Prefabs = new();
 		public GameObject this[Byte index] => index >= 0 && index < m_Prefabs.Count ? m_Prefabs[index] : null;
