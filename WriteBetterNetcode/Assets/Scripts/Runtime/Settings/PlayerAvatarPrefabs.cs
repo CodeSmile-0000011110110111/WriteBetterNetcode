@@ -12,6 +12,6 @@ namespace CodeSmile.Settings
 	public sealed class PlayerAvatarPrefabs : ScriptableObject
 	{
 		[SerializeField] private List<GameObject> m_Prefabs = new();
-		public GameObject this[Byte index] => index >= 0 && index < m_Prefabs.Count ? m_Prefabs[index] : null;
+		public GameObject this[int index] => index >= 0 && index < m_Prefabs.Count ? m_Prefabs[index] : null;
 	}
 }
