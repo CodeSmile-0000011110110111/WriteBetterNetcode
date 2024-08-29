@@ -1,23 +1,35 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.BetterNetcode.Input;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace CodeSmile
 {
 	[DisallowMultipleComponent]
-	public abstract class ModularCharacterControllerBase : MonoBehaviour
+	public abstract class ModularCharacterControllerBase : MonoBehaviour, GeneratedInput.IPlayerActions
 	{
 		protected CharacterController m_CharacterController;
 
+		public virtual void OnMove(InputAction.CallbackContext context) {}
+		public virtual void OnLook(InputAction.CallbackContext context) {}
+		public virtual void OnAttack(InputAction.CallbackContext context) {}
+		public virtual void OnInteract(InputAction.CallbackContext context) {}
+		public virtual void OnCrouch(InputAction.CallbackContext context) {}
+		public virtual void OnJump(InputAction.CallbackContext context) {}
+		public virtual void OnPrevious(InputAction.CallbackContext context) {}
+		public virtual void OnNext(InputAction.CallbackContext context) {}
+		public virtual void OnSprint(InputAction.CallbackContext context) {}
+
 		/// <summary>
-		/// Must call base.Awake() when overridden!
+		///     Must call base.Awake() when overridden!
 		/// </summary>
 		protected virtual void Awake() => m_CharacterController = TryMoveCharacterControllerToParent();
 
 		/// <summary>
-		/// Must call base.OnDestroy() when overridden!
+		///     Must call base.OnDestroy() when overridden!
 		/// </summary>
 		protected virtual void OnDestroy()
 		{
@@ -27,7 +39,7 @@ namespace CodeSmile
 		}
 
 		/// <summary>
-		/// Move the
+		///     Move the
 		/// </summary>
 		/// <returns></returns>
 		private CharacterController TryMoveCharacterControllerToParent()

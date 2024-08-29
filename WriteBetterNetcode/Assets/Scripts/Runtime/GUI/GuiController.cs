@@ -12,7 +12,7 @@ using UnityEngine.InputSystem;
 namespace CodeSmile.GUI
 {
 	[DisallowMultipleComponent]
-	public sealed class GuiController : MonoBehaviour, GeneratedInputActions.IIngameUIActions
+	public sealed class GuiController : MonoBehaviour, GeneratedInput.IIngameUIActions
 	{
 		[SerializeField] private DevMainMenu m_MainMenu;
 		[SerializeField] private DevIngameMenu m_IngameMenu;
@@ -76,7 +76,12 @@ namespace CodeSmile.GUI
 
 		private void OnCouchPlayerJoin(Int32 playerIndex) {}
 
-		private void OnCouchPlayerLeave(Int32 playerIndex) {}
+		private void OnCouchPlayerLeave(Int32 playerIndex)
+		{
+			// leave from menu? Close menu!
+			if (m_IngameMenu.IsVisible && m_IngameMenu.MenuPlayerIndex == playerIndex)
+				m_IngameMenu.Hide();
+		}
 
 		private void OnPlayerRequestIngameMenu(Int32 playerIndex)
 		{

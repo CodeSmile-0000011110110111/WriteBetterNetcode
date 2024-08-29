@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 namespace CodeSmile.Players
 {
 	[DisallowMultipleComponent]
-	public sealed class PlayerInputActions : MonoBehaviour, GeneratedInputActions.IPlayerActions
+	public sealed class PlayerInputActions : MonoBehaviour, GeneratedInput.IPlayerActions
 	{
 		private Player m_Player;
 

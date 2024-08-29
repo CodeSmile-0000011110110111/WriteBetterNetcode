@@ -13,14 +13,14 @@ namespace CodeSmile.Input
 {
 	[DisallowMultipleComponent]
 	public sealed class InputUsers : MonoBehaviour,
-		GeneratedInputActions.IPairingActions
+		GeneratedInput.IPairingActions
 	{
 		public event Action<InputUser, InputDevice> OnDevicePaired;
 		public event Action<InputUser, InputDevice> OnDeviceUnpaired;
 
 		private readonly InputUser[] m_Users = new InputUser[Constants.MaxCouchPlayers];
-		private readonly GeneratedInputActions[] m_Actions = new GeneratedInputActions[Constants.MaxCouchPlayers];
-		public GeneratedInputActions[] Actions => m_Actions;
+		private readonly GeneratedInput[] m_Actions = new GeneratedInput[Constants.MaxCouchPlayers];
+		public GeneratedInput[] Actions => m_Actions;
 
 		public Boolean PairingEnabled
 		{
@@ -104,7 +104,7 @@ namespace CodeSmile.Input
 		{
 			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
 			{
-				Actions[playerIndex] = new GeneratedInputActions();
+				Actions[playerIndex] = new GeneratedInput();
 				Actions[playerIndex].Pairing.SetCallbacks(this);
 			}
 		}

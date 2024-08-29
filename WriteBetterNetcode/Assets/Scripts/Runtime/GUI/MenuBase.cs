@@ -14,9 +14,50 @@ namespace CodeSmile.GUI
 		protected VisualElement m_Root;
 
 		public Boolean IsHidden => m_Root.style.display == StyleKeyword.None;
+		public Boolean IsVisible => !IsHidden;
+		public Int32 MenuPlayerIndex { get; set; }
 
 		protected virtual void Awake() => m_Root = GetComponent<UIDocument>().rootVisualElement;
-		public virtual void Hide() => m_Root.style.display = StyleKeyword.None;
-		public virtual void Show() => m_Root.style.display = StyleKeyword.Initial;
+
+		public void Show()
+		{
+			m_Root.style.display = StyleKeyword.Initial;
+			SetPlayerUiInputEnabled(true);
+		}
+
+		public void Hide()
+		{
+			m_Root.style.display = StyleKeyword.None;
+			SetPlayerUiInputEnabled(false);
+		}
+
+		public void ToggleVisible()
+		{
+			if (IsHidden)
+				Show();
+			else
+				Hide();
+		}
+
+		private void SetPlayerUiInputEnabled(Boolean uiInputEnabled)
+		{
+			var inputUsers = Components.InputUsers;
+			var playerActions = inputUsers.Actions[MenuPlayerIndex];
+
+			// enable or disable everyone's Player inputs
+			foreach (var actions in inputUsers.Actions)
+			{
+				if (uiInputEnabled)
+					actions.Player.Disable();
+				else
+					actions.Player.Enable();
+			}
+
+			// enable only the requesting player's UI input
+			if (uiInputEnabled)
+				playerActions.UI.Enable();
+			else
+				playerActions.UI.Disable();
+		}
 	}
 }

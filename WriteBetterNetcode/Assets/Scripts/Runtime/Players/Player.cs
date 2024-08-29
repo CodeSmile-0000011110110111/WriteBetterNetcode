@@ -9,7 +9,7 @@ using UnityEngine;
 namespace CodeSmile.Players
 {
 	[DisallowMultipleComponent]
-	[RequireComponent(typeof(PlayerAvatar), typeof(PlayerController), typeof(PlayerInputActions))]
+	[RequireComponent(typeof(PlayerAvatar), typeof(PlayerController))]
 	[RequireComponent(typeof(PlayerVars), typeof(PlayerServer), typeof(PlayerClient))]
 	public sealed class Player : NetworkBehaviour
 	{
@@ -34,18 +34,12 @@ namespace CodeSmile.Players
 		{
 			PlayerIndex = playerIndex;
 
-			var input = GetComponent<PlayerInputActions>();
-			input.RegisterCallback(PlayerIndex);
-
 			var controller = GetComponent<PlayerController>();
 			controller.OnPlayerSpawn(PlayerIndex);
 		}
 
 		internal void OnCouchPlayerDespawn()
 		{
-			var input = GetComponent<PlayerInputActions>();
-			input.UnregisterCallback(PlayerIndex);
-
 			var controller = GetComponent<PlayerController>();
 			controller.OnPlayerDespawn(PlayerIndex);
 		}

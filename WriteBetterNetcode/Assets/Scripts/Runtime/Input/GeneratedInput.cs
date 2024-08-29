@@ -17,10 +17,10 @@ using UnityEngine.InputSystem.Utilities;
 
 namespace CodeSmile.BetterNetcode.Input
 {
-    public partial class @GeneratedInputActions: IInputActionCollection2, IDisposable
+    public partial class @GeneratedInput: IInputActionCollection2, IDisposable
     {
         public InputActionAsset asset { get; }
-        public @GeneratedInputActions()
+        public @GeneratedInput()
         {
             asset = InputActionAsset.FromJson(@"{
     ""name"": ""InputSystem_Actions"",
@@ -1143,12 +1143,12 @@ namespace CodeSmile.BetterNetcode.Input
             m_IngameUI_RequestMenu = m_IngameUI.FindAction("RequestMenu", throwIfNotFound: true);
         }
 
-        ~@GeneratedInputActions()
+        ~@GeneratedInput()
         {
-            UnityEngine.Debug.Assert(!m_Pairing.enabled, "This will cause a leak and performance issues, GeneratedInputActions.Pairing.Disable() has not been called.");
-            UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, GeneratedInputActions.UI.Disable() has not been called.");
-            UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, GeneratedInputActions.Player.Disable() has not been called.");
-            UnityEngine.Debug.Assert(!m_IngameUI.enabled, "This will cause a leak and performance issues, GeneratedInputActions.IngameUI.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_Pairing.enabled, "This will cause a leak and performance issues, GeneratedInput.Pairing.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, GeneratedInput.UI.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, GeneratedInput.Player.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_IngameUI.enabled, "This will cause a leak and performance issues, GeneratedInput.IngameUI.Disable() has not been called.");
         }
 
         public void Dispose()
@@ -1214,8 +1214,8 @@ namespace CodeSmile.BetterNetcode.Input
         private readonly InputAction m_Pairing_Leave;
         public struct PairingActions
         {
-            private @GeneratedInputActions m_Wrapper;
-            public PairingActions(@GeneratedInputActions wrapper) { m_Wrapper = wrapper; }
+            private @GeneratedInput m_Wrapper;
+            public PairingActions(@GeneratedInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @Join => m_Wrapper.m_Pairing_Join;
             public InputAction @Leave => m_Wrapper.m_Pairing_Leave;
             public InputActionMap Get() { return m_Wrapper.m_Pairing; }
@@ -1276,8 +1276,8 @@ namespace CodeSmile.BetterNetcode.Input
         private readonly InputAction m_UI_TrackedDeviceOrientation;
         public struct UIActions
         {
-            private @GeneratedInputActions m_Wrapper;
-            public UIActions(@GeneratedInputActions wrapper) { m_Wrapper = wrapper; }
+            private @GeneratedInput m_Wrapper;
+            public UIActions(@GeneratedInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
             public InputAction @Submit => m_Wrapper.m_UI_Submit;
             public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
@@ -1393,8 +1393,8 @@ namespace CodeSmile.BetterNetcode.Input
         private readonly InputAction m_Player_Sprint;
         public struct PlayerActions
         {
-            private @GeneratedInputActions m_Wrapper;
-            public PlayerActions(@GeneratedInputActions wrapper) { m_Wrapper = wrapper; }
+            private @GeneratedInput m_Wrapper;
+            public PlayerActions(@GeneratedInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Look => m_Wrapper.m_Player_Look;
             public InputAction @Attack => m_Wrapper.m_Player_Attack;
@@ -1495,8 +1495,8 @@ namespace CodeSmile.BetterNetcode.Input
         private readonly InputAction m_IngameUI_RequestMenu;
         public struct IngameUIActions
         {
-            private @GeneratedInputActions m_Wrapper;
-            public IngameUIActions(@GeneratedInputActions wrapper) { m_Wrapper = wrapper; }
+            private @GeneratedInput m_Wrapper;
+            public IngameUIActions(@GeneratedInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @RequestMenu => m_Wrapper.m_IngameUI_RequestMenu;
             public InputActionMap Get() { return m_Wrapper.m_IngameUI; }
             public void Enable() { Get().Enable(); }

@@ -15,8 +15,6 @@ namespace CodeSmile.GUI
 		private Button ExitMenuButton => m_Root.Q<Button>("ExitMenuButton");
 		private Button ExitDesktopButton => m_Root.Q<Button>("ExitDesktopButton");
 
-		public Int32 MenuPlayerIndex { get; set; }
-
 		private static void ExitPlaymode()
 		{
 #if UNITY_EDITOR
@@ -33,27 +31,6 @@ namespace CodeSmile.GUI
 		private void OnEnable() => RegisterGuiEvents();
 
 		private void OnDisable() => UnregisterGuiEvents();
-
-		private void SetPlayerUiInputEnabled(Boolean uiInputEnabled)
-		{
-			var inputUsers = Components.InputUsers;
-			var playerActions = inputUsers.Actions[MenuPlayerIndex];
-
-			// enable or disable everyone's Player inputs
-			foreach (var actions in inputUsers.Actions)
-			{
-				if (uiInputEnabled)
-					actions.Player.Disable();
-				else
-					actions.Player.Enable();
-			}
-
-			// enable only the requesting player's UI input
-			if (uiInputEnabled)
-				playerActions.UI.Enable();
-			else
-				playerActions.UI.Disable();
-		}
 
 		private void RegisterGuiEvents()
 		{
@@ -83,20 +60,6 @@ namespace CodeSmile.GUI
 
 			if (Application.isEditor && Application.isPlaying)
 				ExitPlaymode();
-		}
-
-		public void ToggleVisible()
-		{
-			if (IsHidden)
-			{
-				Show();
-				SetPlayerUiInputEnabled(true);
-			}
-			else
-			{
-				SetPlayerUiInputEnabled(false);
-				OnResumeButtonClicked();
-			}
 		}
 	}
 }
