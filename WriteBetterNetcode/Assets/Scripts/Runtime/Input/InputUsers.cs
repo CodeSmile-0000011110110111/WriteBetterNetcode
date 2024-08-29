@@ -47,6 +47,16 @@ namespace CodeSmile.Input
 
 		private InputUser HostUser { get => m_Users[0]; set => m_Users[0] = value; }
 
+		public static Int32 GetUserIndex(InputAction.CallbackContext context) => GetUserIndex(context.control.device);
+		public static Int32 GetUserIndex(InputDevice device)
+		{
+			var user = InputUser.FindUserPairedToDevice(device);
+			if (user != null && user.Value.valid)
+				return user.Value.index;
+
+			return -1;
+		}
+
 		public void OnJoin(InputAction.CallbackContext context)
 		{
 			if (context.phase == InputActionPhase.Performed)
@@ -61,9 +71,9 @@ namespace CodeSmile.Input
 
 		private void Awake()
 		{
+			CreateInputActions();
 			CreateInputUsers();
 			PairUnpairedDevicesWithHostUser();
-			CreateInputActions();
 
 			InputSystem.onDeviceChange += OnDeviceChange;
 		}
@@ -72,7 +82,10 @@ namespace CodeSmile.Input
 		{
 			// create users up-front to ensure indexes range from 0-3
 			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
+			{
 				m_Users[playerIndex] = InputUser.CreateUserWithoutPairedDevices();
+				m_Users[playerIndex].AssociateActionsWithUser(m_Actions[playerIndex]);
+			}
 		}
 
 		private void PairUnpairedDevicesWithHostUser()
@@ -82,7 +95,9 @@ namespace CodeSmile.Input
 
 			var unpairedDevices = InputUser.GetUnpairedInputDevices();
 			foreach (var device in unpairedDevices)
+			{
 				HostUser = InputUser.PerformPairingWithDevice(device, HostUser);
+			}
 		}
 
 		private void CreateInputActions()
@@ -111,7 +126,6 @@ namespace CodeSmile.Input
 			{
 				// if device is paired with host: unpair
 				HostUser.UnpairDevice(device);
-				HostUser.AssociateActionsWithUser(Actions[0]);
 				deviceUser = null;
 			}
 
@@ -119,14 +133,13 @@ namespace CodeSmile.Input
 			if (deviceUser == null)
 			{
 				// userIndex is -1 if all users already paired with a device
-				var userIndex = GetUnpairedUserIndex();
+				var userIndex = GetNextUnpairedUserIndex();
 				if (userIndex >= 0)
 				{
 					// pair and assign user's copy of actions (key layout!)
 					var user = m_Users[userIndex];
 					user = InputUser.PerformPairingWithDevice(device, user);
-					user.AssociateActionsWithUser(Actions[userIndex]);
-					m_Users[userIndex] = user; // write-back struct
+					m_Users[userIndex] = user; // struct write-back
 
 					EnableLeaveAction(userIndex);
 
@@ -145,11 +158,8 @@ namespace CodeSmile.Input
 			var deviceUser = InputUser.FindUserPairedToDevice(device);
 			if (deviceUser != null && deviceUser != HostUser)
 			{
-				// unpair the device
+				// unpair the device, "re-pair" it with Host
 				deviceUser.Value.UnpairDevice(device);
-				deviceUser.Value.AssociateActionsWithUser(null);
-
-				// "re-pair" device with host
 				HostUser = InputUser.PerformPairingWithDevice(device, HostUser);
 
 				EnableJoinAction(deviceUser.Value.index);
@@ -185,7 +195,7 @@ namespace CodeSmile.Input
 		///     Find the index of the first user without a paired device.
 		/// </summary>
 		/// <returns>The index of an unpaired user or -1 if all users have a paired device.</returns>
-		private Int32 GetUnpairedUserIndex()
+		private Int32 GetNextUnpairedUserIndex()
 		{
 			for (var userIndex = 0; userIndex < m_Users.Length; userIndex++)
 			{

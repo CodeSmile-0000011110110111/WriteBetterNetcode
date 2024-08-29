@@ -673,15 +673,6 @@ namespace CodeSmile.BetterNetcode.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Pause"",
-                    ""type"": ""Button"",
-                    ""id"": ""985d0247-27dd-4231-821c-409175c7e9e3"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1014,26 +1005,43 @@ namespace CodeSmile.BetterNetcode.Input
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
+                }
+            ]
+        },
+        {
+            ""name"": ""IngameUI"",
+            ""id"": ""9fcc4e95-fe4b-4291-a8cb-8ac938099dd2"",
+            ""actions"": [
+                {
+                    ""name"": ""RequestMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""96572c32-76ce-4767-b019-3e5ea2f6f7bc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""edc33edf-6aad-4d0b-bd84-9b8f7e0ac537"",
+                    ""id"": ""d766dbc1-cc03-4159-8477-45942a35e155"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Pause"",
+                    ""action"": ""RequestMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7c33eb54-d479-4ad0-8343-746b79c70be7"",
+                    ""id"": ""b93a0bd2-bc76-4e0d-bb83-0d320b69aff8"",
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Pause"",
+                    ""action"": ""RequestMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1130,7 +1138,9 @@ namespace CodeSmile.BetterNetcode.Input
             m_Player_Previous = m_Player.FindAction("Previous", throwIfNotFound: true);
             m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
-            m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+            // IngameUI
+            m_IngameUI = asset.FindActionMap("IngameUI", throwIfNotFound: true);
+            m_IngameUI_RequestMenu = m_IngameUI.FindAction("RequestMenu", throwIfNotFound: true);
         }
 
         ~@GeneratedInputActions()
@@ -1138,6 +1148,7 @@ namespace CodeSmile.BetterNetcode.Input
             UnityEngine.Debug.Assert(!m_Pairing.enabled, "This will cause a leak and performance issues, GeneratedInputActions.Pairing.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, GeneratedInputActions.UI.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, GeneratedInputActions.Player.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_IngameUI.enabled, "This will cause a leak and performance issues, GeneratedInputActions.IngameUI.Disable() has not been called.");
         }
 
         public void Dispose()
@@ -1380,7 +1391,6 @@ namespace CodeSmile.BetterNetcode.Input
         private readonly InputAction m_Player_Previous;
         private readonly InputAction m_Player_Next;
         private readonly InputAction m_Player_Sprint;
-        private readonly InputAction m_Player_Pause;
         public struct PlayerActions
         {
             private @GeneratedInputActions m_Wrapper;
@@ -1394,7 +1404,6 @@ namespace CodeSmile.BetterNetcode.Input
             public InputAction @Previous => m_Wrapper.m_Player_Previous;
             public InputAction @Next => m_Wrapper.m_Player_Next;
             public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
-            public InputAction @Pause => m_Wrapper.m_Player_Pause;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1431,9 +1440,6 @@ namespace CodeSmile.BetterNetcode.Input
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
-                @Pause.started += instance.OnPause;
-                @Pause.performed += instance.OnPause;
-                @Pause.canceled += instance.OnPause;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1465,9 +1471,6 @@ namespace CodeSmile.BetterNetcode.Input
                 @Sprint.started -= instance.OnSprint;
                 @Sprint.performed -= instance.OnSprint;
                 @Sprint.canceled -= instance.OnSprint;
-                @Pause.started -= instance.OnPause;
-                @Pause.performed -= instance.OnPause;
-                @Pause.canceled -= instance.OnPause;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1485,6 +1488,52 @@ namespace CodeSmile.BetterNetcode.Input
             }
         }
         public PlayerActions @Player => new PlayerActions(this);
+
+        // IngameUI
+        private readonly InputActionMap m_IngameUI;
+        private List<IIngameUIActions> m_IngameUIActionsCallbackInterfaces = new List<IIngameUIActions>();
+        private readonly InputAction m_IngameUI_RequestMenu;
+        public struct IngameUIActions
+        {
+            private @GeneratedInputActions m_Wrapper;
+            public IngameUIActions(@GeneratedInputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @RequestMenu => m_Wrapper.m_IngameUI_RequestMenu;
+            public InputActionMap Get() { return m_Wrapper.m_IngameUI; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(IngameUIActions set) { return set.Get(); }
+            public void AddCallbacks(IIngameUIActions instance)
+            {
+                if (instance == null || m_Wrapper.m_IngameUIActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_IngameUIActionsCallbackInterfaces.Add(instance);
+                @RequestMenu.started += instance.OnRequestMenu;
+                @RequestMenu.performed += instance.OnRequestMenu;
+                @RequestMenu.canceled += instance.OnRequestMenu;
+            }
+
+            private void UnregisterCallbacks(IIngameUIActions instance)
+            {
+                @RequestMenu.started -= instance.OnRequestMenu;
+                @RequestMenu.performed -= instance.OnRequestMenu;
+                @RequestMenu.canceled -= instance.OnRequestMenu;
+            }
+
+            public void RemoveCallbacks(IIngameUIActions instance)
+            {
+                if (m_Wrapper.m_IngameUIActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(IIngameUIActions instance)
+            {
+                foreach (var item in m_Wrapper.m_IngameUIActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_IngameUIActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public IngameUIActions @IngameUI => new IngameUIActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         public InputControlScheme KeyboardMouseScheme
         {
@@ -1559,7 +1608,10 @@ namespace CodeSmile.BetterNetcode.Input
             void OnPrevious(InputAction.CallbackContext context);
             void OnNext(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
-            void OnPause(InputAction.CallbackContext context);
+        }
+        public interface IIngameUIActions
+        {
+            void OnRequestMenu(InputAction.CallbackContext context);
         }
     }
 }

@@ -50,10 +50,7 @@ namespace CodeSmile.GUI
 
 			// enable only the requesting player's UI input
 			if (uiInputEnabled)
-			{
 				playerActions.UI.Enable();
-				playerActions.Player.Pause.Enable(); // leave the pause button enabled to dismiss menu
-			}
 			else
 				playerActions.UI.Disable();
 		}

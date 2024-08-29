@@ -69,17 +69,7 @@ namespace CodeSmile.Players
 				Debug.Log($"Sprint: Player #{m_Player.PlayerIndex}");
 		}
 
-		public void OnPause(InputAction.CallbackContext context)
-		{
-			if (context.performed)
-			{
-				RequestPause?.Invoke();
-				Debug.Log($"Pause: Player #{m_Player.PlayerIndex}");
-			}
-		}
-
 		private void Awake() => m_Player = GetComponent<Player>();
-		internal event Action RequestPause;
 
 		public void RegisterCallback(Int32 playerIndex)
 		{
@@ -90,7 +80,6 @@ namespace CodeSmile.Players
 
 		public void UnregisterCallback(Int32 playerIndex)
 		{
-			Debug.Log($"Unregister player {playerIndex}");
 			var inputActions = Components.InputUsers.Actions[playerIndex];
 			inputActions.Player.Disable();
 			inputActions.Player.SetCallbacks(null);

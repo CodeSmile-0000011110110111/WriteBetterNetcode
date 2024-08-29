@@ -649,15 +649,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "985d0247-27dd-4231-821c-409175c7e9e3",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -990,26 +981,43 @@
                     "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "IngameUI",
+            "id": "9fcc4e95-fe4b-4291-a8cb-8ac938099dd2",
+            "actions": [
+                {
+                    "name": "RequestMenu",
+                    "type": "Button",
+                    "id": "96572c32-76ce-4767-b019-3e5ea2f6f7bc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
-                    "id": "edc33edf-6aad-4d0b-bd84-9b8f7e0ac537",
+                    "id": "d766dbc1-cc03-4159-8477-45942a35e155",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Pause",
+                    "action": "RequestMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "7c33eb54-d479-4ad0-8343-746b79c70be7",
+                    "id": "b93a0bd2-bc76-4e0d-bb83-0d320b69aff8",
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Pause",
+                    "action": "RequestMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

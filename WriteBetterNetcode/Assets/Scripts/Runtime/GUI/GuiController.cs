@@ -1,20 +1,33 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.BetterNetcode.Input;
+using CodeSmile.Input;
 using CodeSmile.Players;
 using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace CodeSmile.GUI
 {
 	[DisallowMultipleComponent]
-	public sealed class GuiController : MonoBehaviour
+	public sealed class GuiController : MonoBehaviour, GeneratedInputActions.IIngameUIActions
 	{
 		[SerializeField] private DevMainMenu m_MainMenu;
 		[SerializeField] private DevIngameMenu m_IngameMenu;
 
 		private CouchPlayers m_CouchPlayers;
+
+		public void OnRequestMenu(InputAction.CallbackContext context)
+		{
+			if (context.performed)
+			{
+				var userIndex = InputUsers.GetUserIndex(context);
+				if (userIndex >= 0)
+					OnPlayerRequestIngameMenu(userIndex);
+			}
+		}
 
 		private void Awake()
 		{
@@ -31,26 +44,44 @@ namespace CodeSmile.GUI
 			CouchPlayers.OnCouchSessionStopped -= OnCouchSessionStopped;
 		}
 
+		private void SetInputRequestMenuEnabled(Boolean enabled)
+		{
+			var inputUsers = Components.InputUsers;
+			foreach (var actions in inputUsers.Actions)
+			{
+				var ingameUi = actions.IngameUI;
+				if (enabled)
+				{
+					ingameUi.Enable();
+					ingameUi.SetCallbacks(this);
+				}
+				else
+				{
+					ingameUi.Disable();
+					ingameUi.SetCallbacks(null);
+				}
+			}
+		}
+
 		private void OnCouchSessionStarted(CouchPlayers localCouchPlayers)
 		{
 			m_CouchPlayers = localCouchPlayers;
 			m_CouchPlayers.OnCouchPlayerJoin += OnCouchPlayerJoin;
 			m_CouchPlayers.OnCouchPlayerLeave += OnCouchPlayerLeave;
+
+			SetInputRequestMenuEnabled(true);
 		}
 
 		private void OnCouchSessionStopped() => m_CouchPlayers = null;
 
-		private void OnCouchPlayerJoin(Int32 playerIndex)
-		{
-			var player = m_CouchPlayers[playerIndex];
-			player.OnRequestPause += OnPlayerRequestPause;
-		}
+		private void OnCouchPlayerJoin(Int32 playerIndex) {}
 
-		private void OnCouchPlayerLeave(Int32 playerIndex) => Debug.Log($"LEAVE {playerIndex}");
+		private void OnCouchPlayerLeave(Int32 playerIndex) {}
 
-		private void OnPlayerRequestPause(Player player)
+		private void OnPlayerRequestIngameMenu(Int32 playerIndex)
 		{
-			m_IngameMenu.MenuPlayerIndex = player.PlayerIndex;
+			Debug.Log($"Menu request Player #{playerIndex}");
+			m_IngameMenu.MenuPlayerIndex = playerIndex;
 			m_IngameMenu.ToggleVisible();
 		}
 
@@ -60,6 +91,4 @@ namespace CodeSmile.GUI
 				throw new MissingReferenceException($"{typeof(T).Name} not assigned");
 		}
 	}
-
-	internal interface IMainMenu {}
 }

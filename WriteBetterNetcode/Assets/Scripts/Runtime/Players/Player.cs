@@ -13,8 +13,6 @@ namespace CodeSmile.Players
 	[RequireComponent(typeof(PlayerVars), typeof(PlayerServer), typeof(PlayerClient))]
 	public sealed class Player : NetworkBehaviour
 	{
-		public event Action<Player> OnRequestPause;
-
 		private PlayerAvatar m_Avatar;
 		private PlayerClient m_ClientSide;
 		private PlayerVars m_Vars;
@@ -38,7 +36,6 @@ namespace CodeSmile.Players
 
 			var input = GetComponent<PlayerInputActions>();
 			input.RegisterCallback(PlayerIndex);
-			input.RequestPause += RequestPause;
 
 			var controller = GetComponent<PlayerController>();
 			controller.OnPlayerSpawn(PlayerIndex);
@@ -52,7 +49,5 @@ namespace CodeSmile.Players
 			var controller = GetComponent<PlayerController>();
 			controller.OnPlayerDespawn(PlayerIndex);
 		}
-
-		private void RequestPause() => OnRequestPause?.Invoke(this);
 	}
 }
