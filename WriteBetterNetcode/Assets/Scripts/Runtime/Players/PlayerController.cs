@@ -13,7 +13,7 @@ namespace CodeSmile.Players
 		[SerializeField] private PlayerControllerPrefabs m_ControllerPrefabs;
 		[SerializeField] private int m_ActiveControllerIndex;
 
-		private ModularCharacterControllerBase m_ActiveController;
+		private ModularKinematicControllerBase m_ActiveController;
 
 		private void Awake()
 		{
@@ -44,9 +44,9 @@ namespace CodeSmile.Players
 				Destroy(m_ActiveController);
 
 			var controllerObj = Instantiate(prefab, transform);
-			m_ActiveController = controllerObj.GetComponent<ModularCharacterControllerBase>();
+			m_ActiveController = controllerObj.GetComponent<ModularKinematicControllerBase>();
 			if (m_ActiveController == null)
-				throw new MissingComponentException($"{controllerObj.name}: missing {nameof(ModularCharacterControllerBase)}");
+				throw new MissingComponentException($"{controllerObj.name}: missing {nameof(ModularKinematicControllerBase)}");
 		}
 	}
 }

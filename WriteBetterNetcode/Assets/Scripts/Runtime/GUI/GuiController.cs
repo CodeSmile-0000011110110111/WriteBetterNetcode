@@ -12,7 +12,7 @@ using UnityEngine.InputSystem;
 namespace CodeSmile.GUI
 {
 	[DisallowMultipleComponent]
-	public sealed class GuiController : MonoBehaviour, GeneratedInput.IIngameUIActions
+	public sealed class GuiController : MonoBehaviour, GeneratedInput.IPlayerUIActions
 	{
 		[SerializeField] private DevMainMenu m_MainMenu;
 		[SerializeField] private DevIngameMenu m_IngameMenu;
@@ -28,6 +28,9 @@ namespace CodeSmile.GUI
 					OnPlayerRequestIngameMenu(userIndex);
 			}
 		}
+
+		public void OnPrevious(InputAction.CallbackContext context) {}
+		public void OnNext(InputAction.CallbackContext context) {}
 
 		private void Awake()
 		{
@@ -49,7 +52,7 @@ namespace CodeSmile.GUI
 			var inputUsers = Components.InputUsers;
 			foreach (var actions in inputUsers.Actions)
 			{
-				var ingameUi = actions.IngameUI;
+				var ingameUi = actions.PlayerUI;
 				if (enabled)
 				{
 					ingameUi.Enable();

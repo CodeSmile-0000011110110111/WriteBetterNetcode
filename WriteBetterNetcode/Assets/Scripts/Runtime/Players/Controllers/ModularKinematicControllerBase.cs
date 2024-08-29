@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 namespace CodeSmile
 {
 	[DisallowMultipleComponent]
-	public abstract class ModularCharacterControllerBase : MonoBehaviour, GeneratedInput.IPlayerActions
+	public abstract class ModularKinematicControllerBase : MonoBehaviour, GeneratedInput.IPlayerKinematicsActions
 	{
 		[SerializeField] private Vector3 m_MotionSensitivity = Vector3.one;
 		protected CharacterController m_CharacterController;
@@ -32,12 +32,8 @@ namespace CodeSmile
 
 		public virtual void OnMove(InputAction.CallbackContext context) {}
 		public virtual void OnLook(InputAction.CallbackContext context) {}
-		public virtual void OnAttack(InputAction.CallbackContext context) {}
-		public virtual void OnInteract(InputAction.CallbackContext context) {}
 		public virtual void OnCrouch(InputAction.CallbackContext context) {}
 		public virtual void OnJump(InputAction.CallbackContext context) {}
-		public virtual void OnPrevious(InputAction.CallbackContext context) {}
-		public virtual void OnNext(InputAction.CallbackContext context) {}
 		public virtual void OnSprint(InputAction.CallbackContext context) {}
 
 		/// <summary>
@@ -106,15 +102,15 @@ namespace CodeSmile
 		private void EnableInputCallbacks(Int32 playerIndex)
 		{
 			var inputActions = Components.InputUsers.Actions[playerIndex];
-			inputActions.Player.SetCallbacks(this);
-			inputActions.Player.Enable();
+			inputActions.PlayerKinematics.SetCallbacks(this);
+			inputActions.PlayerKinematics.Enable();
 		}
 
 		private void DisableInputCallbacks(Int32 playerIndex)
 		{
 			var inputActions = Components.InputUsers.Actions[playerIndex];
-			inputActions.Player.Disable();
-			inputActions.Player.SetCallbacks(null);
+			inputActions.PlayerKinematics.Disable();
+			inputActions.PlayerKinematics.SetCallbacks(null);
 		}
 
 		/// <summary>

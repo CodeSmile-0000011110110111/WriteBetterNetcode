@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 namespace CodeSmile
 {
-	public sealed class SimpleCharacterController : ModularCharacterControllerBase
+	public sealed class SimpleKinematicController : ModularKinematicControllerBase
 	{
 		[SerializeField] private Single m_Gravity = -1f;
 
@@ -27,8 +27,6 @@ namespace CodeSmile
 		}
 
 		public override void OnLook(InputAction.CallbackContext context) {}
-		public override void OnAttack(InputAction.CallbackContext context) {}
-		public override void OnInteract(InputAction.CallbackContext context) {}
 		public override void OnCrouch(InputAction.CallbackContext context) {}
 
 		public override void OnJump(InputAction.CallbackContext context)
@@ -37,8 +35,6 @@ namespace CodeSmile
 				SetVerticalVelocity(1f * MotionSensitivity.y);
 		}
 
-		public override void OnPrevious(InputAction.CallbackContext context) {}
-		public override void OnNext(InputAction.CallbackContext context) {}
 		public override void OnSprint(InputAction.CallbackContext context) {}
 	}
 }

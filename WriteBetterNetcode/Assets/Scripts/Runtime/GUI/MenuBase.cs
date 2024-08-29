@@ -22,13 +22,13 @@ namespace CodeSmile.GUI
 		public void Show()
 		{
 			m_Root.style.display = StyleKeyword.Initial;
-			SetPlayerUiInputEnabled(true);
+			SetMenuInputEnabled(true);
 		}
 
 		public void Hide()
 		{
 			m_Root.style.display = StyleKeyword.None;
-			SetPlayerUiInputEnabled(false);
+			SetMenuInputEnabled(false);
 		}
 
 		public void ToggleVisible()
@@ -39,7 +39,7 @@ namespace CodeSmile.GUI
 				Hide();
 		}
 
-		private void SetPlayerUiInputEnabled(Boolean uiInputEnabled)
+		private void SetMenuInputEnabled(Boolean menuInputEnabled)
 		{
 			var inputUsers = Components.InputUsers;
 			var playerActions = inputUsers.Actions[MenuPlayerIndex];
@@ -47,17 +47,17 @@ namespace CodeSmile.GUI
 			// enable or disable everyone's Player inputs
 			foreach (var actions in inputUsers.Actions)
 			{
-				if (uiInputEnabled)
-					actions.Player.Disable();
+				if (menuInputEnabled)
+					actions.Menu.Disable();
 				else
-					actions.Player.Enable();
+					actions.Menu.Enable();
 			}
 
 			// enable only the requesting player's UI input
-			if (uiInputEnabled)
-				playerActions.UI.Enable();
+			if (menuInputEnabled)
+				playerActions.Menu.Enable();
 			else
-				playerActions.UI.Disable();
+				playerActions.Menu.Disable();
 		}
 	}
 }

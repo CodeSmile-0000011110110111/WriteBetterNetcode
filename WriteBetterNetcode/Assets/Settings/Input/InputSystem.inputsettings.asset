@@ -21,7 +21,7 @@ MonoBehaviour:
   m_BackgroundBehavior: 0
   m_EditorInputBehaviorInPlayMode: 0
   m_InputActionPropertyDrawerMode: 0
-  m_DefaultDeadzoneMin: 0.25
+  m_DefaultDeadzoneMin: 0.28
   m_DefaultDeadzoneMax: 0.925
   m_DefaultButtonPressPoint: 0.5
   m_ButtonReleaseThreshold: 0.75

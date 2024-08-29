@@ -74,7 +74,7 @@ namespace CodeSmile.BetterNetcode.Input
             ]
         },
         {
-            ""name"": ""UI"",
+            ""name"": ""Menu"",
             ""id"": ""272f6d14-89ba-496f-b7ff-215263d3219f"",
             ""actions"": [
                 {
@@ -590,7 +590,7 @@ namespace CodeSmile.BetterNetcode.Input
             ]
         },
         {
-            ""name"": ""Player"",
+            ""name"": ""PlayerKinematics"",
             ""id"": ""df70fa95-8a34-4494-b137-73ab6b9c7d37"",
             ""actions"": [
                 {
@@ -612,24 +612,6 @@ namespace CodeSmile.BetterNetcode.Input
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Attack"",
-                    ""type"": ""Button"",
-                    ""id"": ""6c2ab1b8-8984-453a-af3d-a3c78ae1679a"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Interact"",
-                    ""type"": ""Button"",
-                    ""id"": ""852140f2-7766-474d-8707-702459ba45f3"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": ""Hold"",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""27c5f898-bc57-4ee1-8800-db469aca5fe3"",
@@ -642,24 +624,6 @@ namespace CodeSmile.BetterNetcode.Input
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""f1ba0d36-48eb-4cd5-b651-1c94a6531f70"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Previous"",
-                    ""type"": ""Button"",
-                    ""id"": ""2776c80d-3c14-4091-8c56-d04ced07a2b0"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Next"",
-                    ""type"": ""Button"",
-                    ""id"": ""b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -832,72 +796,6 @@ namespace CodeSmile.BetterNetcode.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""143bb1cd-cc10-4eca-a2f0-a3664166fe91"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""05f6913d-c316-48b2-a6bb-e225f14c7960"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ee3d0cd2-254e-47a7-a8cb-bc94d9658c54"",
-                    ""path"": ""<Joystick>/trigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b3c1c7f0-bd20-4ee7-a0f1-899b24bca6d7"",
-                    ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cbac6039-9c09-46a1-b5f2-4e5124ccb5ed"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Next"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e15ca19d-e649-4852-97d5-7fe8ccc44e94"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Next"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""f2e9ba44-c423-42a7-ad56-f20975884794"",
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
@@ -942,50 +840,6 @@ namespace CodeSmile.BetterNetcode.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1534dc16-a6aa-499d-9c3a-22b47347b52a"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Previous"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""25060bbd-a3a6-476e-8fba-45ae484aad05"",
-                    ""path"": ""<Gamepad>/dpad/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Previous"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1c04ea5f-b012-41d1-a6f7-02e963b52893"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b3f66d0b-7751-423f-908b-a11c5bd95930"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""4f4649ac-64a8-4a73-af11-b3faef356a4d"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
@@ -1009,13 +863,123 @@ namespace CodeSmile.BetterNetcode.Input
             ]
         },
         {
-            ""name"": ""IngameUI"",
-            ""id"": ""9fcc4e95-fe4b-4291-a8cb-8ac938099dd2"",
+            ""name"": ""PlayerInteraction"",
+            ""id"": ""89ebe8a7-d938-4068-ae27-80e2e3f0cdea"",
+            ""actions"": [
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a3db149-c914-442d-99be-a15be2d8c433"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""6948cc0f-7f0a-498c-b888-91c296cdbf1a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""5ab61a7c-d893-4e40-afc5-09e4225f5c41"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f9bc140b-cf94-4f47-844f-a1be7769f2fe"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""936558e5-a14d-4ce6-b267-c532b94ac11e"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""40dc83b7-b9c0-477d-a3e3-e69044d4eef2"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0db37df3-7460-4a7b-b871-08b681b613f0"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed7fbc1b-cab7-479d-8577-1c09ee039831"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PlayerUI"",
+            ""id"": ""174f2b0a-c34e-4e09-8504-930ef1f72be5"",
             ""actions"": [
                 {
                     ""name"": ""RequestMenu"",
                     ""type"": ""Button"",
-                    ""id"": ""96572c32-76ce-4767-b019-3e5ea2f6f7bc"",
+                    ""id"": ""5b1848d8-ae3c-47c8-8d32-3fa3d4e85699"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Previous"",
+                    ""type"": ""Button"",
+                    ""id"": ""8f79f439-de1f-48a3-9757-0cbf4e5791c1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Next"",
+                    ""type"": ""Button"",
+                    ""id"": ""f07844c6-c19a-4a1d-96e5-5a90342fb422"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1025,7 +989,7 @@ namespace CodeSmile.BetterNetcode.Input
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""d766dbc1-cc03-4159-8477-45942a35e155"",
+                    ""id"": ""61a5f415-20ba-4938-8769-276dc4270a01"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1036,12 +1000,56 @@ namespace CodeSmile.BetterNetcode.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b93a0bd2-bc76-4e0d-bb83-0d320b69aff8"",
+                    ""id"": ""858d1a13-cd79-4f0a-859d-f50657c4ac03"",
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""RequestMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9e0d49f1-01e0-4163-ac3f-0e44823a5d12"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Previous"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9d68411b-a707-4ac5-872b-efa85be06953"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Previous"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a61a39a-3123-4f55-8f2f-2392f1bd4f7f"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Next"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""58c11bb8-d308-4158-aec8-adfd3800448b"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Next"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1115,40 +1123,43 @@ namespace CodeSmile.BetterNetcode.Input
             m_Pairing = asset.FindActionMap("Pairing", throwIfNotFound: true);
             m_Pairing_Join = m_Pairing.FindAction("Join", throwIfNotFound: true);
             m_Pairing_Leave = m_Pairing.FindAction("Leave", throwIfNotFound: true);
-            // UI
-            m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-            m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
-            m_UI_Submit = m_UI.FindAction("Submit", throwIfNotFound: true);
-            m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
-            m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
-            m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
-            m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
-            m_UI_MiddleClick = m_UI.FindAction("MiddleClick", throwIfNotFound: true);
-            m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
-            m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
-            m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
-            // Player
-            m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-            m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-            m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-            m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
-            m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-            m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
-            m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-            m_Player_Previous = m_Player.FindAction("Previous", throwIfNotFound: true);
-            m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
-            m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
-            // IngameUI
-            m_IngameUI = asset.FindActionMap("IngameUI", throwIfNotFound: true);
-            m_IngameUI_RequestMenu = m_IngameUI.FindAction("RequestMenu", throwIfNotFound: true);
+            // Menu
+            m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+            m_Menu_Navigate = m_Menu.FindAction("Navigate", throwIfNotFound: true);
+            m_Menu_Submit = m_Menu.FindAction("Submit", throwIfNotFound: true);
+            m_Menu_Cancel = m_Menu.FindAction("Cancel", throwIfNotFound: true);
+            m_Menu_Point = m_Menu.FindAction("Point", throwIfNotFound: true);
+            m_Menu_Click = m_Menu.FindAction("Click", throwIfNotFound: true);
+            m_Menu_RightClick = m_Menu.FindAction("RightClick", throwIfNotFound: true);
+            m_Menu_MiddleClick = m_Menu.FindAction("MiddleClick", throwIfNotFound: true);
+            m_Menu_ScrollWheel = m_Menu.FindAction("ScrollWheel", throwIfNotFound: true);
+            m_Menu_TrackedDevicePosition = m_Menu.FindAction("TrackedDevicePosition", throwIfNotFound: true);
+            m_Menu_TrackedDeviceOrientation = m_Menu.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+            // PlayerKinematics
+            m_PlayerKinematics = asset.FindActionMap("PlayerKinematics", throwIfNotFound: true);
+            m_PlayerKinematics_Move = m_PlayerKinematics.FindAction("Move", throwIfNotFound: true);
+            m_PlayerKinematics_Look = m_PlayerKinematics.FindAction("Look", throwIfNotFound: true);
+            m_PlayerKinematics_Crouch = m_PlayerKinematics.FindAction("Crouch", throwIfNotFound: true);
+            m_PlayerKinematics_Jump = m_PlayerKinematics.FindAction("Jump", throwIfNotFound: true);
+            m_PlayerKinematics_Sprint = m_PlayerKinematics.FindAction("Sprint", throwIfNotFound: true);
+            // PlayerInteraction
+            m_PlayerInteraction = asset.FindActionMap("PlayerInteraction", throwIfNotFound: true);
+            m_PlayerInteraction_Attack = m_PlayerInteraction.FindAction("Attack", throwIfNotFound: true);
+            m_PlayerInteraction_Interact = m_PlayerInteraction.FindAction("Interact", throwIfNotFound: true);
+            // PlayerUI
+            m_PlayerUI = asset.FindActionMap("PlayerUI", throwIfNotFound: true);
+            m_PlayerUI_RequestMenu = m_PlayerUI.FindAction("RequestMenu", throwIfNotFound: true);
+            m_PlayerUI_Previous = m_PlayerUI.FindAction("Previous", throwIfNotFound: true);
+            m_PlayerUI_Next = m_PlayerUI.FindAction("Next", throwIfNotFound: true);
         }
 
         ~@GeneratedInput()
         {
             UnityEngine.Debug.Assert(!m_Pairing.enabled, "This will cause a leak and performance issues, GeneratedInput.Pairing.Disable() has not been called.");
-            UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, GeneratedInput.UI.Disable() has not been called.");
-            UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, GeneratedInput.Player.Disable() has not been called.");
-            UnityEngine.Debug.Assert(!m_IngameUI.enabled, "This will cause a leak and performance issues, GeneratedInput.IngameUI.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_Menu.enabled, "This will cause a leak and performance issues, GeneratedInput.Menu.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_PlayerKinematics.enabled, "This will cause a leak and performance issues, GeneratedInput.PlayerKinematics.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_PlayerInteraction.enabled, "This will cause a leak and performance issues, GeneratedInput.PlayerInteraction.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_PlayerUI.enabled, "This will cause a leak and performance issues, GeneratedInput.PlayerUI.Disable() has not been called.");
         }
 
         public void Dispose()
@@ -1261,42 +1272,42 @@ namespace CodeSmile.BetterNetcode.Input
         }
         public PairingActions @Pairing => new PairingActions(this);
 
-        // UI
-        private readonly InputActionMap m_UI;
-        private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
-        private readonly InputAction m_UI_Navigate;
-        private readonly InputAction m_UI_Submit;
-        private readonly InputAction m_UI_Cancel;
-        private readonly InputAction m_UI_Point;
-        private readonly InputAction m_UI_Click;
-        private readonly InputAction m_UI_RightClick;
-        private readonly InputAction m_UI_MiddleClick;
-        private readonly InputAction m_UI_ScrollWheel;
-        private readonly InputAction m_UI_TrackedDevicePosition;
-        private readonly InputAction m_UI_TrackedDeviceOrientation;
-        public struct UIActions
+        // Menu
+        private readonly InputActionMap m_Menu;
+        private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
+        private readonly InputAction m_Menu_Navigate;
+        private readonly InputAction m_Menu_Submit;
+        private readonly InputAction m_Menu_Cancel;
+        private readonly InputAction m_Menu_Point;
+        private readonly InputAction m_Menu_Click;
+        private readonly InputAction m_Menu_RightClick;
+        private readonly InputAction m_Menu_MiddleClick;
+        private readonly InputAction m_Menu_ScrollWheel;
+        private readonly InputAction m_Menu_TrackedDevicePosition;
+        private readonly InputAction m_Menu_TrackedDeviceOrientation;
+        public struct MenuActions
         {
             private @GeneratedInput m_Wrapper;
-            public UIActions(@GeneratedInput wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
-            public InputAction @Submit => m_Wrapper.m_UI_Submit;
-            public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
-            public InputAction @Point => m_Wrapper.m_UI_Point;
-            public InputAction @Click => m_Wrapper.m_UI_Click;
-            public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
-            public InputAction @MiddleClick => m_Wrapper.m_UI_MiddleClick;
-            public InputAction @ScrollWheel => m_Wrapper.m_UI_ScrollWheel;
-            public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
-            public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
-            public InputActionMap Get() { return m_Wrapper.m_UI; }
+            public MenuActions(@GeneratedInput wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Navigate => m_Wrapper.m_Menu_Navigate;
+            public InputAction @Submit => m_Wrapper.m_Menu_Submit;
+            public InputAction @Cancel => m_Wrapper.m_Menu_Cancel;
+            public InputAction @Point => m_Wrapper.m_Menu_Point;
+            public InputAction @Click => m_Wrapper.m_Menu_Click;
+            public InputAction @RightClick => m_Wrapper.m_Menu_RightClick;
+            public InputAction @MiddleClick => m_Wrapper.m_Menu_MiddleClick;
+            public InputAction @ScrollWheel => m_Wrapper.m_Menu_ScrollWheel;
+            public InputAction @TrackedDevicePosition => m_Wrapper.m_Menu_TrackedDevicePosition;
+            public InputAction @TrackedDeviceOrientation => m_Wrapper.m_Menu_TrackedDeviceOrientation;
+            public InputActionMap Get() { return m_Wrapper.m_Menu; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
-            public void AddCallbacks(IUIActions instance)
+            public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+            public void AddCallbacks(IMenuActions instance)
             {
-                if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+                if (instance == null || m_Wrapper.m_MenuActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_MenuActionsCallbackInterfaces.Add(instance);
                 @Navigate.started += instance.OnNavigate;
                 @Navigate.performed += instance.OnNavigate;
                 @Navigate.canceled += instance.OnNavigate;
@@ -1329,7 +1340,7 @@ namespace CodeSmile.BetterNetcode.Input
                 @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
             }
 
-            private void UnregisterCallbacks(IUIActions instance)
+            private void UnregisterCallbacks(IMenuActions instance)
             {
                 @Navigate.started -= instance.OnNavigate;
                 @Navigate.performed -= instance.OnNavigate;
@@ -1363,86 +1374,66 @@ namespace CodeSmile.BetterNetcode.Input
                 @TrackedDeviceOrientation.canceled -= instance.OnTrackedDeviceOrientation;
             }
 
-            public void RemoveCallbacks(IUIActions instance)
+            public void RemoveCallbacks(IMenuActions instance)
             {
-                if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+                if (m_Wrapper.m_MenuActionsCallbackInterfaces.Remove(instance))
                     UnregisterCallbacks(instance);
             }
 
-            public void SetCallbacks(IUIActions instance)
+            public void SetCallbacks(IMenuActions instance)
             {
-                foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+                foreach (var item in m_Wrapper.m_MenuActionsCallbackInterfaces)
                     UnregisterCallbacks(item);
-                m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+                m_Wrapper.m_MenuActionsCallbackInterfaces.Clear();
                 AddCallbacks(instance);
             }
         }
-        public UIActions @UI => new UIActions(this);
+        public MenuActions @Menu => new MenuActions(this);
 
-        // Player
-        private readonly InputActionMap m_Player;
-        private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-        private readonly InputAction m_Player_Move;
-        private readonly InputAction m_Player_Look;
-        private readonly InputAction m_Player_Attack;
-        private readonly InputAction m_Player_Interact;
-        private readonly InputAction m_Player_Crouch;
-        private readonly InputAction m_Player_Jump;
-        private readonly InputAction m_Player_Previous;
-        private readonly InputAction m_Player_Next;
-        private readonly InputAction m_Player_Sprint;
-        public struct PlayerActions
+        // PlayerKinematics
+        private readonly InputActionMap m_PlayerKinematics;
+        private List<IPlayerKinematicsActions> m_PlayerKinematicsActionsCallbackInterfaces = new List<IPlayerKinematicsActions>();
+        private readonly InputAction m_PlayerKinematics_Move;
+        private readonly InputAction m_PlayerKinematics_Look;
+        private readonly InputAction m_PlayerKinematics_Crouch;
+        private readonly InputAction m_PlayerKinematics_Jump;
+        private readonly InputAction m_PlayerKinematics_Sprint;
+        public struct PlayerKinematicsActions
         {
             private @GeneratedInput m_Wrapper;
-            public PlayerActions(@GeneratedInput wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Move => m_Wrapper.m_Player_Move;
-            public InputAction @Look => m_Wrapper.m_Player_Look;
-            public InputAction @Attack => m_Wrapper.m_Player_Attack;
-            public InputAction @Interact => m_Wrapper.m_Player_Interact;
-            public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
-            public InputAction @Jump => m_Wrapper.m_Player_Jump;
-            public InputAction @Previous => m_Wrapper.m_Player_Previous;
-            public InputAction @Next => m_Wrapper.m_Player_Next;
-            public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
-            public InputActionMap Get() { return m_Wrapper.m_Player; }
+            public PlayerKinematicsActions(@GeneratedInput wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Move => m_Wrapper.m_PlayerKinematics_Move;
+            public InputAction @Look => m_Wrapper.m_PlayerKinematics_Look;
+            public InputAction @Crouch => m_Wrapper.m_PlayerKinematics_Crouch;
+            public InputAction @Jump => m_Wrapper.m_PlayerKinematics_Jump;
+            public InputAction @Sprint => m_Wrapper.m_PlayerKinematics_Sprint;
+            public InputActionMap Get() { return m_Wrapper.m_PlayerKinematics; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-            public void AddCallbacks(IPlayerActions instance)
+            public static implicit operator InputActionMap(PlayerKinematicsActions set) { return set.Get(); }
+            public void AddCallbacks(IPlayerKinematicsActions instance)
             {
-                if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
+                if (instance == null || m_Wrapper.m_PlayerKinematicsActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_PlayerKinematicsActionsCallbackInterfaces.Add(instance);
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
-                @Attack.started += instance.OnAttack;
-                @Attack.performed += instance.OnAttack;
-                @Attack.canceled += instance.OnAttack;
-                @Interact.started += instance.OnInteract;
-                @Interact.performed += instance.OnInteract;
-                @Interact.canceled += instance.OnInteract;
                 @Crouch.started += instance.OnCrouch;
                 @Crouch.performed += instance.OnCrouch;
                 @Crouch.canceled += instance.OnCrouch;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @Previous.started += instance.OnPrevious;
-                @Previous.performed += instance.OnPrevious;
-                @Previous.canceled += instance.OnPrevious;
-                @Next.started += instance.OnNext;
-                @Next.performed += instance.OnNext;
-                @Next.canceled += instance.OnNext;
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
             }
 
-            private void UnregisterCallbacks(IPlayerActions instance)
+            private void UnregisterCallbacks(IPlayerKinematicsActions instance)
             {
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
@@ -1450,90 +1441,148 @@ namespace CodeSmile.BetterNetcode.Input
                 @Look.started -= instance.OnLook;
                 @Look.performed -= instance.OnLook;
                 @Look.canceled -= instance.OnLook;
-                @Attack.started -= instance.OnAttack;
-                @Attack.performed -= instance.OnAttack;
-                @Attack.canceled -= instance.OnAttack;
-                @Interact.started -= instance.OnInteract;
-                @Interact.performed -= instance.OnInteract;
-                @Interact.canceled -= instance.OnInteract;
                 @Crouch.started -= instance.OnCrouch;
                 @Crouch.performed -= instance.OnCrouch;
                 @Crouch.canceled -= instance.OnCrouch;
                 @Jump.started -= instance.OnJump;
                 @Jump.performed -= instance.OnJump;
                 @Jump.canceled -= instance.OnJump;
+                @Sprint.started -= instance.OnSprint;
+                @Sprint.performed -= instance.OnSprint;
+                @Sprint.canceled -= instance.OnSprint;
+            }
+
+            public void RemoveCallbacks(IPlayerKinematicsActions instance)
+            {
+                if (m_Wrapper.m_PlayerKinematicsActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(IPlayerKinematicsActions instance)
+            {
+                foreach (var item in m_Wrapper.m_PlayerKinematicsActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_PlayerKinematicsActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public PlayerKinematicsActions @PlayerKinematics => new PlayerKinematicsActions(this);
+
+        // PlayerInteraction
+        private readonly InputActionMap m_PlayerInteraction;
+        private List<IPlayerInteractionActions> m_PlayerInteractionActionsCallbackInterfaces = new List<IPlayerInteractionActions>();
+        private readonly InputAction m_PlayerInteraction_Attack;
+        private readonly InputAction m_PlayerInteraction_Interact;
+        public struct PlayerInteractionActions
+        {
+            private @GeneratedInput m_Wrapper;
+            public PlayerInteractionActions(@GeneratedInput wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Attack => m_Wrapper.m_PlayerInteraction_Attack;
+            public InputAction @Interact => m_Wrapper.m_PlayerInteraction_Interact;
+            public InputActionMap Get() { return m_Wrapper.m_PlayerInteraction; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(PlayerInteractionActions set) { return set.Get(); }
+            public void AddCallbacks(IPlayerInteractionActions instance)
+            {
+                if (instance == null || m_Wrapper.m_PlayerInteractionActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_PlayerInteractionActionsCallbackInterfaces.Add(instance);
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+            }
+
+            private void UnregisterCallbacks(IPlayerInteractionActions instance)
+            {
+                @Attack.started -= instance.OnAttack;
+                @Attack.performed -= instance.OnAttack;
+                @Attack.canceled -= instance.OnAttack;
+                @Interact.started -= instance.OnInteract;
+                @Interact.performed -= instance.OnInteract;
+                @Interact.canceled -= instance.OnInteract;
+            }
+
+            public void RemoveCallbacks(IPlayerInteractionActions instance)
+            {
+                if (m_Wrapper.m_PlayerInteractionActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(IPlayerInteractionActions instance)
+            {
+                foreach (var item in m_Wrapper.m_PlayerInteractionActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_PlayerInteractionActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public PlayerInteractionActions @PlayerInteraction => new PlayerInteractionActions(this);
+
+        // PlayerUI
+        private readonly InputActionMap m_PlayerUI;
+        private List<IPlayerUIActions> m_PlayerUIActionsCallbackInterfaces = new List<IPlayerUIActions>();
+        private readonly InputAction m_PlayerUI_RequestMenu;
+        private readonly InputAction m_PlayerUI_Previous;
+        private readonly InputAction m_PlayerUI_Next;
+        public struct PlayerUIActions
+        {
+            private @GeneratedInput m_Wrapper;
+            public PlayerUIActions(@GeneratedInput wrapper) { m_Wrapper = wrapper; }
+            public InputAction @RequestMenu => m_Wrapper.m_PlayerUI_RequestMenu;
+            public InputAction @Previous => m_Wrapper.m_PlayerUI_Previous;
+            public InputAction @Next => m_Wrapper.m_PlayerUI_Next;
+            public InputActionMap Get() { return m_Wrapper.m_PlayerUI; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(PlayerUIActions set) { return set.Get(); }
+            public void AddCallbacks(IPlayerUIActions instance)
+            {
+                if (instance == null || m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Add(instance);
+                @RequestMenu.started += instance.OnRequestMenu;
+                @RequestMenu.performed += instance.OnRequestMenu;
+                @RequestMenu.canceled += instance.OnRequestMenu;
+                @Previous.started += instance.OnPrevious;
+                @Previous.performed += instance.OnPrevious;
+                @Previous.canceled += instance.OnPrevious;
+                @Next.started += instance.OnNext;
+                @Next.performed += instance.OnNext;
+                @Next.canceled += instance.OnNext;
+            }
+
+            private void UnregisterCallbacks(IPlayerUIActions instance)
+            {
+                @RequestMenu.started -= instance.OnRequestMenu;
+                @RequestMenu.performed -= instance.OnRequestMenu;
+                @RequestMenu.canceled -= instance.OnRequestMenu;
                 @Previous.started -= instance.OnPrevious;
                 @Previous.performed -= instance.OnPrevious;
                 @Previous.canceled -= instance.OnPrevious;
                 @Next.started -= instance.OnNext;
                 @Next.performed -= instance.OnNext;
                 @Next.canceled -= instance.OnNext;
-                @Sprint.started -= instance.OnSprint;
-                @Sprint.performed -= instance.OnSprint;
-                @Sprint.canceled -= instance.OnSprint;
             }
 
-            public void RemoveCallbacks(IPlayerActions instance)
+            public void RemoveCallbacks(IPlayerUIActions instance)
             {
-                if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
+                if (m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Remove(instance))
                     UnregisterCallbacks(instance);
             }
 
-            public void SetCallbacks(IPlayerActions instance)
+            public void SetCallbacks(IPlayerUIActions instance)
             {
-                foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
+                foreach (var item in m_Wrapper.m_PlayerUIActionsCallbackInterfaces)
                     UnregisterCallbacks(item);
-                m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
+                m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Clear();
                 AddCallbacks(instance);
             }
         }
-        public PlayerActions @Player => new PlayerActions(this);
-
-        // IngameUI
-        private readonly InputActionMap m_IngameUI;
-        private List<IIngameUIActions> m_IngameUIActionsCallbackInterfaces = new List<IIngameUIActions>();
-        private readonly InputAction m_IngameUI_RequestMenu;
-        public struct IngameUIActions
-        {
-            private @GeneratedInput m_Wrapper;
-            public IngameUIActions(@GeneratedInput wrapper) { m_Wrapper = wrapper; }
-            public InputAction @RequestMenu => m_Wrapper.m_IngameUI_RequestMenu;
-            public InputActionMap Get() { return m_Wrapper.m_IngameUI; }
-            public void Enable() { Get().Enable(); }
-            public void Disable() { Get().Disable(); }
-            public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(IngameUIActions set) { return set.Get(); }
-            public void AddCallbacks(IIngameUIActions instance)
-            {
-                if (instance == null || m_Wrapper.m_IngameUIActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_IngameUIActionsCallbackInterfaces.Add(instance);
-                @RequestMenu.started += instance.OnRequestMenu;
-                @RequestMenu.performed += instance.OnRequestMenu;
-                @RequestMenu.canceled += instance.OnRequestMenu;
-            }
-
-            private void UnregisterCallbacks(IIngameUIActions instance)
-            {
-                @RequestMenu.started -= instance.OnRequestMenu;
-                @RequestMenu.performed -= instance.OnRequestMenu;
-                @RequestMenu.canceled -= instance.OnRequestMenu;
-            }
-
-            public void RemoveCallbacks(IIngameUIActions instance)
-            {
-                if (m_Wrapper.m_IngameUIActionsCallbackInterfaces.Remove(instance))
-                    UnregisterCallbacks(instance);
-            }
-
-            public void SetCallbacks(IIngameUIActions instance)
-            {
-                foreach (var item in m_Wrapper.m_IngameUIActionsCallbackInterfaces)
-                    UnregisterCallbacks(item);
-                m_Wrapper.m_IngameUIActionsCallbackInterfaces.Clear();
-                AddCallbacks(instance);
-            }
-        }
-        public IngameUIActions @IngameUI => new IngameUIActions(this);
+        public PlayerUIActions @PlayerUI => new PlayerUIActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         public InputControlScheme KeyboardMouseScheme
         {
@@ -1584,7 +1633,7 @@ namespace CodeSmile.BetterNetcode.Input
             void OnJoin(InputAction.CallbackContext context);
             void OnLeave(InputAction.CallbackContext context);
         }
-        public interface IUIActions
+        public interface IMenuActions
         {
             void OnNavigate(InputAction.CallbackContext context);
             void OnSubmit(InputAction.CallbackContext context);
@@ -1597,21 +1646,24 @@ namespace CodeSmile.BetterNetcode.Input
             void OnTrackedDevicePosition(InputAction.CallbackContext context);
             void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         }
-        public interface IPlayerActions
+        public interface IPlayerKinematicsActions
         {
             void OnMove(InputAction.CallbackContext context);
             void OnLook(InputAction.CallbackContext context);
-            void OnAttack(InputAction.CallbackContext context);
-            void OnInteract(InputAction.CallbackContext context);
             void OnCrouch(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
-            void OnPrevious(InputAction.CallbackContext context);
-            void OnNext(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
         }
-        public interface IIngameUIActions
+        public interface IPlayerInteractionActions
+        {
+            void OnAttack(InputAction.CallbackContext context);
+            void OnInteract(InputAction.CallbackContext context);
+        }
+        public interface IPlayerUIActions
         {
             void OnRequestMenu(InputAction.CallbackContext context);
+            void OnPrevious(InputAction.CallbackContext context);
+            void OnNext(InputAction.CallbackContext context);
         }
     }
 }
