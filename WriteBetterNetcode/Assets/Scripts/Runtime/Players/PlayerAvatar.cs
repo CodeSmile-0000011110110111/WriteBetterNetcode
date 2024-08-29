@@ -13,10 +13,15 @@ namespace CodeSmile.Players
 	{
 		[SerializeField] private PlayerAvatarPrefabs m_AvatarPrefabs;
 
+		private Player m_Player;
 		private GameObject m_AvatarInstance;
+		public Byte PreviousIndex => (Byte)(m_Player.AvatarIndex == 0 ? m_AvatarPrefabs.Count - 1 : m_Player.AvatarIndex - 1);
+		public Byte NextIndex => (Byte)(m_Player.AvatarIndex == m_AvatarPrefabs.Count - 1 ? 0 : m_Player.AvatarIndex + 1);
 
 		public void OnPlayerSpawn(Int32 playerIndex) {}
 		public void OnPlayerDespawn(Int32 playerIndex) {}
+
+		private void Awake() => m_Player = GetComponent<Player>();
 
 		internal void SetAvatar(Byte avatarIndex)
 		{

@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Input;
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -20,10 +21,13 @@ namespace CodeSmile.Players.Controllers
 
 		public override void OnMove(InputAction.CallbackContext context)
 		{
-			var moveDir = GetHorizontalVelocity(context);
-			moveDir.x *= MotionSensitivity.x;
-			moveDir.y *= MotionSensitivity.z;
-			SetHorizontalVelocity(moveDir);
+			if (InputUsers.GetUserIndex(context) == PlayerIndex)
+			{
+				var moveDir = GetHorizontalVelocity(context);
+				moveDir.x *= MotionSensitivity.x;
+				moveDir.y *= MotionSensitivity.z;
+				SetHorizontalVelocity(moveDir);
+			}
 		}
 
 		public override void OnLook(InputAction.CallbackContext context) {}
@@ -31,8 +35,11 @@ namespace CodeSmile.Players.Controllers
 
 		public override void OnJump(InputAction.CallbackContext context)
 		{
-			if (context.performed)
-				SetVerticalVelocity(1f * MotionSensitivity.y);
+			if (InputUsers.GetUserIndex(context) == PlayerIndex)
+			{
+				if (context.performed)
+					SetVerticalVelocity(1f * MotionSensitivity.y);
+			}
 		}
 
 		public override void OnSprint(InputAction.CallbackContext context) {}

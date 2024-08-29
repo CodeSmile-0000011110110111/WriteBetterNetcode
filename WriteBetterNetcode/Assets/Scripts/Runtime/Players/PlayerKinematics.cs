@@ -4,6 +4,7 @@
 using CodeSmile.Players.Controllers;
 using CodeSmile.Settings;
 using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace CodeSmile.Players
@@ -11,43 +12,59 @@ namespace CodeSmile.Players
 	[DisallowMultipleComponent]
 	public sealed class PlayerKinematics : MonoBehaviour, IPlayerComponent
 	{
-		[SerializeField] private PlayerControllerPrefabs m_ControllerPrefabs;
-		[SerializeField] private int m_ActiveControllerIndex;
+		[SerializeField] private KinematicControllerPrefabs m_ControllerPrefabs;
 
-		private KinematicControllerBase m_ActiveController;
+		private Int32 m_ActiveControllerIndex;
+		private KinematicControllerBase[] m_Controllers;
+		private KinematicControllerBase ActiveController => m_Controllers[m_ActiveControllerIndex];
+
+		public void OnPlayerSpawn(Int32 playerIndex)
+		{
+			InstantiateAllControllers(playerIndex);
+			SetControllerActive(m_ActiveControllerIndex);
+		}
+
+		public void OnPlayerDespawn(Int32 playerIndex)
+		{
+			foreach (var controller in m_Controllers)
+				controller.OnPlayerDespawn(playerIndex);
+		}
 
 		private void Awake()
 		{
 			if (m_ControllerPrefabs == null)
-				throw new MissingComponentException(nameof(PlayerControllerPrefabs));
+				throw new MissingComponentException(nameof(KinematicControllerPrefabs));
 		}
 
-		public void OnPlayerSpawn(int playerIndex)
+		private void InstantiateAllControllers(int playerIndex)
 		{
-			SetController(m_ActiveControllerIndex);
-			m_ActiveController?.OnPlayerSpawn(playerIndex);
+			m_Controllers = new KinematicControllerBase[m_ControllerPrefabs.Count];
+
+			for (var i = 0; i < m_ControllerPrefabs.Count; i++)
+			{
+				var prefab = m_ControllerPrefabs[i];
+				var obj = Instantiate(prefab, transform);
+
+				m_Controllers[i] = obj.GetComponent<KinematicControllerBase>();
+				if (m_Controllers[i] == null)
+					throw new MissingComponentException($"{m_Controllers[i].name}: missing {nameof(KinematicControllerBase)}");
+
+				m_Controllers[i].OnPlayerSpawn(playerIndex);
+				m_Controllers[i].gameObject.SetActive(false);
+			}
 		}
 
-		public void OnPlayerDespawn(int playerIndex)
+		public void SetControllerActive(Int32 controllerIndex)
 		{
-			m_ActiveController?.OnPlayerDespawn(playerIndex);
-			Destroy(m_ActiveController);
-			m_ActiveController = null;
+			ActiveController.gameObject.SetActive(false);
+			m_ActiveControllerIndex = controllerIndex;
+			ActiveController.gameObject.SetActive(true);
 		}
 
-		public void SetController(int controllerIndex)
-		{
-			var prefab = m_ControllerPrefabs[controllerIndex];
-			if (prefab == null)
-				throw new ArgumentNullException($"PlayerControllerPrefab[{controllerIndex}] is null");
+		public void PreviousController() =>
+			SetControllerActive(m_ActiveControllerIndex == 0 ? m_ControllerPrefabs.Count - 1 : m_ActiveControllerIndex - 1);
 
-			if (m_ActiveController != null)
-				Destroy(m_ActiveController);
-
-			var controllerObj = Instantiate(prefab, transform);
-			m_ActiveController = controllerObj.GetComponent<KinematicControllerBase>();
-			if (m_ActiveController == null)
-				throw new MissingComponentException($"{controllerObj.name}: missing {nameof(KinematicControllerBase)}");
-		}
+		public void NextController() =>
+			SetControllerActive(m_ActiveControllerIndex == m_ControllerPrefabs.Count - 1 ? 0 : m_ActiveControllerIndex + 1);
 	}
 }

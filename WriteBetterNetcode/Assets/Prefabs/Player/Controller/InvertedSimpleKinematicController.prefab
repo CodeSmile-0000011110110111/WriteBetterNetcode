@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8915835870338441565}
   - component: {fileID: 8132290919233798729}
   m_Layer: 0
-  m_Name: TestPlayerController 2
+  m_Name: InvertedSimpleKinematicController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,8 +57,8 @@ CharacterController:
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_MinMoveDistance: 0.0001
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!114 &8132290919233798729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +71,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb982e1f8c604751a32d675ca9bd1624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_MotionSensitivity: {x: -0.01, y: 0.06, z: -0.01}
+  m_Gravity: -0.0008
 --- !u!1001 &3812875176297213324
 PrefabInstance:
   m_ObjectHideFlags: 0

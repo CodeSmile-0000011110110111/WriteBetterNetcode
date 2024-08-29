@@ -29,17 +29,18 @@ namespace CodeSmile.Input
 			{
 				foreach (var actions in Actions)
 				{
+					var pairing = actions.Pairing;
 					if (value)
 					{
-						actions.Pairing.Enable();
-						actions.Pairing.Join.Enable();
-						actions.Pairing.Leave.Disable();
+						pairing.Enable();
+						pairing.Join.Enable();
+						pairing.Leave.Disable();
 					}
 					else
 					{
-						actions.Pairing.Disable();
-						actions.Pairing.Join.Disable();
-						actions.Pairing.Leave.Disable();
+						pairing.Disable();
+						pairing.Join.Disable();
+						pairing.Leave.Disable();
 					}
 				}
 			}

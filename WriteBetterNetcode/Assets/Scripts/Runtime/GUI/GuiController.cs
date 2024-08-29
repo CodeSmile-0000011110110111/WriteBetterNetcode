@@ -25,7 +25,7 @@ namespace CodeSmile.GUI
 			{
 				var userIndex = InputUsers.GetUserIndex(context);
 				if (userIndex >= 0)
-					OnPlayerRequestIngameMenu(userIndex);
+					PlayerRequestIngameMenu(userIndex);
 			}
 		}
 
@@ -49,46 +49,30 @@ namespace CodeSmile.GUI
 			CouchPlayers.OnCouchSessionStopped -= OnCouchSessionStopped;
 		}
 
-		private void SetInputRequestMenuEnabled(Boolean enabled)
-		{
-			var inputUsers = Components.InputUsers;
-			foreach (var actions in inputUsers.Actions)
-			{
-				var ingameUi = actions.PlayerUI;
-				if (enabled)
-				{
-					ingameUi.Enable();
-					ingameUi.SetCallbacks(this);
-				}
-				else
-				{
-					ingameUi.Disable();
-					ingameUi.SetCallbacks(null);
-				}
-			}
-		}
-
 		private void OnCouchSessionStarted(CouchPlayers localCouchPlayers)
 		{
 			m_CouchPlayers = localCouchPlayers;
 			m_CouchPlayers.OnCouchPlayerJoin += OnCouchPlayerJoin;
 			m_CouchPlayers.OnCouchPlayerLeave += OnCouchPlayerLeave;
-
-			SetInputRequestMenuEnabled(true);
 		}
 
 		private void OnCouchSessionStopped() => m_CouchPlayers = null;
 
-		private void OnCouchPlayerJoin(Int32 playerIndex) {}
+		private void OnCouchPlayerJoin(Int32 playerIndex)
+		{
+			m_CouchPlayers[playerIndex].DidRequestMenu += PlayerRequestIngameMenu;
+		}
 
 		private void OnCouchPlayerLeave(Int32 playerIndex)
 		{
+			m_CouchPlayers[playerIndex].DidRequestMenu -= PlayerRequestIngameMenu;
+
 			// leave from menu? Close menu!
 			if (m_IngameMenu.IsVisible && m_IngameMenu.MenuPlayerIndex == playerIndex)
 				m_IngameMenu.Hide();
 		}
 
-		private void OnPlayerRequestIngameMenu(Int32 playerIndex)
+		private void PlayerRequestIngameMenu(Int32 playerIndex)
 		{
 			m_IngameMenu.MenuPlayerIndex = playerIndex;
 			m_IngameMenu.ToggleVisible();

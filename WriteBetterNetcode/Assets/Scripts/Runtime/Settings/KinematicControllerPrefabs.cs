@@ -9,8 +9,8 @@ using UnityEngine;
 
 namespace CodeSmile.Settings
 {
-	[CreateAssetMenu(fileName = "Player Avatars", menuName = "CodeSmile/Player Avatars", order = 0)]
-	public sealed class PlayerAvatarPrefabs : ScriptableObject, IEnumerable
+	[CreateAssetMenu(fileName = "Kinematic Controllers", menuName = "CodeSmile/Kinematic Controllers", order = 1)]
+	public sealed class KinematicControllerPrefabs : ScriptableObject, IEnumerable
 	{
 		[SerializeField] private List<GameObject> m_Prefabs = new();
 		public GameObject this[Int32 index]
@@ -19,7 +19,7 @@ namespace CodeSmile.Settings
 			{
 				if (index < 0 || index >= m_Prefabs.Count)
 				{
-					Debug.LogWarning($"avatar index {index} out of bounds!");
+					Debug.LogWarning($"Kinematic controller index {index} out of bounds!");
 					return null;
 				}
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8915835870338441565}
   - component: {fileID: 8132290919233798729}
   m_Layer: 0
-  m_Name: TestPlayerController
+  m_Name: SimpleKinematicController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

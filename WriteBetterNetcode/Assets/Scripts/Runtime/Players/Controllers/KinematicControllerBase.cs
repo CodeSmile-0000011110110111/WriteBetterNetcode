@@ -13,7 +13,10 @@ namespace CodeSmile.Players.Controllers
 	public abstract class KinematicControllerBase : MonoBehaviour, IPlayerComponent, GeneratedInput.IPlayerKinematicsActions
 	{
 		[SerializeField] private Vector3 m_MotionSensitivity = Vector3.one;
+
+		[SerializeField] private Int32 m_PlayerIndex = -1;
 		protected CharacterController m_CharacterController;
+		public Int32 PlayerIndex => m_PlayerIndex;
 
 		protected Vector3 Velocity { get; set; }
 		public Vector3 MotionSensitivity
@@ -30,6 +33,8 @@ namespace CodeSmile.Players.Controllers
 		protected static Vector2 GetHorizontalVelocity(InputAction.CallbackContext context) =>
 			context.performed ? context.ReadValue<Vector2>() : Vector2.zero;
 
+		public virtual void OnPlayerSpawn(Int32 playerIndex) => m_PlayerIndex = playerIndex;
+		public virtual void OnPlayerDespawn(Int32 playerIndex) {}
 		public virtual void OnMove(InputAction.CallbackContext context) {}
 		public virtual void OnLook(InputAction.CallbackContext context) {}
 		public virtual void OnCrouch(InputAction.CallbackContext context) {}
@@ -39,16 +44,24 @@ namespace CodeSmile.Players.Controllers
 		/// <summary>
 		///     Must call base.Awake() when overridden!
 		/// </summary>
-		protected virtual void Awake() => m_CharacterController = TryMoveCharacterControllerToParent();
+		protected virtual void OnEnable()
+		{
+			m_CharacterController = TryMoveCharacterControllerToParent();
+			m_CharacterController.enabled = true;
+			EnableKinematicInputCallbacks(PlayerIndex);
+		}
 
 		/// <summary>
-		///     Must call base.OnDestroy() when overridden!
+		///     Must call base.Awake() when overridden!
 		/// </summary>
-		protected virtual void OnDestroy()
+		protected virtual void OnDisable()
 		{
-			// remove char ctrl we added to parent
-			Destroy(m_CharacterController);
-			m_CharacterController = null;
+			if (m_CharacterController != null)
+			{
+				DisableKinematicInputCallbacks(PlayerIndex);
+				m_CharacterController.enabled = false;
+				m_CharacterController = null;
+			}
 		}
 
 		/// <summary>
@@ -71,7 +84,7 @@ namespace CodeSmile.Players.Controllers
 				parentCtrl = parent.AddComponent<CharacterController>();
 
 			CopyInspectorProperties(sourceCtrl, parentCtrl);
-			Destroy(sourceCtrl);
+			sourceCtrl.enabled = false; // make sure the source ctrl doesn't get in the way
 
 			return parentCtrl;
 		}
@@ -93,24 +106,22 @@ namespace CodeSmile.Players.Controllers
 			dest.layerOverridePriority = source.layerOverridePriority;
 			dest.includeLayers = source.includeLayers;
 			dest.excludeLayers = source.excludeLayers;
-			dest.enabled = source.enabled;
 		}
-
-		public virtual void OnPlayerSpawn(Int32 playerIndex) => EnableKinematicInputCallbacks(playerIndex);
-		public virtual void OnPlayerDespawn(Int32 playerIndex) => DisableKinematicInputCallbacks(playerIndex);
 
 		private void EnableKinematicInputCallbacks(Int32 playerIndex)
 		{
 			var inputActions = Components.InputUsers.Actions[playerIndex];
-			inputActions.PlayerKinematics.SetCallbacks(this);
-			inputActions.PlayerKinematics.Enable();
+			var kinematics = inputActions.PlayerKinematics;
+			kinematics.SetCallbacks(this);
+			kinematics.Enable();
 		}
 
 		private void DisableKinematicInputCallbacks(Int32 playerIndex)
 		{
 			var inputActions = Components.InputUsers.Actions[playerIndex];
-			inputActions.PlayerKinematics.Disable();
-			inputActions.PlayerKinematics.SetCallbacks(null);
+			var kinematics = inputActions.PlayerKinematics;
+			kinematics.Disable();
+			kinematics.SetCallbacks(null);
 		}
 
 		/// <summary>
