@@ -7,10 +7,10 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace CodeSmile
+namespace CodeSmile.Players.Controllers
 {
 	[DisallowMultipleComponent]
-	public abstract class ModularKinematicControllerBase : MonoBehaviour, GeneratedInput.IPlayerKinematicsActions
+	public abstract class KinematicControllerBase : MonoBehaviour, GeneratedInput.IPlayerKinematicsActions
 	{
 		[SerializeField] private Vector3 m_MotionSensitivity = Vector3.one;
 		protected CharacterController m_CharacterController;

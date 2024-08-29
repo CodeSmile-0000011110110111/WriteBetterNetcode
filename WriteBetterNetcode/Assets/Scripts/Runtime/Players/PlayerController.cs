@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Players.Controllers;
 using CodeSmile.Settings;
 using System;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace CodeSmile.Players
 		[SerializeField] private PlayerControllerPrefabs m_ControllerPrefabs;
 		[SerializeField] private int m_ActiveControllerIndex;
 
-		private ModularKinematicControllerBase m_ActiveController;
+		private KinematicControllerBase m_ActiveController;
 
 		private void Awake()
 		{
@@ -44,9 +45,9 @@ namespace CodeSmile.Players
 				Destroy(m_ActiveController);
 
 			var controllerObj = Instantiate(prefab, transform);
-			m_ActiveController = controllerObj.GetComponent<ModularKinematicControllerBase>();
+			m_ActiveController = controllerObj.GetComponent<KinematicControllerBase>();
 			if (m_ActiveController == null)
-				throw new MissingComponentException($"{controllerObj.name}: missing {nameof(ModularKinematicControllerBase)}");
+				throw new MissingComponentException($"{controllerObj.name}: missing {nameof(KinematicControllerBase)}");
 		}
 	}
 }

@@ -6,9 +6,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace CodeSmile
+namespace CodeSmile.Players.Controllers
 {
-	public sealed class SimpleKinematicController : ModularKinematicControllerBase
+	public sealed class SimpleKinematicController : KinematicControllerBase
 	{
 		[SerializeField] private Single m_Gravity = -1f;
 
