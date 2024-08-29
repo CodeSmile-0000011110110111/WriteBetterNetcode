@@ -9,11 +9,14 @@ using UnityEngine;
 namespace CodeSmile.Players
 {
 	[DisallowMultipleComponent]
-	internal sealed class PlayerAvatar : MonoBehaviour
+	internal sealed class PlayerAvatar : MonoBehaviour, IPlayerComponent
 	{
 		[SerializeField] private PlayerAvatarPrefabs m_AvatarPrefabs;
 
 		private GameObject m_AvatarInstance;
+
+		public void OnPlayerSpawn(Int32 playerIndex) {}
+		public void OnPlayerDespawn(Int32 playerIndex) {}
 
 		internal void SetAvatar(Byte avatarIndex)
 		{

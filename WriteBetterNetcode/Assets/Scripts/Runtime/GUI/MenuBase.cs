@@ -42,22 +42,8 @@ namespace CodeSmile.GUI
 		private void SetMenuInputEnabled(Boolean menuInputEnabled)
 		{
 			var inputUsers = Components.InputUsers;
-			var playerActions = inputUsers.Actions[MenuPlayerIndex];
-
-			// enable or disable everyone's Player inputs
-			foreach (var actions in inputUsers.Actions)
-			{
-				if (menuInputEnabled)
-					actions.Menu.Disable();
-				else
-					actions.Menu.Enable();
-			}
-
-			// enable only the requesting player's UI input
-			if (menuInputEnabled)
-				playerActions.Menu.Enable();
-			else
-				playerActions.Menu.Disable();
+			inputUsers.GameActionsEnabled = !menuInputEnabled;
+			inputUsers.UiActionsEnabled = menuInputEnabled;
 		}
 	}
 }

@@ -45,9 +45,64 @@ namespace CodeSmile.Input
 			}
 		}
 
+		public Boolean GameActionsEnabled
+		{
+			get => Actions[0].PlayerKinematics.enabled;
+			set
+			{
+				// enable or disable everyone's Player inputs
+				foreach (var actions in m_Actions)
+				{
+					if (value)
+					{
+						actions.PlayerKinematics.Enable();
+						actions.PlayerInteraction.Enable();
+					}
+					else
+					{
+						actions.PlayerKinematics.Disable();
+						actions.PlayerInteraction.Disable();
+					}
+				}
+			}
+		}
+
+		public Boolean UiActionsEnabled
+		{
+			get => Actions[0].UI.enabled;
+			set
+			{
+				// enable or disable everyone's Player inputs
+				foreach (var actions in m_Actions)
+				{
+					if (value)
+						actions.UI.Enable();
+					else
+						actions.UI.Disable();
+				}
+			}
+		}
+
+		public Boolean PlayerUiActionsEnabled
+		{
+			get => Actions[0].PlayerUI.enabled;
+			set
+			{
+				// enable or disable everyone's Player inputs
+				foreach (var actions in m_Actions)
+				{
+					if (value)
+						actions.PlayerUI.Enable();
+					else
+						actions.PlayerUI.Disable();
+				}
+			}
+		}
+
 		private InputUser HostUser { get => m_Users[0]; set => m_Users[0] = value; }
 
 		public static Int32 GetUserIndex(InputAction.CallbackContext context) => GetUserIndex(context.control.device);
+
 		public static Int32 GetUserIndex(InputDevice device)
 		{
 			var user = InputUser.FindUserPairedToDevice(device);
@@ -95,9 +150,7 @@ namespace CodeSmile.Input
 
 			var unpairedDevices = InputUser.GetUnpairedInputDevices();
 			foreach (var device in unpairedDevices)
-			{
 				HostUser = InputUser.PerformPairingWithDevice(device, HostUser);
-			}
 		}
 
 		private void CreateInputActions()

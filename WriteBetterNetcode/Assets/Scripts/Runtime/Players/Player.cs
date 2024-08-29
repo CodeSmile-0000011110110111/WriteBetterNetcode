@@ -9,9 +9,9 @@ using UnityEngine;
 namespace CodeSmile.Players
 {
 	[DisallowMultipleComponent]
-	[RequireComponent(typeof(PlayerAvatar), typeof(PlayerController))]
+	[RequireComponent(typeof(PlayerAvatar), typeof(PlayerKinematics))]
 	[RequireComponent(typeof(PlayerVars), typeof(PlayerServer), typeof(PlayerClient))]
-	public sealed class Player : NetworkBehaviour
+	public sealed class Player : NetworkBehaviour, IPlayerComponent
 	{
 		private PlayerAvatar m_Avatar;
 		private PlayerClient m_ClientSide;
@@ -21,6 +21,28 @@ namespace CodeSmile.Players
 
 		public Int32 PlayerIndex { get; private set; } = -1;
 
+		public void OnPlayerSpawn(Int32 playerIndex)
+		{
+			PlayerIndex = playerIndex;
+
+			foreach (var playerComponent in GetComponents<IPlayerComponent>())
+			{
+				// don't infinite recurse this
+				if (playerComponent != this)
+					playerComponent.OnPlayerSpawn(playerIndex);
+			}
+		}
+
+		public void OnPlayerDespawn(Int32 playerIndex)
+		{
+			foreach (var playerComponent in GetComponents<IPlayerComponent>())
+			{
+				// don't infinite recurse this
+				if (playerComponent != this)
+					playerComponent.OnPlayerDespawn(playerIndex);
+			}
+		}
+
 		private void Awake()
 		{
 			m_Avatar = GetComponent<PlayerAvatar>();
@@ -29,19 +51,5 @@ namespace CodeSmile.Players
 		}
 
 		internal void OnAvatarIndexChanged(Byte _, Byte avatarIndex) => m_Avatar.SetAvatar(avatarIndex);
-
-		internal void OnCouchPlayerSpawn(Int32 playerIndex)
-		{
-			PlayerIndex = playerIndex;
-
-			var controller = GetComponent<PlayerController>();
-			controller.OnPlayerSpawn(PlayerIndex);
-		}
-
-		internal void OnCouchPlayerDespawn()
-		{
-			var controller = GetComponent<PlayerController>();
-			controller.OnPlayerDespawn(PlayerIndex);
-		}
 	}
 }

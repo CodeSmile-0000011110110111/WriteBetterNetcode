@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 namespace CodeSmile.Players.Controllers
 {
 	[DisallowMultipleComponent]
-	public abstract class KinematicControllerBase : MonoBehaviour, GeneratedInput.IPlayerKinematicsActions
+	public abstract class KinematicControllerBase : MonoBehaviour, IPlayerComponent, GeneratedInput.IPlayerKinematicsActions
 	{
 		[SerializeField] private Vector3 m_MotionSensitivity = Vector3.one;
 		protected CharacterController m_CharacterController;
@@ -96,17 +96,17 @@ namespace CodeSmile.Players.Controllers
 			dest.enabled = source.enabled;
 		}
 
-		public virtual void OnPlayerSpawn(Int32 playerIndex) => EnableInputCallbacks(playerIndex);
-		public virtual void OnPlayerDespawn(Int32 playerIndex) => DisableInputCallbacks(playerIndex);
+		public virtual void OnPlayerSpawn(Int32 playerIndex) => EnableKinematicInputCallbacks(playerIndex);
+		public virtual void OnPlayerDespawn(Int32 playerIndex) => DisableKinematicInputCallbacks(playerIndex);
 
-		private void EnableInputCallbacks(Int32 playerIndex)
+		private void EnableKinematicInputCallbacks(Int32 playerIndex)
 		{
 			var inputActions = Components.InputUsers.Actions[playerIndex];
 			inputActions.PlayerKinematics.SetCallbacks(this);
 			inputActions.PlayerKinematics.Enable();
 		}
 
-		private void DisableInputCallbacks(Int32 playerIndex)
+		private void DisableKinematicInputCallbacks(Int32 playerIndex)
 		{
 			var inputActions = Components.InputUsers.Actions[playerIndex];
 			inputActions.PlayerKinematics.Disable();

@@ -74,7 +74,7 @@ namespace CodeSmile.BetterNetcode.Input
             ]
         },
         {
-            ""name"": ""Menu"",
+            ""name"": ""UI"",
             ""id"": ""272f6d14-89ba-496f-b7ff-215263d3219f"",
             ""actions"": [
                 {
@@ -984,6 +984,24 @@ namespace CodeSmile.BetterNetcode.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""01cbbfdb-02f5-4f06-ab89-3024da93ad24"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""67af3b47-3407-4ffe-880e-429c0d44c688"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1050,6 +1068,50 @@ namespace CodeSmile.BetterNetcode.Input
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Next"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d2a495e4-1e75-4d0a-9423-7b2d2f76079a"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""59d4a01b-cbba-482a-b34d-d5b3dbf201f2"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0358b576-6e1b-4336-9790-99338bf042cf"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""347f6560-7654-4aec-a167-1eaa5a2efb5a"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Down"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1123,18 +1185,18 @@ namespace CodeSmile.BetterNetcode.Input
             m_Pairing = asset.FindActionMap("Pairing", throwIfNotFound: true);
             m_Pairing_Join = m_Pairing.FindAction("Join", throwIfNotFound: true);
             m_Pairing_Leave = m_Pairing.FindAction("Leave", throwIfNotFound: true);
-            // Menu
-            m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
-            m_Menu_Navigate = m_Menu.FindAction("Navigate", throwIfNotFound: true);
-            m_Menu_Submit = m_Menu.FindAction("Submit", throwIfNotFound: true);
-            m_Menu_Cancel = m_Menu.FindAction("Cancel", throwIfNotFound: true);
-            m_Menu_Point = m_Menu.FindAction("Point", throwIfNotFound: true);
-            m_Menu_Click = m_Menu.FindAction("Click", throwIfNotFound: true);
-            m_Menu_RightClick = m_Menu.FindAction("RightClick", throwIfNotFound: true);
-            m_Menu_MiddleClick = m_Menu.FindAction("MiddleClick", throwIfNotFound: true);
-            m_Menu_ScrollWheel = m_Menu.FindAction("ScrollWheel", throwIfNotFound: true);
-            m_Menu_TrackedDevicePosition = m_Menu.FindAction("TrackedDevicePosition", throwIfNotFound: true);
-            m_Menu_TrackedDeviceOrientation = m_Menu.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+            // UI
+            m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+            m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
+            m_UI_Submit = m_UI.FindAction("Submit", throwIfNotFound: true);
+            m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
+            m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
+            m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
+            m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
+            m_UI_MiddleClick = m_UI.FindAction("MiddleClick", throwIfNotFound: true);
+            m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
+            m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
+            m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
             // PlayerKinematics
             m_PlayerKinematics = asset.FindActionMap("PlayerKinematics", throwIfNotFound: true);
             m_PlayerKinematics_Move = m_PlayerKinematics.FindAction("Move", throwIfNotFound: true);
@@ -1151,12 +1213,14 @@ namespace CodeSmile.BetterNetcode.Input
             m_PlayerUI_RequestMenu = m_PlayerUI.FindAction("RequestMenu", throwIfNotFound: true);
             m_PlayerUI_Previous = m_PlayerUI.FindAction("Previous", throwIfNotFound: true);
             m_PlayerUI_Next = m_PlayerUI.FindAction("Next", throwIfNotFound: true);
+            m_PlayerUI_Up = m_PlayerUI.FindAction("Up", throwIfNotFound: true);
+            m_PlayerUI_Down = m_PlayerUI.FindAction("Down", throwIfNotFound: true);
         }
 
         ~@GeneratedInput()
         {
             UnityEngine.Debug.Assert(!m_Pairing.enabled, "This will cause a leak and performance issues, GeneratedInput.Pairing.Disable() has not been called.");
-            UnityEngine.Debug.Assert(!m_Menu.enabled, "This will cause a leak and performance issues, GeneratedInput.Menu.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, GeneratedInput.UI.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_PlayerKinematics.enabled, "This will cause a leak and performance issues, GeneratedInput.PlayerKinematics.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_PlayerInteraction.enabled, "This will cause a leak and performance issues, GeneratedInput.PlayerInteraction.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_PlayerUI.enabled, "This will cause a leak and performance issues, GeneratedInput.PlayerUI.Disable() has not been called.");
@@ -1272,42 +1336,42 @@ namespace CodeSmile.BetterNetcode.Input
         }
         public PairingActions @Pairing => new PairingActions(this);
 
-        // Menu
-        private readonly InputActionMap m_Menu;
-        private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
-        private readonly InputAction m_Menu_Navigate;
-        private readonly InputAction m_Menu_Submit;
-        private readonly InputAction m_Menu_Cancel;
-        private readonly InputAction m_Menu_Point;
-        private readonly InputAction m_Menu_Click;
-        private readonly InputAction m_Menu_RightClick;
-        private readonly InputAction m_Menu_MiddleClick;
-        private readonly InputAction m_Menu_ScrollWheel;
-        private readonly InputAction m_Menu_TrackedDevicePosition;
-        private readonly InputAction m_Menu_TrackedDeviceOrientation;
-        public struct MenuActions
+        // UI
+        private readonly InputActionMap m_UI;
+        private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+        private readonly InputAction m_UI_Navigate;
+        private readonly InputAction m_UI_Submit;
+        private readonly InputAction m_UI_Cancel;
+        private readonly InputAction m_UI_Point;
+        private readonly InputAction m_UI_Click;
+        private readonly InputAction m_UI_RightClick;
+        private readonly InputAction m_UI_MiddleClick;
+        private readonly InputAction m_UI_ScrollWheel;
+        private readonly InputAction m_UI_TrackedDevicePosition;
+        private readonly InputAction m_UI_TrackedDeviceOrientation;
+        public struct UIActions
         {
             private @GeneratedInput m_Wrapper;
-            public MenuActions(@GeneratedInput wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Navigate => m_Wrapper.m_Menu_Navigate;
-            public InputAction @Submit => m_Wrapper.m_Menu_Submit;
-            public InputAction @Cancel => m_Wrapper.m_Menu_Cancel;
-            public InputAction @Point => m_Wrapper.m_Menu_Point;
-            public InputAction @Click => m_Wrapper.m_Menu_Click;
-            public InputAction @RightClick => m_Wrapper.m_Menu_RightClick;
-            public InputAction @MiddleClick => m_Wrapper.m_Menu_MiddleClick;
-            public InputAction @ScrollWheel => m_Wrapper.m_Menu_ScrollWheel;
-            public InputAction @TrackedDevicePosition => m_Wrapper.m_Menu_TrackedDevicePosition;
-            public InputAction @TrackedDeviceOrientation => m_Wrapper.m_Menu_TrackedDeviceOrientation;
-            public InputActionMap Get() { return m_Wrapper.m_Menu; }
+            public UIActions(@GeneratedInput wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
+            public InputAction @Submit => m_Wrapper.m_UI_Submit;
+            public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
+            public InputAction @Point => m_Wrapper.m_UI_Point;
+            public InputAction @Click => m_Wrapper.m_UI_Click;
+            public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
+            public InputAction @MiddleClick => m_Wrapper.m_UI_MiddleClick;
+            public InputAction @ScrollWheel => m_Wrapper.m_UI_ScrollWheel;
+            public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
+            public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
+            public InputActionMap Get() { return m_Wrapper.m_UI; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
-            public void AddCallbacks(IMenuActions instance)
+            public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+            public void AddCallbacks(IUIActions instance)
             {
-                if (instance == null || m_Wrapper.m_MenuActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_MenuActionsCallbackInterfaces.Add(instance);
+                if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
                 @Navigate.started += instance.OnNavigate;
                 @Navigate.performed += instance.OnNavigate;
                 @Navigate.canceled += instance.OnNavigate;
@@ -1340,7 +1404,7 @@ namespace CodeSmile.BetterNetcode.Input
                 @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
             }
 
-            private void UnregisterCallbacks(IMenuActions instance)
+            private void UnregisterCallbacks(IUIActions instance)
             {
                 @Navigate.started -= instance.OnNavigate;
                 @Navigate.performed -= instance.OnNavigate;
@@ -1374,21 +1438,21 @@ namespace CodeSmile.BetterNetcode.Input
                 @TrackedDeviceOrientation.canceled -= instance.OnTrackedDeviceOrientation;
             }
 
-            public void RemoveCallbacks(IMenuActions instance)
+            public void RemoveCallbacks(IUIActions instance)
             {
-                if (m_Wrapper.m_MenuActionsCallbackInterfaces.Remove(instance))
+                if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
                     UnregisterCallbacks(instance);
             }
 
-            public void SetCallbacks(IMenuActions instance)
+            public void SetCallbacks(IUIActions instance)
             {
-                foreach (var item in m_Wrapper.m_MenuActionsCallbackInterfaces)
+                foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
                     UnregisterCallbacks(item);
-                m_Wrapper.m_MenuActionsCallbackInterfaces.Clear();
+                m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
                 AddCallbacks(instance);
             }
         }
-        public MenuActions @Menu => new MenuActions(this);
+        public UIActions @UI => new UIActions(this);
 
         // PlayerKinematics
         private readonly InputActionMap m_PlayerKinematics;
@@ -1528,6 +1592,8 @@ namespace CodeSmile.BetterNetcode.Input
         private readonly InputAction m_PlayerUI_RequestMenu;
         private readonly InputAction m_PlayerUI_Previous;
         private readonly InputAction m_PlayerUI_Next;
+        private readonly InputAction m_PlayerUI_Up;
+        private readonly InputAction m_PlayerUI_Down;
         public struct PlayerUIActions
         {
             private @GeneratedInput m_Wrapper;
@@ -1535,6 +1601,8 @@ namespace CodeSmile.BetterNetcode.Input
             public InputAction @RequestMenu => m_Wrapper.m_PlayerUI_RequestMenu;
             public InputAction @Previous => m_Wrapper.m_PlayerUI_Previous;
             public InputAction @Next => m_Wrapper.m_PlayerUI_Next;
+            public InputAction @Up => m_Wrapper.m_PlayerUI_Up;
+            public InputAction @Down => m_Wrapper.m_PlayerUI_Down;
             public InputActionMap Get() { return m_Wrapper.m_PlayerUI; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1553,6 +1621,12 @@ namespace CodeSmile.BetterNetcode.Input
                 @Next.started += instance.OnNext;
                 @Next.performed += instance.OnNext;
                 @Next.canceled += instance.OnNext;
+                @Up.started += instance.OnUp;
+                @Up.performed += instance.OnUp;
+                @Up.canceled += instance.OnUp;
+                @Down.started += instance.OnDown;
+                @Down.performed += instance.OnDown;
+                @Down.canceled += instance.OnDown;
             }
 
             private void UnregisterCallbacks(IPlayerUIActions instance)
@@ -1566,6 +1640,12 @@ namespace CodeSmile.BetterNetcode.Input
                 @Next.started -= instance.OnNext;
                 @Next.performed -= instance.OnNext;
                 @Next.canceled -= instance.OnNext;
+                @Up.started -= instance.OnUp;
+                @Up.performed -= instance.OnUp;
+                @Up.canceled -= instance.OnUp;
+                @Down.started -= instance.OnDown;
+                @Down.performed -= instance.OnDown;
+                @Down.canceled -= instance.OnDown;
             }
 
             public void RemoveCallbacks(IPlayerUIActions instance)
@@ -1633,7 +1713,7 @@ namespace CodeSmile.BetterNetcode.Input
             void OnJoin(InputAction.CallbackContext context);
             void OnLeave(InputAction.CallbackContext context);
         }
-        public interface IMenuActions
+        public interface IUIActions
         {
             void OnNavigate(InputAction.CallbackContext context);
             void OnSubmit(InputAction.CallbackContext context);
@@ -1664,6 +1744,8 @@ namespace CodeSmile.BetterNetcode.Input
             void OnRequestMenu(InputAction.CallbackContext context);
             void OnPrevious(InputAction.CallbackContext context);
             void OnNext(InputAction.CallbackContext context);
+            void OnUp(InputAction.CallbackContext context);
+            void OnDown(InputAction.CallbackContext context);
         }
     }
 }

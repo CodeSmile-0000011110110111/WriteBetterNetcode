@@ -31,6 +31,8 @@ namespace CodeSmile.GUI
 
 		public void OnPrevious(InputAction.CallbackContext context) {}
 		public void OnNext(InputAction.CallbackContext context) {}
+		public void OnUp(InputAction.CallbackContext context) {}
+		public void OnDown(InputAction.CallbackContext context) {}
 
 		private void Awake()
 		{
@@ -88,7 +90,6 @@ namespace CodeSmile.GUI
 
 		private void OnPlayerRequestIngameMenu(Int32 playerIndex)
 		{
-			Debug.Log($"Menu request Player #{playerIndex}");
 			m_IngameMenu.MenuPlayerIndex = playerIndex;
 			m_IngameMenu.ToggleVisible();
 		}

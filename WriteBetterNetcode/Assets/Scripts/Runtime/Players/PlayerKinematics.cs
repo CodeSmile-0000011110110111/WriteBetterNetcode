@@ -9,7 +9,7 @@ using UnityEngine;
 namespace CodeSmile.Players
 {
 	[DisallowMultipleComponent]
-	public sealed class PlayerController : MonoBehaviour
+	public sealed class PlayerKinematics : MonoBehaviour, IPlayerComponent
 	{
 		[SerializeField] private PlayerControllerPrefabs m_ControllerPrefabs;
 		[SerializeField] private int m_ActiveControllerIndex;

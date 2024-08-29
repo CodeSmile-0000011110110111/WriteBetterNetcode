@@ -106,7 +106,7 @@ namespace CodeSmile.Players
 			m_PlayerStatus[playerIndex] = Status.Spawned;
 			SetPlayerDebugName(playerIndex);
 
-			player.OnCouchPlayerSpawn(playerIndex);
+			player.OnPlayerSpawn(playerIndex);
 			OnCouchPlayerJoin?.Invoke(playerIndex);
 		}
 
@@ -116,7 +116,7 @@ namespace CodeSmile.Players
 			if (player != null)
 			{
 				OnCouchPlayerLeave?.Invoke(playerIndex);
-				player.OnCouchPlayerDespawn();
+				player.OnPlayerDespawn(playerIndex);
 				ResetPlayerFields(playerIndex);
 
 				var playerObj = player.GetComponent<NetworkObject>();
