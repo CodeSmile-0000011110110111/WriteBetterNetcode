@@ -1670,10 +1670,10 @@ MonoBehaviour:
   m_OfflineCamera: {fileID: 512638986}
   m_OnlineCamera: {fileID: 1511574606}
   m_PlayerCameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 820508187}
+  - {fileID: 1679215497}
+  - {fileID: 243119137}
+  - {fileID: 2145309384}
 --- !u!1 &2143178687
 GameObject:
   m_ObjectHideFlags: 0
