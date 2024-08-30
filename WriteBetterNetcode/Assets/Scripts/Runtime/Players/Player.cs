@@ -17,9 +17,6 @@ namespace CodeSmile.Players
 	{
 		public event Action<Int32> DidRequestToggleIngameMenu;
 
-		// FIXME: we should receive a callback from GuiController instead
-		public static Boolean m_IsIngameMenuOpen;
-
 		private PlayerAvatar m_Avatar;
 		private PlayerKinematics m_Kinematics;
 		private PlayerClient m_ClientSide;
