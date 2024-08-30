@@ -58,10 +58,8 @@ namespace CodeSmile.GUI
 
 		private void OnCouchSessionStopped() => m_CouchPlayers = null;
 
-		private void OnCouchPlayerJoin(Int32 playerIndex)
-		{
+		private void OnCouchPlayerJoin(Int32 playerIndex) =>
 			m_CouchPlayers[playerIndex].DidRequestMenu += PlayerRequestIngameMenu;
-		}
 
 		private void OnCouchPlayerLeave(Int32 playerIndex)
 		{

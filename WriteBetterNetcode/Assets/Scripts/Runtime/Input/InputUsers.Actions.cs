@@ -102,7 +102,7 @@ namespace CodeSmile.Input
 			else
 				ui.Disable();
 
-			LogActionEnabledness($"{playerIndex} => UI {(enable ? "enable" : "disable")}\n");
+			//LogActionEnabledness($"{playerIndex} => UI {(enable ? "enable" : "disable")}\n");
 		}
 
 		public void SetPlayerKinematicsCallback(Int32 playerIndex, GeneratedInput.IPlayerKinematicsActions callback) =>
@@ -116,7 +116,7 @@ namespace CodeSmile.Input
 			else
 				playerKinematics.Disable();
 
-			LogActionEnabledness($"{playerIndex} => Kinematics {(enable ? "enable" : "disable")}\n");
+			//LogActionEnabledness($"{playerIndex} => Kinematics {(enable ? "enable" : "disable")}\n");
 		}
 
 		public void SetPlayerInteractionCallback(Int32 playerIndex, GeneratedInput.IPlayerInteractionActions callback) =>
@@ -130,7 +130,7 @@ namespace CodeSmile.Input
 			else
 				playerInteraction.Disable();
 
-			LogActionEnabledness($"{playerIndex} => Interaction {(enable ? "enable" : "disable")}\n");
+			//LogActionEnabledness($"{playerIndex} => Interaction {(enable ? "enable" : "disable")}\n");
 		}
 
 		public void SetPlayerUiCallback(Int32 playerIndex, GeneratedInput.IPlayerUIActions callback) =>
@@ -144,7 +144,7 @@ namespace CodeSmile.Input
 			else
 				playerUi.Disable();
 
-			LogActionEnabledness($"{playerIndex} => PlayerUI {(enable ? "enable" : "disable")}\n");
+			//LogActionEnabledness($"{playerIndex} => PlayerUI {(enable ? "enable" : "disable")}\n");
 		}
 
 		public void LogActionEnabledness(String prefix)

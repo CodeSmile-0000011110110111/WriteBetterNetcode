@@ -49,7 +49,7 @@ namespace CodeSmile.Input
 			CreateInputActions();
 			CreateInputUsers();
 			PairUnpairedDevicesWithHostUser();
-			LogActionEnabledness("InputUsers Awake:\n");
+			//LogActionEnabledness("InputUsers Awake:\n");
 
 			InputSystem.onDeviceChange += OnDeviceChange;
 		}

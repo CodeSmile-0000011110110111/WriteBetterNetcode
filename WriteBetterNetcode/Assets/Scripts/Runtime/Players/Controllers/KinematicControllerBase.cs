@@ -33,8 +33,6 @@ namespace CodeSmile.Players.Controllers
 		protected static Vector2 GetHorizontalVelocity(InputAction.CallbackContext context) =>
 			context.performed ? context.ReadValue<Vector2>() : Vector2.zero;
 
-		public virtual void OnActivate(Int32 playerIndex) => m_PlayerIndex = playerIndex;
-		public virtual void OnDeactivate(Int32 playerIndex) {}
 		public virtual void OnMove(InputAction.CallbackContext context) {}
 		public virtual void OnLook(InputAction.CallbackContext context) {}
 		public virtual void OnCrouch(InputAction.CallbackContext context) {}
@@ -61,6 +59,9 @@ namespace CodeSmile.Players.Controllers
 				m_CharacterController = null;
 			}
 		}
+
+		public virtual void OnActivate(Int32 playerIndex) => m_PlayerIndex = playerIndex;
+		public virtual void OnDeactivate(Int32 playerIndex) {}
 
 		/// <summary>
 		///     Move the

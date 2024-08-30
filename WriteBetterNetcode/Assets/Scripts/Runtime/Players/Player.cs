@@ -43,7 +43,7 @@ namespace CodeSmile.Players
 			var inputUsers = Components.InputUsers;
 			inputUsers.SetPlayerUiCallback(playerIndex, this);
 			inputUsers.SetPlayerKinematicsCallback(playerIndex, GetComponent<PlayerKinematics>());
-			inputUsers.LogActionEnabledness($"Player {playerIndex} Spawn:\n");
+			//inputUsers.LogActionEnabledness($"Player {playerIndex} Spawn:\n");
 		}
 
 		public void OnPlayerDespawn(Int32 playerIndex)
@@ -51,7 +51,7 @@ namespace CodeSmile.Players
 			var inputUsers = Components.InputUsers;
 			inputUsers.SetPlayerUiCallback(playerIndex, null);
 			inputUsers.SetPlayerKinematicsCallback(playerIndex, null);
-			inputUsers.LogActionEnabledness($"Player {playerIndex} Despawn:\n");
+			//inputUsers.LogActionEnabledness($"Player {playerIndex} Despawn:\n");
 
 			foreach (var playerComponent in GetComponents<IPlayerComponent>())
 			{
