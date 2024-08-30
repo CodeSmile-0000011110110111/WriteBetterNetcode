@@ -1,38 +1,20 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.BetterNetcode.Input;
-using CodeSmile.Input;
 using CodeSmile.Players;
 using System;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace CodeSmile.GUI
 {
 	[DisallowMultipleComponent]
-	public sealed class GuiController : MonoBehaviour, GeneratedInput.IPlayerUIActions
+	public sealed class GuiController : MonoBehaviour
 	{
 		[SerializeField] private DevMainMenu m_MainMenu;
 		[SerializeField] private DevIngameMenu m_IngameMenu;
 
 		private CouchPlayers m_CouchPlayers;
-
-		public void OnRequestMenu(InputAction.CallbackContext context)
-		{
-			if (context.performed)
-			{
-				var userIndex = InputUsers.GetUserIndex(context);
-				if (userIndex >= 0)
-					PlayerRequestIngameMenu(userIndex);
-			}
-		}
-
-		public void OnPrevious(InputAction.CallbackContext context) {}
-		public void OnNext(InputAction.CallbackContext context) {}
-		public void OnUp(InputAction.CallbackContext context) {}
-		public void OnDown(InputAction.CallbackContext context) {}
 
 		private void Awake()
 		{
