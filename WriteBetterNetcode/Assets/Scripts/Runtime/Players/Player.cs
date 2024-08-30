@@ -2,7 +2,6 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.BetterNetcode.Input;
-using CodeSmile.Input;
 using System;
 using Unity.Netcode;
 using UnityEditor;
@@ -16,7 +15,10 @@ namespace CodeSmile.Players
 	[RequireComponent(typeof(PlayerVars), typeof(PlayerServer), typeof(PlayerClient))]
 	public sealed class Player : NetworkBehaviour, IPlayerComponent, GeneratedInput.IPlayerUIActions
 	{
-		public event Action<Int32> DidRequestMenu;
+		public event Action<Int32> DidRequestToggleIngameMenu;
+
+		// FIXME: we should receive a callback from GuiController instead
+		public static Boolean m_IsIngameMenuOpen;
 
 		private PlayerAvatar m_Avatar;
 		private PlayerKinematics m_Kinematics;
@@ -66,7 +68,7 @@ namespace CodeSmile.Players
 		public void OnRequestMenu(InputAction.CallbackContext context)
 		{
 			if (context.performed)
-				DidRequestMenu?.Invoke(InputUsers.GetUserIndex(context));
+				DidRequestToggleIngameMenu?.Invoke(PlayerIndex);
 		}
 
 		public void OnPrevious(InputAction.CallbackContext context)
@@ -102,5 +104,21 @@ namespace CodeSmile.Players
 		}
 
 		internal void OnAvatarIndexChanged(Byte _, Byte avatarIndex) => m_Avatar.SetAvatar(avatarIndex);
+
+		public void OnOpenIngameMenu()
+		{
+			var inputUsers = Components.InputUsers;
+			inputUsers.AllPlayerInteractionEnabled = false;
+			inputUsers.AllPlayerKinematicsEnabled = false;
+			inputUsers.AllUiEnabled = true;
+		}
+
+		public void OnCloseIngameMenu()
+		{
+			var inputUsers = Components.InputUsers;
+			inputUsers.AllPlayerInteractionEnabled = true;
+			inputUsers.AllPlayerKinematicsEnabled = true;
+			inputUsers.AllUiEnabled = false;
+		}
 	}
 }

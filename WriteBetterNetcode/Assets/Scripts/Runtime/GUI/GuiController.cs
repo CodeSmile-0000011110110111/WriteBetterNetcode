@@ -41,21 +41,26 @@ namespace CodeSmile.GUI
 		private void OnCouchSessionStopped() => m_CouchPlayers = null;
 
 		private void OnCouchPlayerJoin(Int32 playerIndex) =>
-			m_CouchPlayers[playerIndex].DidRequestMenu += PlayerRequestIngameMenu;
+			m_CouchPlayers[playerIndex].DidRequestToggleIngameMenu += OnRequestToggleIngameMenu;
 
 		private void OnCouchPlayerLeave(Int32 playerIndex)
 		{
-			m_CouchPlayers[playerIndex].DidRequestMenu -= PlayerRequestIngameMenu;
+			m_CouchPlayers[playerIndex].DidRequestToggleIngameMenu -= OnRequestToggleIngameMenu;
 
 			// leave from menu? Close menu!
 			if (m_IngameMenu.IsVisible && m_IngameMenu.MenuPlayerIndex == playerIndex)
 				m_IngameMenu.Hide();
 		}
 
-		private void PlayerRequestIngameMenu(Int32 playerIndex)
+		private void OnRequestToggleIngameMenu(Int32 playerIndex)
 		{
 			m_IngameMenu.MenuPlayerIndex = playerIndex;
 			m_IngameMenu.ToggleVisible();
+
+			if (m_IngameMenu.IsVisible)
+				m_CouchPlayers[playerIndex].OnOpenIngameMenu();
+			else
+				m_CouchPlayers[playerIndex].OnCloseIngameMenu();
 		}
 
 		private void ThrowIfNotAssigned<T>(Component component) where T : Component
