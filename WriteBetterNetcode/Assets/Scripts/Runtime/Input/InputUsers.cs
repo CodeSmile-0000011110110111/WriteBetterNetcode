@@ -12,93 +12,12 @@ using UnityEngine.InputSystem.Users;
 namespace CodeSmile.Input
 {
 	[DisallowMultipleComponent]
-	public sealed class InputUsers : MonoBehaviour,
-		GeneratedInput.IPairingActions
+	public sealed partial class InputUsers : MonoBehaviour, GeneratedInput.IPairingActions
 	{
 		public event Action<InputUser, InputDevice> OnDevicePaired;
 		public event Action<InputUser, InputDevice> OnDeviceUnpaired;
 
 		private readonly InputUser[] m_Users = new InputUser[Constants.MaxCouchPlayers];
-		private readonly GeneratedInput[] m_Actions = new GeneratedInput[Constants.MaxCouchPlayers];
-		public GeneratedInput[] Actions => m_Actions;
-
-		public Boolean PairingEnabled
-		{
-			get => Actions[0].Pairing.enabled;
-			set
-			{
-				foreach (var actions in Actions)
-				{
-					var pairing = actions.Pairing;
-					if (value)
-					{
-						pairing.Enable();
-						pairing.Join.Enable();
-						pairing.Leave.Disable();
-					}
-					else
-					{
-						pairing.Disable();
-						pairing.Join.Disable();
-						pairing.Leave.Disable();
-					}
-				}
-			}
-		}
-
-		public Boolean GameActionsEnabled
-		{
-			get => Actions[0].PlayerKinematics.enabled;
-			set
-			{
-				// enable or disable everyone's Player inputs
-				foreach (var actions in m_Actions)
-				{
-					if (value)
-					{
-						actions.PlayerKinematics.Enable();
-						actions.PlayerInteraction.Enable();
-					}
-					else
-					{
-						actions.PlayerKinematics.Disable();
-						actions.PlayerInteraction.Disable();
-					}
-				}
-			}
-		}
-
-		public Boolean UiActionsEnabled
-		{
-			get => Actions[0].UI.enabled;
-			set
-			{
-				// enable or disable everyone's Player inputs
-				foreach (var actions in m_Actions)
-				{
-					if (value)
-						actions.UI.Enable();
-					else
-						actions.UI.Disable();
-				}
-			}
-		}
-
-		public Boolean PlayerUiActionsEnabled
-		{
-			get => Actions[0].PlayerUI.enabled;
-			set
-			{
-				// enable or disable everyone's Player inputs
-				foreach (var actions in m_Actions)
-				{
-					if (value)
-						actions.PlayerUI.Enable();
-					else
-						actions.PlayerUI.Disable();
-				}
-			}
-		}
 
 		private InputUser HostUser { get => m_Users[0]; set => m_Users[0] = value; }
 
@@ -130,6 +49,7 @@ namespace CodeSmile.Input
 			CreateInputActions();
 			CreateInputUsers();
 			PairUnpairedDevicesWithHostUser();
+			LogActionEnabledness("InputUsers Awake:\n");
 
 			InputSystem.onDeviceChange += OnDeviceChange;
 		}
@@ -140,7 +60,7 @@ namespace CodeSmile.Input
 			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
 			{
 				m_Users[playerIndex] = InputUser.CreateUserWithoutPairedDevices();
-				m_Users[playerIndex].AssociateActionsWithUser(m_Actions[playerIndex]);
+				m_Users[playerIndex].AssociateActionsWithUser(m_GeneratedInputs[playerIndex]);
 			}
 		}
 
@@ -158,8 +78,11 @@ namespace CodeSmile.Input
 		{
 			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
 			{
-				Actions[playerIndex] = new GeneratedInput();
-				Actions[playerIndex].Pairing.SetCallbacks(this);
+				var input = new GeneratedInput();
+				input.Pairing.SetCallbacks(this);
+				input.UI.Enable();
+
+				m_GeneratedInputs[playerIndex] = input;
 			}
 		}
 
@@ -235,14 +158,14 @@ namespace CodeSmile.Input
 
 		private void EnableLeaveAction(Int32 userIndex)
 		{
-			m_Actions[userIndex].Pairing.Join.Disable();
-			m_Actions[userIndex].Pairing.Leave.Enable();
+			m_GeneratedInputs[userIndex].Pairing.Join.Disable();
+			m_GeneratedInputs[userIndex].Pairing.Leave.Enable();
 		}
 
 		private void EnableJoinAction(Int32 userIndex)
 		{
-			m_Actions[userIndex].Pairing.Join.Enable();
-			m_Actions[userIndex].Pairing.Leave.Disable();
+			m_GeneratedInputs[userIndex].Pairing.Join.Enable();
+			m_GeneratedInputs[userIndex].Pairing.Leave.Disable();
 		}
 
 		/// <summary>

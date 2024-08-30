@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 namespace CodeSmile.Players.Controllers
 {
 	[DisallowMultipleComponent]
-	public abstract class KinematicControllerBase : MonoBehaviour, IPlayerComponent, GeneratedInput.IPlayerKinematicsActions
+	public abstract class KinematicControllerBase : MonoBehaviour, GeneratedInput.IPlayerKinematicsActions
 	{
 		[SerializeField] private Vector3 m_MotionSensitivity = Vector3.one;
 
@@ -33,8 +33,8 @@ namespace CodeSmile.Players.Controllers
 		protected static Vector2 GetHorizontalVelocity(InputAction.CallbackContext context) =>
 			context.performed ? context.ReadValue<Vector2>() : Vector2.zero;
 
-		public virtual void OnPlayerSpawn(Int32 playerIndex) => m_PlayerIndex = playerIndex;
-		public virtual void OnPlayerDespawn(Int32 playerIndex) {}
+		public virtual void OnActivate(Int32 playerIndex) => m_PlayerIndex = playerIndex;
+		public virtual void OnDeactivate(Int32 playerIndex) {}
 		public virtual void OnMove(InputAction.CallbackContext context) {}
 		public virtual void OnLook(InputAction.CallbackContext context) {}
 		public virtual void OnCrouch(InputAction.CallbackContext context) {}
@@ -48,7 +48,6 @@ namespace CodeSmile.Players.Controllers
 		{
 			m_CharacterController = TryMoveCharacterControllerToParent();
 			m_CharacterController.enabled = true;
-			EnableKinematicInputCallbacks(PlayerIndex);
 		}
 
 		/// <summary>
@@ -58,7 +57,6 @@ namespace CodeSmile.Players.Controllers
 		{
 			if (m_CharacterController != null)
 			{
-				DisableKinematicInputCallbacks(PlayerIndex);
 				m_CharacterController.enabled = false;
 				m_CharacterController = null;
 			}
@@ -106,22 +104,6 @@ namespace CodeSmile.Players.Controllers
 			dest.layerOverridePriority = source.layerOverridePriority;
 			dest.includeLayers = source.includeLayers;
 			dest.excludeLayers = source.excludeLayers;
-		}
-
-		private void EnableKinematicInputCallbacks(Int32 playerIndex)
-		{
-			var inputActions = Components.InputUsers.Actions[playerIndex];
-			var kinematics = inputActions.PlayerKinematics;
-			kinematics.SetCallbacks(this);
-			kinematics.Enable();
-		}
-
-		private void DisableKinematicInputCallbacks(Int32 playerIndex)
-		{
-			var inputActions = Components.InputUsers.Actions[playerIndex];
-			var kinematics = inputActions.PlayerKinematics;
-			kinematics.Disable();
-			kinematics.SetCallbacks(null);
 		}
 
 		/// <summary>

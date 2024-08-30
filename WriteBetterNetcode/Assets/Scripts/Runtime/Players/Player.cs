@@ -40,12 +40,18 @@ namespace CodeSmile.Players
 				playerComponent.OnPlayerSpawn(playerIndex);
 			}
 
-			SetInputEnabled(true);
+			var inputUsers = Components.InputUsers;
+			inputUsers.SetPlayerUiCallback(playerIndex, this);
+			inputUsers.SetPlayerKinematicsCallback(playerIndex, GetComponent<PlayerKinematics>());
+			inputUsers.LogActionEnabledness($"Player {playerIndex} Spawn:\n");
 		}
 
 		public void OnPlayerDespawn(Int32 playerIndex)
 		{
-			SetInputEnabled(false);
+			var inputUsers = Components.InputUsers;
+			inputUsers.SetPlayerUiCallback(playerIndex, null);
+			inputUsers.SetPlayerKinematicsCallback(playerIndex, null);
+			inputUsers.LogActionEnabledness($"Player {playerIndex} Despawn:\n");
 
 			foreach (var playerComponent in GetComponents<IPlayerComponent>())
 			{
@@ -93,23 +99,6 @@ namespace CodeSmile.Players
 			m_Kinematics = GetComponent<PlayerKinematics>();
 			m_ClientSide = GetComponent<PlayerClient>();
 			m_Vars = GetComponent<PlayerVars>();
-		}
-
-		private void SetInputEnabled(Boolean enabled)
-		{
-			var inputUsers = Components.InputUsers;
-			var actions = inputUsers.Actions[PlayerIndex];
-			var playerUi = actions.PlayerUI;
-			if (enabled)
-			{
-				playerUi.Enable();
-				playerUi.SetCallbacks(this);
-			}
-			else
-			{
-				playerUi.Disable();
-				playerUi.SetCallbacks(null);
-			}
 		}
 
 		internal void OnAvatarIndexChanged(Byte _, Byte avatarIndex) => m_Avatar.SetAvatar(avatarIndex);

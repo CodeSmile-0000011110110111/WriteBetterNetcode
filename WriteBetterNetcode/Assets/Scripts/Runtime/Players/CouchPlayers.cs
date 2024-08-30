@@ -50,7 +50,11 @@ namespace CodeSmile.Players
 				var inputUsers = Components.InputUsers;
 				inputUsers.OnDevicePaired += OnInputDevicePaired;
 				inputUsers.OnDeviceUnpaired += OnInputDeviceUnpaired;
-				inputUsers.PairingEnabled = true;
+				inputUsers.AllPairingEnabled = true;
+				inputUsers.AllUiEnabled = false;
+				inputUsers.AllPlayerInteractionEnabled = true;
+				inputUsers.AllPlayerKinematicsEnabled = true;
+				inputUsers.AllPlayerUiEnabled = true;
 
 				OnCouchSessionStarted?.Invoke(this);
 
@@ -65,7 +69,11 @@ namespace CodeSmile.Players
 			if (IsOwner)
 			{
 				var inputUsers = Components.InputUsers;
-				inputUsers.PairingEnabled = false;
+				inputUsers.AllPairingEnabled = false;
+				inputUsers.AllUiEnabled = true;
+				inputUsers.AllPlayerInteractionEnabled = false;
+				inputUsers.AllPlayerKinematicsEnabled = false;
+				inputUsers.AllPlayerUiEnabled = false;
 				inputUsers.OnDevicePaired -= OnInputDevicePaired;
 				inputUsers.OnDeviceUnpaired -= OnInputDeviceUnpaired;
 				inputUsers.UnpairAll();

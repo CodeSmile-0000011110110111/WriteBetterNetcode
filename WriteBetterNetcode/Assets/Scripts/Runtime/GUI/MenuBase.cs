@@ -42,8 +42,7 @@ namespace CodeSmile.GUI
 		private void SetMenuInputEnabled(Boolean menuInputEnabled)
 		{
 			var inputUsers = Components.InputUsers;
-			inputUsers.GameActionsEnabled = !menuInputEnabled;
-			inputUsers.UiActionsEnabled = menuInputEnabled;
+			inputUsers.AllUiEnabled = menuInputEnabled;
 		}
 	}
 }
