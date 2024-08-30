@@ -42,7 +42,9 @@ namespace CodeSmile.Players
 		private void Awake()
 		{
 			if (m_ControllerPrefabs == null)
-				throw new MissingComponentException(nameof(KinematicControllerPrefabs));
+				throw new MissingReferenceException(nameof(KinematicControllerPrefabs));
+
+			m_ControllerPrefabs.ValidatePrefabsHaveComponent<KinematicControllerBase>();
 
 			m_Controllers = new KinematicControllerBase[m_ControllerPrefabs.Count];
 		}

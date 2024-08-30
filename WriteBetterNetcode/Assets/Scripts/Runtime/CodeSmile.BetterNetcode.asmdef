@@ -3,6 +3,7 @@
     "rootNamespace": "CodeSmile",
     "references": [
         "GUID:1491147abca9d7d4bb7105af628b223e",
+        "GUID:4307f53044263cf4b835bd812fc161a4",
         "GUID:75469ad4d38634e559750d17036d5f7c",
         "GUID:767f25efd20d4339a8b1683f8dc1d7d8",
         "GUID:1d6a2152dbbd15c4e9b835110326674a",
