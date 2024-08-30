@@ -1,6 +1,7 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile;
 using CodeSmile.Input;
 using CodeSmile.Netcode;
 using System;
@@ -15,9 +16,11 @@ namespace CodeSmile
 
 		[SerializeField] private NetcodeState m_NetcodeState;
 		[SerializeField] private InputUsers m_InputUsers;
+		[SerializeField] private Cameras m_Cameras;
 
 		public static NetcodeState NetcodeState => s_Instance?.m_NetcodeState;
 		public static InputUsers InputUsers => s_Instance?.m_InputUsers;
+		public static Cameras Cameras => s_Instance?.m_Cameras;
 
 		private void Awake()
 		{
@@ -25,6 +28,7 @@ namespace CodeSmile
 
 			ThrowIfNotAssigned<NetcodeState>(m_NetcodeState);
 			ThrowIfNotAssigned<InputUsers>(m_InputUsers);
+			ThrowIfNotAssigned<Cameras>(m_Cameras);
 		}
 
 		private void OnDestroy() => s_Instance = null;
