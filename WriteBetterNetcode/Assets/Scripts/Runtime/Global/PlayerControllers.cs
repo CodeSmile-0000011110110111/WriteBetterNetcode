@@ -45,7 +45,7 @@ namespace CodeSmile
 				ctrlObj.SetActive(false);
 
 				var controller = ctrlObj.GetComponent<PlayerControllerBase>();
-				controller.Target = target;
+				controller.TargetTransform = target;
 				m_Controllers[playerIndex].Add(controller);
 
 				if (ctrlIndex == 0)

@@ -2,44 +2,68 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.BetterNetcode.Input;
-using System;
+using Unity.Cinemachine;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace CodeSmile.Players.Controllers
 {
-	// TODO: consider if KinematicControllers should be placed at the scene root, all together (like Cameras)
-	// applying the CharacterController and copying properties would be done by PlayerKinematics
-	// benefits? all controllers bundled together, easily accessible; code is simpler; better encapsulation of concerns++
-	// drawbacks? .. not sure
-
 	[DisallowMultipleComponent]
 	public abstract class PlayerControllerBase : MonoBehaviour, GeneratedInput.IPlayerKinematicsActions
 	{
-		[SerializeField] private Vector3 m_MotionSensitivity = Vector3.one;
+		[Header("Translation Axis")]
+		[SerializeField] protected InputAxis m_Sideways = InputAxis.DefaultMomentary;
+		[SerializeField] protected InputAxis m_Vertical = InputAxis.DefaultMomentary;
+		[SerializeField] protected InputAxis m_Forward = InputAxis.DefaultMomentary;
 
-		public Transform Target { get; set; }
+		[Header("Rotation Axis")]
+		[Tooltip("Up/Down rotation. Equates to X axis rotation.")]
+		[SerializeField] protected InputAxis m_Tilt = DefaultTilt;
+		[Tooltip("Sideways rotation. Equates to Y axis rotation.")]
+		[SerializeField] protected InputAxis m_Pan = DefaultPan;
+		[Tooltip("Sideways rotation. Equates to Y axis rotation.")]
+		[SerializeField] protected InputAxis m_Roll = DefaultRoll;
+
+		[Header("Sensitivity Scaling")]
+		[SerializeField] private Vector3 m_TranslationSensitivity = Vector3.one;
+		[SerializeField] private Vector3 m_RotationSensitivity = Vector3.one;
+
+		private static InputAxis DefaultTilt => new()
+		{
+			Value = 0f, Range = new Vector2(-85f, 85f), Wrap = false, Center = 0f,
+			Restrictions = InputAxis.RestrictionFlags.NoRecentering,
+		};
+		private static InputAxis DefaultPan => new()
+		{
+			Value = 0f, Range = new Vector2(-180f, 180f), Wrap = true, Center = 0f,
+			Restrictions = InputAxis.RestrictionFlags.NoRecentering,
+		};
+		private static InputAxis DefaultRoll => new()
+		{
+			Value = 0f, Range = new Vector2(-60f, 60f), Wrap = false, Center = 0f,
+			Restrictions = InputAxis.RestrictionFlags.None,
+		};
+
+		public Transform TargetTransform { get; set; }
 
 		/// <summary>
 		///     The target's character controller - if one is being used.
 		/// </summary>
-		public CharacterController CharacterController { get; private set; }
+		public CharacterController CharController { get; private set; }
 
-		public Vector3 Velocity { get; protected set; }
-		public Vector3 MotionSensitivity
+		public Vector3 Velocity => new(m_Sideways.Value, m_Vertical.Value, m_Forward.Value);
+		public Quaternion Rotation => Quaternion.Euler(m_Tilt.Value, m_Pan.Value, 0f);
+		public Vector3 TranslationSensitivity
 		{
-			get => m_MotionSensitivity;
-			set => m_MotionSensitivity = value;
+			get => m_TranslationSensitivity;
+			set => m_TranslationSensitivity = value;
 		}
-
-		/// <summary>
-		///     Gets Vector2 from an appropriate InputAction if the action is performed. Otherwise Vector2.zero.
-		/// </summary>
-		/// <param name="context"></param>
-		/// <returns>InputAction vector or Vector2.zero if action not performed</returns>
-		protected static Vector2 GetHorizontalVelocity(InputAction.CallbackContext context) =>
-			context.performed ? context.ReadValue<Vector2>() : Vector2.zero;
+		public Vector3 RotationSensitivity
+		{
+			get => m_RotationSensitivity;
+			set => m_RotationSensitivity = value;
+		}
 
 		public virtual void OnMove(InputAction.CallbackContext context) {}
 		public virtual void OnLook(InputAction.CallbackContext context) {}
@@ -47,20 +71,26 @@ namespace CodeSmile.Players.Controllers
 		public virtual void OnJump(InputAction.CallbackContext context) {}
 		public virtual void OnSprint(InputAction.CallbackContext context) {}
 
+		private void OnValidate()
+		{
+			m_Tilt.Validate();
+			m_Pan.Validate();
+		}
+
 		/// <summary>
 		///     Must call base.Awake() when overridden!
 		/// </summary>
 		protected virtual void OnEnable()
 		{
 			// if placed at root, assume "standalone" mode
-			if (transform.parent == null || Target == null)
-				Target = transform;
+			if (transform.parent == null || TargetTransform == null)
+				TargetTransform = transform;
 
-			TryMoveCharacterControllerToTarget(Target);
+			TryMoveCharacterControllerToTarget(TargetTransform);
 
 			// character controller may be on a different object
-			if (CharacterController != null)
-				CharacterController.enabled = true;
+			if (CharController != null)
+				CharController.enabled = true;
 		}
 
 		/// <summary>
@@ -69,10 +99,10 @@ namespace CodeSmile.Players.Controllers
 		protected virtual void OnDisable()
 		{
 			// character controller may be on a different object
-			if (CharacterController != null)
+			if (CharController != null)
 			{
-				CharacterController.enabled = false;
-				CharacterController = null;
+				CharController.enabled = false;
+				CharController = null;
 			}
 		}
 
@@ -82,7 +112,7 @@ namespace CodeSmile.Players.Controllers
 		/// <returns></returns>
 		private void TryMoveCharacterControllerToTarget(Transform target)
 		{
-			CharacterController = null;
+			CharController = null;
 
 			// check if we are using the CharacterController component
 			var ourCharCtrl = GetComponent<CharacterController>();
@@ -96,7 +126,7 @@ namespace CodeSmile.Players.Controllers
 			CopyInspectorProperties(ourCharCtrl, targetCharCtrl);
 			ourCharCtrl.enabled = false; // make sure the source ctrl doesn't get in the way
 
-			CharacterController = targetCharCtrl;
+			CharController = targetCharCtrl;
 		}
 
 		/// <summary>
@@ -121,27 +151,19 @@ namespace CodeSmile.Players.Controllers
 		/// <summary>
 		///     Moves character with velocity.
 		/// </summary>
-		protected void Move() => CharacterController.Move(Velocity);
+		protected void Move()
+		{
+			if (Velocity != Vector3.zero)
+			{
+				CharController.Move(Velocity);
+				TargetTransform.forward = Velocity.normalized;
+			}
+		}
 
-		/// <summary>
-		///     Apply 2D vector's X/Y components to X/Z components of Velocity. The Y component remains unchanged.
-		/// </summary>
-		/// <param name="horizontalVelocity"></param>
-		protected void SetHorizontalVelocity(Vector2 horizontalVelocity) =>
-			Velocity = new Vector3(horizontalVelocity.x, Velocity.y, horizontalVelocity.y);
-
-		/// <summary>
-		///     Assigns value to Velocity's Y component and leaves Velocity X/Z components unchanged.
-		/// </summary>
-		/// <param name="verticalVelocity"></param>
-		protected void SetVerticalVelocity(Single verticalVelocity) =>
-			Velocity = new Vector3(Velocity.x, verticalVelocity, Velocity.z);
-
-		/// <summary>
-		///     Adds to the Velocity's Y component. Leaves X/Z unchanged.
-		/// </summary>
-		/// <param name="verticalVelocity"></param>
-		protected void AddVerticalVelocity(Single verticalVelocity) =>
-			Velocity = new Vector3(Velocity.x, Velocity.y + verticalVelocity, Velocity.z);
+		protected void Rotate()
+		{
+			//Target.localRotation = Rotation;
+			//Target.Rotate(0f, m_Pan.Value, 0f);
+		}
 	}
 }
