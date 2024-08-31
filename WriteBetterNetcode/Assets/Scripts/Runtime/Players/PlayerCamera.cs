@@ -13,13 +13,23 @@ namespace CodeSmile.Players
 	public sealed class PlayerCamera : MonoBehaviour, IPlayerComponent
 	{
 		[SerializeField] private PlayerCameraPrefabs m_CameraPrefabs;
+		[SerializeField] private Transform m_CameraTarget;
+		[SerializeField] private Transform m_LookAtTarget;
+		private Int32 m_PlayerIndex = -1;
+		public Transform Target => m_CameraTarget;
+		public Transform LookAtTarget => m_LookAtTarget;
 
 		public void OnPlayerSpawn(Int32 playerIndex)
 		{
+			m_PlayerIndex = playerIndex;
+
 			var cameras = Components.Cameras;
 			cameras.InstantiatePlayerCinecams(playerIndex, m_CameraPrefabs);
 			cameras.SetPlayerCameraEnabled(playerIndex, true);
-			SetCinecamTarget(playerIndex, transform);
+
+			if (m_CameraTarget == null)
+				m_CameraTarget = transform;
+			SetCinecamTargets(playerIndex, m_CameraTarget, m_LookAtTarget);
 		}
 
 		public void OnPlayerDespawn(Int32 playerIndex)
@@ -37,7 +47,10 @@ namespace CodeSmile.Players
 			m_CameraPrefabs.ValidatePrefabsHaveComponent<CinemachineCamera>();
 		}
 
-		private void SetCinecamTarget(Int32 playerIndex, Transform trackingTarget, Transform lookAtTarget = null)
+		public void SetTargets(Transform trackingTarget, Transform lookAtTarget = null) =>
+			SetCinecamTargets(m_PlayerIndex, trackingTarget, lookAtTarget);
+
+		private void SetCinecamTargets(Int32 playerIndex, Transform trackingTarget, Transform lookAtTarget)
 		{
 			var cameraTarget = new CameraTarget
 			{

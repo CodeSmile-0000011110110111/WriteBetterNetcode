@@ -36,6 +36,8 @@ namespace CodeSmile.Players
 				if (Equals(playerComponent))
 					continue;
 
+				Debug.Log($"OnPlayerSpawn => {playerComponent.GetType().Name}");
+
 				playerComponent.OnPlayerSpawn(playerIndex);
 			}
 

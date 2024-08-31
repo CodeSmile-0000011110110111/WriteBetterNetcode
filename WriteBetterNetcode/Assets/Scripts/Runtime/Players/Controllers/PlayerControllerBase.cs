@@ -42,10 +42,11 @@ namespace CodeSmile.Players.Controllers
 		private static InputAxis DefaultRoll => new()
 		{
 			Value = 0f, Range = new Vector2(-60f, 60f), Wrap = false, Center = 0f,
-			Restrictions = InputAxis.RestrictionFlags.None,
+			Restrictions = InputAxis.RestrictionFlags.NoRecentering,
 		};
 
-		public Transform TargetTransform { get; set; }
+		public Transform MotionTarget { get; set; }
+		public Transform CameraTarget { get; set; }
 
 		/// <summary>
 		///     The target's character controller - if one is being used.
@@ -83,10 +84,10 @@ namespace CodeSmile.Players.Controllers
 		protected virtual void OnEnable()
 		{
 			// if placed at root, assume "standalone" mode
-			if (transform.parent == null || TargetTransform == null)
-				TargetTransform = transform;
+			if (transform.parent == null || MotionTarget == null)
+				MotionTarget = transform;
 
-			TryMoveCharacterControllerToTarget(TargetTransform);
+			TryMoveCharacterControllerToTarget(MotionTarget);
 
 			// character controller may be on a different object
 			if (CharController != null)
@@ -156,7 +157,7 @@ namespace CodeSmile.Players.Controllers
 			if (Velocity != Vector3.zero)
 			{
 				CharController.Move(Velocity);
-				TargetTransform.forward = Velocity.normalized;
+				MotionTarget.forward = Velocity.normalized;
 			}
 		}
 

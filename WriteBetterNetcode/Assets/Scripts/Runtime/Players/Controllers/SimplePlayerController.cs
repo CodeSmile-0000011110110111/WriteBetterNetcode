@@ -16,12 +16,23 @@ namespace CodeSmile.Players.Controllers
 
 		private void Update()
 		{
-			var right = TargetTransform.right;
-			var forward = TargetTransform.forward;
+			var right = MotionTarget.right;
+			var forward = MotionTarget.forward;
 			var moveDir = m_Sideways.Value * right + m_Forward.Value * forward;
 
 			m_Vertical.Value += m_Gravity * Time.deltaTime;
 			moveDir.y += m_Vertical.Value;
+
+			// clamp all values that we are using
+			m_Sideways.Validate();
+			m_Forward.Validate();
+			m_Tilt.Validate();
+			m_Pan.Validate();
+
+			// tilting goes to camera tracking target as we don't want our viewmodel to tilt, just the camera
+			CameraTarget.localRotation = Quaternion.Euler(m_Tilt.Value, 0f, 0f);
+			MotionTarget.localRotation = Quaternion.Euler(0f, m_Pan.Value, 0f);
+
 			CharController.Move(moveDir);
 		}
 
@@ -35,12 +46,8 @@ namespace CodeSmile.Players.Controllers
 		public override void OnLook(InputAction.CallbackContext context)
 		{
 			var lookDir = context.performed ? context.ReadValue<Vector2>() : Vector2.zero;
-			m_Tilt.Value = lookDir.y * RotationSensitivity.y * Time.deltaTime * (m_InvertVertical ? 1f : -1f);
-			m_Pan.Value = lookDir.x * RotationSensitivity.x * Time.deltaTime;
-
-			// kinematic controller only pans, others (eg upper body, head, weapon, camera) get and apply tilt themselves
-			TargetTransform.localRotation *= Quaternion.Euler(0f, m_Pan.Value, 0f);
-
+			m_Tilt.Value += lookDir.y * RotationSensitivity.y * Time.deltaTime * (m_InvertVertical ? 1f : -1f);
+			m_Pan.Value += lookDir.x * RotationSensitivity.x * Time.deltaTime;
 		}
 
 		public override void OnCrouch(InputAction.CallbackContext context) {}

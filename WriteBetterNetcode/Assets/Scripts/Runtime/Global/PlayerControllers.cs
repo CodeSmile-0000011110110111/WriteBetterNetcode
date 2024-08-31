@@ -35,7 +35,7 @@ namespace CodeSmile
 			}
 		}
 
-		public void InstantiatePlayerControllers(Int32 playerIndex, KinematicControllerPrefabs prefabs, Transform target)
+		public void InstantiatePlayerControllers(Int32 playerIndex, KinematicControllerPrefabs prefabs, Transform motionTarget, Transform rotationTarget)
 		{
 			for (var ctrlIndex = 0; ctrlIndex < prefabs.Count; ctrlIndex++)
 			{
@@ -45,7 +45,8 @@ namespace CodeSmile
 				ctrlObj.SetActive(false);
 
 				var controller = ctrlObj.GetComponent<PlayerControllerBase>();
-				controller.TargetTransform = target;
+				controller.MotionTarget = motionTarget;
+				controller.CameraTarget = rotationTarget;
 				m_Controllers[playerIndex].Add(controller);
 
 				if (ctrlIndex == 0)

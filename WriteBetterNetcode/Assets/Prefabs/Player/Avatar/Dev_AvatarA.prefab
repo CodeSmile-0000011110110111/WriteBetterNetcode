@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6186915935874353322}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Dev_AvatarA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5832957971596705516}
   - component: {fileID: 7835719632963024271}
   - component: {fileID: 5842117455453081258}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 7801952109847888034}
   - component: {fileID: 7328618238546987228}
   - component: {fileID: 3246204915912394088}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

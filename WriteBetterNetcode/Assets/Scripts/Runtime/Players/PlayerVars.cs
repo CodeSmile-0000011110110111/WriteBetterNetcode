@@ -11,8 +11,7 @@ namespace CodeSmile.Players
 	[DisallowMultipleComponent]
 	internal sealed class PlayerVars : NetworkBehaviour
 	{
-		// FIXME: initialize AvatarIndex to MaxValue to ensure it gets a value change event, there must be another way
-		private readonly NetworkVariable<Byte> m_AvatarIndexVar = new(Byte.MaxValue);
+		private readonly NetworkVariable<Byte> m_AvatarIndexVar = new();
 
 		private Player m_Player;
 
@@ -22,19 +21,13 @@ namespace CodeSmile.Players
 			set
 			{
 				if (IsServer)
-					SetAvatarIndexServerRpc(value);
+					m_AvatarIndexVar.Value = value;
 				else
 					Debug.LogWarning($"set not permitted: {nameof(AvatarIndex)}");
 			}
 		}
 
 		private void Awake() => m_Player = GetComponent<Player>();
-
-		[Rpc(SendTo.Server, DeferLocal = true)]
-		private void SetAvatarIndexServerRpc(Byte avatarIndex) =>
-			// apply locally directly
-			//m_AvatarIndexVar.OnValueChanged.Invoke(m_AvatarIndexVar.Value, avatarIndex);
-			m_AvatarIndexVar.Value = avatarIndex;
 
 		public override void OnNetworkSpawn()
 		{
