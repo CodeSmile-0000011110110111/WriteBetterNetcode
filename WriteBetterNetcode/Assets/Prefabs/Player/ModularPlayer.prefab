@@ -48,6 +48,8 @@ GameObject:
   - component: {fileID: 2106922819613224051}
   - component: {fileID: 1641015571041438194}
   - component: {fileID: 8999683055902265663}
+  - component: {fileID: 6943464844093628739}
+  - component: {fileID: 1149383071451387854}
   - component: {fileID: 76815592126949633}
   m_Layer: 3
   m_Name: ModularPlayer
@@ -69,6 +71,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5077751509374714492}
   - {fileID: 1506673451434622039}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -203,8 +206,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ControllerPrefabs: {fileID: 11400000, guid: 1305a411e1bf78e40a85d2f5ccec5240, type: 2}
-  m_CameraTarget: {fileID: 1506673451434622039}
-  m_MotionTarget: {fileID: 3476758710250218621}
+--- !u!114 &6943464844093628739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6108024806492646982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e11584fe014cc099c875ba1f66ce70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1149383071451387854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6108024806492646982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc943640316d4065b09f30288aa77e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &76815592126949633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,3 +243,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AvatarPrefabs: {fileID: 11400000, guid: 8799d1da84b6354418d9ea9f84ffdb75, type: 2}
+--- !u!1 &8936917791489978325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5077751509374714492}
+  m_Layer: 3
+  m_Name: 'CAUTION: Player''s component order matters!'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5077751509374714492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8936917791489978325}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3476758710250218621}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

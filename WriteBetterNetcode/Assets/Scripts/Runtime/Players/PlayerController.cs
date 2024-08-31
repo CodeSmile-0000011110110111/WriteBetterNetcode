@@ -15,7 +15,6 @@ namespace CodeSmile.Players
 	public sealed class PlayerController : MonoBehaviour, IPlayerComponent, GeneratedInput.IPlayerKinematicsActions
 	{
 		[SerializeField] private KinematicControllerPrefabs m_ControllerPrefabs;
-		[SerializeField] private Transform m_MotionTarget;
 
 		private Int32 m_PlayerIndex;
 
@@ -27,14 +26,19 @@ namespace CodeSmile.Players
 			m_PlayerIndex = playerIndex;
 			m_PlayerControllers = Components.PlayerControllers;
 
-			if (m_MotionTarget == null)
-				m_MotionTarget = transform;
-
 			var cameraTarget = GetComponent<PlayerCamera>().Target;
-			m_PlayerControllers.InstantiatePlayerControllers(playerIndex, m_ControllerPrefabs, m_MotionTarget, cameraTarget);
+			m_PlayerControllers.InstantiatePlayerControllers(playerIndex, m_ControllerPrefabs, transform, cameraTarget);
+
+			var inputUsers = Components.InputUsers;
+			inputUsers.SetPlayerKinematicsCallback(playerIndex, this);
 		}
 
-		public void OnPlayerDespawn(Int32 playerIndex) => m_PlayerControllers.DestroyPlayerControllers(playerIndex);
+		public void OnPlayerDespawn(Int32 playerIndex)
+		{
+			var inputUsers = Components.InputUsers;
+			inputUsers.SetPlayerKinematicsCallback(playerIndex, null);
+			m_PlayerControllers.DestroyPlayerControllers(playerIndex);
+		}
 
 		public void OnMove(InputAction.CallbackContext context) => ActiveController.OnMove(context);
 		public void OnLook(InputAction.CallbackContext context) => ActiveController.OnLook(context);

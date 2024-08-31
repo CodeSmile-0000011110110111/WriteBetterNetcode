@@ -36,23 +36,20 @@ namespace CodeSmile.Players
 				if (Equals(playerComponent))
 					continue;
 
-				Debug.Log($"OnPlayerSpawn => {playerComponent.GetType().Name}");
+				// Log component execution order (same as order on Inspector
+				//Debug.Log($"OnPlayerSpawn called for: {playerComponent.GetType().Name}");
 
 				playerComponent.OnPlayerSpawn(playerIndex);
 			}
 
 			var inputUsers = Components.InputUsers;
 			inputUsers.SetPlayerUiCallback(playerIndex, this);
-			inputUsers.SetPlayerKinematicsCallback(playerIndex, GetComponent<PlayerController>());
-			//inputUsers.LogActionEnabledness($"Player {playerIndex} Spawn:\n");
 		}
 
 		public void OnPlayerDespawn(Int32 playerIndex)
 		{
 			var inputUsers = Components.InputUsers;
 			inputUsers.SetPlayerUiCallback(playerIndex, null);
-			inputUsers.SetPlayerKinematicsCallback(playerIndex, null);
-			//inputUsers.LogActionEnabledness($"Player {playerIndex} Despawn:\n");
 
 			foreach (var playerComponent in GetComponents<IPlayerComponent>())
 			{
