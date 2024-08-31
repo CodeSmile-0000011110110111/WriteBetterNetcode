@@ -66,7 +66,7 @@ namespace CodeSmile
 			}
 		}
 
-		public void InstantiatePlayerCinecams(Int32 playerIndex, PlayerCameraPrefabs prefabs, Int32 cameraToPrioritize)
+		public void InstantiatePlayerCinecams(Int32 playerIndex, PlayerCameraPrefabs prefabs)
 		{
 			for (var cinecamIndex = 0; cinecamIndex < prefabs.Count; cinecamIndex++)
 			{
@@ -80,8 +80,8 @@ namespace CodeSmile
 				m_PlayerCinecamLists[playerIndex].Add(cinecam);
 			}
 
-			// make that one active, provided player's cinecams all share same priority (recommended)
-			m_PlayerCinecamLists[playerIndex][cameraToPrioritize].Prioritize();
+			// make first one active - player's cinecams should all share same priority otherwise this won't work
+			m_PlayerCinecamLists[playerIndex][0].Prioritize();
 		}
 
 		public void DestroyPlayerCinecams(Int32 playerIndex)
@@ -111,14 +111,14 @@ namespace CodeSmile
 			}
 		}
 
-		private void WentOnline() => SetOtherCameraActive(1);
-
-		private void WentOffline() => SetDefaultCameraActive();
-
 		public void SetPlayerCameraEnabled(Int32 playerIndex, Boolean enable)
 		{
 			SetAllCamerasInactive(m_OtherCameras);
 			m_PlayerCameras[playerIndex].gameObject.SetActive(enable);
 		}
+
+		private void WentOnline() => SetOtherCameraActive(1);
+
+		private void WentOffline() => SetDefaultCameraActive();
 	}
 }

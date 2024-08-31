@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 namespace CodeSmile.Players.Controllers
 {
-	public sealed class SimpleKinematicController : KinematicControllerBase
+	public sealed class SimplePlayerController : PlayerControllerBase
 	{
 		[SerializeField] private Single m_Gravity = -1f;
 

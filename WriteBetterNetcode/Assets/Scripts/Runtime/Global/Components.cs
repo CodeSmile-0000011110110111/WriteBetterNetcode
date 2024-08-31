@@ -17,10 +17,12 @@ namespace CodeSmile
 		[SerializeField] private NetcodeState m_NetcodeState;
 		[SerializeField] private InputUsers m_InputUsers;
 		[SerializeField] private Cameras m_Cameras;
+		[SerializeField] private PlayerControllers m_PlayerControllers;
 
 		public static NetcodeState NetcodeState => s_Instance?.m_NetcodeState;
 		public static InputUsers InputUsers => s_Instance?.m_InputUsers;
 		public static Cameras Cameras => s_Instance?.m_Cameras;
+		public static PlayerControllers PlayerControllers => s_Instance?.m_PlayerControllers;
 
 		private void Awake()
 		{
@@ -29,6 +31,7 @@ namespace CodeSmile
 			ThrowIfNotAssigned<NetcodeState>(m_NetcodeState);
 			ThrowIfNotAssigned<InputUsers>(m_InputUsers);
 			ThrowIfNotAssigned<Cameras>(m_Cameras);
+			ThrowIfNotAssigned<PlayerControllers>(m_PlayerControllers);
 		}
 
 		private void OnDestroy() => s_Instance = null;

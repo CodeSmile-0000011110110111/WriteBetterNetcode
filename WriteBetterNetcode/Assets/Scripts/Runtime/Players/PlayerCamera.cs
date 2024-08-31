@@ -17,7 +17,7 @@ namespace CodeSmile.Players
 		public void OnPlayerSpawn(Int32 playerIndex)
 		{
 			var cameras = Components.Cameras;
-			cameras.InstantiatePlayerCinecams(playerIndex, m_CameraPrefabs, 0);
+			cameras.InstantiatePlayerCinecams(playerIndex, m_CameraPrefabs);
 			cameras.SetPlayerCameraEnabled(playerIndex, true);
 			SetCinecamTarget(playerIndex, transform);
 		}

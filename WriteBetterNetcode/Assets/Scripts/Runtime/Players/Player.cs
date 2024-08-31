@@ -11,14 +11,14 @@ using UnityEngine.InputSystem;
 namespace CodeSmile.Players
 {
 	[DisallowMultipleComponent]
-	[RequireComponent(typeof(PlayerAvatar), typeof(PlayerKinematics))]
+	[RequireComponent(typeof(PlayerAvatar), typeof(PlayerController))]
 	[RequireComponent(typeof(PlayerVars), typeof(PlayerServer), typeof(PlayerClient))]
 	public sealed class Player : NetworkBehaviour, IPlayerComponent, GeneratedInput.IPlayerUIActions
 	{
 		public event Action<Int32> DidRequestToggleIngameMenu;
 
 		private PlayerAvatar m_Avatar;
-		private PlayerKinematics m_Kinematics;
+		private PlayerController m_Controller;
 		private PlayerClient m_ClientSide;
 		private PlayerVars m_Vars;
 
@@ -41,7 +41,7 @@ namespace CodeSmile.Players
 
 			var inputUsers = Components.InputUsers;
 			inputUsers.SetPlayerUiCallback(playerIndex, this);
-			inputUsers.SetPlayerKinematicsCallback(playerIndex, GetComponent<PlayerKinematics>());
+			inputUsers.SetPlayerKinematicsCallback(playerIndex, GetComponent<PlayerController>());
 			//inputUsers.LogActionEnabledness($"Player {playerIndex} Spawn:\n");
 		}
 
@@ -83,19 +83,19 @@ namespace CodeSmile.Players
 		public void OnUp(InputAction.CallbackContext context)
 		{
 			if (context.performed)
-				m_Kinematics.NextController();
+				m_Controller.NextController();
 		}
 
 		public void OnDown(InputAction.CallbackContext context)
 		{
 			if (context.performed)
-				m_Kinematics.PreviousController();
+				m_Controller.PreviousController();
 		}
 
 		private void Awake()
 		{
 			m_Avatar = GetComponent<PlayerAvatar>();
-			m_Kinematics = GetComponent<PlayerKinematics>();
+			m_Controller = GetComponent<PlayerController>();
 			m_ClientSide = GetComponent<PlayerClient>();
 			m_Vars = GetComponent<PlayerVars>();
 		}

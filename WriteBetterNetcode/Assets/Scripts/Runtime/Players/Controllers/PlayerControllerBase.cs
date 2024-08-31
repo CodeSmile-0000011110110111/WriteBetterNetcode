@@ -9,14 +9,24 @@ using UnityEngine.InputSystem;
 
 namespace CodeSmile.Players.Controllers
 {
+	// TODO: consider if KinematicControllers should be placed at the scene root, all together (like Cameras)
+	// applying the CharacterController and copying properties would be done by PlayerKinematics
+	// benefits? all controllers bundled together, easily accessible; code is simpler; better encapsulation of concerns++
+	// drawbacks? .. not sure
+
 	[DisallowMultipleComponent]
-	public abstract class KinematicControllerBase : MonoBehaviour, GeneratedInput.IPlayerKinematicsActions
+	public abstract class PlayerControllerBase : MonoBehaviour, GeneratedInput.IPlayerKinematicsActions
 	{
 		[SerializeField] private Vector3 m_MotionSensitivity = Vector3.one;
 
-		protected CharacterController m_CharacterController;
+		public Transform Target { get; set; }
 
-		protected Vector3 Velocity { get; set; }
+		/// <summary>
+		///     The target's character controller - if one is being used.
+		/// </summary>
+		public CharacterController CharacterController { get; private set; }
+
+		public Vector3 Velocity { get; protected set; }
 		public Vector3 MotionSensitivity
 		{
 			get => m_MotionSensitivity;
@@ -42,8 +52,15 @@ namespace CodeSmile.Players.Controllers
 		/// </summary>
 		protected virtual void OnEnable()
 		{
-			m_CharacterController = TryMoveCharacterControllerToParent();
-			m_CharacterController.enabled = true;
+			// if placed at root, assume "standalone" mode
+			if (transform.parent == null || Target == null)
+				Target = transform;
+
+			TryMoveCharacterControllerToTarget(Target);
+
+			// character controller may be on a different object
+			if (CharacterController != null)
+				CharacterController.enabled = true;
 		}
 
 		/// <summary>
@@ -51,10 +68,11 @@ namespace CodeSmile.Players.Controllers
 		/// </summary>
 		protected virtual void OnDisable()
 		{
-			if (m_CharacterController != null)
+			// character controller may be on a different object
+			if (CharacterController != null)
 			{
-				m_CharacterController.enabled = false;
-				m_CharacterController = null;
+				CharacterController.enabled = false;
+				CharacterController = null;
 			}
 		}
 
@@ -62,25 +80,23 @@ namespace CodeSmile.Players.Controllers
 		///     Move the
 		/// </summary>
 		/// <returns></returns>
-		private CharacterController TryMoveCharacterControllerToParent()
+		private void TryMoveCharacterControllerToTarget(Transform target)
 		{
-			var sourceCtrl = GetComponent<CharacterController>();
-			if (sourceCtrl == null)
-				throw new MissingComponentException("CharacterController component required");
+			CharacterController = null;
 
-			// if not parented we use our CharCtrl
-			var parent = transform.parent?.gameObject;
-			if (parent == null)
-				return sourceCtrl;
+			// check if we are using the CharacterController component
+			var ourCharCtrl = GetComponent<CharacterController>();
+			if (ourCharCtrl == null)
+				return;
 
-			// if CharCtrl present on parent, use that otherwise add one
-			if (!parent.TryGetComponent<CharacterController>(out var parentCtrl))
-				parentCtrl = parent.AddComponent<CharacterController>();
+			// if CharCtrl present on target, use that, otherwise add one
+			if (!target.TryGetComponent<CharacterController>(out var targetCharCtrl))
+				targetCharCtrl = target.gameObject.AddComponent<CharacterController>();
 
-			CopyInspectorProperties(sourceCtrl, parentCtrl);
-			sourceCtrl.enabled = false; // make sure the source ctrl doesn't get in the way
+			CopyInspectorProperties(ourCharCtrl, targetCharCtrl);
+			ourCharCtrl.enabled = false; // make sure the source ctrl doesn't get in the way
 
-			return parentCtrl;
+			CharacterController = targetCharCtrl;
 		}
 
 		/// <summary>
@@ -105,7 +121,7 @@ namespace CodeSmile.Players.Controllers
 		/// <summary>
 		///     Moves character with velocity.
 		/// </summary>
-		protected void Move() => m_CharacterController.Move(Velocity);
+		protected void Move() => CharacterController.Move(Velocity);
 
 		/// <summary>
 		///     Apply 2D vector's X/Y components to X/Z components of Velocity. The Y component remains unchanged.

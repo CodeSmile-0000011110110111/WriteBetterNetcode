@@ -11,6 +11,7 @@ namespace CodeSmile.Players
 	[DisallowMultipleComponent]
 	internal sealed class PlayerVars : NetworkBehaviour
 	{
+		// FIXME: initialize AvatarIndex to MaxValue to ensure it gets a value change event, there must be another way
 		private readonly NetworkVariable<Byte> m_AvatarIndexVar = new(Byte.MaxValue);
 
 		private Player m_Player;
