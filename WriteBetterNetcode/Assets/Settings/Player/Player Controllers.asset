@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49c64b48408c46dcade59aa5f925a7a0, type: 3}
-  m_Name: Kinematic Controllers
+  m_Name: Player Controllers
   m_EditorClassIdentifier: 
   m_Prefabs:
   - {fileID: 4552058439193894227, guid: a02509a044f028041b3980be1e0b7624, type: 3}

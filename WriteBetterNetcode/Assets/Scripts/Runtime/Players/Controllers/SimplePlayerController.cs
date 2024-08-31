@@ -14,24 +14,38 @@ namespace CodeSmile.Players.Controllers
 		[SerializeField] private Single m_Gravity = -1f;
 		[SerializeField] private Boolean m_InvertVertical;
 
+		private float m_DeltaPan;
+		private float m_DeltaTilt;
+
 		private void Update()
 		{
-			var right = MotionTarget.right;
-			var forward = MotionTarget.forward;
-			var moveDir = m_Sideways.Value * right + m_Forward.Value * forward;
+			// look before move, or else forward lags one update behind
+			ApplyLook();
+			ApplyMove();
+		}
 
-			m_Vertical.Value += m_Gravity * Time.deltaTime;
-			moveDir.y += m_Vertical.Value;
-
-			// clamp all values that we are using
-			m_Sideways.Validate();
-			m_Forward.Validate();
+		private void ApplyLook()
+		{
+			m_Tilt.Value += m_DeltaTilt;
+			m_Pan.Value += m_DeltaPan;
 			m_Tilt.Validate();
 			m_Pan.Validate();
 
 			// tilting goes to camera tracking target as we don't want our viewmodel to tilt, just the camera
 			CameraTarget.localRotation = Quaternion.Euler(m_Tilt.Value, 0f, 0f);
 			MotionTarget.localRotation = Quaternion.Euler(0f, m_Pan.Value, 0f);
+		}
+
+		private void ApplyMove()
+		{
+			m_Vertical.Value += m_Gravity * Time.deltaTime;
+			m_Sideways.Validate();
+			m_Forward.Validate();
+
+			var right = MotionTarget.right;
+			var forward = MotionTarget.forward;
+			var moveDir = m_Sideways.Value * right + m_Forward.Value * forward;
+			moveDir.y += m_Vertical.Value; // FIXME: this is likely incorrect, y will be a constant?
 
 			CharController.Move(moveDir);
 		}
@@ -45,9 +59,11 @@ namespace CodeSmile.Players.Controllers
 
 		public override void OnLook(InputAction.CallbackContext context)
 		{
-			var lookDir = context.performed ? context.ReadValue<Vector2>() : Vector2.zero;
-			m_Tilt.Value += lookDir.y * RotationSensitivity.y * Time.deltaTime * (m_InvertVertical ? 1f : -1f);
-			m_Pan.Value += lookDir.x * RotationSensitivity.x * Time.deltaTime;
+			//var lookDir = context.performed ? context.ReadValue<Vector2>() : Vector2.zero;
+			var lookDir = context.ReadValue<Vector2>();
+			Debug.Log($"LookDir: {lookDir}");
+			m_DeltaTilt = lookDir.y * RotationSensitivity.y * Time.deltaTime * (m_InvertVertical ? 1f : -1f);
+			m_DeltaPan = lookDir.x * RotationSensitivity.x * Time.deltaTime;
 		}
 
 		public override void OnCrouch(InputAction.CallbackContext context) {}

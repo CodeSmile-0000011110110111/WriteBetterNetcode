@@ -1,24 +1,21 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.BetterNetcode.Input;
 using System;
 using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace CodeSmile.Players
 {
 	[DisallowMultipleComponent]
 	[RequireComponent(typeof(PlayerAvatar), typeof(PlayerController))]
 	[RequireComponent(typeof(PlayerVars), typeof(PlayerServer), typeof(PlayerClient))]
-	public sealed class Player : NetworkBehaviour, IPlayerComponent, GeneratedInput.IPlayerUIActions
+	public sealed class Player : NetworkBehaviour, IPlayerComponent
 	{
-		public event Action<Int32> DidRequestToggleIngameMenu;
+		public Action<Int32> OnRequestToggleIngameMenu;
 
 		private PlayerAvatar m_Avatar;
-		private PlayerController m_Controller;
 		private PlayerClient m_ClientSide;
 		private PlayerVars m_Vars;
 
@@ -41,16 +38,10 @@ namespace CodeSmile.Players
 
 				playerComponent.OnPlayerSpawn(playerIndex);
 			}
-
-			var inputUsers = Components.InputUsers;
-			inputUsers.SetPlayerUiCallback(playerIndex, this);
 		}
 
 		public void OnPlayerDespawn(Int32 playerIndex)
 		{
-			var inputUsers = Components.InputUsers;
-			inputUsers.SetPlayerUiCallback(playerIndex, null);
-
 			foreach (var playerComponent in GetComponents<IPlayerComponent>())
 			{
 				// don't infinite recurse this
@@ -61,40 +52,9 @@ namespace CodeSmile.Players
 			}
 		}
 
-		public void OnRequestMenu(InputAction.CallbackContext context)
-		{
-			if (context.performed)
-				DidRequestToggleIngameMenu?.Invoke(PlayerIndex);
-		}
-
-		public void OnPrevious(InputAction.CallbackContext context)
-		{
-			if (context.performed)
-				AvatarIndex = m_Avatar.PreviousIndex;
-		}
-
-		public void OnNext(InputAction.CallbackContext context)
-		{
-			if (context.performed)
-				AvatarIndex = m_Avatar.NextIndex;
-		}
-
-		public void OnUp(InputAction.CallbackContext context)
-		{
-			if (context.performed)
-				m_Controller.NextController();
-		}
-
-		public void OnDown(InputAction.CallbackContext context)
-		{
-			if (context.performed)
-				m_Controller.PreviousController();
-		}
-
 		private void Awake()
 		{
 			m_Avatar = GetComponent<PlayerAvatar>();
-			m_Controller = GetComponent<PlayerController>();
 			m_ClientSide = GetComponent<PlayerClient>();
 			m_Vars = GetComponent<PlayerVars>();
 		}
@@ -106,7 +66,11 @@ namespace CodeSmile.Players
 			var inputUsers = Components.InputUsers;
 			inputUsers.AllPlayerInteractionEnabled = false;
 			inputUsers.AllPlayerKinematicsEnabled = false;
+			inputUsers.AllPlayerUiEnabled = false;
 			inputUsers.AllUiEnabled = true;
+
+			// leave request menu enabled to allow for quick dismissal
+			inputUsers.SetPlayerUiRequestMenuEnabled(PlayerIndex, true);
 		}
 
 		public void OnCloseIngameMenu()
@@ -114,6 +78,7 @@ namespace CodeSmile.Players
 			var inputUsers = Components.InputUsers;
 			inputUsers.AllPlayerInteractionEnabled = true;
 			inputUsers.AllPlayerKinematicsEnabled = true;
+			inputUsers.AllPlayerUiEnabled = true;
 			inputUsers.AllUiEnabled = false;
 		}
 	}

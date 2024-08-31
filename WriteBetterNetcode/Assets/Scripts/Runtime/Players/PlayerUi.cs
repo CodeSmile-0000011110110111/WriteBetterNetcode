@@ -14,8 +14,15 @@ namespace CodeSmile.Players
 	{
 		private Int32 m_PlayerIndex;
 
+		private Player m_Player;
+		private PlayerAvatar m_Avatar;
+		private PlayerController m_Controller;
+
 		private void Awake()
 		{
+			m_Player = GetComponent<Player>();
+			m_Avatar = GetComponent<PlayerAvatar>();
+			m_Controller = GetComponent<PlayerController>();
 		}
 
 		public void OnPlayerSpawn(Int32 playerIndex)
@@ -31,13 +38,36 @@ namespace CodeSmile.Players
 			inputUsers.SetPlayerUiCallback(playerIndex, null);
 		}
 
+
 		public void OnRequestMenu(InputAction.CallbackContext context)
 		{
-			Debug.Log("menu request (not handled)");
+			if (context.performed)
+				m_Player.OnRequestToggleIngameMenu?.Invoke(m_PlayerIndex);
 		}
-		public void OnPrevious(InputAction.CallbackContext context){}
-		public void OnNext(InputAction.CallbackContext context) {}
-		public void OnUp(InputAction.CallbackContext context) {}
-		public void OnDown(InputAction.CallbackContext context){}
+
+		public void OnPrevious(InputAction.CallbackContext context)
+		{
+			if (context.performed)
+				m_Player.AvatarIndex = m_Avatar.PreviousIndex;
+		}
+
+		public void OnNext(InputAction.CallbackContext context)
+		{
+			if (context.performed)
+				m_Player.AvatarIndex = m_Avatar.NextIndex;
+		}
+
+		public void OnUp(InputAction.CallbackContext context)
+		{
+			if (context.performed)
+				m_Controller.NextController();
+		}
+
+		public void OnDown(InputAction.CallbackContext context)
+		{
+			if (context.performed)
+				m_Controller.PreviousController();
+		}
+
 	}
 }

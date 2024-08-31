@@ -147,6 +147,15 @@ namespace CodeSmile.Input
 			//LogActionEnabledness($"{playerIndex} => PlayerUI {(enable ? "enable" : "disable")}\n");
 		}
 
+		public void SetPlayerUiRequestMenuEnabled(Int32 playerIndex, Boolean enable)
+		{
+			var requestMenuAction = m_GeneratedInputs[playerIndex].PlayerUI.RequestMenu;
+			if (enable)
+				requestMenuAction.Enable();
+			else
+				requestMenuAction.Disable();
+		}
+
 		public void LogActionEnabledness(String prefix)
 		{
 			var sb = new StringBuilder(prefix);

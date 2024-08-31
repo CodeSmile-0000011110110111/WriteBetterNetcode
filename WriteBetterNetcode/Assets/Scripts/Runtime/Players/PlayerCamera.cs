@@ -29,7 +29,9 @@ namespace CodeSmile.Players
 
 			if (m_CameraTarget == null)
 				m_CameraTarget = transform;
-			SetCinecamTargets(playerIndex, m_CameraTarget, m_LookAtTarget);
+
+			var lookAtTarget = m_LookAtTarget != null ? m_LookAtTarget : m_CameraTarget;
+			SetCinecamTargets(playerIndex, m_CameraTarget, lookAtTarget);
 		}
 
 		public void OnPlayerDespawn(Int32 playerIndex)
@@ -62,6 +64,12 @@ namespace CodeSmile.Players
 			var cameras = Components.Cameras;
 			foreach (var cinecam in cameras.GetPlayerCinecams(playerIndex))
 				cinecam.Target = cameraTarget;
+		}
+
+		public void NextCamera()
+		{
+			var cameras = Components.Cameras;
+			cameras.SetNextCinecamEnabled(m_PlayerIndex);
 		}
 	}
 }

@@ -17,11 +17,11 @@ namespace CodeSmile
 		[SerializeField] private Camera[] m_PlayerCameras = new Camera[Constants.MaxCouchPlayers];
 
 		private readonly List<CinemachineCamera>[]
-			m_PlayerCinecamLists = new List<CinemachineCamera>[Constants.MaxCouchPlayers];
+			m_PlayerCinecams = new List<CinemachineCamera>[Constants.MaxCouchPlayers];
 
 		private void Awake()
 		{
-			AllocateCinecamLists();
+			AllocateCinecamCollection();
 
 			// always start with the offline camera
 			SetDefaultCameraActive();
@@ -48,12 +48,12 @@ namespace CodeSmile
 		public Camera GetPlayerCamera(Int32 playerIndex) => m_PlayerCameras[playerIndex];
 
 		public IReadOnlyList<CinemachineCamera> GetPlayerCinecams(Int32 playerIndex) =>
-			m_PlayerCinecamLists[playerIndex].AsReadOnly();
+			m_PlayerCinecams[playerIndex].AsReadOnly();
 
-		private void AllocateCinecamLists()
+		private void AllocateCinecamCollection()
 		{
 			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
-				m_PlayerCinecamLists[playerIndex] = new List<CinemachineCamera>();
+				m_PlayerCinecams[playerIndex] = new List<CinemachineCamera>();
 		}
 
 		private void SetPlayerCinecamBrainChannels()
@@ -72,24 +72,24 @@ namespace CodeSmile
 			{
 				var cameraPrefab = prefabs[cinecamIndex];
 				var cameraObj = Instantiate(cameraPrefab, transform);
-				cameraObj.name = $"Player #{playerIndex}: {cameraObj.name.Replace("(Clone)", $"[{cinecamIndex}]")}";
+				cameraObj.name = $"Player #{playerIndex}: [{cinecamIndex}] {cameraObj.name.Replace("(Clone)", "")}";
 
 				var cinecam = cameraObj.GetComponent<CinemachineCamera>();
 				cinecam.OutputChannel = (OutputChannels)(1 << playerIndex + 1);
 
-				m_PlayerCinecamLists[playerIndex].Add(cinecam);
+				m_PlayerCinecams[playerIndex].Add(cinecam);
 			}
 
 			// make first one active - player's cinecams should all share same priority otherwise this won't work
-			m_PlayerCinecamLists[playerIndex][0].Prioritize();
+			m_PlayerCinecams[playerIndex][0].Prioritize();
 		}
 
 		public void DestroyPlayerCinecams(Int32 playerIndex)
 		{
-			foreach (var playerCinecam in m_PlayerCinecamLists[playerIndex])
+			foreach (var playerCinecam in m_PlayerCinecams[playerIndex])
 				Destroy(playerCinecam.gameObject);
 
-			m_PlayerCinecamLists[playerIndex].Clear();
+			m_PlayerCinecams[playerIndex].Clear();
 		}
 
 		private void SetDefaultCameraActive() => SetOtherCameraActive(0);
@@ -115,6 +115,24 @@ namespace CodeSmile
 		{
 			SetAllCamerasInactive(m_OtherCameras);
 			m_PlayerCameras[playerIndex].gameObject.SetActive(enable);
+		}
+
+		public void SetNextCinecamEnabled(Int32 playerIndex)
+		{
+			var cinecams = m_PlayerCinecams[playerIndex];
+			for (var i = 0; i < cinecams.Count; i++)
+			{
+				var cinecam = cinecams[i];
+				if (cinecam.IsLive)
+				{
+					var nextActiveCinecamIndex = i + 1;
+					if (nextActiveCinecamIndex >= cinecams.Count)
+						nextActiveCinecamIndex = 0;
+
+					cinecams[nextActiveCinecamIndex].Prioritize();
+					break;
+				}
+			}
 		}
 
 		private void WentOnline() => SetOtherCameraActive(1);

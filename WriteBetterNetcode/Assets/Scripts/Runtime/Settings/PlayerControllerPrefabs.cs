@@ -6,6 +6,6 @@ using UnityEngine;
 
 namespace CodeSmile.Settings
 {
-	[CreateAssetMenu(fileName = "Kinematic Controllers", menuName = "CodeSmile/Kinematic Controllers", order = 1)]
-	public sealed class KinematicControllerPrefabs : PrefabsListBase {}
+	[CreateAssetMenu(fileName = "Player Controllers", menuName = "CodeSmile/Player Controllers", order = 1)]
+	public sealed class PlayerControllerPrefabs : PrefabsListBase {}
 }

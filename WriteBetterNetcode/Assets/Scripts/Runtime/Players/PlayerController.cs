@@ -14,7 +14,7 @@ namespace CodeSmile.Players
 	[DisallowMultipleComponent]
 	public sealed class PlayerController : MonoBehaviour, IPlayerComponent, GeneratedInput.IPlayerKinematicsActions
 	{
-		[SerializeField] private KinematicControllerPrefabs m_ControllerPrefabs;
+		[SerializeField] private PlayerControllerPrefabs m_ControllerPrefabs;
 
 		private Int32 m_PlayerIndex;
 
@@ -49,7 +49,7 @@ namespace CodeSmile.Players
 		private void Awake()
 		{
 			if (m_ControllerPrefabs == null)
-				throw new MissingReferenceException(nameof(KinematicControllerPrefabs));
+				throw new MissingReferenceException(nameof(PlayerControllerPrefabs));
 
 			m_ControllerPrefabs.ValidatePrefabsHaveComponent<PlayerControllerBase>();
 		}

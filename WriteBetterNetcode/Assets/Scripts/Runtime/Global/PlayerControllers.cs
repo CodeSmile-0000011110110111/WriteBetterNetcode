@@ -35,7 +35,7 @@ namespace CodeSmile
 			}
 		}
 
-		public void InstantiatePlayerControllers(Int32 playerIndex, KinematicControllerPrefabs prefabs, Transform motionTarget, Transform rotationTarget)
+		public void InstantiatePlayerControllers(Int32 playerIndex, PlayerControllerPrefabs prefabs, Transform motionTarget, Transform rotationTarget)
 		{
 			for (var ctrlIndex = 0; ctrlIndex < prefabs.Count; ctrlIndex++)
 			{
