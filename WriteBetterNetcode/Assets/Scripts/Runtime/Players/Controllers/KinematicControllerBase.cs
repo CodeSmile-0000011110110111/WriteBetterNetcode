@@ -14,9 +14,7 @@ namespace CodeSmile.Players.Controllers
 	{
 		[SerializeField] private Vector3 m_MotionSensitivity = Vector3.one;
 
-		[SerializeField] private Int32 m_PlayerIndex = -1;
 		protected CharacterController m_CharacterController;
-		public Int32 PlayerIndex => m_PlayerIndex;
 
 		protected Vector3 Velocity { get; set; }
 		public Vector3 MotionSensitivity
@@ -59,9 +57,6 @@ namespace CodeSmile.Players.Controllers
 				m_CharacterController = null;
 			}
 		}
-
-		public virtual void OnActivate(Int32 playerIndex) => m_PlayerIndex = playerIndex;
-		public virtual void OnDeactivate(Int32 playerIndex) {}
 
 		/// <summary>
 		///     Move the

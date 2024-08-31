@@ -16,22 +16,13 @@ namespace CodeSmile.Players
 	{
 		[SerializeField] private KinematicControllerPrefabs m_ControllerPrefabs;
 
-		private Int32 m_PlayerIndex;
 		private Int32 m_ActiveIndex;
 		private KinematicControllerBase[] m_Controllers;
 		private KinematicControllerBase ActiveController => GetOrCreateController();
 
-		public void OnPlayerSpawn(Int32 playerIndex)
-		{
-			m_PlayerIndex = playerIndex;
-			SetControllerActive(m_ActiveIndex);
-		}
+		public void OnPlayerSpawn(Int32 playerIndex) => SetControllerActive(m_ActiveIndex);
 
-		public void OnPlayerDespawn(Int32 playerIndex)
-		{
-			foreach (var controller in m_Controllers)
-				controller?.OnDeactivate(playerIndex);
-		}
+		public void OnPlayerDespawn(Int32 playerIndex) {}
 
 		public void OnMove(InputAction.CallbackContext context) => ActiveController.OnMove(context);
 		public void OnLook(InputAction.CallbackContext context) => ActiveController.OnLook(context);
@@ -61,7 +52,6 @@ namespace CodeSmile.Players
 					throw new MissingComponentException($"{prefab.name}: missing {nameof(KinematicControllerBase)}");
 
 				m_Controllers[m_ActiveIndex] = controller;
-				controller.OnActivate(m_PlayerIndex);
 			}
 
 			return m_Controllers[m_ActiveIndex];
