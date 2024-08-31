@@ -76,3 +76,5 @@ crashlytics-build.properties
 /WriteBetterNetcode/[Aa]ssets/[Ss]treamingAssets/aa/*
 WriteBetterNetcode/Assets/Samples/
 WriteBetterNetcode/Assets/Samples.meta
+WriteBetterNetcode/Assets/StarterAssets.meta
+WriteBetterNetcode/Assets/StarterAssets/*
