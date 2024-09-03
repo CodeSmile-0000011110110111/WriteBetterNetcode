@@ -1,0 +1,4 @@
+Files under the "3rdParty" folder are distributed under the following licenses:
+
+
+(no 3rd party assets included yet)

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2727d53a542a4c1aa312905c3a02d807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NetworkPrefabsPath: Assets/Settings/Netcode/DefaultNetworkPrefabs.asset
-  TempNetworkPrefabsPath: Assets/Settings/Netcode/DefaultNetworkPrefabs.asset
+  NetworkPrefabsPath: Assets/CodeSmile/MultiPal/Settings/Netcode/DefaultNetworkPrefabs.asset
+  TempNetworkPrefabsPath: Assets/CodeSmile/MultiPal/Settings/Netcode/DefaultNetworkPrefabs.asset
   GenerateDefaultNetworkPrefabs: 1
