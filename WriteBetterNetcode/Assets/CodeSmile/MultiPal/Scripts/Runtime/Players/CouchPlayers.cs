@@ -23,8 +23,10 @@ namespace CodeSmile.Players
 		typeof(CouchPlayersServer))]
 	public sealed class CouchPlayers : NetworkBehaviour
 	{
-		public event Action<CouchPlayers, Int32> OnCouchPlayerJoin;
-		public event Action<CouchPlayers, Int32> OnCouchPlayerLeave;
+		public event Action<CouchPlayers, Int32> OnCouchPlayerJoining;
+		public event Action<CouchPlayers, Int32> OnCouchPlayerJoined;
+		public event Action<CouchPlayers, Int32> OnCouchPlayerLeaving;
+		public event Action<CouchPlayers, Int32> OnCouchPlayerLeft;
 
 		private readonly Player[] m_Players = new Player[Constants.MaxCouchPlayers];
 		private readonly Status[] m_PlayerStatus = new Status[Constants.MaxCouchPlayers];
@@ -107,6 +109,7 @@ namespace CodeSmile.Players
 			var position = new Vector3(posX, posY, 0);
 
 			m_PlayerStatus[playerIndex] = Status.Spawning;
+			OnCouchPlayerJoining?.Invoke(this, playerIndex);
 
 			var player = await m_ClientSide.Spawn(position, playerIndex, avatarIndex);
 			m_Players[playerIndex] = player;
@@ -115,7 +118,8 @@ namespace CodeSmile.Players
 
 			player.OnPlayerSpawn(playerIndex);
 			PlayerCount++;
-			OnCouchPlayerJoin?.Invoke(this, playerIndex);
+
+			OnCouchPlayerJoined?.Invoke(this, playerIndex);
 		}
 
 		private void DespawnPlayer(Int32 playerIndex)
@@ -123,20 +127,18 @@ namespace CodeSmile.Players
 			var player = m_Players[playerIndex];
 			if (player != null)
 			{
-				PlayerCount--;
-				OnCouchPlayerLeave?.Invoke(this, playerIndex);
+				OnCouchPlayerLeaving?.Invoke(this, playerIndex);
+
 				player.OnPlayerDespawn(playerIndex);
-				ResetPlayerFields(playerIndex);
+				m_Players[playerIndex] = null;
+				m_PlayerStatus[playerIndex] = Status.Available;
+				PlayerCount--;
 
 				var playerObj = player.GetComponent<NetworkObject>();
 				m_ClientSide.Despawn(playerObj);
-			}
-		}
 
-		private void ResetPlayerFields(Int32 playerIndex)
-		{
-			m_Players[playerIndex] = null;
-			m_PlayerStatus[playerIndex] = Status.Available;
+				OnCouchPlayerLeft?.Invoke(this, playerIndex);
+			}
 		}
 
 		public void AddRemotePlayer(Player player, Int32 playerIndex)

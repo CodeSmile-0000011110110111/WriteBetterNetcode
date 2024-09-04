@@ -31,8 +31,8 @@ namespace CodeSmile.GUI
 
 		private void OnCouchSessionStarted(CouchPlayers couchPlayers)
 		{
-			couchPlayers.OnCouchPlayerJoin += OnCouchPlayerJoin;
-			couchPlayers.OnCouchPlayerLeave += OnCouchPlayerLeave;
+			couchPlayers.OnCouchPlayerJoined += OnCouchPlayerJoined;
+			couchPlayers.OnCouchPlayerLeaving += OnCouchPlayerLeaving;
 		}
 
 		private void OnCouchSessionStopped(CouchPlayers couchPlayers)
@@ -41,10 +41,10 @@ namespace CodeSmile.GUI
 				m_IngameMenu.Hide();
 		}
 
-		private void OnCouchPlayerJoin(CouchPlayers couchPlayers, Int32 playerIndex) =>
+		private void OnCouchPlayerJoined(CouchPlayers couchPlayers, Int32 playerIndex) =>
 			couchPlayers[playerIndex].OnRequestToggleIngameMenu += OnRequestToggleIngameMenu;
 
-		private void OnCouchPlayerLeave(CouchPlayers couchPlayers, Int32 playerIndex)
+		private void OnCouchPlayerLeaving(CouchPlayers couchPlayers, Int32 playerIndex)
 		{
 			couchPlayers[playerIndex].OnRequestToggleIngameMenu -= OnRequestToggleIngameMenu;
 

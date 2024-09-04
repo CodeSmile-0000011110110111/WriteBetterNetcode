@@ -1,6 +1,7 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Players;
 using CodeSmile.Settings;
 using System;
 using System.Collections.Generic;
@@ -13,15 +14,17 @@ namespace CodeSmile
 	[DisallowMultipleComponent]
 	public sealed class Cameras : MonoBehaviour
 	{
-		[SerializeField] private Camera[] m_Cameras;
+		[SerializeField] private Camera[] m_OtherCameras;
 		[SerializeField] private Camera[] m_PlayerCameras = new Camera[Constants.MaxCouchPlayers];
+		[SerializeField] private CinemachineCamera[] m_PlayerNotJoinedCinecams;
+		public CinemachineCamera[] PlayerNotJoinedCinecams => m_PlayerNotJoinedCinecams;
 
 		private readonly List<CinemachineCamera>[] m_PlayerCinecams = new List<CinemachineCamera>[Constants.MaxCouchPlayers];
 		private Splitscreen m_Splitscreen;
-		private Int32 m_ActiveCameraIndex;
+		private Int32 m_OtherCameraIndex;
 		public Camera[] PlayerCameras => m_PlayerCameras;
 
-		public Camera ActiveCamera => m_Cameras[m_ActiveCameraIndex];
+		public Camera ActiveOtherCamera => m_OtherCameras[m_OtherCameraIndex];
 
 		public Splitscreen Splitscreen => m_Splitscreen;
 
@@ -38,6 +41,9 @@ namespace CodeSmile
 
 		private void Start()
 		{
+			Components.OnLocalCouchPlayersSpawn += OnLocalCouchPlayersSpawn;
+			Components.OnLocalCouchPlayersDespawn += OnLocalCouchPlayersDespawn;
+
 			var netcodeState = Components.NetcodeState;
 			netcodeState.WentOnline += WentOnline;
 			netcodeState.WentOffline += WentOffline;
@@ -45,11 +51,43 @@ namespace CodeSmile
 
 		private void OnDestroy()
 		{
+			Components.OnLocalCouchPlayersSpawn -= OnLocalCouchPlayersSpawn;
+			Components.OnLocalCouchPlayersDespawn -= OnLocalCouchPlayersDespawn;
+
 			var netcodeState = Components.NetcodeState;
 			if (netcodeState != null)
 			{
 				netcodeState.WentOnline -= WentOnline;
 				netcodeState.WentOffline -= WentOffline;
+			}
+		}
+
+		private void OnLocalCouchPlayersSpawn(CouchPlayers couchPlayers)
+		{
+			couchPlayers.OnCouchPlayerJoined += OnCouchPlayerJoined;
+			couchPlayers.OnCouchPlayerLeft += OnCouchPlayerLeft;
+		}
+
+		private void OnLocalCouchPlayersDespawn(CouchPlayers couchPlayers)
+		{
+			couchPlayers.OnCouchPlayerJoined -= OnCouchPlayerJoined;
+			couchPlayers.OnCouchPlayerLeft -= OnCouchPlayerLeft;
+		}
+
+		internal void OnCouchPlayerJoined(CouchPlayers couchPlayers, Int32 playerIndex)
+		{
+			SetCurrentOtherCameraActive(false);
+			m_Splitscreen.UpdateSplitscreen(couchPlayers);
+		}
+
+		internal void OnCouchPlayerLeft(CouchPlayers couchPlayers, Int32 playerIndex)
+		{
+			m_Splitscreen.UpdateSplitscreen(couchPlayers);
+
+			if (couchPlayers.PlayerCount == 0)
+			{
+				SetAllCamerasInactive(m_PlayerCameras);
+				SetCurrentOtherCameraActive(true);
 			}
 		}
 
@@ -64,7 +102,7 @@ namespace CodeSmile
 
 		private void SetPlayerCinecamBrainChannels()
 		{
-			for (var playerIndex = 0; playerIndex < m_PlayerCameras.Length; playerIndex++)
+			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
 			{
 				var playerCamera = m_PlayerCameras[playerIndex];
 				var brain = playerCamera.GetComponent<CinemachineBrain>();
@@ -102,10 +140,11 @@ namespace CodeSmile
 
 		private void SetCameraActive(Int32 cameraIndex)
 		{
-			SetAllCamerasInactive(m_Cameras);
+			Debug.Log($"SetCameraActive: {cameraIndex}");
+			SetAllCamerasInactive(m_OtherCameras);
 			SetAllCamerasInactive(m_PlayerCameras);
-			m_ActiveCameraIndex = cameraIndex;
-			m_Cameras[cameraIndex].gameObject.SetActive(true);
+			m_OtherCameraIndex = cameraIndex;
+			m_OtherCameras[cameraIndex].gameObject.SetActive(true);
 		}
 
 		private void SetAllCamerasInactive(Camera[] cameras)
@@ -116,12 +155,6 @@ namespace CodeSmile
 				if (cameraObj.activeSelf)
 					cameraObj.SetActive(false);
 			}
-		}
-
-		public void SetPlayerCameraEnabled(Int32 playerIndex, Boolean enable)
-		{
-			SetAllCamerasInactive(m_Cameras);
-			m_PlayerCameras[playerIndex].gameObject.SetActive(enable);
 		}
 
 		public void SetNextCinecamEnabled(Int32 playerIndex)
@@ -143,9 +176,7 @@ namespace CodeSmile
 		}
 
 		private void WentOnline() => SetCameraActive(1);
-
 		private void WentOffline() => SetDefaultCameraActive();
-
-		public void SetCurrentCameraActive() => throw new NotImplementedException();
+		private void SetCurrentOtherCameraActive(bool active) => m_OtherCameras[m_OtherCameraIndex].gameObject.SetActive(active);
 	}
 }

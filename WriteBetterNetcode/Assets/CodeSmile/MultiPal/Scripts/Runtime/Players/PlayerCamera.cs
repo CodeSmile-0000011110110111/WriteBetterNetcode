@@ -25,7 +25,7 @@ namespace CodeSmile.Players
 
 			var cameras = Components.Cameras;
 			cameras.InstantiatePlayerCinecams(playerIndex, m_CameraPrefabs);
-			cameras.SetPlayerCameraEnabled(playerIndex, true);
+			//cameras.SetPlayerCameraEnabled(playerIndex, true);
 
 			if (m_CameraTarget == null)
 				m_CameraTarget = transform;
@@ -38,7 +38,7 @@ namespace CodeSmile.Players
 		{
 			var cameras = Components.Cameras;
 			cameras.DestroyPlayerCinecams(playerIndex);
-			cameras.SetPlayerCameraEnabled(playerIndex, false);
+			//cameras.SetPlayerCameraEnabled(playerIndex, false);
 		}
 
 		private void Awake()
