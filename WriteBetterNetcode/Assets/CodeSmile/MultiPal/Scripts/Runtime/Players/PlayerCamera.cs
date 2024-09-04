@@ -24,7 +24,7 @@ namespace CodeSmile.Players
 			m_PlayerIndex = playerIndex;
 
 			var cameras = Components.Cameras;
-			cameras.InstantiatePlayerCinecams(playerIndex, m_CameraPrefabs);
+			//cameras.InstantiatePlayerCinecams(playerIndex, m_CameraPrefabs);
 			//cameras.SetPlayerCameraEnabled(playerIndex, true);
 
 			if (m_CameraTarget == null)
@@ -37,16 +37,8 @@ namespace CodeSmile.Players
 		public void OnPlayerDespawn(Int32 playerIndex)
 		{
 			var cameras = Components.Cameras;
-			cameras.DestroyPlayerCinecams(playerIndex);
+			//cameras.DestroyPlayerCinecams(playerIndex);
 			//cameras.SetPlayerCameraEnabled(playerIndex, false);
-		}
-
-		private void Awake()
-		{
-			if (m_CameraPrefabs == null)
-				throw new MissingReferenceException(nameof(PlayerCameraPrefabs));
-
-			m_CameraPrefabs.ValidatePrefabsHaveComponent<CinemachineCamera>();
 		}
 
 		public void SetTargets(Transform trackingTarget, Transform lookAtTarget = null) =>

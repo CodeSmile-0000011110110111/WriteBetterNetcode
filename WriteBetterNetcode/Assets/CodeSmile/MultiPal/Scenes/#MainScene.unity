@@ -2398,7 +2398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &310990241
 Transform:
   m_ObjectHideFlags: 0
@@ -2427,8 +2427,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Priority:
-    Enabled: 1
-    m_Value: -1
+    Enabled: 0
+    m_Value: 0
   OutputChannel: 4
   StandbyUpdate: 2
   m_StreamingVersion: 20230301
@@ -11726,7 +11726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1516316185
 Transform:
   m_ObjectHideFlags: 0
@@ -11755,8 +11755,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Priority:
-    Enabled: 1
-    m_Value: -1
+    Enabled: 0
+    m_Value: 0
   OutputChannel: 16
   StandbyUpdate: 2
   m_StreamingVersion: 20230301
@@ -14465,7 +14465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1989057546
 Transform:
   m_ObjectHideFlags: 0
@@ -14494,8 +14494,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Priority:
-    Enabled: 1
-    m_Value: -1
+    Enabled: 0
+    m_Value: 0
   OutputChannel: 8
   StandbyUpdate: 2
   m_StreamingVersion: 20230301
@@ -15804,7 +15804,12 @@ MonoBehaviour:
   - {fileID: 1679215497}
   - {fileID: 243119137}
   - {fileID: 2145309384}
-  m_PlayerNotJoinedCinecams: []
+  m_PlayerCinecamPrefabs: {fileID: 11400000, guid: b62f39f26c4e0554d9cd69f00a6efbb5, type: 2}
+  m_PlayerNotJoinedCinecams:
+  - {fileID: 2280554300491284179}
+  - {fileID: 310990242}
+  - {fileID: 1989057547}
+  - {fileID: 1516316186}
 --- !u!114 &2101685258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16342,7 +16347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2100322526572039505
 Transform:
   m_ObjectHideFlags: 0
@@ -16390,8 +16395,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Priority:
-    Enabled: 1
-    m_Value: -1
+    Enabled: 0
+    m_Value: 0
   OutputChannel: 2
   StandbyUpdate: 2
   m_StreamingVersion: 20230301

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0be6e1beafa84795a8db450213c78625, type: 3}
-  m_Name: Player Cameras
+  m_Name: Player Cinecams
   m_EditorClassIdentifier: 
   m_Prefabs:
   - {fileID: 8706336217458341143, guid: a9d5b03622e9a3348aa95315e8a3c246, type: 3}

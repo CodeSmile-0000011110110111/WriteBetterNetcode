@@ -16,12 +16,14 @@ namespace CodeSmile
 	{
 		[SerializeField] private Camera[] m_OtherCameras;
 		[SerializeField] private Camera[] m_PlayerCameras = new Camera[Constants.MaxCouchPlayers];
+		[SerializeField] private PlayerCameraPrefabs m_PlayerCinecamPrefabs;
 		[SerializeField] private CinemachineCamera[] m_PlayerNotJoinedCinecams;
-		public CinemachineCamera[] PlayerNotJoinedCinecams => m_PlayerNotJoinedCinecams;
 
 		private readonly List<CinemachineCamera>[] m_PlayerCinecams = new List<CinemachineCamera>[Constants.MaxCouchPlayers];
 		private Splitscreen m_Splitscreen;
 		private Int32 m_OtherCameraIndex;
+
+		public CinemachineCamera[] PlayerNotJoinedCinecams => m_PlayerNotJoinedCinecams;
 		public Camera[] PlayerCameras => m_PlayerCameras;
 
 		public Camera ActiveOtherCamera => m_OtherCameras[m_OtherCameraIndex];
@@ -32,11 +34,17 @@ namespace CodeSmile
 		{
 			m_Splitscreen = GetComponent<Splitscreen>();
 
-			AllocateCinecamCollection();
+			if (m_PlayerCinecamPrefabs == null)
+				throw new MissingReferenceException(nameof(PlayerCameraPrefabs));
+
+			m_PlayerCinecamPrefabs.ValidatePrefabsHaveComponent<CinemachineCamera>();
+
+			InitPlayerCinecams();
+			ClearPlayerChannelsOfOtherCameras();
+			SetPlayerCinecamBrainChannels();
 
 			// always start with the offline camera
 			SetDefaultCameraActive();
-			SetPlayerCinecamBrainChannels();
 		}
 
 		private void Start()
@@ -82,6 +90,7 @@ namespace CodeSmile
 
 		internal void OnCouchPlayerLeft(CouchPlayers couchPlayers, Int32 playerIndex)
 		{
+			Debug.Log($"player {playerIndex} left");
 			m_Splitscreen.UpdateSplitscreen(couchPlayers);
 
 			if (couchPlayers.PlayerCount == 0)
@@ -94,10 +103,18 @@ namespace CodeSmile
 		public IReadOnlyList<CinemachineCamera> GetPlayerCinecams(Int32 playerIndex) =>
 			m_PlayerCinecams[playerIndex].AsReadOnly();
 
-		private void AllocateCinecamCollection()
+		private void ClearPlayerChannelsOfOtherCameras()
 		{
-			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
-				m_PlayerCinecams[playerIndex] = new List<CinemachineCamera>();
+			var playerChannelsMask = OutputChannels.Channel01 | OutputChannels.Channel02 |
+			                         OutputChannels.Channel03 | OutputChannels.Channel04;
+
+			// other cameras should not get influenced by players' Cinecams
+			for (var i = 0; i < m_OtherCameras.Length; i++)
+			{
+				var otherCamera = m_OtherCameras[i];
+				if (otherCamera.TryGetComponent<CinemachineBrain>(out var brain))
+					brain.ChannelMask &= ~playerChannelsMask; // clear player channels
+			}
 		}
 
 		private void SetPlayerCinecamBrainChannels()
@@ -107,6 +124,18 @@ namespace CodeSmile
 				var playerCamera = m_PlayerCameras[playerIndex];
 				var brain = playerCamera.GetComponent<CinemachineBrain>();
 				brain.ChannelMask = (OutputChannels)(1 << playerIndex + 1);
+			}
+		}
+
+		private void InitPlayerCinecams()
+		{
+			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
+			{
+				m_PlayerCameras[playerIndex].gameObject.SetActive(false);
+				m_PlayerNotJoinedCinecams[playerIndex].gameObject.SetActive(false);
+
+				m_PlayerCinecams[playerIndex] = new List<CinemachineCamera>();
+				InstantiatePlayerCinecams(playerIndex, m_PlayerCinecamPrefabs);
 			}
 		}
 
@@ -177,6 +206,8 @@ namespace CodeSmile
 
 		private void WentOnline() => SetCameraActive(1);
 		private void WentOffline() => SetDefaultCameraActive();
-		private void SetCurrentOtherCameraActive(bool active) => m_OtherCameras[m_OtherCameraIndex].gameObject.SetActive(active);
+
+		private void SetCurrentOtherCameraActive(Boolean active) =>
+			m_OtherCameras[m_OtherCameraIndex].gameObject.SetActive(active);
 	}
 }

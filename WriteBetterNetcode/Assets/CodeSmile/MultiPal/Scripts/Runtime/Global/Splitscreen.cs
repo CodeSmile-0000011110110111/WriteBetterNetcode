@@ -13,7 +13,7 @@ namespace CodeSmile
 	[RequireComponent(typeof(Cameras))]
 	public sealed class Splitscreen : MonoBehaviour
 	{
-		public enum SplitMode
+		public enum SplitscreenMode
 		{
 			Disabled,
 			Horizontal,
@@ -26,7 +26,22 @@ namespace CodeSmile
 
 		[Tooltip("Set to 'HorizontalAndVertical' to create a 4-way split even for just one and two players. " +
 		         "3 and 4 players split will automatically 'upgrade' to a 4-way split.")]
-		[SerializeField] private SplitMode m_SplitMode = SplitMode.Vertical;
+		[SerializeField] private SplitscreenMode m_SplitscreenMode = SplitscreenMode.Vertical;
+		public SplitscreenMode Mode
+		{
+			get => m_SplitscreenMode;
+			set
+			{
+				if (m_SplitscreenMode != value)
+				{
+					m_SplitscreenMode = value;
+
+					var couchPlayers = Components.LocalCouchPlayers;
+					if (couchPlayers != null)
+						UpdateSplitscreen(couchPlayers);
+				}
+			}
+		}
 
 		private Cameras m_Cameras;
 
@@ -36,14 +51,13 @@ namespace CodeSmile
 		{
 			var twoPlayers = AreTwoPlayersPlaying(couchPlayers);
 			var playerCount = couchPlayers.PlayerCount;
-			if (playerCount <= 1 || m_SplitMode == SplitMode.Disabled)
+			if (playerCount <= 1 || m_SplitscreenMode == SplitscreenMode.Disabled)
 				EnableSinglePlayerCamera();
-			else if (twoPlayers && m_SplitMode == SplitMode.Horizontal)
+			else if (twoPlayers && m_SplitscreenMode == SplitscreenMode.Horizontal)
 				EnableHorizontalSplitscreen();
-			else if (twoPlayers && m_SplitMode == SplitMode.Vertical)
+			else if (twoPlayers && m_SplitscreenMode == SplitscreenMode.Vertical)
 				EnableVerticalSplitscreen();
-			// 4-way split if: requested, automatically for 3+ players
-			else if (playerCount >= 3 || m_SplitMode == SplitMode.HorizontalAndVertical)
+			else // 4-way split if set to both H/V, automatically for 3+ players, or if players 3 or 4 remain ingame
 				EnableFourWaySplitscreen();
 		}
 
@@ -105,22 +119,39 @@ namespace CodeSmile
 		private void SetSingleplayerCameraActive()
 		{
 			var playerCameras = m_Cameras.PlayerCameras;
-			for (var i = 0; i < Constants.MaxCouchPlayers; i++)
-				playerCameras[i].gameObject.SetActive(i == 0);
+			var notJoinedCameras = m_Cameras.PlayerNotJoinedCinecams;
+			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
+			{
+				playerCameras[playerIndex].gameObject.SetActive(playerIndex == 0);
+				notJoinedCameras[playerIndex].gameObject.SetActive(false);
+			}
 		}
 
 		private void SetTwoPlayerCamerasActive()
 		{
 			var playerCameras = m_Cameras.PlayerCameras;
-			for (var i = 0; i < Constants.MaxCouchPlayers; i++)
-				playerCameras[i].gameObject.SetActive(i == 0 || i == 1);
+			var notJoinedCameras = m_Cameras.PlayerNotJoinedCinecams;
+			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
+			{
+				playerCameras[playerIndex].gameObject.SetActive(playerIndex == 0 || playerIndex == 1);
+				notJoinedCameras[playerIndex].gameObject.SetActive(false);
+			}
 		}
 
 		private void SetAllPlayerCamerasActive()
 		{
+			var couchPlayers = Components.LocalCouchPlayers;
 			var playerCameras = m_Cameras.PlayerCameras;
-			for (var i = 0; i < Constants.MaxCouchPlayers; i++)
-				playerCameras[i].gameObject.SetActive(true);
+			var notJoinedCameras = m_Cameras.PlayerNotJoinedCinecams;
+			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
+			{
+				playerCameras[playerIndex].gameObject.SetActive(true);
+
+				var isPlaying = couchPlayers[playerIndex] != null;
+				notJoinedCameras[playerIndex].gameObject.SetActive(!isPlaying);
+
+				Debug.Log($"Player {playerIndex} playing={isPlaying}");
+			}
 		}
 	}
 }
