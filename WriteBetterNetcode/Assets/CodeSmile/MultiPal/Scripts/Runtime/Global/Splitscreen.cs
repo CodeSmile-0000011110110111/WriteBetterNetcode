@@ -9,11 +9,19 @@ using UnityEngine;
 
 namespace CodeSmile
 {
+	/// <summary>
+	///     Dynamically splits the screen based on number of currently joined players.
+	///     Splitscreen behaviour is as follows:
+	///     1 player = 1 camera active
+	///     2 players = 2 cameras active (horizontal or vertical split)
+	///     3-4 players = 4 cameras active
+	///     In 4-way splitscreen, if player 3 or 4 remain in the game, the screen remains 4-way split.
+	///     If Axis is set to HorizontalAndVertical the split will be 4-way regardless of player count.
+	/// </summary>
 	[DisallowMultipleComponent]
-	[RequireComponent(typeof(Cameras))]
 	public sealed class Splitscreen : MonoBehaviour
 	{
-		public enum SplitscreenMode
+		public enum SplitscreenAxis
 		{
 			Disabled,
 			Horizontal,
@@ -26,15 +34,17 @@ namespace CodeSmile
 
 		[Tooltip("Set to 'HorizontalAndVertical' to create a 4-way split even for just one and two players. " +
 		         "3 and 4 players split will automatically 'upgrade' to a 4-way split.")]
-		[SerializeField] private SplitscreenMode m_SplitscreenMode = SplitscreenMode.Vertical;
-		public SplitscreenMode Mode
+		[SerializeField] private SplitscreenAxis m_SplitscreenAxis = SplitscreenAxis.Vertical;
+
+		private Cameras m_Cameras;
+		public SplitscreenAxis SplitAxis
 		{
-			get => m_SplitscreenMode;
+			get => m_SplitscreenAxis;
 			set
 			{
-				if (m_SplitscreenMode != value)
+				if (m_SplitscreenAxis != value)
 				{
-					m_SplitscreenMode = value;
+					m_SplitscreenAxis = value;
 
 					var couchPlayers = Components.LocalCouchPlayers;
 					if (couchPlayers != null)
@@ -43,19 +53,18 @@ namespace CodeSmile
 			}
 		}
 
-		private Cameras m_Cameras;
-
 		private void Awake() => m_Cameras = GetComponent<Cameras>();
 
 		internal void UpdateSplitscreen(CouchPlayers couchPlayers)
 		{
-			var twoPlayers = AreTwoPlayersPlaying(couchPlayers);
+			var firstTwoPlayers = AreOnlyFirstTwoPlayersPlaying(couchPlayers);
 			var playerCount = couchPlayers.PlayerCount;
-			if (playerCount <= 1 || m_SplitscreenMode == SplitscreenMode.Disabled)
+			if ((playerCount <= 1 || m_SplitscreenAxis == SplitscreenAxis.Disabled) &&
+			    m_SplitscreenAxis != SplitscreenAxis.HorizontalAndVertical)
 				EnableSinglePlayerCamera();
-			else if (twoPlayers && m_SplitscreenMode == SplitscreenMode.Horizontal)
+			else if (firstTwoPlayers && m_SplitscreenAxis == SplitscreenAxis.Horizontal)
 				EnableHorizontalSplitscreen();
-			else if (twoPlayers && m_SplitscreenMode == SplitscreenMode.Vertical)
+			else if (firstTwoPlayers && m_SplitscreenAxis == SplitscreenAxis.Vertical)
 				EnableVerticalSplitscreen();
 			else // 4-way split if set to both H/V, automatically for 3+ players, or if players 3 or 4 remain ingame
 				EnableFourWaySplitscreen();
@@ -67,7 +76,7 @@ namespace CodeSmile
 		/// </summary>
 		/// <param name="couchPlayers"></param>
 		/// <returns></returns>
-		private Boolean AreTwoPlayersPlaying(CouchPlayers couchPlayers) =>
+		private Boolean AreOnlyFirstTwoPlayersPlaying(CouchPlayers couchPlayers) =>
 			couchPlayers.PlayerCount == 2 && couchPlayers[0] != null && couchPlayers[1] != null;
 
 		private void EnableSinglePlayerCamera()
@@ -75,7 +84,7 @@ namespace CodeSmile
 			Debug.Log("singleplayer");
 			SetSingleplayerCameraActive();
 
-			m_Cameras.PlayerCameras[0].rect = new Rect(Vector2.zero, Vector2.one);
+			m_Cameras.PlayerSplitCameras[0].rect = new Rect(Vector2.zero, Vector2.one);
 		}
 
 		private void EnableHorizontalSplitscreen()
@@ -84,7 +93,7 @@ namespace CodeSmile
 			SetTwoPlayerCamerasActive();
 
 			// 0 = top, 1 = bottom
-			var playerCameras = m_Cameras.PlayerCameras;
+			var playerCameras = m_Cameras.PlayerSplitCameras;
 			var viewportSize = new Vector2(1f, 0.5f);
 			playerCameras[0].rect = new Rect(new Vector2(0f, 0.5f), viewportSize);
 			playerCameras[1].rect = new Rect(Vector2.zero, viewportSize);
@@ -96,7 +105,7 @@ namespace CodeSmile
 			SetTwoPlayerCamerasActive();
 
 			// 0 = left, 1 = right
-			var playerCameras = m_Cameras.PlayerCameras;
+			var playerCameras = m_Cameras.PlayerSplitCameras;
 			var viewportSize = new Vector2(0.5f, 1f);
 			playerCameras[0].rect = new Rect(Vector2.zero, viewportSize);
 			playerCameras[1].rect = new Rect(new Vector2(0.5f, 0f), viewportSize);
@@ -108,7 +117,7 @@ namespace CodeSmile
 			SetAllPlayerCamerasActive();
 
 			// 0 = top left, 1 = top right, 2 = bottom left, 3 = bottom right
-			var cameras = m_Cameras.PlayerCameras;
+			var cameras = m_Cameras.PlayerSplitCameras;
 			var viewportSize = new Vector2(0.5f, 0.5f);
 			cameras[0].rect = new Rect(new Vector2(0f, 0.5f), viewportSize);
 			cameras[1].rect = new Rect(new Vector2(0.5f, 0.5f), viewportSize);
@@ -118,7 +127,7 @@ namespace CodeSmile
 
 		private void SetSingleplayerCameraActive()
 		{
-			var playerCameras = m_Cameras.PlayerCameras;
+			var playerCameras = m_Cameras.PlayerSplitCameras;
 			var notJoinedCameras = m_Cameras.PlayerNotJoinedCinecams;
 			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
 			{
@@ -129,7 +138,7 @@ namespace CodeSmile
 
 		private void SetTwoPlayerCamerasActive()
 		{
-			var playerCameras = m_Cameras.PlayerCameras;
+			var playerCameras = m_Cameras.PlayerSplitCameras;
 			var notJoinedCameras = m_Cameras.PlayerNotJoinedCinecams;
 			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
 			{
@@ -141,7 +150,7 @@ namespace CodeSmile
 		private void SetAllPlayerCamerasActive()
 		{
 			var couchPlayers = Components.LocalCouchPlayers;
-			var playerCameras = m_Cameras.PlayerCameras;
+			var playerCameras = m_Cameras.PlayerSplitCameras;
 			var notJoinedCameras = m_Cameras.PlayerNotJoinedCinecams;
 			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
 			{
@@ -149,8 +158,6 @@ namespace CodeSmile
 
 				var isPlaying = couchPlayers[playerIndex] != null;
 				notJoinedCameras[playerIndex].gameObject.SetActive(!isPlaying);
-
-				Debug.Log($"Player {playerIndex} playing={isPlaying}");
 			}
 		}
 	}

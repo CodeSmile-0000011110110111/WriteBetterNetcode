@@ -12,27 +12,41 @@ using UnityEngine;
 namespace CodeSmile
 {
 	[DisallowMultipleComponent]
+	[RequireComponent(typeof(Splitscreen))]
 	public sealed class Cameras : MonoBehaviour
 	{
-		[Header("Cameras")]
+		private enum CouchPlayerCameraMode
+		{
+			Splitscreen,
+			TargetGroup,
+		}
+
 		[Tooltip("Cameras used for everything besides Player's POV or Player tracking. " +
 		         "Examples: Menu cam, Pre-/Post-Game view, Render cams.")]
 		[SerializeField] private Camera[] m_OtherCameras;
-		[Tooltip("The four player tracking cameras.")]
-		[SerializeField] private Camera[] m_PlayerCameras = new Camera[Constants.MaxCouchPlayers];
 
-		[Header("Cinemachine Cameras")]
-		[Tooltip("The Cinemachine Camera prefabs the player can choose points of view from.")]
+		[Header("CouchPlayers' Modus Operandi")]
+		[SerializeField] private CouchPlayerCameraMode m_CouchPlayerMode = CouchPlayerCameraMode.Splitscreen;
+
+		[Header("Splitscreen Cameras")]
+		[Tooltip("The Cinemachine Camera prefabs each player can switch between.")]
 		[SerializeField] private PlayerCameraPrefabs m_PlayerCinecamPrefabs;
-		[Tooltip("The Cinemachine Cameras that are enabled in 4-way splitscreen for player who haven't joined or left.")]
+		[Tooltip("The four player-tracking cameras.")]
+		[SerializeField] private Camera[] m_PlayerSplitCameras = new Camera[Constants.MaxCouchPlayers];
+		[Tooltip("The Cinecams for players who haven't joined or left (4-way splitscreen only).")]
 		[SerializeField] private CinemachineCamera[] m_PlayerNotJoinedCinecams;
+
+		[Header("TargetGroup Camera")]
+		[SerializeField] private Camera m_TargetGroupCamera;
+		[SerializeField] private CinemachineCamera m_TargetGroupCinecam;
+		[SerializeField] private CinemachineTargetGroup m_TargetGroup;
 
 		private readonly List<CinemachineCamera>[] m_PlayerCinecams = new List<CinemachineCamera>[Constants.MaxCouchPlayers];
 		private Splitscreen m_Splitscreen;
 		private Int32 m_OtherCameraIndex;
 
 		public CinemachineCamera[] PlayerNotJoinedCinecams => m_PlayerNotJoinedCinecams;
-		public Camera[] PlayerCameras => m_PlayerCameras;
+		public Camera[] PlayerSplitCameras => m_PlayerSplitCameras;
 
 		public Camera ActiveOtherCamera => m_OtherCameras[m_OtherCameraIndex];
 
@@ -93,17 +107,27 @@ namespace CodeSmile
 		internal void OnCouchPlayerJoined(CouchPlayers couchPlayers, Int32 playerIndex)
 		{
 			SetCurrentOtherCameraActive(false);
-			m_Splitscreen.UpdateSplitscreen(couchPlayers);
+
+			if (m_CouchPlayerMode == CouchPlayerCameraMode.TargetGroup)
+			{
+				SetTargetGroupCameraActive(true);
+				m_TargetGroup.Targets[playerIndex].Object = couchPlayers[playerIndex].transform;
+			}
+			else
+				m_Splitscreen.UpdateSplitscreen(couchPlayers);
 		}
 
 		internal void OnCouchPlayerLeft(CouchPlayers couchPlayers, Int32 playerIndex)
 		{
-			Debug.Log($"player {playerIndex} left");
-			m_Splitscreen.UpdateSplitscreen(couchPlayers);
+			if (m_CouchPlayerMode == CouchPlayerCameraMode.TargetGroup)
+				m_TargetGroup.Targets[playerIndex].Object = null;
+			else
+				m_Splitscreen.UpdateSplitscreen(couchPlayers);
 
 			if (couchPlayers.PlayerCount == 0)
 			{
-				SetAllCamerasInactive(m_PlayerCameras);
+				SetTargetGroupCameraActive(false);
+				SetAllCamerasInactive(m_PlayerSplitCameras);
 				SetCurrentOtherCameraActive(true);
 			}
 		}
@@ -129,7 +153,7 @@ namespace CodeSmile
 		{
 			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
 			{
-				var playerCamera = m_PlayerCameras[playerIndex];
+				var playerCamera = m_PlayerSplitCameras[playerIndex];
 				var brain = playerCamera.GetComponent<CinemachineBrain>();
 				brain.ChannelMask = (OutputChannels)(1 << playerIndex + 1);
 			}
@@ -139,7 +163,7 @@ namespace CodeSmile
 		{
 			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
 			{
-				m_PlayerCameras[playerIndex].gameObject.SetActive(false);
+				m_PlayerSplitCameras[playerIndex].gameObject.SetActive(false);
 				m_PlayerNotJoinedCinecams[playerIndex].gameObject.SetActive(false);
 
 				m_PlayerCinecams[playerIndex] = new List<CinemachineCamera>();
@@ -173,15 +197,26 @@ namespace CodeSmile
 			m_PlayerCinecams[playerIndex].Clear();
 		}
 
-		private void SetDefaultCameraActive() => SetCameraActive(0);
+		private void SetDefaultCameraActive() => SetOtherCameraActive(0);
 
-		private void SetCameraActive(Int32 cameraIndex)
+		private void SetTargetGroupCameraActive(Boolean active)
 		{
-			Debug.Log($"SetCameraActive: {cameraIndex}");
+			m_TargetGroup.gameObject.SetActive(active);
+			m_TargetGroupCamera.gameObject.SetActive(active);
+			m_TargetGroupCinecam.gameObject.SetActive(active);
+			if (m_TargetGroupCinecam.TryGetComponent<CinemachineGroupFraming>(out var framing))
+				framing.enabled = active;
+		}
+
+		private void SetOtherCameraActive(Int32 cameraIndex)
+		{
+			Debug.Log($"SetOtherCameraActive: {cameraIndex}");
 			SetAllCamerasInactive(m_OtherCameras);
-			SetAllCamerasInactive(m_PlayerCameras);
+			SetAllCamerasInactive(m_PlayerSplitCameras);
+			SetTargetGroupCameraActive(false);
+
 			m_OtherCameraIndex = cameraIndex;
-			m_OtherCameras[cameraIndex].gameObject.SetActive(true);
+			ActiveOtherCamera.gameObject.SetActive(true);
 		}
 
 		private void SetAllCamerasInactive(Camera[] cameras)
@@ -212,7 +247,7 @@ namespace CodeSmile
 			}
 		}
 
-		private void WentOnline() => SetCameraActive(1);
+		private void WentOnline() => SetOtherCameraActive(1);
 		private void WentOffline() => SetDefaultCameraActive();
 
 		private void SetCurrentOtherCameraActive(Boolean active) =>
