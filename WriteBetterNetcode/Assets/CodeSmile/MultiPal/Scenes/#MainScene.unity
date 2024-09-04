@@ -10853,6 +10853,7 @@ MonoBehaviour:
   m_InputUsers: {fileID: 142632566}
   m_Cameras: {fileID: 2101685257}
   m_PlayerControllers: {fileID: 1141582651}
+  m_LocalCouchPlayers: {fileID: 0}
 --- !u!1 &1436111972
 GameObject:
   m_ObjectHideFlags: 0
@@ -15525,6 +15526,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2101685256}
   - component: {fileID: 2101685257}
+  - component: {fileID: 2101685258}
   m_Layer: 0
   m_Name: Cameras
   m_TagString: Untagged
@@ -15565,7 +15567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad6769dbb228e00498f9c7e0b5b3b3cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_OtherCameras:
+  m_Cameras:
   - {fileID: 512638986}
   - {fileID: 1511574606}
   m_PlayerCameras:
@@ -15573,6 +15575,19 @@ MonoBehaviour:
   - {fileID: 1679215497}
   - {fileID: 243119137}
   - {fileID: 2145309384}
+--- !u!114 &2101685258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101685255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f665f2701d4389827fb7ed31029aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SplitMode: 3
 --- !u!1 &2128407175
 GameObject:
   m_ObjectHideFlags: 0

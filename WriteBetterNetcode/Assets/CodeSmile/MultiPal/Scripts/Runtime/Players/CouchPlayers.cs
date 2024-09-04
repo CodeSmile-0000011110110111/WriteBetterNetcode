@@ -23,11 +23,8 @@ namespace CodeSmile.Players
 		typeof(CouchPlayersServer))]
 	public sealed class CouchPlayers : NetworkBehaviour
 	{
-		public static event Action<CouchPlayers> OnCouchSessionStarted;
-		public static event Action OnCouchSessionStopped;
-
-		public event Action<Int32> OnCouchPlayerJoin;
-		public event Action<Int32> OnCouchPlayerLeave;
+		public event Action<CouchPlayers, Int32> OnCouchPlayerJoin;
+		public event Action<CouchPlayers, Int32> OnCouchPlayerLeave;
 
 		private readonly Player[] m_Players = new Player[Constants.MaxCouchPlayers];
 		private readonly Status[] m_PlayerStatus = new Status[Constants.MaxCouchPlayers];
@@ -35,6 +32,8 @@ namespace CodeSmile.Players
 		private CouchPlayersClient m_ClientSide;
 
 		public Player this[Int32 index] => index >= 0 && index < Constants.MaxCouchPlayers ? m_Players[index] : null;
+
+		public int PlayerCount { get; set; }
 
 		private void Awake() => m_ClientSide = GetComponent<CouchPlayersClient>();
 
@@ -47,16 +46,16 @@ namespace CodeSmile.Players
 
 			if (IsOwner)
 			{
+				Components.LocalCouchPlayers = this;
+
 				var inputUsers = Components.InputUsers;
-				inputUsers.OnDevicePaired += OnInputDevicePaired;
-				inputUsers.OnDeviceUnpaired += OnInputDeviceUnpaired;
+				inputUsers.OnUserDevicePaired += OnUserInputDevicePaired;
+				inputUsers.OnUserDeviceUnpaired += OnUserInputDeviceUnpaired;
 				inputUsers.AllPairingEnabled = true;
 				inputUsers.AllUiEnabled = false;
 				inputUsers.AllPlayerInteractionEnabled = true;
 				inputUsers.AllPlayerKinematicsEnabled = true;
 				inputUsers.AllPlayerUiEnabled = true;
-
-				OnCouchSessionStarted?.Invoke(this);
 
 				await SpawnPlayer(0, 0); // spawn host player
 			}
@@ -68,19 +67,19 @@ namespace CodeSmile.Players
 
 			if (IsOwner)
 			{
+				Components.LocalCouchPlayers = null;
+
 				var inputUsers = Components.InputUsers;
 				inputUsers.AllPairingEnabled = false;
 				inputUsers.AllUiEnabled = true;
 				inputUsers.AllPlayerInteractionEnabled = false;
 				inputUsers.AllPlayerKinematicsEnabled = false;
 				inputUsers.AllPlayerUiEnabled = false;
-				inputUsers.OnDevicePaired -= OnInputDevicePaired;
-				inputUsers.OnDeviceUnpaired -= OnInputDeviceUnpaired;
+				inputUsers.OnUserDevicePaired -= OnUserInputDevicePaired;
+				inputUsers.OnUserDeviceUnpaired -= OnUserInputDeviceUnpaired;
 				inputUsers.UnpairAll();
 
 				DespawnAllPlayers();
-
-				OnCouchSessionStopped?.Invoke();
 			}
 		}
 
@@ -90,8 +89,8 @@ namespace CodeSmile.Players
 				DespawnPlayer(playerIndex);
 		}
 
-		private async void OnInputDevicePaired(InputUser user, InputDevice device) => await TrySpawnPlayer(user);
-		private void OnInputDeviceUnpaired(InputUser user, InputDevice device) => DespawnPlayer(user.index);
+		private async void OnUserInputDevicePaired(InputUser user, InputDevice device) => await TrySpawnPlayer(user);
+		private void OnUserInputDeviceUnpaired(InputUser user, InputDevice device) => DespawnPlayer(user.index);
 
 		private async Task TrySpawnPlayer(InputUser user)
 		{
@@ -115,7 +114,8 @@ namespace CodeSmile.Players
 			SetPlayerDebugName(playerIndex);
 
 			player.OnPlayerSpawn(playerIndex);
-			OnCouchPlayerJoin?.Invoke(playerIndex);
+			PlayerCount++;
+			OnCouchPlayerJoin?.Invoke(this, playerIndex);
 		}
 
 		private void DespawnPlayer(Int32 playerIndex)
@@ -123,7 +123,8 @@ namespace CodeSmile.Players
 			var player = m_Players[playerIndex];
 			if (player != null)
 			{
-				OnCouchPlayerLeave?.Invoke(playerIndex);
+				PlayerCount--;
+				OnCouchPlayerLeave?.Invoke(this, playerIndex);
 				player.OnPlayerDespawn(playerIndex);
 				ResetPlayerFields(playerIndex);
 

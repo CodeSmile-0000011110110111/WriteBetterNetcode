@@ -14,38 +14,39 @@ namespace CodeSmile.GUI
 		[SerializeField] private DevMainMenu m_MainMenu;
 		[SerializeField] private DevIngameMenu m_IngameMenu;
 
-		private CouchPlayers m_CouchPlayers;
-
 		private void Awake()
 		{
 			ThrowIfNotAssigned<DevMainMenu>(m_MainMenu);
 			ThrowIfNotAssigned<DevIngameMenu>(m_IngameMenu);
 
-			CouchPlayers.OnCouchSessionStarted += OnCouchSessionStarted;
-			CouchPlayers.OnCouchSessionStopped += OnCouchSessionStopped;
+			Components.OnLocalCouchPlayersSpawn += OnCouchSessionStarted;
+			Components.OnLocalCouchPlayersDespawn += OnCouchSessionStopped;
 		}
 
 		private void OnDestroy()
 		{
-			CouchPlayers.OnCouchSessionStarted -= OnCouchSessionStarted;
-			CouchPlayers.OnCouchSessionStopped -= OnCouchSessionStopped;
+			Components.OnLocalCouchPlayersSpawn -= OnCouchSessionStarted;
+			Components.OnLocalCouchPlayersDespawn -= OnCouchSessionStopped;
 		}
 
-		private void OnCouchSessionStarted(CouchPlayers localCouchPlayers)
+		private void OnCouchSessionStarted(CouchPlayers couchPlayers)
 		{
-			m_CouchPlayers = localCouchPlayers;
-			m_CouchPlayers.OnCouchPlayerJoin += OnCouchPlayerJoin;
-			m_CouchPlayers.OnCouchPlayerLeave += OnCouchPlayerLeave;
+			couchPlayers.OnCouchPlayerJoin += OnCouchPlayerJoin;
+			couchPlayers.OnCouchPlayerLeave += OnCouchPlayerLeave;
 		}
 
-		private void OnCouchSessionStopped() => m_CouchPlayers = null;
-
-		private void OnCouchPlayerJoin(Int32 playerIndex) =>
-			m_CouchPlayers[playerIndex].OnRequestToggleIngameMenu += OnRequestToggleIngameMenu;
-
-		private void OnCouchPlayerLeave(Int32 playerIndex)
+		private void OnCouchSessionStopped(CouchPlayers couchPlayers)
 		{
-			m_CouchPlayers[playerIndex].OnRequestToggleIngameMenu -= OnRequestToggleIngameMenu;
+			if (m_IngameMenu.IsVisible)
+				m_IngameMenu.Hide();
+		}
+
+		private void OnCouchPlayerJoin(CouchPlayers couchPlayers, Int32 playerIndex) =>
+			couchPlayers[playerIndex].OnRequestToggleIngameMenu += OnRequestToggleIngameMenu;
+
+		private void OnCouchPlayerLeave(CouchPlayers couchPlayers, Int32 playerIndex)
+		{
+			couchPlayers[playerIndex].OnRequestToggleIngameMenu -= OnRequestToggleIngameMenu;
 
 			// leave from menu? Close menu!
 			if (m_IngameMenu.IsVisible && m_IngameMenu.MenuPlayerIndex == playerIndex)
@@ -57,10 +58,11 @@ namespace CodeSmile.GUI
 			m_IngameMenu.MenuPlayerIndex = playerIndex;
 			m_IngameMenu.ToggleVisible();
 
+			var couchPlayers = Components.LocalCouchPlayers;
 			if (m_IngameMenu.IsVisible)
-				m_CouchPlayers[playerIndex].OnOpenIngameMenu();
+				couchPlayers[playerIndex].OnOpenIngameMenu();
 			else
-				m_CouchPlayers[playerIndex].OnCloseIngameMenu();
+				couchPlayers[playerIndex].OnCloseIngameMenu();
 		}
 
 		private void ThrowIfNotAssigned<T>(Component component) where T : Component

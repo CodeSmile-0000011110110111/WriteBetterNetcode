@@ -13,14 +13,22 @@ namespace CodeSmile
 	[DisallowMultipleComponent]
 	public sealed class Cameras : MonoBehaviour
 	{
-		[SerializeField] private Camera[] m_OtherCameras;
+		[SerializeField] private Camera[] m_Cameras;
 		[SerializeField] private Camera[] m_PlayerCameras = new Camera[Constants.MaxCouchPlayers];
 
-		private readonly List<CinemachineCamera>[]
-			m_PlayerCinecams = new List<CinemachineCamera>[Constants.MaxCouchPlayers];
+		private readonly List<CinemachineCamera>[] m_PlayerCinecams = new List<CinemachineCamera>[Constants.MaxCouchPlayers];
+		private Splitscreen m_Splitscreen;
+		private Int32 m_ActiveCameraIndex;
+		public Camera[] PlayerCameras => m_PlayerCameras;
+
+		public Camera ActiveCamera => m_Cameras[m_ActiveCameraIndex];
+
+		public Splitscreen Splitscreen => m_Splitscreen;
 
 		private void Awake()
 		{
+			m_Splitscreen = GetComponent<Splitscreen>();
+
 			AllocateCinecamCollection();
 
 			// always start with the offline camera
@@ -44,8 +52,6 @@ namespace CodeSmile
 				netcodeState.WentOffline -= WentOffline;
 			}
 		}
-
-		public Camera GetPlayerCamera(Int32 playerIndex) => m_PlayerCameras[playerIndex];
 
 		public IReadOnlyList<CinemachineCamera> GetPlayerCinecams(Int32 playerIndex) =>
 			m_PlayerCinecams[playerIndex].AsReadOnly();
@@ -92,13 +98,14 @@ namespace CodeSmile
 			m_PlayerCinecams[playerIndex].Clear();
 		}
 
-		private void SetDefaultCameraActive() => SetOtherCameraActive(0);
+		private void SetDefaultCameraActive() => SetCameraActive(0);
 
-		private void SetOtherCameraActive(Int32 otherCameraIndex)
+		private void SetCameraActive(Int32 cameraIndex)
 		{
-			SetAllCamerasInactive(m_OtherCameras);
+			SetAllCamerasInactive(m_Cameras);
 			SetAllCamerasInactive(m_PlayerCameras);
-			m_OtherCameras[otherCameraIndex].gameObject.SetActive(true);
+			m_ActiveCameraIndex = cameraIndex;
+			m_Cameras[cameraIndex].gameObject.SetActive(true);
 		}
 
 		private void SetAllCamerasInactive(Camera[] cameras)
@@ -113,7 +120,7 @@ namespace CodeSmile
 
 		public void SetPlayerCameraEnabled(Int32 playerIndex, Boolean enable)
 		{
-			SetAllCamerasInactive(m_OtherCameras);
+			SetAllCamerasInactive(m_Cameras);
 			m_PlayerCameras[playerIndex].gameObject.SetActive(enable);
 		}
 
@@ -135,8 +142,10 @@ namespace CodeSmile
 			}
 		}
 
-		private void WentOnline() => SetOtherCameraActive(1);
+		private void WentOnline() => SetCameraActive(1);
 
 		private void WentOffline() => SetDefaultCameraActive();
+
+		public void SetCurrentCameraActive() => throw new NotImplementedException();
 	}
 }

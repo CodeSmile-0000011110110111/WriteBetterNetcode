@@ -14,8 +14,8 @@ namespace CodeSmile.Input
 	[DisallowMultipleComponent]
 	public sealed partial class InputUsers : MonoBehaviour, GeneratedInput.IPairingActions
 	{
-		public event Action<InputUser, InputDevice> OnDevicePaired;
-		public event Action<InputUser, InputDevice> OnDeviceUnpaired;
+		public event Action<InputUser, InputDevice> OnUserDevicePaired;
+		public event Action<InputUser, InputDevice> OnUserDeviceUnpaired;
 
 		private readonly InputUser[] m_Users = new InputUser[Constants.MaxCouchPlayers];
 
@@ -120,7 +120,7 @@ namespace CodeSmile.Input
 
 					EnableLeaveAction(userIndex);
 
-					OnDevicePaired?.Invoke(user, device);
+					OnUserDevicePaired?.Invoke(user, device);
 				}
 			}
 		}
@@ -141,7 +141,7 @@ namespace CodeSmile.Input
 
 				EnableJoinAction(deviceUser.Value.index);
 
-				OnDeviceUnpaired?.Invoke(deviceUser.Value, device);
+				OnUserDeviceUnpaired?.Invoke(deviceUser.Value, device);
 			}
 		}
 
