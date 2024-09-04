@@ -2,3 +2,13 @@ Files under the "3rdParty" folder are distributed under the following licenses:
 
 
 (no 3rd party assets included yet)
+
+Fonts
+=============================================
+
+Currently included font families:
+    Roboto
+
+All fonts distributed under the Apache 2.0 License.
+See LICENSE.txt in each font folder.
+http://www.apache.org/licenses/

@@ -61,7 +61,6 @@ namespace CodeSmile.Players.Controllers
 		{
 			//var lookDir = context.performed ? context.ReadValue<Vector2>() : Vector2.zero;
 			var lookDir = context.ReadValue<Vector2>();
-			Debug.Log($"LookDir: {lookDir}");
 			m_DeltaTilt = lookDir.y * RotationSensitivity.y * Time.deltaTime * (m_InvertVertical ? 1f : -1f);
 			m_DeltaPan = lookDir.x * RotationSensitivity.x * Time.deltaTime;
 		}
