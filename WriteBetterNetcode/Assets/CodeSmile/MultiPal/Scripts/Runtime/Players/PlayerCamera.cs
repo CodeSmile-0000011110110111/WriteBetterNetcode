@@ -1,7 +1,6 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.Settings;
 using System;
 using Unity.Cinemachine;
 using UnityEditor;
@@ -12,7 +11,6 @@ namespace CodeSmile.Players
 	[DisallowMultipleComponent]
 	public sealed class PlayerCamera : MonoBehaviour, IPlayerComponent
 	{
-		[SerializeField] private PlayerCameraPrefabs m_CameraPrefabs;
 		[SerializeField] private Transform m_CameraTarget;
 		[SerializeField] private Transform m_LookAtTarget;
 		private Int32 m_PlayerIndex = -1;
@@ -23,10 +21,6 @@ namespace CodeSmile.Players
 		{
 			m_PlayerIndex = playerIndex;
 
-			var cameras = Components.Cameras;
-			//cameras.InstantiatePlayerCinecams(playerIndex, m_CameraPrefabs);
-			//cameras.SetPlayerCameraEnabled(playerIndex, true);
-
 			if (m_CameraTarget == null)
 				m_CameraTarget = transform;
 
@@ -34,12 +28,7 @@ namespace CodeSmile.Players
 			SetCinecamTargets(playerIndex, m_CameraTarget, lookAtTarget);
 		}
 
-		public void OnPlayerDespawn(Int32 playerIndex)
-		{
-			var cameras = Components.Cameras;
-			//cameras.DestroyPlayerCinecams(playerIndex);
-			//cameras.SetPlayerCameraEnabled(playerIndex, false);
-		}
+		public void OnPlayerDespawn(Int32 playerIndex) {}
 
 		public void SetTargets(Transform trackingTarget, Transform lookAtTarget = null) =>
 			SetCinecamTargets(m_PlayerIndex, trackingTarget, lookAtTarget);

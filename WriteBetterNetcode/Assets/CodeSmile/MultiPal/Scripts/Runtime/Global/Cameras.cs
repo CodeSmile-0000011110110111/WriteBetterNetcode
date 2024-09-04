@@ -14,9 +14,17 @@ namespace CodeSmile
 	[DisallowMultipleComponent]
 	public sealed class Cameras : MonoBehaviour
 	{
+		[Header("Cameras")]
+		[Tooltip("Cameras used for everything besides Player's POV or Player tracking. " +
+		         "Examples: Menu cam, Pre-/Post-Game view, Render cams.")]
 		[SerializeField] private Camera[] m_OtherCameras;
+		[Tooltip("The four player tracking cameras.")]
 		[SerializeField] private Camera[] m_PlayerCameras = new Camera[Constants.MaxCouchPlayers];
+
+		[Header("Cinemachine Cameras")]
+		[Tooltip("The Cinemachine Camera prefabs the player can choose points of view from.")]
 		[SerializeField] private PlayerCameraPrefabs m_PlayerCinecamPrefabs;
+		[Tooltip("The Cinemachine Cameras that are enabled in 4-way splitscreen for player who haven't joined or left.")]
 		[SerializeField] private CinemachineCamera[] m_PlayerNotJoinedCinecams;
 
 		private readonly List<CinemachineCamera>[] m_PlayerCinecams = new List<CinemachineCamera>[Constants.MaxCouchPlayers];
