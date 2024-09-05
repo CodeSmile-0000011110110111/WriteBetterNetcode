@@ -2,13 +2,13 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.BetterNetcode.Input;
-using CodeSmile.Settings;
+using CodeSmile.MultiPal.Settings;
 using System;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Input
+namespace CodeSmile.MultiPal.Input
 {
 	public sealed partial class InputUsers
 	{

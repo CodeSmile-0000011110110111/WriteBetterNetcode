@@ -2,14 +2,12 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.BetterNetcode.Input;
-using CodeSmile.CodeSmile.MultiPal;
-using CodeSmile.MultiPal;
 using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace CodeSmile.Players
+namespace CodeSmile.MultiPal.Players
 {
 	[DisallowMultipleComponent]
 	public sealed class PlayerUi : MonoBehaviour, IPlayerComponent, GeneratedInput.IPlayerUIActions

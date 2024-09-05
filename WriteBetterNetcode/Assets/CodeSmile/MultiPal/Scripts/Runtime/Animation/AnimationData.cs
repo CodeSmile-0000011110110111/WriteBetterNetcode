@@ -4,7 +4,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.CodeSmile.MultiPal.Animation
+namespace CodeSmile.MultiPal.Animation
 {
 	public class AnimationData
 	{

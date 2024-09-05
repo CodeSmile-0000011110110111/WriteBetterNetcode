@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Players
+namespace CodeSmile.MultiPal.Players
 {
 	public interface IPlayerComponent
 	{

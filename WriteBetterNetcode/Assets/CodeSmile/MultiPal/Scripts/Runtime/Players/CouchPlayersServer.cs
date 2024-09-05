@@ -6,7 +6,7 @@ using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Players
+namespace CodeSmile.MultiPal.Players
 {
 	[DisallowMultipleComponent]
 	internal sealed class CouchPlayersServer : NetworkBehaviour

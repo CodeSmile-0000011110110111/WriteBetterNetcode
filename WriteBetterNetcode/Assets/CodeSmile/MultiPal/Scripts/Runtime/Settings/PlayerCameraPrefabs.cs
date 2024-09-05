@@ -4,7 +4,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Settings
+namespace CodeSmile.MultiPal.Settings
 {
 	[CreateAssetMenu(fileName = "Player Cameras", menuName = "CodeSmile/Player Cameras", order = 0)]
 	public sealed class PlayerCameraPrefabs : PrefabsListBase {}

@@ -1,8 +1,8 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.Players;
-using CodeSmile.Settings;
+using CodeSmile.MultiPal.Players;
+using CodeSmile.MultiPal.Settings;
 using System;
 using System.Collections;
 using System.Collections.Generic;

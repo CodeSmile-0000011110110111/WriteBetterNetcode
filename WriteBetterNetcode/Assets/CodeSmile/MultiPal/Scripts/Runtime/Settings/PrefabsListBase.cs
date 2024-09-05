@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Settings
+namespace CodeSmile.MultiPal.Settings
 {
 	public abstract class PrefabsListBase : ScriptableObject, IEnumerable
 	{

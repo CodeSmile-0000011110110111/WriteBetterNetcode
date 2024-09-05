@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Settings
+namespace CodeSmile.MultiPal.Settings
 {
 	public static class Constants
 	{

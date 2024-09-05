@@ -1,0 +1,21 @@
+﻿// Copyright (C) 2021-2024 Steffen Itterheim
+// Refer to included LICENSE file for terms and conditions.
+
+using CodeSmile.MultiPal.Core.Statemachine.Netcode;
+using System;
+using UnityEditor;
+using UnityEngine;
+
+namespace CodeSmile.MultiPal.Core.Statemachine.Services.Relay.Conditions
+{
+	public sealed class IsRelayEnabled : ICondition
+	{
+		private readonly Var<RelayConfig> m_RelayConfig;
+
+		private IsRelayEnabled() {} // forbidden
+
+		public IsRelayEnabled(Var<RelayConfig> relayConfig) => m_RelayConfig = relayConfig;
+
+		public Boolean IsSatisfied(FSM sm) => m_RelayConfig.Value.UseRelay;
+	}
+}

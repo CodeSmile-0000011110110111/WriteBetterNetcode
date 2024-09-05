@@ -1,14 +1,12 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.CodeSmile.MultiPal;
-using CodeSmile.Core.Statemachine.Netcode;
-using CodeSmile.Core.Utility;
-using CodeSmile.MultiPal;
+using CodeSmile.MultiPal.Core.Statemachine.Netcode;
+using CodeSmile.MultiPal.Core.Utility;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Netcode
+namespace CodeSmile.MultiPal.Netcode
 {
 	internal class CmdLauncher : MonoBehaviour
 	{

@@ -2,14 +2,14 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.BetterNetcode.Input;
-using CodeSmile.Settings;
+using CodeSmile.MultiPal.Settings;
 using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 
-namespace CodeSmile.Input
+namespace CodeSmile.MultiPal.Input
 {
 	[DisallowMultipleComponent]
 	public sealed partial class InputUsers : MonoBehaviour, GeneratedInput.IPairingActions

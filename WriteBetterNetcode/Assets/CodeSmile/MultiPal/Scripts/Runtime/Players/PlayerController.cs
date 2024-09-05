@@ -2,16 +2,14 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.BetterNetcode.Input;
-using CodeSmile.CodeSmile.MultiPal;
-using CodeSmile.MultiPal;
-using CodeSmile.Players.Controllers;
-using CodeSmile.Settings;
+using CodeSmile.MultiPal.Players.Controllers;
+using CodeSmile.MultiPal.Settings;
 using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace CodeSmile.Players
+namespace CodeSmile.MultiPal.Players
 {
 	public class KinematicData
 	{

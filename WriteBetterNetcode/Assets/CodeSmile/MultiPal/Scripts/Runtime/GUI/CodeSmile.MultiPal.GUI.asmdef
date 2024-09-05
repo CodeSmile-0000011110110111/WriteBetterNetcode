@@ -1,0 +1,20 @@
+{
+    "name": "CodeSmile.MultiPal.GUI",
+    "rootNamespace": "CodeSmile",
+    "references": [
+        "GUID:b01e7d37c21f68947a05cebbc3f902f2",
+        "GUID:1d6a2152dbbd15c4e9b835110326674a",
+        "GUID:3d5bff556afff2147a1fe3a1e33d394d",
+        "GUID:1491147abca9d7d4bb7105af628b223e",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

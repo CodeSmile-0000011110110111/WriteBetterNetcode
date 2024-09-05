@@ -1,9 +1,7 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.CodeSmile.MultiPal;
-using CodeSmile.MultiPal;
-using CodeSmile.Settings;
+using CodeSmile.MultiPal.Settings;
 using System;
 using System.Threading.Tasks;
 using Unity.Netcode;
@@ -12,7 +10,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 
-namespace CodeSmile.Players
+namespace CodeSmile.MultiPal.Players
 {
 	// TODO: detect and pair devices at runtime
 	// FIXME: on "join" prevent "leave" nullref caused by player not yet spawned

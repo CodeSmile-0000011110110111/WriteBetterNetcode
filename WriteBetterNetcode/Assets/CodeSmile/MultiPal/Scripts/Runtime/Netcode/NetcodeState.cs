@@ -1,24 +1,24 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.Core.Statemachine;
-using CodeSmile.Core.Statemachine.Actions;
-using CodeSmile.Core.Statemachine.Netcode;
-using CodeSmile.Core.Statemachine.Netcode.Actions;
-using CodeSmile.Core.Statemachine.Netcode.Conditions;
-using CodeSmile.Core.Statemachine.Services.Authentication.Actions;
-using CodeSmile.Core.Statemachine.Services.Authentication.Conditions;
-using CodeSmile.Core.Statemachine.Services.Core.Actions;
-using CodeSmile.Core.Statemachine.Services.Relay.Actions;
-using CodeSmile.Core.Statemachine.Services.Relay.Conditions;
-using CodeSmile.Core.Statemachine.Variable.Actions;
-using CodeSmile.Core.Statemachine.Variable.Conditions;
+using CodeSmile.MultiPal.Core.Statemachine;
+using CodeSmile.MultiPal.Core.Statemachine.Actions;
+using CodeSmile.MultiPal.Core.Statemachine.Netcode;
+using CodeSmile.MultiPal.Core.Statemachine.Netcode.Actions;
+using CodeSmile.MultiPal.Core.Statemachine.Netcode.Conditions;
+using CodeSmile.MultiPal.Core.Statemachine.Services.Authentication.Actions;
+using CodeSmile.MultiPal.Core.Statemachine.Services.Authentication.Conditions;
+using CodeSmile.MultiPal.Core.Statemachine.Services.Core.Actions;
+using CodeSmile.MultiPal.Core.Statemachine.Services.Relay.Actions;
+using CodeSmile.MultiPal.Core.Statemachine.Services.Relay.Conditions;
+using CodeSmile.MultiPal.Core.Statemachine.Variable.Actions;
+using CodeSmile.MultiPal.Core.Statemachine.Variable.Conditions;
 using System;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Netcode
+namespace CodeSmile.MultiPal.Netcode
 {
 	public class NetcodeState : MonoBehaviour
 	{

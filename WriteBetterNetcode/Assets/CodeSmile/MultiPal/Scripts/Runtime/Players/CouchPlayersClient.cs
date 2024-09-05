@@ -1,14 +1,14 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.Settings;
+using CodeSmile.MultiPal.Settings;
 using System;
 using System.Threading.Tasks;
 using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Players
+namespace CodeSmile.MultiPal.Players
 {
 	[DisallowMultipleComponent]
 	internal sealed class CouchPlayersClient : NetworkBehaviour

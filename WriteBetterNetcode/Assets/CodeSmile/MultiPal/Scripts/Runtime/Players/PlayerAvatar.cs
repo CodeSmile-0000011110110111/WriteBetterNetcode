@@ -1,12 +1,12 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.Settings;
+using CodeSmile.MultiPal.Settings;
 using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Players
+namespace CodeSmile.MultiPal.Players
 {
 	[DisallowMultipleComponent]
 	internal sealed class PlayerAvatar : MonoBehaviour, IPlayerComponent

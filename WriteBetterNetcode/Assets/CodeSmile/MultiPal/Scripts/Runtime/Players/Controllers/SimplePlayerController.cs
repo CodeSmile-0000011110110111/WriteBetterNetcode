@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace CodeSmile.Players.Controllers
+namespace CodeSmile.MultiPal.Players.Controllers
 {
 	public sealed class SimplePlayerController : PlayerControllerBase
 	{

@@ -4,7 +4,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Settings
+namespace CodeSmile.MultiPal.Settings
 {
 	[CreateAssetMenu(fileName = "Player Avatars", menuName = "CodeSmile/Player Avatars", order = 0)]
 	public sealed class PlayerAvatarPrefabs : PrefabsListBase {}
