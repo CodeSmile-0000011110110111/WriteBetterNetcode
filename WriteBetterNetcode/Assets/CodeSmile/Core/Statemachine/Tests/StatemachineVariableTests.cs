@@ -1,14 +1,14 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.MultiPal.Core.Statemachine.Variable.Actions;
-using CodeSmile.MultiPal.Core.Statemachine.Variable.Conditions;
+using CodeSmile.Statemachine.Variable.Actions;
+using CodeSmile.Statemachine.Variable.Conditions;
 using NUnit.Framework;
 using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Statemachine.Tests
+namespace CodeSmile.Statemachine.Tests
 {
 	public class StatemachineVariableTests
 	{

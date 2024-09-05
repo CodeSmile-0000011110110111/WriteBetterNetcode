@@ -16,42 +16,32 @@ namespace CodeSmile.MultiPal.Animation
 		private Int32 m_ParamSpeed;
 		private Int32 m_ParamMotionSpeed;
 		private Int32 m_ParamGrounded;
-		private Int32 m_ParamJump;
 		private Int32 m_ParamFreeFall;
+		private Int32 m_ParamJump;
 
 		public Single Speed { set => m_Animator.SetFloat(m_ParamSpeed, value); }
 
 		public Single MotionSpeed { set => m_Animator.SetFloat(m_ParamMotionSpeed, value); }
 
-		// highest priority
 		public Boolean Grounded
 		{
-			set
-			{
-				m_Animator.SetBool(m_ParamGrounded, value);
-				// m_Animator.SetBool(m_ParamJump, false);
-				// m_Animator.SetBool(m_ParamFreeFall, !value);
-			}
+			set => m_Animator.SetBool(m_ParamGrounded, value);
+			// m_Animator.SetBool(m_ParamJump, false);
+			// m_Animator.SetBool(m_ParamFreeFall, !value);
 		}
-		// medium priority
-		public Boolean Jump
-		{
-			set
-			{
-				// m_Animator.SetBool(m_ParamGrounded, false);
-				m_Animator.SetBool(m_ParamJump, value);
-				// m_Animator.SetBool(m_ParamFreeFall, false);
-			}
-		}
-		// lowest priority
 		public Boolean FreeFall
 		{
-			set
-			{
+			set =>
 				// m_Animator.SetBool(m_ParamGrounded, false);
 				// m_Animator.SetBool(m_ParamJump, false);
 				m_Animator.SetBool(m_ParamFreeFall, value);
-			}
+		}
+		public Boolean Jump
+		{
+			set =>
+				// m_Animator.SetBool(m_ParamGrounded, false);
+				m_Animator.SetBool(m_ParamJump, value);
+			// m_Animator.SetBool(m_ParamFreeFall, false);
 		}
 
 		private void Awake()
@@ -60,8 +50,17 @@ namespace CodeSmile.MultiPal.Animation
 			m_ParamSpeed = Animator.StringToHash("Speed");
 			m_ParamMotionSpeed = Animator.StringToHash("MotionSpeed");
 			m_ParamGrounded = Animator.StringToHash("Grounded");
-			m_ParamJump = Animator.StringToHash("Jump");
 			m_ParamFreeFall = Animator.StringToHash("FreeFall");
+			m_ParamJump = Animator.StringToHash("Jump");
+		}
+
+		public void Apply(AnimationData animationData)
+		{
+			Speed = animationData.CurrentSpeed;
+			MotionSpeed = animationData.InputMagnitude;
+			Grounded = animationData.IsGrounded;
+			FreeFall = animationData.IsFalling;
+			Jump = animationData.IsJumping;
 		}
 	}
 }

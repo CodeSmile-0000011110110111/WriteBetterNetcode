@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.BetterNetcode.Input;
+using CodeSmile.MultiPal.Animation;
 using Unity.Cinemachine;
 using UnityEditor;
 using UnityEngine;
@@ -28,6 +29,8 @@ namespace CodeSmile.MultiPal.Players.Controllers
 		[Header("Sensitivity Scaling")]
 		[SerializeField] private Vector3 m_TranslationSensitivity = Vector3.one;
 		[SerializeField] private Vector3 m_RotationSensitivity = Vector3.one;
+
+		public AnimationData AnimationData { get; } = new();
 
 		private static InputAxis DefaultTilt => new()
 		{

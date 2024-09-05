@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Statemachine.Conditions
+namespace CodeSmile.Statemachine.Conditions
 {
 	public sealed class LogicalNand : ICondition
 	{

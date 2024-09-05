@@ -7,7 +7,7 @@ using Unity.Services.Core;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Statemachine.Services.Authentication.Conditions
+namespace CodeSmile.Statemachine.Services.Authentication.Conditions
 {
 	public class IsSignedIn : ICondition
 	{

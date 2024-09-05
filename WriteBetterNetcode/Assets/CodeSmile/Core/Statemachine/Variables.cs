@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using Object = System.Object;
 
-namespace CodeSmile.MultiPal.Core.Statemachine
+namespace CodeSmile.Statemachine
 {
 	public class Variables
 	{

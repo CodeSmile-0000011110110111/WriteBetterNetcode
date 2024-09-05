@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Statemachine.Variable.Conditions
+namespace CodeSmile.Statemachine.Variable.Conditions
 {
 	public sealed class IsLessOrEqual : ICondition
 	{

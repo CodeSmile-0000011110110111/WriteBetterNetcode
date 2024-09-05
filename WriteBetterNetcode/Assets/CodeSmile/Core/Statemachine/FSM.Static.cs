@@ -1,13 +1,13 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.MultiPal.Core.Statemachine.Actions;
-using CodeSmile.MultiPal.Core.Statemachine.Conditions;
+using CodeSmile.Statemachine.Actions;
+using CodeSmile.Statemachine.Conditions;
 using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Statemachine
+namespace CodeSmile.Statemachine
 {
 	public sealed partial class FSM
 	{

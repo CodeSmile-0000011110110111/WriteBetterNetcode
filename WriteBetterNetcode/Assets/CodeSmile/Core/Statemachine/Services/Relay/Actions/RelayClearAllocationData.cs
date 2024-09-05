@@ -1,11 +1,11 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.MultiPal.Core.Statemachine.Netcode;
+using CodeSmile.Statemachine.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Statemachine.Services.Relay.Actions
+namespace CodeSmile.Statemachine.Services.Relay.Actions
 {
 	public sealed class RelayClearAllocationData : IAction
 	{

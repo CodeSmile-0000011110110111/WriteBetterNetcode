@@ -8,7 +8,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Utility
+namespace CodeSmile.Utility
 {
 	public static class CmdArgs
 	{

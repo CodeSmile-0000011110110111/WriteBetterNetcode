@@ -1,18 +1,18 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.MultiPal.Core.Statemachine;
-using CodeSmile.MultiPal.Core.Statemachine.Actions;
-using CodeSmile.MultiPal.Core.Statemachine.Netcode;
-using CodeSmile.MultiPal.Core.Statemachine.Netcode.Actions;
-using CodeSmile.MultiPal.Core.Statemachine.Netcode.Conditions;
-using CodeSmile.MultiPal.Core.Statemachine.Services.Authentication.Actions;
-using CodeSmile.MultiPal.Core.Statemachine.Services.Authentication.Conditions;
-using CodeSmile.MultiPal.Core.Statemachine.Services.Core.Actions;
-using CodeSmile.MultiPal.Core.Statemachine.Services.Relay.Actions;
-using CodeSmile.MultiPal.Core.Statemachine.Services.Relay.Conditions;
-using CodeSmile.MultiPal.Core.Statemachine.Variable.Actions;
-using CodeSmile.MultiPal.Core.Statemachine.Variable.Conditions;
+using CodeSmile.Statemachine;
+using CodeSmile.Statemachine.Actions;
+using CodeSmile.Statemachine.Netcode;
+using CodeSmile.Statemachine.Netcode.Actions;
+using CodeSmile.Statemachine.Netcode.Conditions;
+using CodeSmile.Statemachine.Services.Authentication.Actions;
+using CodeSmile.Statemachine.Services.Authentication.Conditions;
+using CodeSmile.Statemachine.Services.Core.Actions;
+using CodeSmile.Statemachine.Services.Relay.Actions;
+using CodeSmile.Statemachine.Services.Relay.Conditions;
+using CodeSmile.Statemachine.Variable.Actions;
+using CodeSmile.Statemachine.Variable.Conditions;
 using System;
 using System.IO;
 using UnityEditor;

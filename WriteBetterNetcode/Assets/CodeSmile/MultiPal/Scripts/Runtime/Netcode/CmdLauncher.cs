@@ -1,8 +1,8 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.MultiPal.Core.Statemachine.Netcode;
-using CodeSmile.MultiPal.Core.Utility;
+using CodeSmile.Statemachine.Netcode;
+using CodeSmile.Utility;
 using UnityEditor;
 using UnityEngine;
 

@@ -1,12 +1,12 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.MultiPal.Core.Statemachine.Netcode;
+using CodeSmile.Statemachine.Netcode;
 using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Statemachine.Services.Relay.Conditions
+namespace CodeSmile.Statemachine.Services.Relay.Conditions
 {
 	public sealed class IsRelayEnabled : ICondition
 	{

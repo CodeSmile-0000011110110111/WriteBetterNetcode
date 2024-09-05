@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Statemachine
+namespace CodeSmile.Statemachine
 {
 	/// <summary>
 	///     Event methods that the Statemachine calls at specific times.

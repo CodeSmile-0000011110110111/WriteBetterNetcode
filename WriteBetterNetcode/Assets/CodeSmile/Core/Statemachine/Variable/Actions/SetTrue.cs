@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Statemachine.Variable.Actions
+namespace CodeSmile.Statemachine.Variable.Actions
 {
 	public sealed class SetTrue : IAction
 	{

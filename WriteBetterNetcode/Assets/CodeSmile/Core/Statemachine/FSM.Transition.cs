@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Statemachine
+namespace CodeSmile.Statemachine
 {
 	public sealed partial class FSM
 	{

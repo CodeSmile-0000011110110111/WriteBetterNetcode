@@ -7,14 +7,8 @@ using UnityEngine;
 namespace CodeSmile.Components.Utility
 {
 	[DisallowMultipleComponent]
-	public sealed class DestroyObjectInReleaseBuilds : MonoBehaviour
+	public sealed class DestroyObjectOnAwake : MonoBehaviour
 	{
-#if !UNITY_EDITOR && !DEBUG && !DEVELOPMENT_BUILD
-		private void Awake()
-		{
-			if (enabled)
-				Destroy(gameObject);
-		}
-#endif
+		private void Awake() => Destroy(gameObject);
 	}
 }

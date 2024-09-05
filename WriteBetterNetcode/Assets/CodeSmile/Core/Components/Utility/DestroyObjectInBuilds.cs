@@ -4,7 +4,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Components.Utility
+namespace CodeSmile.Components.Utility
 {
 	[DisallowMultipleComponent]
 	public sealed class DestroyObjectInBuilds : MonoBehaviour

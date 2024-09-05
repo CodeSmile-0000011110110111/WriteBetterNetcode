@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.BetterNetcode.Input;
+using CodeSmile.MultiPal.Animation;
 using CodeSmile.MultiPal.Players.Controllers;
 using CodeSmile.MultiPal.Settings;
 using System;
@@ -11,24 +12,17 @@ using UnityEngine.InputSystem;
 
 namespace CodeSmile.MultiPal.Players
 {
-	public class KinematicData
-	{
-		public Vector3 Velocity;
-		public bool IsGrounded;
-		public bool DidJump;
-	}
-
 	[DisallowMultipleComponent]
-	public sealed class PlayerController : MonoBehaviour, IPlayerComponent, GeneratedInput.IPlayerKinematicsActions
+	public sealed class PlayerController : MonoBehaviour, IPlayerComponent, GeneratedInput.IPlayerKinematicsActions,
+		IAnimationDataProvider
 	{
 		[SerializeField] private PlayerControllerPrefabs m_ControllerPrefabs;
 
 		private Int32 m_PlayerIndex;
 
 		private PlayerControllers m_PlayerControllers;
-		private PlayerControllerBase ActiveController => m_PlayerControllers.GetActiveController(m_PlayerIndex);
-
-		public KinematicData KinematicData { get; } = new KinematicData();
+		private PlayerControllerBase ActiveController => m_PlayerControllers?.GetActiveController(m_PlayerIndex);
+		public AnimationData AnimationData => ActiveController?.AnimationData;
 
 		public void OnPlayerSpawn(Int32 playerIndex)
 		{

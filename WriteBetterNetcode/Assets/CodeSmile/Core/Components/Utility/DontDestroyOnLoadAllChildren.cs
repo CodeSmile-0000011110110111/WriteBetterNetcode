@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Components.Utility
+namespace CodeSmile.Components.Utility
 {
 	/// <summary>
 	///     Moves all children to "Don't Destroy On Load" and then destroys the component's GameObject.

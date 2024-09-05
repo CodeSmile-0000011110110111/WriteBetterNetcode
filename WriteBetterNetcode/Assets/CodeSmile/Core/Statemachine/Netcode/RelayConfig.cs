@@ -1,13 +1,13 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.MultiPal.Core.Utility;
+using CodeSmile.Utility;
 using System;
 using Unity.Services.Relay.Models;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Statemachine.Netcode
+namespace CodeSmile.Statemachine.Netcode
 {
 	[Serializable]
 	public struct RelayConfig

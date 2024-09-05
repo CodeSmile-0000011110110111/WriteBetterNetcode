@@ -4,7 +4,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Statemachine.Netcode
+namespace CodeSmile.Statemachine.Netcode
 {
 	public enum NetcodeRole
 	{

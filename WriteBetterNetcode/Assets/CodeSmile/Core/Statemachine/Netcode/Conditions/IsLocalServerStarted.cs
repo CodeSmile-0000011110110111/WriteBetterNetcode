@@ -6,7 +6,7 @@ using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Statemachine.Netcode.Conditions
+namespace CodeSmile.Statemachine.Netcode.Conditions
 {
 	public class IsLocalServerStarted : ICondition
 	{

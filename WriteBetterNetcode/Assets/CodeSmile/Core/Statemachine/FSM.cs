@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Statemachine
+namespace CodeSmile.Statemachine
 {
 	/// <summary>
 	///     Represents a finite-statemachine with a set of local and global variables indexed by name.

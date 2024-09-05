@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Components.Utility
+namespace CodeSmile.Components.Utility
 {
 	public class OneTimeTaskBehaviour : MonoBehaviour
 	{

@@ -283,13 +283,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5077751509374714492}
+  - component: {fileID: 558397243324447925}
   m_Layer: 3
   m_Name: 'CAUTION: component order matters!'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5077751509374714492
 Transform:
   m_ObjectHideFlags: 0
@@ -305,3 +306,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3476758710250218621}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &558397243324447925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8936917791489978325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cdc367b3d64a1f43a057b9e8e7ba730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

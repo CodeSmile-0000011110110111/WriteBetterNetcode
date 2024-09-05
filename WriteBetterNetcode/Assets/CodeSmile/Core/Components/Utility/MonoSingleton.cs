@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Components.Utility
+namespace CodeSmile.Components.Utility
 {
 	/// <summary>
 	///     Slim and safe MonoBehaviour Singleton with guaranteed lifetime from first instantiation to application quit.

@@ -8,7 +8,7 @@ using Unity.Networking.Transport.Relay;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Core.Statemachine.Netcode.Actions
+namespace CodeSmile.Statemachine.Netcode.Actions
 {
 	public class TransportSetup : IAction
 	{

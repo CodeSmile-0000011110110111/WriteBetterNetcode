@@ -16,12 +16,19 @@ namespace CodeSmile.MultiPal.Players.Controllers
 
 		private Single m_DeltaPan;
 		private Single m_DeltaTilt;
+		private Boolean m_DidJump;
 
 		private void Update()
 		{
 			// look before move, or else forward lags one update behind
 			ApplyLook();
 			ApplyMove();
+
+			AnimationData.CurrentSpeed = AnimationData.TargetSpeed = Velocity.magnitude;
+			AnimationData.IsGrounded = CharController.isGrounded;
+			AnimationData.IsFalling = !CharController.isGrounded;
+			AnimationData.IsJumping = m_DidJump;
+			m_DidJump = false;
 		}
 
 		private void ApplyLook()
@@ -55,6 +62,8 @@ namespace CodeSmile.MultiPal.Players.Controllers
 			var moveDir = context.performed ? context.ReadValue<Vector2>() : Vector2.zero;
 			m_Sideways.Value = moveDir.x * TranslationSensitivity.x * Time.deltaTime;
 			m_Forward.Value = moveDir.y * TranslationSensitivity.z * Time.deltaTime;
+
+			AnimationData.InputMagnitude = moveDir.magnitude;
 		}
 
 		public override void OnLook(InputAction.CallbackContext context)
@@ -70,7 +79,10 @@ namespace CodeSmile.MultiPal.Players.Controllers
 		public override void OnJump(InputAction.CallbackContext context)
 		{
 			if (context.performed)
+			{
+				m_DidJump = true;
 				m_Vertical.Value = TranslationSensitivity.y;
+			}
 		}
 
 		public override void OnSprint(InputAction.CallbackContext context) {}

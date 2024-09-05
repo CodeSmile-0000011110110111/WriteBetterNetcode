@@ -16,4 +16,9 @@ namespace CodeSmile.MultiPal.Animation
 		public bool IsJumping;
 		public bool IsFalling;
 	}
+
+	public interface IAnimationDataProvider
+	{
+		public AnimationData AnimationData { get; }
+	}
 }
