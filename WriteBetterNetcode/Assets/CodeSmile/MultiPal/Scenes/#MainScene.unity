@@ -4835,6 +4835,37 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!1 &517816424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 517816425}
+  m_Layer: 0
+  m_Name: Player Cinecams
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &517816425
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517816424}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2101685256}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &530699790
 GameObject:
   m_ObjectHideFlags: 0
@@ -7165,7 +7196,7 @@ Transform:
   - {fileID: 1971581759}
   - {fileID: 90808295}
   - {fileID: 1547974177}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2085682751}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &820508183
 GameObject:
@@ -16222,6 +16253,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 782099874}
   - {fileID: 277872504}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16259,6 +16291,7 @@ Transform:
   - {fileID: 319617850}
   - {fileID: 1885936352}
   - {fileID: 1797672401}
+  - {fileID: 517816425}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2101685257
@@ -16278,6 +16311,7 @@ MonoBehaviour:
   - {fileID: 1511574606}
   m_CouchPlayerMode: 0
   m_PlayerCinecamPrefabs: {fileID: 11400000, guid: b62f39f26c4e0554d9cd69f00a6efbb5, type: 2}
+  m_PlayerCinecamRoot: {fileID: 517816425}
   m_PlayerSplitCameras:
   - {fileID: 820508187}
   - {fileID: 1679215497}
@@ -16959,4 +16993,3 @@ SceneRoots:
   - {fileID: 1662376926}
   - {fileID: 2101685256}
   - {fileID: 1141582652}
-  - {fileID: 782099874}

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 18828b1d1020dde47bec693eef18a5b9
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4696
+  packageName: Robot Kyle | URP
+  packageVersion: 4.0
+  assetPath: Assets/UnityTechnologies/Editor/URPWizard.asmdef
+  uploadId: 683309

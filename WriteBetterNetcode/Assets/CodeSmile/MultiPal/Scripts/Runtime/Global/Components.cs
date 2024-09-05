@@ -8,7 +8,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile
+namespace CodeSmile.MultiPal
 {
 	public class Components : MonoBehaviour
 	{

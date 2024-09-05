@@ -7,7 +7,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile
+namespace CodeSmile.MultiPal
 {
 	/// <summary>
 	///     Dynamically splits the screen based on number of currently joined players.

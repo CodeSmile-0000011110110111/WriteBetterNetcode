@@ -2,6 +2,8 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.BetterNetcode.Input;
+using CodeSmile.CodeSmile.MultiPal;
+using CodeSmile.MultiPal;
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -33,7 +35,6 @@ namespace CodeSmile.Players
 
 		public void OnInteract(InputAction.CallbackContext context)
 		{
-			Debug.Log($"interact! performed: {context.performed}");
 			if (context.performed)
 				m_PlayerCamera.NextCamera();
 		}

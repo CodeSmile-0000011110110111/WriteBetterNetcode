@@ -14,8 +14,8 @@ namespace CodeSmile.Players.Controllers
 		[SerializeField] private Single m_Gravity = -1f;
 		[SerializeField] private Boolean m_InvertVertical;
 
-		private float m_DeltaPan;
-		private float m_DeltaTilt;
+		private Single m_DeltaPan;
+		private Single m_DeltaTilt;
 
 		private void Update()
 		{

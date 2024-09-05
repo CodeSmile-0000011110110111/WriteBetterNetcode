@@ -222,7 +222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963d2d3abd9b4f61bee533869bd7ac8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CameraPrefabs: {fileID: 11400000, guid: b62f39f26c4e0554d9cd69f00a6efbb5, type: 2}
   m_CameraTarget: {fileID: 1506673451434622039}
   m_LookAtTarget: {fileID: 726663091047711852}
 --- !u!114 &8999683055902265663
@@ -285,7 +284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5077751509374714492}
   m_Layer: 3
-  m_Name: 'CAUTION: Player''s component order matters!'
+  m_Name: 'CAUTION: component order matters!'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

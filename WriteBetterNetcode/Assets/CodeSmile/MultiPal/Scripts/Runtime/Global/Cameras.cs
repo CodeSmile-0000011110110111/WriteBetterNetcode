@@ -4,23 +4,18 @@
 using CodeSmile.Players;
 using CodeSmile.Settings;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile
+namespace CodeSmile.MultiPal
 {
 	[DisallowMultipleComponent]
 	[RequireComponent(typeof(Splitscreen))]
 	public sealed class Cameras : MonoBehaviour
 	{
-		private enum CouchPlayerCameraMode
-		{
-			Splitscreen,
-			TargetGroup,
-		}
-
 		[Tooltip("Cameras used for everything besides Player's POV or Player tracking. " +
 		         "Examples: Menu cam, Pre-/Post-Game view, Render cams.")]
 		[SerializeField] private Camera[] m_OtherCameras;
@@ -31,6 +26,8 @@ namespace CodeSmile
 		[Header("Splitscreen Cameras")]
 		[Tooltip("The Cinemachine Camera prefabs each player can switch between.")]
 		[SerializeField] private PlayerCameraPrefabs m_PlayerCinecamPrefabs;
+		[Tooltip("Where the Cinecams will be parented. If null, Cinecams will be children of this component.")]
+		[SerializeField] private Transform m_PlayerCinecamRoot;
 		[Tooltip("The four player-tracking cameras.")]
 		[SerializeField] private Camera[] m_PlayerSplitCameras = new Camera[Constants.MaxCouchPlayers];
 		[Tooltip("The Cinecams for players who haven't joined or left (4-way splitscreen only).")]
@@ -44,6 +41,7 @@ namespace CodeSmile
 		private readonly List<CinemachineCamera>[] m_PlayerCinecams = new List<CinemachineCamera>[Constants.MaxCouchPlayers];
 		private Splitscreen m_Splitscreen;
 		private Int32 m_OtherCameraIndex;
+		private IEnumerator m_UpdatePlayerCinecamNamesTimer;
 
 		public CinemachineCamera[] PlayerNotJoinedCinecams => m_PlayerNotJoinedCinecams;
 		public Camera[] PlayerSplitCameras => m_PlayerSplitCameras;
@@ -67,6 +65,10 @@ namespace CodeSmile
 
 			// always start with the offline camera
 			SetDefaultCameraActive();
+
+#if UNITY_EDITOR || DEBUG || DEVELOPMENT_BUILD
+			StartCoroutine(DebugUpdatePlayerCinecamNamesTimer());
+#endif
 		}
 
 		private void Start()
@@ -173,10 +175,12 @@ namespace CodeSmile
 
 		public void InstantiatePlayerCinecams(Int32 playerIndex, PlayerCameraPrefabs prefabs)
 		{
+			var parent = m_PlayerCinecamRoot != null ? m_PlayerCinecamRoot : transform;
+
 			for (var cinecamIndex = 0; cinecamIndex < prefabs.Count; cinecamIndex++)
 			{
 				var cameraPrefab = prefabs[cinecamIndex];
-				var cameraObj = Instantiate(cameraPrefab, transform);
+				var cameraObj = Instantiate(cameraPrefab, parent);
 				cameraObj.name = $"Player #{playerIndex}: [{cinecamIndex}] {cameraObj.name.Replace("(Clone)", "")}";
 
 				var cinecam = cameraObj.GetComponent<CinemachineCamera>();
@@ -247,10 +251,45 @@ namespace CodeSmile
 			}
 		}
 
+		private IEnumerator DebugUpdatePlayerCinecamNamesTimer()
+		{
+			do
+			{
+				yield return new WaitForSecondsRealtime(0.2f);
+
+				DebugUpdatePlayerCinecamNames();
+			} while (true);
+		}
+
+		private void DebugUpdatePlayerCinecamNames()
+		{
+			const string LiveSuffix = " (LIVE)";
+
+			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
+			{
+				var cinecams = m_PlayerCinecams[playerIndex];
+				for (var i = 0; i < cinecams.Count; i++)
+				{
+					var cinecam = cinecams[i];
+					var cinecamGo = cinecam.gameObject;
+					cinecamGo.name = cinecamGo.name.Replace(LiveSuffix, "");
+
+					if (cinecam.IsLive)
+						cinecamGo.name += " (LIVE)";
+				}
+			}
+		}
+
 		private void WentOnline() => SetOtherCameraActive(1);
 		private void WentOffline() => SetDefaultCameraActive();
 
 		private void SetCurrentOtherCameraActive(Boolean active) =>
 			m_OtherCameras[m_OtherCameraIndex].gameObject.SetActive(active);
+
+		private enum CouchPlayerCameraMode
+		{
+			Splitscreen,
+			TargetGroup,
+		}
 	}
 }

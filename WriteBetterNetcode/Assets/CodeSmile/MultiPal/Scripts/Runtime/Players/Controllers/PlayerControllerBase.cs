@@ -53,8 +53,10 @@ namespace CodeSmile.Players.Controllers
 		/// </summary>
 		public CharacterController CharController { get; private set; }
 
-		public Vector3 Velocity => new(m_Sideways.Value, m_Vertical.Value, m_Forward.Value);
-		public Quaternion Rotation => Quaternion.Euler(m_Tilt.Value, m_Pan.Value, 0f);
+		public Vector3 Velocity => CharController != null
+			? CharController.velocity
+			: new Vector3(m_Sideways.Value, m_Vertical.Value, m_Forward.Value);
+
 		public Vector3 TranslationSensitivity
 		{
 			get => m_TranslationSensitivity;
@@ -68,6 +70,7 @@ namespace CodeSmile.Players.Controllers
 
 		public virtual void OnMove(InputAction.CallbackContext context) {}
 		public virtual void OnLook(InputAction.CallbackContext context) {}
+
 		public virtual void OnCrouch(InputAction.CallbackContext context) {}
 		public virtual void OnJump(InputAction.CallbackContext context) {}
 		public virtual void OnSprint(InputAction.CallbackContext context) {}
