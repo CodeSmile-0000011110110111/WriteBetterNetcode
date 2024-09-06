@@ -14,7 +14,7 @@ namespace CodeSmile.MultiPal.Players
 {
 	[DisallowMultipleComponent]
 	public sealed class PlayerController : MonoBehaviour, IPlayerComponent, GeneratedInput.IPlayerKinematicsActions,
-		IAnimationDataProvider
+		IAnimatorParametersProvider
 	{
 		[SerializeField] private PlayerControllerPrefabs m_ControllerPrefabs;
 
@@ -22,7 +22,15 @@ namespace CodeSmile.MultiPal.Players
 
 		private PlayerControllers m_PlayerControllers;
 		private PlayerControllerBase ActiveController => m_PlayerControllers?.GetActiveController(m_PlayerIndex);
-		public AnimationData AnimationData => ActiveController?.AnimationData;
+		public AnimatorParametersBase AnimatorParameters
+		{
+			get => ActiveController?.AnimatorParameters;
+			set
+			{
+				if (ActiveController != null)
+					ActiveController.AnimatorParameters = value;
+			}
+		}
 
 		public void OnPlayerSpawn(Int32 playerIndex)
 		{

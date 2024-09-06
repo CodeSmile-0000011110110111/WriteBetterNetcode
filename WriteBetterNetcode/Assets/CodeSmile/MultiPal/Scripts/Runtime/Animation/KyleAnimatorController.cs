@@ -9,9 +9,11 @@ namespace CodeSmile.MultiPal.Animation
 {
 	[DisallowMultipleComponent]
 	[RequireComponent(typeof(Animator))]
-	public sealed class KyleAnimatorParams : MonoBehaviour
+	public sealed class KyleAnimatorController : MonoBehaviour
 	{
 		private Animator m_Animator;
+		private IAnimatorParametersProvider m_ParamsProvider;
+		private KyleAnimatorParameters m_KyleAnimParams;
 
 		private Int32 m_ParamSpeed;
 		private Int32 m_ParamMotionSpeed;
@@ -44,9 +46,21 @@ namespace CodeSmile.MultiPal.Animation
 			// m_Animator.SetBool(m_ParamFreeFall, false);
 		}
 
+		private void OnEnable()
+		{
+			// reset anim state every time we get enabled
+			m_KyleAnimParams = new KyleAnimatorParameters();
+		}
+
+		private void OnDisable() => UnassignAnimatorParameters();
+
 		private void Awake()
 		{
 			m_Animator = GetComponent<Animator>();
+			m_ParamsProvider = GetComponentInParent<IAnimatorParametersProvider>();
+			if (m_ParamsProvider == null)
+				throw new MissingComponentException($"parent expected to have {nameof(IAnimatorParametersProvider)}");
+
 			m_ParamSpeed = Animator.StringToHash("Speed");
 			m_ParamMotionSpeed = Animator.StringToHash("MotionSpeed");
 			m_ParamGrounded = Animator.StringToHash("Grounded");
@@ -54,13 +68,29 @@ namespace CodeSmile.MultiPal.Animation
 			m_ParamJump = Animator.StringToHash("Jump");
 		}
 
-		public void Apply(AnimationData animationData)
+		private void LateUpdate()
 		{
-			Speed = animationData.CurrentSpeed;
-			MotionSpeed = animationData.InputMagnitude;
-			Grounded = animationData.IsGrounded;
-			FreeFall = animationData.IsFalling;
-			Jump = animationData.IsJumping;
+			if (m_ParamsProvider.AnimatorParameters == null)
+			{
+				m_ParamsProvider.AnimatorParameters = m_KyleAnimParams;
+			}
+
+			Apply(m_KyleAnimParams);
+		}
+
+		private void UnassignAnimatorParameters()
+		{
+			if (m_ParamsProvider.AnimatorParameters == m_KyleAnimParams)
+				m_ParamsProvider.AnimatorParameters = null;
+		}
+
+		public void Apply(KyleAnimatorParameters kyleAnimParams)
+		{
+			Speed = kyleAnimParams.CurrentSpeed;
+			MotionSpeed = kyleAnimParams.InputMove.magnitude;
+			Grounded = kyleAnimParams.IsGrounded;
+			FreeFall = kyleAnimParams.IsFalling;
+			Jump = kyleAnimParams.InputJump;
 		}
 	}
 }

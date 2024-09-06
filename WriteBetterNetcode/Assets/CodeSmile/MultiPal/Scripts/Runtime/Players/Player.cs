@@ -27,7 +27,7 @@ namespace CodeSmile.MultiPal.Players
 		{
 			PlayerIndex = playerIndex;
 
-			foreach (var playerComponent in GetComponents<IPlayerComponent>())
+			foreach (var playerComponent in GetComponentsInChildren<IPlayerComponent>())
 			{
 				// don't infinite recurse this
 				if (Equals(playerComponent))
@@ -42,7 +42,7 @@ namespace CodeSmile.MultiPal.Players
 
 		public void OnPlayerDespawn(Int32 playerIndex)
 		{
-			foreach (var playerComponent in GetComponents<IPlayerComponent>())
+			foreach (var playerComponent in GetComponentsInChildren<IPlayerComponent>())
 			{
 				// don't infinite recurse this
 				if (Equals(playerComponent))
