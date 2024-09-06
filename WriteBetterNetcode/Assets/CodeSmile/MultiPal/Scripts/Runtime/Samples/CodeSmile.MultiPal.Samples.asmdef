@@ -1,0 +1,19 @@
+{
+    "name": "CodeSmile.MultiPal.Samples",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b01e7d37c21f68947a05cebbc3f902f2",
+        "GUID:1d6a2152dbbd15c4e9b835110326674a",
+        "GUID:4307f53044263cf4b835bd812fc161a4",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
