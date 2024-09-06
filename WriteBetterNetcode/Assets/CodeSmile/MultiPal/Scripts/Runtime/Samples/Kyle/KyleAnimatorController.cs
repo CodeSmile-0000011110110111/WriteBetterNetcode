@@ -1,7 +1,8 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.MultiPal.Animation;
+using CodeSmile.Components.Utility;
+using CodeSmile.MultiPal.Player.Controllers;
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -12,8 +13,8 @@ namespace CodeSmile.MultiPal.Samples.Kyle
 	[RequireComponent(typeof(Animator))]
 	public sealed class KyleAnimatorController : MonoBehaviour
 	{
+		private PlayerControllers m_PlayerControllers;
 		private Animator m_Animator;
-		private IAnimatorParametersProvider m_ParamsProvider;
 		private KyleAnimatorParameters m_KyleAnimParams;
 
 		private Int32 m_ParamSpeed;
@@ -23,44 +24,19 @@ namespace CodeSmile.MultiPal.Samples.Kyle
 		private Int32 m_ParamJump;
 
 		public Single Speed { set => m_Animator.SetFloat(m_ParamSpeed, value); }
-
 		public Single MotionSpeed { set => m_Animator.SetFloat(m_ParamMotionSpeed, value); }
+		public Boolean Grounded { set => m_Animator.SetBool(m_ParamGrounded, value); }
+		public Boolean FreeFall { set => m_Animator.SetBool(m_ParamFreeFall, value); }
+		public Boolean Jump { set => m_Animator.SetBool(m_ParamJump, value); }
 
-		public Boolean Grounded
-		{
-			set => m_Animator.SetBool(m_ParamGrounded, value);
-			// m_Animator.SetBool(m_ParamJump, false);
-			// m_Animator.SetBool(m_ParamFreeFall, !value);
-		}
-		public Boolean FreeFall
-		{
-			set =>
-				// m_Animator.SetBool(m_ParamGrounded, false);
-				// m_Animator.SetBool(m_ParamJump, false);
-				m_Animator.SetBool(m_ParamFreeFall, value);
-		}
-		public Boolean Jump
-		{
-			set =>
-				// m_Animator.SetBool(m_ParamGrounded, false);
-				m_Animator.SetBool(m_ParamJump, value);
-			// m_Animator.SetBool(m_ParamFreeFall, false);
-		}
-
-		private void OnEnable()
-		{
-			// reset anim state every time we get enabled
-			m_KyleAnimParams = new KyleAnimatorParameters();
-		}
-
-		private void OnDisable() => UnassignAnimatorParameters();
+		// FIXME: this will not receive the event when changing Avatars!
+		private void OnEnable() => m_PlayerControllers.OnAssignAnimationData += OnAssignAnimationData;
+		private void OnDisable() => m_PlayerControllers.OnAssignAnimationData -= OnAssignAnimationData;
 
 		private void Awake()
 		{
 			m_Animator = GetComponent<Animator>();
-			m_ParamsProvider = GetComponentInParent<IAnimatorParametersProvider>();
-			if (m_ParamsProvider == null)
-				throw new MissingComponentException($"parent expected to have {nameof(IAnimatorParametersProvider)}");
+			m_PlayerControllers = ComponentsRegistry.Get<PlayerControllers>();
 
 			m_ParamSpeed = Animator.StringToHash("Speed");
 			m_ParamMotionSpeed = Animator.StringToHash("MotionSpeed");
@@ -71,27 +47,21 @@ namespace CodeSmile.MultiPal.Samples.Kyle
 
 		private void LateUpdate()
 		{
-			if (m_ParamsProvider.AnimatorParameters == null)
+			if (m_KyleAnimParams != null)
 			{
-				m_ParamsProvider.AnimatorParameters = m_KyleAnimParams;
+				Speed = m_KyleAnimParams.CurrentSpeed;
+				MotionSpeed = m_KyleAnimParams.InputMove.magnitude;
+				Grounded = m_KyleAnimParams.IsGrounded;
+				FreeFall = m_KyleAnimParams.IsFalling;
+				Jump = m_KyleAnimParams.InputJump;
 			}
-
-			Apply(m_KyleAnimParams);
 		}
 
-		private void UnassignAnimatorParameters()
+		private void OnAssignAnimationData(Int32 playerIndex)
 		{
-			if (m_ParamsProvider.AnimatorParameters == m_KyleAnimParams)
-				m_ParamsProvider.AnimatorParameters = null;
-		}
-
-		public void Apply(KyleAnimatorParameters kyleAnimParams)
-		{
-			Speed = kyleAnimParams.CurrentSpeed;
-			MotionSpeed = kyleAnimParams.InputMove.magnitude;
-			Grounded = kyleAnimParams.IsGrounded;
-			FreeFall = kyleAnimParams.IsFalling;
-			Jump = kyleAnimParams.InputJump;
+			// reset anim state every time we get enabled
+			var activeCtrl = m_PlayerControllers.GetActiveController(playerIndex);
+			activeCtrl.AnimatorParameters = m_KyleAnimParams = new KyleAnimatorParameters();
 		}
 	}
 }

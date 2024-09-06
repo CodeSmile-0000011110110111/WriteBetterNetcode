@@ -14,6 +14,8 @@ namespace CodeSmile.MultiPal.Player.Controllers
 	[DisallowMultipleComponent]
 	public sealed class PlayerControllers : MonoBehaviour
 	{
+		public event Action<Int32> OnAssignAnimationData;
+
 		[SerializeField] private PlayerControllerPrefabs m_ControllerPrefabs;
 
 		private readonly List<PlayerControllerBase>[] m_Controllers =
@@ -70,6 +72,7 @@ namespace CodeSmile.MultiPal.Player.Controllers
 			var cameraTarget = player.Camera.TrackingTarget;
 			InstantiatePlayerControllers(playerIndex, player.transform, cameraTarget);
 			SetControllerActive(playerIndex, 0);
+			OnAssignAnimationData?.Invoke(playerIndex);
 
 			player.OnSwitchController += OnSwitchController;
 		}
