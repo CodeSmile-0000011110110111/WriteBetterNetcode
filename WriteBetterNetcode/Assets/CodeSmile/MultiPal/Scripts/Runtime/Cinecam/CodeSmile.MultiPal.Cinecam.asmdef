@@ -1,0 +1,17 @@
+{
+    "name": "CodeSmile.MultiPal.Cinecam",
+    "rootNamespace": "",
+    "references": [
+        "GUID:fcdefbebbd09422dbc2d1210c9b54961",
+        "GUID:4307f53044263cf4b835bd812fc161a4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
