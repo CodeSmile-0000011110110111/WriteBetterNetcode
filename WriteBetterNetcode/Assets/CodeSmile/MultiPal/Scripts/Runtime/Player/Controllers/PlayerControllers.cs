@@ -1,6 +1,8 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Components.Utility;
+using CodeSmile.MultiPal.Input;
 using CodeSmile.MultiPal.Settings;
 using System;
 using System.Collections.Generic;
@@ -17,7 +19,9 @@ namespace CodeSmile.MultiPal.Player.Controllers
 		private readonly List<PlayerControllerBase>[] m_Controllers =
 			new List<PlayerControllerBase>[Constants.MaxCouchPlayers];
 
-		private readonly Int32[] m_ActiveControllers = new Int32[Constants.MaxCouchPlayers];
+		private readonly Int32[] m_ActiveControllerIndexes = new Int32[Constants.MaxCouchPlayers];
+
+		private InputUsers m_InputUsers;
 
 		private void Awake()
 		{
@@ -43,6 +47,8 @@ namespace CodeSmile.MultiPal.Player.Controllers
 
 		private void OnLocalCouchPlayersSpawn(CouchPlayers couchPlayers)
 		{
+			m_InputUsers = ComponentsRegistry.Get<InputUsers>();
+
 			couchPlayers.OnCouchPlayerJoined += OnCouchPlayerJoined;
 			couchPlayers.OnCouchPlayerLeaving += OnCouchPlayerLeaving;
 			couchPlayers.OnCouchPlayerLeft += OnCouchPlayerLeft;
@@ -53,23 +59,35 @@ namespace CodeSmile.MultiPal.Player.Controllers
 			couchPlayers.OnCouchPlayerJoined -= OnCouchPlayerJoined;
 			couchPlayers.OnCouchPlayerLeaving -= OnCouchPlayerLeaving;
 			couchPlayers.OnCouchPlayerLeft -= OnCouchPlayerLeft;
+
+			m_InputUsers = null;
 		}
 
 		private void OnCouchPlayerJoined(CouchPlayers couchPlayers, Int32 playerIndex)
 		{
 			var player = couchPlayers[playerIndex];
+
 			var cameraTarget = player.Camera.TrackingTarget;
 			InstantiatePlayerControllers(playerIndex, player.transform, cameraTarget);
+			SetControllerActive(playerIndex, 0);
+
+			player.OnSwitchController += OnSwitchController;
 		}
 
-		private void OnCouchPlayerLeaving(CouchPlayers couchPlayers, Int32 playerIndex) =>
+		private void OnCouchPlayerLeaving(CouchPlayers couchPlayers, Int32 playerIndex)
+		{
+			var player = couchPlayers[playerIndex];
+			player.OnSwitchController -= OnSwitchController;
+
+			m_InputUsers.SetPlayerKinematicsCallback(playerIndex, null);
 			DestroyPlayerControllers(playerIndex);
+		}
 
 		private void OnCouchPlayerLeft(CouchPlayers couchPlayers, Int32 playerIndex) {}
 
 		public PlayerControllerBase GetActiveController(Int32 playerIndex)
 		{
-			var activeIndex = m_ActiveControllers[playerIndex];
+			var activeIndex = m_ActiveControllerIndexes[playerIndex];
 			return activeIndex >= 0 ? m_Controllers[playerIndex][activeIndex] : null;
 		}
 
@@ -78,7 +96,7 @@ namespace CodeSmile.MultiPal.Player.Controllers
 			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
 			{
 				m_Controllers[playerIndex] = new List<PlayerControllerBase>();
-				m_ActiveControllers[playerIndex] = -1;
+				m_ActiveControllerIndexes[playerIndex] = -1;
 			}
 		}
 
@@ -96,9 +114,6 @@ namespace CodeSmile.MultiPal.Player.Controllers
 				controller.MotionTarget = motionTarget;
 				controller.CameraTarget = rotationTarget;
 				m_Controllers[playerIndex].Add(controller);
-
-				if (ctrlIndex == 0)
-					SetControllerActive(playerIndex, ctrlIndex);
 			}
 		}
 
@@ -111,29 +126,37 @@ namespace CodeSmile.MultiPal.Player.Controllers
 			}
 
 			m_Controllers[playerIndex].Clear();
-			m_ActiveControllers[playerIndex] = -1;
+			m_ActiveControllerIndexes[playerIndex] = -1;
 		}
 
 		public void SetControllerActive(Int32 playerIndex, Int32 controllerIndex)
 		{
 			// check if already active
-			if (m_ActiveControllers[playerIndex] == controllerIndex)
+			if (m_ActiveControllerIndexes[playerIndex] == controllerIndex)
 				return;
 
-			// deactivate current, activate new one
+			// deactivate current
 			GetActiveController(playerIndex)?.gameObject.SetActive(false);
-			m_ActiveControllers[playerIndex] = controllerIndex;
-			GetActiveController(playerIndex)?.gameObject.SetActive(true);
+
+			// activate new one
+			m_ActiveControllerIndexes[playerIndex] = controllerIndex;
+			var activeCtrl = GetActiveController(playerIndex);
+			activeCtrl.gameObject.SetActive(true);
+
+			// assign as input callback
+			m_InputUsers.SetPlayerKinematicsCallback(playerIndex, activeCtrl);
 		}
 
+		private void OnSwitchController(Int32 playerIndex) => SetNextControllerActive(playerIndex);
+
 		public void SetPreviousControllerActive(Int32 playerIndex) => SetControllerActive(playerIndex,
-			m_ActiveControllers[playerIndex] == 0
+			m_ActiveControllerIndexes[playerIndex] == 0
 				? m_Controllers[playerIndex].Count - 1
-				: m_ActiveControllers[playerIndex] - 1);
+				: m_ActiveControllerIndexes[playerIndex] - 1);
 
 		public void SetNextControllerActive(Int32 playerIndex) => SetControllerActive(playerIndex,
-			m_ActiveControllers[playerIndex] == m_Controllers[playerIndex].Count - 1
+			m_ActiveControllerIndexes[playerIndex] == m_Controllers[playerIndex].Count - 1
 				? 0
-				: m_ActiveControllers[playerIndex] + 1);
+				: m_ActiveControllerIndexes[playerIndex] + 1);
 	}
 }

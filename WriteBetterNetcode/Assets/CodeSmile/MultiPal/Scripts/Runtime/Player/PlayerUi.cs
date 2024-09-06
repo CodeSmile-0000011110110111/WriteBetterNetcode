@@ -18,7 +18,6 @@ namespace CodeSmile.MultiPal.Player
 
 		private Player m_Player;
 		private PlayerAvatar m_Avatar;
-		private PlayerController m_Controller;
 
 		public void OnPlayerSpawn(Int32 playerIndex)
 		{
@@ -55,20 +54,19 @@ namespace CodeSmile.MultiPal.Player
 		public void OnUp(InputAction.CallbackContext context)
 		{
 			if (context.performed)
-				m_Controller.NextController();
+				m_Player.SwitchController();
 		}
 
 		public void OnDown(InputAction.CallbackContext context)
 		{
 			if (context.performed)
-				m_Controller.PreviousController();
+				m_Player.SwitchController();
 		}
 
 		private void Awake()
 		{
 			m_Player = GetComponent<Player>();
 			m_Avatar = GetComponent<PlayerAvatar>();
-			m_Controller = GetComponent<PlayerController>();
 		}
 	}
 }
