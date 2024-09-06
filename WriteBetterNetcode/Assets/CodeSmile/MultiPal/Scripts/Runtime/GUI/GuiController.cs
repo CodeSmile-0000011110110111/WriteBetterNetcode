@@ -19,7 +19,10 @@ namespace CodeSmile.MultiPal.GUI
 		{
 			ThrowIfNotAssigned<DevMainMenu>(m_MainMenu);
 			ThrowIfNotAssigned<DevIngameMenu>(m_IngameMenu);
+		}
 
+		private void Start()
+		{
 			CouchPlayers.OnLocalCouchPlayersSpawn += OnCouchSessionStarted;
 			CouchPlayers.OnLocalCouchPlayersDespawn += OnCouchSessionStopped;
 		}

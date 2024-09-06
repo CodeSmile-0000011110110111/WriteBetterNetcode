@@ -82,7 +82,6 @@ namespace CodeSmile.MultiPal.Cinecam
 
 		private void EnableSinglePlayerCamera()
 		{
-			Debug.Log("singleplayer");
 			SetSingleplayerCameraActive();
 
 			m_Cameras.PlayerSplitCameras[0].rect = new Rect(Vector2.zero, Vector2.one);
@@ -90,7 +89,6 @@ namespace CodeSmile.MultiPal.Cinecam
 
 		private void EnableHorizontalSplitscreen()
 		{
-			Debug.Log("two players");
 			SetTwoPlayerCamerasActive();
 
 			// 0 = top, 1 = bottom
@@ -102,7 +100,6 @@ namespace CodeSmile.MultiPal.Cinecam
 
 		private void EnableVerticalSplitscreen()
 		{
-			Debug.Log("two players");
 			SetTwoPlayerCamerasActive();
 
 			// 0 = left, 1 = right
@@ -114,7 +111,6 @@ namespace CodeSmile.MultiPal.Cinecam
 
 		private void EnableFourWaySplitscreen()
 		{
-			Debug.Log("3-4 players");
 			SetAllPlayerCamerasActive();
 
 			// 0 = top left, 1 = top right, 2 = bottom left, 3 = bottom right

@@ -41,15 +41,17 @@ namespace CodeSmile.MultiPal.Player
 
 		public Int32 PlayerCount { get; set; }
 
+		[RuntimeInitializeOnLoadMethod]
 		private static void ResetStaticFields()
 		{
 			OnLocalCouchPlayersSpawn = null;
 			OnLocalCouchPlayersDespawn = null;
 		}
 
-		private void Awake() => m_ClientSide = GetComponent<CouchPlayersClient>();
-
-		public override void OnDestroy() => ResetStaticFields();
+		private void Awake()
+		{
+			m_ClientSide = GetComponent<CouchPlayersClient>();
+		}
 
 		private void SetPlayerDebugName(Int32 playerIndex, String suffix = "") => m_Players[playerIndex].name =
 			m_Players[playerIndex].name.Replace("(Clone)", $" #{playerIndex}{suffix}");
@@ -82,6 +84,8 @@ namespace CodeSmile.MultiPal.Player
 
 			if (IsOwner)
 			{
+				DespawnAllPlayers();
+
 				OnLocalCouchPlayersDespawn?.Invoke(this);
 				ComponentsRegistry.Set<CouchPlayers>(null);
 
@@ -94,8 +98,6 @@ namespace CodeSmile.MultiPal.Player
 				inputUsers.OnUserDevicePaired -= OnUserInputDevicePaired;
 				inputUsers.OnUserDeviceUnpaired -= OnUserInputDeviceUnpaired;
 				inputUsers.UnpairAll();
-
-				DespawnAllPlayers();
 			}
 		}
 
@@ -144,7 +146,6 @@ namespace CodeSmile.MultiPal.Player
 				OnCouchPlayerLeaving?.Invoke(this, playerIndex);
 
 				player.OnPlayerDespawn(playerIndex);
-				m_Players[playerIndex] = null;
 				m_PlayerStatus[playerIndex] = Status.Available;
 				PlayerCount--;
 
@@ -152,6 +153,7 @@ namespace CodeSmile.MultiPal.Player
 				m_ClientSide.Despawn(playerObj);
 
 				OnCouchPlayerLeft?.Invoke(this, playerIndex);
+				m_Players[playerIndex] = null;
 			}
 		}
 

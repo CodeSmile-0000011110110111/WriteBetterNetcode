@@ -37,7 +37,7 @@ namespace CodeSmile.MultiPal.Player
 		public void OnRequestMenu(InputAction.CallbackContext context)
 		{
 			if (context.performed)
-				m_Player.OnRequestToggleIngameMenu?.Invoke(m_PlayerIndex);
+				m_Player.RequestToggleIngameMenu(m_PlayerIndex);
 		}
 
 		public void OnPrevious(InputAction.CallbackContext context)

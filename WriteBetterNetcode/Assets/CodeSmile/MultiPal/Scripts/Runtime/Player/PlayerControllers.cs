@@ -12,12 +12,60 @@ namespace CodeSmile.MultiPal.Player
 	[DisallowMultipleComponent]
 	public sealed class PlayerControllers : MonoBehaviour
 	{
+		[SerializeField] private PlayerControllerPrefabs m_ControllerPrefabs;
+
 		private readonly List<PlayerControllerBase>[] m_Controllers =
 			new List<PlayerControllerBase>[Constants.MaxCouchPlayers];
 
 		private readonly Int32[] m_ActiveControllers = new Int32[Constants.MaxCouchPlayers];
 
-		private void Awake() => AllocPlayerControllersLists();
+		private void Awake()
+		{
+			if (m_ControllerPrefabs == null)
+				throw new MissingReferenceException(nameof(PlayerControllerPrefabs));
+
+			m_ControllerPrefabs.ValidatePrefabsHaveComponent<PlayerControllerBase>();
+
+			AllocPlayerControllersLists();
+		}
+
+		private void Start()
+		{
+			CouchPlayers.OnLocalCouchPlayersSpawn += OnLocalCouchPlayersSpawn;
+			CouchPlayers.OnLocalCouchPlayersDespawn += OnLocalCouchPlayersDespawn;
+		}
+
+		private void OnDestroy()
+		{
+			CouchPlayers.OnLocalCouchPlayersSpawn -= OnLocalCouchPlayersSpawn;
+			CouchPlayers.OnLocalCouchPlayersDespawn -= OnLocalCouchPlayersDespawn;
+		}
+
+		private void OnLocalCouchPlayersSpawn(CouchPlayers couchPlayers)
+		{
+			couchPlayers.OnCouchPlayerJoined += OnCouchPlayerJoined;
+			couchPlayers.OnCouchPlayerLeaving += OnCouchPlayerLeaving;
+			couchPlayers.OnCouchPlayerLeft += OnCouchPlayerLeft;
+		}
+
+		private void OnLocalCouchPlayersDespawn(CouchPlayers couchPlayers)
+		{
+			couchPlayers.OnCouchPlayerJoined -= OnCouchPlayerJoined;
+			couchPlayers.OnCouchPlayerLeaving -= OnCouchPlayerLeaving;
+			couchPlayers.OnCouchPlayerLeft -= OnCouchPlayerLeft;
+		}
+
+		private void OnCouchPlayerJoined(CouchPlayers couchPlayers, Int32 playerIndex)
+		{
+			var player = couchPlayers[playerIndex];
+			var cameraTarget = player.Camera.TrackingTarget;
+			InstantiatePlayerControllers(playerIndex, player.transform, cameraTarget);
+		}
+
+		private void OnCouchPlayerLeaving(CouchPlayers couchPlayers, Int32 playerIndex) =>
+			DestroyPlayerControllers(playerIndex);
+
+		private void OnCouchPlayerLeft(CouchPlayers couchPlayers, Int32 playerIndex) {}
 
 		public PlayerControllerBase GetActiveController(Int32 playerIndex)
 		{
@@ -34,8 +82,9 @@ namespace CodeSmile.MultiPal.Player
 			}
 		}
 
-		public void InstantiatePlayerControllers(Int32 playerIndex, PlayerControllerPrefabs prefabs, Transform motionTarget, Transform rotationTarget)
+		public void InstantiatePlayerControllers(Int32 playerIndex, Transform motionTarget, Transform rotationTarget)
 		{
+			var prefabs = m_ControllerPrefabs;
 			for (var ctrlIndex = 0; ctrlIndex < prefabs.Count; ctrlIndex++)
 			{
 				var ctrlPrefab = prefabs[ctrlIndex];
@@ -56,7 +105,10 @@ namespace CodeSmile.MultiPal.Player
 		public void DestroyPlayerControllers(Int32 playerIndex)
 		{
 			foreach (var controller in m_Controllers[playerIndex])
+			{
+				Debug.Log($"destroying ctrl {controller.gameObject.name}");
 				Destroy(controller.gameObject);
+			}
 
 			m_Controllers[playerIndex].Clear();
 			m_ActiveControllers[playerIndex] = -1;

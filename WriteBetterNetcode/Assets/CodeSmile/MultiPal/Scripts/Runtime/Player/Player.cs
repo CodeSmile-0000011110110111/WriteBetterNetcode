@@ -16,7 +16,7 @@ namespace CodeSmile.MultiPal.Player
 	public sealed class Player : NetworkBehaviour, IPlayerComponent
 	{
 		public event Action<Int32> OnSwitchCamera;
-		public Action<Int32> OnRequestToggleIngameMenu;
+		public event Action<Int32> OnRequestToggleIngameMenu;
 
 		private PlayerAvatar m_Avatar;
 		private PlayerCamera m_Camera;
@@ -91,5 +91,7 @@ namespace CodeSmile.MultiPal.Player
 		}
 
 		public void SwitchCamera() => OnSwitchCamera?.Invoke(PlayerIndex);
+
+		public void RequestToggleIngameMenu(Int32 playerIndex) => OnRequestToggleIngameMenu?.Invoke(playerIndex);
 	}
 }

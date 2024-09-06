@@ -10,15 +10,15 @@ namespace CodeSmile.MultiPal.Player
 	[DisallowMultipleComponent]
 	public sealed class PlayerCamera : MonoBehaviour, IPlayerComponent
 	{
-		[SerializeField] private Transform m_CameraTrackingTarget;
+		[SerializeField] private Transform m_TrackingTarget;
 		[SerializeField] private Transform m_LookAtTarget;
-		public Transform TrackingTarget => m_CameraTrackingTarget;
+		public Transform TrackingTarget => m_TrackingTarget;
 		public Transform LookAtTarget => m_LookAtTarget;
 
 		public void OnPlayerSpawn(Int32 playerIndex)
 		{
-			if (m_CameraTrackingTarget == null)
-				m_CameraTrackingTarget = transform;
+			if (m_TrackingTarget == null)
+				m_TrackingTarget = transform;
 		}
 
 		public void OnPlayerDespawn(Int32 playerIndex) {}
