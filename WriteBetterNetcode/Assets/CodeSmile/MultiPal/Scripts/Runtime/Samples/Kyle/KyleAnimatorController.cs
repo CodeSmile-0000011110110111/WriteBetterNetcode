@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Components.Utility;
+using CodeSmile.MultiPal.Animation;
 using CodeSmile.MultiPal.Players.Controllers;
 using System;
 using UnityEditor;
@@ -11,7 +12,7 @@ namespace CodeSmile.MultiPal.Samples.Kyle
 {
 	[DisallowMultipleComponent]
 	[RequireComponent(typeof(Animator))]
-	public sealed class KyleAnimatorController : MonoBehaviour
+	public sealed class KyleAnimatorController : AnimatorControllerBase
 	{
 		private PlayerControllers m_PlayerControllers;
 		private Animator m_Animator;
@@ -57,7 +58,7 @@ namespace CodeSmile.MultiPal.Samples.Kyle
 			}
 		}
 
-		private void OnAssignAnimationData(Int32 playerIndex)
+		public override void OnAssignAnimationData(Int32 playerIndex)
 		{
 			// reset anim state every time we get enabled
 			var activeCtrl = m_PlayerControllers.GetActiveController(playerIndex);

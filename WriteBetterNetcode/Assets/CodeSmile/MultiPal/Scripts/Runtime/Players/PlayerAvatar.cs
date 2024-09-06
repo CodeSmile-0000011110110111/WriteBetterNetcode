@@ -1,6 +1,7 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.MultiPal.Animation;
 using CodeSmile.MultiPal.Settings;
 using System;
 using UnityEditor;
@@ -20,6 +21,7 @@ namespace CodeSmile.MultiPal.Players
 		public Byte NextIndex => (Byte)(m_Player.AvatarIndex == m_AvatarPrefabs.Count - 1 ? 0 : m_Player.AvatarIndex + 1);
 
 		public void OnPlayerSpawn(Int32 playerIndex) {}
+
 		public void OnPlayerDespawn(Int32 playerIndex) {}
 
 		private void Awake() => m_Player = GetComponent<Player>();
@@ -33,6 +35,9 @@ namespace CodeSmile.MultiPal.Players
 					Destroy(m_AvatarInstance);
 
 				m_AvatarInstance = Instantiate(prefab, transform);
+
+				if (m_AvatarInstance.TryGetComponent<AnimatorControllerBase>(out var animCtrl))
+					animCtrl.OnAssignAnimationData(m_Player.PlayerIndex);
 			}
 		}
 	}

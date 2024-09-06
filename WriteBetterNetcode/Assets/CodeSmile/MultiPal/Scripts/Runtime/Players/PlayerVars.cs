@@ -9,7 +9,7 @@ using UnityEngine;
 namespace CodeSmile.MultiPal.Players
 {
 	[DisallowMultipleComponent]
-	internal sealed class PlayerVars : NetworkBehaviour
+	internal sealed class PlayerVars : NetworkBehaviour, IPlayerComponent
 	{
 		private readonly NetworkVariable<Byte> m_AvatarIndexVar = new();
 
@@ -27,15 +27,18 @@ namespace CodeSmile.MultiPal.Players
 			}
 		}
 
+		public void OnPlayerSpawn(Int32 playerIndex) =>
+			// invoke directly for initial value
+			m_AvatarIndexVar.OnValueChanged.Invoke(m_AvatarIndexVar.Value, m_AvatarIndexVar.Value);
+
+		public void OnPlayerDespawn(Int32 playerIndex) {}
+
 		private void Awake() => m_Player = GetComponent<Player>();
 
 		public override void OnNetworkSpawn()
 		{
 			base.OnNetworkSpawn();
 			m_AvatarIndexVar.OnValueChanged += m_Player.OnAvatarIndexChanged;
-
-			// invoke directly for initial value
-			m_AvatarIndexVar.OnValueChanged.Invoke(m_AvatarIndexVar.Value, m_AvatarIndexVar.Value);
 		}
 
 		public override void OnNetworkDespawn()
