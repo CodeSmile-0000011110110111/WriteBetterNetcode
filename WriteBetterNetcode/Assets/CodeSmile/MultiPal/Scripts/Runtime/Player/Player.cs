@@ -15,11 +15,15 @@ namespace CodeSmile.MultiPal.Player
 	[RequireComponent(typeof(PlayerVars), typeof(PlayerServer), typeof(PlayerClient))]
 	public sealed class Player : NetworkBehaviour, IPlayerComponent
 	{
+		public event Action<Int32> OnSwitchCamera;
 		public Action<Int32> OnRequestToggleIngameMenu;
 
 		private PlayerAvatar m_Avatar;
+		private PlayerCamera m_Camera;
+		private PlayerInteraction m_Interaction;
 		private PlayerClient m_ClientSide;
 		private PlayerVars m_Vars;
+		public PlayerCamera Camera => m_Camera;
 
 		public Byte AvatarIndex { get => m_Vars.AvatarIndex; set => m_Vars.AvatarIndex = value; }
 
@@ -57,6 +61,8 @@ namespace CodeSmile.MultiPal.Player
 		private void Awake()
 		{
 			m_Avatar = GetComponent<PlayerAvatar>();
+			m_Camera = GetComponent<PlayerCamera>();
+			m_Interaction = GetComponent<PlayerInteraction>();
 			m_ClientSide = GetComponent<PlayerClient>();
 			m_Vars = GetComponent<PlayerVars>();
 		}
@@ -83,5 +89,7 @@ namespace CodeSmile.MultiPal.Player
 			inputUsers.AllPlayerUiEnabled = true;
 			inputUsers.AllUiEnabled = false;
 		}
+
+		public void SwitchCamera() => OnSwitchCamera?.Invoke(PlayerIndex);
 	}
 }

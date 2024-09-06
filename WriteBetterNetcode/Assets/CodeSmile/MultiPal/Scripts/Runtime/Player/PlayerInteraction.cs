@@ -15,7 +15,7 @@ namespace CodeSmile.MultiPal.Player
 	public sealed class PlayerInteraction : MonoBehaviour, IPlayerComponent, GeneratedInput.IPlayerInteractionActions
 	{
 		private Int32 m_PlayerIndex;
-		private PlayerCamera m_PlayerCamera;
+		private Player m_Player;
 
 		public void OnPlayerSpawn(Int32 playerIndex)
 		{
@@ -36,9 +36,9 @@ namespace CodeSmile.MultiPal.Player
 		public void OnInteract(InputAction.CallbackContext context)
 		{
 			if (context.performed)
-				m_PlayerCamera.NextCamera();
+				m_Player.SwitchCamera();
 		}
 
-		private void Awake() => m_PlayerCamera = GetComponent<PlayerCamera>();
+		private void Awake() => m_Player = GetComponent<Player>();
 	}
 }

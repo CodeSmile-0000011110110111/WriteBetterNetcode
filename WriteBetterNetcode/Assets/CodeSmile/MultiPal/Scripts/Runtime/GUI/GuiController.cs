@@ -20,14 +20,14 @@ namespace CodeSmile.MultiPal.GUI
 			ThrowIfNotAssigned<DevMainMenu>(m_MainMenu);
 			ThrowIfNotAssigned<DevIngameMenu>(m_IngameMenu);
 
-			Global.Components.OnLocalCouchPlayersSpawn += OnCouchSessionStarted;
-			Global.Components.OnLocalCouchPlayersDespawn += OnCouchSessionStopped;
+			CouchPlayers.OnLocalCouchPlayersSpawn += OnCouchSessionStarted;
+			CouchPlayers.OnLocalCouchPlayersDespawn += OnCouchSessionStopped;
 		}
 
 		private void OnDestroy()
 		{
-			Global.Components.OnLocalCouchPlayersSpawn -= OnCouchSessionStarted;
-			Global.Components.OnLocalCouchPlayersDespawn -= OnCouchSessionStopped;
+			CouchPlayers.OnLocalCouchPlayersSpawn -= OnCouchSessionStarted;
+			CouchPlayers.OnLocalCouchPlayersDespawn -= OnCouchSessionStopped;
 		}
 
 		private void OnCouchSessionStarted(CouchPlayers couchPlayers)

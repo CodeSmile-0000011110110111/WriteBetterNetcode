@@ -39,7 +39,7 @@ namespace CodeSmile.MultiPal.Player
 			m_PlayerIndex = playerIndex;
 			m_PlayerControllers = ComponentsRegistry.Get<PlayerControllers>();
 
-			var cameraTarget = GetComponent<PlayerCamera>().Target;
+			var cameraTarget = GetComponent<PlayerCamera>().TrackingTarget;
 			m_PlayerControllers.InstantiatePlayerControllers(playerIndex, m_ControllerPrefabs, transform, cameraTarget);
 
 			var inputUsers = ComponentsRegistry.Get<InputUsers>();

@@ -2,8 +2,12 @@
     "name": "CodeSmile.MultiPal.Cinecam",
     "rootNamespace": "",
     "references": [
+        "GUID:b01e7d37c21f68947a05cebbc3f902f2",
+        "GUID:b660ba037dadb084b951252e81e1ce1a",
         "GUID:fcdefbebbd09422dbc2d1210c9b54961",
-        "GUID:4307f53044263cf4b835bd812fc161a4"
+        "GUID:20e4a249bd32af1459852c828effa020",
+        "GUID:4307f53044263cf4b835bd812fc161a4",
+        "GUID:1491147abca9d7d4bb7105af628b223e"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

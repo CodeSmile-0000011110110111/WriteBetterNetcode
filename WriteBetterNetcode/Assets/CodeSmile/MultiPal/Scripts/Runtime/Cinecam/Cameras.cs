@@ -75,9 +75,10 @@ namespace CodeSmile.MultiPal.Global
 
 		private void Start()
 		{
-			Components.OnLocalCouchPlayersSpawn += OnLocalCouchPlayersSpawn;
-			Components.OnLocalCouchPlayersDespawn += OnLocalCouchPlayersDespawn;
+			CouchPlayers.OnLocalCouchPlayersSpawn += OnLocalCouchPlayersSpawn;
+			CouchPlayers.OnLocalCouchPlayersDespawn += OnLocalCouchPlayersDespawn;
 
+			// FIXME: replace these with menu or gamestate events
 			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
 			netcodeState.WentOnline += WentOnline;
 			netcodeState.WentOffline += WentOffline;
@@ -85,8 +86,8 @@ namespace CodeSmile.MultiPal.Global
 
 		private void OnDestroy()
 		{
-			Components.OnLocalCouchPlayersSpawn -= OnLocalCouchPlayersSpawn;
-			Components.OnLocalCouchPlayersDespawn -= OnLocalCouchPlayersDespawn;
+			CouchPlayers.OnLocalCouchPlayersSpawn -= OnLocalCouchPlayersSpawn;
+			CouchPlayers.OnLocalCouchPlayersDespawn -= OnLocalCouchPlayersDespawn;
 
 			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
 			if (netcodeState != null)
@@ -112,6 +113,10 @@ namespace CodeSmile.MultiPal.Global
 		{
 			SetCurrentOtherCameraActive(false);
 
+			SetCinecamTargets(couchPlayers, playerIndex);
+
+			couchPlayers[playerIndex].OnSwitchCamera += SwitchToNextCinecam;
+
 			if (m_CouchPlayerMode == CouchPlayerCameraMode.TargetGroup)
 			{
 				SetTargetGroupCameraActive(true);
@@ -123,6 +128,8 @@ namespace CodeSmile.MultiPal.Global
 
 		internal void OnCouchPlayerLeft(CouchPlayers couchPlayers, Int32 playerIndex)
 		{
+			couchPlayers[playerIndex].OnSwitchCamera -= SwitchToNextCinecam;
+
 			if (m_CouchPlayerMode == CouchPlayerCameraMode.TargetGroup)
 				m_TargetGroup.Targets[playerIndex].Object = null;
 			else
@@ -136,8 +143,19 @@ namespace CodeSmile.MultiPal.Global
 			}
 		}
 
-		public IReadOnlyList<CinemachineCamera> GetPlayerCinecams(Int32 playerIndex) =>
-			m_PlayerCinecams[playerIndex].AsReadOnly();
+		private void SetCinecamTargets(CouchPlayers couchPlayers, Int32 playerIndex)
+		{
+			var playerCamera = couchPlayers[playerIndex].Camera;
+			var cameraTarget = new CameraTarget
+			{
+				TrackingTarget = playerCamera.TrackingTarget,
+				LookAtTarget = playerCamera.LookAtTarget,
+				CustomLookAtTarget = playerCamera.LookAtTarget != null,
+			};
+
+			foreach (var cinecam in m_PlayerCinecams[playerIndex])
+				cinecam.Target = cameraTarget;
+		}
 
 		private void ClearPlayerChannelsOfOtherCameras()
 		{
@@ -235,7 +253,7 @@ namespace CodeSmile.MultiPal.Global
 			}
 		}
 
-		public void SetNextCinecamEnabled(Int32 playerIndex)
+		public void SwitchToNextCinecam(Int32 playerIndex)
 		{
 			var cinecams = m_PlayerCinecams[playerIndex];
 			for (var i = 0; i < cinecams.Count; i++)
@@ -265,7 +283,7 @@ namespace CodeSmile.MultiPal.Global
 
 		private void DebugUpdatePlayerCinecamNames()
 		{
-			const string LiveSuffix = " (LIVE)";
+			const String LiveSuffix = " (LIVE)";
 
 			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
 			{

@@ -25,6 +25,8 @@ namespace CodeSmile.MultiPal.Player
 		typeof(CouchPlayersServer))]
 	public sealed class CouchPlayers : NetworkBehaviour
 	{
+		public static event Action<CouchPlayers> OnLocalCouchPlayersSpawn;
+		public static event Action<CouchPlayers> OnLocalCouchPlayersDespawn;
 		public event Action<CouchPlayers, Int32> OnCouchPlayerJoining;
 		public event Action<CouchPlayers, Int32> OnCouchPlayerJoined;
 		public event Action<CouchPlayers, Int32> OnCouchPlayerLeaving;
@@ -39,7 +41,15 @@ namespace CodeSmile.MultiPal.Player
 
 		public Int32 PlayerCount { get; set; }
 
+		private static void ResetStaticFields()
+		{
+			OnLocalCouchPlayersSpawn = null;
+			OnLocalCouchPlayersDespawn = null;
+		}
+
 		private void Awake() => m_ClientSide = GetComponent<CouchPlayersClient>();
+
+		public override void OnDestroy() => ResetStaticFields();
 
 		private void SetPlayerDebugName(Int32 playerIndex, String suffix = "") => m_Players[playerIndex].name =
 			m_Players[playerIndex].name.Replace("(Clone)", $" #{playerIndex}{suffix}");
@@ -51,6 +61,7 @@ namespace CodeSmile.MultiPal.Player
 			if (IsOwner)
 			{
 				ComponentsRegistry.Set(this);
+				OnLocalCouchPlayersSpawn?.Invoke(this);
 
 				var inputUsers = ComponentsRegistry.Get<InputUsers>();
 				inputUsers.OnUserDevicePaired += OnUserInputDevicePaired;
@@ -71,6 +82,7 @@ namespace CodeSmile.MultiPal.Player
 
 			if (IsOwner)
 			{
+				OnLocalCouchPlayersDespawn?.Invoke(this);
 				ComponentsRegistry.Set<CouchPlayers>(null);
 
 				var inputUsers = ComponentsRegistry.Get<InputUsers>();
