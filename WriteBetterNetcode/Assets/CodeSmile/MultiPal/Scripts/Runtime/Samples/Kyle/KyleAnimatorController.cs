@@ -2,7 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Components.Utility;
-using CodeSmile.MultiPal.Player.Controllers;
+using CodeSmile.MultiPal.Players.Controllers;
 using System;
 using UnityEditor;
 using UnityEngine;

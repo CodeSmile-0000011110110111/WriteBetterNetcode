@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Player
+namespace CodeSmile.MultiPal.Players
 {
 	[DisallowMultipleComponent]
 	public sealed class PlayerController : MonoBehaviour, IPlayerComponent //, IAnimatorParametersProvider

@@ -6,7 +6,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Player
+namespace CodeSmile.MultiPal.Players
 {
 	[DisallowMultipleComponent]
 	internal sealed class PlayerAvatar : MonoBehaviour, IPlayerComponent
