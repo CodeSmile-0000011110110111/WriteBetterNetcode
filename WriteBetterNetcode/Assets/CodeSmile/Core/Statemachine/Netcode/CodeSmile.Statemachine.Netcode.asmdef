@@ -1,6 +1,6 @@
 {
     "name": "CodeSmile.Statemachine.Netcode",
-    "rootNamespace": "CodeSmile",
+    "rootNamespace": "",
     "references": [
         "GUID:416cc8b34229a5b488e6e2d2975cfa2c",
         "GUID:1491147abca9d7d4bb7105af628b223e",
