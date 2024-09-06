@@ -1,6 +1,7 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Components.Utility;
 using CodeSmile.Statemachine.Netcode;
 using System;
 using System.Linq;
@@ -36,7 +37,9 @@ namespace CodeSmile.MultiPal.Netcode
 		{
 			var netcodeConfig = new NetcodeConfig { Role = role, MaxConnections = 4 };
 			var transportConfig = TransportConfig.FromNetworkManager();
-			Global.Components.NetcodeState.RequestStart(netcodeConfig, transportConfig);
+
+			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
+			netcodeState.RequestStart(netcodeConfig, transportConfig);
 		}
 
 		// ensure unsaved Material, ScriptableObject, etc changes are applied to virtual players

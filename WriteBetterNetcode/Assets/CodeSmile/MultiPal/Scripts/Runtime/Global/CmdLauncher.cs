@@ -1,6 +1,7 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Components.Utility;
 using CodeSmile.Statemachine.Netcode;
 using CodeSmile.Utility;
 using UnityEditor;
@@ -14,7 +15,9 @@ namespace CodeSmile.MultiPal.Netcode
 		{
 			var transportCfg = TransportConfig.FromNetworkManagerWithCmdArgOverrides();
 			var relayCfg = RelayConfig.FromCmdArgs();
-			Global.Components.NetcodeState.RequestStart(netcodeCfg, transportCfg, relayCfg);
+
+			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
+			netcodeState.RequestStart(netcodeCfg, transportCfg, relayCfg);
 		}
 
 		private void Start()

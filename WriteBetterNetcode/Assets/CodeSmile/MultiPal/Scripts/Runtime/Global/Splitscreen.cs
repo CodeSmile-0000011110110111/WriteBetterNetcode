@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Components.Utility;
 using CodeSmile.MultiPal.Player;
 using CodeSmile.MultiPal.Settings;
 using System;
@@ -46,7 +47,7 @@ namespace CodeSmile.MultiPal.Global
 				{
 					m_SplitscreenAxis = value;
 
-					var couchPlayers = Components.LocalCouchPlayers;
+					var couchPlayers = ComponentsRegistry.Get<CouchPlayers>();
 					if (couchPlayers != null)
 						UpdateSplitscreen(couchPlayers);
 				}
@@ -149,7 +150,7 @@ namespace CodeSmile.MultiPal.Global
 
 		private void SetAllPlayerCamerasActive()
 		{
-			var couchPlayers = Components.LocalCouchPlayers;
+			var couchPlayers = ComponentsRegistry.Get<CouchPlayers>();
 			var playerCameras = m_Cameras.PlayerSplitCameras;
 			var notJoinedCameras = m_Cameras.PlayerNotJoinedCinecams;
 			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)

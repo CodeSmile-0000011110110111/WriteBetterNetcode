@@ -1,6 +1,8 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Components.Utility;
+using CodeSmile.MultiPal.Netcode;
 using CodeSmile.MultiPal.Player;
 using CodeSmile.MultiPal.Settings;
 using System;
@@ -76,7 +78,7 @@ namespace CodeSmile.MultiPal.Global
 			Components.OnLocalCouchPlayersSpawn += OnLocalCouchPlayersSpawn;
 			Components.OnLocalCouchPlayersDespawn += OnLocalCouchPlayersDespawn;
 
-			var netcodeState = Components.NetcodeState;
+			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
 			netcodeState.WentOnline += WentOnline;
 			netcodeState.WentOffline += WentOffline;
 		}
@@ -86,7 +88,7 @@ namespace CodeSmile.MultiPal.Global
 			Components.OnLocalCouchPlayersSpawn -= OnLocalCouchPlayersSpawn;
 			Components.OnLocalCouchPlayersDespawn -= OnLocalCouchPlayersDespawn;
 
-			var netcodeState = Components.NetcodeState;
+			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
 			if (netcodeState != null)
 			{
 				netcodeState.WentOnline -= WentOnline;

@@ -2,8 +2,10 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.BetterNetcode.Input;
+using CodeSmile.Components.Utility;
 using CodeSmile.MultiPal.Animation;
 using CodeSmile.MultiPal.Global;
+using CodeSmile.MultiPal.Input;
 using CodeSmile.MultiPal.Settings;
 using System;
 using UnityEditor;
@@ -35,18 +37,18 @@ namespace CodeSmile.MultiPal.Player
 		public void OnPlayerSpawn(Int32 playerIndex)
 		{
 			m_PlayerIndex = playerIndex;
-			m_PlayerControllers = Global.Components.PlayerControllers;
+			m_PlayerControllers = ComponentsRegistry.Get<PlayerControllers>();
 
 			var cameraTarget = GetComponent<PlayerCamera>().Target;
 			m_PlayerControllers.InstantiatePlayerControllers(playerIndex, m_ControllerPrefabs, transform, cameraTarget);
 
-			var inputUsers = Global.Components.InputUsers;
+			var inputUsers = ComponentsRegistry.Get<InputUsers>();
 			inputUsers.SetPlayerKinematicsCallback(playerIndex, this);
 		}
 
 		public void OnPlayerDespawn(Int32 playerIndex)
 		{
-			var inputUsers = Global.Components.InputUsers;
+			var inputUsers = ComponentsRegistry.Get<InputUsers>();
 			inputUsers.SetPlayerKinematicsCallback(playerIndex, null);
 			m_PlayerControllers.DestroyPlayerControllers(playerIndex);
 		}

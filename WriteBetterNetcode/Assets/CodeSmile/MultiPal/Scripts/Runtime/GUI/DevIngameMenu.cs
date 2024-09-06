@@ -1,7 +1,9 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Components.Utility;
 using CodeSmile.MultiPal.Global;
+using CodeSmile.MultiPal.Netcode;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -45,7 +47,8 @@ namespace CodeSmile.MultiPal.GUI
 		private void OnExitMenuButtonClicked()
 		{
 			Hide();
-			Components.NetcodeState.RequestStopNetwork();
+			ComponentsRegistry.Get<NetcodeState>().RequestStopNetwork();
+
 		}
 
 		private void OnExitDesktopButtonClicked()

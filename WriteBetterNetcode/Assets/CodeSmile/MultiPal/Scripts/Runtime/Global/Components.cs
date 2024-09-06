@@ -1,6 +1,7 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Components.Utility;
 using CodeSmile.MultiPal.Input;
 using CodeSmile.MultiPal.Netcode;
 using CodeSmile.MultiPal.Player;
@@ -10,52 +11,60 @@ using UnityEngine;
 
 namespace CodeSmile.MultiPal.Global
 {
-	public class Components : MonoBehaviour
+	[DisallowMultipleComponent]
+	[RequireComponent(typeof(ComponentsRegistry))]
+	public class Components : MonoBehaviour, IComponents
 	{
 		public static event Action<CouchPlayers> OnLocalCouchPlayersSpawn;
 		public static event Action<CouchPlayers> OnLocalCouchPlayersDespawn;
-
-		private static Components s_Instance;
 
 		[SerializeField] private NetcodeState m_NetcodeState;
 		[SerializeField] private InputUsers m_InputUsers;
 		[SerializeField] private Cameras m_Cameras;
 		[SerializeField] private PlayerControllers m_PlayerControllers;
-		[SerializeField] private CouchPlayers m_LocalCouchPlayers;
-
-		public static NetcodeState NetcodeState => s_Instance?.m_NetcodeState;
-		public static InputUsers InputUsers => s_Instance?.m_InputUsers;
-		public static Cameras Cameras => s_Instance?.m_Cameras;
-		public static PlayerControllers PlayerControllers => s_Instance?.m_PlayerControllers;
-		public static CouchPlayers LocalCouchPlayers
-		{
-			get => s_Instance?.m_LocalCouchPlayers;
-			set
-			{
-				if (s_Instance?.m_LocalCouchPlayers != null && value != null)
-					throw new ArgumentException("local couch players already assigned, replace not allowed; possible bug?");
-
-				if (value == null)
-					OnLocalCouchPlayersDespawn?.Invoke(s_Instance.m_LocalCouchPlayers);
-
-				s_Instance.m_LocalCouchPlayers = value;
-
-				if (value != null)
-					OnLocalCouchPlayersSpawn?.Invoke(value);
-			}
-		}
+		[SerializeField] private CouchPlayers m_CouchPlayers;
 
 		private static void ResetStaticFields()
 		{
-			s_Instance = null;
 			OnLocalCouchPlayersSpawn = null;
 			OnLocalCouchPlayersDespawn = null;
 		}
 
+		public T Get<T>() where T : MonoBehaviour
+		{
+			switch (typeof(T).Name)
+			{
+				case nameof(NetcodeState):
+					return m_NetcodeState as T;
+				case nameof(InputUsers):
+					return m_InputUsers as T;
+				case nameof(Cameras):
+					return m_Cameras as T;
+				case nameof(PlayerControllers):
+					return m_PlayerControllers as T;
+				case nameof(CouchPlayers):
+					return m_CouchPlayers as T;
+
+				default:
+					throw new ArgumentOutOfRangeException(nameof(T), "unhandled type");
+			}
+		}
+
+		public void Set<T>(T component) where T : MonoBehaviour
+		{
+			switch (typeof(T).Name)
+			{
+				case nameof(CouchPlayers):
+					SetLocalCouchPlayers(component as CouchPlayers);
+					break;
+
+				default:
+					throw new ArgumentOutOfRangeException(nameof(T), "unhandled or read-only type");
+			}
+		}
+
 		private void Awake()
 		{
-			AssignInstance();
-
 			ThrowIfNotAssigned<NetcodeState>(m_NetcodeState);
 			ThrowIfNotAssigned<InputUsers>(m_InputUsers);
 			ThrowIfNotAssigned<Cameras>(m_Cameras);
@@ -64,18 +73,25 @@ namespace CodeSmile.MultiPal.Global
 
 		private void OnDestroy() => ResetStaticFields();
 
-		private void AssignInstance()
-		{
-			if (s_Instance != null)
-				throw new InvalidOperationException("already exists!");
-
-			s_Instance = this;
-		}
-
 		private void ThrowIfNotAssigned<T>(Component component) where T : Component
 		{
 			if (component == null || component is not T)
 				throw new MissingReferenceException($"{typeof(T).Name} not assigned");
+		}
+
+		private void SetLocalCouchPlayers(CouchPlayers couchPlayers)
+		{
+			var isCouchPlayersNull = couchPlayers == null;
+			if (m_CouchPlayers != null && isCouchPlayersNull == false)
+				throw new ArgumentException("local couch players already assigned, replace not allowed; possible bug?");
+
+			if (isCouchPlayersNull)
+				OnLocalCouchPlayersDespawn?.Invoke(m_CouchPlayers);
+
+			m_CouchPlayers = couchPlayers;
+
+			if (isCouchPlayersNull == false)
+				OnLocalCouchPlayersSpawn?.Invoke(m_CouchPlayers);
 		}
 	}
 }

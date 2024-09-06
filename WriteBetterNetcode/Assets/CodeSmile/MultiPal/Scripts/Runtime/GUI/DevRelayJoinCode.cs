@@ -1,7 +1,9 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Components.Utility;
 using CodeSmile.MultiPal.Global;
+using CodeSmile.MultiPal.Netcode;
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -31,9 +33,9 @@ namespace CodeSmile.MultiPal.GUI
 
 		private void RegisterNetcodeStateEvents()
 		{
-			var netState = Components.NetcodeState;
-			netState.WentOffline += Hide;
-			netState.RelayJoinCodeAvailable += OnRelayJoinCodeAvailable;
+			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
+			netcodeState.WentOffline += Hide;
+			netcodeState.RelayJoinCodeAvailable += OnRelayJoinCodeAvailable;
 		}
 
 		private void OnRelayJoinCodeAvailable(String joinCode)
@@ -44,11 +46,11 @@ namespace CodeSmile.MultiPal.GUI
 
 		private void UnregisterNetcodeStateEvents()
 		{
-			var netState = Components.NetcodeState;
-			if (netState != null)
+			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
+			if (netcodeState != null)
 			{
-				netState.WentOffline -= Hide;
-				netState.RelayJoinCodeAvailable -= OnRelayJoinCodeAvailable;
+				netcodeState.WentOffline -= Hide;
+				netcodeState.RelayJoinCodeAvailable -= OnRelayJoinCodeAvailable;
 			}
 		}
 

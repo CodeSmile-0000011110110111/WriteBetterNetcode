@@ -1,6 +1,8 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Components.Utility;
+using CodeSmile.MultiPal.Input;
 using CodeSmile.MultiPal.Settings;
 using System;
 using System.Threading.Tasks;
@@ -35,7 +37,7 @@ namespace CodeSmile.MultiPal.Player
 
 		public Player this[Int32 index] => index >= 0 && index < Constants.MaxCouchPlayers ? m_Players[index] : null;
 
-		public int PlayerCount { get; set; }
+		public Int32 PlayerCount { get; set; }
 
 		private void Awake() => m_ClientSide = GetComponent<CouchPlayersClient>();
 
@@ -48,9 +50,9 @@ namespace CodeSmile.MultiPal.Player
 
 			if (IsOwner)
 			{
-				Global.Components.LocalCouchPlayers = this;
+				ComponentsRegistry.Set(this);
 
-				var inputUsers = Global.Components.InputUsers;
+				var inputUsers = ComponentsRegistry.Get<InputUsers>();
 				inputUsers.OnUserDevicePaired += OnUserInputDevicePaired;
 				inputUsers.OnUserDeviceUnpaired += OnUserInputDeviceUnpaired;
 				inputUsers.AllPairingEnabled = true;
@@ -69,9 +71,9 @@ namespace CodeSmile.MultiPal.Player
 
 			if (IsOwner)
 			{
-				Global.Components.LocalCouchPlayers = null;
+				ComponentsRegistry.Set<CouchPlayers>(null);
 
-				var inputUsers = Global.Components.InputUsers;
+				var inputUsers = ComponentsRegistry.Get<InputUsers>();
 				inputUsers.AllPairingEnabled = false;
 				inputUsers.AllUiEnabled = true;
 				inputUsers.AllPlayerInteractionEnabled = false;

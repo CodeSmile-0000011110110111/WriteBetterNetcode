@@ -1,6 +1,8 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Components.Utility;
+using CodeSmile.MultiPal.Input;
 using System;
 using Unity.Netcode;
 using UnityEditor;
@@ -63,7 +65,7 @@ namespace CodeSmile.MultiPal.Player
 
 		public void OnOpenIngameMenu()
 		{
-			var inputUsers = Global.Components.InputUsers;
+			var inputUsers = ComponentsRegistry.Get<InputUsers>();
 			inputUsers.AllPlayerInteractionEnabled = false;
 			inputUsers.AllPlayerKinematicsEnabled = false;
 			inputUsers.AllPlayerUiEnabled = false;
@@ -75,7 +77,7 @@ namespace CodeSmile.MultiPal.Player
 
 		public void OnCloseIngameMenu()
 		{
-			var inputUsers = Global.Components.InputUsers;
+			var inputUsers = ComponentsRegistry.Get<InputUsers>();
 			inputUsers.AllPlayerInteractionEnabled = true;
 			inputUsers.AllPlayerKinematicsEnabled = true;
 			inputUsers.AllPlayerUiEnabled = true;

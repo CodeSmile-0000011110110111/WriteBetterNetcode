@@ -2,6 +2,8 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.BetterNetcode.Input;
+using CodeSmile.Components.Utility;
+using CodeSmile.MultiPal.Input;
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -19,13 +21,13 @@ namespace CodeSmile.MultiPal.Player
 		{
 			m_PlayerIndex = playerIndex;
 
-			var inputUsers = Global.Components.InputUsers;
+			var inputUsers = ComponentsRegistry.Get<InputUsers>();
 			inputUsers.SetPlayerInteractionCallback(playerIndex, this);
 		}
 
 		public void OnPlayerDespawn(Int32 playerIndex)
 		{
-			var inputUsers = Global.Components.InputUsers;
+			var inputUsers = ComponentsRegistry.Get<InputUsers>();
 			inputUsers.SetPlayerInteractionCallback(playerIndex, null);
 		}
 

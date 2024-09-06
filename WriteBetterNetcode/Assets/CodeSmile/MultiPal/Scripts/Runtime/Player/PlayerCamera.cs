@@ -1,6 +1,8 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Components.Utility;
+using CodeSmile.MultiPal.Global;
 using System;
 using Unity.Cinemachine;
 using UnityEditor;
@@ -42,14 +44,14 @@ namespace CodeSmile.MultiPal.Player
 				CustomLookAtTarget = lookAtTarget != null,
 			};
 
-			var cameras = Global.Components.Cameras;
+			var cameras = ComponentsRegistry.Get<Cameras>();
 			foreach (var cinecam in cameras.GetPlayerCinecams(playerIndex))
 				cinecam.Target = cameraTarget;
 		}
 
 		public void NextCamera()
 		{
-			var cameras = Global.Components.Cameras;
+			var cameras = ComponentsRegistry.Get<Cameras>();
 			cameras.SetNextCinecamEnabled(m_PlayerIndex);
 		}
 	}

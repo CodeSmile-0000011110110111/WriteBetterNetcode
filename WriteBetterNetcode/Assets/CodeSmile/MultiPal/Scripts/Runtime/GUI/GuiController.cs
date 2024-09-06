@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.MultiPal.Global;
+using CodeSmile.Components.Utility;
 using CodeSmile.MultiPal.Player;
 using System;
 using UnityEditor;
@@ -20,14 +20,14 @@ namespace CodeSmile.MultiPal.GUI
 			ThrowIfNotAssigned<DevMainMenu>(m_MainMenu);
 			ThrowIfNotAssigned<DevIngameMenu>(m_IngameMenu);
 
-			Components.OnLocalCouchPlayersSpawn += OnCouchSessionStarted;
-			Components.OnLocalCouchPlayersDespawn += OnCouchSessionStopped;
+			Global.Components.OnLocalCouchPlayersSpawn += OnCouchSessionStarted;
+			Global.Components.OnLocalCouchPlayersDespawn += OnCouchSessionStopped;
 		}
 
 		private void OnDestroy()
 		{
-			Components.OnLocalCouchPlayersSpawn -= OnCouchSessionStarted;
-			Components.OnLocalCouchPlayersDespawn -= OnCouchSessionStopped;
+			Global.Components.OnLocalCouchPlayersSpawn -= OnCouchSessionStarted;
+			Global.Components.OnLocalCouchPlayersDespawn -= OnCouchSessionStopped;
 		}
 
 		private void OnCouchSessionStarted(CouchPlayers couchPlayers)
@@ -59,7 +59,7 @@ namespace CodeSmile.MultiPal.GUI
 			m_IngameMenu.MenuPlayerIndex = playerIndex;
 			m_IngameMenu.ToggleVisible();
 
-			var couchPlayers = Components.LocalCouchPlayers;
+			var couchPlayers = ComponentsRegistry.Get<CouchPlayers>();
 			if (m_IngameMenu.IsVisible)
 				couchPlayers[playerIndex].OnOpenIngameMenu();
 			else

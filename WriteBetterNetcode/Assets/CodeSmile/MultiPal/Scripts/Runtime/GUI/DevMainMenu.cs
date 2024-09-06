@@ -1,7 +1,8 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.MultiPal.Global;
+using CodeSmile.Components.Utility;
+using CodeSmile.MultiPal.Netcode;
 using CodeSmile.Statemachine.Netcode;
 using System;
 using System.Net;
@@ -29,7 +30,9 @@ namespace CodeSmile.MultiPal.GUI
 		private static void RequestStart(NetcodeConfig netcodeConfig,
 			TransportConfig transportConfig, RelayConfig relayConfig)
 		{
-			var netcodeState = Components.NetcodeState;
+			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
+			Debug.Log($"netcodeState: {netcodeState}");
+
 			netcodeState.RequestStart(netcodeConfig, transportConfig, relayConfig);
 		}
 
@@ -53,18 +56,18 @@ namespace CodeSmile.MultiPal.GUI
 
 		private void RegisterNetcodeStateEvents()
 		{
-			var netState = Components.NetcodeState;
-			netState.WentOffline += Show;
-			netState.WentOnline += Hide;
+			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
+			netcodeState.WentOffline += Show;
+			netcodeState.WentOnline += Hide;
 		}
 
 		private void UnregisterNetcodeStateEvents()
 		{
-			var netState = Components.NetcodeState;
-			if (netState != null)
+			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
+			if (netcodeState != null)
 			{
-				netState.WentOffline -= Show;
-				netState.WentOnline -= Hide;
+				netcodeState.WentOffline -= Show;
+				netcodeState.WentOnline -= Hide;
 			}
 		}
 

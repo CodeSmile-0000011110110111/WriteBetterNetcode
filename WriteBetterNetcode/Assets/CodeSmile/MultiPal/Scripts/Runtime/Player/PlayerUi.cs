@@ -2,6 +2,8 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.BetterNetcode.Input;
+using CodeSmile.Components.Utility;
+using CodeSmile.MultiPal.Input;
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -18,26 +20,19 @@ namespace CodeSmile.MultiPal.Player
 		private PlayerAvatar m_Avatar;
 		private PlayerController m_Controller;
 
-		private void Awake()
-		{
-			m_Player = GetComponent<Player>();
-			m_Avatar = GetComponent<PlayerAvatar>();
-			m_Controller = GetComponent<PlayerController>();
-		}
-
 		public void OnPlayerSpawn(Int32 playerIndex)
 		{
 			m_PlayerIndex = playerIndex;
 
-			var inputUsers = Global.Components.InputUsers;
+			var inputUsers = ComponentsRegistry.Get<InputUsers>();
 			inputUsers.SetPlayerUiCallback(playerIndex, this);
 		}
+
 		public void OnPlayerDespawn(Int32 playerIndex)
 		{
-			var inputUsers = Global.Components.InputUsers;
+			var inputUsers = ComponentsRegistry.Get<InputUsers>();
 			inputUsers.SetPlayerUiCallback(playerIndex, null);
 		}
-
 
 		public void OnRequestMenu(InputAction.CallbackContext context)
 		{
@@ -69,5 +64,11 @@ namespace CodeSmile.MultiPal.Player
 				m_Controller.PreviousController();
 		}
 
+		private void Awake()
+		{
+			m_Player = GetComponent<Player>();
+			m_Avatar = GetComponent<PlayerAvatar>();
+			m_Controller = GetComponent<PlayerController>();
+		}
 	}
 }
