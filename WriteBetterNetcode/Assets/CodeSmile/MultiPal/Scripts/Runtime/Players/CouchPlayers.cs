@@ -48,10 +48,7 @@ namespace CodeSmile.MultiPal.Players
 			OnLocalCouchPlayersDespawn = null;
 		}
 
-		private void Awake()
-		{
-			m_ClientSide = GetComponent<CouchPlayersClient>();
-		}
+		private void Awake() => m_ClientSide = GetComponent<CouchPlayersClient>();
 
 		private void SetPlayerDebugName(Int32 playerIndex, String suffix = "") => m_Players[playerIndex].name =
 			m_Players[playerIndex].name.Replace("(Clone)", $" #{playerIndex}{suffix}");

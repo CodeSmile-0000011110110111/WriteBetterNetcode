@@ -30,10 +30,6 @@ namespace CodeSmile.MultiPal.Samples.Kyle
 		public Boolean FreeFall { set => m_Animator.SetBool(m_ParamFreeFall, value); }
 		public Boolean Jump { set => m_Animator.SetBool(m_ParamJump, value); }
 
-		// FIXME: this will not receive the event when changing Avatars!
-		private void OnEnable() => m_PlayerControllers.OnAssignAnimationData += OnAssignAnimationData;
-		private void OnDisable() => m_PlayerControllers.OnAssignAnimationData -= OnAssignAnimationData;
-
 		private void Awake()
 		{
 			m_Animator = GetComponent<Animator>();

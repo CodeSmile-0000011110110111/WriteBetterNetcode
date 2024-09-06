@@ -14,8 +14,6 @@ namespace CodeSmile.MultiPal.Players.Controllers
 	[DisallowMultipleComponent]
 	public sealed class PlayerControllers : MonoBehaviour
 	{
-		public event Action<Int32> OnAssignAnimationData;
-
 		[SerializeField] private PlayerControllerPrefabs m_ControllerPrefabs;
 
 		private readonly List<PlayerControllerBase>[] m_Controllers =

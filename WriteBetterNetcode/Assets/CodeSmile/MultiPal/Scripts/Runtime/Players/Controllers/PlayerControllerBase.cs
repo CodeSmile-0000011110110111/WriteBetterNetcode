@@ -11,7 +11,8 @@ using UnityEngine.InputSystem;
 namespace CodeSmile.MultiPal.Players.Controllers
 {
 	[DisallowMultipleComponent]
-	public abstract class PlayerControllerBase : MonoBehaviour, GeneratedInput.IPlayerKinematicsActions, IAnimatorParametersProvider
+	public abstract class PlayerControllerBase : MonoBehaviour, GeneratedInput.IPlayerKinematicsActions,
+		IAnimatorParametersProvider
 	{
 		[Header("Translation Axis")]
 		[SerializeField] protected InputAxis m_Sideways = InputAxis.DefaultMomentary;

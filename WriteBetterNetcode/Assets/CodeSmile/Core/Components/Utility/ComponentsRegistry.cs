@@ -20,10 +20,7 @@ namespace CodeSmile.Components.Utility
 
 		public static void Set<T>(T component) where T : MonoBehaviour => s_Instance?.m_Components.Set(component);
 
-		private static void ResetStaticFields()
-		{
-			s_Instance = null;
-		}
+		private static void ResetStaticFields() => s_Instance = null;
 
 		private void Awake()
 		{

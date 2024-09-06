@@ -2,7 +2,6 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Components.Utility;
-using CodeSmile.MultiPal.Global;
 using CodeSmile.MultiPal.Netcode;
 using System;
 using UnityEditor;

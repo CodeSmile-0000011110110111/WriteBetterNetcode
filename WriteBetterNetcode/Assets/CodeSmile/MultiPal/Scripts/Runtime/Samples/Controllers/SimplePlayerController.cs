@@ -23,13 +23,10 @@ namespace CodeSmile.MultiPal.Samples.Controllers
 			ApplyMove();
 
 			if (AnimatorParameters != null)
-			{
 				AnimatorParameters.Velocity = Velocity;
-			}
 
 			if (AnimatorParameters is KyleAnimatorParameters kyleAnimParams)
 				kyleAnimParams.SetKinematicParams(0f, Velocity.magnitude, CharController.isGrounded, false);
-
 		}
 
 		private void ApplyLook()
@@ -78,7 +75,7 @@ namespace CodeSmile.MultiPal.Samples.Controllers
 
 		public override void OnCrouch(InputAction.CallbackContext context)
 		{
-			if (context.performed){}
+			if (context.performed) {}
 
 			if (AnimatorParameters != null)
 				AnimatorParameters.InputCrouch = context.performed;
@@ -87,9 +84,7 @@ namespace CodeSmile.MultiPal.Samples.Controllers
 		public override void OnJump(InputAction.CallbackContext context)
 		{
 			if (context.performed)
-			{
 				m_Vertical.Value = TranslationSensitivity.y;
-			}
 
 			if (AnimatorParameters != null)
 				AnimatorParameters.InputJump = context.performed;

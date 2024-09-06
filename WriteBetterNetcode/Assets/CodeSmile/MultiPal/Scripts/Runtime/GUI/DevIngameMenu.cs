@@ -2,7 +2,6 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Components.Utility;
-using CodeSmile.MultiPal.Global;
 using CodeSmile.MultiPal.Netcode;
 using UnityEditor;
 using UnityEngine;
@@ -48,7 +47,6 @@ namespace CodeSmile.MultiPal.GUI
 		{
 			Hide();
 			ComponentsRegistry.Get<NetcodeState>().RequestStopNetwork();
-
 		}
 
 		private void OnExitDesktopButtonClicked()
