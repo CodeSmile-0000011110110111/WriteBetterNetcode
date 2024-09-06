@@ -12,7 +12,7 @@ using Unity.Cinemachine;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Global
+namespace CodeSmile.MultiPal.Cinecam
 {
 	[DisallowMultipleComponent]
 	[RequireComponent(typeof(Splitscreen))]

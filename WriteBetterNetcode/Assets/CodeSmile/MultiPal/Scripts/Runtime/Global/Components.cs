@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Components.Utility;
+using CodeSmile.MultiPal.Cinecam;
 using CodeSmile.MultiPal.Input;
 using CodeSmile.MultiPal.Netcode;
 using CodeSmile.MultiPal.Player;

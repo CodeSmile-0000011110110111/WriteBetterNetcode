@@ -4,7 +4,6 @@
 using CodeSmile.BetterNetcode.Input;
 using CodeSmile.Components.Utility;
 using CodeSmile.MultiPal.Animation;
-using CodeSmile.MultiPal.Global;
 using CodeSmile.MultiPal.Input;
 using CodeSmile.MultiPal.Settings;
 using System;
