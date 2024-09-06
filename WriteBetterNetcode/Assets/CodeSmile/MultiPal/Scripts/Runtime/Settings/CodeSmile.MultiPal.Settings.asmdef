@@ -1,6 +1,6 @@
 {
     "name": "CodeSmile.MultiPal.Settings",
-    "rootNamespace": "CodeSmile",
+    "rootNamespace": "",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

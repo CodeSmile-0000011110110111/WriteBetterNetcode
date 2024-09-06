@@ -6,7 +6,7 @@ using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Players
+namespace CodeSmile.MultiPal.Player
 {
 	[DisallowMultipleComponent]
 	[RequireComponent(typeof(PlayerAvatar), typeof(PlayerController))]
@@ -63,7 +63,7 @@ namespace CodeSmile.MultiPal.Players
 
 		public void OnOpenIngameMenu()
 		{
-			var inputUsers = Components.InputUsers;
+			var inputUsers = Global.Components.InputUsers;
 			inputUsers.AllPlayerInteractionEnabled = false;
 			inputUsers.AllPlayerKinematicsEnabled = false;
 			inputUsers.AllPlayerUiEnabled = false;
@@ -75,7 +75,7 @@ namespace CodeSmile.MultiPal.Players
 
 		public void OnCloseIngameMenu()
 		{
-			var inputUsers = Components.InputUsers;
+			var inputUsers = Global.Components.InputUsers;
 			inputUsers.AllPlayerInteractionEnabled = true;
 			inputUsers.AllPlayerKinematicsEnabled = true;
 			inputUsers.AllPlayerUiEnabled = true;

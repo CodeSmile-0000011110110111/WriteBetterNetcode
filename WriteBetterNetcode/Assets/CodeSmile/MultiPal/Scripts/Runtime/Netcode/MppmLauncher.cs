@@ -36,7 +36,7 @@ namespace CodeSmile.MultiPal.Netcode
 		{
 			var netcodeConfig = new NetcodeConfig { Role = role, MaxConnections = 4 };
 			var transportConfig = TransportConfig.FromNetworkManager();
-			Components.NetcodeState.RequestStart(netcodeConfig, transportConfig);
+			Global.Components.NetcodeState.RequestStart(netcodeConfig, transportConfig);
 		}
 
 		// ensure unsaved Material, ScriptableObject, etc changes are applied to virtual players

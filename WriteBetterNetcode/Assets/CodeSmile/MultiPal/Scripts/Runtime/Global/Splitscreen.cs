@@ -1,13 +1,13 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.MultiPal.Players;
+using CodeSmile.MultiPal.Player;
 using CodeSmile.MultiPal.Settings;
 using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal
+namespace CodeSmile.MultiPal.Global
 {
 	/// <summary>
 	///     Dynamically splits the screen based on number of currently joined players.

@@ -14,7 +14,7 @@ namespace CodeSmile.MultiPal.Netcode
 		{
 			var transportCfg = TransportConfig.FromNetworkManagerWithCmdArgOverrides();
 			var relayCfg = RelayConfig.FromCmdArgs();
-			Components.NetcodeState.RequestStart(netcodeCfg, transportCfg, relayCfg);
+			Global.Components.NetcodeState.RequestStart(netcodeCfg, transportCfg, relayCfg);
 		}
 
 		private void Start()

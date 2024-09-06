@@ -3,14 +3,14 @@
 
 using CodeSmile.BetterNetcode.Input;
 using CodeSmile.MultiPal.Animation;
-using CodeSmile.MultiPal.Players.Controllers;
+using CodeSmile.MultiPal.Global;
 using CodeSmile.MultiPal.Settings;
 using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace CodeSmile.MultiPal.Players
+namespace CodeSmile.MultiPal.Player
 {
 	[DisallowMultipleComponent]
 	public sealed class PlayerController : MonoBehaviour, IPlayerComponent, GeneratedInput.IPlayerKinematicsActions,
@@ -35,18 +35,18 @@ namespace CodeSmile.MultiPal.Players
 		public void OnPlayerSpawn(Int32 playerIndex)
 		{
 			m_PlayerIndex = playerIndex;
-			m_PlayerControllers = Components.PlayerControllers;
+			m_PlayerControllers = Global.Components.PlayerControllers;
 
 			var cameraTarget = GetComponent<PlayerCamera>().Target;
 			m_PlayerControllers.InstantiatePlayerControllers(playerIndex, m_ControllerPrefabs, transform, cameraTarget);
 
-			var inputUsers = Components.InputUsers;
+			var inputUsers = Global.Components.InputUsers;
 			inputUsers.SetPlayerKinematicsCallback(playerIndex, this);
 		}
 
 		public void OnPlayerDespawn(Int32 playerIndex)
 		{
-			var inputUsers = Components.InputUsers;
+			var inputUsers = Global.Components.InputUsers;
 			inputUsers.SetPlayerKinematicsCallback(playerIndex, null);
 			m_PlayerControllers.DestroyPlayerControllers(playerIndex);
 		}

@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace CodeSmile.MultiPal.Players
+namespace CodeSmile.MultiPal.Player
 {
 	[DisallowMultipleComponent]
 	public sealed class PlayerUi : MonoBehaviour, IPlayerComponent, GeneratedInput.IPlayerUIActions
@@ -29,12 +29,12 @@ namespace CodeSmile.MultiPal.Players
 		{
 			m_PlayerIndex = playerIndex;
 
-			var inputUsers = Components.InputUsers;
+			var inputUsers = Global.Components.InputUsers;
 			inputUsers.SetPlayerUiCallback(playerIndex, this);
 		}
 		public void OnPlayerDespawn(Int32 playerIndex)
 		{
-			var inputUsers = Components.InputUsers;
+			var inputUsers = Global.Components.InputUsers;
 			inputUsers.SetPlayerUiCallback(playerIndex, null);
 		}
 

@@ -1,13 +1,14 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.MultiPal.Animation;
+using CodeSmile.MultiPal.Player;
+using CodeSmile.MultiPal.Samples.Kyle;
 using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace CodeSmile.MultiPal.Players.Controllers
+namespace CodeSmile.MultiPal.Samples.Controllers
 {
 	public sealed class SimplePlayerController : PlayerControllerBase
 	{

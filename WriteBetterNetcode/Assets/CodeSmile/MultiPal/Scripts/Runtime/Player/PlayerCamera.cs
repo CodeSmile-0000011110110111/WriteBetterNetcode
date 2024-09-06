@@ -6,7 +6,7 @@ using Unity.Cinemachine;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Players
+namespace CodeSmile.MultiPal.Player
 {
 	[DisallowMultipleComponent]
 	public sealed class PlayerCamera : MonoBehaviour, IPlayerComponent
@@ -42,14 +42,14 @@ namespace CodeSmile.MultiPal.Players
 				CustomLookAtTarget = lookAtTarget != null,
 			};
 
-			var cameras = Components.Cameras;
+			var cameras = Global.Components.Cameras;
 			foreach (var cinecam in cameras.GetPlayerCinecams(playerIndex))
 				cinecam.Target = cameraTarget;
 		}
 
 		public void NextCamera()
 		{
-			var cameras = Components.Cameras;
+			var cameras = Global.Components.Cameras;
 			cameras.SetNextCinecamEnabled(m_PlayerIndex);
 		}
 	}

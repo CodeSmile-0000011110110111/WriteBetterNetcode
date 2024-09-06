@@ -4,7 +4,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmileEditor.BetterNetcode.MultiPal
+namespace CodeSmileEditor.BetterNetcode.CodeSmile.MultiPal
 {
 	public class Dummy {}
 }

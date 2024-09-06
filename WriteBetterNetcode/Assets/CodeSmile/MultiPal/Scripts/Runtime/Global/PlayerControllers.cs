@@ -1,14 +1,14 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.MultiPal.Players.Controllers;
+using CodeSmile.MultiPal.Player;
 using CodeSmile.MultiPal.Settings;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal
+namespace CodeSmile.MultiPal.Global
 {
 	[DisallowMultipleComponent]
 	public sealed class PlayerControllers : MonoBehaviour

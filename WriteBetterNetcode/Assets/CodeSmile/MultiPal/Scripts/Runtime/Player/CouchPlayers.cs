@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 
-namespace CodeSmile.MultiPal.Players
+namespace CodeSmile.MultiPal.Player
 {
 	// TODO: detect and pair devices at runtime
 	// FIXME: on "join" prevent "leave" nullref caused by player not yet spawned
@@ -48,9 +48,9 @@ namespace CodeSmile.MultiPal.Players
 
 			if (IsOwner)
 			{
-				Components.LocalCouchPlayers = this;
+				Global.Components.LocalCouchPlayers = this;
 
-				var inputUsers = Components.InputUsers;
+				var inputUsers = Global.Components.InputUsers;
 				inputUsers.OnUserDevicePaired += OnUserInputDevicePaired;
 				inputUsers.OnUserDeviceUnpaired += OnUserInputDeviceUnpaired;
 				inputUsers.AllPairingEnabled = true;
@@ -69,9 +69,9 @@ namespace CodeSmile.MultiPal.Players
 
 			if (IsOwner)
 			{
-				Components.LocalCouchPlayers = null;
+				Global.Components.LocalCouchPlayers = null;
 
-				var inputUsers = Components.InputUsers;
+				var inputUsers = Global.Components.InputUsers;
 				inputUsers.AllPairingEnabled = false;
 				inputUsers.AllUiEnabled = true;
 				inputUsers.AllPlayerInteractionEnabled = false;

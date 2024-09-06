@@ -3,12 +3,12 @@
 
 using CodeSmile.MultiPal.Input;
 using CodeSmile.MultiPal.Netcode;
-using CodeSmile.MultiPal.Players;
+using CodeSmile.MultiPal.Player;
 using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal
+namespace CodeSmile.MultiPal.Global
 {
 	public class Components : MonoBehaviour
 	{
