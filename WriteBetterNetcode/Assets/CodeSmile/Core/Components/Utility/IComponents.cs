@@ -8,7 +8,7 @@ namespace CodeSmile.Components.Utility
 {
 	public interface IComponents
 	{
-		public T Get<T>() where T : MonoBehaviour;
-		public void Set<T>(T component) where T : MonoBehaviour;
+		public T Get<T>() where T : Component;
+		public void Set<T>(T component) where T : Component;
 	}
 }

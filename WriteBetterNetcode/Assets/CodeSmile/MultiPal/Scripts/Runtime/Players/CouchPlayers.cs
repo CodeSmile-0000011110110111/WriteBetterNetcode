@@ -41,7 +41,7 @@ namespace CodeSmile.MultiPal.Players
 
 		public Int32 PlayerCount { get; set; }
 
-		[RuntimeInitializeOnLoadMethod]
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
 		private static void ResetStaticFields()
 		{
 			OnLocalCouchPlayersSpawn = null;

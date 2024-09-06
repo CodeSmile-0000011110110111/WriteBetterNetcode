@@ -23,7 +23,7 @@ namespace CodeSmile.MultiPal.Global
 		[SerializeField] private PlayerControllers m_PlayerControllers;
 		[SerializeField] private CouchPlayers m_CouchPlayers;
 
-		public T Get<T>() where T : MonoBehaviour
+		public T Get<T>() where T : Component
 		{
 			switch (typeof(T).Name)
 			{
@@ -43,7 +43,7 @@ namespace CodeSmile.MultiPal.Global
 			}
 		}
 
-		public void Set<T>(T component) where T : MonoBehaviour
+		public void Set<T>(T component) where T : Component
 		{
 			switch (typeof(T).Name)
 			{

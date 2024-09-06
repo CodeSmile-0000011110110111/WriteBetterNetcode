@@ -9,18 +9,26 @@ namespace CodeSmile.Components.Utility
 {
 	public class ComponentsRegistry : MonoBehaviour
 	{
-		public static event Action<MonoBehaviour> OnComponentAssigned;
-		public static event Action<MonoBehaviour> OnComponentUnassigned;
+		public static event Action<Type, Component> OnComponentAssigned;
 
 		private static ComponentsRegistry s_Instance;
 
 		private IComponents m_Components;
 
-		public static T Get<T>() where T : MonoBehaviour => s_Instance?.m_Components.Get<T>();
+		public static T Get<T>() where T : Component => s_Instance.m_Components.Get<T>();
 
-		public static void Set<T>(T component) where T : MonoBehaviour => s_Instance?.m_Components.Set(component);
+		public static void Set<T>(T component) where T : Component
+		{
+			s_Instance.m_Components.Set(component);
+			OnComponentAssigned?.Invoke(typeof(T), component);
+		}
 
-		private static void ResetStaticFields() => s_Instance = null;
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+		private static void ResetStaticFields()
+		{
+			s_Instance = null;
+			OnComponentAssigned = null;
+		}
 
 		private void Awake()
 		{
@@ -32,7 +40,5 @@ namespace CodeSmile.Components.Utility
 			if (TryGetComponent(out m_Components) == false)
 				throw new MissingComponentException($"expected {nameof(IComponents)} component on same object");
 		}
-
-		private void OnDestroy() => ResetStaticFields();
 	}
 }
