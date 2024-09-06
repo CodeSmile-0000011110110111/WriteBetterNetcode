@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.MultiPal.Player;
+using CodeSmile.MultiPal.Player.Controllers;
 using CodeSmile.MultiPal.Samples.Kyle;
 using System;
 using UnityEditor;

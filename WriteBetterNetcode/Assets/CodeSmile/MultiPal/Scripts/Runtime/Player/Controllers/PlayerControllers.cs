@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Player
+namespace CodeSmile.MultiPal.Player.Controllers
 {
 	[DisallowMultipleComponent]
 	public sealed class PlayerControllers : MonoBehaviour

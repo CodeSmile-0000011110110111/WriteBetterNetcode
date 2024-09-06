@@ -5,6 +5,7 @@ using CodeSmile.BetterNetcode.Input;
 using CodeSmile.Components.Utility;
 using CodeSmile.MultiPal.Animation;
 using CodeSmile.MultiPal.Input;
+using CodeSmile.MultiPal.Player.Controllers;
 using System;
 using UnityEditor;
 using UnityEngine;
