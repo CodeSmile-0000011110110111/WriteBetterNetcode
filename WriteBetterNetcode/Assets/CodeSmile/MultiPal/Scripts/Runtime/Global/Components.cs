@@ -6,7 +6,6 @@ using CodeSmile.MultiPal.Cinecam;
 using CodeSmile.MultiPal.Input;
 using CodeSmile.MultiPal.Netcode;
 using CodeSmile.MultiPal.PlayerController;
-using CodeSmile.MultiPal.Players;
 using CodeSmile.MultiPal.Players.Couch;
 using System;
 using UnityEditor;

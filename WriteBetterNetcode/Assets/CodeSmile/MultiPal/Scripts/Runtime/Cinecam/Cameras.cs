@@ -3,7 +3,6 @@
 
 using CodeSmile.Components.Utility;
 using CodeSmile.MultiPal.Netcode;
-using CodeSmile.MultiPal.Players;
 using CodeSmile.MultiPal.Players.Couch;
 using CodeSmile.MultiPal.Settings;
 using System;
