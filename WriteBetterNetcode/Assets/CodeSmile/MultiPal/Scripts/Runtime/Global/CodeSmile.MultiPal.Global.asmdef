@@ -2,10 +2,10 @@
     "name": "CodeSmile.MultiPal.Global",
     "rootNamespace": "",
     "references": [
-        "GUID:b01e7d37c21f68947a05cebbc3f902f2",
         "GUID:88790ae52505a12449dc68a459997584",
         "GUID:1d6a2152dbbd15c4e9b835110326674a",
         "GUID:b660ba037dadb084b951252e81e1ce1a",
+        "GUID:b01e7d37c21f68947a05cebbc3f902f2",
         "GUID:b103535c77ad44f438eddcd4032be9dd",
         "GUID:ba13f0e35d90ae1419394491f346eac8",
         "GUID:bee855cae4f74bf40bbf7ba8903d3bb6",

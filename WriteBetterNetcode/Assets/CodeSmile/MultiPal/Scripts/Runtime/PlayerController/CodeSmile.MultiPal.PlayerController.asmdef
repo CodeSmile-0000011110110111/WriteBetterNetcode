@@ -2,9 +2,9 @@
     "name": "CodeSmile.MultiPal.PlayerController",
     "rootNamespace": "",
     "references": [
-        "GUID:b01e7d37c21f68947a05cebbc3f902f2",
         "GUID:d59c0202a7b7086419bda891df69878e",
         "GUID:1d6a2152dbbd15c4e9b835110326674a",
+        "GUID:b01e7d37c21f68947a05cebbc3f902f2",
         "GUID:ba13f0e35d90ae1419394491f346eac8",
         "GUID:fcdefbebbd09422dbc2d1210c9b54961",
         "GUID:bee855cae4f74bf40bbf7ba8903d3bb6",

@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Components.Utility
+namespace CodeSmile.Components.Registry
 {
 	public class ComponentsRegistry : MonoBehaviour
 	{

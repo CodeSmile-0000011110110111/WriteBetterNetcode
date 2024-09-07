@@ -2,15 +2,13 @@
     "name": "CodeSmile.MultiPal.GUI",
     "rootNamespace": "",
     "references": [
-        "GUID:e31d2889a5dcc8f48b6f5cb2dbd3fb45",
         "GUID:1d6a2152dbbd15c4e9b835110326674a",
         "GUID:b660ba037dadb084b951252e81e1ce1a",
         "GUID:b01e7d37c21f68947a05cebbc3f902f2",
         "GUID:ba13f0e35d90ae1419394491f346eac8",
         "GUID:bee855cae4f74bf40bbf7ba8903d3bb6",
         "GUID:3d5bff556afff2147a1fe3a1e33d394d",
-        "GUID:1491147abca9d7d4bb7105af628b223e",
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:1491147abca9d7d4bb7105af628b223e"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

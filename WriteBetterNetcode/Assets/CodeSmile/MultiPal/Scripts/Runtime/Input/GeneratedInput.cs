@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace CodeSmile.BetterNetcode.Input
+namespace CodeSmile.MultiPal.Input
 {
     public partial class @GeneratedInput: IInputActionCollection2, IDisposable
     {
