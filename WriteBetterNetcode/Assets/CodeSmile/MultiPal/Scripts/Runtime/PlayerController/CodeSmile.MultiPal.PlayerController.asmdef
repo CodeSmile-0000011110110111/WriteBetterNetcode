@@ -1,5 +1,5 @@
 {
-    "name": "CodeSmile.MultiPal.Player.Controller",
+    "name": "CodeSmile.MultiPal.PlayerController",
     "rootNamespace": "",
     "references": [
         "GUID:b01e7d37c21f68947a05cebbc3f902f2",
