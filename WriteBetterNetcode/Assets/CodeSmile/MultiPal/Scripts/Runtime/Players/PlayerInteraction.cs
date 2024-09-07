@@ -3,7 +3,6 @@
 
 using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Input;
-using CodeSmile.MultiPal.Input;
 using System;
 using UnityEditor;
 using UnityEngine;
