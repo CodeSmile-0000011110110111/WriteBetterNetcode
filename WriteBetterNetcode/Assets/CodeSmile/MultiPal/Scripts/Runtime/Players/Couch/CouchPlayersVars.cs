@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using System;
+using System.Collections;
 using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
@@ -11,8 +12,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 	[DisallowMultipleComponent]
 	public sealed class CouchPlayersVars : NetworkBehaviour
 	{
-		// serialized only for debugging
-		[SerializeField] private NetworkList<NetworkObjectReference> m_RemotePlayerReferences;
+		private NetworkList<NetworkObjectReference> m_RemotePlayerReferences;
 
 		private CouchPlayers m_CouchPlayers;
 
@@ -32,7 +32,18 @@ namespace CodeSmile.MultiPal.Players.Couch
 			base.OnNetworkSpawn();
 
 			if (IsOwner == false)
+			{
+				// couch players spawns before individual remote players
+				StartCoroutine(JoinExistingRemotePlayersAfterDelay());
+				
 				m_RemotePlayerReferences.OnListChanged += OnRemotePlayerReferencesChanged;
+			}
+		}
+
+		private IEnumerator JoinExistingRemotePlayersAfterDelay()
+		{
+			yield return new WaitForEndOfFrame();
+			JoinAllExistingRemotePlayers();
 		}
 
 		public override void OnNetworkDespawn()
@@ -40,7 +51,30 @@ namespace CodeSmile.MultiPal.Players.Couch
 			base.OnNetworkDespawn();
 
 			if (IsOwner == false)
+			{
+				AssumeRemainingRemotePlayersLeaveOnDespawn();
 				m_RemotePlayerReferences.OnListChanged -= OnRemotePlayerReferencesChanged;
+			}
+		}
+
+		private void JoinAllExistingRemotePlayers()
+		{
+			for (var playerIndex = 0; playerIndex < m_RemotePlayerReferences.Count; playerIndex++)
+			{
+				var playerReference = m_RemotePlayerReferences[playerIndex];
+				if (playerReference.TryGet(out var playerObj))
+					m_CouchPlayers.RemotePlayerJoined(playerIndex, playerObj.GetComponent<Player>());
+			}
+		}
+
+		private void AssumeRemainingRemotePlayersLeaveOnDespawn()
+		{
+			for (var playerIndex = 0; playerIndex < m_RemotePlayerReferences.Count; playerIndex++)
+			{
+				var playerReference = m_RemotePlayerReferences[playerIndex];
+				if (playerReference.TryGet(out var _))
+					m_CouchPlayers.RemotePlayerLeft(playerIndex);
+			}
 		}
 
 		private void OnRemotePlayerReferencesChanged(NetworkListEvent<NetworkObjectReference> changeEvent)
