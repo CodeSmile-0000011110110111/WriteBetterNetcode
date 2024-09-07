@@ -3,6 +3,7 @@
 
 using CodeSmile.Components.Utility;
 using CodeSmile.MultiPal.Players;
+using CodeSmile.MultiPal.Players.Couch;
 using System;
 using UnityEditor;
 using UnityEngine;

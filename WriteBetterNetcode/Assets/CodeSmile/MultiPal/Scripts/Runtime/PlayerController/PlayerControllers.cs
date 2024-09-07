@@ -3,13 +3,14 @@
 
 using CodeSmile.Components.Utility;
 using CodeSmile.MultiPal.Input;
+using CodeSmile.MultiPal.Players.Couch;
 using CodeSmile.MultiPal.Settings;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Players.Controllers
+namespace CodeSmile.MultiPal.PlayerController
 {
 	[DisallowMultipleComponent]
 	public sealed class PlayerControllers : MonoBehaviour

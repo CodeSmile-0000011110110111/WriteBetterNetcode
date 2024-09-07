@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace CodeSmile.MultiPal.Players.Controllers
+namespace CodeSmile.MultiPal.PlayerController
 {
 	[DisallowMultipleComponent]
 	public abstract class PlayerControllerBase : MonoBehaviour, GeneratedInput.IPlayerKinematicsActions,

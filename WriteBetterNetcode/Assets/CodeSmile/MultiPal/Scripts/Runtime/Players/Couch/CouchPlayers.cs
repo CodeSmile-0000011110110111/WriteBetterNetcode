@@ -12,7 +12,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 
-namespace CodeSmile.MultiPal.Players
+namespace CodeSmile.MultiPal.Players.Couch
 {
 	// TODO: detect and pair devices at runtime
 	// FIXME: on "join" prevent "leave" nullref caused by player not yet spawned
