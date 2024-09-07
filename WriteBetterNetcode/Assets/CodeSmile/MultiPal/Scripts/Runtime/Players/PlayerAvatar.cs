@@ -1,7 +1,7 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.MultiPal.Animation;
+using CodeSmile.MultiPal.Interfaces;
 using CodeSmile.MultiPal.Settings;
 using System;
 using UnityEditor;
@@ -36,7 +36,7 @@ namespace CodeSmile.MultiPal.Players
 
 				m_AvatarInstance = Instantiate(prefab, transform);
 
-				if (m_AvatarInstance.TryGetComponent<AnimatorControllerBase>(out var animCtrl))
+				if (m_AvatarInstance.TryGetComponent<IAnimatorController>(out var animCtrl))
 					animCtrl.OnAssignAnimationData(m_Player.PlayerIndex);
 			}
 		}

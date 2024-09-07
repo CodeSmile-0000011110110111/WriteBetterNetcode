@@ -1,6 +1,6 @@
 {
-    "name": "BetterNetcodeEditor",
-    "rootNamespace": "CodeSmileEditor.BetterNetcode",
+    "name": "CodeSmileEditor.MultiPal",
+    "rootNamespace": "",
     "references": [
         "GUID:b01e7d37c21f68947a05cebbc3f902f2"
     ],

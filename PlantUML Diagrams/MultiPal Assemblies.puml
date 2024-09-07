@@ -1,0 +1,44 @@
+@startuml
+
+!theme blueprint
+hide empty description
+
+title MultiPal Assemblies
+
+state "MultiPal" as MultiPal
+
+state MultiPal{
+    state Animation
+    state Input
+    state Netcode
+    state Settings
+}
+
+MultiPal.Animation --> MultiPal.Players
+MultiPal.Input --> MultiPal.Players
+MultiPal.Netcode --> MultiPal.Players
+MultiPal.Settings --> MultiPal.Players
+
+MultiPal.Players --> MultiPal.Cinecam
+MultiPal.Netcode --> MultiPal.Cinecam
+MultiPal.Settings --> MultiPal.Cinecam
+
+MultiPal.Players --> MultiPal.Global
+MultiPal.CineCam --> MultiPal.Global
+MultiPal.Input --> MultiPal.Global
+MultiPal.Netcode --> MultiPal.Global
+MultiPal.PlayerController --> MultiPal.Global
+
+MultiPal.Players --> MultiPal.GUI
+MultiPal.Global --> MultiPal.GUI
+MultiPal.Input --> MultiPal.GUI
+MultiPal.Netcode --> MultiPal.GUI
+
+MultiPal.Settings --> MultiPal.Input
+
+MultiPal.Players --> MultiPal.Samples
+MultiPal.PlayerController --> MultiPal.Samples
+MultiPal.Animation --> MultiPal.Samples
+MultiPal.Input --> MultiPal.Samples
+
+@enduml

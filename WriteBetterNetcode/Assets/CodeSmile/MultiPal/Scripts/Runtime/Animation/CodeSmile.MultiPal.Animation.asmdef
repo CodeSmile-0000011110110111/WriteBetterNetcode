@@ -1,3 +1,4 @@
 {
-	"name": "CodeSmile.MultiPal.Animation"
+	"name": "CodeSmile.MultiPal.Animation",
+	"references":[ "GUID:d35316bc6db54b149c21729b8c247c53" ]
 }
