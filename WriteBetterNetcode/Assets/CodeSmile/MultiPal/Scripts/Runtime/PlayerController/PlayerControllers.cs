@@ -120,7 +120,7 @@ namespace CodeSmile.MultiPal.PlayerController
 				m_Controllers[playerIndex].Add(controller);
 			}
 
-			// make sure one is valid
+			// make sure first controller is valid
 			m_ActiveControllerIndexes[playerIndex] = 0;
 		}
 

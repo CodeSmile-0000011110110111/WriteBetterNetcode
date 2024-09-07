@@ -177,7 +177,12 @@ namespace CodeSmile.MultiPal.Cinecam
 			{
 				var playerCamera = m_PlayerSplitCameras[playerIndex];
 				var brain = playerCamera.GetComponent<CinemachineBrain>();
-				brain.ChannelMask = (OutputChannels)(1 << playerIndex + 1);
+				var mask = (OutputChannels)(1 << playerIndex + 1);
+				if (brain.ChannelMask != mask)
+				{
+					Debug.LogWarning($"{playerCamera.name} Cinebrain ChannelMask set to: {mask}");
+					brain.ChannelMask = mask;
+				}
 			}
 		}
 
