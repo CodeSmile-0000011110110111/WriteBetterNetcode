@@ -11,7 +11,7 @@ using UnityEngine;
 namespace CodeSmile.MultiPal.Players
 {
 	[DisallowMultipleComponent]
-	[RequireComponent(typeof(PlayerAvatar), typeof(PlayerController))]
+	[RequireComponent(typeof(PlayerAvatar))]
 	[RequireComponent(typeof(PlayerVars), typeof(PlayerServer), typeof(PlayerClient))]
 	public sealed class Player : NetworkBehaviour, IPlayerComponent
 	{
@@ -30,7 +30,10 @@ namespace CodeSmile.MultiPal.Players
 
 		public Int32 PlayerIndex { get; private set; } = -1;
 
-		public void OnPlayerSpawn(Int32 playerIndex)
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+		private static void ResetStaticFields() {}
+
+		public void OnPlayerSpawn(Int32 playerIndex, Boolean isOwner)
 		{
 			PlayerIndex = playerIndex;
 
@@ -43,11 +46,11 @@ namespace CodeSmile.MultiPal.Players
 				// Log component execution order (same as order on Inspector
 				//Debug.Log($"OnPlayerSpawn called for: {playerComponent.GetType().Name}");
 
-				playerComponent.OnPlayerSpawn(playerIndex);
+				playerComponent.OnPlayerSpawn(playerIndex, isOwner);
 			}
 		}
 
-		public void OnPlayerDespawn(Int32 playerIndex)
+		public void OnPlayerDespawn(Int32 playerIndex, Boolean isOwner)
 		{
 			foreach (var playerComponent in GetComponentsInChildren<IPlayerComponent>())
 			{
@@ -55,7 +58,7 @@ namespace CodeSmile.MultiPal.Players
 				if (Equals(playerComponent))
 					continue;
 
-				playerComponent.OnPlayerDespawn(playerIndex);
+				playerComponent.OnPlayerDespawn(playerIndex, isOwner);
 			}
 		}
 
@@ -66,6 +69,21 @@ namespace CodeSmile.MultiPal.Players
 			m_Interaction = GetComponent<PlayerInteraction>();
 			m_ClientSide = GetComponent<PlayerClient>();
 			m_Vars = GetComponent<PlayerVars>();
+		}
+
+		public override void OnNetworkSpawn()
+		{
+			base.OnNetworkSpawn();
+
+			if (IsOwner == false) {}
+		}
+
+		public override void OnNetworkDespawn()
+		{
+			base.OnNetworkDespawn();
+
+			if (IsOwner == false)
+				OnPlayerDespawn(PlayerIndex, false); // CouchPlayers can't send this, too late
 		}
 
 		public void OnOpenIngameMenu()

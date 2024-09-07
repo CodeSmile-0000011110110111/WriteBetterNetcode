@@ -5,6 +5,8 @@ using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Input;
 using CodeSmile.MultiPal.Settings;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Unity.Netcode;
 using UnityEditor;
@@ -21,8 +23,8 @@ namespace CodeSmile.MultiPal.Players.Couch
 	///     Represents the group of players (1-4) playing on a single client.
 	/// </summary>
 	[DisallowMultipleComponent]
-	[RequireComponent(typeof(CouchPlayersClient),
-		typeof(CouchPlayersServer))]
+	[RequireComponent(typeof(CouchPlayersClient), typeof(CouchPlayersServer))]
+	[RequireComponent(typeof(CouchPlayersVars))]
 	public sealed class CouchPlayers : NetworkBehaviour
 	{
 		public static event Action<CouchPlayers> OnLocalCouchPlayersSpawn;
@@ -32,10 +34,12 @@ namespace CodeSmile.MultiPal.Players.Couch
 		public event Action<CouchPlayers, Int32> OnCouchPlayerLeaving;
 		public event Action<CouchPlayers, Int32> OnCouchPlayerLeft;
 
-		private readonly Player[] m_Players = new Player[Constants.MaxCouchPlayers];
-		private readonly Status[] m_PlayerStatus = new Status[Constants.MaxCouchPlayers];
+		// serialized only for debugging
+		[SerializeField] Player[] m_Players = new Player[Constants.MaxCouchPlayers];
+		[SerializeField] private Status[] m_PlayerStatus = new Status[Constants.MaxCouchPlayers];
 
 		private CouchPlayersClient m_ClientSide;
+		private CouchPlayersVars m_Vars;
 
 		public Player this[Int32 index] => index >= 0 && index < Constants.MaxCouchPlayers ? m_Players[index] : null;
 
@@ -48,17 +52,32 @@ namespace CodeSmile.MultiPal.Players.Couch
 			OnLocalCouchPlayersDespawn = null;
 		}
 
-		private void Awake() => m_ClientSide = GetComponent<CouchPlayersClient>();
+		private void Awake()
+		{
+			m_ClientSide = GetComponent<CouchPlayersClient>();
+			m_Vars = GetComponent<CouchPlayersVars>();
+
+			m_Players = new Player[Constants.MaxCouchPlayers];
+			m_PlayerStatus = new Status[Constants.MaxCouchPlayers];
+		}
+
+		private void SetCouchPlayersDebugName() => gameObject.name =
+			gameObject.name.Replace("(Clone)", $" (ID:{NetworkObjectId}) {(IsOwner ? "<== LOCAL" : "")}");
 
 		private void SetPlayerDebugName(Int32 playerIndex, String suffix = "") => m_Players[playerIndex].name =
-			m_Players[playerIndex].name.Replace("(Clone)", $" #{playerIndex}{suffix}");
+			m_Players[playerIndex].name.Replace("(Clone)", $" (CP:{NetworkObjectId}, " +
+			                                               $"ID:{m_Players[playerIndex].NetworkObjectId}) " +
+			                                               $"P{playerIndex}{suffix}");
 
 		public override async void OnNetworkSpawn()
 		{
 			base.OnNetworkSpawn();
 
+			SetCouchPlayersDebugName();
+
 			if (IsOwner)
 			{
+
 				ComponentsRegistry.Set(this);
 				OnLocalCouchPlayersSpawn?.Invoke(this);
 
@@ -117,20 +136,19 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 		private async Task SpawnPlayer(Int32 playerIndex, Int32 avatarIndex)
 		{
-			var posX = -3f + playerIndex * 2f;
-			var posY = OwnerClientId * 2f;
-			var position = new Vector3(posX, posY, 0);
+			var startPos = Vector3.zero; // TODO: get start pos
 
 			m_PlayerStatus[playerIndex] = Status.Spawning;
 			OnCouchPlayerJoining?.Invoke(this, playerIndex);
 
-			var player = await m_ClientSide.Spawn(position, playerIndex, avatarIndex);
+			var player = await m_ClientSide.Spawn(startPos, playerIndex, avatarIndex);
 			m_Players[playerIndex] = player;
 			m_PlayerStatus[playerIndex] = Status.Spawned;
-			SetPlayerDebugName(playerIndex);
-
-			player.OnPlayerSpawn(playerIndex);
 			PlayerCount++;
+
+			SetPlayerDebugName(playerIndex, " <== LOCAL");
+
+			player.OnPlayerSpawn(playerIndex, IsOwner);
 
 			OnCouchPlayerJoined?.Invoke(this, playerIndex);
 		}
@@ -142,25 +160,35 @@ namespace CodeSmile.MultiPal.Players.Couch
 			{
 				OnCouchPlayerLeaving?.Invoke(this, playerIndex);
 
-				player.OnPlayerDespawn(playerIndex);
+				player.OnPlayerDespawn(playerIndex, IsOwner);
 				m_PlayerStatus[playerIndex] = Status.Available;
 				PlayerCount--;
 
 				var playerObj = player.GetComponent<NetworkObject>();
-				m_ClientSide.Despawn(playerObj);
+				m_ClientSide.Despawn(playerIndex, playerObj);
 
 				OnCouchPlayerLeft?.Invoke(this, playerIndex);
 				m_Players[playerIndex] = null;
 			}
 		}
 
-		public void AddRemotePlayer(Player player, Int32 playerIndex)
+		internal void RemotePlayerJoined(Int32 playerIndex, Player player)
 		{
 			if (m_Players[playerIndex] != null)
-				throw new Exception($"player {playerIndex} already exists");
+				throw new Exception($"remote player {playerIndex} already exists");
 
 			m_Players[playerIndex] = player;
-			SetPlayerDebugName(playerIndex, " (Remote)");
+			m_PlayerStatus[playerIndex] = Status.Spawned;
+			SetPlayerDebugName(playerIndex);
+
+			player.OnPlayerSpawn(playerIndex, false);
+		}
+
+		internal void RemotePlayerLeft(Int32 playerIndex)
+		{
+			// Note: OnPlayerDespawn is called in Player via OnNetworkDespawn since by this point remote Player is already destroyed
+			m_Players[playerIndex] = null;
+			m_PlayerStatus[playerIndex] = Status.Available;
 		}
 
 		private enum Status

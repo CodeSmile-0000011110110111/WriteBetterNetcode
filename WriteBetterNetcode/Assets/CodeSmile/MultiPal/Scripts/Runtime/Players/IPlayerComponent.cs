@@ -9,7 +9,7 @@ namespace CodeSmile.MultiPal.Players
 {
 	public interface IPlayerComponent
 	{
-		void OnPlayerSpawn(Int32 playerIndex);
-		void OnPlayerDespawn(Int32 playerIndex);
+		void OnPlayerSpawn(Int32 playerIndex, bool isOwner);
+		void OnPlayerDespawn(Int32 playerIndex, bool isOwner);
 	}
 }

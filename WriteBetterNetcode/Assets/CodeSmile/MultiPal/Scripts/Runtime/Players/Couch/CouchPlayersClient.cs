@@ -36,7 +36,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 			return m_SpawnTcs[playerIndex].Task;
 		}
 
-		[Rpc(SendTo.ClientsAndHost, DeferLocal = true)]
+		[Rpc(SendTo.Owner, DeferLocal = true)]
 		internal void DidSpawnPlayerClientRpc(NetworkObjectReference playerRef, Byte playerIndex)
 		{
 			// this should not fail thus no error check
@@ -44,21 +44,18 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 			var player = playerObj.GetComponent<Player>();
 
-			if (IsOwner)
-			{
-				// end awaitable task, and discard
-				m_SpawnTcs[playerIndex].SetResult(player);
-				m_SpawnTcs[playerIndex] = null;
-			}
-			else
-				m_Players.AddRemotePlayer(player, playerIndex);
+			Debug.Log($"did spawn: {player.name} P{playerIndex} ID:{playerObj.NetworkObjectId}");
+
+			// end awaitable task, and discard
+			m_SpawnTcs[playerIndex].SetResult(player);
+			m_SpawnTcs[playerIndex] = null;
 		}
 
-		internal void Despawn(NetworkObject playerObj)
+		internal void Despawn(Int32 playerIndex, NetworkObject playerObj)
 		{
 			// Despawn may get invoked when session stopped, thus object may already be despawned
 			if (playerObj.IsSpawned)
-				m_ServerSide.DespawnPlayerServerRpc(playerObj);
+				m_ServerSide.DespawnPlayerServerRpc((Byte)playerIndex, playerObj);
 		}
 	}
 }

@@ -14,6 +14,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 		[SerializeField] private NetworkObject m_PlayerPrefab;
 
 		private CouchPlayersClient m_ClientSide;
+		private CouchPlayersVars m_Vars;
 
 		private void Awake()
 		{
@@ -21,6 +22,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 				throw new MissingReferenceException(nameof(m_PlayerPrefab));
 
 			m_ClientSide = GetComponent<CouchPlayersClient>();
+			m_Vars = GetComponent<CouchPlayersVars>();
 		}
 
 		[Rpc(SendTo.Server, DeferLocal = true)]
@@ -30,6 +32,8 @@ namespace CodeSmile.MultiPal.Players.Couch
 			var playerObj = playerGo.GetComponent<NetworkObject>();
 			playerObj.SpawnWithOwnership(ownerId);
 
+			m_Vars.SetPlayerReference(playerIndex, playerObj);
+
 			var player = playerObj.GetComponent<Player>();
 			player.AvatarIndex = avatarIndex;
 
@@ -37,10 +41,13 @@ namespace CodeSmile.MultiPal.Players.Couch
 		}
 
 		[Rpc(SendTo.Server, DeferLocal = true)]
-		public void DespawnPlayerServerRpc(NetworkObjectReference playerRef)
+		public void DespawnPlayerServerRpc(Byte playerIndex, NetworkObjectReference playerRef)
 		{
 			if (playerRef.TryGet(out var playerObj))
+			{
+				m_Vars.SetPlayerReference(playerIndex, null);
 				playerObj.Despawn();
+			}
 			else
 				Debug.LogWarning($"could not despawn {playerRef.NetworkObjectId}");
 		}

@@ -16,18 +16,24 @@ namespace CodeSmile.MultiPal.Players
 		private Int32 m_PlayerIndex;
 		private Player m_Player;
 
-		public void OnPlayerSpawn(Int32 playerIndex)
+		public void OnPlayerSpawn(Int32 playerIndex, Boolean isOwner)
 		{
 			m_PlayerIndex = playerIndex;
 
-			var inputUsers = ComponentsRegistry.Get<InputUsers>();
-			inputUsers.SetPlayerInteractionCallback(playerIndex, this);
+			if (isOwner)
+			{
+				var inputUsers = ComponentsRegistry.Get<InputUsers>();
+				inputUsers.SetPlayerInteractionCallback(playerIndex, this);
+			}
 		}
 
-		public void OnPlayerDespawn(Int32 playerIndex)
+		public void OnPlayerDespawn(Int32 playerIndex, Boolean isOwner)
 		{
-			var inputUsers = ComponentsRegistry.Get<InputUsers>();
-			inputUsers.SetPlayerInteractionCallback(playerIndex, null);
+			if (isOwner)
+			{
+				var inputUsers = ComponentsRegistry.Get<InputUsers>();
+				inputUsers.SetPlayerInteractionCallback(playerIndex, null);
+			}
 		}
 
 		public void OnAttack(InputAction.CallbackContext context) {}

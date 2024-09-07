@@ -19,28 +19,24 @@ namespace CodeSmile.MultiPal.Players
 		internal Byte AvatarIndex
 		{
 			get => m_AvatarIndexVar.Value;
-			set
-			{
-				if (IsServer)
-					m_AvatarIndexVar.Value = value;
-				else
-					Debug.LogWarning($"set not permitted: {nameof(AvatarIndex)}");
-			}
+			set => AvatarIndexChangeServerRpc(value);
 		}
 
-		public void OnPlayerSpawn(Int32 playerIndex)
-		{
-			// invoke directly for initial value
-			// FIXME: maybe not needed?
-			//m_AvatarIndexVar.OnValueChanged.Invoke(m_AvatarIndexVar.Value, m_AvatarIndexVar.Value);
-		}
+		public void OnPlayerSpawn(Int32 playerIndex, Boolean isOwner) {}
 
-		public void OnPlayerDespawn(Int32 playerIndex) {}
+		public void OnPlayerDespawn(Int32 playerIndex, Boolean isOwner) {}
 
 		private void Awake()
 		{
 			m_Player = GetComponent<Player>();
 			m_Avatar = GetComponent<PlayerAvatar>();
+		}
+
+		[Rpc(SendTo.Server)]
+		private void AvatarIndexChangeServerRpc(Byte avatarIndex)
+		{
+			NetworkLog.LogInfo($"Change Avatar to {avatarIndex} for ID {NetworkObjectId}, owner: {OwnerClientId}");
+			m_AvatarIndexVar.Value = avatarIndex;
 		}
 
 		public override void OnNetworkSpawn()

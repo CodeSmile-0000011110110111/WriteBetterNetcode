@@ -15,12 +15,12 @@ namespace CodeSmile.MultiPal.Players
 		public Transform TrackingTarget => m_TrackingTarget;
 		public Transform LookAtTarget => m_LookAtTarget;
 
-		public void OnPlayerSpawn(Int32 playerIndex)
+		public void OnPlayerSpawn(Int32 playerIndex, Boolean isOwner)
 		{
 			if (m_TrackingTarget == null)
 				m_TrackingTarget = transform;
 		}
 
-		public void OnPlayerDespawn(Int32 playerIndex) {}
+		public void OnPlayerDespawn(Int32 playerIndex, Boolean isOwner) {}
 	}
 }
