@@ -14,6 +14,7 @@ namespace CodeSmile.MultiPal.Players
 		private readonly NetworkVariable<Byte> m_AvatarIndexVar = new();
 
 		private Player m_Player;
+		private PlayerAvatar m_Avatar;
 
 		internal Byte AvatarIndex
 		{
@@ -27,24 +28,31 @@ namespace CodeSmile.MultiPal.Players
 			}
 		}
 
-		public void OnPlayerSpawn(Int32 playerIndex) =>
+		public void OnPlayerSpawn(Int32 playerIndex)
+		{
 			// invoke directly for initial value
-			m_AvatarIndexVar.OnValueChanged.Invoke(m_AvatarIndexVar.Value, m_AvatarIndexVar.Value);
+			// FIXME: maybe not needed?
+			//m_AvatarIndexVar.OnValueChanged.Invoke(m_AvatarIndexVar.Value, m_AvatarIndexVar.Value);
+		}
 
 		public void OnPlayerDespawn(Int32 playerIndex) {}
 
-		private void Awake() => m_Player = GetComponent<Player>();
+		private void Awake()
+		{
+			m_Player = GetComponent<Player>();
+			m_Avatar = GetComponent<PlayerAvatar>();
+		}
 
 		public override void OnNetworkSpawn()
 		{
 			base.OnNetworkSpawn();
-			m_AvatarIndexVar.OnValueChanged += m_Player.OnAvatarIndexChanged;
+			m_AvatarIndexVar.OnValueChanged += m_Avatar.OnAvatarIndexChanged;
 		}
 
 		public override void OnNetworkDespawn()
 		{
 			base.OnNetworkDespawn();
-			m_AvatarIndexVar.OnValueChanged -= m_Player.OnAvatarIndexChanged;
+			m_AvatarIndexVar.OnValueChanged -= m_Avatar.OnAvatarIndexChanged;
 		}
 	}
 }

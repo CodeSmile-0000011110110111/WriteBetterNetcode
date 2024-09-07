@@ -20,14 +20,18 @@ namespace CodeSmile.MultiPal.Players
 		public Byte PreviousIndex => (Byte)(m_Player.AvatarIndex == 0 ? m_AvatarPrefabs.Count - 1 : m_Player.AvatarIndex - 1);
 		public Byte NextIndex => (Byte)(m_Player.AvatarIndex == m_AvatarPrefabs.Count - 1 ? 0 : m_Player.AvatarIndex + 1);
 
-		public void OnPlayerSpawn(Int32 playerIndex) {}
+		public void OnPlayerSpawn(Int32 playerIndex) => SetAvatar(playerIndex, m_Player.AvatarIndex);
 
 		public void OnPlayerDespawn(Int32 playerIndex) {}
 
 		private void Awake() => m_Player = GetComponent<Player>();
 
-		internal void SetAvatar(Byte avatarIndex)
+		internal void SetAvatar(Int32 playerIndex, Byte avatarIndex)
 		{
+			// ignore pre-spawn AvatarIndex value change events, it'll get spawned in OnPlayerSpawn
+			if (playerIndex < 0)
+				return;
+
 			var prefab = m_AvatarPrefabs[avatarIndex];
 			if (prefab != null)
 			{
@@ -40,5 +44,7 @@ namespace CodeSmile.MultiPal.Players
 					animCtrl.OnAssignAnimationData(m_Player.PlayerIndex);
 			}
 		}
+
+		internal void OnAvatarIndexChanged(Byte _, Byte avatarIndex) => SetAvatar(m_Player.PlayerIndex, avatarIndex);
 	}
 }

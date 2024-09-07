@@ -68,8 +68,6 @@ namespace CodeSmile.MultiPal.Players
 			m_Vars = GetComponent<PlayerVars>();
 		}
 
-		internal void OnAvatarIndexChanged(Byte _, Byte avatarIndex) => m_Avatar.SetAvatar(avatarIndex);
-
 		public void OnOpenIngameMenu()
 		{
 			var inputUsers = ComponentsRegistry.Get<InputUsers>();
