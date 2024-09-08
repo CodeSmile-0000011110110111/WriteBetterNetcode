@@ -15,10 +15,7 @@ namespace CodeSmile.MultiPal.Players
 		[SerializeField] private PlayerAvatarPrefabs m_AvatarPrefabs;
 
 		private Player m_Player;
-		private PlayerClient m_ClientSide;
 		private GameObject m_AvatarInstance;
-		private AvatarAnimatorParameters m_AvatarAnimatorParameters;
-
 		public Byte PreviousIndex => (Byte)(m_Player.AvatarIndex == 0 ? m_AvatarPrefabs.Count - 1 : m_Player.AvatarIndex - 1);
 		public Byte NextIndex => (Byte)(m_Player.AvatarIndex == m_AvatarPrefabs.Count - 1 ? 0 : m_Player.AvatarIndex + 1);
 
@@ -29,13 +26,10 @@ namespace CodeSmile.MultiPal.Players
 		private void Awake()
 		{
 			m_Player = GetComponent<Player>();
-			m_ClientSide = GetComponent<PlayerClient>();
-		}
 
-		private void LateUpdate()
-		{
-			if (m_AvatarAnimatorParameters != null)
-				m_ClientSide.SyncAnimatorParameters(m_AvatarAnimatorParameters);
+			var animator = GetComponent<Animator>();
+			if (animator != null)
+				animator.enabled = false;
 		}
 
 		internal void SetAvatar(Int32 playerIndex, Byte avatarIndex, Boolean isOwner)
@@ -48,34 +42,16 @@ namespace CodeSmile.MultiPal.Players
 			if (prefab != null)
 			{
 				if (m_AvatarInstance != null)
-				{
 					Destroy(m_AvatarInstance);
-					m_AvatarAnimatorParameters = null;
-				}
 
 				m_AvatarInstance = Instantiate(prefab, transform);
 
-				if (isOwner)
-				{
-					if (m_AvatarInstance.TryGetComponent<IAnimatorController>(out var animCtrl))
-						m_AvatarAnimatorParameters = animCtrl.GetAnimatorParameters(m_Player.PlayerIndex);
-				}
+				if (m_AvatarInstance.TryGetComponent<IAnimatorController>(out var animCtrl))
+					animCtrl.Init(playerIndex, isOwner);
 			}
 		}
 
 		internal void OnAvatarIndexChanged(Byte _, Byte avatarIndex) =>
 			SetAvatar(m_Player.PlayerIndex, avatarIndex, m_Player.IsOwner);
-
-		public void ReceiveAnimatorParameters(AvatarAnimatorParameters avatarAnimatorParameters)
-		{
-			Debug.Log($"received animator parameters: {avatarAnimatorParameters}");
-			if (m_AvatarInstance != null)
-			{
-				if (m_AvatarInstance.TryGetComponent<IAnimatorController>(out var animCtrl))
-					animCtrl.SetAnimatorParameters(m_Player.PlayerIndex, avatarAnimatorParameters);
-			}
-
-			m_AvatarAnimatorParameters = avatarAnimatorParameters;
-		}
 	}
 }

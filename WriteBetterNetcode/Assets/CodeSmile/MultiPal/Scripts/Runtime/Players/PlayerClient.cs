@@ -9,20 +9,26 @@ using UnityEngine;
 namespace CodeSmile.MultiPal.Players
 {
 	[DisallowMultipleComponent]
-	internal class PlayerClient : NetworkBehaviour
+	public class PlayerClient : NetworkBehaviour
 	{
 		private PlayerServer m_ServerSide;
+		private IAnimatorController m_AnimatorController;
+		public IAnimatorController AnimatorController
+		{
+			get => m_AnimatorController;
+			set => m_AnimatorController = value;
+		}
 
 		private void Awake() => m_ServerSide = GetComponent<PlayerServer>();
 
-		public void SyncAnimatorParameters(AvatarAnimatorParameters avatarAnimatorParameters) =>
-			SyncAnimatorParametersToNonOwnersRpc(avatarAnimatorParameters);
+		public void SendAnimatorParametersToNonOwners(byte[] animatorParameters) =>
+			SyncAnimatorParametersToNonOwnersRpc(animatorParameters);
 
 		[Rpc(SendTo.NotOwner, DeferLocal = true)]
-		private void SyncAnimatorParametersToNonOwnersRpc(AvatarAnimatorParameters avatarAnimatorParameters)
+		private void SyncAnimatorParametersToNonOwnersRpc(byte[] animatorParameters)
 		{
-			var avatar = GetComponent<PlayerAvatar>();
-			avatar.ReceiveAnimatorParameters(avatarAnimatorParameters);
+			if (m_AnimatorController != null)
+				m_AnimatorController.RemoteAnimatorParametersReceived(animatorParameters);
 		}
 	}
 }

@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 namespace CodeSmile
 {
 	[DisallowMultipleComponent]
-	public sealed class ArmatureAudio : MonoBehaviour
+	public sealed class KyleAnimationEventHandler : MonoBehaviour
 	{
 		[SerializeField] private AudioClip m_LandingAudioClip;
 		[SerializeField] private AudioClip[] m_FootstepAudioClips;
