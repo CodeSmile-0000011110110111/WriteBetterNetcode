@@ -3,12 +3,16 @@
 !theme blueprint
 hide empty description
 
-title MultiPal Assemblies
+title MultiPal Dependencies
+
 
 state MultiPal{
 }
 
-MultiPal.GUI --> MultiPal.Global
+note top of MultiPal : Higher assemblies depend on lower ones
+
+MultiPal.GUI --> MultiPal.Netcode
+MultiPal.GUI --> MultiPal.CouchPlayers
 
 MultiPal.Samples --> MultiPal.PlayerController
 MultiPal.Global --> MultiPal.PlayerController
@@ -16,15 +20,17 @@ MultiPal.Global --> MultiPal.Cinecam
 
 MultiPal.Cinecam --> MultiPal.CouchPlayers
 MultiPal.PlayerController --> MultiPal.CouchPlayers
-MultiPal.PlayerController --> MultiPal.Animation
 
 MultiPal.CouchPlayers --> MultiPal.Players
 
-MultiPal.Players --> MultiPal.Interfaces
-MultiPal.Players --> MultiPal.Netcode
+MultiPal.Players --> MultiPal.Animation
 MultiPal.Players --> MultiPal.Input
 
 MultiPal.Input --> MultiPal.Settings
 MultiPal.Netcode --> MultiPal.Statemachine
+
+
+' this is only for WentOnline/offline events, to be removed
+'MultiPal.Cinecam --> MultiPal.Netcode
 
 @enduml
