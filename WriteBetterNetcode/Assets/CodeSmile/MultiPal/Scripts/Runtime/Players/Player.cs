@@ -71,12 +71,7 @@ namespace CodeSmile.MultiPal.Players
 			m_Vars = GetComponent<PlayerVars>();
 		}
 
-		public override void OnNetworkSpawn()
-		{
-			base.OnNetworkSpawn();
-
-			if (IsOwner == false) {}
-		}
+		public override void OnNetworkSpawn() => base.OnNetworkSpawn();
 
 		public override void OnNetworkDespawn()
 		{

@@ -35,7 +35,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 			{
 				// couch players spawns before individual remote players
 				StartCoroutine(JoinExistingRemotePlayersAfterDelay());
-				
+
 				m_RemotePlayerReferences.OnListChanged += OnRemotePlayerReferencesChanged;
 			}
 		}

@@ -10,6 +10,7 @@ namespace CodeSmile.MultiPal.Animation
 {
 	public abstract class AnimatorControllerBase : MonoBehaviour, IAnimatorController
 	{
-		public abstract void OnAssignAnimationData(Int32 playerIndex);
+		public abstract AnimatorParametersBase GetAnimatorParameters(Int32 playerIndex);
+		public abstract void SetAnimatorParameters(Int32 playerIndex, AnimatorParametersBase animatorParameters);
 	}
 }

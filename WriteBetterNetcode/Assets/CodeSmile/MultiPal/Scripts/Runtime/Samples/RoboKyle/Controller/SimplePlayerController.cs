@@ -13,27 +13,33 @@ namespace CodeSmile.MultiPal.Samples.Controllers
 	public sealed class SimplePlayerController : PlayerControllerBase
 	{
 		[Header("Settings")]
-		[SerializeField] private Single m_Gravity = -1f;
+		[SerializeField] private Single m_MotionMultiplier = 10f;
+		[SerializeField] private Single m_Gravity = -0.981f;
 		[SerializeField] private Boolean m_InvertVertical;
+
+		private float m_DeltaTilt;
+		private float m_DeltaPan;
 
 		private void Update()
 		{
+			var previousPos = MotionTarget.localPosition;
+			previousPos.y = 0f;
+
 			// look before move, or else forward lags one update behind
 			ApplyLook();
 			ApplyMove();
 
-			if (AnimatorParameters != null)
-				AnimatorParameters.Velocity = Velocity;
-
 			if (AnimatorParameters is KyleAnimatorParameters kyleAnimParams)
-				kyleAnimParams.SetKinematicParams(0f, Velocity.magnitude, CharController.isGrounded, false);
-		}
+			{
+				var currentPos = MotionTarget.localPosition;
+				currentPos.y = 0f;
 
-		private void ApplyLook()
-		{
-			// tilting goes to camera tracking target as we don't want our viewmodel to tilt, just the camera
-			CameraTarget.localRotation = Quaternion.Euler(m_Tilt.Value, 0f, 0f);
-			MotionTarget.localRotation = Quaternion.Euler(0f, m_Pan.Value, 0f);
+				var speed = (previousPos - currentPos).magnitude * m_MotionMultiplier;
+				kyleAnimParams.MoveSpeed = Mathf.Min(1f, speed / 1f);
+				kyleAnimParams.IsGrounded = CharController.isGrounded;
+
+				//Debug.Log($"speed: {speed}, clamped: {Mathf.Min(1f, speed / 1f)}, delta: {Time.deltaTime}");
+			}
 		}
 
 		private void ApplyMove()
@@ -52,25 +58,32 @@ namespace CodeSmile.MultiPal.Samples.Controllers
 		public override void OnMove(InputAction.CallbackContext context)
 		{
 			var moveDir = context.ReadValue<Vector2>();
-			m_Sideways.Value = moveDir.x * TranslationSensitivity.x * Time.deltaTime;
-			m_Forward.Value = moveDir.y * TranslationSensitivity.z * Time.deltaTime;
+			m_Sideways.Value = moveDir.x * TranslationSensitivity.x; // * Time.deltaTime;
+			m_Forward.Value = moveDir.y * TranslationSensitivity.z; // * Time.deltaTime;
 			m_Sideways.Validate();
 			m_Forward.Validate();
 
 			if (AnimatorParameters != null)
-				AnimatorParameters.InputMove = moveDir;
+				AnimatorParameters.InputMagnitude = moveDir.magnitude;
+		}
+
+		private void ApplyLook()
+		{
+			// tilting goes to camera tracking target as we don't want our viewmodel to tilt, just the camera
+			m_Tilt.Value += m_DeltaTilt;
+			m_Pan.Value += m_DeltaPan;
+			m_Tilt.Validate();
+			m_Pan.Validate();
+
+			CameraTarget.localRotation = Quaternion.Euler(m_Tilt.Value, 0f, 0f);
+			MotionTarget.localRotation = Quaternion.Euler(0f, m_Pan.Value, 0f);
 		}
 
 		public override void OnLook(InputAction.CallbackContext context)
 		{
 			var lookDir = context.ReadValue<Vector2>();
-			m_Tilt.Value += lookDir.y * RotationSensitivity.y * Time.deltaTime * (m_InvertVertical ? 1f : -1f);
-			m_Pan.Value += lookDir.x * RotationSensitivity.x * Time.deltaTime;
-			m_Tilt.Validate();
-			m_Pan.Validate();
-
-			if (AnimatorParameters != null)
-				AnimatorParameters.InputLook = lookDir;
+			m_DeltaTilt=lookDir.y * RotationSensitivity.y * Time.deltaTime * (m_InvertVertical ? 1f : -1f);
+			m_DeltaPan= lookDir.x * RotationSensitivity.x * Time.deltaTime;
 		}
 
 		public override void OnCrouch(InputAction.CallbackContext context)
@@ -78,7 +91,7 @@ namespace CodeSmile.MultiPal.Samples.Controllers
 			if (context.performed) {}
 
 			if (AnimatorParameters != null)
-				AnimatorParameters.InputCrouch = context.performed;
+				AnimatorParameters.TriggerCrouch = context.performed;
 		}
 
 		public override void OnJump(InputAction.CallbackContext context)
@@ -87,7 +100,7 @@ namespace CodeSmile.MultiPal.Samples.Controllers
 				m_Vertical.Value = TranslationSensitivity.y;
 
 			if (AnimatorParameters != null)
-				AnimatorParameters.InputJump = context.performed;
+				AnimatorParameters.TriggerJump = context.performed;
 		}
 
 		public override void OnSprint(InputAction.CallbackContext context) {}
