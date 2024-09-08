@@ -43,6 +43,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 		private IEnumerator JoinExistingRemotePlayersAfterDelay()
 		{
 			yield return new WaitForEndOfFrame();
+
 			JoinAllExistingRemotePlayers();
 		}
 

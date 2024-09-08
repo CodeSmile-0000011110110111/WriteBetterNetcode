@@ -8,15 +8,15 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Samples.Kyle
+namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 {
 	[DisallowMultipleComponent]
-	[RequireComponent(typeof(Animator))]
+	[RequireComponent(typeof(UnityEngine.Animator))]
 	public sealed class KyleAnimatorController : AnimatorControllerBase
 	{
 		private PlayerControllers m_PlayerControllers;
-		private Animator m_Animator;
-		private AnimatorParametersBase m_KyleAnimParams;
+		private UnityEngine.Animator m_Animator;
+		private AvatarAnimatorParameters m_KyleAnimParams;
 
 		private Int32 m_ParamMoveSpeed;
 		private Int32 m_ParamInputMagnitude;
@@ -32,14 +32,14 @@ namespace CodeSmile.MultiPal.Samples.Kyle
 
 		private void Awake()
 		{
-			m_Animator = GetComponent<Animator>();
+			m_Animator = GetComponent<UnityEngine.Animator>();
 			m_PlayerControllers = ComponentsRegistry.Get<PlayerControllers>();
 
-			m_ParamInputMagnitude = Animator.StringToHash("InputMagnitude");
-			m_ParamMoveSpeed = Animator.StringToHash("MoveSpeed");
-			m_ParamIsGrounded = Animator.StringToHash("IsGrounded");
-			m_ParamIsFalling = Animator.StringToHash("IsFalling");
-			m_ParamTriggerJump = Animator.StringToHash("TriggerJump");
+			m_ParamInputMagnitude = UnityEngine.Animator.StringToHash("InputMagnitude");
+			m_ParamMoveSpeed = UnityEngine.Animator.StringToHash("MoveSpeed");
+			m_ParamIsGrounded = UnityEngine.Animator.StringToHash("IsGrounded");
+			m_ParamIsFalling = UnityEngine.Animator.StringToHash("IsFalling");
+			m_ParamTriggerJump = UnityEngine.Animator.StringToHash("TriggerJump");
 		}
 
 		private void LateUpdate()
@@ -54,21 +54,21 @@ namespace CodeSmile.MultiPal.Samples.Kyle
 			}
 		}
 
-		public override AnimatorParametersBase GetAnimatorParameters(Int32 playerIndex)
+		public override AvatarAnimatorParameters GetAnimatorParameters(Int32 playerIndex)
 		{
 			if (m_KyleAnimParams == null)
-				m_KyleAnimParams = new KyleAnimatorParameters();
+				m_KyleAnimParams = new KyleAvatarAnimatorParameters();
 
 			var activeCtrl = m_PlayerControllers.GetActiveController(playerIndex);
-			activeCtrl.AnimatorParameters = m_KyleAnimParams;
+			activeCtrl.AvatarAnimatorParameters = m_KyleAnimParams;
 
 			return m_KyleAnimParams;
 		}
 
-		public override void SetAnimatorParameters(Int32 playerIndex, AnimatorParametersBase animatorParameters)
+		public override void SetAnimatorParameters(Int32 playerIndex, AvatarAnimatorParameters avatarAnimatorParameters)
 		{
-			Debug.Log($"set new animator params: {animatorParameters}");
-			m_KyleAnimParams = animatorParameters;
+			Debug.Log($"set new animator params: {avatarAnimatorParameters}");
+			m_KyleAnimParams = avatarAnimatorParameters;
 		}
 	}
 }

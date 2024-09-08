@@ -15,16 +15,14 @@ namespace CodeSmile.MultiPal.Players
 
 		private void Awake() => m_ServerSide = GetComponent<PlayerServer>();
 
-		public void SyncAnimatorParameters(AnimatorParametersBase animatorParameters)
-		{
-			SyncAnimatorParametersToNonOwnersRpc(animatorParameters);
-		}
+		public void SyncAnimatorParameters(AvatarAnimatorParameters avatarAnimatorParameters) =>
+			SyncAnimatorParametersToNonOwnersRpc(avatarAnimatorParameters);
 
 		[Rpc(SendTo.NotOwner, DeferLocal = true)]
-		void SyncAnimatorParametersToNonOwnersRpc(AnimatorParametersBase animatorParameters)
+		private void SyncAnimatorParametersToNonOwnersRpc(AvatarAnimatorParameters avatarAnimatorParameters)
 		{
 			var avatar = GetComponent<PlayerAvatar>();
-			avatar.ReceiveAnimatorParameters(animatorParameters);
+			avatar.ReceiveAnimatorParameters(avatarAnimatorParameters);
 		}
 	}
 }

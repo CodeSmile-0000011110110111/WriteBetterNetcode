@@ -5,8 +5,6 @@ using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Input;
 using CodeSmile.MultiPal.Settings;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Unity.Netcode;
 using UnityEditor;
@@ -35,7 +33,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 		public event Action<CouchPlayers, Int32> OnCouchPlayerLeft;
 
 		// serialized only for debugging
-		[SerializeField] Player[] m_Players = new Player[Constants.MaxCouchPlayers];
+		[SerializeField] private Player[] m_Players = new Player[Constants.MaxCouchPlayers];
 		[SerializeField] private Status[] m_PlayerStatus = new Status[Constants.MaxCouchPlayers];
 
 		private CouchPlayersClient m_ClientSide;
@@ -65,9 +63,10 @@ namespace CodeSmile.MultiPal.Players.Couch
 			gameObject.name.Replace("(Clone)", $" (ID:{NetworkObjectId}) {(IsOwner ? "<== LOCAL" : "")}");
 
 		private void SetPlayerDebugName(Int32 playerIndex, String suffix = "") => m_Players[playerIndex].name =
-			m_Players[playerIndex].name.Replace("(Clone)", $" (CP:{NetworkObjectId}, " +
-			                                               $"ID:{m_Players[playerIndex].NetworkObjectId}) " +
-			                                               $"P{playerIndex}{suffix}");
+			m_Players[playerIndex]
+				.name.Replace("(Clone)", $" (CP:{NetworkObjectId}, " +
+				                         $"ID:{m_Players[playerIndex].NetworkObjectId}) " +
+				                         $"P{playerIndex}{suffix}");
 
 		public override async void OnNetworkSpawn()
 		{
@@ -77,7 +76,6 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 			if (IsOwner)
 			{
-
 				ComponentsRegistry.Set(this);
 				OnLocalCouchPlayersSpawn?.Invoke(this);
 

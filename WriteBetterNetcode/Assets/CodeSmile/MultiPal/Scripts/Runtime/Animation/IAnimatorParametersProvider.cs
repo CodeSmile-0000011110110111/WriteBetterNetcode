@@ -8,6 +8,6 @@ namespace CodeSmile.MultiPal.Animation
 {
 	public interface IAnimatorParametersProvider
 	{
-		public AnimatorParametersBase AnimatorParameters { get; set; }
+		public AvatarAnimatorParameters AvatarAnimatorParameters { get; set; }
 	}
 }

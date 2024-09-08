@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace CodeSmile.MultiPal.Animation
 {
-	public  class AnimatorParametersBase : INetworkSerializable
+	public sealed class AvatarAnimatorParameters : INetworkSerializable
 	{
 		private Byte m_InputMagnitude;
 		private Byte m_MoveSpeed;

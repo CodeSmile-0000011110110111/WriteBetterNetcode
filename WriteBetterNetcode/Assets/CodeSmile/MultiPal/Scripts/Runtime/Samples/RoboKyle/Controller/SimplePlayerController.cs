@@ -2,13 +2,13 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.MultiPal.PlayerController;
-using CodeSmile.MultiPal.Samples.Kyle;
+using CodeSmile.MultiPal.Samples.RoboKyle.Animator;
 using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace CodeSmile.MultiPal.Samples.Controllers
+namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 {
 	public sealed class SimplePlayerController : PlayerControllerBase
 	{
@@ -17,8 +17,8 @@ namespace CodeSmile.MultiPal.Samples.Controllers
 		[SerializeField] private Single m_Gravity = -0.981f;
 		[SerializeField] private Boolean m_InvertVertical;
 
-		private float m_DeltaTilt;
-		private float m_DeltaPan;
+		private Single m_DeltaTilt;
+		private Single m_DeltaPan;
 
 		private void Update()
 		{
@@ -29,7 +29,7 @@ namespace CodeSmile.MultiPal.Samples.Controllers
 			ApplyLook();
 			ApplyMove();
 
-			if (AnimatorParameters is KyleAnimatorParameters kyleAnimParams)
+			if (AvatarAnimatorParameters is KyleAvatarAnimatorParameters kyleAnimParams)
 			{
 				var currentPos = MotionTarget.localPosition;
 				currentPos.y = 0f;
@@ -63,8 +63,8 @@ namespace CodeSmile.MultiPal.Samples.Controllers
 			m_Sideways.Validate();
 			m_Forward.Validate();
 
-			if (AnimatorParameters != null)
-				AnimatorParameters.InputMagnitude = moveDir.magnitude;
+			if (AvatarAnimatorParameters != null)
+				AvatarAnimatorParameters.InputMagnitude = moveDir.magnitude;
 		}
 
 		private void ApplyLook()
@@ -82,16 +82,16 @@ namespace CodeSmile.MultiPal.Samples.Controllers
 		public override void OnLook(InputAction.CallbackContext context)
 		{
 			var lookDir = context.ReadValue<Vector2>();
-			m_DeltaTilt=lookDir.y * RotationSensitivity.y * Time.deltaTime * (m_InvertVertical ? 1f : -1f);
-			m_DeltaPan= lookDir.x * RotationSensitivity.x * Time.deltaTime;
+			m_DeltaTilt = lookDir.y * RotationSensitivity.y * Time.deltaTime * (m_InvertVertical ? 1f : -1f);
+			m_DeltaPan = lookDir.x * RotationSensitivity.x * Time.deltaTime;
 		}
 
 		public override void OnCrouch(InputAction.CallbackContext context)
 		{
 			if (context.performed) {}
 
-			if (AnimatorParameters != null)
-				AnimatorParameters.TriggerCrouch = context.performed;
+			if (AvatarAnimatorParameters != null)
+				AvatarAnimatorParameters.TriggerCrouch = context.performed;
 		}
 
 		public override void OnJump(InputAction.CallbackContext context)
@@ -99,8 +99,8 @@ namespace CodeSmile.MultiPal.Samples.Controllers
 			if (context.performed)
 				m_Vertical.Value = TranslationSensitivity.y;
 
-			if (AnimatorParameters != null)
-				AnimatorParameters.TriggerJump = context.performed;
+			if (AvatarAnimatorParameters != null)
+				AvatarAnimatorParameters.TriggerJump = context.performed;
 		}
 
 		public override void OnSprint(InputAction.CallbackContext context) {}

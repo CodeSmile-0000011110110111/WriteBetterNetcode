@@ -2,14 +2,10 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.MultiPal.Animation;
-using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Samples.Kyle
+namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 {
-	public class KyleAnimatorParameters : AnimatorParametersBase
-	{
-
-	}
+	public class KyleAvatarAnimatorParameters : AvatarAnimatorParameters {}
 }
