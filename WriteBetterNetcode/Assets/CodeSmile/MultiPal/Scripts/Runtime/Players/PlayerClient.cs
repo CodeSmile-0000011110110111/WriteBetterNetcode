@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.MultiPal.Animation;
+using System;
 using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
@@ -13,19 +14,44 @@ namespace CodeSmile.MultiPal.Players
 	{
 		private PlayerServer m_ServerSide;
 		private IAnimatorController m_AnimatorController;
+		private AvatarAnimatorParameters m_AnimatorParameters;
 		public IAnimatorController AnimatorController
 		{
 			get => m_AnimatorController;
 			set => m_AnimatorController = value;
 		}
+		public AvatarAnimatorParameters AnimatorParameters
+		{
+			get => m_AnimatorParameters;
+			set => m_AnimatorParameters = value;
+		}
 
 		private void Awake() => m_ServerSide = GetComponent<PlayerServer>();
 
-		public void SendAnimatorParametersToNonOwners(byte[] animatorParameters) =>
-			SyncAnimatorParametersToNonOwnersRpc(animatorParameters);
+		public override void OnNetworkSpawn()
+		{
+			base.OnNetworkSpawn();
+
+			if (IsOwner)
+				NetworkManager.NetworkTickSystem.Tick += OnNetworkTick;
+		}
+
+		public override void OnNetworkDespawn()
+		{
+			base.OnNetworkDespawn();
+
+			if (IsOwner)
+				NetworkManager.NetworkTickSystem.Tick -= OnNetworkTick;
+		}
+
+		private void OnNetworkTick()
+		{
+			if (m_AnimatorParameters != null)
+				SyncAnimatorParametersToNonOwnersRpc(m_AnimatorParameters.Parameters);
+		}
 
 		[Rpc(SendTo.NotOwner, DeferLocal = true)]
-		private void SyncAnimatorParametersToNonOwnersRpc(byte[] animatorParameters)
+		private void SyncAnimatorParametersToNonOwnersRpc(Byte[] animatorParameters)
 		{
 			if (m_AnimatorController != null)
 				m_AnimatorController.RemoteAnimatorParametersReceived(animatorParameters);

@@ -46,6 +46,8 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 				// hook up with character controller
 				var activeCtrl = m_PlayerControllers.GetActiveController(playerIndex);
 				activeCtrl.AvatarAnimatorParameters = m_AnimParams;
+
+				m_ClientSide.AnimatorParameters = m_AnimParams;
 			}
 		}
 
@@ -67,7 +69,10 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 		private void OnDisable()
 		{
 			if (m_ClientSide.AnimatorController == this)
+			{
 				m_ClientSide.AnimatorController = null;
+				m_ClientSide.AnimatorParameters = null;
+			}
 		}
 
 		private void LateUpdate()
@@ -79,9 +84,6 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 				IsGrounded = m_AnimParams.IsGrounded;
 				IsFalling = m_AnimParams.IsFalling;
 				TriggerJump = m_AnimParams.TriggerJump;
-
-				if (IsOwner)
-					m_ClientSide.SendAnimatorParametersToNonOwners(m_AnimParams.Parameters);
 			}
 		}
 
