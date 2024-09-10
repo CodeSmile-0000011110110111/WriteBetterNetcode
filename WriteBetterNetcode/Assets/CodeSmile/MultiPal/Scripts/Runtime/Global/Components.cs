@@ -7,9 +7,11 @@ using CodeSmile.MultiPal.Input;
 using CodeSmile.MultiPal.Netcode;
 using CodeSmile.MultiPal.PlayerController;
 using CodeSmile.MultiPal.Players.Couch;
+using CodeSmile.MultiPal.Scene;
 using System;
 using UnityEditor;
 using UnityEngine;
+using Object = System.Object;
 
 namespace CodeSmile.MultiPal.Global
 {
@@ -22,6 +24,7 @@ namespace CodeSmile.MultiPal.Global
 		[SerializeField] private Cameras m_Cameras;
 		[SerializeField] private PlayerControllers m_PlayerControllers;
 		[SerializeField] private CouchPlayers m_CouchPlayers;
+		[SerializeField] private SceneLoader m_SceneLoader;
 
 		public T Get<T>() where T : Component
 		{
@@ -37,6 +40,8 @@ namespace CodeSmile.MultiPal.Global
 					return m_PlayerControllers as T;
 				case nameof(CouchPlayers):
 					return m_CouchPlayers as T;
+				case nameof(SceneLoader):
+					return m_SceneLoader as T;
 
 				default:
 					throw new ArgumentOutOfRangeException(nameof(T), "unhandled type");
@@ -48,7 +53,8 @@ namespace CodeSmile.MultiPal.Global
 			switch (typeof(T).Name)
 			{
 				case nameof(CouchPlayers):
-					SetLocalCouchPlayers(component as CouchPlayers);
+					ThrowIfAlreadyAssigned(m_CouchPlayers, component);
+					m_CouchPlayers = component as CouchPlayers;
 					break;
 
 				default:
@@ -62,6 +68,7 @@ namespace CodeSmile.MultiPal.Global
 			ThrowIfNotAssigned<InputUsers>(m_InputUsers);
 			ThrowIfNotAssigned<Cameras>(m_Cameras);
 			ThrowIfNotAssigned<PlayerControllers>(m_PlayerControllers);
+			ThrowIfNotAssigned<SceneLoader>(m_SceneLoader);
 		}
 
 		private void ThrowIfNotAssigned<T>(Component component) where T : Component
@@ -70,12 +77,10 @@ namespace CodeSmile.MultiPal.Global
 				throw new MissingReferenceException($"{typeof(T).Name} not assigned");
 		}
 
-		private void SetLocalCouchPlayers(CouchPlayers couchPlayers)
+		private void ThrowIfAlreadyAssigned(Object field, Component component)
 		{
-			if (m_CouchPlayers != null && couchPlayers != null)
-				throw new ArgumentException("local couch players already assigned, replace not allowed; possible bug?");
-
-			m_CouchPlayers = couchPlayers;
+			if (field != null && component != null)
+				throw new ArgumentException($"{component.GetType().Name} already assigned, replace not allowed; possible bug?");
 		}
 	}
 }
