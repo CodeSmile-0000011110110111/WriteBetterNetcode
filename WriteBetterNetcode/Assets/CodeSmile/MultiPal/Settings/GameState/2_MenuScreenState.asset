@@ -22,3 +22,7 @@ MonoBehaviour:
       m_SceneName: +PlayerCameras
       m_SceneAsset: {fileID: 102900000, guid: 79e592116094c5b41882ad6fcea11296, type: 3}
     m_ForceReload: 0
+  - m_SceneReference:
+      m_SceneName: +Dev_Content
+      m_SceneAsset: {fileID: 102900000, guid: 2062f189557df184e8aa4881ef2e4435, type: 3}
+    m_ForceReload: 0
