@@ -2,6 +2,8 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using Object = System.Object;
@@ -20,11 +22,18 @@ namespace CodeSmile.Utility
 		///     The scene name of the assigned SceneAsset.
 		/// </summary>
 		public String SceneName => m_SceneName;
-
 		public Boolean IsValid => String.IsNullOrWhiteSpace(m_SceneName) == false;
-
 		public static Boolean operator ==(SceneReference left, SceneReference right) => Equals(left, right);
 		public static Boolean operator !=(SceneReference left, SceneReference right) => !Equals(left, right);
+
+		public SceneReference()
+		{
+#if UNITY_EDITOR
+			// no need to unsubscribe these events
+			PostProcessor.OnSceneAssetChanged += OnValidate;
+			EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+#endif
+		}
 
 		public Boolean Equals(SceneReference other)
 		{
@@ -59,6 +68,7 @@ namespace CodeSmile.Utility
 					}
 				}
 
+				// TODO: auto-add to build index? should have an Inspector button for that
 				if (existsInBuildScenes == false)
 					Debug.LogWarning($"FYI: Scene '{m_SceneName}' is not in the build index yet or inactive.");
 			}
@@ -86,6 +96,45 @@ namespace CodeSmile.Utility
 				m_SceneName = m_SceneAsset != null ? m_SceneAsset.name : null;
 			}
 		}
+
+		private void OnPlayModeStateChanged(PlayModeStateChange state)
+		{
+			// resubscribe when entering playmode since somehow we lose the connection
+			PostProcessor.OnSceneAssetChanged -= OnValidate;
+			PostProcessor.OnSceneAssetChanged += OnValidate;
+		}
+
+		internal class PostProcessor : AssetPostprocessor
+		{
+			[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+			private static void ResetStaticFields() => OnSceneAssetChanged = null;
+
+			private static void OnPostprocessAllAssets(String[] importedAssets, String[] deletedAssets, String[] movedAssets,
+				String[] movedFromAssetPaths)
+			{
+				var deleteCount = deletedAssets.Length;
+				var moveCount = movedAssets.Length;
+				if (deleteCount > 0 || moveCount > 0)
+					CheckSceneReferenceUpdates(deletedAssets.Concat(movedAssets));
+			}
+
+			private static void CheckSceneReferenceUpdates(IEnumerable<String> assets)
+			{
+				foreach (var asset in assets)
+				{
+					if (asset.EndsWith(".unity"))
+					{
+						// some scene changed, thus check all
+						// we don't care about directing the change, it happens rarely
+						OnSceneAssetChanged?.Invoke();
+						break;
+					}
+				}
+			}
+
+			internal static event Action OnSceneAssetChanged;
+		}
+
 #endif
 	}
 }

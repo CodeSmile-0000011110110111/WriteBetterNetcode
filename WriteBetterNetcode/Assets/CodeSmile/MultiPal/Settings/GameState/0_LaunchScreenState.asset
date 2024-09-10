@@ -15,6 +15,6 @@ MonoBehaviour:
   m_ServerScenes: []
   m_ClientScenes:
   - m_SceneReference:
-      m_SceneName: +LaunchScreen
+      m_SceneName: +00_LaunchScreen
       m_SceneAsset: {fileID: 102900000, guid: 5e750ae4c94a0c9499de043250824ef5, type: 3}
     m_ForceReload: 0

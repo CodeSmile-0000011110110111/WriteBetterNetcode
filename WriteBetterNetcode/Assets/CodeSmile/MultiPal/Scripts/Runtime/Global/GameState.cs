@@ -22,6 +22,8 @@ namespace CodeSmile.MultiPal.Global
 		{
 			if (m_GameStates.Length == 0)
 				throw new ArgumentException("no game states assigned!");
+
+			ComponentsRegistry.Set(this);
 		}
 
 		private void Start() => EnterState(m_GameStates[m_ActiveStateIndex]);
@@ -33,7 +35,7 @@ namespace CodeSmile.MultiPal.Global
 			await sceneLoader.UnloadAndLoadAdditiveScenesAsync(gameState.ClientScenes);
 			Debug.Log($"[{Time.frameCount}] load complete");
 
-			StartCoroutine(NextState());
+			//StartCoroutine(NextState());
 		}
 
 		private IEnumerator NextState()
@@ -48,5 +50,12 @@ namespace CodeSmile.MultiPal.Global
 		}
 
 		private void ExitState(GameStateBase gameState) {}
+
+		public void AdvanceState()
+		{
+			// FIXME: placeholder
+			m_ActiveStateIndex++;
+			EnterState(m_GameStates[m_ActiveStateIndex]);
+		}
 	}
 }
