@@ -5,7 +5,7 @@ using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Scene;
 using CodeSmile.MultiPal.Settings;
 using System;
-using System.Linq;
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ namespace CodeSmile.MultiPal.Global
 	{
 		[SerializeField] private GameStateBase[] m_GameStates = new GameStateBase[0];
 
-		private Int32 m_ActiveStateIndex = 0;
+		private Int32 m_ActiveStateIndex;
 
 		private void Awake()
 		{
@@ -24,25 +24,29 @@ namespace CodeSmile.MultiPal.Global
 				throw new ArgumentException("no game states assigned!");
 		}
 
-		private void Start()
-		{
-			EnterState(m_GameStates[m_ActiveStateIndex]);
-		}
+		private void Start() => EnterState(m_GameStates[m_ActiveStateIndex]);
 
 		private async void EnterState(GameStateBase gameState)
 		{
 			var sceneLoader = ComponentsRegistry.Get<ClientSceneLoader>();
-			Debug.Log($"[{Time.frameCount}] start unload/load");
+			Debug.Log($"[{Time.frameCount}] start scene load");
 			await sceneLoader.UnloadAndLoadAdditiveScenesAsync(gameState.ClientScenes);
-			//await sceneLoader.UnloadScenesAsync(gameState.ScenesToUnload);
-			Debug.Log($"[{Time.frameCount}] unload complete");
-			//await sceneLoader.LoadScenesAsync(gameState.ScenesToLoad);
 			Debug.Log($"[{Time.frameCount}] load complete");
+
+			StartCoroutine(NextState());
 		}
 
-		private void ExitState(GameStateBase gameState)
+		private IEnumerator NextState()
 		{
+			yield return new WaitForSeconds(1f);
 
+			if (m_ActiveStateIndex < 2)
+			{
+				m_ActiveStateIndex++;
+				EnterState(m_GameStates[m_ActiveStateIndex]);
+			}
 		}
+
+		private void ExitState(GameStateBase gameState) {}
 	}
 }

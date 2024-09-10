@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Components.Registry;
 using CodeSmile.Utility;
 using System;
 using System.Collections;
@@ -23,6 +24,8 @@ namespace CodeSmile.MultiPal.Scene
 			if (sceneRef == null || sceneRef.IsValid == false)
 				throw new ArgumentException($"scene reference is null or invalid: {sceneRef}");
 		}
+
+		private void Awake() => ComponentsRegistry.Set(this);
 
 		private AsyncOperation LoadSceneAsync(SceneReference sceneRef)
 		{

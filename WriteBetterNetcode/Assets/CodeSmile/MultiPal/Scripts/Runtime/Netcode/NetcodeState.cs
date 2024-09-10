@@ -1,6 +1,7 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Components.Registry;
 using CodeSmile.Statemachine;
 using CodeSmile.Statemachine.Actions;
 using CodeSmile.Statemachine.Netcode;
@@ -43,7 +44,11 @@ namespace CodeSmile.MultiPal.Netcode
 		private Var<RelayConfig> m_RelayConfigVar;
 		private Var<TransportConfig> m_TransportConfigVar;
 
-		private void Awake() => SetupStatemachine();
+		private void Awake()
+		{
+			ComponentsRegistry.Set(this);
+			SetupStatemachine();
+		}
 
 		private void Start()
 		{

@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Settings;
 using System;
 using UnityEditor;
@@ -45,6 +46,7 @@ namespace CodeSmile.MultiPal.Input
 
 		private void Awake()
 		{
+			ComponentsRegistry.Set(this);
 			CreateInputActions();
 			CreateInputUsers();
 			PairUnpairedDevicesWithHostUser();

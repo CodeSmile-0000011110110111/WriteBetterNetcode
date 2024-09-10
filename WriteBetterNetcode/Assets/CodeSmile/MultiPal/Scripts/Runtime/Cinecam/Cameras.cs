@@ -54,6 +54,8 @@ namespace CodeSmile.MultiPal.Cinecam
 
 		private void Awake()
 		{
+			ComponentsRegistry.Set(this);
+
 			m_Splitscreen = GetComponent<Splitscreen>();
 
 			if (m_PlayerCinecamPrefabs == null)

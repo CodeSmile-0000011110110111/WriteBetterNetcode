@@ -15,6 +15,10 @@ MonoBehaviour:
   m_ServerScenes: []
   m_ClientScenes:
   - m_SceneReference:
-      m_SceneName: +MenuScreen
-      m_SceneAsset: {fileID: 102900000, guid: 1ac15a09ad4b6db40b59362f4eee8c03, type: 3}
+      m_SceneName: +MenuScreens
+      m_SceneAsset: {fileID: 102900000, guid: 3b99ee481d534b24797763bd2bf3a77c, type: 3}
+    m_ForceReload: 0
+  - m_SceneReference:
+      m_SceneName: +PlayerCameras
+      m_SceneAsset: {fileID: 102900000, guid: 79e592116094c5b41882ad6fcea11296, type: 3}
     m_ForceReload: 0
