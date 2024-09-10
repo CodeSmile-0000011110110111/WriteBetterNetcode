@@ -62,10 +62,7 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 			m_ParamTriggerJump = UnityEngine.Animator.StringToHash("TriggerJump");
 		}
 
-		private void OnEnable()
-		{
-			m_ClientSide.AnimatorController = this;
-		}
+		private void OnEnable() => m_ClientSide.AnimatorController = this;
 
 		private void OnDisable()
 		{

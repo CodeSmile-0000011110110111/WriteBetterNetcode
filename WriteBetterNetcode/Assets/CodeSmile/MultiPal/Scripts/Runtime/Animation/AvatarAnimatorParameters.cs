@@ -18,14 +18,6 @@ namespace CodeSmile.MultiPal.Animation
 
 		protected Byte[] m_Parameters;
 
-		public AvatarAnimatorParameters(int parameterCount = MinParameterCount)
-		{
-			if (parameterCount < MinParameterCount)
-				throw new ArgumentException($"at least {MinParameterCount} parameters required");
-
-			m_Parameters = new byte[parameterCount];
-		}
-
 		public Byte[] Parameters
 		{
 			get => m_Parameters;
@@ -82,6 +74,14 @@ namespace CodeSmile.MultiPal.Animation
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static Single ConvertToFloat(Byte value) => value / (Single)Byte.MaxValue;
+
+		public AvatarAnimatorParameters(Int32 parameterCount = MinParameterCount)
+		{
+			if (parameterCount < MinParameterCount)
+				throw new ArgumentException($"at least {MinParameterCount} parameters required");
+
+			m_Parameters = new Byte[parameterCount];
+		}
 	}
 
 	public enum AnimatorCommonFlags : byte
