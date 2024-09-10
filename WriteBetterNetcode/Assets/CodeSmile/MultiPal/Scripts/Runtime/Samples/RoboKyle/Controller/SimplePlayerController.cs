@@ -2,7 +2,6 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.MultiPal.PlayerController;
-using CodeSmile.MultiPal.Samples.RoboKyle.Animator;
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -29,16 +28,14 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 			ApplyLook();
 			ApplyMove();
 
-			{
-				var currentPos = MotionTarget.localPosition;
-				currentPos.y = 0f;
+			var currentPos = MotionTarget.localPosition;
+			currentPos.y = 0f;
 
-				var speed = (previousPos - currentPos).magnitude * m_MotionMultiplier;
-				AvatarAnimatorParameters.MoveSpeed = Mathf.Min(1f, speed / 1f);
-				AvatarAnimatorParameters.IsGrounded = CharController.isGrounded;
+			var speed = (previousPos - currentPos).magnitude * m_MotionMultiplier;
+			AnimatorParameters.MoveSpeed = Mathf.Min(1f, speed / 1f);
+			AnimatorParameters.IsGrounded = CharController.isGrounded;
 
-				//Debug.Log($"speed: {speed}, clamped: {Mathf.Min(1f, speed / 1f)}, delta: {Time.deltaTime}");
-			}
+			//Debug.Log($"speed: {speed}, clamped: {Mathf.Min(1f, speed / 1f)}, delta: {Time.deltaTime}");
 		}
 
 		private void ApplyMove()
@@ -62,8 +59,8 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 			m_Sideways.Validate();
 			m_Forward.Validate();
 
-			if (AvatarAnimatorParameters != null)
-				AvatarAnimatorParameters.InputMagnitude = moveDir.magnitude;
+			if (AnimatorParameters != null)
+				AnimatorParameters.InputMagnitude = moveDir.magnitude;
 		}
 
 		private void ApplyLook()
@@ -89,8 +86,8 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 		{
 			if (context.performed) {}
 
-			if (AvatarAnimatorParameters != null)
-				AvatarAnimatorParameters.TriggerCrouch = context.performed;
+			if (AnimatorParameters != null)
+				AnimatorParameters.TriggerCrouch = context.performed;
 		}
 
 		public override void OnJump(InputAction.CallbackContext context)
@@ -98,8 +95,8 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 			if (context.performed)
 				m_Vertical.Value = TranslationSensitivity.y;
 
-			if (AvatarAnimatorParameters != null)
-				AvatarAnimatorParameters.TriggerJump = context.performed;
+			if (AnimatorParameters != null)
+				AnimatorParameters.TriggerJump = context.performed;
 		}
 
 		public override void OnSprint(InputAction.CallbackContext context) {}

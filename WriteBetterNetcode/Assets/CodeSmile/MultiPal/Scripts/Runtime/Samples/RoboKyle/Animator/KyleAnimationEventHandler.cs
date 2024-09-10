@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace CodeSmile
+namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 {
 	[DisallowMultipleComponent]
 	public sealed class KyleAnimationEventHandler : MonoBehaviour

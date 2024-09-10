@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace CodeSmile.MultiPal.Scripts.Tests
+namespace CodeSmile.MultiPal.Tests
 {
 	public class NewTestScript
 	{

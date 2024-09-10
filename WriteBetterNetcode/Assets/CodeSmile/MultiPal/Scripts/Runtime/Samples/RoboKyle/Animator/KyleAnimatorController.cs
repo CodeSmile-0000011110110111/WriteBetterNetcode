@@ -44,9 +44,7 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 			if (isOwner)
 			{
 				// hook up with character controller
-				var activeCtrl = m_PlayerControllers.GetActiveController(playerIndex);
-				activeCtrl.AvatarAnimatorParameters = m_AnimParams;
-
+				m_PlayerControllers.SetAnimatorParameters(playerIndex, m_AnimParams);
 				m_ClientSide.AnimatorParameters = m_AnimParams;
 			}
 		}
@@ -64,7 +62,10 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 			m_ParamTriggerJump = UnityEngine.Animator.StringToHash("TriggerJump");
 		}
 
-		private void OnEnable() => m_ClientSide.AnimatorController = this;
+		private void OnEnable()
+		{
+			m_ClientSide.AnimatorController = this;
+		}
 
 		private void OnDisable()
 		{

@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Components.Registry;
+using CodeSmile.MultiPal.Animation;
 using CodeSmile.MultiPal.Input;
 using CodeSmile.MultiPal.Players.Couch;
 using CodeSmile.MultiPal.Settings;
@@ -146,15 +147,14 @@ namespace CodeSmile.MultiPal.PlayerController
 
 		public void SetControllerActive(Int32 playerIndex, Int32 controllerIndex)
 		{
-			// deactivate current
+			// set current inactive
 			GetActiveController(playerIndex)?.gameObject.SetActive(false);
 
 			// activate new one
 			m_ActiveControllerIndexes[playerIndex] = controllerIndex;
+
 			var activeCtrl = GetActiveController(playerIndex);
 			activeCtrl.gameObject.SetActive(true);
-
-			// assign as input callback
 			m_InputUsers.SetPlayerKinematicsCallback(playerIndex, activeCtrl);
 		}
 
@@ -169,5 +169,11 @@ namespace CodeSmile.MultiPal.PlayerController
 			m_ActiveControllerIndexes[playerIndex] == m_Controllers[playerIndex].Count - 1
 				? 0
 				: m_ActiveControllerIndexes[playerIndex] + 1);
+
+		public void SetAnimatorParameters(Int32 playerIndex, AvatarAnimatorParameters animParams)
+		{
+			foreach (var playerController in m_Controllers[playerIndex])
+				playerController.AnimatorParameters = animParams;
+		}
 	}
 }

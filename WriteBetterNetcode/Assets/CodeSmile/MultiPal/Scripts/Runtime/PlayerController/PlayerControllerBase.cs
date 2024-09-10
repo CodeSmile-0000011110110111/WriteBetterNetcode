@@ -31,7 +31,7 @@ namespace CodeSmile.MultiPal.PlayerController
 		[SerializeField] private Vector3 m_TranslationSensitivity = Vector3.one;
 		[SerializeField] private Vector3 m_RotationSensitivity = Vector3.one;
 
-		public AvatarAnimatorParameters AvatarAnimatorParameters { get; set; }
+		public AvatarAnimatorParameters AnimatorParameters { get; set; }
 
 		private static InputAxis DefaultTilt => new()
 		{
