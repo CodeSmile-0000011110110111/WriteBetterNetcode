@@ -8,6 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/CodeSmile/MultiPal/Scenes/#MainScene.unity
     guid: 9b24686a5d80d8a4bb4bb70ecefbd338
+  - enabled: 1
+    path: Assets/CodeSmile/MultiPal/Scenes/+LaunchScreen.unity
+    guid: 5e750ae4c94a0c9499de043250824ef5
+  - enabled: 1
+    path: Assets/CodeSmile/MultiPal/Scenes/+TitleScreen.unity
+    guid: 4c56a6262b2108241899f8226b3feac8
+  - enabled: 1
+    path: Assets/CodeSmile/MultiPal/Scenes/+MenuScreen.unity
+    guid: 1ac15a09ad4b6db40b59362f4eee8c03
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 2675780ee23d2274ba8b0dd691b8be5b, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 9541b54912603f54e854b5843529b072, type: 2}

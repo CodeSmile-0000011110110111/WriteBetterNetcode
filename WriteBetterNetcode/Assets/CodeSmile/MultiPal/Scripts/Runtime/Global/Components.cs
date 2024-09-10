@@ -23,8 +23,9 @@ namespace CodeSmile.MultiPal.Global
 		[SerializeField] private InputUsers m_InputUsers;
 		[SerializeField] private Cameras m_Cameras;
 		[SerializeField] private PlayerControllers m_PlayerControllers;
-		[SerializeField] private CouchPlayers m_CouchPlayers;
-		[SerializeField] private SceneLoader m_SceneLoader;
+		[SerializeField] private ClientSceneLoader m_ClientSceneLoader;
+
+		private CouchPlayers m_CouchPlayers;
 
 		public T Get<T>() where T : Component
 		{
@@ -40,8 +41,8 @@ namespace CodeSmile.MultiPal.Global
 					return m_PlayerControllers as T;
 				case nameof(CouchPlayers):
 					return m_CouchPlayers as T;
-				case nameof(SceneLoader):
-					return m_SceneLoader as T;
+				case nameof(ClientSceneLoader):
+					return m_ClientSceneLoader as T;
 
 				default:
 					throw new ArgumentOutOfRangeException(nameof(T), "unhandled type");
@@ -68,7 +69,7 @@ namespace CodeSmile.MultiPal.Global
 			ThrowIfNotAssigned<InputUsers>(m_InputUsers);
 			ThrowIfNotAssigned<Cameras>(m_Cameras);
 			ThrowIfNotAssigned<PlayerControllers>(m_PlayerControllers);
-			ThrowIfNotAssigned<SceneLoader>(m_SceneLoader);
+			ThrowIfNotAssigned<ClientSceneLoader>(m_ClientSceneLoader);
 		}
 
 		private void ThrowIfNotAssigned<T>(Component component) where T : Component

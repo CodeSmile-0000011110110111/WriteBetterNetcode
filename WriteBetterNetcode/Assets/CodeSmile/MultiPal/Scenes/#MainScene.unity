@@ -7655,6 +7655,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86500ef660da4c1a809f19bf72860e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_GameStates:
+  - {fileID: 11400000, guid: 491f0c9b883316041ad53967cb4144fb, type: 2}
+  - {fileID: 11400000, guid: 8962f8fd08df4b240a9682216fb78c86, type: 2}
+  - {fileID: 11400000, guid: 02f1be5f912188b46a4ffc83203321c8, type: 2}
 --- !u!1 &873195075
 GameObject:
   m_ObjectHideFlags: 0
@@ -11285,7 +11289,7 @@ MonoBehaviour:
   m_InputUsers: {fileID: 142632566}
   m_Cameras: {fileID: 2101685257}
   m_PlayerControllers: {fileID: 1141582651}
-  m_CouchPlayers: {fileID: 0}
+  m_ClientSceneLoader: {fileID: 1678591293}
 --- !u!114 &1433288291
 MonoBehaviour:
   m_ObjectHideFlags: 0

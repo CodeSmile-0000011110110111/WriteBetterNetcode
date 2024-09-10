@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d441dd28599d4601ba378fbdb245274c, type: 3}
   m_Name: 0_LaunchScreenState
   m_EditorClassIdentifier: 
+  m_ServerScenes: []
+  m_ClientScenes:
+  - m_SceneReference:
+      m_SceneName: +LaunchScreen
+      m_SceneAsset: {fileID: 102900000, guid: 5e750ae4c94a0c9499de043250824ef5, type: 3}
+    m_ForceReload: 0

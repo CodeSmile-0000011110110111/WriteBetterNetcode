@@ -21,6 +21,8 @@ namespace CodeSmile.Utility
 		/// </summary>
 		public String SceneName => m_SceneName;
 
+		public Boolean IsValid => String.IsNullOrWhiteSpace(m_SceneName) == false;
+
 		public static Boolean operator ==(SceneReference left, SceneReference right) => Equals(left, right);
 		public static Boolean operator !=(SceneReference left, SceneReference right) => !Equals(left, right);
 
@@ -42,6 +44,24 @@ namespace CodeSmile.Utility
 		{
 #if UNITY_EDITOR
 			SceneAsset = m_SceneAsset;
+
+			if (m_SceneName != null)
+			{
+				var existsInBuildScenes = false;
+				var scenePath = AssetDatabase.GetAssetOrScenePath(SceneAsset).ToLower();
+				var buildScenes = EditorBuildSettings.scenes;
+				foreach (var buildScene in buildScenes)
+				{
+					if (buildScene.enabled && buildScene.path.ToLower() == scenePath)
+					{
+						existsInBuildScenes = true;
+						break;
+					}
+				}
+
+				if (existsInBuildScenes == false)
+					Debug.LogWarning($"FYI: Scene '{m_SceneName}' is not in the build index yet or inactive.");
+			}
 #endif
 		}
 

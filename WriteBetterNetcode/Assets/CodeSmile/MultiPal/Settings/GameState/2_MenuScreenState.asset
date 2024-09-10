@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c050faa183b84a0eaf204ab7095f7448, type: 3}
   m_Name: 2_MenuScreenState
   m_EditorClassIdentifier: 
+  m_ServerScenes: []
+  m_ClientScenes:
+  - m_SceneReference:
+      m_SceneName: +MenuScreen
+      m_SceneAsset: {fileID: 102900000, guid: 1ac15a09ad4b6db40b59362f4eee8c03, type: 3}
+    m_ForceReload: 0
