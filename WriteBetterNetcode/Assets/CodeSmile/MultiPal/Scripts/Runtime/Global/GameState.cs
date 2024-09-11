@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Components.Registry;
+using CodeSmile.MultiPal.Netcode;
 using CodeSmile.MultiPal.Scene;
 using CodeSmile.MultiPal.Settings;
 using System;
@@ -26,14 +27,45 @@ namespace CodeSmile.MultiPal.Global
 			ComponentsRegistry.Set(this);
 		}
 
-		private void Start() => EnterState(m_GameStates[m_ActiveStateIndex]);
+		private void Start()
+		{
+			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
+			netcodeState.WentOnline += WentOnline;
+			netcodeState.WentOffline += WentOffline;
+
+			EnterState(m_GameStates[m_ActiveStateIndex]);
+		}
+
+		private void OnDestroy()
+		{
+			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
+			if (netcodeState != null)
+			{
+				netcodeState.WentOnline -= WentOnline;
+				netcodeState.WentOffline -= WentOffline;
+			}
+		}
+
+		private void WentOnline()
+		{
+			EnterState(m_GameStates[3]);
+		}
+
+		private void WentOffline()
+		{
+			EnterState(m_GameStates[2]);
+		}
 
 		private async void EnterState(GameStateBase gameState)
 		{
-			var sceneLoader = ComponentsRegistry.Get<ClientSceneLoader>();
+			var clientSceneLoader = ComponentsRegistry.Get<ClientSceneLoader>();
+
 			Debug.Log($"[{Time.frameCount}] start scene load");
-			await sceneLoader.UnloadAndLoadAdditiveScenesAsync(gameState.ClientScenes);
+			await clientSceneLoader.UnloadAndLoadAdditiveScenesAsync(gameState.ClientScenes);
 			Debug.Log($"[{Time.frameCount}] load complete");
+
+			var serverSceneLoader = ComponentsRegistry.Get<ServerSceneLoader>();
+			await serverSceneLoader.UnloadAndLoadAdditiveScenesAsync(gameState.ServerScenes);
 
 			//StartCoroutine(NextState());
 		}

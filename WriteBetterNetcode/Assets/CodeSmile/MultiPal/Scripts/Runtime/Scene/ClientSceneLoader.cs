@@ -51,48 +51,44 @@ namespace CodeSmile.MultiPal.Scene
 			return SceneManager.UnloadSceneAsync(sceneRef.SceneName);
 		}
 
-		public async Task UnloadAndLoadAdditiveScenesAsync(AdditiveScene[] additiveScenes)
+		public async Task UnloadAndLoadAdditiveScenesAsync(AdditiveScene[] scenes)
 		{
-			await UnloadScenesWithExceptionsAsync(additiveScenes);
-			await LoadScenesAsync(additiveScenes);
+			await UnloadScenesWithExceptionsAsync(scenes);
+			await LoadScenesAsync(scenes);
 		}
 
 		private async Task UnloadScenesWithExceptionsAsync(AdditiveScene[] scenesToKeep)
 		{
 			var scenesToUnload = new HashSet<SceneReference>(m_LoadedScenes);
-			foreach (var keepScene in scenesToKeep)
+			foreach (var scene in scenesToKeep)
 			{
-				if (keepScene.ForceReload == false)
-					scenesToUnload.Remove(keepScene.Reference);
+				if (scene.ForceReload == false)
+					scenesToUnload.Remove(scene.Reference);
 			}
 
 			await UnloadScenesAsync(scenesToUnload.ToArray());
 		}
 
-		public async Task LoadScenesAsync(AdditiveScene[] scenesToLoad)
+		public async Task LoadScenesAsync(AdditiveScene[] scenes)
 		{
-			var sceneRefsToLoad = new SceneReference[scenesToLoad.Length];
-			for (var i = 0; i < scenesToLoad.Length; i++)
-				sceneRefsToLoad[i] = scenesToLoad[i].Reference;
+			var sceneRefsToLoad = new SceneReference[scenes.Length];
+			for (var i = 0; i < scenes.Length; i++)
+				sceneRefsToLoad[i] = scenes[i].Reference;
 
 			await LoadOrUnloadScenesAsync(sceneRefsToLoad, true);
 		}
 
-		public async Task LoadScenesAsync(SceneReference[] scenesToLoad) => await LoadOrUnloadScenesAsync(scenesToLoad, true);
+		public async Task LoadScenesAsync(SceneReference[] scenes) => await LoadOrUnloadScenesAsync(scenes, true);
 
-		public async Task UnloadScenesAsync(SceneReference[] scenesToUnload) =>
-			await LoadOrUnloadScenesAsync(scenesToUnload, false);
+		public async Task UnloadScenesAsync(SceneReference[] scenes) => await LoadOrUnloadScenesAsync(scenes, false);
 
-		private async Task LoadOrUnloadScenesAsync(SceneReference[] scenes, Boolean loadScenes)
+		private async Task LoadOrUnloadScenesAsync(SceneReference[] scenes, Boolean load)
 		{
 			var asyncOps = new List<AsyncOperation>();
 
 			for (var i = 0; i < scenes.Length; i++)
 			{
-				var asyncOp = loadScenes
-					? LoadSceneAsync(scenes[i])
-					: UnloadSceneAsync(scenes[i]);
-
+				var asyncOp = load ? LoadSceneAsync(scenes[i]) : UnloadSceneAsync(scenes[i]);
 				if (asyncOp != null)
 					asyncOps.Add(asyncOp);
 			}

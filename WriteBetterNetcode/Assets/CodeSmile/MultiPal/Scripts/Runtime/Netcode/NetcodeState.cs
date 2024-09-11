@@ -120,8 +120,7 @@ namespace CodeSmile.MultiPal.Netcode
 			// Init state
 			initState.AddTransition("Init Completed")
 				.ToState(offlineState)
-				.WithConditions(new IsNetworkManagerSingletonAssigned())
-				.WithActions(invokeWentOffline);
+				.WithConditions(new IsNetworkManagerSingletonAssigned());
 
 			// Offline state
 			offlineState.AddTransition("Start with Relay")

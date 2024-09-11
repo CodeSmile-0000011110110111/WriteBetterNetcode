@@ -127,6 +127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 151729826}
+  - component: {fileID: 151729827}
   m_Layer: 0
   m_Name: '[PlayMode dirties scene? Preferences->Cinemachine->Save During Play =
     uncheck]'
@@ -150,6 +151,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &151729827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151729825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cdc367b3d64a1f43a057b9e8e7ba730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &277872503
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,6 +303,7 @@ GameObject:
   - component: {fileID: 849229793}
   - component: {fileID: 849229796}
   - component: {fileID: 849229795}
+  - component: {fileID: 849229798}
   m_Layer: 0
   m_Name: GameState
   m_TagString: Untagged
@@ -328,6 +342,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 491f0c9b883316041ad53967cb4144fb, type: 2}
   - {fileID: 11400000, guid: 8962f8fd08df4b240a9682216fb78c86, type: 2}
   - {fileID: 11400000, guid: 02f1be5f912188b46a4ffc83203321c8, type: 2}
+  - {fileID: 11400000, guid: 6258255dfa88d1f43a333377aff862ba, type: 2}
 --- !u!114 &849229793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,6 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2251b729ad647a089a0fa7633d9dc17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ClickToLogComponents: 0
 --- !u!114 &849229795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,6 +404,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b9effdee23b40e42af9993403e4669b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &849229798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849229790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ccd8baeb7c4d148e17ddee773311d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LogScenesBeingLoaded: 1
 --- !u!1 &1803412275
 GameObject:
   m_ObjectHideFlags: 0

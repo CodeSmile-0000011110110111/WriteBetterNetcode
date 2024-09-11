@@ -30,6 +30,7 @@ namespace CodeSmile.MultiPal.PlayerController
 			if (m_ControllerPrefabs == null)
 				throw new MissingReferenceException(nameof(PlayerControllerPrefabs));
 
+			Debug.LogWarning("awake");
 			ComponentsRegistry.Set(this);
 
 			m_ControllerPrefabs.ValidatePrefabsHaveComponent<PlayerControllerBase>();

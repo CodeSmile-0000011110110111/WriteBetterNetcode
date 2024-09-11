@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.MultiPal.Scene;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ namespace CodeSmile.MultiPal.Settings
 		[SerializeField] private AdditiveScene[] m_ClientScenes = new AdditiveScene[0];
 
 		public AdditiveScene[] ClientScenes => m_ClientScenes;
+		public AdditiveScene[] ServerScenes => m_ServerScenes;
 
 		protected virtual void OnValidate()
 		{

@@ -15,7 +15,6 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 	[RequireComponent(typeof(UnityEngine.Animator))]
 	public sealed class KyleAnimatorController : AnimatorControllerBase
 	{
-		private PlayerControllers m_PlayerControllers;
 		private UnityEngine.Animator m_Animator;
 		private AvatarAnimatorParameters m_AnimParams;
 
@@ -33,7 +32,7 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 		private Boolean IsFalling { set => m_Animator.SetBool(m_ParamIsFalling, value); }
 		private Boolean TriggerJump { set => m_Animator.SetBool(m_ParamTriggerJump, value); }
 
-		public override void Init(Int32 playerIndex, Boolean isOwner)
+		public override async void Init(Int32 playerIndex, Boolean isOwner)
 		{
 			PlayerIndex = playerIndex;
 			IsOwner = isOwner;
@@ -44,14 +43,18 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 			if (isOwner)
 			{
 				// hook up with character controller
-				m_PlayerControllers.SetAnimatorParameters(playerIndex, m_AnimParams);
+				Debug.LogWarning("init");
+				//var controllers = ComponentsRegistry.Get<PlayerControllers>();
+				var controllers = await ComponentsRegistry.GetAsync<PlayerControllers>();
+
+				Debug.LogWarning($"got it! {controllers}");
+				controllers.SetAnimatorParameters(playerIndex, m_AnimParams);
 				m_ClientSide.AnimatorParameters = m_AnimParams;
 			}
 		}
 
 		private void Awake()
 		{
-			m_PlayerControllers = ComponentsRegistry.Get<PlayerControllers>();
 			m_ClientSide = GetComponentInParent<PlayerClient>();
 			m_Animator = GetComponent<UnityEngine.Animator>();
 

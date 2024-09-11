@@ -17,6 +17,7 @@ namespace CodeSmile.MultiPal.Global
 
 		[Tooltip("If enabled and running in the editor will advance to next state instantaneously.")]
 		[SerializeField] private Boolean m_SkipInPlayMode;
+		[SerializeField] private Boolean m_SkipInDevBuilds;
 
 		private Boolean m_IsAnyKeyDown;
 
@@ -31,12 +32,16 @@ namespace CodeSmile.MultiPal.Global
 			m_IsAnyKeyDown = UnityEngine.Input.anyKey;
 
 			var shouldSkip = m_SkipInPlayMode && Application.isEditor;
-			var seconds = shouldSkip ? 0f : m_SecondsUntilNextScreen;
-			StartCoroutine(Wait(seconds));
+			#if DEBUG || DEVELOPMENT_BUILD
+			shouldSkip = shouldSkip || m_SkipInDevBuilds;
+			#endif
 
 			// if skipping prevent the screen from flashing the scene's content, it's annoying, distracting, seizure inducing
 			if (shouldSkip)
-				Camera.main.gameObject.SetActive(false);
+				Camera.main?.gameObject.SetActive(false);
+
+			var seconds = shouldSkip ? 0f : m_SecondsUntilNextScreen;
+			StartCoroutine(Wait(seconds));
 		}
 
 		private void OnValidate() => m_SecondsUntilNextScreen = Mathf.Max(0f, m_SecondsUntilNextScreen);
@@ -53,7 +58,9 @@ namespace CodeSmile.MultiPal.Global
 				else if (UnityEngine.Input.anyKey)
 				{
 					m_IsAnyKeyDown = true; // prevents calling the next method repeatedly
+					Debug.Log("goto next state (ANY button)");
 					GotoNextState();
+
 				}
 			}
 		}
@@ -62,6 +69,7 @@ namespace CodeSmile.MultiPal.Global
 		{
 			yield return new WaitForSeconds(seconds);
 
+			Debug.Log($"goto next state (on timeout: {seconds}s)");
 			GotoNextState();
 		}
 	}

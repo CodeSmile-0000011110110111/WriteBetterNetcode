@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Components.Registry;
 using CodeSmile.Utility;
 using System;
 using System.Collections;
@@ -17,7 +18,120 @@ namespace CodeSmile.MultiPal.Scene
 	[DisallowMultipleComponent]
 	public sealed class ServerSceneLoader : MonoBehaviour
 	{
+		[Header("Debug")]
+		[Tooltip("If checked, any scene loaded will be logged to the console.")]
+		[SerializeField] private Boolean m_LogScenesBeingLoaded;
 		private readonly HashSet<SceneReference> m_LoadedScenes = new();
+
+		private Queue<SceneReference> m_ScenesToLoad;
+		private String m_LoadingSceneName;
+		private Boolean m_IsOnline;
+
+		private void Awake() => ComponentsRegistry.Set(this);
+
+		private void Start() => RegisterCallbacks();
+
+		private void OnDestroy()
+		{
+			EndLoadAdditiveScenes();
+			UnregisterCallbacks();
+		}
+
+		private void RegisterCallbacks()
+		{
+			var netMan = NetworkManager.Singleton;
+			netMan.OnServerStarted += OnServerStarted;
+			netMan.OnServerStopped += OnServerStopped;
+		}
+
+		private void UnregisterCallbacks()
+		{
+			var netMan = NetworkManager.Singleton;
+			if (netMan != null)
+			{
+				netMan.OnServerStarted -= OnServerStarted;
+				netMan.OnServerStopped -= OnServerStopped;
+			}
+		}
+
+		private void OnServerStarted()
+		{
+			Debug.Log("ServerSceneLoader: started");
+
+			var netMan = NetworkManager.Singleton;
+			m_IsOnline = true;
+			Debug.Assert(netMan.IsServer);
+
+			netMan.SceneManager.OnLoadEventCompleted += OnLoadCompletedForAll;
+		}
+
+		private void OnServerStopped(Boolean isHost)
+		{
+			Debug.Log("ServerSceneLoader: stopped");
+
+			var netMan = NetworkManager.Singleton;
+			if (netMan != null && netMan.SceneManager != null)
+				netMan.SceneManager.OnLoadEventCompleted -= OnLoadCompletedForAll;
+
+			StopAllCoroutines();
+			EndLoadAdditiveScenes();
+		}
+
+		private void BeginLoadAdditiveScenes()
+		{
+			// queue the additive scenes since we can only load one at a time
+			m_ScenesToLoad = new Queue<SceneReference>();
+			// foreach (var sceneReference in m_AdditiveScenes)
+			// {
+			// 	if (sceneReference != null)
+			// 		m_ScenesToLoad.Enqueue(sceneReference);
+			// }
+
+			// Start working on the queue
+			StartCoroutine(LoadAdditiveScenesRoutine());
+		}
+
+		private IEnumerator LoadAdditiveScenesRoutine()
+		{
+			var sceneMan = NetworkManager.Singleton.SceneManager;
+
+			while (m_ScenesToLoad.Count > 0)
+			{
+				// single scene is probably still loading, wait for that to finish ...
+				if (m_LoadingSceneName != null)
+					yield return new WaitUntil(() => m_LoadingSceneName == null);
+
+				m_LoadingSceneName = m_ScenesToLoad.Dequeue().SceneName;
+				if (m_LogScenesBeingLoaded)
+					NetworkLog.LogInfo($"{nameof(ServerSceneLoader)} adding: {m_LoadingSceneName}");
+
+				sceneMan.LoadScene(m_LoadingSceneName, LoadSceneMode.Additive);
+
+				// wait until load event marks the load as complete, which sets the field to null
+				yield return new WaitUntil(() => m_LoadingSceneName == null);
+			}
+
+			EndLoadAdditiveScenes();
+		}
+
+		private void EndLoadAdditiveScenes()
+		{
+			Debug.Log($"{nameof(ServerSceneLoader)} EndLoadAdditiveScenes");
+
+			m_LoadingSceneName = null;
+			m_ScenesToLoad = null;
+		}
+
+		private void OnLoadCompletedForAll(String sceneName, LoadSceneMode loadMode, List<UInt64> clientsCompleted,
+			List<UInt64> clientsTimedOut)
+		{
+			Debug.Log($"{nameof(ServerSceneLoader)} OnLoadCompletedForAll: {sceneName} " +
+			          $"(loading: {m_LoadingSceneName}), timed out: {clientsTimedOut.Count}");
+
+			if (sceneName == m_LoadingSceneName)
+				m_LoadingSceneName = null;
+		}
+
 
 		private AsyncOperation LoadSceneAsync(SceneReference sceneRef)
 		{
@@ -31,7 +145,8 @@ namespace CodeSmile.MultiPal.Scene
 
 			// TODO
 
-			throw new NotImplementedException();
+			//throw new NotImplementedException();
+			return null;
 		}
 
 		private AsyncOperation UnloadSceneAsync(SceneReference sceneRef)
@@ -46,6 +161,7 @@ namespace CodeSmile.MultiPal.Scene
 
 		public async Task UnloadAndLoadAdditiveScenesAsync(AdditiveScene[] additiveScenes)
 		{
+			Debug.Log($"Server: unload and load {additiveScenes?.Length}");
 			await UnloadScenesWithExceptionsAsync(additiveScenes);
 			await LoadScenesAsync(additiveScenes);
 		}
@@ -53,39 +169,35 @@ namespace CodeSmile.MultiPal.Scene
 		private async Task UnloadScenesWithExceptionsAsync(AdditiveScene[] scenesToKeep)
 		{
 			var scenesToUnload = new HashSet<SceneReference>(m_LoadedScenes);
-			foreach (var keepScene in scenesToKeep)
+			foreach (var scene in scenesToKeep)
 			{
-				if (keepScene.ForceReload == false)
-					scenesToUnload.Remove(keepScene.Reference);
+				if (scene.ForceReload == false)
+					scenesToUnload.Remove(scene.Reference);
 			}
 
 			await UnloadScenesAsync(scenesToUnload.ToArray());
 		}
 
-		public async Task LoadScenesAsync(AdditiveScene[] scenesToLoad)
+		public async Task LoadScenesAsync(AdditiveScene[] scenes)
 		{
-			var sceneRefsToLoad = new SceneReference[scenesToLoad.Length];
-			for (var i = 0; i < scenesToLoad.Length; i++)
-				sceneRefsToLoad[i] = scenesToLoad[i].Reference;
+			var sceneRefsToLoad = new SceneReference[scenes.Length];
+			for (var i = 0; i < scenes.Length; i++)
+				sceneRefsToLoad[i] = scenes[i].Reference;
 
 			await LoadOrUnloadScenesAsync(sceneRefsToLoad, true);
 		}
 
-		public async Task LoadScenesAsync(SceneReference[] scenesToLoad) => await LoadOrUnloadScenesAsync(scenesToLoad, true);
+		public async Task LoadScenesAsync(SceneReference[] scenes) => await LoadOrUnloadScenesAsync(scenes, true);
 
-		public async Task UnloadScenesAsync(SceneReference[] scenesToUnload) =>
-			await LoadOrUnloadScenesAsync(scenesToUnload, false);
+		public async Task UnloadScenesAsync(SceneReference[] scenes) => await LoadOrUnloadScenesAsync(scenes, false);
 
-		private async Task LoadOrUnloadScenesAsync(SceneReference[] scenes, Boolean loadScenes)
+		private async Task LoadOrUnloadScenesAsync(SceneReference[] scenes, Boolean load)
 		{
 			var asyncOps = new List<AsyncOperation>();
 
 			for (var i = 0; i < scenes.Length; i++)
 			{
-				var asyncOp = loadScenes
-					? LoadSceneAsync(scenes[i])
-					: UnloadSceneAsync(scenes[i]);
-
+				var asyncOp = load ? LoadSceneAsync(scenes[i]) : UnloadSceneAsync(scenes[i]);
 				if (asyncOp != null)
 					asyncOps.Add(asyncOp);
 			}
