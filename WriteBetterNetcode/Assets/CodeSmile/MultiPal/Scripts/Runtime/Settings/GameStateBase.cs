@@ -2,7 +2,6 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.MultiPal.Scene;
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
 

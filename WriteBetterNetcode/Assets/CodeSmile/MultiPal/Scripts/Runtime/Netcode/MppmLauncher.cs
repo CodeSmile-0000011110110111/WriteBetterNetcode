@@ -27,8 +27,10 @@ namespace CodeSmile.MultiPal.Netcode
 			var roleCount = Enum.GetValues(typeof(NetcodeRole)).Length;
 
 			for (var roleIndex = 0; roleIndex < roleCount; roleIndex++)
+			{
 				if (playerTags.Contains(((NetcodeRole)roleIndex).ToString()))
 					return (NetcodeRole)roleIndex;
+			}
 
 			return NetcodeRole.None;
 		}

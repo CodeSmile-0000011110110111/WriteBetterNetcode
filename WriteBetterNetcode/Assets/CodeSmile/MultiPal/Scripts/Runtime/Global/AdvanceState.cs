@@ -32,9 +32,9 @@ namespace CodeSmile.MultiPal.Global
 			m_IsAnyKeyDown = UnityEngine.Input.anyKey;
 
 			var shouldSkip = m_SkipInPlayMode && Application.isEditor;
-			#if DEBUG || DEVELOPMENT_BUILD
+#if DEBUG || DEVELOPMENT_BUILD
 			shouldSkip = shouldSkip || m_SkipInDevBuilds;
-			#endif
+#endif
 
 			// if skipping prevent the screen from flashing the scene's content, it's annoying, distracting, seizure inducing
 			if (shouldSkip)
@@ -60,12 +60,11 @@ namespace CodeSmile.MultiPal.Global
 					m_IsAnyKeyDown = true; // prevents calling the next method repeatedly
 					Debug.Log("goto next state (ANY button)");
 					GotoNextState();
-
 				}
 			}
 		}
 
-		private IEnumerator Wait(float seconds)
+		private IEnumerator Wait(Single seconds)
 		{
 			// wait at least for one frame
 			if (seconds <= 0f)

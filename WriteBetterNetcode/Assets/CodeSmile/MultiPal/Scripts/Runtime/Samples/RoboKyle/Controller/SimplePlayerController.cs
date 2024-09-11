@@ -38,9 +38,7 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 				AnimatorParameters.IsGrounded = CharController.isGrounded;
 			}
 			else
-			{
 				Debug.LogWarning("AnimParams still null");
-			}
 		}
 
 		private void ApplyMove()

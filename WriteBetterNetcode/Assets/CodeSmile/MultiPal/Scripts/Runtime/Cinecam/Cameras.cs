@@ -2,7 +2,6 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Components.Registry;
-using CodeSmile.MultiPal.Netcode;
 using CodeSmile.MultiPal.Players.Couch;
 using CodeSmile.MultiPal.Settings;
 using System;
@@ -86,7 +85,7 @@ namespace CodeSmile.MultiPal.Cinecam
 			{
 				OnLocalCouchPlayersSpawn(couchPlayers);
 
-				for (int playerIndex = 0; playerIndex<Constants.MaxCouchPlayers; playerIndex++)
+				for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
 				{
 					if (couchPlayers[playerIndex] != null)
 						OnCouchPlayerJoined(couchPlayers, playerIndex);

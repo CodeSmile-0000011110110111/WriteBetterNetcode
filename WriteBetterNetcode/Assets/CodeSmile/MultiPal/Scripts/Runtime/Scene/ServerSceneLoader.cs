@@ -127,7 +127,6 @@ namespace CodeSmile.MultiPal.Scene
 				m_LoadingSceneName = null;
 		}
 
-
 		private AsyncOperation LoadSceneAsync(SceneReference sceneRef)
 		{
 			if (m_LoadedScenes.Contains(sceneRef))

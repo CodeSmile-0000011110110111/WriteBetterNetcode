@@ -6,7 +6,6 @@ using CodeSmile.MultiPal.Netcode;
 using CodeSmile.MultiPal.Scene;
 using CodeSmile.MultiPal.Settings;
 using System;
-using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -51,15 +50,9 @@ namespace CodeSmile.MultiPal.Global
 			}
 		}
 
-		private void WentOnline()
-		{
-			EnterState(m_GameStates[3]);
-		}
+		private void WentOnline() => EnterState(m_GameStates[3]);
 
-		private void WentOffline()
-		{
-			EnterState(m_GameStates[2]);
-		}
+		private void WentOffline() => EnterState(m_GameStates[2]);
 
 		private async void EnterState(GameStateBase gameState)
 		{
