@@ -40,7 +40,7 @@ namespace CodeSmile.MultiPal.Global
 			if (shouldSkip)
 				Camera.main?.gameObject.SetActive(false);
 
-			var seconds = shouldSkip ? 0f : m_SecondsUntilNextScreen;
+			var seconds = shouldSkip ? 0.56f : m_SecondsUntilNextScreen;
 			StartCoroutine(Wait(seconds));
 		}
 
@@ -67,7 +67,11 @@ namespace CodeSmile.MultiPal.Global
 
 		private IEnumerator Wait(float seconds)
 		{
-			yield return new WaitForSeconds(seconds);
+			// wait at least for one frame
+			if (seconds <= 0f)
+				yield return new WaitForEndOfFrame();
+			else
+				yield return new WaitForSeconds(seconds);
 
 			Debug.Log($"goto next state (on timeout: {seconds}s)");
 			GotoNextState();

@@ -59,6 +59,10 @@ namespace CodeSmile.MultiPal.GUI
 			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
 			netcodeState.WentOffline += Show;
 			netcodeState.WentOnline += Hide;
+
+			// we may already be online eg via MPPM
+			if (netcodeState.IsOnline)
+				Hide();
 		}
 
 		private void UnregisterNetcodeStateEvents()

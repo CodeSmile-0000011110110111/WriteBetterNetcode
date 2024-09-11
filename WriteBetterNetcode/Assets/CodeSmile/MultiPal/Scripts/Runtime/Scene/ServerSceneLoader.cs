@@ -56,19 +56,14 @@ namespace CodeSmile.MultiPal.Scene
 
 		private void OnServerStarted()
 		{
-			Debug.Log("ServerSceneLoader: started");
-
 			var netMan = NetworkManager.Singleton;
 			m_IsOnline = true;
-			Debug.Assert(netMan.IsServer);
 
 			netMan.SceneManager.OnLoadEventCompleted += OnLoadCompletedForAll;
 		}
 
 		private void OnServerStopped(Boolean isHost)
 		{
-			Debug.Log("ServerSceneLoader: stopped");
-
 			var netMan = NetworkManager.Singleton;
 			if (netMan != null && netMan.SceneManager != null)
 				netMan.SceneManager.OnLoadEventCompleted -= OnLoadCompletedForAll;

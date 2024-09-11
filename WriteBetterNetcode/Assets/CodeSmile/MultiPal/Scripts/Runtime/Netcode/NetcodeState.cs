@@ -44,10 +44,22 @@ namespace CodeSmile.MultiPal.Netcode
 		private Var<RelayConfig> m_RelayConfigVar;
 		private Var<TransportConfig> m_TransportConfigVar;
 
+		public Boolean IsOnline { get; private set; }
+
 		private void Awake()
 		{
 			ComponentsRegistry.Set(this);
+
+			WentOnline += OnWentOnline;
+			WentOffline += OnWentOffline;
+
 			SetupStatemachine();
+		}
+
+		private void OnDestroy()
+		{
+			WentOnline -= OnWentOnline;
+			WentOffline -= OnWentOffline;
 		}
 
 		private void Start()
@@ -68,6 +80,9 @@ namespace CodeSmile.MultiPal.Netcode
 		}
 
 		private void Update() => m_Statemachine.Update();
+
+		private void OnWentOnline() => IsOnline = true;
+		private void OnWentOffline() => IsOnline = false;
 
 		private void SetupStatemachine()
 		{

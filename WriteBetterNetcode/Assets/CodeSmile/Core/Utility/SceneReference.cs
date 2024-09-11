@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Object = System.Object;
 
 namespace CodeSmile.Utility
@@ -17,11 +18,13 @@ namespace CodeSmile.Utility
 	public sealed class SceneReference : IEquatable<SceneReference>
 	{
 		[SerializeField] [HideInInspector] private String m_SceneName;
+		[SerializeField] [HideInInspector] private String m_ScenePath;
 
 		/// <summary>
 		///     The scene name of the assigned SceneAsset.
 		/// </summary>
 		public String SceneName => m_SceneName;
+		public String ScenePath => m_ScenePath;
 		public Boolean IsValid => String.IsNullOrWhiteSpace(m_SceneName) == false;
 		public static Boolean operator ==(SceneReference left, SceneReference right) => Equals(left, right);
 		public static Boolean operator !=(SceneReference left, SceneReference right) => !Equals(left, right);
@@ -35,6 +38,12 @@ namespace CodeSmile.Utility
 #endif
 		}
 
+		public SceneReference(Scene scene)
+		{
+			m_SceneName = scene.name;
+			m_ScenePath = scene.path;
+		}
+
 		public Boolean Equals(SceneReference other)
 		{
 			if (ReferenceEquals(null, other))
@@ -42,7 +51,7 @@ namespace CodeSmile.Utility
 			if (ReferenceEquals(this, other))
 				return true;
 
-			return m_SceneName == other.m_SceneName;
+			return m_ScenePath == other.m_ScenePath;
 		}
 
 		/// <summary>
@@ -57,11 +66,12 @@ namespace CodeSmile.Utility
 			if (m_SceneName != null)
 			{
 				var existsInBuildScenes = false;
-				var scenePath = AssetDatabase.GetAssetOrScenePath(SceneAsset).ToLower();
+				m_ScenePath = AssetDatabase.GetAssetOrScenePath(SceneAsset);
+
 				var buildScenes = EditorBuildSettings.scenes;
 				foreach (var buildScene in buildScenes)
 				{
-					if (buildScene.enabled && buildScene.path.ToLower() == scenePath)
+					if (buildScene.enabled && buildScene.path.ToLower() == m_ScenePath.ToLower())
 					{
 						existsInBuildScenes = true;
 						break;
@@ -80,7 +90,7 @@ namespace CodeSmile.Utility
 		public override Boolean Equals(Object obj) =>
 			ReferenceEquals(this, obj) || obj is SceneReference other && Equals(other);
 
-		public override Int32 GetHashCode() => m_SceneName != null ? m_SceneName.GetHashCode() : 0;
+		public override Int32 GetHashCode() => m_ScenePath != null ? m_ScenePath.GetHashCode() : 0;
 
 #if UNITY_EDITOR
 		[SerializeField] private SceneAsset m_SceneAsset;
@@ -134,7 +144,6 @@ namespace CodeSmile.Utility
 
 			internal static event Action OnSceneAssetChanged;
 		}
-
 #endif
 	}
 }

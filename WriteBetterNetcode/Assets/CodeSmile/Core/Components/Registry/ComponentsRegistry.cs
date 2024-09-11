@@ -84,7 +84,7 @@ namespace CodeSmile.Components.Registry
 				foreach (var completionSource in awaitables)
 					completionSource.SetResult(component);
 
-				s_AssignmentAwaitables[typeof(T)] = null;
+				s_AssignmentAwaitables.Remove(typeof(T));
 			}
 		}
 

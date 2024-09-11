@@ -4,6 +4,7 @@
 using CodeSmile.MultiPal.Animation;
 using CodeSmile.MultiPal.Settings;
 using System;
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
@@ -47,8 +48,15 @@ namespace CodeSmile.MultiPal.Players
 				m_AvatarInstance = Instantiate(prefab, transform);
 
 				if (m_AvatarInstance.TryGetComponent<IAnimatorController>(out var animCtrl))
-					animCtrl.Init(playerIndex, isOwner);
+					StartCoroutine(DeferAnimatorInit(animCtrl, playerIndex, isOwner));
 			}
+		}
+
+		private IEnumerator DeferAnimatorInit(IAnimatorController animCtrl, Int32 playerIndex, Boolean isOwner)
+		{
+			yield return new WaitForEndOfFrame();
+
+			animCtrl.Init(playerIndex, isOwner);
 		}
 
 		internal void OnAvatarIndexChanged(Byte _, Byte avatarIndex) =>

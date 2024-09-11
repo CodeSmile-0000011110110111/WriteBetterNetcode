@@ -39,7 +39,7 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 			}
 			else
 			{
-				Debug.LogWarning("AnimParams null");
+				Debug.LogWarning("AnimParams still null");
 			}
 		}
 
