@@ -12,16 +12,57 @@ namespace CodeSmile.MultiPal.Global
 	[DisallowMultipleComponent]
 	public sealed class AdvanceState : MonoBehaviour
 	{
-		[SerializeField] [Range(0f, 30f)] private Single m_SecondsToWait = 1f;
-		private void Start() => StartCoroutine(Wait());
-		private void OnValidate() => m_SecondsToWait = Mathf.Max(0f, m_SecondsToWait);
+		[SerializeField] [Range(0f, 10f)] private Single m_SecondsUntilNextScreen = 2f;
+		[SerializeField] private Boolean m_AllowSkipWithAnyButton = true;
 
-		private IEnumerator Wait()
+		[Tooltip("If enabled and running in the editor will advance to next state instantaneously.")]
+		[SerializeField] private Boolean m_SkipInPlayMode;
+
+		private Boolean m_IsAnyKeyDown;
+
+		private static void GotoNextState()
 		{
-			yield return new WaitForSeconds(m_SecondsToWait);
-
 			var gameState = ComponentsRegistry.Get<GameState>();
 			gameState.AdvanceState();
+		}
+
+		private void Start()
+		{
+			m_IsAnyKeyDown = UnityEngine.Input.anyKey;
+
+			var shouldSkip = m_SkipInPlayMode && Application.isEditor;
+			var seconds = shouldSkip ? 0f : m_SecondsUntilNextScreen;
+			StartCoroutine(Wait(seconds));
+
+			// if skipping prevent the screen from flashing the scene's content, it's annoying, distracting, seizure inducing
+			if (shouldSkip)
+				Camera.main.gameObject.SetActive(false);
+		}
+
+		private void OnValidate() => m_SecondsUntilNextScreen = Mathf.Max(0f, m_SecondsUntilNextScreen);
+
+		private void Update()
+		{
+			if (m_AllowSkipWithAnyButton)
+			{
+				if (m_IsAnyKeyDown)
+				{
+					// force user to release key before another "any key" press is accepted
+					m_IsAnyKeyDown = UnityEngine.Input.anyKey;
+				}
+				else if (UnityEngine.Input.anyKey)
+				{
+					m_IsAnyKeyDown = true; // prevents calling the next method repeatedly
+					GotoNextState();
+				}
+			}
+		}
+
+		private IEnumerator Wait(float seconds)
+		{
+			yield return new WaitForSeconds(seconds);
+
+			GotoNextState();
 		}
 	}
 }
