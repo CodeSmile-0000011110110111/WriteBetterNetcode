@@ -23,7 +23,7 @@ namespace CodeSmile.MultiPal.Utility
 			LoadSceneParameters parameters, Boolean mustCompleteNextFrame)
 		{
 			if (parameters.loadSceneMode == LoadSceneMode.Single)
-				throw new NotSupportedException(SingleSceneLoadNotSupportedMessage);
+				throw new NotSupportedException($"Scene 'sceneName' single-load => {SingleSceneLoadNotSupportedMessage}");
 
 			return base.LoadSceneAsyncByNameOrIndex(sceneName, sceneBuildIndex, parameters, mustCompleteNextFrame);
 		}

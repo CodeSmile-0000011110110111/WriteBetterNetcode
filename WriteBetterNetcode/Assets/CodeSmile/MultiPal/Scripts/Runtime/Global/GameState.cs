@@ -25,10 +25,6 @@ namespace CodeSmile.MultiPal.Global
 				throw new ArgumentException("no game states assigned!");
 
 			ComponentsRegistry.Set(this);
-
-			// all instantiated objects go in there, helps to see if there are any cleanup issues
-			var activeScene = SceneManager.CreateScene("Runtime Instances");
-			SceneManager.SetActiveScene(activeScene);
 		}
 
 		private void Start()

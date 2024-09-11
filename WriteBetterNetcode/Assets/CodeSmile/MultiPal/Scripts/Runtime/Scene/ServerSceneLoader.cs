@@ -134,10 +134,14 @@ namespace CodeSmile.MultiPal.Scene
 
 			Debug.Log($"Server LoadScene: {sceneRef.SceneName}");
 			m_LoadedScenes.Add(sceneRef);
-			var sceneManager = NetworkManager.Singleton.SceneManager;
-			var status = sceneManager.LoadScene(sceneRef.SceneName, LoadSceneMode.Additive);
+			var sceneManager = NetworkManager.Singleton?.SceneManager;
+			if (sceneManager != null)
+			{
+				var status = sceneManager.LoadScene(sceneRef.SceneName, LoadSceneMode.Additive);
 
-			// TODO
+				// TODO
+
+			}
 
 			//throw new NotImplementedException();
 			return null;
@@ -191,6 +195,8 @@ namespace CodeSmile.MultiPal.Scene
 
 			for (var i = 0; i < scenes.Length; i++)
 			{
+				Debug.Log($"scene {scenes[i]} build index {SceneUtility.GetBuildIndexByScenePath(scenes[i].ScenePath)}");
+
 				var asyncOp = load ? LoadSceneAsync(scenes[i]) : UnloadSceneAsync(scenes[i]);
 				if (asyncOp != null)
 					asyncOps.Add(asyncOp);
