@@ -85,6 +85,12 @@ namespace CodeSmile.MultiPal.Scene
 			}
 		}
 
+		public async Task UnloadAndLoadAdditiveScenesAsync(AdditiveScene[] scenes)
+		{
+			await UnloadScenesAsync(scenes);
+			await LoadScenesAsync(scenes);
+		}
+
 		private AsyncOperation LoadSceneAsync(SceneReference sceneRef)
 		{
 			ThrowIfSceneReferenceNotValid(sceneRef);
@@ -109,12 +115,6 @@ namespace CodeSmile.MultiPal.Scene
 			return SceneManager.UnloadSceneAsync(sceneRef.ScenePath);
 		}
 
-		public async Task UnloadAndLoadAdditiveScenesAsync(AdditiveScene[] scenes)
-		{
-			await UnloadScenesAsync(scenes);
-			await LoadScenesAsync(scenes);
-		}
-
 		private async Task UnloadScenesAsync(AdditiveScene[] scenesToKeep)
 		{
 			var scenesToUnload = new HashSet<SceneReference>(m_LoadedScenesLocal);
@@ -127,7 +127,9 @@ namespace CodeSmile.MultiPal.Scene
 			await UnloadScenesAsync(scenesToUnload.ToArray());
 		}
 
-		public async Task LoadScenesAsync(AdditiveScene[] scenes)
+		private async Task UnloadScenesAsync(SceneReference[] scenes) => await LoadOrUnloadScenesAsync(scenes, false);
+
+		private async Task LoadScenesAsync(AdditiveScene[] scenes)
 		{
 			var sceneRefsToLoad = new SceneReference[scenes.Length];
 			for (var i = 0; i < scenes.Length; i++)
@@ -136,9 +138,7 @@ namespace CodeSmile.MultiPal.Scene
 			await LoadOrUnloadScenesAsync(sceneRefsToLoad, true);
 		}
 
-		public async Task LoadScenesAsync(SceneReference[] scenes) => await LoadOrUnloadScenesAsync(scenes, true);
-
-		public async Task UnloadScenesAsync(SceneReference[] scenes) => await LoadOrUnloadScenesAsync(scenes, false);
+		private async Task LoadScenesAsync(SceneReference[] scenes) => await LoadOrUnloadScenesAsync(scenes, true);
 
 		private async Task LoadOrUnloadScenesAsync(SceneReference[] scenes, Boolean load)
 		{

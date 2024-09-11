@@ -84,7 +84,10 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 			}
 		}
 
-		public override void RemoteAnimatorParametersReceived(Byte[] animatorParameters) =>
-			m_AnimParams.Parameters = animatorParameters;
+		public override void RemoteAnimatorParametersReceived(Byte[] animatorParameters)
+		{
+			if (m_AnimParams != null)
+				m_AnimParams.Parameters = animatorParameters;
+		}
 	}
 }

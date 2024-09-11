@@ -16,8 +16,10 @@ using CodeSmile.Statemachine.Variable.Actions;
 using CodeSmile.Statemachine.Variable.Conditions;
 using System;
 using System.IO;
+using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CodeSmile.MultiPal.Netcode
 {
@@ -182,7 +184,7 @@ namespace CodeSmile.MultiPal.Netcode
 					new TransportSetup(m_NetcodeConfigVar, m_TransportConfigVar, m_RelayConfigVar),
 					new NetworkStart(m_NetcodeConfigVar))
 				.ToErrorState(offlineState)
-				.WithErrorActions(resetNetcodeState);
+				.WithErrorActions(resetNetcodeState, invokeWentOffline);
 
 			networkStartState.AddTransition("Server started")
 				.ToState(serverOnlineState)
@@ -222,7 +224,7 @@ namespace CodeSmile.MultiPal.Netcode
 			networkStopState.AddTransition("Network stopped")
 				.ToState(offlineState)
 				.WithConditions(new IsNetworkOffline())
-				.WithActions(resetNetcodeState);
+				.WithActions(resetNetcodeState, invokeWentOffline);
 		}
 
 		private void TryInvokeRelayJoinCodeAvailable()
