@@ -43,11 +43,7 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 			if (isOwner)
 			{
 				// hook up with character controller
-				Debug.LogWarning("init");
-				//var controllers = ComponentsRegistry.Get<PlayerControllers>();
 				var controllers = await ComponentsRegistry.GetAsync<PlayerControllers>();
-
-				Debug.LogWarning($"got it! {controllers}");
 				controllers.SetAnimatorParameters(playerIndex, m_AnimParams);
 				m_ClientSide.AnimatorParameters = m_AnimParams;
 			}

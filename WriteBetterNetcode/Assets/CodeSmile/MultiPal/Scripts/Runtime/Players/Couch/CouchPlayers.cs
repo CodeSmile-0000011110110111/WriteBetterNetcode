@@ -5,6 +5,7 @@ using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Input;
 using CodeSmile.MultiPal.Settings;
 using System;
+using System.Collections;
 using System.Threading.Tasks;
 using Unity.Netcode;
 using UnityEditor;
@@ -23,7 +24,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 	[DisallowMultipleComponent]
 	[RequireComponent(typeof(CouchPlayersClient), typeof(CouchPlayersServer))]
 	[RequireComponent(typeof(CouchPlayersVars))]
-	public sealed class CouchPlayers : NetworkBehaviour
+	public sealed class CouchPlayers : NetworkBehaviour, IEnumerable
 	{
 		public static event Action<CouchPlayers> OnLocalCouchPlayersSpawn;
 		public static event Action<CouchPlayers> OnLocalCouchPlayersDespawn;
@@ -49,6 +50,8 @@ namespace CodeSmile.MultiPal.Players.Couch
 			OnLocalCouchPlayersSpawn = null;
 			OnLocalCouchPlayersDespawn = null;
 		}
+
+		public IEnumerator GetEnumerator() => m_Players.GetEnumerator();
 
 		private void Awake()
 		{

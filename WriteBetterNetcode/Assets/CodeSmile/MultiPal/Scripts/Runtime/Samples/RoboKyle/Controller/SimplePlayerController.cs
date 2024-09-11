@@ -28,14 +28,15 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 			ApplyLook();
 			ApplyMove();
 
-			var currentPos = MotionTarget.localPosition;
-			currentPos.y = 0f;
+			if (AnimatorParameters != null)
+			{
+				var currentPos = MotionTarget.localPosition;
+				currentPos.y = 0f;
 
-			var speed = (previousPos - currentPos).magnitude * m_MotionMultiplier;
-			AnimatorParameters.MoveSpeed = Mathf.Min(1f, speed / 1f);
-			AnimatorParameters.IsGrounded = CharController.isGrounded;
-
-			//Debug.Log($"speed: {speed}, clamped: {Mathf.Min(1f, speed / 1f)}, delta: {Time.deltaTime}");
+				var speed = (previousPos - currentPos).magnitude * m_MotionMultiplier;
+				AnimatorParameters.MoveSpeed = Mathf.Min(1f, speed / 1f);
+				AnimatorParameters.IsGrounded = CharController.isGrounded;
+			}
 		}
 
 		private void ApplyMove()

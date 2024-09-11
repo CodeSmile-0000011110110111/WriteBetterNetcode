@@ -3,6 +3,7 @@
 
 using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Players.Couch;
+using CodeSmile.MultiPal.Settings;
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -17,14 +18,28 @@ namespace CodeSmile.MultiPal.GUI
 
 		private void Awake()
 		{
-			ThrowIfNotAssigned<DevMainMenu>(m_MainMenu);
-			ThrowIfNotAssigned<DevIngameMenu>(m_IngameMenu);
+			//ComponentsRegistry.Set(this);
+			//ThrowIfNotAssigned<DevMainMenu>(m_MainMenu);
+			//ThrowIfNotAssigned<DevIngameMenu>(m_IngameMenu);
 		}
 
 		private void Start()
 		{
 			CouchPlayers.OnLocalCouchPlayersSpawn += OnCouchSessionStarted;
 			CouchPlayers.OnLocalCouchPlayersDespawn += OnCouchSessionStopped;
+
+			// check if couchplayers have already spawned
+			var couchPlayers = ComponentsRegistry.Get<CouchPlayers>();
+			if (couchPlayers != null)
+			{
+				OnCouchSessionStarted(couchPlayers);
+
+				for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
+				{
+					if (couchPlayers[playerIndex] != null)
+						OnCouchPlayerJoined(couchPlayers, playerIndex);
+				}
+			}
 		}
 
 		private void OnDestroy()
@@ -41,6 +56,9 @@ namespace CodeSmile.MultiPal.GUI
 
 		private void OnCouchSessionStopped(CouchPlayers couchPlayers)
 		{
+			couchPlayers.OnCouchPlayerJoined -= OnCouchPlayerJoined;
+			couchPlayers.OnCouchPlayerLeaving -= OnCouchPlayerLeaving;
+
 			if (m_IngameMenu.IsVisible)
 				m_IngameMenu.Hide();
 		}
@@ -59,6 +77,10 @@ namespace CodeSmile.MultiPal.GUI
 
 		private void OnRequestToggleIngameMenu(Int32 playerIndex)
 		{
+			Debug.LogWarning(GetInstanceID());
+			Debug.LogWarning($"main: {m_MainMenu}");
+			Debug.LogWarning($"ingame: {m_IngameMenu}");
+			Debug.LogWarning($"ingame: {m_IngameMenu?.GetInstanceID()}");
 			m_IngameMenu.MenuPlayerIndex = playerIndex;
 			m_IngameMenu.ToggleVisible();
 

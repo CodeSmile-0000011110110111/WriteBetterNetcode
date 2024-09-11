@@ -30,7 +30,6 @@ namespace CodeSmile.MultiPal.PlayerController
 			if (m_ControllerPrefabs == null)
 				throw new MissingReferenceException(nameof(PlayerControllerPrefabs));
 
-			Debug.LogWarning("awake");
 			ComponentsRegistry.Set(this);
 
 			m_ControllerPrefabs.ValidatePrefabsHaveComponent<PlayerControllerBase>();
@@ -42,6 +41,22 @@ namespace CodeSmile.MultiPal.PlayerController
 		{
 			CouchPlayers.OnLocalCouchPlayersSpawn += OnLocalCouchPlayersSpawn;
 			CouchPlayers.OnLocalCouchPlayersDespawn += OnLocalCouchPlayersDespawn;
+
+			// check if couchplayers have already spawned
+			var couchPlayers = ComponentsRegistry.Get<CouchPlayers>();
+			if (couchPlayers != null)
+			{
+				OnLocalCouchPlayersSpawn(couchPlayers);
+
+				for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
+				{
+					if (couchPlayers[playerIndex] != null)
+					{
+						OnCouchPlayerJoining(couchPlayers, playerIndex);
+						OnCouchPlayerJoined(couchPlayers, playerIndex);
+					}
+				}
+			}
 		}
 
 		private void OnDestroy()
@@ -76,8 +91,10 @@ namespace CodeSmile.MultiPal.PlayerController
 		private void OnCouchPlayerJoined(CouchPlayers couchPlayers, Int32 playerIndex)
 		{
 			var player = couchPlayers[playerIndex];
-
 			var cameraTarget = player.Camera.TrackingTarget;
+			if (cameraTarget == null)
+				throw new ArgumentNullException($"player {playerIndex} camera tracking target");
+
 			SetPlayerControllerTargets(playerIndex, player.transform, cameraTarget);
 			SetControllerActive(playerIndex, 0);
 
