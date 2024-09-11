@@ -37,6 +37,10 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 				AnimatorParameters.MoveSpeed = Mathf.Min(1f, speed / 1f);
 				AnimatorParameters.IsGrounded = CharController.isGrounded;
 			}
+			else
+			{
+				Debug.LogWarning("AnimParams null");
+			}
 		}
 
 		private void ApplyMove()

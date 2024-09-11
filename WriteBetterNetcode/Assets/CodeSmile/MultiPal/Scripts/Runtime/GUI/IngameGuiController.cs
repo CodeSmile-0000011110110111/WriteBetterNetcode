@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2021-2024 Steffen Itterheim
+// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Components.Registry;
@@ -11,17 +11,11 @@ using UnityEngine;
 namespace CodeSmile.MultiPal.GUI
 {
 	[DisallowMultipleComponent]
-	public sealed class GuiController : MonoBehaviour
+	public sealed class IngameGuiController : MonoBehaviour
 	{
-		[SerializeField] private DevMainMenu m_MainMenu;
 		[SerializeField] private DevIngameMenu m_IngameMenu;
 
-		private void Awake()
-		{
-			//ComponentsRegistry.Set(this);
-			//ThrowIfNotAssigned<DevMainMenu>(m_MainMenu);
-			//ThrowIfNotAssigned<DevIngameMenu>(m_IngameMenu);
-		}
+		private void Awake() => ThrowIfNotAssigned<DevIngameMenu>(m_IngameMenu);
 
 		private void Start()
 		{
@@ -77,10 +71,6 @@ namespace CodeSmile.MultiPal.GUI
 
 		private void OnRequestToggleIngameMenu(Int32 playerIndex)
 		{
-			Debug.LogWarning(GetInstanceID());
-			Debug.LogWarning($"main: {m_MainMenu}");
-			Debug.LogWarning($"ingame: {m_IngameMenu}");
-			Debug.LogWarning($"ingame: {m_IngameMenu?.GetInstanceID()}");
 			m_IngameMenu.MenuPlayerIndex = playerIndex;
 			m_IngameMenu.ToggleVisible();
 

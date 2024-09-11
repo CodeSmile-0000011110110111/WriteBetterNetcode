@@ -15,8 +15,11 @@ EditorBuildSettings:
     path: Assets/CodeSmile/MultiPal/Scenes/+000_TitleScreen.unity
     guid: 4c56a6262b2108241899f8226b3feac8
   - enabled: 1
-    path: Assets/CodeSmile/MultiPal/Scenes/+100_MenuScreens.unity
+    path: Assets/CodeSmile/MultiPal/Scenes/+100_PregameMenus.unity
     guid: 3b99ee481d534b24797763bd2bf3a77c
+  - enabled: 1
+    path: Assets/CodeSmile/MultiPal/Scenes/+200_IngameMenus.unity
+    guid: ef13aac18bf91dc47bf861250848646e
   - enabled: 1
     path: Assets/CodeSmile/MultiPal/Scenes/+200_PlayerCameras.unity
     guid: 79e592116094c5b41882ad6fcea11296
