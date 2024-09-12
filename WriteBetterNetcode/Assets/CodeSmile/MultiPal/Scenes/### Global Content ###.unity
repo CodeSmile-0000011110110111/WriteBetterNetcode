@@ -644,7 +644,7 @@ MonoBehaviour:
   m_LogPropertyChanges: 0
   m_LogColor:
     serializedVersion: 2
-    rgba: 4287523416
+    rgba: 4291005037
 --- !u!1652712579 &3031036319996627609
 MultiplayerRolesData:
   m_ObjectHideFlags: 2

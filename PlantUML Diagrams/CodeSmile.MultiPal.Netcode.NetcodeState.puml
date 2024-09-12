@@ -69,7 +69,6 @@ state state3 {
 		state3_trans1 : ....
 		state3_trans1 : ==== ""ERR -> {Offline}""
 		state3_trans1 : ==== + ""ResetNetcodeState""
-		state3_trans1 : ==== + ""WentOffline.Invoke""
 	}
 	state "Server started" as state3_trans2
 	state state3_trans2 #line.dotted {
@@ -121,7 +120,6 @@ state state7 {
 		state7_trans0 : IsNetworkOffline
 		state7_trans0 : ....
 		state7_trans0 : ResetNetcodeState
-		state7_trans0 : WentOffline.Invoke
 	}
 }
 

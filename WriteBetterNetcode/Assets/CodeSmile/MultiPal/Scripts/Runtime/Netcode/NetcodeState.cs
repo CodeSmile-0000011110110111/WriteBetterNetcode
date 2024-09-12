@@ -113,18 +113,18 @@ namespace CodeSmile.MultiPal.Netcode
 			m_Statemachine.OnStateChange += args =>
 				Debug.Log($"<color=olive>[{Time.frameCount}] {m_Statemachine} changed from {args.PreviousState} to {args.ActiveState}");
 
-			var resetNetcodeState = new CompoundAction("ResetNetcodeState",
-				new SetFalse(relayInitOnceVar),
-				new SetNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None),
-				new RelayClearAllocationData(m_RelayConfigVar),
-				new LambdaAction(() => WentOffline?.Invoke()));
-
 			var invokeWentOnline = new LambdaAction($"{nameof(WentOnline)}.Invoke",
 				() => WentOnline?.Invoke());
 			var invokeWentOffline = new LambdaAction($"{nameof(WentOffline)}.Invoke",
 				() => WentOffline?.Invoke());
 			var tryInvokeRelayJoinCodeAvailable = new LambdaAction(nameof(TryInvokeRelayJoinCodeAvailable),
 				() => TryInvokeRelayJoinCodeAvailable());
+
+			var resetNetcodeState = new CompoundAction("ResetNetcodeState",
+				new SetFalse(relayInitOnceVar),
+				new SetNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None),
+				new RelayClearAllocationData(m_RelayConfigVar),
+				invokeWentOffline);
 
 			/* TODO (MAJOR ONES)
 			 * - forward events (eg join code available)
@@ -184,7 +184,7 @@ namespace CodeSmile.MultiPal.Netcode
 					new TransportSetup(m_NetcodeConfigVar, m_TransportConfigVar, m_RelayConfigVar),
 					new NetworkStart(m_NetcodeConfigVar))
 				.ToErrorState(offlineState)
-				.WithErrorActions(resetNetcodeState, invokeWentOffline);
+				.WithErrorActions(resetNetcodeState);
 
 			networkStartState.AddTransition("Server started")
 				.ToState(serverOnlineState)
@@ -224,7 +224,7 @@ namespace CodeSmile.MultiPal.Netcode
 			networkStopState.AddTransition("Network stopped")
 				.ToState(offlineState)
 				.WithConditions(new IsNetworkOffline())
-				.WithActions(resetNetcodeState, invokeWentOffline);
+				.WithActions(resetNetcodeState);
 		}
 
 		private void TryInvokeRelayJoinCodeAvailable()

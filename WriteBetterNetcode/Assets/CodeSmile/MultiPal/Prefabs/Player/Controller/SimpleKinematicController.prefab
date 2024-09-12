@@ -136,6 +136,7 @@ MonoBehaviour:
   m_MotionMultiplier: 15
   m_Gravity: -0.981
   m_InvertVertical: 0
+  m_PushOtherBodiesForce: 3.17
 --- !u!1001 &3812875176297213324
 PrefabInstance:
   m_ObjectHideFlags: 0
