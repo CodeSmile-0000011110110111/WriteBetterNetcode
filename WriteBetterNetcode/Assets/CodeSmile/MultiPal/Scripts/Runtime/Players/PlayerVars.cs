@@ -33,11 +33,7 @@ namespace CodeSmile.MultiPal.Players
 		}
 
 		[Rpc(SendTo.Server)]
-		private void AvatarIndexChangeServerRpc(Byte avatarIndex)
-		{
-			NetworkLog.LogInfo($"Change Avatar to {avatarIndex} for ID {NetworkObjectId}, owner: {OwnerClientId}");
-			m_AvatarIndexVar.Value = avatarIndex;
-		}
+		private void AvatarIndexChangeServerRpc(Byte avatarIndex) => m_AvatarIndexVar.Value = avatarIndex;
 
 		public override void OnNetworkSpawn()
 		{

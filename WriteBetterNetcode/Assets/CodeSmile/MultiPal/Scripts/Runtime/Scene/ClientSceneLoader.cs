@@ -98,7 +98,7 @@ namespace CodeSmile.MultiPal.Scene
 			if (m_LoadedScenesLocal.Contains(sceneRef))
 				return null;
 
-			Debug.Log($"Client LoadScene: {sceneRef.ScenePath}");
+			Debug.Log($"<color=green>Client LoadScene: {sceneRef.SceneName}");
 			m_LoadedScenesLocal.Add(sceneRef);
 			return SceneManager.LoadSceneAsync(sceneRef.ScenePath, LoadSceneMode.Additive);
 		}
@@ -110,7 +110,7 @@ namespace CodeSmile.MultiPal.Scene
 			if (m_LoadedScenesLocal.Contains(sceneRef) == false)
 				return null;
 
-			Debug.Log($"Client UnloadScene: {sceneRef.ScenePath}");
+			Debug.Log($"<color=orange>Client UnloadScene: {sceneRef.SceneName}");
 			m_LoadedScenesLocal.Remove(sceneRef);
 			return SceneManager.UnloadSceneAsync(sceneRef.ScenePath);
 		}
@@ -177,7 +177,6 @@ namespace CodeSmile.MultiPal.Scene
 			foreach (var asyncOp in asyncOps)
 				yield return asyncOp;
 
-			Debug.Log($"scene (un)load: all {asyncOps.Count()} async ops are done");
 			task.SetResult(true);
 		}
 

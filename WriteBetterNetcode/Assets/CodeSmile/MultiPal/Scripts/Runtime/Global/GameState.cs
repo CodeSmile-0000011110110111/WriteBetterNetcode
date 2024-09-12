@@ -54,14 +54,13 @@ namespace CodeSmile.MultiPal.Global
 		{
 			var clientSceneLoader = ComponentsRegistry.Get<ClientSceneLoader>();
 
-			Debug.Log($"[{Time.frameCount}] start client scene load: {gameState.name}");
+			Debug.Log($"<color=cyan> ================= GameState {gameState.name} =================");
 			await clientSceneLoader.UnloadAndLoadAdditiveScenesAsync(gameState.ClientScenes);
 
-			Debug.Log($"[{Time.frameCount}] start server scene load: {gameState.name}");
 			var serverSceneLoader = ComponentsRegistry.Get<ServerSceneLoader>();
 			await serverSceneLoader.UnloadAndLoadAdditiveScenesAsync(gameState.ServerScenes);
 
-			Debug.Log($"[{Time.frameCount}] scene load completed: {gameState.name}");
+			Debug.Log($"[{Time.frameCount}] GameState scene loading completed");
 		}
 
 		private void ExitState(GameStateBase gameState) {}

@@ -58,7 +58,6 @@ namespace CodeSmile.MultiPal.Global
 				else if (UnityEngine.Input.anyKey)
 				{
 					m_IsAnyKeyDown = true; // prevents calling the next method repeatedly
-					Debug.Log("goto next state (ANY button)");
 					GotoNextState();
 				}
 			}
@@ -72,7 +71,6 @@ namespace CodeSmile.MultiPal.Global
 			else
 				yield return new WaitForSeconds(seconds);
 
-			Debug.Log($"goto next state (on timeout: {seconds}s)");
 			GotoNextState();
 		}
 	}

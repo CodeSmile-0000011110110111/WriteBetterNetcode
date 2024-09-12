@@ -642,6 +642,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LogPropertyChanges: 0
+  m_LogColor:
+    serializedVersion: 2
+    rgba: 4287523416
 --- !u!1652712579 &3031036319996627609
 MultiplayerRolesData:
   m_ObjectHideFlags: 2

@@ -71,8 +71,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb982e1f8c604751a32d675ca9bd1624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MotionSensitivity: {x: -0.01, y: 0.06, z: -0.01}
+  m_Sideways:
+    Value: 0
+    Center: 0
+    Range: {x: -1, y: 1}
+    Wrap: 0
+    Recentering:
+      Enabled: 0
+      Wait: 0
+      Time: 0
+    Restrictions: 6
+  m_Vertical:
+    Value: 0
+    Center: 0
+    Range: {x: -1, y: 1}
+    Wrap: 0
+    Recentering:
+      Enabled: 0
+      Wait: 0
+      Time: 0
+    Restrictions: 6
+  m_Forward:
+    Value: 0
+    Center: 0
+    Range: {x: -1, y: 1}
+    Wrap: 0
+    Recentering:
+      Enabled: 0
+      Wait: 0
+      Time: 0
+    Restrictions: 6
+  m_Tilt:
+    Value: 0
+    Center: 0
+    Range: {x: -85, y: 85}
+    Wrap: 0
+    Recentering:
+      Enabled: 0
+      Wait: 0
+      Time: 0
+    Restrictions: 2
+  m_Pan:
+    Value: 0
+    Center: 0
+    Range: {x: -180, y: 180}
+    Wrap: 1
+    Recentering:
+      Enabled: 0
+      Wait: 0
+      Time: 0
+    Restrictions: 2
+  m_Roll:
+    Value: 0
+    Center: 0
+    Range: {x: -60, y: 60}
+    Wrap: 0
+    Recentering:
+      Enabled: 0
+      Wait: 0
+      Time: 0
+    Restrictions: 2
+  m_MoveSensitivity: {x: 0.05, y: 0.05, z: 0.05}
+  m_LookSensitivity: {x: 0.1, y: 0.07, z: 0}
+  m_MotionMultiplier: 10
   m_Gravity: -0.0008
+  m_InvertVertical: 0
 --- !u!1001 &3812875176297213324
 PrefabInstance:
   m_ObjectHideFlags: 0

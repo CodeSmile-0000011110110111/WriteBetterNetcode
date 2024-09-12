@@ -110,9 +110,21 @@ namespace CodeSmile.Components.Registry
 
 		private void LogComponents()
 		{
-			var sb = new StringBuilder("Registered components:\n");
-			foreach (var kvp in s_Components)
-				sb.AppendLine($"{kvp.Key.Name} (GO: '{kvp.Value.name}', ID: {kvp.Value.GetInstanceID()})");
+			var sb = new StringBuilder("ComponentsRegistry contains:\n");
+			if (s_Components != null)
+			{
+				sb.AppendLine($"{s_Components.Count} components:");
+				foreach (var kvp in s_Components)
+				{
+					var type = kvp.Key;
+					var component = kvp.Value;
+					sb.AppendLine($"<b>{type.Name}</b> (GO: '{component?.name}', ID: {component?.GetInstanceID()})");
+				}
+			}
+			else
+			{
+				sb.AppendLine("<no components>");
+			}
 
 			Debug.Log(sb.ToString());
 		}

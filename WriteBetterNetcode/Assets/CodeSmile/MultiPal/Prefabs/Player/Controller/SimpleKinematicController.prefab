@@ -131,11 +131,11 @@ MonoBehaviour:
       Wait: 0
       Time: 0
     Restrictions: 0
-  m_TranslationSensitivity: {x: 0.06, y: 0.06, z: 0.06}
-  m_RotationSensitivity: {x: 10, y: 10, z: 0}
+  m_MoveSensitivity: {x: 0.06, y: 0.06, z: 0.06}
+  m_LookSensitivity: {x: 0.125, y: 0.1, z: 0}
+  m_MotionMultiplier: 15
   m_Gravity: -0.981
   m_InvertVertical: 0
-  m_MotionMultiplier: 15
 --- !u!1001 &3812875176297213324
 PrefabInstance:
   m_ObjectHideFlags: 0

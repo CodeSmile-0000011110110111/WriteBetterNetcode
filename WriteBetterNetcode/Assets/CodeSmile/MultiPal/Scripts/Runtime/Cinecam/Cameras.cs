@@ -259,7 +259,7 @@ namespace CodeSmile.MultiPal.Cinecam
 
 		private void SetOtherCameraActive(Int32 cameraIndex)
 		{
-			Debug.Log($"SetOtherCameraActive: {cameraIndex}");
+			//Debug.Log($"SetOtherCameraActive: {cameraIndex}");
 			SetAllCamerasInactive(m_OtherCameras);
 			SetAllCamerasInactive(m_PlayerSplitCameras);
 			SetTargetGroupCameraActive(false);

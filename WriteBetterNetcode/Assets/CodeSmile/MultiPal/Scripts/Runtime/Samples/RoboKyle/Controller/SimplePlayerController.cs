@@ -57,8 +57,8 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 		public override void OnMove(InputAction.CallbackContext context)
 		{
 			var moveDir = context.ReadValue<Vector2>();
-			m_Sideways.Value = moveDir.x * TranslationSensitivity.x; // * Time.deltaTime;
-			m_Forward.Value = moveDir.y * TranslationSensitivity.z; // * Time.deltaTime;
+			m_Sideways.Value = moveDir.x * MoveSensitivity.x;
+			m_Forward.Value = moveDir.y * MoveSensitivity.z;
 			m_Sideways.Validate();
 			m_Forward.Validate();
 
@@ -81,8 +81,8 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 		public override void OnLook(InputAction.CallbackContext context)
 		{
 			var lookDir = context.ReadValue<Vector2>();
-			m_DeltaTilt = lookDir.y * RotationSensitivity.y * Time.deltaTime * (m_InvertVertical ? 1f : -1f);
-			m_DeltaPan = lookDir.x * RotationSensitivity.x * Time.deltaTime;
+			m_DeltaTilt = lookDir.y * LookSensitivity.y * (m_InvertVertical ? 1f : -1f);
+			m_DeltaPan = lookDir.x * LookSensitivity.x;
 		}
 
 		public override void OnCrouch(InputAction.CallbackContext context)
@@ -96,7 +96,7 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 		public override void OnJump(InputAction.CallbackContext context)
 		{
 			if (context.performed)
-				m_Vertical.Value = TranslationSensitivity.y;
+				m_Vertical.Value = MoveSensitivity.y;
 
 			if (AnimatorParameters != null)
 				AnimatorParameters.TriggerJump = context.performed;

@@ -7,6 +7,7 @@ using Unity.Cinemachine;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace CodeSmile.MultiPal.PlayerController
 {
@@ -28,8 +29,10 @@ namespace CodeSmile.MultiPal.PlayerController
 		[SerializeField] protected InputAxis m_Roll = DefaultRoll;
 
 		[Header("Sensitivity Scaling")]
-		[SerializeField] private Vector3 m_TranslationSensitivity = Vector3.one;
-		[SerializeField] private Vector3 m_RotationSensitivity = Vector3.one;
+		[FormerlySerializedAs("m_TranslationSensitivity")]
+		[SerializeField] private Vector3 m_MoveSensitivity = Vector3.one * 0.1f;
+		[FormerlySerializedAs("m_RotationSensitivity")]
+		[SerializeField] private Vector3 m_LookSensitivity = Vector3.one * 0.1f;
 
 		public AvatarAnimatorParameters AnimatorParameters { get; set; }
 
@@ -61,15 +64,15 @@ namespace CodeSmile.MultiPal.PlayerController
 			? CharController.velocity
 			: new Vector3(m_Sideways.Value, m_Vertical.Value, m_Forward.Value);
 
-		public Vector3 TranslationSensitivity
+		public Vector3 MoveSensitivity
 		{
-			get => m_TranslationSensitivity;
-			set => m_TranslationSensitivity = value;
+			get => m_MoveSensitivity;
+			set => m_MoveSensitivity = value;
 		}
-		public Vector3 RotationSensitivity
+		public Vector3 LookSensitivity
 		{
-			get => m_RotationSensitivity;
-			set => m_RotationSensitivity = value;
+			get => m_LookSensitivity;
+			set => m_LookSensitivity = value;
 		}
 
 		public virtual void OnMove(InputAction.CallbackContext context) {}

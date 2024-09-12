@@ -19,6 +19,7 @@ namespace CodeSmile.Components.Netcode
 	public sealed class NetworkEventLogger : MonoBehaviour
 	{
 		[SerializeField] private Boolean m_LogPropertyChanges = true;
+		[SerializeField] private Color32 m_LogColor = Color.gray;
 
 		private Boolean m_ListeningState;
 		private Boolean m_ShutdownInProgressState;
@@ -51,7 +52,7 @@ namespace CodeSmile.Components.Netcode
 			// Netcode 2.0+
 			//net.OnSessionOwnerPromoted += OnSessionOwnerPromoted;
 
-			Log($"{nameof(NetworkEventLogger)} subscribed to NetworkManager events ...");
+			//Log($"{nameof(NetworkEventLogger)} subscribed to NetworkManager events ...");
 #endif
 		}
 
@@ -149,7 +150,9 @@ namespace CodeSmile.Components.Netcode
 				serverTick = net.ServerTime.Tick;
 			}
 
-			Debug.Log($"[L:{localTick}|S:{serverTick}|F:{frameCount}] {message}");
+
+			var color = $"<color=#{m_LogColor.r:x02}{m_LogColor.g:x02}{m_LogColor.b:x02}>";
+			Debug.Log($"{color}[L:{localTick}|S:{serverTick}|F:{frameCount}] {message}");
 		}
 
 #if UNITY_EDITOR

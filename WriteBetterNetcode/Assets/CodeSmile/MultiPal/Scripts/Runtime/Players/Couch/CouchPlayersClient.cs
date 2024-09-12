@@ -44,7 +44,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 			var player = playerObj.GetComponent<Player>();
 
-			Debug.Log($"did spawn: {player.name} P{playerIndex} ID:{playerObj.NetworkObjectId}");
+			//Debug.Log($"did spawn: {player.name} P{playerIndex} ID:{playerObj.NetworkObjectId}");
 
 			// end awaitable task, and discard
 			m_SpawnTcs[playerIndex].SetResult(player);
