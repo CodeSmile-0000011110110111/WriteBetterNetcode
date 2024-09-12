@@ -138,26 +138,30 @@ namespace CodeSmile.MultiPal.Scene
 			if (m_IsServerOnline == false)
 				return;
 
-			Debug.Log($"Server: unload and load {additiveScenes?.Length}");
-			await UnloadScenesAsync(additiveScenes);
+			await UnloadAllScenesAsync(additiveScenes);
 			await LoadScenesAsync(additiveScenes);
 		}
 
-		private async Task UnloadScenesAsync(AdditiveScene[] scenesToKeep)
+		public async Task UnloadAllScenesAsync(AdditiveScene[] scenesToKeep = null)
 		{
+			if (m_IsServerOnline == false)
+				return;
+
 			var scenesToUnload = new HashSet<SceneReference>(m_SynchedScenes);
-			foreach (var scene in scenesToKeep)
+
+			if (scenesToKeep != null)
 			{
-				if (scene.ForceReload == false)
-					scenesToUnload.Remove(scene.Reference);
+				foreach (var scene in scenesToKeep)
+				{
+					if (scene.ForceReload == false)
+						scenesToUnload.Remove(scene.Reference);
+				}
 			}
 
-			await UnloadScenesAsync(scenesToUnload.ToArray());
+			await LoadOrUnloadScenesAsync(scenesToUnload.ToArray(), false);
 		}
 
-		private async Task UnloadScenesAsync(SceneReference[] scenes) => await LoadOrUnloadScenesAsync(scenes, false);
-
-		private async Task LoadScenesAsync(AdditiveScene[] scenes)
+		public async Task LoadScenesAsync(AdditiveScene[] scenes)
 		{
 			if (m_IsServerOnline == false)
 				return;
@@ -169,12 +173,12 @@ namespace CodeSmile.MultiPal.Scene
 			await LoadOrUnloadScenesAsync(sceneRefsToLoad, true);
 		}
 
-		private async Task LoadScenesAsync(SceneReference[] scenes) => await LoadOrUnloadScenesAsync(scenes, true);
-
 		private async Task LoadOrUnloadScenesAsync(SceneReference[] scenes, Boolean load)
 		{
-			var asyncOps = new List<AsyncOperation>();
+			if (scenes == null || scenes.Length == 0)
+				return;
 
+			var asyncOps = new List<AsyncOperation>();
 			for (var i = 0; i < scenes.Length; i++)
 			{
 				Debug.Log($"LoadOrUnloadScenesAsync: {scenes[i].SceneName}");
@@ -193,9 +197,6 @@ namespace CodeSmile.MultiPal.Scene
 		private void OnLoadCompletedForAll(String sceneName, LoadSceneMode loadMode, List<UInt64> clientsCompleted,
 			List<UInt64> clientsTimedOut)
 		{
-			Debug.Log($"{nameof(ServerSceneLoader)} OnLoadCompletedForAll: {sceneName} " +
-			          $"(loading: {m_LoadingSceneName}), timed out: {clientsTimedOut.Count}");
-
 			if (sceneName == m_LoadingSceneName)
 				m_LoadingSceneName = null;
 		}

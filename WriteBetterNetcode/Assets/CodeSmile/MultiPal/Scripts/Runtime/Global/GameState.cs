@@ -54,7 +54,7 @@ namespace CodeSmile.MultiPal.Global
 		{
 			var clientSceneLoader = ComponentsRegistry.Get<ClientSceneLoader>();
 
-			Debug.Log($"<color=cyan> ================= GameState {gameState.name} =================");
+			Debug.Log($"<color=cyan> ================= GameState {gameState.name} =================</color>");
 			await clientSceneLoader.UnloadAndLoadAdditiveScenesAsync(gameState.ClientScenes);
 
 			var serverSceneLoader = ComponentsRegistry.Get<ServerSceneLoader>();

@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections;
+using System.Text;
 using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
@@ -19,7 +20,8 @@ namespace CodeSmile.Components.Netcode
 	public sealed class NetworkEventLogger : MonoBehaviour
 	{
 		[SerializeField] private Boolean m_LogPropertyChanges = true;
-		[SerializeField] private Color32 m_LogColor = Color.gray;
+		[SerializeField] private Boolean m_LogSceneEvents = true;
+		[SerializeField] private Color32 m_LogTextColor = Color.gray;
 
 		private Boolean m_ListeningState;
 		private Boolean m_ShutdownInProgressState;
@@ -51,8 +53,6 @@ namespace CodeSmile.Components.Netcode
 
 			// Netcode 2.0+
 			//net.OnSessionOwnerPromoted += OnSessionOwnerPromoted;
-
-			//Log($"{nameof(NetworkEventLogger)} subscribed to NetworkManager events ...");
 #endif
 		}
 
@@ -70,6 +70,10 @@ namespace CodeSmile.Components.Netcode
 				net.OnConnectionEvent -= OnConnectionEvent;
 				net.OnTransportFailure -= OnTransportFailure;
 				//net.OnSessionOwnerPromoted -= OnSessionOwnerPromoted;
+
+				var sceneManager = net.SceneManager;
+				if (sceneManager != null)
+					sceneManager.OnSceneEvent -= OnSceneEvent;
 			}
 		}
 
@@ -77,6 +81,18 @@ namespace CodeSmile.Components.Netcode
 		{
 			if (m_LogPropertyChanges)
 				LogPropertyChanges();
+		}
+
+		private void RegisterSceneEventCallback(Boolean register)
+		{
+			var sceneManager = NetworkManager.Singleton?.SceneManager;
+			if (sceneManager != null)
+			{
+				if (m_LogSceneEvents && register)
+					sceneManager.OnSceneEvent += OnSceneEvent;
+				else
+					sceneManager.OnSceneEvent -= OnSceneEvent;
+			}
 		}
 
 		private void LogPropertyChanges()
@@ -122,10 +138,30 @@ namespace CodeSmile.Components.Netcode
 			}
 		}
 
-		private void OnServerStarted() => Log("OnServerStarted()");
-		private void OnServerStopped(Boolean isHost) => Log($"OnServerStopped(isHost: {isHost})");
-		private void OnClientStarted() => Log("OnClientStarted()");
-		private void OnClientStopped(Boolean isHost) => Log($"OnClientStopped(isHost: {isHost})");
+		private void OnServerStarted()
+		{
+			Log("OnServerStarted()");
+			RegisterSceneEventCallback(true);
+		}
+
+		private void OnServerStopped(Boolean isHost)
+		{
+			Log($"OnServerStopped(isHost: {isHost})");
+			RegisterSceneEventCallback(false);
+		}
+
+		private void OnClientStarted()
+		{
+			Log("OnClientStarted()");
+			RegisterSceneEventCallback(true);
+		}
+
+		private void OnClientStopped(Boolean isHost)
+		{
+			Log($"OnClientStopped(isHost: {isHost})");
+			RegisterSceneEventCallback(false);
+		}
+
 		private void OnClientConnected(UInt64 clientId) => Log($"OnClientConnected(clientId: {clientId})");
 		private void OnClientDisconnect(UInt64 clientId) => Log($"OnClientDisconnect(clientId: {clientId})");
 
@@ -136,6 +172,38 @@ namespace CodeSmile.Components.Netcode
 
 		private void OnSessionOwnerPromoted(UInt64 sessionownerpromoted) =>
 			Log($"OnSessionOwnerPromoted(sessionownerpromoted: {sessionownerpromoted})");
+
+		private void OnSceneEvent(SceneEvent sceneEvent)
+		{
+			var completed = String.Empty;
+			var timedOut = String.Empty;;
+			var completedCount = sceneEvent.ClientsThatCompleted?.Count;
+			var timedOutCount = sceneEvent.ClientsThatTimedOut?.Count;
+
+			if (completedCount > 0)
+			{
+				var first = true;
+				var sb = new StringBuilder();
+				foreach (var clientId in sceneEvent.ClientsThatCompleted)
+					sb.Append($"{(first ? "" : ", ")}{clientId}");
+
+				completed = $"(completed clients: {sb})";
+			}
+
+			if (timedOutCount > 0)
+			{
+				var first = true;
+				var sb = new StringBuilder();
+				foreach (var clientId in sceneEvent.ClientsThatTimedOut)
+					sb.Append($"{(first ? "" : ", ")}{clientId}");
+
+				timedOut = $"<color=red>(TIMEOUT clients: {sb})<color>";
+			}
+
+			var prefix = sceneEvent.ClientId != 0 ? $"Client {sceneEvent.ClientId}: " : "";
+			Log($"{prefix}{sceneEvent.SceneEventType} {sceneEvent.SceneName} ({sceneEvent.LoadSceneMode})" +
+			    $" {completed} {timedOut}");
+		}
 
 		private void Log(String message)
 		{
@@ -150,9 +218,8 @@ namespace CodeSmile.Components.Netcode
 				serverTick = net.ServerTime.Tick;
 			}
 
-
-			var color = $"<color=#{m_LogColor.r:x02}{m_LogColor.g:x02}{m_LogColor.b:x02}>";
-			Debug.Log($"{color}[L:{localTick}|S:{serverTick}|F:{frameCount}] {message}");
+			var color = $"<color=#{m_LogTextColor.r:x02}{m_LogTextColor.g:x02}{m_LogTextColor.b:x02}>";
+			Debug.Log($"{color}[L:{localTick}|S:{serverTick}|F:{frameCount}] {message}</color>");
 		}
 
 #if UNITY_EDITOR

@@ -110,8 +110,8 @@ namespace CodeSmile.MultiPal.Netcode
 
 			// for testing
 			//m_Statemachine.Logging = true;
-			m_Statemachine.OnStateChange += args =>
-				Debug.Log($"<color=olive>[{Time.frameCount}] {m_Statemachine} changed from {args.PreviousState} to {args.ActiveState}");
+			m_Statemachine.OnStateChange += args => Debug.Log($"<color=olive>[{Time.frameCount}] {m_Statemachine} changed " +
+			                                                  $"from {args.PreviousState} to {args.ActiveState}</color>");
 
 			var invokeWentOnline = new LambdaAction($"{nameof(WentOnline)}.Invoke",
 				() => WentOnline?.Invoke());

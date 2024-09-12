@@ -61,7 +61,8 @@ namespace CodeSmile.MultiPal.Scene
 
 			// unload all remote additive scenes when going offline
 			Debug.LogWarning($"unload {m_LoadedScenesRemote.Count()} remote scenes");
-			await UnloadScenesAsync(m_LoadedScenesRemote.ToArray());
+
+			await LoadOrUnloadScenesAsync(m_LoadedScenesRemote.ToArray(), false);
 		}
 
 		private void OnNetworkSceneEvent(SceneEvent sceneEvent)
@@ -98,7 +99,7 @@ namespace CodeSmile.MultiPal.Scene
 			if (m_LoadedScenesLocal.Contains(sceneRef))
 				return null;
 
-			Debug.Log($"<color=green>Client LoadScene: {sceneRef.SceneName}");
+			Debug.Log($"<color=green>Client LoadScene: {sceneRef.SceneName}</color>");
 			m_LoadedScenesLocal.Add(sceneRef);
 			return SceneManager.LoadSceneAsync(sceneRef.ScenePath, LoadSceneMode.Additive);
 		}
@@ -110,7 +111,7 @@ namespace CodeSmile.MultiPal.Scene
 			if (m_LoadedScenesLocal.Contains(sceneRef) == false)
 				return null;
 
-			Debug.Log($"<color=orange>Client UnloadScene: {sceneRef.SceneName}");
+			Debug.Log($"<color=orange>Client UnloadScene: {sceneRef.SceneName}</color>");
 			m_LoadedScenesLocal.Remove(sceneRef);
 			return SceneManager.UnloadSceneAsync(sceneRef.ScenePath);
 		}
@@ -124,10 +125,8 @@ namespace CodeSmile.MultiPal.Scene
 					scenesToUnload.Remove(scene.Reference);
 			}
 
-			await UnloadScenesAsync(scenesToUnload.ToArray());
+			await LoadOrUnloadScenesAsync(scenesToUnload.ToArray(), false);
 		}
-
-		private async Task UnloadScenesAsync(SceneReference[] scenes) => await LoadOrUnloadScenesAsync(scenes, false);
 
 		private async Task LoadScenesAsync(AdditiveScene[] scenes)
 		{
@@ -137,8 +136,6 @@ namespace CodeSmile.MultiPal.Scene
 
 			await LoadOrUnloadScenesAsync(sceneRefsToLoad, true);
 		}
-
-		private async Task LoadScenesAsync(SceneReference[] scenes) => await LoadOrUnloadScenesAsync(scenes, true);
 
 		private async Task LoadOrUnloadScenesAsync(SceneReference[] scenes, Boolean load)
 		{
