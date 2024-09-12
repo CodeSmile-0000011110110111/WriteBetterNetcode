@@ -11,20 +11,20 @@ using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using EngineSceneManager = UnityEngine.SceneManagement.SceneManager;
 
 namespace CodeSmile.MultiPal.Scene
 {
 	[DisallowMultipleComponent]
+	[RequireComponent(typeof(ClientSceneLoader))]
 	public sealed class ServerSceneLoader : MonoBehaviour
 	{
-		[Header("Debug")]
-		[Tooltip("If checked, any scene loaded will be logged to the console.")]
-		[SerializeField] private Boolean m_LogScenesBeingLoaded;
 		private readonly HashSet<SceneReference> m_SynchedScenes = new();
 
-		private SceneOperation m_SceneOperationMode;
-		private Queue<SceneReference> m_ScenesProcessing;
+		private Queue<ProcessingScene> m_ScenesProcessing;
 		private TaskCompletionSource<Boolean> m_TaskInProgress;
+
+		private ClientSceneLoader m_ClientLoader;
 
 		private Boolean m_IsServerOnline;
 		private Boolean m_IsSceneEventCompleted;
@@ -32,20 +32,22 @@ namespace CodeSmile.MultiPal.Scene
 		private NetworkManager NetworkManager => NetworkManager.Singleton;
 		private NetworkSceneManager SceneManager => NetworkManager.Singleton?.SceneManager;
 
-		private void Awake() => ComponentsRegistry.Set(this);
+		public Boolean IsProcessingEvents => m_ScenesProcessing != null;
+
+		private void Awake()
+		{
+			ComponentsRegistry.Set(this);
+			m_ClientLoader = GetComponent<ClientSceneLoader>();
+		}
 
 		private void Start() => RegisterCallbacks();
-
-		private void OnDestroy()
-		{
-			EndLoadAdditiveScenes();
-			UnregisterCallbacks();
-		}
 
 		private void RegisterCallbacks()
 		{
 			NetworkManager.OnServerStarted += OnServerStarted;
 			NetworkManager.OnServerStopped += OnServerStopped;
+			NetworkManager.OnClientStarted += OnClientStarted;
+			NetworkManager.OnClientStopped += OnClientStopped;
 		}
 
 		private void UnregisterCallbacks()
@@ -54,15 +56,17 @@ namespace CodeSmile.MultiPal.Scene
 			{
 				NetworkManager.OnServerStarted -= OnServerStarted;
 				NetworkManager.OnServerStopped -= OnServerStopped;
+				NetworkManager.OnClientStarted -= OnClientStarted;
+				NetworkManager.OnClientStopped -= OnClientStopped;
 			}
 		}
 
 		private void OnServerStarted()
 		{
 			m_IsServerOnline = true;
-			SceneManager.SetClientSynchronizationMode(LoadSceneMode.Additive);
-			SceneManager.OnSceneEvent += OnNetworkSceneEvent;
-			//SceneManager.VerifySceneBeforeLoading += VerifySceneBeforeLoading;
+			SceneManager.OnSceneEvent += OnServerSceneEvents;
+			SceneManager.VerifySceneBeforeLoading += ServerVerifySceneBeforeLoading;
+			SceneManager.VerifySceneBeforeUnloading += ServerVerifySceneBeforeUnloading;
 		}
 
 		private void OnServerStopped(Boolean isHost)
@@ -70,18 +74,66 @@ namespace CodeSmile.MultiPal.Scene
 			m_IsServerOnline = false;
 			if (SceneManager != null)
 			{
-				SceneManager.OnSceneEvent -= OnNetworkSceneEvent;
-				//SceneManager.VerifySceneBeforeLoading -= VerifySceneBeforeLoading;
+				SceneManager.OnSceneEvent -= OnServerSceneEvents;
+				SceneManager.VerifySceneBeforeLoading -= ServerVerifySceneBeforeLoading;
+				SceneManager.VerifySceneBeforeUnloading -= ServerVerifySceneBeforeUnloading;
 			}
 
 			StopAllCoroutines();
-			EndLoadAdditiveScenes();
+			StopProcessing();
+			LocallyUnloadSynchedScenes();
 		}
 
-		private void EndLoadAdditiveScenes()
+		private Boolean ServerVerifySceneBeforeUnloading(UnityEngine.SceneManagement.Scene scene)
 		{
-			Debug.Log($"{nameof(ServerSceneLoader)} EndLoadAdditiveScenes");
+			Debug.Log($"SERVER VerifyScene before UNLOAD: {scene.name}");
+			return scene.buildIndex != 0;
+		}
 
+		private Boolean ServerVerifySceneBeforeLoading(Int32 sceneIndex, String sceneName, LoadSceneMode loadMode)
+		{
+			Debug.Log($"SERVER VerifyScene before LOAD: {sceneName} {loadMode} index: {sceneIndex}");
+			return sceneIndex != 0;
+		}
+
+		private void OnClientStarted()
+		{
+			if (NetworkManager.IsHost == false)
+				SceneManager.OnSceneEvent += OnClientSceneEvents;
+
+			SceneManager.VerifySceneBeforeLoading += ClientVerifySceneBeforeLoading;
+			SceneManager.VerifySceneBeforeUnloading += ClientVerifySceneBeforeUnloading;
+		}
+
+		private void OnClientStopped(Boolean isHost)
+		{
+			if (isHost == false)
+			{
+				if (SceneManager != null)
+				{
+					SceneManager.OnSceneEvent -= OnClientSceneEvents;
+					SceneManager.VerifySceneBeforeLoading -= ClientVerifySceneBeforeLoading;
+					SceneManager.VerifySceneBeforeUnloading -= ClientVerifySceneBeforeUnloading;
+				}
+
+				LocallyUnloadSynchedScenes();
+			}
+		}
+
+		private Boolean ClientVerifySceneBeforeUnloading(UnityEngine.SceneManagement.Scene scene)
+		{
+			Debug.Log($"CLIENT VerifyScene before UNLOAD: {scene.name}");
+			return scene.buildIndex != 0;
+		}
+
+		private Boolean ClientVerifySceneBeforeLoading(Int32 sceneIndex, String sceneName, LoadSceneMode loadMode)
+		{
+			Debug.Log($"CLIENT VerifyScene before LOAD: {sceneName} {loadMode} index: {sceneIndex}");
+			return sceneIndex != 0;
+		}
+
+		private void StopProcessing()
+		{
 			m_ScenesProcessing = null;
 
 			if (m_TaskInProgress != null)
@@ -91,48 +143,23 @@ namespace CodeSmile.MultiPal.Scene
 			}
 		}
 
-		private Boolean VerifySceneBeforeLoading(Int32 sceneIndex, String sceneName, LoadSceneMode loadMode)
+		private void LocallyUnloadSynchedScenes()
 		{
-			Debug.Log($"VerifyScene {sceneIndex} {sceneName} {loadMode}");
-			return true;
+			if (m_SynchedScenes != null)
+			{
+				foreach (var sceneReference in m_SynchedScenes)
+				{
+					var scene = EngineSceneManager.GetSceneByPath(sceneReference.ScenePath);
+					if (scene.IsValid() && scene.isLoaded)
+					{
+						Debug.Log($"Local unload of: {sceneReference.SceneName}");
+						EngineSceneManager.UnloadSceneAsync(sceneReference.ScenePath);
+					}
+				}
+
+				m_SynchedScenes.Clear();
+			}
 		}
-
-		// private void BeginLoadAdditiveScenes()
-		// {
-		// 	// queue the additive scenes since we can only load one at a time
-		// 	m_ScenesToLoad = new Queue<SceneReference>();
-		// 	foreach (var sceneReference in m_AdditiveScenes)
-		// 	{
-		// 		if (sceneReference != null)
-		// 			m_ScenesToLoad.Enqueue(sceneReference);
-		// 	}
-		//
-		// 	// Start working on the queue
-		// 	StartCoroutine(LoadAdditiveScenesRoutine());
-		// }
-
-		// private IEnumerator LoadAdditiveScenesRoutine()
-		// {
-		// 	var sceneMan = NetworkManager.Singleton.SceneManager;
-		//
-		// 	while (m_ScenesToLoad.Count > 0)
-		// 	{
-		// 		// single scene is probably still loading, wait for that to finish ...
-		// 		if (m_LoadingSceneName != null)
-		// 			yield return new WaitUntil(() => m_LoadingSceneName == null);
-		//
-		// 		m_LoadingSceneName = m_ScenesToLoad.Dequeue().SceneName;
-		// 		if (m_LogScenesBeingLoaded)
-		// 			NetworkLog.LogInfo($"{nameof(ServerSceneLoader)} adding: {m_LoadingSceneName}");
-		//
-		// 		sceneMan.LoadScene(m_LoadingSceneName, LoadSceneMode.Additive);
-		//
-		// 		// wait until load event marks the load as complete, which sets the field to null
-		// 		yield return new WaitUntil(() => m_LoadingSceneName == null);
-		// 	}
-		//
-		// 	EndLoadAdditiveScenes();
-		// }
 
 		public async Task UnloadScenesAsync(SceneReference[] scenesToUnload) =>
 			await InternalLoadUnloadScenesAsync(scenesToUnload, SceneOperation.Unload);
@@ -148,15 +175,15 @@ namespace CodeSmile.MultiPal.Scene
 			if (scenes == null || scenes.Length == 0)
 				return;
 
-			if (m_TaskInProgress != null || m_ScenesProcessing != null)
+			if (IsProcessingEvents)
 			{
-				Debug.LogError("scene load/unload operation already in progress!");
+				Debug.LogError("Scene load/unload event in progress!");
 				return;
 			}
 
-			m_SceneOperationMode = operation;
-			m_ScenesProcessing = new Queue<SceneReference>(scenes);
 			m_TaskInProgress = new TaskCompletionSource<Boolean>();
+			m_ScenesProcessing = new Queue<ProcessingScene>();
+			EnqueueScenes(scenes, operation);
 
 			ProcessNextSceneInQueue();
 
@@ -164,25 +191,28 @@ namespace CodeSmile.MultiPal.Scene
 			m_TaskInProgress = null;
 		}
 
+		private void EnqueueScenes(SceneReference[] scenes, SceneOperation operation)
+		{
+			foreach (var sceneRef in scenes)
+				m_ScenesProcessing.Enqueue(new ProcessingScene { SceneRef = sceneRef, Operation = operation });
+		}
+
 		private void ProcessNextSceneInQueue()
 		{
-			Debug.Log(
-				$"Scenes in queue: {m_ScenesProcessing.Count}, next: {(m_ScenesProcessing.Count > 0 ? m_ScenesProcessing.Peek() : null)}, mode: {m_SceneOperationMode}");
-
 			if (m_ScenesProcessing.Count > 0)
 			{
 				m_IsSceneEventCompleted = false;
 
-				var sceneRef = m_ScenesProcessing.Dequeue();
-				if (m_SceneOperationMode == SceneOperation.Load)
+				var processingScene = m_ScenesProcessing.Dequeue();
+				if (processingScene.Operation == SceneOperation.Load)
 				{
-					Debug.Log($"Server will load: {sceneRef.SceneName}");
-					InternalLoadQueuedSceneAsync(sceneRef);
+					Debug.Log($"Server will load: {processingScene.SceneRef.SceneName}");
+					InternalLoadQueuedSceneAsync(processingScene.SceneRef);
 				}
 				else
 				{
-					Debug.Log($"Server will unload: {sceneRef.SceneName}");
-					InternalUnloadQueuedSceneAsync(sceneRef);
+					Debug.Log($"Server will unload: {processingScene.SceneRef.SceneName}");
+					InternalUnloadQueuedSceneAsync(processingScene.SceneRef);
 				}
 			}
 			else
@@ -239,7 +269,7 @@ namespace CodeSmile.MultiPal.Scene
 			ProcessNextSceneInQueue();
 		}
 
-		private void OnNetworkSceneEvent(SceneEvent sceneEvent)
+		private void OnServerSceneEvents(SceneEvent sceneEvent)
 		{
 			switch (sceneEvent.SceneEventType)
 			{
@@ -249,29 +279,37 @@ namespace CodeSmile.MultiPal.Scene
 				case SceneEventType.Unload:
 					StartCoroutine(ProcessNextSceneInQueueAfterCurrentEventCompleted());
 					break;
-				case SceneEventType.Synchronize:
-					break;
-				case SceneEventType.ReSynchronize:
-					break;
-				case SceneEventType.LoadEventCompleted:
-					break;
-				case SceneEventType.UnloadEventCompleted:
-					break;
 				case SceneEventType.LoadComplete:
 					m_IsSceneEventCompleted = true;
 					break;
 				case SceneEventType.UnloadComplete:
 					m_IsSceneEventCompleted = true;
 					break;
-				case SceneEventType.SynchronizeComplete:
-					break;
-				case SceneEventType.ActiveSceneChanged:
-					break;
-				case SceneEventType.ObjectSceneChanged:
-					break;
-				default:
-					throw new ArgumentOutOfRangeException();
 			}
+		}
+
+		private void OnClientSceneEvents(SceneEvent sceneEvent)
+		{
+			if (m_ClientLoader.IsSceneLoaded(sceneEvent.SceneName))
+				return;
+
+			switch (sceneEvent.SceneEventType)
+			{
+				case SceneEventType.LoadComplete:
+					Debug.Log($"Client loaded sync scene: {sceneEvent.SceneName}");
+					m_SynchedScenes.Add(new SceneReference(sceneEvent.Scene));
+					break;
+				case SceneEventType.UnloadComplete:
+					Debug.Log($"Client unloaded sync scene: {sceneEvent.SceneName}");
+					m_SynchedScenes.Remove(new SceneReference(sceneEvent.Scene));
+					break;
+			}
+		}
+
+		private sealed class ProcessingScene
+		{
+			public SceneReference SceneRef;
+			public SceneOperation Operation;
 		}
 
 		private enum SceneOperation

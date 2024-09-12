@@ -4,7 +4,6 @@
 using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Scene;
 using CodeSmile.Utility;
-using System;
 using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
@@ -27,6 +26,7 @@ namespace CodeSmile.MultiPal.GUI
 		private Button UnloadButton3 => m_Root.Q<Button>("Unload3");
 		private Button LoadAllButton => m_Root.Q<Button>("LoadAll");
 		private Button UnloadAllButton => m_Root.Q<Button>("UnloadAll");
+		private Button ProvokeErrorButton => m_Root.Q<Button>("ProvokeError");
 
 		private ServerSceneLoader SceneLoader => ComponentsRegistry.Get<ServerSceneLoader>();
 
@@ -57,6 +57,7 @@ namespace CodeSmile.MultiPal.GUI
 			UnloadButton3.clicked += OnUnloadButton3Clicked;
 			LoadAllButton.clicked += OnLoadAllButtonClicked;
 			UnloadAllButton.clicked += OnUnloadAllButtonClicked;
+			ProvokeErrorButton.clicked += OnProvokeErrorButtonClicked;
 		}
 
 		private void UnregisterGuiEvents()
@@ -69,6 +70,7 @@ namespace CodeSmile.MultiPal.GUI
 			UnloadButton3.clicked -= OnUnloadButton3Clicked;
 			LoadAllButton.clicked -= OnLoadAllButtonClicked;
 			UnloadAllButton.clicked -= OnUnloadAllButtonClicked;
+			ProvokeErrorButton.clicked -= OnProvokeErrorButtonClicked;
 		}
 
 		private void OnLoadButton1Clicked() => SceneLoader.LoadScenesAsync(new[] { m_Scene1 });
@@ -79,5 +81,11 @@ namespace CodeSmile.MultiPal.GUI
 		private void OnUnloadButton2Clicked() => SceneLoader.UnloadScenesAsync(new[] { m_Scene2 });
 		private void OnUnloadButton3Clicked() => SceneLoader.UnloadScenesAsync(new[] { m_Scene3 });
 		private void OnUnloadAllButtonClicked() => SceneLoader.UnloadScenesAsync(new[] { m_Scene1, m_Scene2, m_Scene3 });
+
+		private void OnProvokeErrorButtonClicked()
+		{
+			OnLoadAllButtonClicked();
+			OnUnloadAllButtonClicked();
+		}
 	}
 }

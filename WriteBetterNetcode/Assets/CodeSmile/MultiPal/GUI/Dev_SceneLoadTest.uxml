@@ -17,5 +17,8 @@
             <engine:Button text="LoadAll" name="LoadAll" />
             <engine:Button text="UnloadAll" name="UnloadAll" enable-rich-text="false" />
         </engine:VisualElement>
+        <engine:VisualElement style="flex-direction: row; justify-content: space-evenly;">
+            <engine:Button text="Provoke Error" name="ProvokeError" />
+        </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

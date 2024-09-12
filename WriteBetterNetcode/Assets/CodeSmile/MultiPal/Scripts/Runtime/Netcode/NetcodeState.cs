@@ -16,8 +16,10 @@ using CodeSmile.Statemachine.Variable.Actions;
 using CodeSmile.Statemachine.Variable.Conditions;
 using System;
 using System.IO;
+using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CodeSmile.MultiPal.Netcode
 {
@@ -181,7 +183,8 @@ namespace CodeSmile.MultiPal.Netcode
 				.WithConditions(new IsNotListening())
 				.WithActions(
 					new TransportSetup(m_NetcodeConfigVar, m_TransportConfigVar, m_RelayConfigVar),
-					new NetworkStart(m_NetcodeConfigVar))
+					new NetworkStart(m_NetcodeConfigVar),
+					new LambdaAction(()=> NetworkManager.Singleton.SceneManager.SetClientSynchronizationMode(LoadSceneMode.Additive)))
 				.ToErrorState(offlineState)
 				.WithErrorActions(resetNetcodeState);
 

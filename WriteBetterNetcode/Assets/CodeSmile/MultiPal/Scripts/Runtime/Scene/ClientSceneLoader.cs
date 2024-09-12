@@ -177,6 +177,19 @@ namespace CodeSmile.MultiPal.Scene
 			task.SetResult(true);
 		}
 
+		public Boolean IsSceneLoaded(String sceneName)
+		{
+			if (m_LoadedScenesLocal != null)
+			{
+				foreach (var sceneReference in m_LoadedScenesLocal)
+				{
+					if (sceneReference.SceneName.Equals(sceneName) || sceneReference.ScenePath.Equals(sceneName))
+						return true;
+				}
+			}
+			return false;
+		}
+
 #if UNITY_EDITOR
 		private Boolean m_IsExitingPlayMode;
 		private void OnPlayModeStateChanged(PlayModeStateChange state) =>
