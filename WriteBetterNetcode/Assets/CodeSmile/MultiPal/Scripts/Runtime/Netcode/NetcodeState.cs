@@ -16,14 +16,13 @@ using CodeSmile.Statemachine.Variable.Actions;
 using CodeSmile.Statemachine.Variable.Conditions;
 using System;
 using System.IO;
-using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace CodeSmile.MultiPal.Netcode
 {
-	public class NetcodeState : MonoBehaviour
+	[DisallowMultipleComponent]
+	public sealed class NetcodeState : MonoBehaviour
 	{
 		public event Action WentOffline;
 		public event Action WentOnline;

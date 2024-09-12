@@ -671,7 +671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PresetAsset: {fileID: 0}
   m_PresetReference:
-    rid: 6337014613951643737
+    rid: 6337014660518117525
   m_Scenario:
     rid: -2
   m_IsScenarioSettingsFolded: 1
@@ -681,13 +681,14 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 6337014613951643737
+    - rid: 6337014660518117525
       type: {class: NetworkSimulatorPreset, ns: Unity.Multiplayer.Tools.NetworkSimulator.Runtime, asm: Unity.Multiplayer.Tools.NetworkSimulator.Runtime}
       data:
-        <Name>k__BackingField: 'Home DSL [ADSL or VDSL]'
-        <Description>k__BackingField: Average scenario for desktop and console platforms.
-          Good ping, good jitter and no packet loss.
-        <PacketDelayMs>k__BackingField: 30
+        <Name>k__BackingField: 'Home Satellite [low Earth orbit]'
+        <Description>k__BackingField: Low Earth orbit satellite network scenario
+          for desktop and console platforms. Bad ping, good jitter and no packet
+          loss.
+        <PacketDelayMs>k__BackingField: 100
         <PacketJitterMs>k__BackingField: 10
         <PacketLossInterval>k__BackingField: 0
         <PacketLossPercent>k__BackingField: 0

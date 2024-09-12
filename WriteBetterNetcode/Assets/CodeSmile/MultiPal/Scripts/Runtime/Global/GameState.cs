@@ -5,10 +5,10 @@ using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Netcode;
 using CodeSmile.MultiPal.Scene;
 using CodeSmile.MultiPal.Settings;
+using CodeSmile.Utility;
 using System;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace CodeSmile.MultiPal.Global
 {
@@ -57,8 +57,13 @@ namespace CodeSmile.MultiPal.Global
 			Debug.Log($"<color=cyan> ================= GameState {gameState.name} =================</color>");
 			await clientSceneLoader.UnloadAndLoadAdditiveScenesAsync(gameState.ClientScenes);
 
+			var serverSceneRefs = new SceneReference[gameState.ServerScenes.Length];
+			for (var i = 0; i < gameState.ServerScenes.Length; i++)
+				serverSceneRefs[i] = gameState.ServerScenes[i].Reference;
+
 			var serverSceneLoader = ComponentsRegistry.Get<ServerSceneLoader>();
-			await serverSceneLoader.UnloadAndLoadAdditiveScenesAsync(gameState.ServerScenes);
+			await serverSceneLoader.UnloadScenesAsync(serverSceneRefs);
+			await serverSceneLoader.LoadScenesAsync(serverSceneRefs);
 
 			Debug.Log($"[{Time.frameCount}] GameState scene loading completed");
 		}

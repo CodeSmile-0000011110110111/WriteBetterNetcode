@@ -11,14 +11,22 @@ using UnityEngine;
 
 namespace CodeSmile.MultiPal.Netcode
 {
-	internal class MppmLauncher : MonoBehaviour
+	[DisallowMultipleComponent]
+	internal sealed class MppmLauncher : MonoBehaviour
 	{
 #if UNITY_EDITOR
+		private static Boolean m_DidLaunchOnce;
+
 		private void Start()
 		{
-			var role = GetNetworkRoleFromMppmTags();
-			if (role != NetcodeRole.None)
-				StartNetworkWithRole(role);
+			if (m_DidLaunchOnce == false)
+			{
+				m_DidLaunchOnce = true;
+
+				var role = GetNetworkRoleFromMppmTags();
+				if (role != NetcodeRole.None)
+					StartNetworkWithRole(role);
+			}
 		}
 
 		private static NetcodeRole GetNetworkRoleFromMppmTags()
@@ -45,11 +53,15 @@ namespace CodeSmile.MultiPal.Netcode
 		}
 
 		// ensure unsaved Material, ScriptableObject, etc changes are applied to virtual players
-		[InitializeOnLoadMethod] private static void InitOnLoad() => EditorApplication.playModeStateChanged += state =>
+		[InitializeOnLoadMethod]
+		private static void InitOnLoad() => EditorApplication.playModeStateChanged += state =>
 		{
 			if (state == PlayModeStateChange.ExitingEditMode)
 				SaveProject();
 		};
+
+		[RuntimeInitializeOnLoadMethod]
+		private static void ResetStaticFields() => m_DidLaunchOnce = false;
 
 		private static void SaveProject() => AssetDatabase.SaveAssets();
 #endif

@@ -305,23 +305,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Scene1:
-    m_SceneReference:
-      m_SceneName: +501_Test1
-      m_ScenePath: Assets/CodeSmile/MultiPal/Scenes/Server Test Scenes/+501_Test1.unity
-      m_SceneAsset: {fileID: 102900000, guid: 37828dac46f8cd04e865f0aa30ff45d7, type: 3}
-    m_ForceReload: 0
+    m_RuntimeScene:
+      m_Handle: 0
+    m_SceneAsset: {fileID: 102900000, guid: 37828dac46f8cd04e865f0aa30ff45d7, type: 3}
   m_Scene2:
-    m_SceneReference:
-      m_SceneName: +502_Test2
-      m_ScenePath: Assets/CodeSmile/MultiPal/Scenes/Server Test Scenes/+502_Test2.unity
-      m_SceneAsset: {fileID: 102900000, guid: 398e696dea5446047a61b625d9b5e341, type: 3}
-    m_ForceReload: 0
+    m_RuntimeScene:
+      m_Handle: 0
+    m_SceneAsset: {fileID: 102900000, guid: 398e696dea5446047a61b625d9b5e341, type: 3}
   m_Scene3:
-    m_SceneReference:
-      m_SceneName: +503_Test3
-      m_ScenePath: Assets/CodeSmile/MultiPal/Scenes/Server Test Scenes/+503_Test3.unity
-      m_SceneAsset: {fileID: 102900000, guid: 087ee7f6473027d4fb99479691123ac7, type: 3}
-    m_ForceReload: 0
+    m_RuntimeScene:
+      m_Handle: 0
+    m_SceneAsset: {fileID: 102900000, guid: 087ee7f6473027d4fb99479691123ac7, type: 3}
 --- !u!1 &1541124535
 GameObject:
   m_ObjectHideFlags: 0

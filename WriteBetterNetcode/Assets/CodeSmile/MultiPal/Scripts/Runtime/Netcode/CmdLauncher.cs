@@ -9,7 +9,8 @@ using UnityEngine;
 
 namespace CodeSmile.MultiPal.Netcode
 {
-	internal class CmdLauncher : MonoBehaviour
+	[DisallowMultipleComponent]
+	internal sealed class CmdLauncher : MonoBehaviour
 	{
 		private static void StartNetworkWithRole(NetcodeConfig netcodeCfg)
 		{

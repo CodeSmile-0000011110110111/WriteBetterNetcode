@@ -9,7 +9,8 @@ using UnityEngine;
 
 namespace CodeSmile.MultiPal.Netcode
 {
-	public class AuthenticationState : MonoBehaviour
+	[DisallowMultipleComponent]
+	public sealed class AuthenticationState : MonoBehaviour
 	{
 		public FSM m_Statemachine;
 

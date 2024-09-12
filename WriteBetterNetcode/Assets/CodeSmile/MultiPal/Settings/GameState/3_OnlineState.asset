@@ -18,15 +18,10 @@ MonoBehaviour:
       m_ScenePath: Assets/CodeSmile/MultiPal/Scenes/+999_Dev_Content.unity
       m_SceneAsset: {fileID: 102900000, guid: 2062f189557df184e8aa4881ef2e4435, type: 3}
     m_ForceReload: 0
-  - m_SceneReference:
-      m_SceneName: +500_TestServerScene
-      m_ScenePath: Assets/CodeSmile/MultiPal/Scenes/+500_TestServerScene.unity
-      m_SceneAsset: {fileID: 102900000, guid: b2ed7f918b9806647870dc25762b1036, type: 3}
-    m_ForceReload: 0
   m_ClientScenes:
   - m_SceneReference:
-      m_SceneName: +200_PlayerCameras
-      m_ScenePath: Assets/CodeSmile/MultiPal/Scenes/+200_PlayerCameras.unity
+      m_SceneName: +200_PlayerComponents
+      m_ScenePath: Assets/CodeSmile/MultiPal/Scenes/+200_PlayerComponents.unity
       m_SceneAsset: {fileID: 102900000, guid: 79e592116094c5b41882ad6fcea11296, type: 3}
     m_ForceReload: 1
   - m_SceneReference:

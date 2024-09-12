@@ -25,7 +25,8 @@ namespace CodeSmile.Utility
 		/// </summary>
 		public String SceneName => m_SceneName;
 		public String ScenePath => m_ScenePath;
-		public Boolean IsValid => String.IsNullOrWhiteSpace(m_SceneName) == false;
+		public Scene RuntimeScene => SceneManager.GetSceneByPath(m_ScenePath);
+		public Boolean IsValid => String.IsNullOrWhiteSpace(m_ScenePath) == false;
 		public static Boolean operator ==(SceneReference left, SceneReference right) => Equals(left, right);
 		public static Boolean operator !=(SceneReference left, SceneReference right) => !Equals(left, right);
 
@@ -63,11 +64,9 @@ namespace CodeSmile.Utility
 #if UNITY_EDITOR
 			SceneAsset = m_SceneAsset;
 
-			if (m_SceneName != null)
+			if (m_ScenePath != null)
 			{
 				var existsInBuildScenes = false;
-				m_ScenePath = AssetDatabase.GetAssetOrScenePath(SceneAsset);
-
 				var buildScenes = EditorBuildSettings.scenes;
 				foreach (var buildScene in buildScenes)
 				{
@@ -104,6 +103,7 @@ namespace CodeSmile.Utility
 			{
 				m_SceneAsset = value;
 				m_SceneName = m_SceneAsset != null ? m_SceneAsset.name : null;
+				m_ScenePath = m_SceneAsset != null ? AssetDatabase.GetAssetPath(SceneAsset) : null;
 			}
 		}
 
@@ -112,6 +112,9 @@ namespace CodeSmile.Utility
 			// resubscribe when entering playmode since somehow we lose the connection
 			PostProcessor.OnSceneAssetChanged -= OnValidate;
 			PostProcessor.OnSceneAssetChanged += OnValidate;
+
+			if (state == PlayModeStateChange.ExitingEditMode || state == PlayModeStateChange.EnteredEditMode)
+				OnValidate();
 		}
 
 		internal class PostProcessor : AssetPostprocessor

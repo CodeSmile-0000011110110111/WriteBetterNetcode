@@ -3,7 +3,9 @@
 
 using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Scene;
+using CodeSmile.Utility;
 using System;
+using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -13,9 +15,9 @@ namespace CodeSmile.MultiPal.GUI
 	[DisallowMultipleComponent]
 	public class DevSceneLoadTest : MenuBase
 	{
-		[SerializeField] private AdditiveScene m_Scene1;
-		[SerializeField] private AdditiveScene m_Scene2;
-		[SerializeField] private AdditiveScene m_Scene3;
+		[SerializeField] private SceneReference m_Scene1;
+		[SerializeField] private SceneReference m_Scene2;
+		[SerializeField] private SceneReference m_Scene3;
 
 		private Button LoadButton1 => m_Root.Q<Button>("Load1");
 		private Button LoadButton2 => m_Root.Q<Button>("Load2");
@@ -28,21 +30,21 @@ namespace CodeSmile.MultiPal.GUI
 
 		private ServerSceneLoader SceneLoader => ComponentsRegistry.Get<ServerSceneLoader>();
 
-		private static void ExitPlaymode()
-		{
-#if UNITY_EDITOR
-			EditorApplication.ExitPlaymode();
-#endif
-		}
-
 		private void OnEnable() => RegisterGuiEvents();
 		private void OnDisable() => UnregisterGuiEvents();
 
+		private void Start()
+		{
+			var isServer = NetworkManager.Singleton?.IsServer;
+			if (isServer == false)
+				Hide();
+		}
+
 		private void OnValidate()
 		{
-			m_Scene1.Reference.OnValidate();
-			m_Scene2.Reference.OnValidate();
-			m_Scene3.Reference.OnValidate();
+			m_Scene1.OnValidate();
+			m_Scene2.OnValidate();
+			m_Scene3.OnValidate();
 		}
 
 		private void RegisterGuiEvents()
@@ -73,9 +75,9 @@ namespace CodeSmile.MultiPal.GUI
 		private void OnLoadButton2Clicked() => SceneLoader.LoadScenesAsync(new[] { m_Scene2 });
 		private void OnLoadButton3Clicked() => SceneLoader.LoadScenesAsync(new[] { m_Scene3 });
 		private void OnLoadAllButtonClicked() => SceneLoader.LoadScenesAsync(new[] { m_Scene1, m_Scene2, m_Scene3 });
-		private void OnUnloadButton1Clicked() => SceneLoader.UnloadAllScenesAsync(new[] { m_Scene2, m_Scene3 });
-		private void OnUnloadButton2Clicked() => SceneLoader.UnloadAllScenesAsync(new[] { m_Scene1, m_Scene3 });
-		private void OnUnloadButton3Clicked() => SceneLoader.UnloadAllScenesAsync(new[] { m_Scene1, m_Scene2 });
-		private void OnUnloadAllButtonClicked() => SceneLoader.UnloadAllScenesAsync();
+		private void OnUnloadButton1Clicked() => SceneLoader.UnloadScenesAsync(new[] { m_Scene1 });
+		private void OnUnloadButton2Clicked() => SceneLoader.UnloadScenesAsync(new[] { m_Scene2 });
+		private void OnUnloadButton3Clicked() => SceneLoader.UnloadScenesAsync(new[] { m_Scene3 });
+		private void OnUnloadAllButtonClicked() => SceneLoader.UnloadScenesAsync(new[] { m_Scene1, m_Scene2, m_Scene3 });
 	}
 }

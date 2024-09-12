@@ -88,10 +88,9 @@ namespace CodeSmile.Components.Netcode
 			var sceneManager = NetworkManager.Singleton?.SceneManager;
 			if (sceneManager != null)
 			{
+				sceneManager.OnSceneEvent -= OnSceneEvent;
 				if (m_LogSceneEvents && register)
 					sceneManager.OnSceneEvent += OnSceneEvent;
-				else
-					sceneManager.OnSceneEvent -= OnSceneEvent;
 			}
 		}
 
@@ -187,7 +186,7 @@ namespace CodeSmile.Components.Netcode
 				foreach (var clientId in sceneEvent.ClientsThatCompleted)
 					sb.Append($"{(first ? "" : ", ")}{clientId}");
 
-				completed = $"(completed clients: {sb})";
+				completed = $"(completed clientIDs: {sb})";
 			}
 
 			if (timedOutCount > 0)
@@ -197,12 +196,12 @@ namespace CodeSmile.Components.Netcode
 				foreach (var clientId in sceneEvent.ClientsThatTimedOut)
 					sb.Append($"{(first ? "" : ", ")}{clientId}");
 
-				timedOut = $"<color=red>(TIMEOUT clients: {sb})<color>";
+				timedOut = $"<color=red>(TIMEOUT clientIDs: {sb})<color>";
 			}
 
-			var prefix = sceneEvent.ClientId != 0 ? $"Client {sceneEvent.ClientId}: " : "";
-			Log($"{prefix}{sceneEvent.SceneEventType} {sceneEvent.SceneName} ({sceneEvent.LoadSceneMode})" +
-			    $" {completed} {timedOut}");
+			var role = sceneEvent.ClientId == 0 ? "Server" : $"Client {sceneEvent.ClientId}";
+			Log($"{role} Scene: {sceneEvent.SceneEventType} {sceneEvent.SceneName} ({sceneEvent.LoadSceneMode}) " +
+			    $"{completed} {timedOut}");
 		}
 
 		private void Log(String message)
