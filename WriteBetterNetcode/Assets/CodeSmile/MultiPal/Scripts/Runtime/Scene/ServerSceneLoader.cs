@@ -87,13 +87,13 @@ namespace CodeSmile.MultiPal.Scene
 		private Boolean ServerVerifySceneBeforeUnloading(UnityEngine.SceneManagement.Scene scene)
 		{
 			Debug.Log($"SERVER VerifyScene before UNLOAD: {scene.name}");
-			return scene.buildIndex != 0;
+			return scene.buildIndex != 0; // never our 'global' scene
 		}
 
 		private Boolean ServerVerifySceneBeforeLoading(Int32 sceneIndex, String sceneName, LoadSceneMode loadMode)
 		{
 			Debug.Log($"SERVER VerifyScene before LOAD: {sceneName} {loadMode} index: {sceneIndex}");
-			return sceneIndex != 0;
+			return sceneIndex != 0; // never our 'global' scene
 		}
 
 		private void OnClientStarted()
@@ -123,13 +123,13 @@ namespace CodeSmile.MultiPal.Scene
 		private Boolean ClientVerifySceneBeforeUnloading(UnityEngine.SceneManagement.Scene scene)
 		{
 			Debug.Log($"CLIENT VerifyScene before UNLOAD: {scene.name}");
-			return scene.buildIndex != 0;
+			return scene.buildIndex != 0; // never our 'global' scene
 		}
 
 		private Boolean ClientVerifySceneBeforeLoading(Int32 sceneIndex, String sceneName, LoadSceneMode loadMode)
 		{
 			Debug.Log($"CLIENT VerifyScene before LOAD: {sceneName} {loadMode} index: {sceneIndex}");
-			return sceneIndex != 0;
+			return sceneIndex != 0; // never our 'global' scene
 		}
 
 		private void StopProcessing()
@@ -143,6 +143,9 @@ namespace CodeSmile.MultiPal.Scene
 			}
 		}
 
+		/// <summary>
+		/// Will unload the network synchronized scenes when either client or server stops
+		/// </summary>
 		private void LocallyUnloadSynchedScenes()
 		{
 			if (m_SynchedScenes != null)
@@ -169,7 +172,7 @@ namespace CodeSmile.MultiPal.Scene
 
 		private async Task InternalLoadUnloadScenesAsync(SceneReference[] scenes, SceneOperation operation)
 		{
-			if (m_IsServerOnline == false)
+			if (m_IsServerOnline == false) // also guards against clients calling into here
 				return;
 
 			if (scenes == null || scenes.Length == 0)
@@ -177,10 +180,14 @@ namespace CodeSmile.MultiPal.Scene
 
 			if (IsProcessingEvents)
 			{
-				Debug.LogError("Scene load/unload event in progress!");
+				// can't load again while still loading/unloading!
+				// Note: while possible to add scenes to ongoing queue, there may be different callers awaiting so we'd force
+				// one caller to also wait for the other's scenes! This is unexpected with possible severe side-effects!
+				Debug.LogError("Scene load/unload event in progress! Forgot to await??");
 				return;
 			}
 
+			// task is for awaiting, will get its result when entire queue has been processed
 			m_TaskInProgress = new TaskCompletionSource<Boolean>();
 			m_ScenesProcessing = new Queue<ProcessingScene>();
 			EnqueueScenes(scenes, operation);
@@ -188,7 +195,7 @@ namespace CodeSmile.MultiPal.Scene
 			ProcessNextSceneInQueue();
 
 			await m_TaskInProgress.Task;
-			m_TaskInProgress = null;
+			m_TaskInProgress = null; // we no longer need you
 		}
 
 		private void EnqueueScenes(SceneReference[] scenes, SceneOperation operation)
@@ -201,8 +208,9 @@ namespace CodeSmile.MultiPal.Scene
 		{
 			if (m_ScenesProcessing.Count > 0)
 			{
-				m_IsSceneEventCompleted = false;
+				m_IsSceneEventCompleted = false; // reset for coroutine
 
+				// process the next scene
 				var processingScene = m_ScenesProcessing.Dequeue();
 				if (processingScene.Operation == SceneOperation.Load)
 				{
@@ -217,6 +225,7 @@ namespace CodeSmile.MultiPal.Scene
 			}
 			else
 			{
+				// end processing, SetResult stops awaiting
 				m_ScenesProcessing = null;
 				m_TaskInProgress.SetResult(true);
 			}
@@ -273,6 +282,7 @@ namespace CodeSmile.MultiPal.Scene
 		{
 			switch (sceneEvent.SceneEventType)
 			{
+				// TODO: could also use AsyncOperation completed event
 				case SceneEventType.Load:
 					StartCoroutine(ProcessNextSceneInQueueAfterCurrentEventCompleted());
 					break;
@@ -280,19 +290,22 @@ namespace CodeSmile.MultiPal.Scene
 					StartCoroutine(ProcessNextSceneInQueueAfterCurrentEventCompleted());
 					break;
 				case SceneEventType.LoadComplete:
-					m_IsSceneEventCompleted = true;
+					m_IsSceneEventCompleted = true; // end coroutine
 					break;
 				case SceneEventType.UnloadComplete:
-					m_IsSceneEventCompleted = true;
+					m_IsSceneEventCompleted = true; // end coroutine
 					break;
 			}
 		}
 
 		private void OnClientSceneEvents(SceneEvent sceneEvent)
 		{
+			// if we have the scene loaded client-side it cannot be a network synched scene!
 			if (m_ClientLoader.IsSceneLoaded(sceneEvent.SceneName))
 				return;
 
+			// add or remove the scene from the synched scenes list
+			// we need these on client-side to unload them when client goes offline
 			switch (sceneEvent.SceneEventType)
 			{
 				case SceneEventType.LoadComplete:
