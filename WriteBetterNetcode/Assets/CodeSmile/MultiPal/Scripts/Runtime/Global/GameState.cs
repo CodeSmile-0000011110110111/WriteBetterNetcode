@@ -5,8 +5,12 @@ using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Netcode;
 using CodeSmile.MultiPal.Scene;
 using CodeSmile.MultiPal.Settings;
+using CodeSmile.Statemachine.Netcode;
 using CodeSmile.Utility;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,7 +21,9 @@ namespace CodeSmile.MultiPal.Global
 	{
 		[SerializeField] private GameStateBase[] m_GameStates = new GameStateBase[0];
 
-		private Int32 m_ActiveStateIndex;
+		private Int32 m_ActiveStateIndex = -1;
+
+		private GameStateBase ActiveState => m_ActiveStateIndex >= 0 ? m_GameStates[m_ActiveStateIndex] : null;
 
 		private void Awake()
 		{
@@ -33,7 +39,7 @@ namespace CodeSmile.MultiPal.Global
 			netcodeState.WentOnline += WentOnline;
 			netcodeState.WentOffline += WentOffline;
 
-			EnterState(m_GameStates[m_ActiveStateIndex]);
+			EnterState(0);
 		}
 
 		private void OnDestroy()
@@ -46,35 +52,57 @@ namespace CodeSmile.MultiPal.Global
 			}
 		}
 
-		private void WentOnline() => EnterState(m_GameStates[3]);
+		// FIXME: hardcoded
+		private void WentOnline(NetcodeRole role) => EnterState(3);
+		private void WentOffline(NetcodeRole role) => EnterState(2);
 
-		private void WentOffline() => EnterState(m_GameStates[2]);
-
-		private async void EnterState(GameStateBase gameState)
+		private async void EnterState(Int32 stateIndex)
 		{
 			var clientSceneLoader = ComponentsRegistry.Get<ClientSceneLoader>();
-
-			Debug.Log($"<color=cyan> ================= GameState {gameState.name} =================</color>");
-			await clientSceneLoader.UnloadAndLoadAdditiveScenesAsync(gameState.ClientScenes);
-
-			var serverSceneRefs = new SceneReference[gameState.ServerScenes.Length];
-			for (var i = 0; i < gameState.ServerScenes.Length; i++)
-				serverSceneRefs[i] = gameState.ServerScenes[i].Reference;
-
 			var serverSceneLoader = ComponentsRegistry.Get<ServerSceneLoader>();
-			await serverSceneLoader.UnloadScenesAsync(serverSceneRefs);
-			await serverSceneLoader.LoadScenesAsync(serverSceneRefs);
+			var currentState = ActiveState;
+			var newGameState = m_GameStates[stateIndex];
+			if (currentState == newGameState)
+			{
+				Debug.LogWarning($"tried to change GameState to already active state {newGameState} - ignoring");
+				return;
+			}
 
+			Debug.Log($"<color=cyan> ================= GameState {newGameState.name} =================</color>");
+			Debug.Log($"[{Time.frameCount}] GameState scene loading begins ...");
+
+			var unloadScenes = GetScenesToUnload(currentState?.ClientSceneRefs, newGameState.ClientScenes);
+			await clientSceneLoader.UnloadScenesAsync(unloadScenes);
+			await clientSceneLoader.LoadScenesAsync(newGameState.ClientSceneRefs);
+
+			unloadScenes = GetScenesToUnload(currentState?.ServerSceneRefs, newGameState.ServerScenes);
+			await serverSceneLoader.UnloadScenesAsync(unloadScenes);
+			await serverSceneLoader.LoadScenesAsync(newGameState.ServerSceneRefs);
+
+			m_ActiveStateIndex = stateIndex;
 			Debug.Log($"[{Time.frameCount}] GameState scene loading completed");
 		}
 
-		private void ExitState(GameStateBase gameState) {}
-
-		public void AdvanceState()
+		private SceneReference[] GetScenesToUnload(SceneReference[] loadedSceneRefs, AdditiveScene[] scenesToLoad)
 		{
-			// FIXME: placeholder
-			m_ActiveStateIndex++;
-			EnterState(m_GameStates[m_ActiveStateIndex]);
+			// first state will have nothing to unload
+			if (loadedSceneRefs == null || loadedSceneRefs.Length == 0)
+				return new SceneReference[0];
+
+			var unloadSceneRefs = new List<SceneReference>();
+			for (var i = 0; i < loadedSceneRefs.Length; i++)
+			{
+				var alreadyLoadedScene = scenesToLoad.SingleOrDefault(scene => scene.Reference == loadedSceneRefs[i]);
+				if (alreadyLoadedScene == null || alreadyLoadedScene.ForceReload)
+					unloadSceneRefs.Add(loadedSceneRefs[i]);
+			}
+
+			return unloadSceneRefs.ToArray();
 		}
+
+
+		public void AdvanceState() =>
+			// FIXME: placeholder
+			EnterState(m_ActiveStateIndex + 1);
 	}
 }

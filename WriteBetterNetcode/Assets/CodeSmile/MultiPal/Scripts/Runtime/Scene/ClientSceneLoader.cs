@@ -3,6 +3,7 @@
 
 using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Netcode;
+using CodeSmile.Statemachine.Netcode;
 using CodeSmile.Utility;
 using System;
 using System.Collections;
@@ -24,12 +25,6 @@ namespace CodeSmile.MultiPal.Scene
 		private TaskCompletionSource<Boolean> m_CompletionSource;
 		private NetcodeState m_NetcodeState;
 
-		private static void ThrowIfSceneReferenceNotValid(SceneReference sceneRef)
-		{
-			if (sceneRef == null || sceneRef.IsValid == false)
-				throw new ArgumentException($"scene reference is null or invalid: {sceneRef}");
-		}
-
 		private void Awake()
 		{
 #if UNITY_EDITOR
@@ -46,23 +41,21 @@ namespace CodeSmile.MultiPal.Scene
 			m_NetcodeState.WentOffline += WentOffline;
 		}
 
-		private void WentOnline()
+		private void WentOnline(NetcodeRole role)
 		{
 			var netMan = NetworkManager.Singleton;
 			if (netMan.IsClient)
 				netMan.SceneManager.OnSceneEvent += OnNetworkSceneEvent;
 		}
 
-		private async void WentOffline()
+		private async void WentOffline(NetcodeRole role)
 		{
 			var netMan = NetworkManager.Singleton;
 			if (netMan != null && netMan.SceneManager != null)
 				netMan.SceneManager.OnSceneEvent -= OnNetworkSceneEvent;
 
 			// unload all remote additive scenes when going offline
-			Debug.LogWarning($"unload {m_LoadedScenesRemote.Count()} remote scenes");
-
-			await LoadOrUnloadScenesAsync(m_LoadedScenesRemote.ToArray(), false);
+			await InternalLoadOrUnloadScenesAsync(m_LoadedScenesRemote.ToArray(), false);
 		}
 
 		private void OnNetworkSceneEvent(SceneEvent sceneEvent)
@@ -86,27 +79,13 @@ namespace CodeSmile.MultiPal.Scene
 			}
 		}
 
-		public async Task UnloadAndLoadAdditiveScenesAsync(AdditiveScene[] scenes)
-		{
-			await UnloadScenesAsync(scenes);
-			await LoadScenesAsync(scenes);
-		}
+		public async Task UnloadScenesAsync(SceneReference[] scenes) => await InternalLoadOrUnloadScenesAsync(scenes, false);
+		public async Task LoadScenesAsync(SceneReference[] scenes) => await InternalLoadOrUnloadScenesAsync(scenes, true);
 
-		private AsyncOperation LoadSceneAsync(SceneReference sceneRef)
+		public AsyncOperation UnloadSceneAsync(SceneReference sceneRef)
 		{
-			ThrowIfSceneReferenceNotValid(sceneRef);
-
-			if (m_LoadedScenesLocal.Contains(sceneRef))
+			if (sceneRef == null)
 				return null;
-
-			Debug.Log($"<color=green>Client LoadScene: {sceneRef.SceneName}</color>");
-			m_LoadedScenesLocal.Add(sceneRef);
-			return SceneManager.LoadSceneAsync(sceneRef.ScenePath, LoadSceneMode.Additive);
-		}
-
-		private AsyncOperation UnloadSceneAsync(SceneReference sceneRef)
-		{
-			ThrowIfSceneReferenceNotValid(sceneRef);
 
 			if (m_LoadedScenesLocal.Contains(sceneRef) == false)
 				return null;
@@ -116,31 +95,23 @@ namespace CodeSmile.MultiPal.Scene
 			return SceneManager.UnloadSceneAsync(sceneRef.ScenePath);
 		}
 
-		private async Task UnloadScenesAsync(AdditiveScene[] scenesToKeep)
+		public AsyncOperation LoadSceneAsync(SceneReference sceneRef)
 		{
-			var scenesToUnload = new HashSet<SceneReference>(m_LoadedScenesLocal);
-			foreach (var scene in scenesToKeep)
-			{
-				if (scene.ForceReload == false)
-					scenesToUnload.Remove(scene.Reference);
-			}
+			if (sceneRef == null)
+				return null;
 
-			await LoadOrUnloadScenesAsync(scenesToUnload.ToArray(), false);
+			if (m_LoadedScenesLocal.Contains(sceneRef))
+				return null;
+
+			Debug.Log($"<color=green>Client LoadScene: {sceneRef.SceneName}</color>");
+			m_LoadedScenesLocal.Add(sceneRef);
+			return SceneManager.LoadSceneAsync(sceneRef.ScenePath, LoadSceneMode.Additive);
 		}
 
-		private async Task LoadScenesAsync(AdditiveScene[] scenes)
-		{
-			var sceneRefsToLoad = new SceneReference[scenes.Length];
-			for (var i = 0; i < scenes.Length; i++)
-				sceneRefsToLoad[i] = scenes[i].Reference;
-
-			await LoadOrUnloadScenesAsync(sceneRefsToLoad, true);
-		}
-
-		private async Task LoadOrUnloadScenesAsync(SceneReference[] scenes, Boolean load)
+		private async Task InternalLoadOrUnloadScenesAsync(SceneReference[] scenes, Boolean load)
 		{
 #if UNITY_EDITOR
-			// avoid unload exception while exiting playmode
+			// avoid exception while exiting playmode since some component may trigger a scene unload
 			if (m_IsExitingPlayMode)
 				return;
 #endif
@@ -152,9 +123,13 @@ namespace CodeSmile.MultiPal.Scene
 			var asyncOps = new List<AsyncOperation>();
 			for (var i = 0; i < scenes.Length; i++)
 			{
-				var asyncOp = load ? LoadSceneAsync(scenes[i]) : UnloadSceneAsync(scenes[i]);
+				var scene = scenes[i];
+				if (scene == null)
+					continue;
+
+				var asyncOp = load ? LoadSceneAsync(scene) : UnloadSceneAsync(scene);
 				if (asyncOp == null)
-					throw new Exception($"async {(load ? "load" : "unload")} of '{scenes[i].SceneName}' returned null");
+					throw new Exception($"async {(load ? "load" : "unload")} of '{scene.SceneName}' returned null");
 
 				asyncOps.Add(asyncOp);
 			}

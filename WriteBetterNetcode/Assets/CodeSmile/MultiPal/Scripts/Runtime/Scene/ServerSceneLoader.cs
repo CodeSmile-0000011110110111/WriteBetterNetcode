@@ -191,25 +191,6 @@ namespace CodeSmile.MultiPal.Scene
 				m_ScenesProcessing.Enqueue(new ProcessingScene { SceneRef = sceneRef, Operation = operation });
 		}
 
-		private void ProcessNextSceneInQueue()
-		{
-			if (m_ScenesProcessing.Count > 0)
-			{
-				// process the next scene
-				var processingScene = m_ScenesProcessing.Dequeue();
-				if (processingScene.Operation == SceneOperation.Load)
-					InternalLoadQueuedSceneAsync(processingScene.SceneRef);
-				else
-					InternalUnloadQueuedSceneAsync(processingScene.SceneRef);
-			}
-			else
-			{
-				// end processing, SetResult stops awaiting
-				m_ScenesProcessing = null;
-				m_TaskInProgress.SetResult(true);
-			}
-		}
-
 		private void InternalLoadQueuedSceneAsync(SceneReference sceneRef)
 		{
 			if (m_SynchedScenes.Contains(sceneRef))
@@ -247,6 +228,25 @@ namespace CodeSmile.MultiPal.Scene
 			{
 				Debug.LogWarning($"Scene unload failed: {status} for {sceneRef.ScenePath}");
 				ProcessNextSceneInQueue();
+			}
+		}
+
+		private void ProcessNextSceneInQueue()
+		{
+			if (m_ScenesProcessing.Count > 0)
+			{
+				// process the next scene
+				var processingScene = m_ScenesProcessing.Dequeue();
+				if (processingScene.Operation == SceneOperation.Load)
+					InternalLoadQueuedSceneAsync(processingScene.SceneRef);
+				else
+					InternalUnloadQueuedSceneAsync(processingScene.SceneRef);
+			}
+			else
+			{
+				// end processing, SetResult stops awaiting
+				m_ScenesProcessing = null;
+				m_TaskInProgress.SetResult(true);
 			}
 		}
 

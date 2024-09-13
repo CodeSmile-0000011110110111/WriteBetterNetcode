@@ -26,8 +26,8 @@ namespace CodeSmile.MultiPal.Netcode
 	[DisallowMultipleComponent]
 	public sealed class NetcodeState : MonoBehaviour
 	{
-		public event Action WentOffline;
-		public event Action WentOnline;
+		public event Action<NetcodeRole> WentOffline;
+		public event Action<NetcodeRole> WentOnline;
 		public event Action<String> RelayJoinCodeAvailable;
 
 		public enum State
@@ -84,8 +84,8 @@ namespace CodeSmile.MultiPal.Netcode
 
 		private void Update() => m_Statemachine.Update();
 
-		private void OnWentOnline() => IsOnline = true;
-		private void OnWentOffline() => IsOnline = false;
+		private void OnWentOnline(NetcodeRole role) => IsOnline = true;
+		private void OnWentOffline(NetcodeRole role) => IsOnline = false;
 
 		private void SetupStatemachine()
 		{
@@ -115,9 +115,9 @@ namespace CodeSmile.MultiPal.Netcode
 			                                                  $"from {args.PreviousState} to {args.ActiveState}</color>");
 
 			var invokeWentOnline = new LambdaAction($"{nameof(WentOnline)}.Invoke",
-				() => WentOnline?.Invoke());
+				() => WentOnline?.Invoke(m_NetcodeConfigVar.Value.Role));
 			var invokeWentOffline = new LambdaAction($"{nameof(WentOffline)}.Invoke",
-				() => WentOffline?.Invoke());
+				() => WentOffline?.Invoke(m_NetcodeConfigVar.Value.Role));
 			var tryInvokeRelayJoinCodeAvailable = new LambdaAction(nameof(TryInvokeRelayJoinCodeAvailable),
 				() => TryInvokeRelayJoinCodeAvailable());
 

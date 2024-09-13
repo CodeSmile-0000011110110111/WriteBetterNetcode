@@ -3,6 +3,7 @@
 
 using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Netcode;
+using CodeSmile.Statemachine.Netcode;
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -33,14 +34,8 @@ namespace CodeSmile.MultiPal.GUI
 		private void RegisterNetcodeStateEvents()
 		{
 			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
-			netcodeState.WentOffline += Hide;
+			netcodeState.WentOffline += WentOffline;
 			netcodeState.RelayJoinCodeAvailable += OnRelayJoinCodeAvailable;
-		}
-
-		private void OnRelayJoinCodeAvailable(String joinCode)
-		{
-			JoinCodeLabel.text = joinCode;
-			Show();
 		}
 
 		private void UnregisterNetcodeStateEvents()
@@ -48,9 +43,17 @@ namespace CodeSmile.MultiPal.GUI
 			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
 			if (netcodeState != null)
 			{
-				netcodeState.WentOffline -= Hide;
+				netcodeState.WentOffline -= WentOffline;
 				netcodeState.RelayJoinCodeAvailable -= OnRelayJoinCodeAvailable;
 			}
+		}
+
+		private void WentOffline(NetcodeRole role) => Hide();
+
+		private void OnRelayJoinCodeAvailable(String joinCode)
+		{
+			JoinCodeLabel.text = joinCode;
+			Show();
 		}
 
 		private void Hide() => m_Root.style.display = StyleKeyword.None;
