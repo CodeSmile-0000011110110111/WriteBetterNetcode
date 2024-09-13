@@ -39,7 +39,7 @@ namespace CodeSmile.MultiPal.Global
 			netcodeState.WentOnline += WentOnline;
 			netcodeState.WentOffline += WentOffline;
 
-			EnterState(0);
+			SetActiveGameState(0);
 		}
 
 		private void OnDestroy()
@@ -53,10 +53,10 @@ namespace CodeSmile.MultiPal.Global
 		}
 
 		// FIXME: hardcoded
-		private void WentOnline(NetcodeRole role) => EnterState(3);
-		private void WentOffline(NetcodeRole role) => EnterState(2);
+		private void WentOnline(NetcodeRole role) => SetActiveGameState(3);
+		private void WentOffline(NetcodeRole role) => SetActiveGameState(2);
 
-		private async void EnterState(Int32 stateIndex)
+		private async void SetActiveGameState(Int32 stateIndex)
 		{
 			var clientSceneLoader = ComponentsRegistry.Get<ClientSceneLoader>();
 			var serverSceneLoader = ComponentsRegistry.Get<ServerSceneLoader>();
@@ -103,6 +103,6 @@ namespace CodeSmile.MultiPal.Global
 
 		public void AdvanceState() =>
 			// FIXME: placeholder
-			EnterState(m_ActiveStateIndex + 1);
+			SetActiveGameState(m_ActiveStateIndex + 1);
 	}
 }
