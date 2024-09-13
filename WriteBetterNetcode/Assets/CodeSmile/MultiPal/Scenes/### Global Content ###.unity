@@ -558,7 +558,7 @@ MonoBehaviour:
     NetworkIdRecycleDelay: 120
     RpcHashSize: 0
     LoadSceneTimeOut: 120
-    SpawnTimeout: 10
+    SpawnTimeout: 15
     EnableNetworkLogs: 1
     NetworkTopology: 0
     UseCMBService: 0

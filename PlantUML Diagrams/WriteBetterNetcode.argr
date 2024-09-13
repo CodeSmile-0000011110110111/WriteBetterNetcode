@@ -125,7 +125,14 @@
   <Module Identifier="F1C80635-38F1-BD0F-4972-A8FA01BB30EC" Name="CodeSmile.MultiPal.Players" />
   <Module Identifier="2AB2B36A-5D8F-9275-B934-D06657D3DBB0" Name="CodeSmile.MultiPal.Input" />
   <Module Identifier="172C8225-7918-883A-9987-855AB31CD36B" Name="CodeSmile.MultiPal.Settings" />
+  <Module Identifier="DDB21E55-94E4-8E70-2B08-8BD7E2C88C43" Name="CodeSmile.Utility" />
+  <Module Identifier="72954673-5CA9-0B54-6BD0-4B1246DC5895" Name="CodeSmile.MultiPal.Scene" />
   <Module Identifier="1C5FACF7-543E-E63E-DEEC-607FA66740A7" Name="CodeSmile.Components.Registry" />
+  <Module Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="CodeSmile.MultiPal.Netcode" />
+  <Module Identifier="5040EDBC-3225-B9DE-4486-7326104F149E" Name="CodeSmile.Statemachine.Netcode" />
+  <Module Identifier="4B10F153-7EC2-126D-9011-7B77C21DA070" Name="CodeSmile.Extensions.Netcode" />
+  <Module Identifier="A07FB3CA-EF80-5D90-C9D6-A33F598F3542" Name="CodeSmile.Statemachine.Services" />
+  <Module Identifier="055F83B7-B737-9D47-2F39-942FB58D15B8" Name="Unity.Multiplayer.Playmode" />
   <Module Identifier="DF0EAC8D-C673-13BE-0461-875269490AFB" Name="CodeSmile.MultiPal.Animation" />
   <Module Identifier="32249AF9-7658-7E7E-FF67-E42076CC3342" Name="CodeSmile.MultiPal.PlayerController" />
   <Module Identifier="4E342311-A6B9-6DBD-F43E-643B8ED1E4A7" Name="CodeSmile.MultiPal.Players.Couch" />
@@ -137,12 +144,6 @@
   <Module Identifier="68733CA4-0399-0478-3045-E18BB858F271" Name="Unity.Multiplayer.Tools.Adapters.Utp2" />
   <Module Identifier="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1" Name="Assembly-CSharp" />
   <Module Identifier="141B81DF-2213-1D36-3F29-F0256B4A1357" Name="CodeSmile.MultiPal.Cinecam" />
-  <Module Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="CodeSmile.MultiPal.Netcode" />
-  <Module Identifier="5040EDBC-3225-B9DE-4486-7326104F149E" Name="CodeSmile.Statemachine.Netcode" />
-  <Module Identifier="4B10F153-7EC2-126D-9011-7B77C21DA070" Name="CodeSmile.Extensions.Netcode" />
-  <Module Identifier="DDB21E55-94E4-8E70-2B08-8BD7E2C88C43" Name="CodeSmile.Utility" />
-  <Module Identifier="A07FB3CA-EF80-5D90-C9D6-A33F598F3542" Name="CodeSmile.Statemachine.Services" />
-  <Module Identifier="055F83B7-B737-9D47-2F39-942FB58D15B8" Name="Unity.Multiplayer.Playmode" />
   <Module Identifier="E496800C-A88A-A0C1-D55F-8F5EE110D473" Name="Unity.Services.UserReporting" />
   <Module Identifier="AD124D92-18ED-97A1-45CA-B0C4097311AD" Name="URPWizard" />
   <Module Identifier="202D6EC1-BED3-90EC-DFCC-7CC97012D606" Name="Unity.RenderPipelines.Core.ShaderLibrary" />
@@ -170,7 +171,6 @@
   <Module Identifier="5E51D7FF-9339-4AF0-00B6-ACAB4835D50F" Name="Unity.Sysroot.Linux_x86_64" />
   <Module Identifier="2C40CC01-7FCA-5427-019B-25B9FC507484" Name="Unity.Multiplayer.Tools.Adapters.Ngo1WithUtp2" />
   <Module Identifier="80D2F493-5679-146F-DC62-ECB9A14DA0E2" Name="Unity.Collections.CodeGen" />
-  <Module Identifier="AF78BA4F-7D6D-BAFA-13B9-6FC73210F215" Name="CodeSmile.MultiPal.Interfaces" />
   <Module Identifier="4E7CAE34-C1BF-0604-6579-8A1260221AC2" Name="Unity.InputSystem.TestFramework" />
   <Module Identifier="37A97A2D-FADB-7FEE-6EB4-42F88E3BB36A" Name="Unity.Services.Multiplayer.Editor" />
   <Module Identifier="F110A944-4D61-10D1-7C4C-5DBE29DCE6F9" Name="Unity.Multiplayer.Tools.NetStats.CodeGen" />
@@ -896,13 +896,57 @@
   <Reference Identifier="2AB2B36A-5D8F-9275-B934-D06657D3DBB0/r:Unity.InputSystem" SourceId="2AB2B36A-5D8F-9275-B934-D06657D3DBB0" Name="Unity.InputSystem" TargetId="10EF8D7F-E77E-EF56-14ED-510D1AB86522" />
   <Reference Identifier="172C8225-7918-883A-9987-855AB31CD36B/r:UnityEditor.UI" SourceId="172C8225-7918-883A-9987-855AB31CD36B" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
   <Reference Identifier="172C8225-7918-883A-9987-855AB31CD36B/r:UnityEngine.UI" SourceId="172C8225-7918-883A-9987-855AB31CD36B" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
+  <Reference Identifier="DDB21E55-94E4-8E70-2B08-8BD7E2C88C43/r:UnityEditor.UI" SourceId="DDB21E55-94E4-8E70-2B08-8BD7E2C88C43" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
+  <Reference Identifier="DDB21E55-94E4-8E70-2B08-8BD7E2C88C43/r:UnityEngine.UI" SourceId="DDB21E55-94E4-8E70-2B08-8BD7E2C88C43" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
+  <Reference Identifier="172C8225-7918-883A-9987-855AB31CD36B/r:CodeSmile.Utility" SourceId="172C8225-7918-883A-9987-855AB31CD36B" Name="CodeSmile.Utility" TargetId="DDB21E55-94E4-8E70-2B08-8BD7E2C88C43" />
+  <Reference Identifier="72954673-5CA9-0B54-6BD0-4B1246DC5895/r:UnityEditor.UI" SourceId="72954673-5CA9-0B54-6BD0-4B1246DC5895" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
+  <Reference Identifier="72954673-5CA9-0B54-6BD0-4B1246DC5895/r:UnityEngine.UI" SourceId="72954673-5CA9-0B54-6BD0-4B1246DC5895" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
+  <Reference Identifier="72954673-5CA9-0B54-6BD0-4B1246DC5895/r:CodeSmile.Utility" SourceId="72954673-5CA9-0B54-6BD0-4B1246DC5895" Name="CodeSmile.Utility" TargetId="DDB21E55-94E4-8E70-2B08-8BD7E2C88C43" />
+  <Reference Identifier="72954673-5CA9-0B54-6BD0-4B1246DC5895/r:Unity.Netcode.Runtime" SourceId="72954673-5CA9-0B54-6BD0-4B1246DC5895" Name="Unity.Netcode.Runtime" TargetId="4FB80404-EF76-1641-ADF1-E45561F6FFEC" />
+  <Reference Identifier="1C5FACF7-543E-E63E-DEEC-607FA66740A7/r:UnityEditor.UI" SourceId="1C5FACF7-543E-E63E-DEEC-607FA66740A7" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
+  <Reference Identifier="1C5FACF7-543E-E63E-DEEC-607FA66740A7/r:UnityEngine.UI" SourceId="1C5FACF7-543E-E63E-DEEC-607FA66740A7" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
+  <Reference Identifier="72954673-5CA9-0B54-6BD0-4B1246DC5895/r:CodeSmile.Components.Registry" SourceId="72954673-5CA9-0B54-6BD0-4B1246DC5895" Name="CodeSmile.Components.Registry" TargetId="1C5FACF7-543E-E63E-DEEC-607FA66740A7" />
+  <Reference Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715/r:CodeSmile.Components.Registry" SourceId="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="CodeSmile.Components.Registry" TargetId="1C5FACF7-543E-E63E-DEEC-607FA66740A7" />
+  <Reference Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715/r:CodeSmile.Statemachine" SourceId="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="CodeSmile.Statemachine" TargetId="FD9420D6-02F5-D542-903E-FC2BBC71D8F5" />
+  <Reference Identifier="5040EDBC-3225-B9DE-4486-7326104F149E/r:CodeSmile.Statemachine" SourceId="5040EDBC-3225-B9DE-4486-7326104F149E" Name="CodeSmile.Statemachine" TargetId="FD9420D6-02F5-D542-903E-FC2BBC71D8F5" />
+  <Reference Identifier="5040EDBC-3225-B9DE-4486-7326104F149E/r:Unity.Netcode.Runtime" SourceId="5040EDBC-3225-B9DE-4486-7326104F149E" Name="Unity.Netcode.Runtime" TargetId="4FB80404-EF76-1641-ADF1-E45561F6FFEC" />
+  <Reference Identifier="5040EDBC-3225-B9DE-4486-7326104F149E/r:Unity.Networking.Transport" SourceId="5040EDBC-3225-B9DE-4486-7326104F149E" Name="Unity.Networking.Transport" TargetId="6EFDBADA-A13E-6570-54F8-5EDA45C8D03A" />
+  <Reference Identifier="5040EDBC-3225-B9DE-4486-7326104F149E/r:Unity.Services.Relay" SourceId="5040EDBC-3225-B9DE-4486-7326104F149E" Name="Unity.Services.Relay" TargetId="23A7FDA6-01F6-70E9-E1AA-129E8892EB39" />
+  <Reference Identifier="4B10F153-7EC2-126D-9011-7B77C21DA070/r:Unity.Netcode.Runtime" SourceId="4B10F153-7EC2-126D-9011-7B77C21DA070" Name="Unity.Netcode.Runtime" TargetId="4FB80404-EF76-1641-ADF1-E45561F6FFEC" />
+  <Reference Identifier="4B10F153-7EC2-126D-9011-7B77C21DA070/r:UnityEditor.UI" SourceId="4B10F153-7EC2-126D-9011-7B77C21DA070" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
+  <Reference Identifier="4B10F153-7EC2-126D-9011-7B77C21DA070/r:UnityEngine.UI" SourceId="4B10F153-7EC2-126D-9011-7B77C21DA070" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
+  <Reference Identifier="5040EDBC-3225-B9DE-4486-7326104F149E/r:CodeSmile.Extensions.Netcode" SourceId="5040EDBC-3225-B9DE-4486-7326104F149E" Name="CodeSmile.Extensions.Netcode" TargetId="4B10F153-7EC2-126D-9011-7B77C21DA070" />
+  <Reference Identifier="5040EDBC-3225-B9DE-4486-7326104F149E/r:CodeSmile.Utility" SourceId="5040EDBC-3225-B9DE-4486-7326104F149E" Name="CodeSmile.Utility" TargetId="DDB21E55-94E4-8E70-2B08-8BD7E2C88C43" />
+  <Reference Identifier="5040EDBC-3225-B9DE-4486-7326104F149E/r:UnityEditor.UI" SourceId="5040EDBC-3225-B9DE-4486-7326104F149E" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
+  <Reference Identifier="5040EDBC-3225-B9DE-4486-7326104F149E/r:UnityEngine.UI" SourceId="5040EDBC-3225-B9DE-4486-7326104F149E" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
+  <Reference Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715/r:CodeSmile.Statemachine.Netcode" SourceId="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="CodeSmile.Statemachine.Netcode" TargetId="5040EDBC-3225-B9DE-4486-7326104F149E" />
+  <Reference Identifier="A07FB3CA-EF80-5D90-C9D6-A33F598F3542/r:CodeSmile.Statemachine" SourceId="A07FB3CA-EF80-5D90-C9D6-A33F598F3542" Name="CodeSmile.Statemachine" TargetId="FD9420D6-02F5-D542-903E-FC2BBC71D8F5" />
+  <Reference Identifier="A07FB3CA-EF80-5D90-C9D6-A33F598F3542/r:CodeSmile.Statemachine.Netcode" SourceId="A07FB3CA-EF80-5D90-C9D6-A33F598F3542" Name="CodeSmile.Statemachine.Netcode" TargetId="5040EDBC-3225-B9DE-4486-7326104F149E" />
+  <Reference Identifier="A07FB3CA-EF80-5D90-C9D6-A33F598F3542/r:Unity.Services.Core" SourceId="A07FB3CA-EF80-5D90-C9D6-A33F598F3542" Name="Unity.Services.Core" TargetId="427B9529-DBC3-45EC-1819-ADB0EBAC5393" />
+  <Reference Identifier="A07FB3CA-EF80-5D90-C9D6-A33F598F3542/r:Unity.Services.Authentication" SourceId="A07FB3CA-EF80-5D90-C9D6-A33F598F3542" Name="Unity.Services.Authentication" TargetId="925BFD33-8FE6-8332-8257-33280A9DB5FD" />
+  <Reference Identifier="A07FB3CA-EF80-5D90-C9D6-A33F598F3542/r:Unity.Services.Relay" SourceId="A07FB3CA-EF80-5D90-C9D6-A33F598F3542" Name="Unity.Services.Relay" TargetId="23A7FDA6-01F6-70E9-E1AA-129E8892EB39" />
+  <Reference Identifier="A07FB3CA-EF80-5D90-C9D6-A33F598F3542/r:UnityEditor.UI" SourceId="A07FB3CA-EF80-5D90-C9D6-A33F598F3542" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
+  <Reference Identifier="A07FB3CA-EF80-5D90-C9D6-A33F598F3542/r:UnityEngine.UI" SourceId="A07FB3CA-EF80-5D90-C9D6-A33F598F3542" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
+  <Reference Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715/r:CodeSmile.Statemachine.Services" SourceId="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="CodeSmile.Statemachine.Services" TargetId="A07FB3CA-EF80-5D90-C9D6-A33F598F3542" />
+  <Reference Identifier="055F83B7-B737-9D47-2F39-942FB58D15B8/r:Unity.Multiplayer.Playmode.VirtualProjects.Editor" SourceId="055F83B7-B737-9D47-2F39-942FB58D15B8" Name="Unity.Multiplayer.Playmode.VirtualProjects.Editor" TargetId="997FE279-5897-3F6F-D637-0FDA3FCCEE7A" />
+  <Reference Identifier="055F83B7-B737-9D47-2F39-942FB58D15B8/r:Unity.Multiplayer.Playmode.Workflow.Editor" SourceId="055F83B7-B737-9D47-2F39-942FB58D15B8" Name="Unity.Multiplayer.Playmode.Workflow.Editor" TargetId="86387E81-ED97-909C-8216-BCA236EED7D9" />
+  <Reference Identifier="055F83B7-B737-9D47-2F39-942FB58D15B8/r:Unity.Multiplayer.Playmode.Common.Runtime" SourceId="055F83B7-B737-9D47-2F39-942FB58D15B8" Name="Unity.Multiplayer.Playmode.Common.Runtime" TargetId="7DB5D6FE-34D7-D7D1-D60D-43CF7406F6BA" />
+  <Reference Identifier="055F83B7-B737-9D47-2F39-942FB58D15B8/r:UnityEditor.UI" SourceId="055F83B7-B737-9D47-2F39-942FB58D15B8" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
+  <Reference Identifier="055F83B7-B737-9D47-2F39-942FB58D15B8/r:UnityEngine.UI" SourceId="055F83B7-B737-9D47-2F39-942FB58D15B8" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
+  <Reference Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715/r:Unity.Multiplayer.Playmode" SourceId="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="Unity.Multiplayer.Playmode" TargetId="055F83B7-B737-9D47-2F39-942FB58D15B8" />
+  <Reference Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715/r:CodeSmile.Utility" SourceId="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="CodeSmile.Utility" TargetId="DDB21E55-94E4-8E70-2B08-8BD7E2C88C43" />
+  <Reference Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715/r:UnityEditor.UI" SourceId="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
+  <Reference Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715/r:UnityEngine.UI" SourceId="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
+  <Reference Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715/r:Unity.Netcode.Runtime" SourceId="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="Unity.Netcode.Runtime" TargetId="4FB80404-EF76-1641-ADF1-E45561F6FFEC" />
+  <Reference Identifier="72954673-5CA9-0B54-6BD0-4B1246DC5895/r:CodeSmile.MultiPal.Netcode" SourceId="72954673-5CA9-0B54-6BD0-4B1246DC5895" Name="CodeSmile.MultiPal.Netcode" TargetId="BE40772D-8606-6D51-9C91-8EDA84A09715" />
+  <Reference Identifier="72954673-5CA9-0B54-6BD0-4B1246DC5895/r:CodeSmile.Statemachine.Netcode" SourceId="72954673-5CA9-0B54-6BD0-4B1246DC5895" Name="CodeSmile.Statemachine.Netcode" TargetId="5040EDBC-3225-B9DE-4486-7326104F149E" />
+  <Reference Identifier="172C8225-7918-883A-9987-855AB31CD36B/r:CodeSmile.MultiPal.Scene" SourceId="172C8225-7918-883A-9987-855AB31CD36B" Name="CodeSmile.MultiPal.Scene" TargetId="72954673-5CA9-0B54-6BD0-4B1246DC5895" />
   <Reference Identifier="2AB2B36A-5D8F-9275-B934-D06657D3DBB0/r:CodeSmile.MultiPal.Settings" SourceId="2AB2B36A-5D8F-9275-B934-D06657D3DBB0" Name="CodeSmile.MultiPal.Settings" TargetId="172C8225-7918-883A-9987-855AB31CD36B" />
   <Reference Identifier="2AB2B36A-5D8F-9275-B934-D06657D3DBB0/r:UnityEditor.UI" SourceId="2AB2B36A-5D8F-9275-B934-D06657D3DBB0" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
   <Reference Identifier="2AB2B36A-5D8F-9275-B934-D06657D3DBB0/r:UnityEngine.UI" SourceId="2AB2B36A-5D8F-9275-B934-D06657D3DBB0" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
+  <Reference Identifier="2AB2B36A-5D8F-9275-B934-D06657D3DBB0/r:CodeSmile.Components.Registry" SourceId="2AB2B36A-5D8F-9275-B934-D06657D3DBB0" Name="CodeSmile.Components.Registry" TargetId="1C5FACF7-543E-E63E-DEEC-607FA66740A7" />
   <Reference Identifier="F1C80635-38F1-BD0F-4972-A8FA01BB30EC/r:CodeSmile.MultiPal.Input" SourceId="F1C80635-38F1-BD0F-4972-A8FA01BB30EC" Name="CodeSmile.MultiPal.Input" TargetId="2AB2B36A-5D8F-9275-B934-D06657D3DBB0" />
   <Reference Identifier="F1C80635-38F1-BD0F-4972-A8FA01BB30EC/r:CodeSmile.MultiPal.Settings" SourceId="F1C80635-38F1-BD0F-4972-A8FA01BB30EC" Name="CodeSmile.MultiPal.Settings" TargetId="172C8225-7918-883A-9987-855AB31CD36B" />
-  <Reference Identifier="1C5FACF7-543E-E63E-DEEC-607FA66740A7/r:UnityEditor.UI" SourceId="1C5FACF7-543E-E63E-DEEC-607FA66740A7" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
-  <Reference Identifier="1C5FACF7-543E-E63E-DEEC-607FA66740A7/r:UnityEngine.UI" SourceId="1C5FACF7-543E-E63E-DEEC-607FA66740A7" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
   <Reference Identifier="F1C80635-38F1-BD0F-4972-A8FA01BB30EC/r:CodeSmile.Components.Registry" SourceId="F1C80635-38F1-BD0F-4972-A8FA01BB30EC" Name="CodeSmile.Components.Registry" TargetId="1C5FACF7-543E-E63E-DEEC-607FA66740A7" />
   <Reference Identifier="F1C80635-38F1-BD0F-4972-A8FA01BB30EC/r:Unity.InputSystem" SourceId="F1C80635-38F1-BD0F-4972-A8FA01BB30EC" Name="Unity.InputSystem" TargetId="10EF8D7F-E77E-EF56-14ED-510D1AB86522" />
   <Reference Identifier="F1C80635-38F1-BD0F-4972-A8FA01BB30EC/r:Unity.Netcode.Runtime" SourceId="F1C80635-38F1-BD0F-4972-A8FA01BB30EC" Name="Unity.Netcode.Runtime" TargetId="4FB80404-EF76-1641-ADF1-E45561F6FFEC" />
@@ -969,39 +1013,6 @@
   <Reference Identifier="0CA5E69F-951D-18EA-D38B-7096B4F6A6F5/r:UnityEditor.UI" SourceId="0CA5E69F-951D-18EA-D38B-7096B4F6A6F5" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
   <Reference Identifier="0CA5E69F-951D-18EA-D38B-7096B4F6A6F5/r:UnityEngine.UI" SourceId="0CA5E69F-951D-18EA-D38B-7096B4F6A6F5" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
   <Reference Identifier="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1/r:Unity.Services.Relay" SourceId="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1" Name="Unity.Services.Relay" TargetId="23A7FDA6-01F6-70E9-E1AA-129E8892EB39" />
-  <Reference Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715/r:CodeSmile.Components.Registry" SourceId="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="CodeSmile.Components.Registry" TargetId="1C5FACF7-543E-E63E-DEEC-607FA66740A7" />
-  <Reference Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715/r:CodeSmile.Statemachine" SourceId="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="CodeSmile.Statemachine" TargetId="FD9420D6-02F5-D542-903E-FC2BBC71D8F5" />
-  <Reference Identifier="5040EDBC-3225-B9DE-4486-7326104F149E/r:CodeSmile.Statemachine" SourceId="5040EDBC-3225-B9DE-4486-7326104F149E" Name="CodeSmile.Statemachine" TargetId="FD9420D6-02F5-D542-903E-FC2BBC71D8F5" />
-  <Reference Identifier="5040EDBC-3225-B9DE-4486-7326104F149E/r:Unity.Netcode.Runtime" SourceId="5040EDBC-3225-B9DE-4486-7326104F149E" Name="Unity.Netcode.Runtime" TargetId="4FB80404-EF76-1641-ADF1-E45561F6FFEC" />
-  <Reference Identifier="5040EDBC-3225-B9DE-4486-7326104F149E/r:Unity.Networking.Transport" SourceId="5040EDBC-3225-B9DE-4486-7326104F149E" Name="Unity.Networking.Transport" TargetId="6EFDBADA-A13E-6570-54F8-5EDA45C8D03A" />
-  <Reference Identifier="5040EDBC-3225-B9DE-4486-7326104F149E/r:Unity.Services.Relay" SourceId="5040EDBC-3225-B9DE-4486-7326104F149E" Name="Unity.Services.Relay" TargetId="23A7FDA6-01F6-70E9-E1AA-129E8892EB39" />
-  <Reference Identifier="4B10F153-7EC2-126D-9011-7B77C21DA070/r:Unity.Netcode.Runtime" SourceId="4B10F153-7EC2-126D-9011-7B77C21DA070" Name="Unity.Netcode.Runtime" TargetId="4FB80404-EF76-1641-ADF1-E45561F6FFEC" />
-  <Reference Identifier="4B10F153-7EC2-126D-9011-7B77C21DA070/r:UnityEditor.UI" SourceId="4B10F153-7EC2-126D-9011-7B77C21DA070" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
-  <Reference Identifier="4B10F153-7EC2-126D-9011-7B77C21DA070/r:UnityEngine.UI" SourceId="4B10F153-7EC2-126D-9011-7B77C21DA070" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
-  <Reference Identifier="5040EDBC-3225-B9DE-4486-7326104F149E/r:CodeSmile.Extensions.Netcode" SourceId="5040EDBC-3225-B9DE-4486-7326104F149E" Name="CodeSmile.Extensions.Netcode" TargetId="4B10F153-7EC2-126D-9011-7B77C21DA070" />
-  <Reference Identifier="DDB21E55-94E4-8E70-2B08-8BD7E2C88C43/r:UnityEditor.UI" SourceId="DDB21E55-94E4-8E70-2B08-8BD7E2C88C43" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
-  <Reference Identifier="DDB21E55-94E4-8E70-2B08-8BD7E2C88C43/r:UnityEngine.UI" SourceId="DDB21E55-94E4-8E70-2B08-8BD7E2C88C43" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
-  <Reference Identifier="5040EDBC-3225-B9DE-4486-7326104F149E/r:CodeSmile.Utility" SourceId="5040EDBC-3225-B9DE-4486-7326104F149E" Name="CodeSmile.Utility" TargetId="DDB21E55-94E4-8E70-2B08-8BD7E2C88C43" />
-  <Reference Identifier="5040EDBC-3225-B9DE-4486-7326104F149E/r:UnityEditor.UI" SourceId="5040EDBC-3225-B9DE-4486-7326104F149E" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
-  <Reference Identifier="5040EDBC-3225-B9DE-4486-7326104F149E/r:UnityEngine.UI" SourceId="5040EDBC-3225-B9DE-4486-7326104F149E" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
-  <Reference Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715/r:CodeSmile.Statemachine.Netcode" SourceId="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="CodeSmile.Statemachine.Netcode" TargetId="5040EDBC-3225-B9DE-4486-7326104F149E" />
-  <Reference Identifier="A07FB3CA-EF80-5D90-C9D6-A33F598F3542/r:CodeSmile.Statemachine" SourceId="A07FB3CA-EF80-5D90-C9D6-A33F598F3542" Name="CodeSmile.Statemachine" TargetId="FD9420D6-02F5-D542-903E-FC2BBC71D8F5" />
-  <Reference Identifier="A07FB3CA-EF80-5D90-C9D6-A33F598F3542/r:CodeSmile.Statemachine.Netcode" SourceId="A07FB3CA-EF80-5D90-C9D6-A33F598F3542" Name="CodeSmile.Statemachine.Netcode" TargetId="5040EDBC-3225-B9DE-4486-7326104F149E" />
-  <Reference Identifier="A07FB3CA-EF80-5D90-C9D6-A33F598F3542/r:Unity.Services.Core" SourceId="A07FB3CA-EF80-5D90-C9D6-A33F598F3542" Name="Unity.Services.Core" TargetId="427B9529-DBC3-45EC-1819-ADB0EBAC5393" />
-  <Reference Identifier="A07FB3CA-EF80-5D90-C9D6-A33F598F3542/r:Unity.Services.Authentication" SourceId="A07FB3CA-EF80-5D90-C9D6-A33F598F3542" Name="Unity.Services.Authentication" TargetId="925BFD33-8FE6-8332-8257-33280A9DB5FD" />
-  <Reference Identifier="A07FB3CA-EF80-5D90-C9D6-A33F598F3542/r:Unity.Services.Relay" SourceId="A07FB3CA-EF80-5D90-C9D6-A33F598F3542" Name="Unity.Services.Relay" TargetId="23A7FDA6-01F6-70E9-E1AA-129E8892EB39" />
-  <Reference Identifier="A07FB3CA-EF80-5D90-C9D6-A33F598F3542/r:UnityEditor.UI" SourceId="A07FB3CA-EF80-5D90-C9D6-A33F598F3542" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
-  <Reference Identifier="A07FB3CA-EF80-5D90-C9D6-A33F598F3542/r:UnityEngine.UI" SourceId="A07FB3CA-EF80-5D90-C9D6-A33F598F3542" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
-  <Reference Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715/r:CodeSmile.Statemachine.Services" SourceId="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="CodeSmile.Statemachine.Services" TargetId="A07FB3CA-EF80-5D90-C9D6-A33F598F3542" />
-  <Reference Identifier="055F83B7-B737-9D47-2F39-942FB58D15B8/r:Unity.Multiplayer.Playmode.VirtualProjects.Editor" SourceId="055F83B7-B737-9D47-2F39-942FB58D15B8" Name="Unity.Multiplayer.Playmode.VirtualProjects.Editor" TargetId="997FE279-5897-3F6F-D637-0FDA3FCCEE7A" />
-  <Reference Identifier="055F83B7-B737-9D47-2F39-942FB58D15B8/r:Unity.Multiplayer.Playmode.Workflow.Editor" SourceId="055F83B7-B737-9D47-2F39-942FB58D15B8" Name="Unity.Multiplayer.Playmode.Workflow.Editor" TargetId="86387E81-ED97-909C-8216-BCA236EED7D9" />
-  <Reference Identifier="055F83B7-B737-9D47-2F39-942FB58D15B8/r:Unity.Multiplayer.Playmode.Common.Runtime" SourceId="055F83B7-B737-9D47-2F39-942FB58D15B8" Name="Unity.Multiplayer.Playmode.Common.Runtime" TargetId="7DB5D6FE-34D7-D7D1-D60D-43CF7406F6BA" />
-  <Reference Identifier="055F83B7-B737-9D47-2F39-942FB58D15B8/r:UnityEditor.UI" SourceId="055F83B7-B737-9D47-2F39-942FB58D15B8" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
-  <Reference Identifier="055F83B7-B737-9D47-2F39-942FB58D15B8/r:UnityEngine.UI" SourceId="055F83B7-B737-9D47-2F39-942FB58D15B8" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
-  <Reference Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715/r:Unity.Multiplayer.Playmode" SourceId="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="Unity.Multiplayer.Playmode" TargetId="055F83B7-B737-9D47-2F39-942FB58D15B8" />
-  <Reference Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715/r:CodeSmile.Utility" SourceId="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="CodeSmile.Utility" TargetId="DDB21E55-94E4-8E70-2B08-8BD7E2C88C43" />
-  <Reference Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715/r:UnityEditor.UI" SourceId="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
-  <Reference Identifier="BE40772D-8606-6D51-9C91-8EDA84A09715/r:UnityEngine.UI" SourceId="BE40772D-8606-6D51-9C91-8EDA84A09715" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
   <Reference Identifier="141B81DF-2213-1D36-3F29-F0256B4A1357/r:CodeSmile.MultiPal.Netcode" SourceId="141B81DF-2213-1D36-3F29-F0256B4A1357" Name="CodeSmile.MultiPal.Netcode" TargetId="BE40772D-8606-6D51-9C91-8EDA84A09715" />
   <Reference Identifier="141B81DF-2213-1D36-3F29-F0256B4A1357/r:CodeSmile.MultiPal.Players" SourceId="141B81DF-2213-1D36-3F29-F0256B4A1357" Name="CodeSmile.MultiPal.Players" TargetId="F1C80635-38F1-BD0F-4972-A8FA01BB30EC" />
   <Reference Identifier="141B81DF-2213-1D36-3F29-F0256B4A1357/r:CodeSmile.MultiPal.Players.Couch" SourceId="141B81DF-2213-1D36-3F29-F0256B4A1357" Name="CodeSmile.MultiPal.Players.Couch" TargetId="4E342311-A6B9-6DBD-F43E-643B8ED1E4A7" />
@@ -1199,6 +1210,9 @@
   <Reference Identifier="78E3150F-2A04-0C6E-372B-9694DC7C0685/r:Unity.Netcode.Runtime" SourceId="78E3150F-2A04-0C6E-372B-9694DC7C0685" Name="Unity.Netcode.Runtime" TargetId="4FB80404-EF76-1641-ADF1-E45561F6FFEC" />
   <Reference Identifier="78E3150F-2A04-0C6E-372B-9694DC7C0685/r:UnityEditor.UI" SourceId="78E3150F-2A04-0C6E-372B-9694DC7C0685" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
   <Reference Identifier="78E3150F-2A04-0C6E-372B-9694DC7C0685/r:UnityEngine.UI" SourceId="78E3150F-2A04-0C6E-372B-9694DC7C0685" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
+  <Reference Identifier="78E3150F-2A04-0C6E-372B-9694DC7C0685/r:CodeSmile.MultiPal.Settings" SourceId="78E3150F-2A04-0C6E-372B-9694DC7C0685" Name="CodeSmile.MultiPal.Settings" TargetId="172C8225-7918-883A-9987-855AB31CD36B" />
+  <Reference Identifier="78E3150F-2A04-0C6E-372B-9694DC7C0685/r:CodeSmile.MultiPal.Scene" SourceId="78E3150F-2A04-0C6E-372B-9694DC7C0685" Name="CodeSmile.MultiPal.Scene" TargetId="72954673-5CA9-0B54-6BD0-4B1246DC5895" />
+  <Reference Identifier="78E3150F-2A04-0C6E-372B-9694DC7C0685/r:CodeSmile.Utility" SourceId="78E3150F-2A04-0C6E-372B-9694DC7C0685" Name="CodeSmile.Utility" TargetId="DDB21E55-94E4-8E70-2B08-8BD7E2C88C43" />
   <Reference Identifier="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1/r:CodeSmile.MultiPal.GUI" SourceId="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1" Name="CodeSmile.MultiPal.GUI" TargetId="78E3150F-2A04-0C6E-372B-9694DC7C0685" />
   <Reference Identifier="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1/r:Unity.Mathematics.Editor" SourceId="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1" Name="Unity.Mathematics.Editor" TargetId="51203845-AD9F-FEB4-39D7-0ED5987BB73E" />
   <Reference Identifier="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1/r:Unity.Cinemachine" SourceId="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1" Name="Unity.Cinemachine" TargetId="642BD8D9-EFB1-7FE6-6CDA-94B3F9F24E1F" />
@@ -1233,6 +1247,11 @@
   <Reference Identifier="6A1B8F18-658B-5E1C-F04A-2E389500956C/r:Unity.Netcode.Runtime" SourceId="6A1B8F18-658B-5E1C-F04A-2E389500956C" Name="Unity.Netcode.Runtime" TargetId="4FB80404-EF76-1641-ADF1-E45561F6FFEC" />
   <Reference Identifier="6A1B8F18-658B-5E1C-F04A-2E389500956C/r:UnityEditor.UI" SourceId="6A1B8F18-658B-5E1C-F04A-2E389500956C" Name="UnityEditor.UI" TargetId="CC755253-85C9-FEF0-7E50-86120265FBA9" />
   <Reference Identifier="6A1B8F18-658B-5E1C-F04A-2E389500956C/r:UnityEngine.UI" SourceId="6A1B8F18-658B-5E1C-F04A-2E389500956C" Name="UnityEngine.UI" TargetId="7D664DC0-3208-3852-560B-529229324BB5" />
+  <Reference Identifier="6A1B8F18-658B-5E1C-F04A-2E389500956C/r:CodeSmile.MultiPal.Scene" SourceId="6A1B8F18-658B-5E1C-F04A-2E389500956C" Name="CodeSmile.MultiPal.Scene" TargetId="72954673-5CA9-0B54-6BD0-4B1246DC5895" />
+  <Reference Identifier="6A1B8F18-658B-5E1C-F04A-2E389500956C/r:CodeSmile.MultiPal.Settings" SourceId="6A1B8F18-658B-5E1C-F04A-2E389500956C" Name="CodeSmile.MultiPal.Settings" TargetId="172C8225-7918-883A-9987-855AB31CD36B" />
+  <Reference Identifier="6A1B8F18-658B-5E1C-F04A-2E389500956C/r:CodeSmile.Utility" SourceId="6A1B8F18-658B-5E1C-F04A-2E389500956C" Name="CodeSmile.Utility" TargetId="DDB21E55-94E4-8E70-2B08-8BD7E2C88C43" />
+  <Reference Identifier="6A1B8F18-658B-5E1C-F04A-2E389500956C/r:CodeSmile.Statemachine.Netcode" SourceId="6A1B8F18-658B-5E1C-F04A-2E389500956C" Name="CodeSmile.Statemachine.Netcode" TargetId="5040EDBC-3225-B9DE-4486-7326104F149E" />
+  <Reference Identifier="6A1B8F18-658B-5E1C-F04A-2E389500956C/r:Unity.InputSystem" SourceId="6A1B8F18-658B-5E1C-F04A-2E389500956C" Name="Unity.InputSystem" TargetId="10EF8D7F-E77E-EF56-14ED-510D1AB86522" />
   <Reference Identifier="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1/r:CodeSmile.MultiPal.Global" SourceId="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1" Name="CodeSmile.MultiPal.Global" TargetId="6A1B8F18-658B-5E1C-F04A-2E389500956C" />
   <Reference Identifier="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1/r:Unity.Multiplayer.Tools.Adapters" SourceId="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1" Name="Unity.Multiplayer.Tools.Adapters" TargetId="58733EB3-EF51-BBB3-F907-362AF4266B78" />
   <Reference Identifier="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1/r:Unity.Services.Authentication" SourceId="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1" Name="Unity.Services.Authentication" TargetId="925BFD33-8FE6-8332-8257-33280A9DB5FD" />
@@ -1271,6 +1290,7 @@
   <Reference Identifier="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1/r:Unity.Multiplayer.Tools.MetricTypes" SourceId="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1" Name="Unity.Multiplayer.Tools.MetricTypes" TargetId="00F263CD-68DD-3396-4A49-8F5E1FE523B9" />
   <Reference Identifier="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1/r:Unity.Rendering.LightTransport.Runtime" SourceId="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1" Name="Unity.Rendering.LightTransport.Runtime" TargetId="50D6A26F-BC92-AB84-85A5-C348887E96BD" />
   <Reference Identifier="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1/r:Unity.InputSystem" SourceId="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1" Name="Unity.InputSystem" TargetId="10EF8D7F-E77E-EF56-14ED-510D1AB86522" />
+  <Reference Identifier="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1/r:CodeSmile.MultiPal.Scene" SourceId="58B00658-F69A-CE3F-54FE-EDEA03EC5EA1" Name="CodeSmile.MultiPal.Scene" TargetId="72954673-5CA9-0B54-6BD0-4B1246DC5895" />
   <Reference Identifier="2C40CC01-7FCA-5427-019B-25B9FC507484/r:Unity.Multiplayer.Tools.Adapters" SourceId="2C40CC01-7FCA-5427-019B-25B9FC507484" Name="Unity.Multiplayer.Tools.Adapters" TargetId="58733EB3-EF51-BBB3-F907-362AF4266B78" />
   <Reference Identifier="2C40CC01-7FCA-5427-019B-25B9FC507484/r:Unity.Networking.Transport" SourceId="2C40CC01-7FCA-5427-019B-25B9FC507484" Name="Unity.Networking.Transport" TargetId="6EFDBADA-A13E-6570-54F8-5EDA45C8D03A" />
   <Reference Identifier="2C40CC01-7FCA-5427-019B-25B9FC507484/r:Unity.Netcode.Runtime" SourceId="2C40CC01-7FCA-5427-019B-25B9FC507484" Name="Unity.Netcode.Runtime" TargetId="4FB80404-EF76-1641-ADF1-E45561F6FFEC" />

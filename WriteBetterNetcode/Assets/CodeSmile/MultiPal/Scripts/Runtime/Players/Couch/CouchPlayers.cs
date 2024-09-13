@@ -33,9 +33,8 @@ namespace CodeSmile.MultiPal.Players.Couch
 		public event Action<CouchPlayers, Int32> OnCouchPlayerLeaving;
 		public event Action<CouchPlayers, Int32> OnCouchPlayerLeft;
 
-		// serialized only for debugging
-		[SerializeField] private Player[] m_Players = new Player[Constants.MaxCouchPlayers];
-		[SerializeField] private Status[] m_PlayerStatus = new Status[Constants.MaxCouchPlayers];
+		private Player[] m_Players = new Player[Constants.MaxCouchPlayers];
+		private Status[] m_PlayerStatus = new Status[Constants.MaxCouchPlayers];
 
 		private CouchPlayersClient m_ClientSide;
 		private CouchPlayersVars m_Vars;
@@ -130,7 +129,10 @@ namespace CodeSmile.MultiPal.Players.Couch
 		private async Task TrySpawnPlayer(InputUser user)
 		{
 			if (m_PlayerStatus[user.index] != Status.Available)
+			{
+				Debug.LogWarning($"can't spawn player {user.index} with status {m_PlayerStatus[user.index]} for user {user}");
 				return;
+			}
 
 			await SpawnPlayer(user.index, user.index);
 		}
