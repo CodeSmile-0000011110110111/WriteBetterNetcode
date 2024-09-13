@@ -19,14 +19,14 @@ namespace CodeSmile.MultiPal.Netcode
 
 		private void Start()
 		{
-			if (m_DidLaunchOnce == false)
-			{
-				m_DidLaunchOnce = true;
+			if (m_DidLaunchOnce)
+				return;
 
-				var role = GetNetworkRoleFromMppmTags();
-				if (role != NetcodeRole.None)
-					StartNetworkWithRole(role);
-			}
+			m_DidLaunchOnce = true;
+
+			var role = GetNetworkRoleFromMppmTags();
+			if (role != NetcodeRole.None)
+				StartNetworkWithRole(role);
 		}
 
 		private static NetcodeRole GetNetworkRoleFromMppmTags()

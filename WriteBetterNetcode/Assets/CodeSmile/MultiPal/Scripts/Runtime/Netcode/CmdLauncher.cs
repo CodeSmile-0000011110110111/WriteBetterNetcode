@@ -4,6 +4,7 @@
 using CodeSmile.Components.Registry;
 using CodeSmile.Statemachine.Netcode;
 using CodeSmile.Utility;
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,6 +13,11 @@ namespace CodeSmile.MultiPal.Netcode
 	[DisallowMultipleComponent]
 	internal sealed class CmdLauncher : MonoBehaviour
 	{
+		private static Boolean m_DidLaunchOnce;
+
+		[RuntimeInitializeOnLoadMethod]
+		private static void ResetStaticFields() => m_DidLaunchOnce = false;
+
 		private static void StartNetworkWithRole(NetcodeConfig netcodeCfg)
 		{
 			var transportCfg = TransportConfig.FromNetworkManagerWithCmdArgOverrides();
@@ -23,6 +29,11 @@ namespace CodeSmile.MultiPal.Netcode
 
 		private void Start()
 		{
+			if (m_DidLaunchOnce)
+				return;
+
+			m_DidLaunchOnce = true;
+
 			if (Application.isEditor == false)
 				CmdArgs.Log();
 
