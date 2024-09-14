@@ -62,6 +62,8 @@ namespace CodeSmile.MultiPal.Scene
 		private void OnServerStarted()
 		{
 			m_IsServerOnline = true;
+
+			SceneManager.SetClientSynchronizationMode(LoadSceneMode.Additive);
 			SceneManager.OnSceneEvent += OnServerSceneEvents;
 			SceneManager.VerifySceneBeforeLoading += ServerVerifySceneBeforeLoading;
 			SceneManager.VerifySceneBeforeUnloading += ServerVerifySceneBeforeUnloading;

@@ -183,8 +183,7 @@ namespace CodeSmile.MultiPal.Netcode
 				.WithConditions(new IsNotListening())
 				.WithActions(
 					new TransportSetup(m_NetcodeConfigVar, m_TransportConfigVar, m_RelayConfigVar),
-					new NetworkStart(m_NetcodeConfigVar),
-					new LambdaAction(()=> NetworkManager.Singleton.SceneManager.SetClientSynchronizationMode(LoadSceneMode.Additive)))
+					new NetworkStart(m_NetcodeConfigVar))
 				.ToErrorState(offlineState)
 				.WithErrorActions(resetNetcodeState);
 

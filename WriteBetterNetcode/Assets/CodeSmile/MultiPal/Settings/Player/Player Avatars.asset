@@ -13,10 +13,5 @@ MonoBehaviour:
   m_Name: Player Avatars
   m_EditorClassIdentifier: 
   m_Prefabs:
-  - {fileID: 3862277631971027947, guid: d31756de06cf62f40b9055bcfe7aeb2b, type: 3}
   - {fileID: 4630532396100718908, guid: 9c1ec1e98eb9fcd428899230a7c6b8af, type: 3}
-  - {fileID: 1025309738726033828, guid: 2189de1d3eeabfd4a8b0b3f7b3e38259, type: 3}
-  - {fileID: 2264402246600748796, guid: 0b4a8f320a2290d46916a2b178a79a13, type: 3}
-  - {fileID: 1463249597542203002, guid: c9816b3bf56076a4b8df8df956da3d24, type: 3}
-  - {fileID: 4043654180392807875, guid: 4d750b799c58b7f47ab9509da563c641, type: 3}
-  - {fileID: 1025309738726033828, guid: 1dc7b85019d827b44abbd8c9bb48e729, type: 3}
+  - {fileID: 3862277631971027947, guid: d31756de06cf62f40b9055bcfe7aeb2b, type: 3}
