@@ -10,7 +10,7 @@ using UnityEngine;
 namespace CodeSmile.MultiPal.Global
 {
 	[DisallowMultipleComponent]
-	public sealed class AdvanceState : MonoBehaviour
+	public sealed class DevAdvanceState : MonoBehaviour
 	{
 		[SerializeField] [Range(0f, 10f)] private Single m_SecondsUntilNextScreen = 2f;
 		[SerializeField] private Boolean m_AllowSkipWithAnyButton = true;
