@@ -91,7 +91,8 @@ namespace CodeSmile.MultiPal.Players.Couch
 				inputUsers.AllPlayerKinematicsEnabled = true;
 				inputUsers.AllPlayerUiEnabled = true;
 
-				await SpawnPlayer(0, 0); // spawn host player
+				// spawn couch-host player since that always exists
+				await SpawnPlayer(0, 0);
 			}
 		}
 
@@ -124,18 +125,20 @@ namespace CodeSmile.MultiPal.Players.Couch
 				DespawnPlayer(playerIndex);
 		}
 
-		private async void OnUserInputDevicePaired(InputUser user, InputDevice device) => await TrySpawnPlayer(user);
+		private async void OnUserInputDevicePaired(InputUser user, InputDevice device) => TrySpawnPlayer(user);
 		private void OnUserInputDeviceUnpaired(InputUser user, InputDevice device) => DespawnPlayer(user.index);
 
-		private async Task TrySpawnPlayer(InputUser user)
+		private async void TrySpawnPlayer(InputUser user)
 		{
-			if (m_PlayerStatus[user.index] != Status.Available)
+			var playerIndex = user.index;
+			if (m_PlayerStatus[playerIndex] != Status.Available)
 			{
-				Debug.LogWarning($"can't spawn player {user.index} with status {m_PlayerStatus[user.index]} for user {user}");
+				Debug.LogWarning($"can't spawn player {playerIndex} with status {m_PlayerStatus[playerIndex]} for user {user}");
 				return;
 			}
 
-			await SpawnPlayer(user.index, user.index);
+			var avatarIndex = playerIndex;
+			await SpawnPlayer(playerIndex, avatarIndex);
 		}
 
 		private async Task SpawnPlayer(Int32 playerIndex, Int32 avatarIndex)
@@ -154,7 +157,6 @@ namespace CodeSmile.MultiPal.Players.Couch
 			SetPlayerDebugName(playerIndex, " <== LOCAL");
 
 			player.OnPlayerSpawn(playerIndex, IsOwner);
-
 			OnCouchPlayerJoined?.Invoke(this, playerIndex);
 		}
 

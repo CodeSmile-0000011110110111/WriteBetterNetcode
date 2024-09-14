@@ -35,29 +35,29 @@ namespace CodeSmile.MultiPal.PlayerController
 			m_ControllerPrefabs.ValidatePrefabsHaveComponent<PlayerControllerBase>();
 
 			AllocPlayerControllersLists();
-		}
 
-		private void Start()
-		{
 			CouchPlayers.OnLocalCouchPlayersSpawn += OnLocalCouchPlayersSpawn;
 			CouchPlayers.OnLocalCouchPlayersDespawn += OnLocalCouchPlayersDespawn;
-
-			// check if couchplayers have already spawned
-			var couchPlayers = ComponentsRegistry.Get<CouchPlayers>();
-			if (couchPlayers != null)
-			{
-				OnLocalCouchPlayersSpawn(couchPlayers);
-
-				for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
-				{
-					if (couchPlayers[playerIndex] != null)
-					{
-						OnCouchPlayerJoining(couchPlayers, playerIndex);
-						OnCouchPlayerJoined(couchPlayers, playerIndex);
-					}
-				}
-			}
 		}
+
+		// private void Start()
+		// {
+		// 	// check if couchplayers have already spawned
+		// 	var couchPlayers = ComponentsRegistry.Get<CouchPlayers>();
+		// 	if (couchPlayers != null)
+		// 	{
+		// 		OnLocalCouchPlayersSpawn(couchPlayers);
+		//
+		// 		for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
+		// 		{
+		// 			if (couchPlayers[playerIndex] != null)
+		// 			{
+		// 				OnCouchPlayerJoining(couchPlayers, playerIndex);
+		// 				OnCouchPlayerJoined(couchPlayers, playerIndex);
+		// 			}
+		// 		}
+		// 	}
+		// }
 
 		private void OnDestroy()
 		{
@@ -192,6 +192,7 @@ namespace CodeSmile.MultiPal.PlayerController
 
 		public void SetAnimatorParameters(Int32 playerIndex, AvatarAnimatorParameters animParams)
 		{
+			//Debug.Log($"set animator parameters for {playerIndex}, count: {m_Controllers[playerIndex]?.Count}");
 			foreach (var playerController in m_Controllers[playerIndex])
 				playerController.AnimatorParameters = animParams;
 		}

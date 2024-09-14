@@ -49,11 +49,10 @@ namespace CodeSmile.MultiPal.Input
 			ComponentsRegistry.Set(this);
 			CreateInputActions();
 			CreateInputUsers();
-			PairUnpairedDevicesWithHostUser();
-			//LogActionEnabledness("InputUsers Awake:\n");
-
 			InputSystem.onDeviceChange += OnDeviceChange;
 		}
+
+		private void Start() => PairUnpairedDevicesWithHostUser();
 
 		private void CreateInputUsers()
 		{
@@ -70,9 +69,18 @@ namespace CodeSmile.MultiPal.Input
 			if (HostUser.valid == false)
 				return;
 
+			var firstDevice = true;
 			var unpairedDevices = InputUser.GetUnpairedInputDevices();
 			foreach (var device in unpairedDevices)
+			{
 				HostUser = InputUser.PerformPairingWithDevice(device, HostUser);
+
+				if (firstDevice)
+				{
+					firstDevice = false;
+					OnUserDevicePaired?.Invoke(HostUser, device);
+				}
+			}
 		}
 
 		private void CreateInputActions()

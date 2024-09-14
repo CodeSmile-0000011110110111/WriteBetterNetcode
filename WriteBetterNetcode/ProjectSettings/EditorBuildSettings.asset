@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/CodeSmile/MultiPal/Scenes/+200_IngameMenus.unity
     guid: ef13aac18bf91dc47bf861250848646e
   - enabled: 1
-    path: Assets/CodeSmile/MultiPal/Scenes/+200_PlayerComponents.unity
+    path: Assets/CodeSmile/MultiPal/Scenes/+200_PlayerCameras.unity
     guid: 79e592116094c5b41882ad6fcea11296
   - enabled: 1
     path: Assets/CodeSmile/MultiPal/Scenes/Server Test Scenes/+500_TestServerScene.unity

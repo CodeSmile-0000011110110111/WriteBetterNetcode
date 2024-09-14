@@ -53,7 +53,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 1.8
-  m_Radius: 0.32
+  m_Radius: 0.35
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Tilt:
     Value: 0
     Center: 0
-    Range: {x: -85, y: 85}
+    Range: {x: -88, y: 70}
     Wrap: 0
     Recentering:
       Enabled: 0

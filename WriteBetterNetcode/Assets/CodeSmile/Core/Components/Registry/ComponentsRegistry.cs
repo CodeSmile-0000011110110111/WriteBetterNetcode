@@ -21,7 +21,7 @@ namespace CodeSmile.Components.Registry
 		public static event Action<Type, Component> OnComponentAssigned;
 
 		private static Dictionary<Type, Component> s_Components;
-		private static Dictionary<Type, List<TaskCompletionSource<Object>>> s_AssignmentAwaitables;
+		private static Dictionary<Type, List<TaskCompletionSource<Object>>> s_AwaitingAssignmentSources;
 
 		/// <summary>
 		///     Get a component from the registry. Returns null if no such component is currently registered.
@@ -50,16 +50,15 @@ namespace CodeSmile.Components.Registry
 				return component;
 
 			// create entry for type in awaitables
-			if (s_AssignmentAwaitables.ContainsKey(typeof(T)) == false)
-				s_AssignmentAwaitables[typeof(T)] = new List<TaskCompletionSource<Object>>();
+			if (s_AwaitingAssignmentSources.ContainsKey(typeof(T)) == false)
+				s_AwaitingAssignmentSources[typeof(T)] = new List<TaskCompletionSource<Object>>();
 
 			// add a new completion source
 			var tcs = new TaskCompletionSource<Object>();
-			s_AssignmentAwaitables[typeof(T)].Add(tcs);
+			s_AwaitingAssignmentSources[typeof(T)].Add(tcs);
 
 			// await here so the result can be cast to T
-			var result = await tcs.Task.ConfigureAwait(false);
-			return result as T;
+			return await tcs.Task.ConfigureAwait(false) as T;
 		}
 
 		/// <summary>
@@ -79,24 +78,24 @@ namespace CodeSmile.Components.Registry
 
 		private static void ProcessAssignmentAwaitables<T>(T component) where T : Component
 		{
-			if (s_AssignmentAwaitables.TryGetValue(typeof(T), out var awaitables))
+			if (s_AwaitingAssignmentSources.TryGetValue(typeof(T), out var awaitables))
 			{
 				foreach (var completionSource in awaitables)
 					completionSource.SetResult(component);
 
-				s_AssignmentAwaitables.Remove(typeof(T));
+				s_AwaitingAssignmentSources.Remove(typeof(T));
 			}
 		}
 
+#if UNITY_EDITOR
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
 		private static void ResetStaticFields()
 		{
 			s_Components = new Dictionary<Type, Component>();
-			s_AssignmentAwaitables = new Dictionary<Type, List<TaskCompletionSource<Object>>>();
+			s_AwaitingAssignmentSources = new Dictionary<Type, List<TaskCompletionSource<Object>>>();
 			OnComponentAssigned = null;
 		}
 
-#if UNITY_EDITOR
 		[SerializeField] private Boolean m_ClickToLogComponents;
 
 		private void OnValidate()
