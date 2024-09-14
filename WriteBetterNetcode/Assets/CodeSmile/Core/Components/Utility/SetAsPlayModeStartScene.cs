@@ -46,14 +46,14 @@ namespace CodeSmile.Components
 				var sceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath);
 				if (EditorSceneManager.playModeStartScene != sceneAsset)
 				{
-					SessionState.SetString(PlayModeScenePathKey, scenePath);
+					EditorPrefs.SetString(PlayModeScenePathKey, scenePath);
 					EditorSceneManager.playModeStartScene = sceneAsset;
 					Debug.Log($"PlayMode StartScene is now: {sceneAsset.name}");
 				}
 			}
 			else if (EditorSceneManager.playModeStartScene != null)
 			{
-				SessionState.SetString(PlayModeScenePathKey, null);
+				EditorPrefs.SetString(PlayModeScenePathKey, null);
 				EditorSceneManager.playModeStartScene = null;
 				Debug.Log("PlayMode StartScene is now: (active scene)");
 			}
@@ -100,13 +100,13 @@ namespace CodeSmile.Components
 			}
 		}
 
+		[InitializeOnLoadMethod]
 		private static void RestorePlayModeStartScene()
 		{
-			var scenePath = SessionState.GetString(PlayModeScenePathKey, null);
+			var scenePath = EditorPrefs.GetString(PlayModeScenePathKey, null);
 			var startScene = scenePath != null ? AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath) : null;
 			EditorSceneManager.playModeStartScene = startScene;
 		}
-
 #else
 		private void Awake() => Destroy(this);
 #endif
