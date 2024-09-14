@@ -76,10 +76,7 @@ namespace CodeSmile.MultiPal.Input
 				HostUser = InputUser.PerformPairingWithDevice(device, HostUser);
 
 				if (firstDevice)
-				{
 					firstDevice = false;
-					OnUserDevicePaired?.Invoke(HostUser, device);
-				}
 			}
 		}
 
