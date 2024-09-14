@@ -1,15 +1,13 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using UnityEditor;
-using UnityEngine;
-#if UNITY_EDITOR
 using System;
+using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-#endif
 
-namespace CodeSmile.Components
+namespace CodeSmile.Components.Utility
 {
 	/// <summary>
 	///     Sets the scene with this script in it as the PlayMode start scene. Allows to enter PlayMode with a scene other
