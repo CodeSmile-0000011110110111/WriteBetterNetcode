@@ -3,6 +3,7 @@
 
 using CodeSmile.MultiPal.Scene;
 using CodeSmile.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -10,8 +11,17 @@ using UnityEngine;
 
 namespace CodeSmile.MultiPal.Settings
 {
+	[Serializable]
 	public abstract class GameStateBase : ScriptableObject
 	{
+		public const string MenuRoot = "CodeSmile/Game States/";
+
+		// TODO: may have multiple exit states
+		[SerializeField] private GameStateConditionBase m_NextStateCondition;
+		[SerializeField] private GameStateBase m_NextState;
+		public GameStateConditionBase NextStateCondition => m_NextStateCondition;
+		public GameStateBase NextState => m_NextState;
+
 		[Tooltip("These scenes will be loaded or remain loaded and synchronized among clients when entering this state. " +
 		         "Only the server (host) will load these scenes. IMPORTANT: Running network session required when " +
 		         "entering this state!")]
@@ -32,6 +42,23 @@ namespace CodeSmile.MultiPal.Settings
 				serverScene.Reference.OnValidate();
 			foreach (var clientScene in m_ClientScenes)
 				clientScene.Reference.OnValidate();
+		}
+
+		public virtual bool ConditionsSatisfied()
+		{
+			return m_NextStateCondition != null && m_NextStateCondition.IsSatisfied();
+		}
+
+		public virtual void OnEnterState(GameStateBase fromState)
+		{
+			if (m_NextStateCondition != null)
+				m_NextStateCondition.OnEnterState();
+		}
+
+		public virtual void OnExitState(GameStateBase nextState)
+		{
+			if (m_NextStateCondition != null)
+				m_NextStateCondition.OnExitState();
 		}
 	}
 }

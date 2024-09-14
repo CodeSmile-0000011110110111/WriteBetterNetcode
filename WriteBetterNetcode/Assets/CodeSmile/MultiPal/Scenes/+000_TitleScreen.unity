@@ -392,7 +392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1710456614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,6 +408,7 @@ MonoBehaviour:
   m_SecondsUntilNextScreen: 2
   m_AllowSkipWithAnyButton: 1
   m_SkipInPlayMode: 1
+  m_SkipInDevBuilds: 0
 --- !u!4 &1710456615
 Transform:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Global
+namespace CodeSmile.MultiPal.GameState
 {
 	[DisallowMultipleComponent]
 	public sealed class DevAdvanceState : MonoBehaviour

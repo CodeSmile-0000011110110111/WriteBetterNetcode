@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c050faa183b84a0eaf204ab7095f7448, type: 3}
   m_Name: 3_OnlineState
   m_EditorClassIdentifier: 
+  m_NextStateCondition: {fileID: 11400000, guid: 7fd38802f8535c24b8e9d4310e43b202, type: 2}
+  m_NextState: {fileID: 11400000, guid: 02f1be5f912188b46a4ffc83203321c8, type: 2}
   m_ServerScenes:
   - m_SceneReference:
       m_SceneName: +999_Dev_Content
@@ -20,8 +22,8 @@ MonoBehaviour:
     m_ForceReload: 1
   m_ClientScenes:
   - m_SceneReference:
-      m_SceneName: +200_PlayerComponents
-      m_ScenePath: Assets/CodeSmile/MultiPal/Scenes/+200_PlayerComponents.unity
+      m_SceneName: +200_PlayerCameras
+      m_ScenePath: Assets/CodeSmile/MultiPal/Scenes/+200_PlayerCameras.unity
       m_SceneAsset: {fileID: 102900000, guid: 79e592116094c5b41882ad6fcea11296, type: 3}
     m_ForceReload: 0
   - m_SceneReference:

@@ -125,7 +125,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 				DespawnPlayer(playerIndex);
 		}
 
-		private async void OnUserInputDevicePaired(InputUser user, InputDevice device) => TrySpawnPlayer(user);
+		private void OnUserInputDevicePaired(InputUser user, InputDevice device) => TrySpawnPlayer(user);
 		private void OnUserInputDeviceUnpaired(InputUser user, InputDevice device) => DespawnPlayer(user.index);
 
 		private async void TrySpawnPlayer(InputUser user)

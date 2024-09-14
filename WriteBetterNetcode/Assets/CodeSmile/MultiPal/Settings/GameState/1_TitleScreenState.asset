@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf83eecf0f3644e28e82b6ff39bac35f, type: 3}
   m_Name: 1_TitleScreenState
   m_EditorClassIdentifier: 
+  m_NextStateCondition: {fileID: 11400000, guid: 3f0f13f5492ad4447a7ead17e8c9aa2c, type: 2}
+  m_NextState: {fileID: 11400000, guid: 02f1be5f912188b46a4ffc83203321c8, type: 2}
   m_ServerScenes: []
   m_ClientScenes:
   - m_SceneReference:
-      m_RuntimeScene:
-        m_Handle: 0
+      m_SceneName: +000_TitleScreen
+      m_ScenePath: Assets/CodeSmile/MultiPal/Scenes/+000_TitleScreen.unity
       m_SceneAsset: {fileID: 102900000, guid: 4c56a6262b2108241899f8226b3feac8, type: 3}
     m_ForceReload: 0

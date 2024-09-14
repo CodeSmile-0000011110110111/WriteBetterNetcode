@@ -2,19 +2,16 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Components.Registry;
-using CodeSmile.MultiPal.Netcode;
 using CodeSmile.MultiPal.Scene;
 using CodeSmile.MultiPal.Settings;
-using CodeSmile.Statemachine.Netcode;
 using CodeSmile.Utility;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Global
+namespace CodeSmile.MultiPal.GameState
 {
 	[DisallowMultipleComponent]
 	public sealed class GameState : MonoBehaviour
@@ -33,53 +30,53 @@ namespace CodeSmile.MultiPal.Global
 			ComponentsRegistry.Set(this);
 		}
 
-		private void Start()
-		{
-			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
-			netcodeState.WentOnline += WentOnline;
-			netcodeState.WentOffline += WentOffline;
+		private void Start() => SetActiveGameState(0);
 
-			SetActiveGameState(0);
-		}
-
-		private void OnDestroy()
+		private void LateUpdate()
 		{
-			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
-			if (netcodeState != null)
+			var activeState = ActiveState;
+			if (activeState != null && activeState.ConditionsSatisfied())
 			{
-				netcodeState.WentOnline -= WentOnline;
-				netcodeState.WentOffline -= WentOffline;
+				var stateIndex = GetStateIndex(activeState.NextState);
+				SetActiveGameState(stateIndex);
 			}
 		}
 
-		// FIXME: hardcoded
-		private void WentOnline(NetcodeRole role) => SetActiveGameState(3);
-		private void WentOffline(NetcodeRole role) => SetActiveGameState(2);
+		private Int32 GetStateIndex(GameStateBase state) => Array.IndexOf(m_GameStates, state);
 
 		private async void SetActiveGameState(Int32 stateIndex)
 		{
-			var clientSceneLoader = ComponentsRegistry.Get<ClientSceneLoader>();
-			var serverSceneLoader = ComponentsRegistry.Get<ServerSceneLoader>();
-			var currentState = ActiveState;
+			if (stateIndex < 0 || stateIndex >= m_GameStates.Length)
+				throw new IndexOutOfRangeException($"stateIndex {stateIndex} out of range (has {m_GameStates.Length} states)");
+
 			var newGameState = m_GameStates[stateIndex];
+			var currentState = ActiveState;
 			if (currentState == newGameState)
 			{
 				Debug.LogWarning($"tried to change GameState to already active state {newGameState} - ignoring");
 				return;
 			}
 
+			m_ActiveStateIndex = stateIndex;
+			currentState?.OnExitState(newGameState);
+			newGameState.OnEnterState(currentState);
+
 			Debug.Log($"<color=cyan> ================= GameState {newGameState.name} =================</color>");
 			Debug.Log($"[{Time.frameCount}] GameState scene loading begins ...");
 
-			var unloadScenes = GetScenesToUnload(currentState?.ClientSceneRefs, newGameState.ClientScenes);
-			await clientSceneLoader.UnloadScenesAsync(unloadScenes);
-			await clientSceneLoader.LoadScenesAsync(newGameState.ClientSceneRefs);
+			{
+				var unloadScenes = GetScenesToUnload(currentState?.ClientSceneRefs, newGameState.ClientScenes);
+				var clientSceneLoader = ComponentsRegistry.Get<ClientSceneLoader>();
+				await clientSceneLoader.UnloadScenesAsync(unloadScenes);
+				await clientSceneLoader.LoadScenesAsync(newGameState.ClientSceneRefs);
+			}
+			{
+				var unloadScenes = GetScenesToUnload(currentState?.ServerSceneRefs, newGameState.ServerScenes);
+				var serverSceneLoader = ComponentsRegistry.Get<ServerSceneLoader>();
+				await serverSceneLoader.UnloadScenesAsync(unloadScenes);
+				await serverSceneLoader.LoadScenesAsync(newGameState.ServerSceneRefs);
+			}
 
-			unloadScenes = GetScenesToUnload(currentState?.ServerSceneRefs, newGameState.ServerScenes);
-			await serverSceneLoader.UnloadScenesAsync(unloadScenes);
-			await serverSceneLoader.LoadScenesAsync(newGameState.ServerSceneRefs);
-
-			m_ActiveStateIndex = stateIndex;
 			Debug.Log($"[{Time.frameCount}] GameState scene loading completed");
 		}
 
@@ -99,7 +96,6 @@ namespace CodeSmile.MultiPal.Global
 
 			return unloadSceneRefs.ToArray();
 		}
-
 
 		public void AdvanceState() =>
 			// FIXME: placeholder

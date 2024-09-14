@@ -1,13 +1,11 @@
 {
-    "name": "CodeSmile.MultiPal.Settings",
+    "name": "CodeSmile.MultiPal.GameState",
     "rootNamespace": "",
     "references": [
         "GUID:55745023e0a64982a73b4310ef089975",
-        "GUID:b660ba037dadb084b951252e81e1ce1a",
+        "GUID:fcdefbebbd09422dbc2d1210c9b54961",
         "GUID:bee855cae4f74bf40bbf7ba8903d3bb6",
-        "GUID:3d5bff556afff2147a1fe3a1e33d394d",
-        "GUID:db4c46d0c9f4436aa39548052e944823",
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:db4c46d0c9f4436aa39548052e944823"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

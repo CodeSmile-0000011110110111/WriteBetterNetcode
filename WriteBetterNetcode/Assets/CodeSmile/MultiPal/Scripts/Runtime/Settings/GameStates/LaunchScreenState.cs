@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace CodeSmile.MultiPal.Settings.GameStates
 {
-	[CreateAssetMenu(fileName = nameof(LaunchScreenState), order = 0,
-		menuName = "CodeSmile/Game States/" + nameof(LaunchScreenState))]
+	[CreateAssetMenu(fileName = nameof(LaunchScreenState), order = 0, menuName = MenuRoot + nameof(LaunchScreenState))]
 	public sealed class LaunchScreenState : GameStateBase {}
 }
