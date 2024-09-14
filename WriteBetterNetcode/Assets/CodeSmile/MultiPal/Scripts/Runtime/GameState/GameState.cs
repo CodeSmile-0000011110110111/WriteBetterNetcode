@@ -20,6 +20,8 @@ namespace CodeSmile.MultiPal.GameState
 
 		private Int32 m_ActiveStateIndex = -1;
 
+		private Boolean m_StateChangeInProgress;
+
 		private GameStateBase ActiveState => m_ActiveStateIndex >= 0 ? m_GameStates[m_ActiveStateIndex] : null;
 
 		private void Awake()
@@ -33,6 +35,12 @@ namespace CodeSmile.MultiPal.GameState
 		private void Start() => SetActiveGameState(0);
 
 		private void LateUpdate()
+		{
+			if (m_StateChangeInProgress == false)
+				TryChangeState();
+		}
+
+		private void TryChangeState()
 		{
 			var activeState = ActiveState;
 			if (activeState != null && activeState.ConditionsSatisfied())
@@ -49,6 +57,9 @@ namespace CodeSmile.MultiPal.GameState
 			if (stateIndex < 0 || stateIndex >= m_GameStates.Length)
 				throw new IndexOutOfRangeException($"stateIndex {stateIndex} out of range (has {m_GameStates.Length} states)");
 
+			if (m_StateChangeInProgress)
+				throw new InvalidOperationException("can't change GameState again - previous change still in progress!");
+
 			var newGameState = m_GameStates[stateIndex];
 			var currentState = ActiveState;
 			if (currentState == newGameState)
@@ -57,12 +68,13 @@ namespace CodeSmile.MultiPal.GameState
 				return;
 			}
 
+			m_StateChangeInProgress = true;
 			m_ActiveStateIndex = stateIndex;
 			currentState?.OnExitState(newGameState);
 			newGameState.OnEnterState(currentState);
 
 			Debug.Log($"<color=cyan> ================= GameState {newGameState.name} =================</color>");
-			Debug.Log($"[{Time.frameCount}] GameState scene loading begins ...");
+			Debug.Log($"[{Time.frameCount}] {newGameState.name} scene loading begins ...");
 
 			{
 				var unloadScenes = GetScenesToUnload(currentState?.ClientSceneRefs, newGameState.ClientScenes);
@@ -77,7 +89,8 @@ namespace CodeSmile.MultiPal.GameState
 				await serverSceneLoader.LoadScenesAsync(newGameState.ServerSceneRefs);
 			}
 
-			Debug.Log($"[{Time.frameCount}] GameState scene loading completed");
+			m_StateChangeInProgress = false;
+			Debug.Log($"[{Time.frameCount}] {newGameState.name} scene loading completed!");
 		}
 
 		private SceneReference[] GetScenesToUnload(SceneReference[] loadedSceneRefs, AdditiveScene[] scenesToLoad)

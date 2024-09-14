@@ -23,6 +23,9 @@ namespace CodeSmile.Components
 	public sealed class SetAsPlayModeStartScene : MonoBehaviour
 	{
 #if UNITY_EDITOR
+		[MenuItem("Tools/CodeSmile/Reset Playmode StartScene")]
+		public static void MenuItem() => EditorSceneManager.playModeStartScene = null;
+
 		private const String PlayModeScenePathKey = "CodeSmile.EnterPlayModeStartScenePath";
 
 		private Boolean m_IsPlayModeStartSceneClosing;

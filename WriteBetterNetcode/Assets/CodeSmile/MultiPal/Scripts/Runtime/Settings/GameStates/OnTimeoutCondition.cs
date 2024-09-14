@@ -36,9 +36,7 @@ namespace CodeSmile.MultiPal.Settings.GameStates
 #endif
 		}
 
-		// the added time is to  prevent an instant (same frame) state change which could cause
-		// scene loading to fail (can't async load scenes in the same frame)
-		private void Skip() => m_TimeElapsed = Time.time + Time.fixedDeltaTime * 2f;
+		private void Skip() => m_TimeElapsed = 0f;
 
 		public override Boolean IsSatisfied() => Time.time >= m_TimeElapsed;
 	}
