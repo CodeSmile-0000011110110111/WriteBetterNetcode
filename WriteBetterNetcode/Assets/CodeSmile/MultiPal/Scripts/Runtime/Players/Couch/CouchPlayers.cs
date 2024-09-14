@@ -12,6 +12,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
+using Random = UnityEngine.Random;
 
 namespace CodeSmile.MultiPal.Players.Couch
 {
@@ -139,7 +140,8 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 		private async Task SpawnPlayer(Int32 playerIndex, Int32 avatarIndex)
 		{
-			var startPos = Vector3.zero; // TODO: get start pos
+			var startPos = Random.onUnitSphere; // TODO: get start pos
+			startPos.y = 0f;
 
 			m_PlayerStatus[playerIndex] = Status.Spawning;
 			OnCouchPlayerJoining?.Invoke(this, playerIndex);
