@@ -39,6 +39,12 @@ namespace CodeSmile.MultiPal.Players
 			if (playerIndex < 0)
 				return;
 
+			if (avatarIndex >= m_AvatarPrefabs.Count)
+			{
+				Debug.LogWarning($"AvatarIndex {avatarIndex} out of bounds, using default Avatar");
+				avatarIndex = 0;
+			}
+
 			var prefab = m_AvatarPrefabs[avatarIndex];
 			if (prefab != null)
 			{
