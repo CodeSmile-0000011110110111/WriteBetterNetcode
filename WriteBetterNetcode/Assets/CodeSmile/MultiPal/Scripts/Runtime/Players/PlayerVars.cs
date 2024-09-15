@@ -12,6 +12,7 @@ namespace CodeSmile.MultiPal.Players
 	internal sealed class PlayerVars : NetworkBehaviour, IPlayerComponent
 	{
 		private readonly NetworkVariable<Byte> m_AvatarIndexVar = new();
+		private readonly NetworkVariable<float> m_Hitpoints = new();
 
 		private Player m_Player;
 		private PlayerAvatar m_Avatar;

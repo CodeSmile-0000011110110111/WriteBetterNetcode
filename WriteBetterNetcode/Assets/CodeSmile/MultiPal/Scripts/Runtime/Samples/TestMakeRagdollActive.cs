@@ -1,43 +1,46 @@
-using System;
+using UnityEditor;
 using UnityEngine;
 
-public class TestMakeRagdollActive : MonoBehaviour
+namespace CodeSmile.MultiPal.Samples
 {
-	[SerializeField] private Animator m_Animator;
-	[SerializeField] private Transform m_SkeletonRoot;
-	[SerializeField] private Transform m_RagdollSkeletonRoot;
-	private void Update()
+	public class TestMakeRagdollActive : MonoBehaviour
 	{
-		if (Input.GetKeyDown(KeyCode.B))
+		[SerializeField] private Animator m_Animator;
+		[SerializeField] private Transform m_SkeletonRoot;
+		[SerializeField] private Transform m_RagdollSkeletonRoot;
+		private void Update()
 		{
-			ActivateRagdoll();
+			if (UnityEngine.Input.GetKeyDown(KeyCode.B))
+			{
+				ActivateRagdoll();
+			}
 		}
-	}
 
-	private void ActivateRagdoll()
-	{
-		Debug.Log("MAKE DOLL");
-
-		m_Animator.StopPlayback();
-		m_Animator.enabled = false;
-
-		if (m_SkeletonRoot != null)
-			m_SkeletonRoot.gameObject.SetActive(false);
-
-		m_RagdollSkeletonRoot.gameObject.SetActive(true);
-		var bodies = m_RagdollSkeletonRoot.GetComponentsInChildren<Rigidbody>();
-		foreach (var body in bodies)
+		private void ActivateRagdoll()
 		{
-			body.isKinematic = false;
+			Debug.Log("MAKE DOLL");
+
+			m_Animator.StopPlayback();
+			m_Animator.enabled = false;
+
+			if (m_SkeletonRoot != null)
+				m_SkeletonRoot.gameObject.SetActive(false);
+
+			m_RagdollSkeletonRoot.gameObject.SetActive(true);
+			var bodies = m_RagdollSkeletonRoot.GetComponentsInChildren<Rigidbody>();
+			foreach (var body in bodies)
+			{
+				body.isKinematic = false;
+			}
 		}
-	}
 
-	private void Awake()
-	{
-		var bodies = m_RagdollSkeletonRoot.GetComponentsInChildren<Rigidbody>();
-		foreach (var body in bodies)
+		private void Awake()
 		{
-			body.isKinematic = true;
+			var bodies = m_RagdollSkeletonRoot.GetComponentsInChildren<Rigidbody>();
+			foreach (var body in bodies)
+			{
+				body.isKinematic = true;
+			}
 		}
 	}
 }

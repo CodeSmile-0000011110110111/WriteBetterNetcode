@@ -12,6 +12,7 @@ namespace CodeSmile.MultiPal.Players
 	[DisallowMultipleComponent]
 	public class PlayerClient : NetworkBehaviour
 	{
+		private Player m_Player;
 		private PlayerServer m_ServerSide;
 		private IAnimatorController m_AnimatorController;
 		private AvatarAnimatorParameters m_AnimatorParameters;
@@ -26,7 +27,11 @@ namespace CodeSmile.MultiPal.Players
 			set => m_AnimatorParameters = value;
 		}
 
-		private void Awake() => m_ServerSide = GetComponent<PlayerServer>();
+		private void Awake()
+		{
+			m_Player = GetComponent<Player>();
+			m_ServerSide = GetComponent<PlayerServer>();
+		}
 
 		public override void OnNetworkSpawn()
 		{
@@ -55,6 +60,18 @@ namespace CodeSmile.MultiPal.Players
 		{
 			if (m_AnimatorController != null)
 				m_AnimatorController.RemoteAnimatorParametersReceived(animatorParameters);
+		}
+
+		[Rpc(SendTo.ClientsAndHost, DeferLocal = true)]
+		public void KillPlayerClientRpc()
+		{
+			m_Player.Die();
+		}
+
+		[Rpc(SendTo.ClientsAndHost, DeferLocal = true)]
+		public void RespawnPlayerClientRpc()
+		{
+			m_Player.Respawn();
 		}
 	}
 }

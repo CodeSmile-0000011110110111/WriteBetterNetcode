@@ -4,6 +4,7 @@
 using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Animation;
 using CodeSmile.MultiPal.Input;
+using CodeSmile.MultiPal.Players;
 using CodeSmile.MultiPal.Players.Couch;
 using CodeSmile.MultiPal.Settings;
 using System;
@@ -17,6 +18,8 @@ namespace CodeSmile.MultiPal.PlayerController
 	public sealed class PlayerControllers : MonoBehaviour
 	{
 		[SerializeField] private PlayerControllerPrefabs m_ControllerPrefabs;
+		[SerializeField] private Int32 m_DefaultControllerIndex; // FIXME: don't semi-hardcode this
+		[SerializeField] private Int32 m_DeadPlayerControllerIndex; // FIXME: don't semi-hardcode this
 
 		private readonly List<PlayerControllerBase>[] m_Controllers =
 			new List<PlayerControllerBase>[Constants.MaxCouchPlayers];
@@ -39,25 +42,6 @@ namespace CodeSmile.MultiPal.PlayerController
 			CouchPlayers.OnLocalCouchPlayersSpawn += OnLocalCouchPlayersSpawn;
 			CouchPlayers.OnLocalCouchPlayersDespawn += OnLocalCouchPlayersDespawn;
 		}
-
-		// private void Start()
-		// {
-		// 	// check if couchplayers have already spawned
-		// 	var couchPlayers = ComponentsRegistry.Get<CouchPlayers>();
-		// 	if (couchPlayers != null)
-		// 	{
-		// 		OnLocalCouchPlayersSpawn(couchPlayers);
-		//
-		// 		for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
-		// 		{
-		// 			if (couchPlayers[playerIndex] != null)
-		// 			{
-		// 				OnCouchPlayerJoining(couchPlayers, playerIndex);
-		// 				OnCouchPlayerJoined(couchPlayers, playerIndex);
-		// 			}
-		// 		}
-		// 	}
-		// }
 
 		private void OnDestroy()
 		{
@@ -96,19 +80,31 @@ namespace CodeSmile.MultiPal.PlayerController
 				throw new ArgumentNullException($"player {playerIndex} camera tracking target");
 
 			SetPlayerControllerTargets(playerIndex, player.transform, cameraTarget);
-			SetControllerActive(playerIndex, 0);
+			SetControllerActive(playerIndex, m_DefaultControllerIndex);
 
 			player.OnSwitchController += OnSwitchController;
+			player.OnDeath += OnPlayerDeath;
+			player.OnRespawn += OnPlayerRespawn;
 		}
 
 		private void OnCouchPlayerLeaving(CouchPlayers couchPlayers, Int32 playerIndex)
 		{
 			var player = couchPlayers[playerIndex];
 			player.OnSwitchController -= OnSwitchController;
+			player.OnDeath -= OnPlayerDeath;
+			player.OnRespawn -= OnPlayerRespawn;
 
 			m_InputUsers.SetPlayerKinematicsCallback(playerIndex, null);
 			DestroyPlayerControllers(playerIndex);
 		}
+
+		private void OnPlayerDeath(Player player)
+		{
+			Debug.Log("activating DEAD player controller");
+			SetControllerActive(player.PlayerIndex, m_DeadPlayerControllerIndex);
+		}
+
+		private void OnPlayerRespawn(Player player) => SetControllerActive(player.PlayerIndex, m_DefaultControllerIndex);
 
 		private void OnCouchPlayerLeft(CouchPlayers couchPlayers, Int32 playerIndex) {}
 
@@ -143,7 +139,7 @@ namespace CodeSmile.MultiPal.PlayerController
 			}
 
 			// make sure first controller is valid
-			m_ActiveControllerIndexes[playerIndex] = 0;
+			m_ActiveControllerIndexes[playerIndex] = m_DefaultControllerIndex;
 		}
 
 		public void SetPlayerControllerTargets(Int32 playerIndex, Transform motionTarget, Transform rotationTarget)
@@ -176,7 +172,6 @@ namespace CodeSmile.MultiPal.PlayerController
 
 			var activeCtrl = GetActiveController(playerIndex);
 			activeCtrl.gameObject.SetActive(true);
-			//m_InputUsers.SetPlayerKinematicsCallback(playerIndex, activeCtrl);
 		}
 
 		private void OnSwitchController(Int32 playerIndex) => SetNextControllerActive(playerIndex);
@@ -193,7 +188,6 @@ namespace CodeSmile.MultiPal.PlayerController
 
 		public void SetAnimatorParameters(Int32 playerIndex, AvatarAnimatorParameters animParams)
 		{
-			//Debug.Log($"set animator parameters for {playerIndex}, count: {m_Controllers[playerIndex]?.Count}");
 			foreach (var playerController in m_Controllers[playerIndex])
 				playerController.AnimatorParameters = animParams;
 		}

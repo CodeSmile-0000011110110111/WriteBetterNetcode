@@ -7,13 +7,7 @@ using UnityEngine;
 
 namespace CodeSmile.MultiPal.Animation
 {
-	public abstract class AnimatorControllerBase : MonoBehaviour, IAnimatorController
-	{
-		public Boolean IsOwner { get; protected set; }
-		public Int32 PlayerIndex { get; protected set; }
-
-		public abstract void Init(Int32 playerIndex, Boolean isOwner);
-
-		public abstract void RemoteAnimatorParametersReceived(Byte[] animatorParameters);
-	}
+	// public abstract class AnimatorControllerBase : MonoBehaviour, IAnimatorController
+	// {
+	// }
 }

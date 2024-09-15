@@ -13,7 +13,7 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 {
 	[DisallowMultipleComponent]
 	[RequireComponent(typeof(UnityEngine.Animator))]
-	public sealed class KyleAnimatorController : AnimatorControllerBase
+	public sealed class KyleAnimatorController : MonoBehaviour, IAnimatorController
 	{
 		private UnityEngine.Animator m_Animator;
 		private AvatarAnimatorParameters m_AnimParams;
@@ -31,8 +31,10 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 		private Boolean IsGrounded { set => m_Animator.SetBool(m_ParamIsGrounded, value); }
 		private Boolean IsFalling { set => m_Animator.SetBool(m_ParamIsFalling, value); }
 		private Boolean TriggerJump { set => m_Animator.SetBool(m_ParamTriggerJump, value); }
+		public Boolean IsOwner { get; private set; }
+		public Int32 PlayerIndex { get; private set; }
 
-		public override async void Init(Int32 playerIndex, Boolean isOwner)
+		public async void Init(Int32 playerIndex, Boolean isOwner)
 		{
 			PlayerIndex = playerIndex;
 			IsOwner = isOwner;
@@ -47,6 +49,16 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 				controllers.SetAnimatorParameters(playerIndex, m_AnimParams);
 				m_ClientSide.AnimatorParameters = m_AnimParams;
 			}
+		}
+
+		public void OnPlayerDeath(Int32 playerIndex, Boolean isOwner) => m_Animator.enabled = false;
+
+		public void OnPlayerRespawn(Int32 playerIndex, Boolean isOwner) => m_Animator.enabled = true;
+
+		public void RemoteAnimatorParametersReceived(Byte[] animatorParameters)
+		{
+			if (m_AnimParams != null)
+				m_AnimParams.Parameters = animatorParameters;
 		}
 
 		private void Awake()
@@ -82,12 +94,6 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 				IsFalling = m_AnimParams.IsFalling;
 				TriggerJump = m_AnimParams.TriggerJump;
 			}
-		}
-
-		public override void RemoteAnimatorParametersReceived(Byte[] animatorParameters)
-		{
-			if (m_AnimParams != null)
-				m_AnimParams.Parameters = animatorParameters;
 		}
 	}
 }

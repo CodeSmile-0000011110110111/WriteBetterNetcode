@@ -39,12 +39,9 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 		{
 			// tilting goes to camera tracking target as we don't want our viewmodel to tilt, just the camera
 			m_Tilt.Value += m_DeltaTilt;
-			//m_Pan.Value += m_DeltaPan;
 			m_Tilt.Validate();
-			//m_Pan.Validate();
 
 			CameraTarget.localRotation = Quaternion.Euler(m_Tilt.Value, 0f, 0f);
-			//MotionTarget.localRotation = Quaternion.Euler(0f, m_Pan.Value, 0f);
 		}
 
 		public override void OnLook(InputAction.CallbackContext context)

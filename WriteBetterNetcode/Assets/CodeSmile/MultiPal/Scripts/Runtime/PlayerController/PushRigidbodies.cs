@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CodeSmile.MultiPal.Players
 {
-	public class PlayerPushRigidbody : MonoBehaviour
+	public class PushRigidbodies : MonoBehaviour
 	{
 		[Range(0.1f, 10f)] public Single m_PushForce = 3f;
 

@@ -9,7 +9,11 @@ namespace CodeSmile.MultiPal.Animation
 {
 	public interface IAnimatorController
 	{
+		public Boolean IsOwner { get; }
+		public Int32 PlayerIndex { get; }
 		void Init(Int32 playerIndex, Boolean isOwner);
 		void RemoteAnimatorParametersReceived(Byte[] animatorParameters);
+		void OnPlayerDeath(Int32 playerIndex, Boolean isOwner);
+		void OnPlayerRespawn(Int32 playerIndex, Boolean isOwner);
 	}
 }

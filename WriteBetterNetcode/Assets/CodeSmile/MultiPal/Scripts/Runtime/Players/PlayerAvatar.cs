@@ -16,6 +16,8 @@ namespace CodeSmile.MultiPal.Players
 
 		private Player m_Player;
 		private GameObject m_AvatarInstance;
+		private IAnimatorController m_AnimatorController;
+
 		public Byte PreviousIndex => (Byte)(m_Player.AvatarIndex == 0 ? m_AvatarPrefabs.Count - 1 : m_Player.AvatarIndex - 1);
 		public Byte NextIndex => (Byte)(m_Player.AvatarIndex == m_AvatarPrefabs.Count - 1 ? 0 : m_Player.AvatarIndex + 1);
 
@@ -23,14 +25,13 @@ namespace CodeSmile.MultiPal.Players
 
 		public void OnPlayerDespawn(Int32 playerIndex, Boolean isOwner) {}
 
-		private void Awake()
-		{
-			m_Player = GetComponent<Player>();
+		public void OnPlayerDeath(Int32 playerIndex, Boolean isOwner) =>
+			m_AnimatorController?.OnPlayerDeath(playerIndex, isOwner);
 
-			var animator = GetComponent<Animator>();
-			if (animator != null)
-				animator.enabled = false;
-		}
+		public void OnPlayerRespawn(Int32 playerIndex, Boolean isOwner) =>
+			m_AnimatorController?.OnPlayerRespawn(playerIndex, isOwner);
+
+		private void Awake() => m_Player = GetComponent<Player>();
 
 		internal void SetAvatar(Int32 playerIndex, Byte avatarIndex, Boolean isOwner)
 		{
@@ -51,9 +52,8 @@ namespace CodeSmile.MultiPal.Players
 					Destroy(m_AvatarInstance);
 
 				m_AvatarInstance = Instantiate(prefab, transform);
-
-				if (m_AvatarInstance.TryGetComponent<IAnimatorController>(out var animCtrl))
-					animCtrl.Init(playerIndex, isOwner);
+				if (m_AvatarInstance.TryGetComponent(out m_AnimatorController))
+					m_AnimatorController.Init(playerIndex, isOwner);
 			}
 		}
 
