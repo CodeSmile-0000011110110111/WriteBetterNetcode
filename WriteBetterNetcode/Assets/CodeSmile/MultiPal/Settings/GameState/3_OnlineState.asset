@@ -17,9 +17,14 @@ MonoBehaviour:
   m_ServerScenes:
   - m_SceneReference:
       m_SceneName: +999_Dev_Content
-      m_ScenePath: Assets/CodeSmile/MultiPal/Scenes/+999_Dev_Content.unity
+      m_ScenePath: Assets/CodeSmile/MultiPal/Scenes/Server Test Scenes/+999_Dev_Content.unity
       m_SceneAsset: {fileID: 102900000, guid: 2062f189557df184e8aa4881ef2e4435, type: 3}
     m_ForceReload: 1
+  - m_SceneReference:
+      m_SceneName: +500_SpawnPositions
+      m_ScenePath: Assets/CodeSmile/MultiPal/Scenes/Server Test Scenes/+500_SpawnPositions.unity
+      m_SceneAsset: {fileID: 102900000, guid: b2ed7f918b9806647870dc25762b1036, type: 3}
+    m_ForceReload: 0
   m_ClientScenes:
   - m_SceneReference:
       m_SceneName: +200_PlayerCameras

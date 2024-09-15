@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 
 namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 {
-	public sealed class SimplePlayerController : PlayerControllerBase
+	public sealed class FallingPlayerController : PlayerControllerBase
 	{
 		[Header("Settings")]
 		[SerializeField] private Single m_MotionMultiplier = 10f;
@@ -18,13 +18,6 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 
 		private Single m_DeltaTilt;
 		private Single m_DeltaPan;
-
-		protected override void OnEnable()
-		{
-			base.OnEnable();
-			m_DeltaTilt = 0f;
-			m_DeltaPan = 0f;
-		}
 
 		private void Update()
 		{
@@ -40,8 +33,8 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 
 			var speed = (previousPos - currentPos).magnitude * m_MotionMultiplier;
 			AnimatorParameters.MoveSpeed = Mathf.Min(1f, speed / 1f);
-			AnimatorParameters.IsGrounded = CharController.isGrounded;
-			AnimatorParameters.IsFalling = false;
+			AnimatorParameters.IsGrounded = false;
+			AnimatorParameters.IsFalling = true;
 		}
 
 		private void ApplyMove()
@@ -57,18 +50,6 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 			CharController.Move(moveDir);
 		}
 
-		private void ApplyLook()
-		{
-			// tilting goes to camera tracking target as we don't want our viewmodel to tilt, just the camera
-			m_Tilt.Value += m_DeltaTilt;
-			m_Pan.Value += m_DeltaPan;
-			m_Tilt.Validate();
-			m_Pan.Validate();
-
-			CameraTarget.localRotation = Quaternion.Euler(m_Tilt.Value, 0f, 0f);
-			MotionTarget.localRotation = Quaternion.Euler(0f, m_Pan.Value, 0f);
-		}
-
 		public override void OnMove(InputAction.CallbackContext context)
 		{
 			var moveDir = context.ReadValue<Vector2>();
@@ -81,6 +62,18 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 				AnimatorParameters.InputMagnitude = moveDir.magnitude;
 		}
 
+		private void ApplyLook()
+		{
+			// tilting goes to camera tracking target as we don't want our viewmodel to tilt, just the camera
+			m_Tilt.Value += m_DeltaTilt;
+			m_Pan.Value += m_DeltaPan;
+			m_Tilt.Validate();
+			m_Pan.Validate();
+
+			CameraTarget.localRotation = Quaternion.Euler(m_Tilt.Value, 0f, 0f);
+			MotionTarget.localRotation = Quaternion.Euler(0f, m_Pan.Value, 0f);
+		}
+
 		public override void OnLook(InputAction.CallbackContext context)
 		{
 			var lookDir = context.ReadValue<Vector2>();
@@ -90,19 +83,10 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 
 		public override void OnCrouch(InputAction.CallbackContext context)
 		{
-			if (context.performed) {}
-
-			if (AnimatorParameters != null)
-				AnimatorParameters.TriggerCrouch = context.performed;
 		}
 
 		public override void OnJump(InputAction.CallbackContext context)
 		{
-			if (context.performed)
-				m_Vertical.Value = MoveSensitivity.y;
-
-			if (AnimatorParameters != null)
-				AnimatorParameters.TriggerJump = context.performed;
 		}
 
 		public override void OnSprint(InputAction.CallbackContext context) {}

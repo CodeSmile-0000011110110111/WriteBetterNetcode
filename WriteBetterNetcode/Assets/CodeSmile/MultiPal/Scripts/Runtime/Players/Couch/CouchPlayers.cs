@@ -12,7 +12,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
-using Random = UnityEngine.Random;
 
 namespace CodeSmile.MultiPal.Players.Couch
 {
@@ -71,7 +70,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 				                         $"ID:{m_Players[playerIndex].NetworkObjectId}) " +
 				                         $"P{playerIndex}{suffix}");
 
-		public override async void OnNetworkSpawn()
+		public override void OnNetworkSpawn()
 		{
 			base.OnNetworkSpawn();
 
@@ -90,9 +89,6 @@ namespace CodeSmile.MultiPal.Players.Couch
 				inputUsers.AllPlayerInteractionEnabled = true;
 				inputUsers.AllPlayerKinematicsEnabled = true;
 				inputUsers.AllPlayerUiEnabled = true;
-
-				// spawn couch-host player since that always exists
-				await SpawnPlayer(0, 0);
 			}
 		}
 
@@ -128,6 +124,21 @@ namespace CodeSmile.MultiPal.Players.Couch
 		private void OnUserInputDevicePaired(InputUser user, InputDevice device) => TrySpawnPlayer(user);
 		private void OnUserInputDeviceUnpaired(InputUser user, InputDevice device) => DespawnPlayer(user.index);
 
+		public async void StartSpawnPlayers()
+		{
+			if (IsOwner)
+			{
+				var inputUsers = ComponentsRegistry.Get<InputUsers>();
+				foreach (var pairedUser in inputUsers.PairedUsers)
+				{
+					// FIXME: spawn multiple at once
+					var playerIndex = pairedUser.index;
+					var avatarIndex = pairedUser.index;
+					await SpawnPlayer(playerIndex, avatarIndex);
+				}
+			}
+		}
+
 		private async void TrySpawnPlayer(InputUser user)
 		{
 			var playerIndex = user.index;
@@ -143,13 +154,10 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 		private async Task SpawnPlayer(Int32 playerIndex, Int32 avatarIndex)
 		{
-			var startPos = Random.onUnitSphere; // TODO: get start pos
-			startPos.y = 0f;
-
 			m_PlayerStatus[playerIndex] = Status.Spawning;
 			OnCouchPlayerJoining?.Invoke(this, playerIndex);
 
-			var player = await m_ClientSide.Spawn(startPos, playerIndex, avatarIndex);
+			var player = await m_ClientSide.Spawn(playerIndex, avatarIndex);
 			m_Players[playerIndex] = player;
 			m_PlayerStatus[playerIndex] = Status.Spawned;
 			PlayerCount++;

@@ -14,10 +14,11 @@ namespace CodeSmile.MultiPal.Utility
 			"LoadSceneMode.Single is not supported in MultiPal! Scenes have to be loaded additively and unloaded as needed. " +
 			"Design your content into objects/components that exist all the time, and the content that only exists for a " +
 			"small period of time, eg a menu or indoor environment. It does not make a conceptual difference, it requires " +
-			"a change of 'habit' in organizing content and an additional 'unload' of content when it is no longer needed.";
+			"a change of 'habit' in organizing content and an additional 'unload' of content when it is no longer needed. " +
+			"It provides you with more control over when to load/unload content, while all unchanged state naturally persist.";
 
-		[RuntimeInitializeOnLoadMethod]
-		private static void OnRuntimeMethodLoad() => overrideAPI = new SceneManagerNoSingleLoad();
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+		private static void CreateSceneManagerOverride() => overrideAPI = new SceneManagerNoSingleLoad();
 
 		protected override AsyncOperation LoadSceneAsyncByNameOrIndex(String sceneName, Int32 sceneBuildIndex,
 			LoadSceneParameters parameters, Boolean mustCompleteNextFrame)

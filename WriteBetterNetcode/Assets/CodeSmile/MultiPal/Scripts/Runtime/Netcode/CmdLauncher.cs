@@ -15,7 +15,7 @@ namespace CodeSmile.MultiPal.Netcode
 	{
 		private static Boolean m_DidLaunchOnce;
 
-		[RuntimeInitializeOnLoadMethod]
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
 		private static void ResetStaticFields() => m_DidLaunchOnce = false;
 
 		private static void StartNetworkWithRole(NetcodeConfig netcodeCfg)

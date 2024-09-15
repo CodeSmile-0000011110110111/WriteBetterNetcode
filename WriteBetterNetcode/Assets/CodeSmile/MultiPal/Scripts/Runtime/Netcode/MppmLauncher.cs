@@ -60,7 +60,7 @@ namespace CodeSmile.MultiPal.Netcode
 				SaveProject();
 		};
 
-		[RuntimeInitializeOnLoadMethod]
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
 		private static void ResetStaticFields() => m_DidLaunchOnce = false;
 
 		private static void SaveProject() => AssetDatabase.SaveAssets();

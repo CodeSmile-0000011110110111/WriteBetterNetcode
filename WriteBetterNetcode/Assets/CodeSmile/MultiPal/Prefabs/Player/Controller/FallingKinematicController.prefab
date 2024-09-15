@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1907538340643696813}
   - component: {fileID: 8915835870338441565}
-  - component: {fileID: 8132290919233798729}
+  - component: {fileID: 5243634162774608865}
   m_Layer: 0
-  m_Name: SimpleKinematicController
+  m_Name: FallingKinematicController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,8 +58,8 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.0001
-  m_Center: {x: 0, y: 0.99, z: 0}
---- !u!114 &8132290919233798729
+  m_Center: {x: 0, y: 0.6, z: 0}
+--- !u!114 &5243634162774608865
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4552058439193894227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb982e1f8c604751a32d675ca9bd1624, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a08a742b6c94ceb88e120bbd059677a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Sideways:
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Tilt:
     Value: 0
     Center: 0
-    Range: {x: -88, y: 70}
+    Range: {x: -85, y: 85}
     Wrap: 0
     Recentering:
       Enabled: 0
@@ -130,10 +130,10 @@ MonoBehaviour:
       Enabled: 0
       Wait: 0
       Time: 0
-    Restrictions: 0
-  m_MoveSensitivity: {x: 0.06, y: 0.06, z: 0.06}
-  m_LookSensitivity: {x: 0.125, y: 0.1, z: 0}
-  m_MotionMultiplier: 15
+    Restrictions: 2
+  m_MoveSensitivity: {x: 0.01, y: 0.01, z: 0.01}
+  m_LookSensitivity: {x: 0.1, y: 0.1, z: 0.1}
+  m_MotionMultiplier: 5
   m_Gravity: -0.981
   m_InvertVertical: 0
 --- !u!1001 &3812875176297213324

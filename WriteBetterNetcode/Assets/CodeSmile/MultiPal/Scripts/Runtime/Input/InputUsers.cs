@@ -4,6 +4,7 @@
 using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Settings;
 using System;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,6 +19,8 @@ namespace CodeSmile.MultiPal.Input
 		public event Action<InputUser, InputDevice> OnUserDeviceUnpaired;
 
 		private readonly InputUser[] m_Users = new InputUser[Constants.MaxCouchPlayers];
+		public InputUser[] PairedUsers =>
+			m_Users.Where(user => user.pairedDevices.Count != 0 || user.lostDevices.Count != 0).ToArray();
 
 		private InputUser HostUser { get => m_Users[0]; set => m_Users[0] = value; }
 

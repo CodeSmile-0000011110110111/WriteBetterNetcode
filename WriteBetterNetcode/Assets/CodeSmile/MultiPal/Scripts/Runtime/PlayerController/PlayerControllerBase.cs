@@ -102,6 +102,19 @@ namespace CodeSmile.MultiPal.PlayerController
 			// character controller may be on a different object
 			if (CharController != null)
 				CharController.enabled = true;
+
+			// apply initial values
+			if (CameraTarget != null)
+			{
+				m_Tilt.Value = CameraTarget.rotation.eulerAngles.x;
+				m_Tilt.Validate();
+			}
+
+			if (MotionTarget != null)
+			{
+				m_Pan.Value = MotionTarget.rotation.eulerAngles.y;
+				m_Pan.Validate();
+			}
 		}
 
 		/// <summary>

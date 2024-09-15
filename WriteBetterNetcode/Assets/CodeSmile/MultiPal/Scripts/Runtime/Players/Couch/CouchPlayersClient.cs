@@ -16,21 +16,21 @@ namespace CodeSmile.MultiPal.Players.Couch
 		private readonly TaskCompletionSource<Player>[] m_SpawnTcs =
 			new TaskCompletionSource<Player>[Constants.MaxCouchPlayers];
 
-		private CouchPlayers m_Players;
+		private CouchPlayers m_CouchPlayers;
 		private CouchPlayersServer m_ServerSide;
 
 		private void Awake()
 		{
-			m_Players = GetComponent<CouchPlayers>();
+			m_CouchPlayers = GetComponent<CouchPlayers>();
 			m_ServerSide = GetComponent<CouchPlayersServer>();
 		}
 
-		internal Task<Player> Spawn(Vector3 position, Int32 playerIndex, Int32 avatarIndex)
+		internal Task<Player> Spawn(Int32 playerIndex, Int32 avatarIndex)
 		{
 			if (m_SpawnTcs[playerIndex] != null)
 				throw new Exception($"player {playerIndex} spawn in progress");
 
-			m_ServerSide.SpawnPlayerServerRpc(OwnerClientId, position, (Byte)playerIndex, (Byte)avatarIndex);
+			m_ServerSide.SpawnPlayerServerRpc(OwnerClientId, (Byte)playerIndex, (Byte)avatarIndex);
 
 			m_SpawnTcs[playerIndex] = new TaskCompletionSource<Player>();
 			return m_SpawnTcs[playerIndex].Task;
@@ -56,6 +56,12 @@ namespace CodeSmile.MultiPal.Players.Couch
 			// Despawn may get invoked when session stopped, thus object may already be despawned
 			if (playerObj.IsSpawned)
 				m_ServerSide.DespawnPlayerServerRpc((Byte)playerIndex, playerObj);
+		}
+
+		[Rpc(SendTo.ClientsAndHost, DeferLocal = true)]
+		public void ServerCanSpawnPlayersClientRpc()
+		{
+			m_CouchPlayers.StartSpawnPlayers();
 		}
 	}
 }
