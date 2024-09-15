@@ -138,6 +138,7 @@ namespace CodeSmile.MultiPal.PlayerController
 				ctrlObj.SetActive(false);
 
 				var controller = ctrlObj.GetComponent<PlayerControllerBase>();
+				controller.PlayerIndex = playerIndex;
 				m_Controllers[playerIndex].Add(controller);
 			}
 
@@ -175,7 +176,7 @@ namespace CodeSmile.MultiPal.PlayerController
 
 			var activeCtrl = GetActiveController(playerIndex);
 			activeCtrl.gameObject.SetActive(true);
-			m_InputUsers.SetPlayerKinematicsCallback(playerIndex, activeCtrl);
+			//m_InputUsers.SetPlayerKinematicsCallback(playerIndex, activeCtrl);
 		}
 
 		private void OnSwitchController(Int32 playerIndex) => SetNextControllerActive(playerIndex);

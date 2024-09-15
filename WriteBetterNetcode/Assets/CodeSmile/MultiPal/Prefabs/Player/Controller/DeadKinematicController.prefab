@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1907538340643696813}
   - component: {fileID: 8915835870338441565}
-  - component: {fileID: 5243634162774608865}
+  - component: {fileID: -3765888373336974816}
   m_Layer: 0
-  m_Name: FallingKinematicController
+  m_Name: DeadKinematicController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.0001
   m_Center: {x: 0, y: 0.99, z: 0}
---- !u!114 &5243634162774608865
+--- !u!114 &-3765888373336974816
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4552058439193894227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a08a742b6c94ceb88e120bbd059677a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6469cb42dcdc4344c951b2993a142c40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Sideways:
@@ -131,9 +131,8 @@ MonoBehaviour:
       Wait: 0
       Time: 0
     Restrictions: 2
-  m_MoveSensitivity: {x: 0.01, y: 0.01, z: 0.01}
+  m_MoveSensitivity: {x: 0.1, y: 0.1, z: 0.1}
   m_LookSensitivity: {x: 0.1, y: 0.1, z: 0.1}
-  m_MotionMultiplier: 5
   m_Gravity: -0.981
   m_InvertVertical: 0
 --- !u!1001 &3812875176297213324

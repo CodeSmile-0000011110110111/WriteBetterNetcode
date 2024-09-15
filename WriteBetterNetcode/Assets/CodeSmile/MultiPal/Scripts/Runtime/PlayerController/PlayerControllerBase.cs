@@ -1,13 +1,16 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Animation;
 using CodeSmile.MultiPal.Input;
+using System;
 using Unity.Cinemachine;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using Object = System.Object;
 
 namespace CodeSmile.MultiPal.PlayerController
 {
@@ -74,6 +77,7 @@ namespace CodeSmile.MultiPal.PlayerController
 			get => m_LookSensitivity;
 			set => m_LookSensitivity = value;
 		}
+		public Int32 PlayerIndex { get; set; }
 
 		public virtual void OnMove(InputAction.CallbackContext context) {}
 		public virtual void OnLook(InputAction.CallbackContext context) {}
@@ -115,6 +119,9 @@ namespace CodeSmile.MultiPal.PlayerController
 				m_Pan.Value = MotionTarget.rotation.eulerAngles.y;
 				m_Pan.Validate();
 			}
+
+			var inputUsers = ComponentsRegistry.Get<InputUsers>();
+			inputUsers.SetPlayerKinematicsCallback(PlayerIndex, this);
 		}
 
 		/// <summary>
@@ -122,6 +129,9 @@ namespace CodeSmile.MultiPal.PlayerController
 		/// </summary>
 		protected virtual void OnDisable()
 		{
+			var inputUsers = ComponentsRegistry.Get<InputUsers>();
+			inputUsers.SetPlayerKinematicsCallback(PlayerIndex, null);
+
 			// character controller may be on a different object
 			if (CharController != null)
 			{
