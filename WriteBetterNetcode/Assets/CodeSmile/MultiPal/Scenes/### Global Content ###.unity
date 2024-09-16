@@ -464,6 +464,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ControllerPrefabs: {fileID: 11400000, guid: 1305a411e1bf78e40a85d2f5ccec5240, type: 2}
+  m_DefaultControllerIndex: 0
+  m_DeadPlayerControllerIndex: 2
 --- !u!4 &1297388102
 Transform:
   m_ObjectHideFlags: 0
@@ -777,7 +779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PresetAsset: {fileID: 0}
   m_PresetReference:
-    rid: 6337014660518117525
+    rid: 6337014751601098867
   m_Scenario:
     rid: -2
   m_IsScenarioSettingsFolded: 1
@@ -787,7 +789,7 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 6337014660518117525
+    - rid: 6337014751601098867
       type: {class: NetworkSimulatorPreset, ns: Unity.Multiplayer.Tools.NetworkSimulator.Runtime, asm: Unity.Multiplayer.Tools.NetworkSimulator.Runtime}
       data:
         <Name>k__BackingField: 'Home Satellite [low Earth orbit]'
@@ -853,7 +855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5880504382145728862
 Transform:
   m_ObjectHideFlags: 0

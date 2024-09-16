@@ -81,13 +81,9 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 			m_DeltaPan = lookDir.x * LookSensitivity.x;
 		}
 
-		public override void OnCrouch(InputAction.CallbackContext context)
-		{
-		}
+		public override void OnCrouch(InputAction.CallbackContext context) {}
 
-		public override void OnJump(InputAction.CallbackContext context)
-		{
-		}
+		public override void OnJump(InputAction.CallbackContext context) {}
 
 		public override void OnSprint(InputAction.CallbackContext context) {}
 	}

@@ -63,15 +63,9 @@ namespace CodeSmile.MultiPal.Players
 		}
 
 		[Rpc(SendTo.ClientsAndHost, DeferLocal = true)]
-		public void KillPlayerClientRpc()
-		{
-			m_Player.Die();
-		}
+		public void KillPlayerClientRpc() => m_Player.Die();
 
 		[Rpc(SendTo.ClientsAndHost, DeferLocal = true)]
-		public void RespawnPlayerClientRpc()
-		{
-			m_Player.Respawn();
-		}
+		public void RespawnPlayerClientRpc() => m_Player.Respawn();
 	}
 }

@@ -31,9 +31,7 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 			m_Vertical.Validate();
 		}
 
-		public override void OnMove(InputAction.CallbackContext context)
-		{
-		}
+		public override void OnMove(InputAction.CallbackContext context) {}
 
 		private void ApplyLook()
 		{
@@ -51,13 +49,9 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Controller
 			m_DeltaPan = lookDir.x * LookSensitivity.x;
 		}
 
-		public override void OnCrouch(InputAction.CallbackContext context)
-		{
-		}
+		public override void OnCrouch(InputAction.CallbackContext context) {}
 
-		public override void OnJump(InputAction.CallbackContext context)
-		{
-		}
+		public override void OnJump(InputAction.CallbackContext context) {}
 
 		public override void OnSprint(InputAction.CallbackContext context) {}
 	}

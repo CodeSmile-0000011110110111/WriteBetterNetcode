@@ -7,7 +7,7 @@ using UnityEngine;
 namespace CodeSmile.Components.Utility
 {
 	[DisallowMultipleComponent]
-	public sealed class DestroyObjectInReleaseBuilds : MonoBehaviour
+	internal sealed class DestroyObjectInReleaseBuilds : MonoBehaviour
 	{
 #if !UNITY_EDITOR && !DEBUG && !DEVELOPMENT_BUILD
 		private void Awake()

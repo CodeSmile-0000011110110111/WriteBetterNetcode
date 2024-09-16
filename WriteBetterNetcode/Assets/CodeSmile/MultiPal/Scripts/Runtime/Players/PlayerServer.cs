@@ -1,7 +1,6 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using System;
 using System.Collections;
 using Unity.Netcode;
 using UnityEditor;
@@ -22,21 +21,15 @@ namespace CodeSmile.MultiPal.Players
 			m_Player = GetComponent<Player>();
 		}
 
-		private void OnEnable()
-		{
-			StartCoroutine(TestRandomlyKillPlayer());
-		}
+		private void OnEnable() => StartCoroutine(TestRandomlyKillPlayer());
 
-		private void OnDisable()
-		{
-			StopAllCoroutines();
-		}
+		private void OnDisable() => StopAllCoroutines();
 
 		private IEnumerator TestRandomlyKillPlayer()
 		{
 			while (true)
 			{
-				var timeToDie = Random.value * 5f;
+				var timeToDie = Random.value * 5f + 5f;
 				yield return new WaitForSeconds(timeToDie);
 
 				m_ClientSide.KillPlayerClientRpc();

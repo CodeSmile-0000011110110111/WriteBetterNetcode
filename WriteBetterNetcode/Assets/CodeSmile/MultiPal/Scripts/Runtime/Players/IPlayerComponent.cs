@@ -11,7 +11,7 @@ namespace CodeSmile.MultiPal.Players
 	{
 		void OnPlayerSpawn(Int32 playerIndex, Boolean isOwner);
 		void OnPlayerDespawn(Int32 playerIndex, Boolean isOwner);
-		void OnPlayerDeath(Int32 playerIndex, Boolean isOwner){}
-		void OnPlayerRespawn(Int32 playerIndex, Boolean isOwner){}
+		void OnPlayerDeath(Int32 playerIndex, Boolean isOwner) {}
+		void OnPlayerRespawn(Int32 playerIndex, Boolean isOwner) {}
 	}
 }

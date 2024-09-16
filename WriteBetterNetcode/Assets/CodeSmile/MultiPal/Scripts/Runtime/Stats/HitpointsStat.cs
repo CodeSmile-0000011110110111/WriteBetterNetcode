@@ -9,15 +9,14 @@ namespace CodeSmile.MultiPal.Stats
 {
 	internal sealed class HitpointsStat : MonoBehaviour
 	{
-		[SerializeField] Hitpoints m_Hitpoints;
-
+		[SerializeField] private Hitpoints m_Hitpoints;
 	}
 
 	[Serializable]
 	public sealed class Hitpoints
 	{
-		public float Current = 1f;
-		public float Max = 1f;
+		public Single Current = 1f;
+		public Single Max = 1f;
 
 		public Hitpoints(Single current, Single max)
 		{

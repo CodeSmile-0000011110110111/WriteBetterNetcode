@@ -10,7 +10,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
-using Object = System.Object;
 
 namespace CodeSmile.MultiPal.PlayerController
 {

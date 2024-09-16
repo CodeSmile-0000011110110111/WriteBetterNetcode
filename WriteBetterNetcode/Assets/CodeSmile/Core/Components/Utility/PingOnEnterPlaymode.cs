@@ -6,9 +6,15 @@ using UnityEngine;
 
 namespace CodeSmile.Components.Utility
 {
-	[DisallowMultipleComponent]
-	internal sealed class DestroyObjectOnAwake : MonoBehaviour
+	internal sealed class PingOnEnterPlaymode : MonoBehaviour
 	{
-		private void Awake() => Destroy(gameObject);
+		private void Start()
+		{
+#if UNITY_EDITOR
+			EditorGUIUtility.PingObject(gameObject);
+#else
+			Destroy(this);
+#endif
+		}
 	}
 }

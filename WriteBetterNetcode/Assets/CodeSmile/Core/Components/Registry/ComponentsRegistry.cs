@@ -121,9 +121,7 @@ namespace CodeSmile.Components.Registry
 				}
 			}
 			else
-			{
 				sb.AppendLine("<no components>");
-			}
 
 			Debug.Log(sb.ToString());
 		}

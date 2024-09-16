@@ -98,15 +98,10 @@ namespace CodeSmile.MultiPal.PlayerController
 			DestroyPlayerControllers(playerIndex);
 		}
 
-		private void OnPlayerDeath(Player player)
-		{
-			Debug.Log("activating DEAD player controller");
-			SetControllerActive(player.PlayerIndex, m_DeadPlayerControllerIndex);
-		}
-
-		private void OnPlayerRespawn(Player player) => SetControllerActive(player.PlayerIndex, m_DefaultControllerIndex);
-
 		private void OnCouchPlayerLeft(CouchPlayers couchPlayers, Int32 playerIndex) {}
+
+		private void OnPlayerDeath(Player player) => SetControllerActive(player.PlayerIndex, m_DeadPlayerControllerIndex);
+		private void OnPlayerRespawn(Player player) => SetControllerActive(player.PlayerIndex, m_DefaultControllerIndex);
 
 		public PlayerControllerBase GetActiveController(Int32 playerIndex)
 		{

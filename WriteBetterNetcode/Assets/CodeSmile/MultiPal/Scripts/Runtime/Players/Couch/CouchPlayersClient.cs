@@ -57,11 +57,5 @@ namespace CodeSmile.MultiPal.Players.Couch
 			if (playerObj.IsSpawned)
 				m_ServerSide.DespawnPlayerServerRpc((Byte)playerIndex, playerObj);
 		}
-
-		[Rpc(SendTo.ClientsAndHost, DeferLocal = true)]
-		public void ServerCanSpawnPlayersClientRpc()
-		{
-			m_CouchPlayers.StartSpawnPlayers();
-		}
 	}
 }

@@ -25,20 +25,9 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 			m_ClientSide = GetComponent<CouchPlayersClient>();
 			m_Vars = GetComponent<CouchPlayersVars>();
-			SpawnLocations.OnSpawnLocationsChanged += OnSpawnLocationsChanged;
 		}
 
-		public override void OnDestroy()
-		{
-			base.OnDestroy();
-			SpawnLocations.OnSpawnLocationsChanged -= OnSpawnLocationsChanged;
-		}
-
-		private void OnSpawnLocationsChanged(SpawnLocations spawnLocations)
-		{
-			if (spawnLocations.Count > 0)
-				m_ClientSide.ServerCanSpawnPlayersClientRpc();
-		}
+		public override void OnDestroy() => base.OnDestroy();
 
 		[Rpc(SendTo.Server, DeferLocal = true)]
 		internal void SpawnPlayerServerRpc(UInt64 ownerId, Byte playerIndex, Byte avatarIndex)

@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Players
+namespace CodeSmile.MultiPal.PlayerController
 {
 	public class PushRigidbodies : MonoBehaviour
 	{

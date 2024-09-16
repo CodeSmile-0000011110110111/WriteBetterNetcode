@@ -20,7 +20,7 @@ namespace CodeSmile.MultiPal.Design
 		//[HideInInspector]
 		[SerializeField] private SpawnLocation[] m_SpawnLocations = new SpawnLocation[0];
 
-		public Int32 Count => m_AllSpawnLocations.Count;
+		public static Int32 Count => m_AllSpawnLocations.Count;
 
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
 		private static void ResetStaticFields()

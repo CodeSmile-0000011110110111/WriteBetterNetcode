@@ -175,7 +175,8 @@ namespace CodeSmile.Components.Netcode
 		private void OnSceneEvent(SceneEvent sceneEvent)
 		{
 			var completed = String.Empty;
-			var timedOut = String.Empty;;
+			var timedOut = String.Empty;
+
 			var completedCount = sceneEvent.ClientsThatCompleted?.Count;
 			var timedOutCount = sceneEvent.ClientsThatTimedOut?.Count;
 

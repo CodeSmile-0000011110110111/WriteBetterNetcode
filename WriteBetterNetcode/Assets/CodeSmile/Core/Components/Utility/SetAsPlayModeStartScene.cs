@@ -17,8 +17,9 @@ namespace CodeSmile.Components.Utility
 	///     Disable either the GameObject or the component to restore default PlayMode behaviour, eg start with the
 	///     currently open scene.
 	/// </remarks>
-	[ExecuteAlways] [DisallowMultipleComponent]
-	public sealed class SetAsPlayModeStartScene : MonoBehaviour
+	[ExecuteAlways]
+	[DisallowMultipleComponent]
+	internal sealed class SetAsPlayModeStartScene : MonoBehaviour
 	{
 #if UNITY_EDITOR
 		[MenuItem("Tools/CodeSmile/Reset Playmode StartScene")]

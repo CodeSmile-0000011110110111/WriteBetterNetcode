@@ -2,7 +2,6 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using System;
-using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;

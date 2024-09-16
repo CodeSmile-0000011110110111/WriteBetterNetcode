@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Components.Registry;
+using CodeSmile.MultiPal.Design;
 using CodeSmile.MultiPal.Input;
 using CodeSmile.MultiPal.Settings;
 using System;
@@ -79,7 +80,6 @@ namespace CodeSmile.MultiPal.Players.Couch
 			if (IsOwner)
 			{
 				ComponentsRegistry.Set(this);
-				OnLocalCouchPlayersSpawn?.Invoke(this);
 
 				var inputUsers = ComponentsRegistry.Get<InputUsers>();
 				inputUsers.OnUserDevicePaired += OnUserInputDevicePaired;
@@ -89,6 +89,10 @@ namespace CodeSmile.MultiPal.Players.Couch
 				inputUsers.AllPlayerInteractionEnabled = true;
 				inputUsers.AllPlayerKinematicsEnabled = true;
 				inputUsers.AllPlayerUiEnabled = true;
+
+				OnLocalCouchPlayersSpawn?.Invoke(this);
+
+				StartSpawnPlayers();
 			}
 		}
 
@@ -112,6 +116,8 @@ namespace CodeSmile.MultiPal.Players.Couch
 				inputUsers.OnUserDevicePaired -= OnUserInputDevicePaired;
 				inputUsers.OnUserDeviceUnpaired -= OnUserInputDeviceUnpaired;
 				inputUsers.UnpairAll();
+
+				SpawnLocations.OnSpawnLocationsChanged -= OnSpawnLocationsChanged;
 			}
 		}
 
@@ -124,17 +130,31 @@ namespace CodeSmile.MultiPal.Players.Couch
 		private void OnUserInputDevicePaired(InputUser user, InputDevice device) => TrySpawnPlayer(user);
 		private void OnUserInputDeviceUnpaired(InputUser user, InputDevice device) => DespawnPlayer(user.index);
 
+		private void OnSpawnLocationsChanged(SpawnLocations spawnLocations)
+		{
+			if (SpawnLocations.Count > 0)
+			{
+				SpawnLocations.OnSpawnLocationsChanged -= OnSpawnLocationsChanged;
+				StartSpawnPlayers();
+			}
+		}
+
 		public async void StartSpawnPlayers()
 		{
 			if (IsOwner)
 			{
-				var inputUsers = ComponentsRegistry.Get<InputUsers>();
-				foreach (var pairedUser in inputUsers.PairedUsers)
+				if (SpawnLocations.Count == 0)
+					SpawnLocations.OnSpawnLocationsChanged += OnSpawnLocationsChanged;
+				else
 				{
-					// FIXME: spawn multiple at once
-					var playerIndex = pairedUser.index;
-					var avatarIndex = pairedUser.index;
-					await SpawnPlayer(playerIndex, avatarIndex);
+					var inputUsers = ComponentsRegistry.Get<InputUsers>();
+					foreach (var pairedUser in inputUsers.PairedUsers)
+					{
+						// FIXME: spawn multiple at once
+						var playerIndex = pairedUser.index;
+						var avatarIndex = pairedUser.index;
+						await SpawnPlayer(playerIndex, avatarIndex);
+					}
 				}
 			}
 		}
