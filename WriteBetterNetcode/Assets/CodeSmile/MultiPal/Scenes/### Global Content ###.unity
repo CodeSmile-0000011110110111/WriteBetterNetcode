@@ -118,6 +118,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &114023220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 114023222}
+  - component: {fileID: 114023221}
+  m_Layer: 0
+  m_Name: Components Registry
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &114023221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114023220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2251b729ad647a089a0fa7633d9dc17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ClickToLogComponents: 0
+--- !u!4 &114023222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114023220}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &151729825
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +412,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 849229791}
-  - component: {fileID: 849229794}
   - component: {fileID: 849229792}
   - component: {fileID: 849229793}
   m_Layer: 0
@@ -421,19 +465,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac52e56e14a7324fbf35e312bf94ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &849229794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 849229790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2251b729ad647a089a0fa7633d9dc17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ClickToLogComponents: 0
 --- !u!1 &1297388100
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,7 +541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab6b0ab8e8240fcbda8e00460db1c03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_GameEvent: {fileID: 11400000, guid: 916827e2b993c0441aef952f52b80fb6, type: 2}
+  m_NetworkEvent: {fileID: 0}
   m_UnityEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -827,7 +858,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PresetAsset: {fileID: 0}
   m_PresetReference:
-    rid: 6337014751601098867
+    rid: 6337014769579196513
   m_Scenario:
     rid: -2
   m_IsScenarioSettingsFolded: 1
@@ -837,14 +868,13 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 6337014751601098867
+    - rid: 6337014769579196513
       type: {class: NetworkSimulatorPreset, ns: Unity.Multiplayer.Tools.NetworkSimulator.Runtime, asm: Unity.Multiplayer.Tools.NetworkSimulator.Runtime}
       data:
-        <Name>k__BackingField: 'Home Satellite [low Earth orbit]'
-        <Description>k__BackingField: Low Earth orbit satellite network scenario
-          for desktop and console platforms. Bad ping, good jitter and no packet
-          loss.
-        <PacketDelayMs>k__BackingField: 100
+        <Name>k__BackingField: 'Home DSL [ADSL or VDSL]'
+        <Description>k__BackingField: Average scenario for desktop and console platforms.
+          Good ping, good jitter and no packet loss.
+        <PacketDelayMs>k__BackingField: 30
         <PacketJitterMs>k__BackingField: 10
         <PacketLossInterval>k__BackingField: 0
         <PacketLossPercent>k__BackingField: 0
@@ -903,7 +933,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5880504382145728862
 Transform:
   m_ObjectHideFlags: 0
@@ -924,11 +954,12 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 151729826}
-  - {fileID: 2100322526572039505}
   - {fileID: 2085682751}
+  - {fileID: 2100322526572039505}
+  - {fileID: 114023222}
   - {fileID: 849229791}
+  - {fileID: 749847659}
   - {fileID: 646058514}
   - {fileID: 1297388102}
   - {fileID: 1554720487}
-  - {fileID: 749847659}
   - {fileID: 1331633735}

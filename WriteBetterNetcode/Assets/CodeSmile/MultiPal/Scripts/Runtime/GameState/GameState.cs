@@ -109,9 +109,5 @@ namespace CodeSmile.MultiPal.GameState
 
 			return unloadSceneRefs.ToArray();
 		}
-
-		public void AdvanceState() =>
-			// FIXME: placeholder
-			SetActiveGameState(m_ActiveStateIndex + 1);
 	}
 }
