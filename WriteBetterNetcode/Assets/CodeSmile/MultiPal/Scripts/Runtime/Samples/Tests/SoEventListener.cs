@@ -7,13 +7,18 @@ using UnityEngine.Events;
 
 namespace CodeSmile.MultiPal.Samples.Tests
 {
-	public class GameEventListener : MonoBehaviour
+	[DisallowMultipleComponent]
+	public sealed class NetworkEventListener : MonoBehaviour, INetworkEventListener
 	{
-		[SerializeField] private GameEvent m_GameEvent;
+		[SerializeField] private NetworkEventBase m_NetworkEvent;
 		[SerializeField] private UnityEvent m_UnityEvent;
 
-		private void OnEnable() => m_GameEvent.AddListener(this);
-		private void OnDisable() => m_GameEvent.RemoveListener(this);
-		public void OnGameEvent() => m_UnityEvent.Invoke();
+		private void OnEnable() => m_NetworkEvent.Register(this);
+		private void OnDisable() => m_NetworkEvent.Unregister(this);
+		public void OnNetworkEvent() => m_UnityEvent.Invoke();
+		public void OnNetworkEvent(NetworkEventData networkEventData)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }

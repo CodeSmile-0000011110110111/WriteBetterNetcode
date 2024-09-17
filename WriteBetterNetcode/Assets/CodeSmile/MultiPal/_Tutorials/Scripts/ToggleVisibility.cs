@@ -4,15 +4,18 @@
 using UnityEditor;
 using UnityEngine;
 
-public class ToggleVisibility : MonoBehaviour
+namespace CodeSmile.Tutorials
 {
-	private void Update()
+	public class ToggleVisibility : MonoBehaviour
 	{
-		if (Input.GetKeyDown(KeyCode.Q))
+		private void Update()
 		{
-			var renderers = GetComponentsInChildren<Renderer>();
-			foreach (var renderer in renderers)
-				renderer.enabled = !renderer.enabled;
+			if (Input.GetKeyDown(KeyCode.Q))
+			{
+				var renderers = GetComponentsInChildren<Renderer>();
+				foreach (var renderer in renderers)
+					renderer.enabled = !renderer.enabled;
+			}
 		}
 	}
 }

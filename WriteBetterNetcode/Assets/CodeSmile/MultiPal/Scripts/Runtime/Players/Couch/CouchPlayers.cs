@@ -23,8 +23,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 	///     Represents the group of players (1-4) playing on a single client.
 	/// </summary>
 	[DisallowMultipleComponent]
-	[RequireComponent(typeof(CouchPlayersClient), typeof(CouchPlayersServer))]
-	[RequireComponent(typeof(CouchPlayersVars))]
+	[RequireComponent(typeof(CouchPlayersVars), typeof(CouchPlayersClient), typeof(CouchPlayersServer))]
 	public sealed class CouchPlayers : NetworkBehaviour, IEnumerable
 	{
 		public static event Action<CouchPlayers> OnLocalCouchPlayersSpawn;
