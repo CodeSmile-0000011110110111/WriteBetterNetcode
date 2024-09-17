@@ -12,6 +12,11 @@ namespace CodeSmile.MultiPal.Players
 	[DisallowMultipleComponent]
 	internal class PlayerServer : NetworkBehaviour
 	{
+		[Header("Test")]
+		[SerializeField] private bool m_EnableTest_RandomlyKillPlayer;
+		[SerializeField][Range(1f, 60f)] private float m_TestTimeToKill = 5f;
+		[SerializeField][Range(1f, 10f)] private float m_TestTimeToRespawn = 2.5f;
+
 		private PlayerClient m_ClientSide;
 		private Player m_Player;
 
@@ -29,13 +34,13 @@ namespace CodeSmile.MultiPal.Players
 		{
 			while (true)
 			{
-				var timeToDie = Random.value * 5f + 5f;
+				var timeToDie = Random.value * m_TestTimeToKill + m_TestTimeToKill;
 				yield return new WaitForSeconds(timeToDie);
 
-				m_ClientSide.KillPlayerClientRpc();
+				if (m_EnableTest_RandomlyKillPlayer)
+					m_ClientSide.KillPlayerClientRpc();
 
-				var timeToRespawn = 3f;
-				yield return new WaitForSeconds(timeToRespawn);
+				yield return new WaitForSeconds(m_TestTimeToRespawn);
 
 				m_ClientSide.RespawnPlayerClientRpc();
 			}

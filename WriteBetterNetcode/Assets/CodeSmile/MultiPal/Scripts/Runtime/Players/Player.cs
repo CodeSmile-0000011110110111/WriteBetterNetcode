@@ -106,8 +106,14 @@ namespace CodeSmile.MultiPal.Players
 		internal void SwitchController() => OnSwitchController?.Invoke(PlayerIndex);
 		internal void RequestToggleIngameMenu(Int32 playerIndex) => OnRequestToggleIngameMenu?.Invoke(playerIndex);
 
+		private bool m_IsDead;
 		internal void Die()
 		{
+			if (m_IsDead)
+				return;
+
+			m_IsDead = true;
+
 			foreach (var playerComponent in m_PlayerComponents)
 				playerComponent.OnPlayerDeath(PlayerIndex, IsOwner);
 
@@ -116,6 +122,11 @@ namespace CodeSmile.MultiPal.Players
 
 		internal void Respawn()
 		{
+			if (m_IsDead == false)
+				return;
+
+			m_IsDead = false;
+
 			foreach (var playerComponent in m_PlayerComponents)
 				playerComponent.OnPlayerRespawn(PlayerIndex, IsOwner);
 
