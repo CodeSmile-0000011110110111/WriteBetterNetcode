@@ -2,8 +2,7 @@
 \hypertarget{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state}{}\label{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state}\index{NetcodeState@{NetcodeState}}
 
 
-Inheritance diagram for Netcode\+State\+:
-\nopagebreak
+Inheritance diagram for Netcode\+State\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for Netcode\+State\+:
 \end{figure}
 
 
-Collaboration diagram for Netcode\+State\+:
-\nopagebreak
+Collaboration diagram for Netcode\+State\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -52,9 +50,9 @@ Boolean \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_
 \item 
 Action$<$ String $>$ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_afca6dd1abad9ca44234e6645d97269d2_afca6dd1abad9ca44234e6645d97269d2}{Relay\+Join\+Code\+Available}}
 \item 
-Action$<$ Netcode\+Role $>$ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_afcdebca55e58aceb1ff0d3381c6e17af_afcdebca55e58aceb1ff0d3381c6e17af}{Went\+Offline}}
+Action$<$ \mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_a082348110bf92ea1e3b5cf782c9c2312}{Netcode\+Role}} $>$ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_afcdebca55e58aceb1ff0d3381c6e17af_afcdebca55e58aceb1ff0d3381c6e17af}{Went\+Offline}}
 \item 
-Action$<$ Netcode\+Role $>$ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_a9a29799ed97d2471d6d458dcf7d22d8b_a9a29799ed97d2471d6d458dcf7d22d8b}{Went\+Online}}
+Action$<$ \mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_a082348110bf92ea1e3b5cf782c9c2312}{Netcode\+Role}} $>$ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_a9a29799ed97d2471d6d458dcf7d22d8b_a9a29799ed97d2471d6d458dcf7d22d8b}{Went\+Online}}
 \end{DoxyCompactItemize}
 
 
@@ -106,12 +104,12 @@ Definition at line \mbox{\hyperlink{_netcode_state_8cs_source_l00240}{240}} of f
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (netcodeConfig.Role\ ==\ NetcodeRole.None)}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (netcodeConfig.\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_adb50f35bfa9e23b2421bf2f287104c89_adb50f35bfa9e23b2421bf2f287104c89}{Role}}\ ==\ \mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_a082348110bf92ea1e3b5cf782c9c2312}{NetcodeRole}}.None)}
 \DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}cannot\ start\ without\ role"{}});}
 \DoxyCodeLine{00245\ }
 \DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(netcodeConfig);}
 \DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(transportConfig);}
-\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (relayConfig.UseRelay)}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (relayConfig.\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_aa7d10e9af64abc426fafbd15e5d89af2_aa7d10e9af64abc426fafbd15e5d89af2}{UseRelay}})}
 \DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(relayConfig);}
 \DoxyCodeLine{00250\ }
 \DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ m\_NetcodeConfigVar.Value\ =\ netcodeConfig;}
@@ -134,7 +132,7 @@ Definition at line \mbox{\hyperlink{_netcode_state_8cs_source_l00256}{256}} of f
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ var\ netcodeConfig\ =\ m\_NetcodeConfigVar.Value;}
-\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ netcodeConfig.Role\ =\ NetcodeRole.None;}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ netcodeConfig.Role\ =\ \mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_a082348110bf92ea1e3b5cf782c9c2312}{NetcodeRole}}.None;}
 \DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ m\_NetcodeConfigVar.Value\ =\ netcodeConfig;}
 \DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \}}
 
@@ -174,7 +172,7 @@ Definition at line \mbox{\hyperlink{_netcode_state_8cs_source_l00029}{29}} of fi
 \index{WentOffline@{WentOffline}!NetcodeState@{NetcodeState}}
 \doxyparagraph{\texorpdfstring{WentOffline}{WentOffline}}
 {\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_afcdebca55e58aceb1ff0d3381c6e17af_afcdebca55e58aceb1ff0d3381c6e17af} 
-Action$<$Netcode\+Role$>$ Went\+Offline}
+Action$<$\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_a082348110bf92ea1e3b5cf782c9c2312}{Netcode\+Role}}$>$ Went\+Offline}
 
 
 
@@ -184,7 +182,7 @@ Definition at line \mbox{\hyperlink{_netcode_state_8cs_source_l00027}{27}} of fi
 \index{WentOnline@{WentOnline}!NetcodeState@{NetcodeState}}
 \doxyparagraph{\texorpdfstring{WentOnline}{WentOnline}}
 {\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_a9a29799ed97d2471d6d458dcf7d22d8b_a9a29799ed97d2471d6d458dcf7d22d8b} 
-Action$<$Netcode\+Role$>$ Went\+Online}
+Action$<$\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_a082348110bf92ea1e3b5cf782c9c2312}{Netcode\+Role}}$>$ Went\+Online}
 
 
 

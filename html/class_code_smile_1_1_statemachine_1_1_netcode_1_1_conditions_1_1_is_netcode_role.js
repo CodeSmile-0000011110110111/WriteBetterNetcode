@@ -1,0 +1,4 @@
+var class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_netcode_role =
+[
+    [ "IsNetcodeRole", "class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_netcode_role_a140b602f9f5c41e7acd1a3c178558ae9.html#a140b602f9f5c41e7acd1a3c178558ae9", null ]
+];

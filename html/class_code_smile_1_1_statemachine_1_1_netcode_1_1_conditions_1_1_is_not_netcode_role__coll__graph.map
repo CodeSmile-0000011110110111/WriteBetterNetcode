@@ -1,9 +1,9 @@
 <map id="IsNotNetcodeRole" name="IsNotNetcodeRole">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,485,141,597"/>
-<area shape="rect" id="Node000002" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_netcode_role.html" title=" " alt="" coords="15,325,131,437"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,453,76,486,71,486,71,453"/>
-<area shape="rect" id="Node000003" href="$interface_code_smile_1_1_statemachine_1_1_i_condition.html" title=" " alt="" coords="15,187,131,277"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="76,292,76,325,71,325,71,292"/>
-<area shape="rect" id="Node000004" href="$interface_code_smile_1_1_statemachine_1_1_i_statemachine_events.html" title="Event methods that the Statemachine calls at specific times." alt="" coords="6,5,141,139"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="76,153,76,187,71,187,71,153"/>
+<area shape="rect" id="Node000001" title="Is true if the Netcode variable&#39;s role does not match the parameter." alt="" coords="5,357,141,427"/>
+<area shape="rect" id="Node000002" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_netcode_role.html" title="Tests if the config variable&#39;s NetcodeRole matches the parameter." alt="" coords="15,240,131,309"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,324,76,358,71,358,71,324"/>
+<area shape="rect" id="Node000003" href="$interface_code_smile_1_1_statemachine_1_1_i_condition.html" title="Marks a class as a FSM Condition." alt="" coords="39,123,108,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="76,207,76,240,71,240,71,207"/>
+<area shape="rect" id="Node000004" href="$interface_code_smile_1_1_statemachine_1_1_i_statemachine_events.html" title="Event methods that the Statemachine calls at specific times." alt="" coords="6,5,141,75"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="76,90,76,123,71,123,71,90"/>
 </map>

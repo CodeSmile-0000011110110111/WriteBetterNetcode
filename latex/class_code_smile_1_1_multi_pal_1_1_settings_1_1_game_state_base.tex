@@ -2,8 +2,7 @@
 \hypertarget{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base}{}\label{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base}\index{GameStateBase@{GameStateBase}}
 
 
-Inheritance diagram for Game\+State\+Base\+:
-\nopagebreak
+Inheritance diagram for Game\+State\+Base\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for Game\+State\+Base\+:
 \end{figure}
 
 
-Collaboration diagram for Game\+State\+Base\+:
-\nopagebreak
+Collaboration diagram for Game\+State\+Base\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -25,10 +23,6 @@ Collaboration diagram for Game\+State\+Base\+:
 \item 
 \Hypertarget{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base_a793f80ab73d6e73b14eb442400da1450}\label{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base_a793f80ab73d6e73b14eb442400da1450} 
 virtual Boolean {\bfseries Conditions\+Satisfied} ()
-\item 
-virtual void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base_afb1f5a6d4e343bd837fe540987cee3b4_afb1f5a6d4e343bd837fe540987cee3b4}{On\+Enter\+State}} (\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base}{Game\+State\+Base}} from\+State)
-\item 
-virtual void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base_a91ba5be3fa5a48b222527c939600f522_a91ba5be3fa5a48b222527c939600f522}{On\+Exit\+State}} (\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base}{Game\+State\+Base}} next\+State)
 \end{DoxyCompactItemize}
 \doxysubsubsubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
@@ -65,42 +59,6 @@ Definition at line \mbox{\hyperlink{_game_state_base_8cs_source_l00015}{15}} of 
 
 
 \doxysubsubsection{Member Function Documentation}
-\Hypertarget{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base_afb1f5a6d4e343bd837fe540987cee3b4_afb1f5a6d4e343bd837fe540987cee3b4}\index{GameStateBase@{GameStateBase}!OnEnterState@{OnEnterState}}
-\index{OnEnterState@{OnEnterState}!GameStateBase@{GameStateBase}}
-\doxyparagraph{\texorpdfstring{OnEnterState()}{OnEnterState()}}
-{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base_afb1f5a6d4e343bd837fe540987cee3b4_afb1f5a6d4e343bd837fe540987cee3b4} 
-virtual void On\+Enter\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base}{Game\+State\+Base}}}]{from\+State}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
-
-
-
-Definition at line \mbox{\hyperlink{_game_state_base_8cs_source_l00049}{49}} of file \mbox{\hyperlink{_game_state_base_8cs_source}{Game\+State\+Base.\+cs}}.
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_NextStateCondition\ !=\ \textcolor{keyword}{null})}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_NextStateCondition.OnEnterState();}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
-
-\end{DoxyCode}
-\Hypertarget{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base_a91ba5be3fa5a48b222527c939600f522_a91ba5be3fa5a48b222527c939600f522}\index{GameStateBase@{GameStateBase}!OnExitState@{OnExitState}}
-\index{OnExitState@{OnExitState}!GameStateBase@{GameStateBase}}
-\doxyparagraph{\texorpdfstring{OnExitState()}{OnExitState()}}
-{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base_a91ba5be3fa5a48b222527c939600f522_a91ba5be3fa5a48b222527c939600f522} 
-virtual void On\+Exit\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base}{Game\+State\+Base}}}]{next\+State}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
-
-
-
-Definition at line \mbox{\hyperlink{_game_state_base_8cs_source_l00055}{55}} of file \mbox{\hyperlink{_game_state_base_8cs_source}{Game\+State\+Base.\+cs}}.
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_NextStateCondition\ !=\ \textcolor{keyword}{null})}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_NextStateCondition.OnExitState();}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
-
-\end{DoxyCode}
 \Hypertarget{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base_ad6f3426582ec127d8e7fb06cdea121df_ad6f3426582ec127d8e7fb06cdea121df}\index{GameStateBase@{GameStateBase}!OnValidate@{OnValidate}}
 \index{OnValidate@{OnValidate}!GameStateBase@{GameStateBase}}
 \doxyparagraph{\texorpdfstring{OnValidate()}{OnValidate()}}

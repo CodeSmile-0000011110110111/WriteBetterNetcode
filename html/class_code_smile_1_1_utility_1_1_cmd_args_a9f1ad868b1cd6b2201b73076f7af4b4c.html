@@ -28,6 +28,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="steffen portrait codesmile logo larger top-left-64x62.png"/></td>
   <td id="projectalign">
    <div id="projectname">CodeSmile MultiPal<span id="projectnumber">&#160;0.6</span>
    </div>
@@ -122,18 +123,20 @@ $(function(){initNavTree('class_code_smile_1_1_utility_1_1_cmd_args_a9f1ad868b1c
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_cmd_args_8cs_source.html#l00022">22</a> of file <a class="el" href="_cmd_args_8cs_source.html">CmdArgs.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   23</span>        {</div>
-<div class="line"><span class="lineno">   24</span>            var sb = <span class="keyword">new</span> StringBuilder(<span class="stringliteral">&quot;CmdArgs: &quot;</span>);</div>
-<div class="line"><span class="lineno">   25</span>            var cmdArgs = Environment.GetCommandLineArgs();</div>
-<div class="line"><span class="lineno">   26</span>            <span class="keywordflow">foreach</span> (var arg <span class="keywordflow">in</span> cmdArgs)</div>
-<div class="line"><span class="lineno">   27</span>            {</div>
-<div class="line"><span class="lineno">   28</span>                sb.Append(arg.ToLower());</div>
-<div class="line"><span class="lineno">   29</span>                sb.Append(<span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line"><span class="lineno">   30</span>            }</div>
-<div class="line"><span class="lineno">   31</span> </div>
-<div class="line"><span class="lineno">   32</span>            Debug.Log(sb.ToString());</div>
-<div class="line"><span class="lineno">   33</span>        }</div>
+<p>Debug.Logs the current command line. </p>
+
+<p class="definition">Definition at line <a class="el" href="_cmd_args_8cs_source.html#l00028">28</a> of file <a class="el" href="_cmd_args_8cs_source.html">CmdArgs.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   29</span>        {</div>
+<div class="line"><span class="lineno">   30</span>            var sb = <span class="keyword">new</span> StringBuilder(<span class="stringliteral">&quot;CmdArgs: &quot;</span>);</div>
+<div class="line"><span class="lineno">   31</span>            var cmdArgs = Environment.GetCommandLineArgs();</div>
+<div class="line"><span class="lineno">   32</span>            <span class="keywordflow">foreach</span> (var arg <span class="keywordflow">in</span> cmdArgs)</div>
+<div class="line"><span class="lineno">   33</span>            {</div>
+<div class="line"><span class="lineno">   34</span>                sb.Append(arg.ToLower());</div>
+<div class="line"><span class="lineno">   35</span>                sb.Append(<span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><span class="lineno">   36</span>            }</div>
+<div class="line"><span class="lineno">   37</span> </div>
+<div class="line"><span class="lineno">   38</span>            Debug.Log(sb.ToString());</div>
+<div class="line"><span class="lineno">   39</span>        }</div>
 </div><!-- fragment -->
 </div>
 </div>

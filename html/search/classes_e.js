@@ -1,20 +1,14 @@
 var searchData=
 [
-  ['pairingactions_0',['PairingActions',['../struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_pairing_actions.html',1,'CodeSmile::MultiPal::Input::GeneratedInput']]],
-  ['player_1',['Player',['../class_code_smile_1_1_multi_pal_1_1_players_1_1_player.html',1,'CodeSmile::MultiPal::Players']]],
-  ['playeravatarprefabs_2',['PlayerAvatarPrefabs',['../class_code_smile_1_1_multi_pal_1_1_settings_1_1_player_avatar_prefabs.html',1,'CodeSmile::MultiPal::Settings']]],
-  ['playercamera_3',['PlayerCamera',['../class_code_smile_1_1_multi_pal_1_1_players_1_1_player_camera.html',1,'CodeSmile::MultiPal::Players']]],
-  ['playercameraprefabs_4',['PlayerCameraPrefabs',['../class_code_smile_1_1_multi_pal_1_1_settings_1_1_player_camera_prefabs.html',1,'CodeSmile::MultiPal::Settings']]],
-  ['playerclient_5',['PlayerClient',['../class_code_smile_1_1_multi_pal_1_1_players_1_1_player_client.html',1,'CodeSmile::MultiPal::Players']]],
-  ['playercontrollerbase_6',['PlayerControllerBase',['../class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base.html',1,'CodeSmile::MultiPal::PlayerController']]],
-  ['playercontrollerprefabs_7',['PlayerControllerPrefabs',['../class_code_smile_1_1_multi_pal_1_1_settings_1_1_player_controller_prefabs.html',1,'CodeSmile::MultiPal::Settings']]],
-  ['playerinteraction_8',['PlayerInteraction',['../class_code_smile_1_1_multi_pal_1_1_players_1_1_player_interaction.html',1,'CodeSmile::MultiPal::Players']]],
-  ['playerinteractionactions_9',['PlayerInteractionActions',['../struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_interaction_actions.html',1,'CodeSmile::MultiPal::Input::GeneratedInput']]],
-  ['playerkinematicsactions_10',['PlayerKinematicsActions',['../struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_kinematics_actions.html',1,'CodeSmile::MultiPal::Input::GeneratedInput']]],
-  ['playerstats_11',['PlayerStats',['../class_code_smile_1_1_multi_pal_1_1_stats_1_1_player_stats.html',1,'CodeSmile::MultiPal::Stats']]],
-  ['playerui_12',['PlayerUi',['../class_code_smile_1_1_multi_pal_1_1_players_1_1_player_ui.html',1,'CodeSmile::MultiPal::Players']]],
-  ['playeruiactions_13',['PlayerUIActions',['../struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_u_i_actions.html',1,'CodeSmile::MultiPal::Input::GeneratedInput']]],
-  ['prefabslistbase_14',['PrefabsListBase',['../class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base.html',1,'CodeSmile::MultiPal::Settings']]],
-  ['pregameguicontroller_15',['PregameGuiController',['../class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_pregame_gui_controller.html',1,'CodeSmile::MultiPal::GUI']]],
-  ['pushrigidbodies_16',['PushRigidbodies',['../class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_push_rigidbodies.html',1,'CodeSmile::MultiPal::PlayerController']]]
+  ['scenemanagernosingleload_0',['SceneManagerNoSingleLoad',['../class_code_smile_1_1_multi_pal_1_1_utility_1_1_scene_manager_no_single_load.html',1,'CodeSmile::MultiPal::Utility']]],
+  ['scenereference_1',['SceneReference',['../class_code_smile_1_1_utility_1_1_scene_reference.html',1,'CodeSmile::Utility']]],
+  ['serversceneloader_2',['ServerSceneLoader',['../class_code_smile_1_1_multi_pal_1_1_scene_1_1_server_scene_loader.html',1,'CodeSmile::MultiPal::Scene']]],
+  ['setnetcoderole_3',['SetNetcodeRole',['../class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_set_netcode_role.html',1,'CodeSmile::Statemachine::Netcode::Actions']]],
+  ['signinanonymously_4',['SignInAnonymously',['../class_code_smile_1_1_statemachine_1_1_services_1_1_authentication_1_1_actions_1_1_sign_in_anonymously.html',1,'CodeSmile::Statemachine::Services::Authentication::Actions']]],
+  ['spawnlocation_5',['SpawnLocation',['../class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_location.html',1,'CodeSmile::MultiPal::Design']]],
+  ['spawnlocations_6',['SpawnLocations',['../class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_locations.html',1,'CodeSmile::MultiPal::Design']]],
+  ['splitscreen_7',['Splitscreen',['../class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_splitscreen.html',1,'CodeSmile::MultiPal::Cinecam']]],
+  ['state_8',['State',['../class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html',1,'CodeSmile::Statemachine::FSM']]],
+  ['statechangeeventargs_9',['StateChangeEventArgs',['../struct_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_change_event_args.html',1,'CodeSmile::Statemachine::FSM']]],
+  ['statemachinestoppedeventargs_10',['StatemachineStoppedEventArgs',['../struct_code_smile_1_1_statemachine_1_1_f_s_m_1_1_statemachine_stopped_event_args.html',1,'CodeSmile::Statemachine::FSM']]]
 ];

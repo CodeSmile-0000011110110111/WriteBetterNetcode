@@ -2,8 +2,7 @@
 \hypertarget{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_timeout_condition}{}\label{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_timeout_condition}\index{OnTimeoutCondition@{OnTimeoutCondition}}
 
 
-Inheritance diagram for On\+Timeout\+Condition\+:
-\nopagebreak
+Inheritance diagram for On\+Timeout\+Condition\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,29 +11,13 @@ Inheritance diagram for On\+Timeout\+Condition\+:
 \end{figure}
 
 
-Collaboration diagram for On\+Timeout\+Condition\+:
-\nopagebreak
+Collaboration diagram for On\+Timeout\+Condition\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=202pt]{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_timeout_condition__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsubsubsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\Hypertarget{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_timeout_condition_a1fd1e8fdb7d143c59fbc4bc00c4b4e6e}\label{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_timeout_condition_a1fd1e8fdb7d143c59fbc4bc00c4b4e6e} 
-override Boolean {\bfseries Is\+Satisfied} ()
-\item 
-override void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_timeout_condition_a78119f9fc901808e3a1157e3105e74c0_a78119f9fc901808e3a1157e3105e74c0}{On\+Enter\+State}} ()
-\end{DoxyCompactItemize}
-\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_condition_base}{Game\+State\+Condition\+Base}}}
-\begin{DoxyCompactItemize}
-\item 
-Boolean {\bfseries Is\+Satisfied} ()
-\item 
-virtual void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_condition_base_a7655dcefd9f3a61bfd7ad83266283562_a7655dcefd9f3a61bfd7ad83266283562}{On\+Exit\+State}} ()
-\end{DoxyCompactItemize}
 
 
 \doxysubsubsection{Detailed Description}
@@ -42,36 +25,3 @@ virtual void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_ga
 
 Definition at line \mbox{\hyperlink{_on_timeout_condition_8cs_source_l00014}{14}} of file \mbox{\hyperlink{_on_timeout_condition_8cs_source}{On\+Timeout\+Condition.\+cs}}.
 
-
-
-\doxysubsubsection{Member Function Documentation}
-\Hypertarget{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_timeout_condition_a78119f9fc901808e3a1157e3105e74c0_a78119f9fc901808e3a1157e3105e74c0}\index{OnTimeoutCondition@{OnTimeoutCondition}!OnEnterState@{OnEnterState}}
-\index{OnEnterState@{OnEnterState}!OnTimeoutCondition@{OnTimeoutCondition}}
-\doxyparagraph{\texorpdfstring{OnEnterState()}{OnEnterState()}}
-{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_timeout_condition_a78119f9fc901808e3a1157e3105e74c0_a78119f9fc901808e3a1157e3105e74c0} 
-override void On\+Enter\+State (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
-
-
-
-Reimplemented from \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_condition_base}{Game\+State\+Condition\+Base}}.
-
-
-
-Definition at line \mbox{\hyperlink{_on_timeout_condition_8cs_source_l00025}{25}} of file \mbox{\hyperlink{_on_timeout_condition_8cs_source}{On\+Timeout\+Condition.\+cs}}.
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ m\_TimeElapsed\ =\ Time.time\ +\ m\_SecondsUntilNextScreen;}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_AllowSkipWithAnyButton)}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InputSystem.onAnyButtonPress.CallOnce(control\ =>\ Skip());}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#if\ DEBUG\ ||\ DEVELOPMENT\_BUILD\ ||\ UNITY\_EDITOR }}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ var\ shouldSkip\ =\ m\_SkipInPlayMode\ \&\&\ (Application.isEditor\ ||\ m\_SkipInDevBuilds);}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (shouldSkip)}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Skip();}
-\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif }}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
-
-\end{DoxyCode}

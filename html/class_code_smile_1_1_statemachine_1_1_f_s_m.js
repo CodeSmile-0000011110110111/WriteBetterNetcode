@@ -1,6 +1,6 @@
 var class_code_smile_1_1_statemachine_1_1_f_s_m =
 [
-    [ "State", "class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html", null ],
+    [ "State", "class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html", "class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state" ],
     [ "StateChangeEventArgs", "struct_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_change_event_args.html", null ],
     [ "StatemachineStoppedEventArgs", "struct_code_smile_1_1_statemachine_1_1_f_s_m_1_1_statemachine_stopped_event_args.html", null ],
     [ "Transition", "class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html", "class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition" ],
@@ -21,11 +21,14 @@ var class_code_smile_1_1_statemachine_1_1_f_s_m =
     [ "WithStates", "class_code_smile_1_1_statemachine_1_1_f_s_m_a00753da46802ebeb4e160e16a9b62b5e.html#a00753da46802ebeb4e160e16a9b62b5e", null ],
     [ "WithStates", "class_code_smile_1_1_statemachine_1_1_f_s_m_a4f9aee773fd83bf3206c1ed36dbfa3e6.html#a4f9aee773fd83bf3206c1ed36dbfa3e6", null ],
     [ "ActiveState", "class_code_smile_1_1_statemachine_1_1_f_s_m_a8ece463f6647d84ca267a574ed3e8e5e.html#a8ece463f6647d84ca267a574ed3e8e5e", null ],
+    [ "ActiveStateIndex", "class_code_smile_1_1_statemachine_1_1_f_s_m_aa84653af26f8718c2845404b8dedc8d6.html#aa84653af26f8718c2845404b8dedc8d6", null ],
     [ "AllowMultipleStateChanges", "class_code_smile_1_1_statemachine_1_1_f_s_m_a9d648e3a9084912f514aa198c0a2551b.html#a9d648e3a9084912f514aa198c0a2551b", null ],
     [ "DidChangeState", "class_code_smile_1_1_statemachine_1_1_f_s_m_a4b5171e406dd682d56cc67d73a1ca5fd.html#a4b5171e406dd682d56cc67d73a1ca5fd", null ],
     [ "IsStopped", "class_code_smile_1_1_statemachine_1_1_f_s_m_a19267b3360dcc6697b935b50164ce6cf.html#a19267b3360dcc6697b935b50164ce6cf", null ],
+    [ "Logging", "class_code_smile_1_1_statemachine_1_1_f_s_m_a1c487dbaa542d1fe109a408f9b62acd6.html#a1c487dbaa542d1fe109a408f9b62acd6", null ],
     [ "MaxStateChangesPerEvaluate", "class_code_smile_1_1_statemachine_1_1_f_s_m_a733e667d065f1dd77f38198a6fd590bc.html#a733e667d065f1dd77f38198a6fd590bc", null ],
     [ "Name", "class_code_smile_1_1_statemachine_1_1_f_s_m_a934fa09ba291a97f43720640e4d83f25.html#a934fa09ba291a97f43720640e4d83f25", null ],
+    [ "States", "class_code_smile_1_1_statemachine_1_1_f_s_m_ab6515d4de34057a6bde4dfbe91a432d8.html#ab6515d4de34057a6bde4dfbe91a432d8", null ],
     [ "StaticVars", "class_code_smile_1_1_statemachine_1_1_f_s_m_a89b5540d6f3b27f75c2f12b366f0c7e5.html#a89b5540d6f3b27f75c2f12b366f0c7e5", null ],
     [ "Vars", "class_code_smile_1_1_statemachine_1_1_f_s_m_aecdc4cbca08005602bcacb82c95cdca6.html#aecdc4cbca08005602bcacb82c95cdca6", null ],
     [ "OnStateChange", "class_code_smile_1_1_statemachine_1_1_f_s_m_aeca885021ed88c142b302e348f89bee3.html#aeca885021ed88c142b302e348f89bee3", null ],

@@ -1,5 +1,5 @@
 <map id="FSM.State" name="FSM.State">
-<area shape="rect" id="Node000001" title="Represents a state in a statemachine." alt="" coords="11,123,129,576"/>
+<area shape="rect" id="Node000001" title="Represents a state in a statemachine." alt="" coords="11,123,129,363"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,135,75"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,90,73,123,67,123,67,90"/>
 </map>

@@ -28,6 +28,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="steffen portrait codesmile logo larger top-left-64x62.png"/></td>
   <td id="projectalign">
    <div id="projectname">CodeSmile MultiPal<span id="projectnumber">&#160;0.6</span>
    </div>
@@ -114,14 +115,29 @@ $(function(){initNavTree('class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transi
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_f_s_m_8_transition_8cs_source.html#l00121">121</a> of file <a class="el" href="_f_s_m_8_transition_8cs_source.html">FSM.Transition.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  122</span>            {</div>
-<div class="line"><span class="lineno">  123</span>                <span class="keywordflow">if</span> (Conditions != <span class="keyword">null</span>)</div>
-<div class="line"><span class="lineno">  124</span>                    <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="stringliteral">&quot;Conditions already set&quot;</span>);</div>
-<div class="line"><span class="lineno">  125</span> </div>
-<div class="line"><span class="lineno">  126</span>                Conditions = conditions ?? <span class="keyword">new</span> ICondition[0];</div>
-<div class="line"><span class="lineno">  127</span>                <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><span class="lineno">  128</span>            }</div>
+<p>Add conditions to the transition. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">conditions</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">InvalidOperationException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_f_s_m_8_transition_8cs_source.html#l00151">151</a> of file <a class="el" href="_f_s_m_8_transition_8cs_source.html">FSM.Transition.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  152</span>            {</div>
+<div class="line"><span class="lineno">  153</span>                <span class="keywordflow">if</span> (Conditions != <span class="keyword">null</span>)</div>
+<div class="line"><span class="lineno">  154</span>                    <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="stringliteral">&quot;Conditions already set&quot;</span>);</div>
+<div class="line"><span class="lineno">  155</span> </div>
+<div class="line"><span class="lineno">  156</span>                Conditions = conditions ?? <span class="keyword">new</span> ICondition[0];</div>
+<div class="line"><span class="lineno">  157</span>                <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><span class="lineno">  158</span>            }</div>
 </div><!-- fragment -->
 </div>
 </div>

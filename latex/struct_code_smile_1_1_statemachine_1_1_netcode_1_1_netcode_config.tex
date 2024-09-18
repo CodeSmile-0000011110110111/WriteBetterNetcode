@@ -2,40 +2,64 @@
 \hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{}\label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}\index{NetcodeConfig@{NetcodeConfig}}
 
 
-Collaboration diagram for Netcode\+Config\+:
-\nopagebreak
+DTO that provides configuration options for Transport setup and Network\+Manager.  
+
+
+
+
+Collaboration diagram for Netcode\+Config\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=170pt]{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsubsubsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a012fbb0f39e57c0a44ec83dd408fcda3}\label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a012fbb0f39e57c0a44ec83dd408fcda3} 
-override String {\bfseries To\+String} ()
-\end{DoxyCompactItemize}
 \doxysubsubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a8ef954534c21c943bcb4afc8838d6b7e}\label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a8ef954534c21c943bcb4afc8838d6b7e} 
-static \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{Netcode\+Config}} {\bfseries From\+Cmd\+Args} ()
-\end{DoxyCompactItemize}
+static \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{Netcode\+Config}} \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a8ef954534c21c943bcb4afc8838d6b7e_a8ef954534c21c943bcb4afc8838d6b7e}{From\+Cmd\+Args}} ()
+\begin{DoxyCompactList}\small\item\em Create a \doxylink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{Netcode\+Config} from command line parameters. Omitted parameters will use default values. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 Byte \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a5bda5277af6612e21ebe147ddcd5b630_a5bda5277af6612e21ebe147ddcd5b630}{Max\+Connections}}
-\item 
-Netcode\+Role \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_adb50f35bfa9e23b2421bf2f287104c89_adb50f35bfa9e23b2421bf2f287104c89}{Role}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Limits the maximum number of allowed connections. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_a082348110bf92ea1e3b5cf782c9c2312}{Netcode\+Role}} \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_adb50f35bfa9e23b2421bf2f287104c89_adb50f35bfa9e23b2421bf2f287104c89}{Role}}
+\begin{DoxyCompactList}\small\item\em The Role we want to play as. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsubsection{Detailed Description}
+DTO that provides configuration options for Transport setup and Network\+Manager. 
+
+Definition at line \mbox{\hyperlink{_netcode_config_8cs_source_l00015}{15}} of file \mbox{\hyperlink{_netcode_config_8cs_source}{Netcode\+Config.\+cs}}.
 
 
-Definition at line \mbox{\hyperlink{_netcode_config_8cs_source_l00012}{12}} of file \mbox{\hyperlink{_netcode_config_8cs_source}{Netcode\+Config.\+cs}}.
 
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a8ef954534c21c943bcb4afc8838d6b7e_a8ef954534c21c943bcb4afc8838d6b7e}\index{NetcodeConfig@{NetcodeConfig}!FromCmdArgs@{FromCmdArgs}}
+\index{FromCmdArgs@{FromCmdArgs}!NetcodeConfig@{NetcodeConfig}}
+\doxyparagraph{\texorpdfstring{FromCmdArgs()}{FromCmdArgs()}}
+{\footnotesize\ttfamily \label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a8ef954534c21c943bcb4afc8838d6b7e_a8ef954534c21c943bcb4afc8838d6b7e} 
+static \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{Netcode\+Config}} From\+Cmd\+Args (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Create a \doxylink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{Netcode\+Config} from command line parameters. Omitted parameters will use default values. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_ae0e2e7391ee3a4fde07a151f58e54531_ae0e2e7391ee3a4fde07a151f58e54531}{Cmd\+Args.\+Get\+Int()}}, \mbox{\hyperlink{_netcode_config_8cs_source_l00029}{Netcode\+Config.\+Max\+Connections}}, and \mbox{\hyperlink{_netcode_config_8cs_source_l00020}{Netcode\+Config.\+Role}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a8ef954534c21c943bcb4afc8838d6b7e_a8ef954534c21c943bcb4afc8838d6b7e_cgraph}
+\end{center}
+\end{figure}
 
 
 \doxysubsubsection{Member Data Documentation}
@@ -47,15 +71,31 @@ Byte Max\+Connections}
 
 
 
-Definition at line \mbox{\hyperlink{_netcode_config_8cs_source_l00017}{17}} of file \mbox{\hyperlink{_netcode_config_8cs_source}{Netcode\+Config.\+cs}}.
+Limits the maximum number of allowed connections. 
+
+Byte is deliberate, since Relay limit is 100 connections and a \doxylink{namespace_code_smile_1_1_statemachine_1_1_netcode}{Netcode} project with \texorpdfstring{$>$}{>}250 clients is outside its intended scope. 
+
+Definition at line \mbox{\hyperlink{_netcode_config_8cs_source_l00029}{29}} of file \mbox{\hyperlink{_netcode_config_8cs_source}{Netcode\+Config.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a8ef954534c21c943bcb4afc8838d6b7e_a8ef954534c21c943bcb4afc8838d6b7e}{Netcode\+Config.\+From\+Cmd\+Args()}}.
 
 \Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_adb50f35bfa9e23b2421bf2f287104c89_adb50f35bfa9e23b2421bf2f287104c89}\index{NetcodeConfig@{NetcodeConfig}!Role@{Role}}
 \index{Role@{Role}!NetcodeConfig@{NetcodeConfig}}
 \doxyparagraph{\texorpdfstring{Role}{Role}}
 {\footnotesize\ttfamily \label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_adb50f35bfa9e23b2421bf2f287104c89_adb50f35bfa9e23b2421bf2f287104c89} 
-Netcode\+Role Role}
+\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_a082348110bf92ea1e3b5cf782c9c2312}{Netcode\+Role}} Role}
 
 
 
-Definition at line \mbox{\hyperlink{_netcode_config_8cs_source_l00014}{14}} of file \mbox{\hyperlink{_netcode_config_8cs_source}{Netcode\+Config.\+cs}}.
+The Role we want to play as. 
+
+
+
+Definition at line \mbox{\hyperlink{_netcode_config_8cs_source_l00020}{20}} of file \mbox{\hyperlink{_netcode_config_8cs_source}{Netcode\+Config.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a8ef954534c21c943bcb4afc8838d6b7e_a8ef954534c21c943bcb4afc8838d6b7e}{Netcode\+Config.\+From\+Cmd\+Args()}}.
 

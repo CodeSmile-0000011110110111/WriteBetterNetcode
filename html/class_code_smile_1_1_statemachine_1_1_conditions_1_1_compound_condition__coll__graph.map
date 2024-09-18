@@ -1,7 +1,7 @@
 <map id="CompoundCondition" name="CompoundCondition">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,325,153,459"/>
-<area shape="rect" id="Node000002" href="$interface_code_smile_1_1_statemachine_1_1_i_condition.html" title=" " alt="" coords="21,187,137,277"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,292,82,326,77,326,77,292"/>
-<area shape="rect" id="Node000003" href="$interface_code_smile_1_1_statemachine_1_1_i_statemachine_events.html" title="Event methods that the Statemachine calls at specific times." alt="" coords="12,5,147,139"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="82,153,82,187,77,187,77,153"/>
+<area shape="rect" id="Node000001" title="Used to combine multiple FSM conditions into a single, named condition." alt="" coords="5,240,153,331"/>
+<area shape="rect" id="Node000002" href="$interface_code_smile_1_1_statemachine_1_1_i_condition.html" title="Marks a class as a FSM Condition." alt="" coords="45,123,114,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,207,82,240,77,240,77,207"/>
+<area shape="rect" id="Node000003" href="$interface_code_smile_1_1_statemachine_1_1_i_statemachine_events.html" title="Event methods that the Statemachine calls at specific times." alt="" coords="12,5,147,75"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="82,90,82,123,77,123,77,90"/>
 </map>

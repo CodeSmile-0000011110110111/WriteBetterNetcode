@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['ontimeoutcondition_0',['OnTimeoutCondition',['../class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_timeout_condition.html',1,'CodeSmile::MultiPal::Settings::GameStates']]],
-  ['onwentoffline_1',['OnWentOffline',['../class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_went_offline.html',1,'CodeSmile::MultiPal::Settings::GameStates']]],
-  ['onwentonline_2',['OnWentOnline',['../class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_went_online.html',1,'CodeSmile::MultiPal::Settings::GameStates']]]
+  ['relayclearallocationdata_0',['RelayClearAllocationData',['../class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_clear_allocation_data.html',1,'CodeSmile::Statemachine::Services::Relay::Actions']]],
+  ['relayconfig_1',['RelayConfig',['../struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config.html',1,'CodeSmile::Statemachine::Netcode']]],
+  ['relaycreateorjoinallocation_2',['RelayCreateOrJoinAllocation',['../class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_create_or_join_allocation.html',1,'CodeSmile::Statemachine::Services::Relay::Actions']]]
 ];

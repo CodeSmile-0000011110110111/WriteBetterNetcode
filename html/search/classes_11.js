@@ -1,8 +1,12 @@
 var searchData=
 [
-  ['titlescreenstate_0',['TitleScreenState',['../class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_title_screen_state.html',1,'CodeSmile::MultiPal::Settings::GameStates']]],
-  ['togglevisibility_1',['ToggleVisibility',['../class_code_smile_1_1_tutorials_1_1_toggle_visibility.html',1,'CodeSmile::Tutorials']]],
-  ['transition_2',['Transition',['../class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html',1,'CodeSmile::Statemachine::FSM']]],
-  ['transportconfig_3',['TransportConfig',['../struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config.html',1,'CodeSmile::Statemachine::Netcode']]],
-  ['transportsetup_4',['TransportSetup',['../class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup.html',1,'CodeSmile::Statemachine::Netcode::Actions']]]
+  ['var_0',['Var',['../class_code_smile_1_1_statemachine_1_1_var.html',1,'CodeSmile::Statemachine']]],
+  ['var_3c_20codesmile_3a_3astatemachine_3a_3anetcode_3a_3anetcodeconfig_20_3e_1',['Var&lt; CodeSmile::Statemachine::Netcode::NetcodeConfig &gt;',['../class_code_smile_1_1_statemachine_1_1_var.html',1,'CodeSmile::Statemachine']]],
+  ['var_3c_20codesmile_3a_3astatemachine_3a_3anetcode_3a_3arelayconfig_20_3e_2',['Var&lt; CodeSmile::Statemachine::Netcode::RelayConfig &gt;',['../class_code_smile_1_1_statemachine_1_1_var.html',1,'CodeSmile::Statemachine']]],
+  ['var_3c_20codesmile_3a_3astatemachine_3a_3anetcode_3a_3atransportconfig_20_3e_3',['Var&lt; CodeSmile::Statemachine::Netcode::TransportConfig &gt;',['../class_code_smile_1_1_statemachine_1_1_var.html',1,'CodeSmile::Statemachine']]],
+  ['var_3c_20netcodeconfig_20_3e_4',['Var&lt; NetcodeConfig &gt;',['../class_code_smile_1_1_statemachine_1_1_var.html',1,'CodeSmile::Statemachine']]],
+  ['var_3c_20relayconfig_20_3e_5',['Var&lt; RelayConfig &gt;',['../class_code_smile_1_1_statemachine_1_1_var.html',1,'CodeSmile::Statemachine']]],
+  ['var_3c_20transportconfig_20_3e_6',['Var&lt; TransportConfig &gt;',['../class_code_smile_1_1_statemachine_1_1_var.html',1,'CodeSmile::Statemachine']]],
+  ['variablebase_7',['VariableBase',['../class_code_smile_1_1_statemachine_1_1_variable_base.html',1,'CodeSmile::Statemachine']]],
+  ['variables_8',['Variables',['../class_code_smile_1_1_statemachine_1_1_variables.html',1,'CodeSmile::Statemachine']]]
 ];

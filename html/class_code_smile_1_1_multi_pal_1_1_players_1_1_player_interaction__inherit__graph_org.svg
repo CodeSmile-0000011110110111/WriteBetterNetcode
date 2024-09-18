@@ -85,17 +85,14 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_interaction_actions.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="none" points="334,-220 216,-220 216,-152 334,-152 334,-220"/>
-<text text-anchor="start" x="221" y="-206.5" font-family="Helvetica,sans-Serif" font-size="10.00">IPlayerInteractionActions</text>
-<text text-anchor="start" x="273.5" y="-190.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<text text-anchor="start" x="232" y="-174.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="254" y="-174.5" font-family="Helvetica,sans-Serif" font-size="10.00">OnAttack()</text>
-<text text-anchor="start" x="232" y="-158.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="254" y="-158.5" font-family="Helvetica,sans-Serif" font-size="10.00">OnInteract()</text>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="216,-202 216,-202 334,-202 334,-202 216,-202"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="216,-186 216,-186 334,-186 334,-186 216,-186"/>
-<polygon fill="none" stroke="#bfbfbf" points="216,-152 216,-220 334,-220 334,-152 216,-152"/>
+<g id="a_Node000004"><a xlink:title=" ">
+<polygon fill="white" stroke="none" points="334,-212 216,-212 216,-160 334,-160 334,-212"/>
+<text text-anchor="start" x="221" y="-198.5" font-family="Helvetica,sans-Serif" font-size="10.00">IPlayerInteractionActions</text>
+<text text-anchor="start" x="273.5" y="-182.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<text text-anchor="start" x="273.5" y="-166.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polygon fill="#bfbfbf" stroke="#bfbfbf" points="216,-194 216,-194 334,-194 334,-194 216,-194"/>
+<polygon fill="#bfbfbf" stroke="#bfbfbf" points="216,-178 216,-178 334,-178 334,-178 216,-178"/>
+<polygon fill="none" stroke="#bfbfbf" points="216,-160 216,-212 334,-212 334,-160 216,-160"/>
 </a>
 </g>
 </g>
@@ -103,8 +100,8 @@
 <g id="edge3_Node000001_Node000004" class="edge">
 <title>Node4&#45;&gt;Node1</title>
 <g id="a_edge3_Node000001_Node000004"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M235.75,-144.22C222.29,-130.25 207.1,-114.47 193.09,-99.92"/>
-<polygon fill="none" stroke="#63b8ff" points="232.94,-146.35 242.39,-151.13 237.98,-141.5 232.94,-146.35"/>
+<path fill="none" stroke="#63b8ff" d="M243.45,-152.22C228.3,-136.49 209.85,-117.32 193.09,-99.91"/>
+<polygon fill="none" stroke="#63b8ff" points="240.53,-154.24 249.99,-159.02 245.57,-149.39 240.53,-154.24"/>
 </a>
 </g>
 </g>

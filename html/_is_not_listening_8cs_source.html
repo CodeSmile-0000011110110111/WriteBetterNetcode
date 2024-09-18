@@ -28,6 +28,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="steffen portrait codesmile logo larger top-left-64x62.png"/></td>
   <td id="projectalign">
    <div id="projectname">CodeSmile MultiPal<span id="projectnumber">&#160;0.6</span>
    </div>
@@ -112,16 +113,16 @@ $(function(){initNavTree('_is_not_listening_8cs_source.html',''); initResizable(
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions.html">CodeSmile.Statemachine.Netcode.Conditions</a></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
-<div class="foldopen" id="foldopen00011" data-start="{" data-end="};">
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_not_listening.html">   11</a></span>    <span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class </span><a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_not_listening.html">IsNotListening</a> : <a class="code hl_interface" href="interface_code_smile_1_1_statemachine_1_1_i_condition.html">ICondition</a></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        <span class="keyword">public</span> Boolean IsSatisfied(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m.html">FSM</a> sm) =&gt; !NetworkManager.Singleton.IsListening;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    }</div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_not_listening.html">   14</a></span>    <span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class </span><a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_not_listening.html">IsNotListening</a> : <a class="code hl_interface" href="interface_code_smile_1_1_statemachine_1_1_i_condition.html">ICondition</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keyword">public</span> Boolean IsSatisfied(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m.html">FSM</a> sm) =&gt; !NetworkManager.Singleton.IsListening;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    }</div>
 </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>}</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>}</div>
 <div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_html"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m.html">CodeSmile.Statemachine.FSM</a></div><div class="ttdoc">Represents a finite-statemachine with a set of local and global variables indexed by name.</div><div class="ttdef"><b>Definition</b> <a href="_f_s_m_8_transition_8cs_source.html#l00010">FSM.Transition.cs:11</a></div></div>
-<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_not_listening_html"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_not_listening.html">CodeSmile.Statemachine.Netcode.Conditions.IsNotListening</a></div><div class="ttdef"><b>Definition</b> <a href="#l00011">IsNotListening.cs:12</a></div></div>
-<div class="ttc" id="ainterface_code_smile_1_1_statemachine_1_1_i_condition_html"><div class="ttname"><a href="interface_code_smile_1_1_statemachine_1_1_i_condition.html">CodeSmile.Statemachine.ICondition</a></div><div class="ttdef"><b>Definition</b> <a href="_interfaces_8cs_source.html#l00054">Interfaces.cs:55</a></div></div>
+<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_not_listening_html"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_not_listening.html">CodeSmile.Statemachine.Netcode.Conditions.IsNotListening</a></div><div class="ttdoc">Is true if the NetworkManager IsListening state is false (offline).</div><div class="ttdef"><b>Definition</b> <a href="#l00014">IsNotListening.cs:15</a></div></div>
+<div class="ttc" id="ainterface_code_smile_1_1_statemachine_1_1_i_condition_html"><div class="ttname"><a href="interface_code_smile_1_1_statemachine_1_1_i_condition.html">CodeSmile.Statemachine.ICondition</a></div><div class="ttdoc">Marks a class as a FSM Condition.</div><div class="ttdef"><b>Definition</b> <a href="_interfaces_8cs_source.html#l00057">Interfaces.cs:58</a></div></div>
 <div class="ttc" id="anamespace_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_html"><div class="ttname"><a href="namespace_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions.html">CodeSmile.Statemachine.Netcode.Conditions</a></div><div class="ttdef"><b>Definition</b> <a href="_is_listening_8cs_source.html#l00009">IsListening.cs:10</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

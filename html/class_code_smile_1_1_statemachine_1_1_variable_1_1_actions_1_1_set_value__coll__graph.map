@@ -1,7 +1,7 @@
 <map id="SetValue" name="SetValue">
-<area shape="rect" id="Node000001" title=" " alt="" coords="15,325,131,544"/>
-<area shape="rect" id="Node000002" href="$interface_code_smile_1_1_statemachine_1_1_i_action.html" title=" " alt="" coords="15,187,131,277"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,293,75,326,70,326,70,293"/>
-<area shape="rect" id="Node000003" href="$interface_code_smile_1_1_statemachine_1_1_i_statemachine_events.html" title="Event methods that the Statemachine calls at specific times." alt="" coords="5,5,140,139"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="75,153,75,187,70,187,70,153"/>
+<area shape="rect" id="Node000001" title="Assigns a value to the variable." alt="" coords="31,240,115,416"/>
+<area shape="rect" id="Node000002" href="$interface_code_smile_1_1_statemachine_1_1_i_action.html" title="Marks a class as a FSM Action." alt="" coords="46,123,99,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,207,75,240,70,240,70,207"/>
+<area shape="rect" id="Node000003" href="$interface_code_smile_1_1_statemachine_1_1_i_statemachine_events.html" title="Event methods that the Statemachine calls at specific times." alt="" coords="5,5,140,75"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="75,90,75,123,70,123,70,90"/>
 </map>

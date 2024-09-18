@@ -28,6 +28,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="steffen portrait codesmile logo larger top-left-64x62.png"/></td>
   <td id="projectalign">
    <div id="projectname">CodeSmile MultiPal<span id="projectnumber">&#160;0.6</span>
    </div>
@@ -117,27 +118,30 @@ $(function(){initNavTree('class_code_smile_1_1_statemachine_1_1_f_s_m_a0d8cbfe9a
 <p>Initializes (starts) the statemachine. </p>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_f_s_m_8cs_source.html#l00148">148</a> of file <a class="el" href="_f_s_m_8cs_source.html">FSM.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  149</span>        {</div>
-<div class="line"><span class="lineno">  150</span>            <span class="keywordflow">if</span> (IsStarted)</div>
-<div class="line"><span class="lineno">  151</span>                <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException($<span class="stringliteral">&quot;FSM &#39;{Name}&#39;: Start() must only be called once&quot;</span>);</div>
-<div class="line"><span class="lineno">  152</span> </div>
-<div class="line"><span class="lineno">  153</span>            ActiveStateIndex = 0;</div>
-<div class="line"><span class="lineno">  154</span> </div>
-<div class="line"><span class="lineno">  155</span>            ApplyLoggingToAllStates(Logging);</div>
-<div class="line"><span class="lineno">  156</span> </div>
-<div class="line"><span class="lineno">  157</span>            <span class="keywordflow">foreach</span> (var state <span class="keywordflow">in</span> States)</div>
-<div class="line"><span class="lineno">  158</span>                state.OnStart(<span class="keyword">this</span>);</div>
-<div class="line"><span class="lineno">  159</span> </div>
-<div class="line"><span class="lineno">  160</span>            ValidateStatemachine();</div>
-<div class="line"><span class="lineno">  161</span> </div>
-<div class="line"><span class="lineno">  162</span>            <a class="code hl_property" href="class_code_smile_1_1_statemachine_1_1_f_s_m_a8ece463f6647d84ca267a574ed3e8e5e.html#a8ece463f6647d84ca267a574ed3e8e5e">ActiveState</a>.OnEnterState(<span class="keyword">this</span>);</div>
-<div class="line"><span class="lineno">  163</span> </div>
-<div class="line"><span class="lineno">  164</span>            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><span class="lineno">  165</span>        }</div>
-<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_a8ece463f6647d84ca267a574ed3e8e5e_html_a8ece463f6647d84ca267a574ed3e8e5e"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m_a8ece463f6647d84ca267a574ed3e8e5e.html#a8ece463f6647d84ca267a574ed3e8e5e">CodeSmile.Statemachine.FSM.ActiveState</a></div><div class="ttdeci">State ActiveState</div><div class="ttdoc">The currently active State.</div><div class="ttdef"><b>Definition</b> <a href="_f_s_m_8cs_source.html#l00054">FSM.cs:55</a></div></div>
+<p class="definition">Definition at line <a class="el" href="_f_s_m_8cs_source.html#l00158">158</a> of file <a class="el" href="_f_s_m_8cs_source.html">FSM.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  159</span>        {</div>
+<div class="line"><span class="lineno">  160</span>            <span class="keywordflow">if</span> (IsStarted)</div>
+<div class="line"><span class="lineno">  161</span>                <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException($<span class="stringliteral">&quot;FSM &#39;{Name}&#39;: Start() must only be called once&quot;</span>);</div>
+<div class="line"><span class="lineno">  162</span> </div>
+<div class="line"><span class="lineno">  163</span>            <a class="code hl_property" href="class_code_smile_1_1_statemachine_1_1_f_s_m_aa84653af26f8718c2845404b8dedc8d6.html#aa84653af26f8718c2845404b8dedc8d6">ActiveStateIndex</a> = 0;</div>
+<div class="line"><span class="lineno">  164</span> </div>
+<div class="line"><span class="lineno">  165</span>            ApplyLoggingToAllStates(<a class="code hl_property" href="class_code_smile_1_1_statemachine_1_1_f_s_m_a1c487dbaa542d1fe109a408f9b62acd6.html#a1c487dbaa542d1fe109a408f9b62acd6">Logging</a>);</div>
+<div class="line"><span class="lineno">  166</span> </div>
+<div class="line"><span class="lineno">  167</span>            <span class="keywordflow">foreach</span> (var state <span class="keywordflow">in</span> <a class="code hl_property" href="class_code_smile_1_1_statemachine_1_1_f_s_m_ab6515d4de34057a6bde4dfbe91a432d8.html#ab6515d4de34057a6bde4dfbe91a432d8">States</a>)</div>
+<div class="line"><span class="lineno">  168</span>                state.OnStart(<span class="keyword">this</span>);</div>
+<div class="line"><span class="lineno">  169</span> </div>
+<div class="line"><span class="lineno">  170</span>            ValidateStatemachine();</div>
+<div class="line"><span class="lineno">  171</span> </div>
+<div class="line"><span class="lineno">  172</span>            <a class="code hl_property" href="class_code_smile_1_1_statemachine_1_1_f_s_m_a8ece463f6647d84ca267a574ed3e8e5e.html#a8ece463f6647d84ca267a574ed3e8e5e">ActiveState</a>.OnEnterState(<span class="keyword">this</span>);</div>
+<div class="line"><span class="lineno">  173</span> </div>
+<div class="line"><span class="lineno">  174</span>            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><span class="lineno">  175</span>        }</div>
+<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_a1c487dbaa542d1fe109a408f9b62acd6_html_a1c487dbaa542d1fe109a408f9b62acd6"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m_a1c487dbaa542d1fe109a408f9b62acd6.html#a1c487dbaa542d1fe109a408f9b62acd6">CodeSmile.Statemachine.FSM.Logging</a></div><div class="ttdeci">Boolean Logging</div><div class="ttdoc">If true, will print FSM execution logs for debugging purposes.</div><div class="ttdef"><b>Definition</b> <a href="_f_s_m_8cs_source.html#l00039">FSM.cs:40</a></div></div>
+<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_a8ece463f6647d84ca267a574ed3e8e5e_html_a8ece463f6647d84ca267a574ed3e8e5e"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m_a8ece463f6647d84ca267a574ed3e8e5e.html#a8ece463f6647d84ca267a574ed3e8e5e">CodeSmile.Statemachine.FSM.ActiveState</a></div><div class="ttdeci">State ActiveState</div><div class="ttdoc">The currently active State.</div><div class="ttdef"><b>Definition</b> <a href="_f_s_m_8cs_source.html#l00064">FSM.cs:65</a></div></div>
+<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_aa84653af26f8718c2845404b8dedc8d6_html_aa84653af26f8718c2845404b8dedc8d6"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m_aa84653af26f8718c2845404b8dedc8d6.html#aa84653af26f8718c2845404b8dedc8d6">CodeSmile.Statemachine.FSM.ActiveStateIndex</a></div><div class="ttdeci">Int32 ActiveStateIndex</div><div class="ttdoc">Index of currently active state. Is -1 for invalid state (eg not started).</div><div class="ttdef"><b>Definition</b> <a href="_f_s_m_8cs_source.html#l00034">FSM.cs:34</a></div></div>
+<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_ab6515d4de34057a6bde4dfbe91a432d8_html_ab6515d4de34057a6bde4dfbe91a432d8"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m_ab6515d4de34057a6bde4dfbe91a432d8.html#ab6515d4de34057a6bde4dfbe91a432d8">CodeSmile.Statemachine.FSM.States</a></div><div class="ttdeci">State[] States</div><div class="ttdoc">The list of states in the statemachine.</div><div class="ttdef"><b>Definition</b> <a href="_f_s_m_8cs_source.html#l00052">FSM.cs:52</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="_f_s_m_8cs_source.html#l00055">FSM.ActiveState</a>.</p>
+<p class="reference">References <a class="el" href="_f_s_m_8cs_source.html#l00065">FSM.ActiveState</a>, <a class="el" href="_f_s_m_8cs_source.html#l00034">FSM.ActiveStateIndex</a>, <a class="el" href="_f_s_m_8cs_source.html#l00040">FSM.Logging</a>, and <a class="el" href="_f_s_m_8cs_source.html#l00052">FSM.States</a>.</p>
 
 </div>
 </div>

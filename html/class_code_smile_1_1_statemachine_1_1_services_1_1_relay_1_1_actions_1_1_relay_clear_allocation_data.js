@@ -1,0 +1,4 @@
+var class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_clear_allocation_data =
+[
+    [ "RelayClearAllocationData", "class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_clear_allocation_data_a9c70f3cb64ffd477a95358d1302989f0.html#a9c70f3cb64ffd477a95358d1302989f0", null ]
+];

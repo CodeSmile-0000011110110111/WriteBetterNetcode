@@ -28,6 +28,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="steffen portrait codesmile logo larger top-left-64x62.png"/></td>
   <td id="projectalign">
    <div id="projectname">CodeSmile MultiPal<span id="projectnumber">&#160;0.6</span>
    </div>
@@ -114,14 +115,29 @@ $(function(){initNavTree('class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transi
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_f_s_m_8_transition_8cs_source.html#l00130">130</a> of file <a class="el" href="_f_s_m_8_transition_8cs_source.html">FSM.Transition.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  131</span>            {</div>
-<div class="line"><span class="lineno">  132</span>                <span class="keywordflow">if</span> (Actions != <span class="keyword">null</span>)</div>
-<div class="line"><span class="lineno">  133</span>                    <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="stringliteral">&quot;Actions already set&quot;</span>);</div>
-<div class="line"><span class="lineno">  134</span> </div>
-<div class="line"><span class="lineno">  135</span>                Actions = actions ?? <span class="keyword">new</span> IAction[0];</div>
-<div class="line"><span class="lineno">  136</span>                <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><span class="lineno">  137</span>            }</div>
+<p>Add actions to the transition. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actions</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">InvalidOperationException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_f_s_m_8_transition_8cs_source.html#l00166">166</a> of file <a class="el" href="_f_s_m_8_transition_8cs_source.html">FSM.Transition.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  167</span>            {</div>
+<div class="line"><span class="lineno">  168</span>                <span class="keywordflow">if</span> (Actions != <span class="keyword">null</span>)</div>
+<div class="line"><span class="lineno">  169</span>                    <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="stringliteral">&quot;Actions already set&quot;</span>);</div>
+<div class="line"><span class="lineno">  170</span> </div>
+<div class="line"><span class="lineno">  171</span>                Actions = actions ?? <span class="keyword">new</span> IAction[0];</div>
+<div class="line"><span class="lineno">  172</span>                <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><span class="lineno">  173</span>            }</div>
 </div><!-- fragment -->
 </div>
 </div>

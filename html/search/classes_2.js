@@ -8,6 +8,5 @@ var searchData=
   ['compoundcondition_5',['CompoundCondition',['../class_code_smile_1_1_statemachine_1_1_conditions_1_1_compound_condition.html',1,'CodeSmile::Statemachine::Conditions']]],
   ['constants_6',['Constants',['../class_code_smile_1_1_multi_pal_1_1_settings_1_1_constants.html',1,'CodeSmile::MultiPal::Settings']]],
   ['couchplayers_7',['CouchPlayers',['../class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players.html',1,'CodeSmile::MultiPal::Players::Couch']]],
-  ['couchplayersvars_8',['CouchPlayersVars',['../class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players_vars.html',1,'CodeSmile::MultiPal::Players::Couch']]],
-  ['customnamedmessagehandler_9',['CustomNamedMessageHandler',['../class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_custom_named_message_handler.html',1,'CodeSmile::MultiPal::Samples::Tests']]]
+  ['couchplayersvars_8',['CouchPlayersVars',['../class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players_vars.html',1,'CodeSmile::MultiPal::Players::Couch']]]
 ];

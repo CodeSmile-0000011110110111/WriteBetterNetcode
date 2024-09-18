@@ -2,8 +2,12 @@
 \hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config}{}\label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config}\index{RelayConfig@{RelayConfig}}
 
 
-Collaboration diagram for Relay\+Config\+:
-\nopagebreak
+DTO that provices Relay configuration options for Network\+Manager Transport setup.  
+
+
+
+
+Collaboration diagram for Relay\+Config\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -14,51 +18,47 @@ Collaboration diagram for Relay\+Config\+:
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a7d1f79131cb1071ee2dd154774a51849_a7d1f79131cb1071ee2dd154774a51849}{Clear\+Allocation\+Data}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Set any existing allocations to null. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_ae9d899615a5e7ff5ae910d640f3aa822_ae9d899615a5e7ff5ae910d640f3aa822}{Set\+Host\+Allocation}} (Allocation alloc, String join\+Code)
-\item 
-void \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a33dd4b99db98d8370fa44cc9c5df8b0e_a33dd4b99db98d8370fa44cc9c5df8b0e}{Set\+Join\+Allocation}} (Join\+Allocation alloc)
-\item 
-\Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a012fbb0f39e57c0a44ec83dd408fcda3}\label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a012fbb0f39e57c0a44ec83dd408fcda3} 
-override String {\bfseries To\+String} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Server\+: assign both the received allocation and the received join code. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a33dd4b99db98d8370fa44cc9c5df8b0e_a33dd4b99db98d8370fa44cc9c5df8b0e}{Set\+Join\+Allocation}} (\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a341c481b1e1061ba2619c1fa91aa0eda_a341c481b1e1061ba2619c1fa91aa0eda}{Join\+Allocation}} alloc)
+\begin{DoxyCompactList}\small\item\em Client\+: assign the received allocation after joining. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_aee8c740c5bf1c5ae8ba8a93cbec1e6ed}\label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_aee8c740c5bf1c5ae8ba8a93cbec1e6ed} 
-static \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config}{Relay\+Config}} {\bfseries From\+Cmd\+Args} ()
-\end{DoxyCompactItemize}
+static \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config}{Relay\+Config}} \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_aee8c740c5bf1c5ae8ba8a93cbec1e6ed_aee8c740c5bf1c5ae8ba8a93cbec1e6ed}{From\+Cmd\+Args}} ()
+\begin{DoxyCompactList}\small\item\em Creates a \doxylink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config}{Relay\+Config} from command line arguments. Omitted parameters will use default values. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 Byte \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a5bda5277af6612e21ebe147ddcd5b630_a5bda5277af6612e21ebe147ddcd5b630}{Max\+Connections}}
-\item 
+\begin{DoxyCompactList}\small\item\em Maximum number of connections (clients) per session. \end{DoxyCompactList}\item 
 String \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_acd36fd0cc39d6e14f5ddbcb7c5f093df_acd36fd0cc39d6e14f5ddbcb7c5f093df}{Region}}
-\item 
+\begin{DoxyCompactList}\small\item\em Optional. The region string (see Relay manual) to select a specific Relay server location. If null or empty, will use QoS to determine the Relay server location based on host\textquotesingle{}s location and latency. \end{DoxyCompactList}\item 
 Boolean \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_aa7d10e9af64abc426fafbd15e5d89af2_aa7d10e9af64abc426fafbd15e5d89af2}{Use\+Relay}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Set to true to enable use of relay for this session. If false, none of the other parameter matter. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 const Int32 \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a4846d9355df87435d051ee290ed4b582_a4846d9355df87435d051ee290ed4b582}{Max\+Relay\+Connections}} = 100
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Relay is limited to 100 connections according to the documentation (09/2024). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsubsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
 Boolean \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a9da562efd6e1be7da8bf7a6df2a3de39_a9da562efd6e1be7da8bf7a6df2a3de39}{Has\+Allocation}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
+\begin{DoxyCompactList}\small\item\em Is true if either a host or join allocation is non-\/null. Determines if we\textquotesingle{}re good to go. \end{DoxyCompactList}\item 
 Allocation \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a672944c107b462fc6f98e6a95dda914b_a672944c107b462fc6f98e6a95dda914b}{Host\+Allocation}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
+\begin{DoxyCompactList}\small\item\em The Host\+Allocation instance is set by the server only. \end{DoxyCompactList}\item 
 Join\+Allocation \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a341c481b1e1061ba2619c1fa91aa0eda_a341c481b1e1061ba2619c1fa91aa0eda}{Join\+Allocation}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
+\begin{DoxyCompactList}\small\item\em The Join\+Allocation instance is set by the client only. \end{DoxyCompactList}\item 
 String \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_acfa1fae6351f68beb78887c59bd5eef0_acfa1fae6351f68beb78887c59bd5eef0}{Join\+Code}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The relay join code. Server/\+Host will assign the join code for read-\/out by GUI etc. after Relay has started. Clients will have to assign a join code before attempting to connect. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsubsection{Detailed Description}
+DTO that provices Relay configuration options for Network\+Manager Transport setup. 
 
-
-Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00013}{13}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
+Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00016}{16}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
 
 
 
@@ -71,17 +71,48 @@ void Clear\+Allocation\+Data (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}
 
 
 
-Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00054}{54}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
+Set any existing allocations to null. 
+
+
+
+Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00100}{100}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ HostAllocation\ =\ \textcolor{keyword}{null};}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ JoinAllocation\ =\ \textcolor{keyword}{null};}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ invoke\ event\ here?}}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a672944c107b462fc6f98e6a95dda914b_a672944c107b462fc6f98e6a95dda914b}{HostAllocation}}\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a341c481b1e1061ba2619c1fa91aa0eda_a341c481b1e1061ba2619c1fa91aa0eda}{JoinAllocation}}\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
 
 \end{DoxyCode}
+
+
+References \mbox{\hyperlink{_relay_config_8cs_source_l00050}{Relay\+Config.\+Host\+Allocation}}, and \mbox{\hyperlink{_relay_config_8cs_source_l00054}{Relay\+Config.\+Join\+Allocation}}.
+
+\Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_aee8c740c5bf1c5ae8ba8a93cbec1e6ed_aee8c740c5bf1c5ae8ba8a93cbec1e6ed}\index{RelayConfig@{RelayConfig}!FromCmdArgs@{FromCmdArgs}}
+\index{FromCmdArgs@{FromCmdArgs}!RelayConfig@{RelayConfig}}
+\doxyparagraph{\texorpdfstring{FromCmdArgs()}{FromCmdArgs()}}
+{\footnotesize\ttfamily \label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_aee8c740c5bf1c5ae8ba8a93cbec1e6ed_aee8c740c5bf1c5ae8ba8a93cbec1e6ed} 
+static \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config}{Relay\+Config}} From\+Cmd\+Args (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Creates a \doxylink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config}{Relay\+Config} from command line arguments. Omitted parameters will use default values. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+References \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_a460999834701529d77ac7702cf95c878_a460999834701529d77ac7702cf95c878}{Cmd\+Args.\+Get\+Bool()}}, \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_ae0e2e7391ee3a4fde07a151f58e54531_ae0e2e7391ee3a4fde07a151f58e54531}{Cmd\+Args.\+Get\+Int()}}, \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_aaa3660e842edbad17a4550bd67e365df_aaa3660e842edbad17a4550bd67e365df}{Cmd\+Args.\+Get\+String()}}, \mbox{\hyperlink{_relay_config_8cs_source_l00045}{Relay\+Config.\+Join\+Code}}, \mbox{\hyperlink{_relay_config_8cs_source_l00031}{Relay\+Config.\+Max\+Connections}}, \mbox{\hyperlink{_relay_config_8cs_source_l00021}{Relay\+Config.\+Max\+Relay\+Connections}}, \mbox{\hyperlink{_relay_config_8cs_source_l00037}{Relay\+Config.\+Region}}, and \mbox{\hyperlink{_relay_config_8cs_source_l00026}{Relay\+Config.\+Use\+Relay}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_aee8c740c5bf1c5ae8ba8a93cbec1e6ed_aee8c740c5bf1c5ae8ba8a93cbec1e6ed_cgraph}
+\end{center}
+\end{figure}
 \Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_ae9d899615a5e7ff5ae910d640f3aa822_ae9d899615a5e7ff5ae910d640f3aa822}\index{RelayConfig@{RelayConfig}!SetHostAllocation@{SetHostAllocation}}
 \index{SetHostAllocation@{SetHostAllocation}!RelayConfig@{RelayConfig}}
 \doxyparagraph{\texorpdfstring{SetHostAllocation()}{SetHostAllocation()}}
@@ -90,36 +121,63 @@ void Set\+Host\+Allocation (\begin{DoxyParamCaption}\item[{Allocation}]{alloc}{,
 
 
 
-Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00039}{39}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
+Server\+: assign both the received allocation and the received join code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em alloc} & \\
+\hline
+{\em join\+Code} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00080}{80}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ HostAllocation\ =\ alloc;}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ JoinAllocation\ =\ \textcolor{keyword}{null};}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ JoinCode\ =\ joinCode;}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ invoke\ event\ here}}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a672944c107b462fc6f98e6a95dda914b_a672944c107b462fc6f98e6a95dda914b}{HostAllocation}}\ =\ alloc;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a341c481b1e1061ba2619c1fa91aa0eda_a341c481b1e1061ba2619c1fa91aa0eda}{JoinAllocation}}\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_acfa1fae6351f68beb78887c59bd5eef0_acfa1fae6351f68beb78887c59bd5eef0}{JoinCode}}\ =\ joinCode;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
 
 \end{DoxyCode}
+
+
+References \mbox{\hyperlink{_relay_config_8cs_source_l00050}{Relay\+Config.\+Host\+Allocation}}, \mbox{\hyperlink{_relay_config_8cs_source_l00054}{Relay\+Config.\+Join\+Allocation}}, and \mbox{\hyperlink{_relay_config_8cs_source_l00045}{Relay\+Config.\+Join\+Code}}.
+
 \Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a33dd4b99db98d8370fa44cc9c5df8b0e_a33dd4b99db98d8370fa44cc9c5df8b0e}\index{RelayConfig@{RelayConfig}!SetJoinAllocation@{SetJoinAllocation}}
 \index{SetJoinAllocation@{SetJoinAllocation}!RelayConfig@{RelayConfig}}
 \doxyparagraph{\texorpdfstring{SetJoinAllocation()}{SetJoinAllocation()}}
 {\footnotesize\ttfamily \label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a33dd4b99db98d8370fa44cc9c5df8b0e_a33dd4b99db98d8370fa44cc9c5df8b0e} 
-void Set\+Join\+Allocation (\begin{DoxyParamCaption}\item[{Join\+Allocation}]{alloc}{}\end{DoxyParamCaption})}
+void Set\+Join\+Allocation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a341c481b1e1061ba2619c1fa91aa0eda_a341c481b1e1061ba2619c1fa91aa0eda}{Join\+Allocation}}}]{alloc}{}\end{DoxyParamCaption})}
 
 
 
-Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00048}{48}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
+Client\+: assign the received allocation after joining. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em alloc} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00091}{91}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ HostAllocation\ =\ \textcolor{keyword}{null};}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ JoinAllocation\ =\ alloc;}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a672944c107b462fc6f98e6a95dda914b_a672944c107b462fc6f98e6a95dda914b}{HostAllocation}}\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a341c481b1e1061ba2619c1fa91aa0eda_a341c481b1e1061ba2619c1fa91aa0eda}{JoinAllocation}}\ =\ alloc;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
 
 \end{DoxyCode}
+
+
+References \mbox{\hyperlink{_relay_config_8cs_source_l00050}{Relay\+Config.\+Host\+Allocation}}, and \mbox{\hyperlink{_relay_config_8cs_source_l00054}{Relay\+Config.\+Join\+Allocation}}.
+
 
 
 \doxysubsubsection{Member Data Documentation}
@@ -131,7 +189,15 @@ Byte Max\+Connections}
 
 
 
-Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00018}{18}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
+Maximum number of connections (clients) per session. 
+
+
+
+Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00031}{31}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_aee8c740c5bf1c5ae8ba8a93cbec1e6ed_aee8c740c5bf1c5ae8ba8a93cbec1e6ed}{Relay\+Config.\+From\+Cmd\+Args()}}.
 
 \Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a4846d9355df87435d051ee290ed4b582_a4846d9355df87435d051ee290ed4b582}\index{RelayConfig@{RelayConfig}!MaxRelayConnections@{MaxRelayConnections}}
 \index{MaxRelayConnections@{MaxRelayConnections}!RelayConfig@{RelayConfig}}
@@ -141,7 +207,15 @@ const Int32 Max\+Relay\+Connections = 100\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
-Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00015}{15}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
+Relay is limited to 100 connections according to the documentation (09/2024). 
+
+
+
+Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00021}{21}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_aee8c740c5bf1c5ae8ba8a93cbec1e6ed_aee8c740c5bf1c5ae8ba8a93cbec1e6ed}{Relay\+Config.\+From\+Cmd\+Args()}}.
 
 \Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_acd36fd0cc39d6e14f5ddbcb7c5f093df_acd36fd0cc39d6e14f5ddbcb7c5f093df}\index{RelayConfig@{RelayConfig}!Region@{Region}}
 \index{Region@{Region}!RelayConfig@{RelayConfig}}
@@ -151,7 +225,15 @@ String Region}
 
 
 
-Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00019}{19}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
+Optional. The region string (see Relay manual) to select a specific Relay server location. If null or empty, will use QoS to determine the Relay server location based on host\textquotesingle{}s location and latency. 
+
+
+
+Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00037}{37}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_aee8c740c5bf1c5ae8ba8a93cbec1e6ed_aee8c740c5bf1c5ae8ba8a93cbec1e6ed}{Relay\+Config.\+From\+Cmd\+Args()}}.
 
 \Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_aa7d10e9af64abc426fafbd15e5d89af2_aa7d10e9af64abc426fafbd15e5d89af2}\index{RelayConfig@{RelayConfig}!UseRelay@{UseRelay}}
 \index{UseRelay@{UseRelay}!RelayConfig@{RelayConfig}}
@@ -161,7 +243,15 @@ Boolean Use\+Relay}
 
 
 
-Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00017}{17}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
+Set to true to enable use of relay for this session. If false, none of the other parameter matter. 
+
+
+
+Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00026}{26}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_aee8c740c5bf1c5ae8ba8a93cbec1e6ed_aee8c740c5bf1c5ae8ba8a93cbec1e6ed}{Relay\+Config.\+From\+Cmd\+Args()}}.
 
 
 
@@ -174,7 +264,11 @@ Boolean Has\+Allocation\hspace{0.3cm}{\ttfamily [get]}}
 
 
 
-Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00027}{27}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
+Is true if either a host or join allocation is non-\/null. Determines if we\textquotesingle{}re good to go. 
+
+
+
+Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00059}{59}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
 
 \Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a672944c107b462fc6f98e6a95dda914b_a672944c107b462fc6f98e6a95dda914b}\index{RelayConfig@{RelayConfig}!HostAllocation@{HostAllocation}}
 \index{HostAllocation@{HostAllocation}!RelayConfig@{RelayConfig}}
@@ -184,13 +278,21 @@ Allocation Host\+Allocation\hspace{0.3cm}{\ttfamily [get]}}
 
 
 
-Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00024}{24}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
+The Host\+Allocation instance is set by the server only. 
+
+
+
+Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00050}{50}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00024\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{00050\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
 
 \end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{_relay_config_8cs_source_l00100}{Relay\+Config.\+Clear\+Allocation\+Data()}}, \mbox{\hyperlink{_relay_config_8cs_source_l00080}{Relay\+Config.\+Set\+Host\+Allocation()}}, and \mbox{\hyperlink{_relay_config_8cs_source_l00091}{Relay\+Config.\+Set\+Join\+Allocation()}}.
+
 \Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a341c481b1e1061ba2619c1fa91aa0eda_a341c481b1e1061ba2619c1fa91aa0eda}\index{RelayConfig@{RelayConfig}!JoinAllocation@{JoinAllocation}}
 \index{JoinAllocation@{JoinAllocation}!RelayConfig@{RelayConfig}}
 \doxyparagraph{\texorpdfstring{JoinAllocation}{JoinAllocation}}
@@ -199,13 +301,21 @@ Join\+Allocation Join\+Allocation\hspace{0.3cm}{\ttfamily [get]}}
 
 
 
-Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00025}{25}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
+The Join\+Allocation instance is set by the client only. 
+
+
+
+Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00054}{54}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00025\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{00054\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
 
 \end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{_relay_config_8cs_source_l00100}{Relay\+Config.\+Clear\+Allocation\+Data()}}, \mbox{\hyperlink{_relay_config_8cs_source_l00080}{Relay\+Config.\+Set\+Host\+Allocation()}}, and \mbox{\hyperlink{_relay_config_8cs_source_l00091}{Relay\+Config.\+Set\+Join\+Allocation()}}.
+
 \Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_acfa1fae6351f68beb78887c59bd5eef0_acfa1fae6351f68beb78887c59bd5eef0}\index{RelayConfig@{RelayConfig}!JoinCode@{JoinCode}}
 \index{JoinCode@{JoinCode}!RelayConfig@{RelayConfig}}
 \doxyparagraph{\texorpdfstring{JoinCode}{JoinCode}}
@@ -214,10 +324,18 @@ String Join\+Code\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
 
 
 
-Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00022}{22}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
+The relay join code. Server/\+Host will assign the join code for read-\/out by GUI etc. after Relay has started. Clients will have to assign a join code before attempting to connect. 
+
+
+
+Definition at line \mbox{\hyperlink{_relay_config_8cs_source_l00045}{45}} of file \mbox{\hyperlink{_relay_config_8cs_source}{Relay\+Config.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00022\ \{\ readonly\ \textcolor{keyword}{get}\ =>\ m\_JoinCode;\ \textcolor{keyword}{set}\ =>\ m\_JoinCode\ =\ value?.ToUpper();\ \}}
+\DoxyCodeLine{00045\ \{\ readonly\ \textcolor{keyword}{get}\ =>\ m\_JoinCode;\ \textcolor{keyword}{set}\ =>\ m\_JoinCode\ =\ value?.ToUpper();\ \}}
 
 \end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_aee8c740c5bf1c5ae8ba8a93cbec1e6ed_aee8c740c5bf1c5ae8ba8a93cbec1e6ed}{Relay\+Config.\+From\+Cmd\+Args()}}, and \mbox{\hyperlink{_relay_config_8cs_source_l00080}{Relay\+Config.\+Set\+Host\+Allocation()}}.
+

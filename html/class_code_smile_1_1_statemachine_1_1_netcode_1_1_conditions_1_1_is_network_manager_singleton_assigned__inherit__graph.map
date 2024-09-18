@@ -1,7 +1,7 @@
 <map id="IsNetworkManagerSingletonAssigned" name="IsNetworkManagerSingletonAssigned">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,325,179,411"/>
-<area shape="rect" id="Node000002" href="$interface_code_smile_1_1_statemachine_1_1_i_condition.html" title=" " alt="" coords="34,187,150,277"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,292,95,326,89,326,89,292"/>
-<area shape="rect" id="Node000003" href="$interface_code_smile_1_1_statemachine_1_1_i_statemachine_events.html" title="Event methods that the Statemachine calls at specific times." alt="" coords="25,5,159,139"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="95,153,95,187,89,187,89,153"/>
+<area shape="rect" id="Node000001" title="Is true once NetworkManager singleton no longer returns null." alt="" coords="5,240,179,325"/>
+<area shape="rect" id="Node000002" href="$interface_code_smile_1_1_statemachine_1_1_i_condition.html" title="Marks a class as a FSM Condition." alt="" coords="57,123,127,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,207,95,240,89,240,89,207"/>
+<area shape="rect" id="Node000003" href="$interface_code_smile_1_1_statemachine_1_1_i_statemachine_events.html" title="Event methods that the Statemachine calls at specific times." alt="" coords="25,5,159,75"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="95,90,95,123,89,123,89,90"/>
 </map>

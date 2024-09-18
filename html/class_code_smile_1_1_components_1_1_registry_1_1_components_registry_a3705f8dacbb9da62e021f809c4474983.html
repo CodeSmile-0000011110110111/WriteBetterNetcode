@@ -28,6 +28,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="steffen portrait codesmile logo larger top-left-64x62.png"/></td>
   <td id="projectalign">
    <div id="projectname">CodeSmile MultiPal<span id="projectnumber">&#160;0.6</span>
    </div>
@@ -145,14 +146,17 @@ $(function(){initNavTree('class_code_smile_1_1_components_1_1_registry_1_1_compo
 </dl>
 </div>
 
-<p class="definition">Definition at line <a class="el" href="_components_registry_8cs_source.html#l00072">72</a> of file <a class="el" href="_components_registry_8cs_source.html">ComponentsRegistry.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   72</span>                                                       : Component</div>
-<div class="line"><span class="lineno">   73</span>        {</div>
-<div class="line"><span class="lineno">   74</span>            s_Components[typeof(T)] = component;</div>
-<div class="line"><span class="lineno">   75</span>            OnComponentAssigned?.Invoke(typeof(T), component);</div>
-<div class="line"><span class="lineno">   76</span>            ProcessAssignmentAwaitables(component);</div>
-<div class="line"><span class="lineno">   77</span>        }</div>
+<p class="definition">Definition at line <a class="el" href="_components_registry_8cs_source.html#l00075">75</a> of file <a class="el" href="_components_registry_8cs_source.html">ComponentsRegistry.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   75</span>                                                       : Component</div>
+<div class="line"><span class="lineno">   76</span>        {</div>
+<div class="line"><span class="lineno">   77</span>            s_Components[typeof(T)] = component;</div>
+<div class="line"><span class="lineno">   78</span>            <a class="code hl_event" href="class_code_smile_1_1_components_1_1_registry_1_1_components_registry_ade7b5d44562b088959352e8c64331dff.html#ade7b5d44562b088959352e8c64331dff">OnComponentAssigned</a>?.Invoke(typeof(T), component);</div>
+<div class="line"><span class="lineno">   79</span>            ProcessAssignmentAwaitables(component);</div>
+<div class="line"><span class="lineno">   80</span>        }</div>
+<div class="ttc" id="aclass_code_smile_1_1_components_1_1_registry_1_1_components_registry_ade7b5d44562b088959352e8c64331dff_html_ade7b5d44562b088959352e8c64331dff"><div class="ttname"><a href="class_code_smile_1_1_components_1_1_registry_1_1_components_registry_ade7b5d44562b088959352e8c64331dff.html#ade7b5d44562b088959352e8c64331dff">CodeSmile.Components.Registry.ComponentsRegistry.OnComponentAssigned</a></div><div class="ttdeci">static Action&lt; Type, Component &gt; OnComponentAssigned</div><div class="ttdoc">Event raised when assignment occurs, including null.</div><div class="ttdef"><b>Definition</b> <a href="_components_registry_8cs_source.html#l00024">ComponentsRegistry.cs:24</a></div></div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="_components_registry_8cs_source.html#l00024">ComponentsRegistry.OnComponentAssigned</a>.</p>
+
 </div>
 </div>
 </div><!-- contents -->

@@ -1,9 +1,9 @@
 <map id="FSM.StatemachineStoppedEventArgs" name="FSM.StatemachineStoppedEventArgs">
-<area shape="rect" id="Node000001" title="Sent with Statemachine stopped event." alt="" coords="65,855,297,924"/>
-<area shape="rect" id="Node000002" href="$class_code_smile_1_1_statemachine_1_1_f_s_m.html" title="Represents a finite&#45;statemachine with a set of local and global variables indexed by name." alt="" coords="5,124,205,791"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,790,138,830,143,839,138,842,134,832,120,791"/>
-<area shape="rect" id="Node000003" href="$class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html" title="Represents a state in a statemachine." alt="" coords="229,231,347,684"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="274,684,256,759,230,832,225,842,221,839,226,830,251,758,268,683"/>
+<area shape="rect" id="Node000001" title="Sent with Statemachine stopped event." alt="" coords="65,833,297,903"/>
+<area shape="rect" id="Node000002" href="$class_code_smile_1_1_statemachine_1_1_f_s_m.html" title="Represents a finite&#45;statemachine with a set of local and global variables indexed by name." alt="" coords="5,124,205,769"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,768,138,808,143,818,138,820,134,810,120,770"/>
+<area shape="rect" id="Node000003" href="$class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html" title="Represents a state in a statemachine." alt="" coords="229,327,347,567"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="286,567,280,625,269,687,253,750,230,810,225,820,221,818,226,808,248,749,264,686,275,624,281,566"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="223,5,353,75"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="291,90,291,231,285,231,285,90"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="291,90,291,327,285,327,285,90"/>
 </map>

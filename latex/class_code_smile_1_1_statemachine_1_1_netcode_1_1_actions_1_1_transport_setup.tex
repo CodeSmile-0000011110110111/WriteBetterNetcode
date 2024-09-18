@@ -2,8 +2,12 @@
 \hypertarget{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup}{}\label{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup}\index{TransportSetup@{TransportSetup}}
 
 
-Inheritance diagram for Transport\+Setup\+:
-\nopagebreak
+Configures Network\+Manager\textquotesingle{}s Transport from config variables.  
+
+
+
+
+Inheritance diagram for Transport\+Setup\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +16,7 @@ Inheritance diagram for Transport\+Setup\+:
 \end{figure}
 
 
-Collaboration diagram for Transport\+Setup\+:
-\nopagebreak
+Collaboration diagram for Transport\+Setup\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -24,31 +27,15 @@ Collaboration diagram for Transport\+Setup\+:
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup_a245f0aeeb3057bcfc32fee305263f30f_a245f0aeeb3057bcfc32fee305263f30f}{Transport\+Setup}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_var}{Var}}$<$ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{Netcode\+Config}} $>$ netcode\+Config\+Var, \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_var}{Var}}$<$ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}{Transport\+Config}} $>$ transport\+Config\+Var, \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_var}{Var}}$<$ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config}{Relay\+Config}} $>$ relay\+Config\+Var)
-\item 
-void \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup_a622e3bd65304d3fc345ce24529ace200_a622e3bd65304d3fc345ce24529ace200}{Execute}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\end{DoxyCompactItemize}
-\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}}
-\begin{DoxyCompactItemize}
-\item 
-String {\bfseries To\+Debug\+String} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\end{DoxyCompactItemize}
-\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events}{IStatemachine\+Events}}}
-\begin{DoxyCompactItemize}
-\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a5a67bb74ccf99965d72db627baba330e_a5a67bb74ccf99965d72db627baba330e}{On\+Enter\+State}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called when the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} enters a state to which the Action/\+Condition belongs. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a642a9e83527494616d3c56ffc0c2e5d3_a642a9e83527494616d3c56ffc0c2e5d3}{On\+Exit\+State}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called when the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} leaves the state to which the Action/\+Condition belongs. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_ad53b64512d4843ff9f09cb72b1467b8d_ad53b64512d4843ff9f09cb72b1467b8d}{On\+Start}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called before the first evaluation of the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine}. Similar to Start() in a Mono\+Behaviour. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a1dc817ac01153abb1d67f5b7fd1e0594_a1dc817ac01153abb1d67f5b7fd1e0594}{On\+Stop}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called when the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} stops, meaning it reached a State that has no transitions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates a new \doxylink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup}{Transport\+Setup} action. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsubsection{Detailed Description}
+Configures Network\+Manager\textquotesingle{}s Transport from config variables. 
 
+Supports all aspects of Transport configuration, eg with or without Relay, Web\+Sockets, etc.
 
-Definition at line \mbox{\hyperlink{_transport_setup_8cs_source_l00013}{13}} of file \mbox{\hyperlink{_transport_setup_8cs_source}{Transport\+Setup.\+cs}}.
+Definition at line \mbox{\hyperlink{_transport_setup_8cs_source_l00017}{17}} of file \mbox{\hyperlink{_transport_setup_8cs_source}{Transport\+Setup.\+cs}}.
 
 
 
@@ -61,59 +48,27 @@ Definition at line \mbox{\hyperlink{_transport_setup_8cs_source_l00013}{13}} of 
 
 
 
-Definition at line \mbox{\hyperlink{_transport_setup_8cs_source_l00021}{21}} of file \mbox{\hyperlink{_transport_setup_8cs_source}{Transport\+Setup.\+cs}}.
+Creates a new \doxylink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup}{Transport\+Setup} action. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em netcode\+Config\+Var} & \\
+\hline
+{\em transport\+Config\+Var} & \\
+\hline
+{\em relay\+Config\+Var} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_transport_setup_8cs_source_l00031}{31}} of file \mbox{\hyperlink{_transport_setup_8cs_source}{Transport\+Setup.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ m\_NetcodeConfigVar\ =\ netcodeConfigVar;}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ m\_TransportConfigVar\ =\ transportConfigVar;}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ m\_RelayConfigVar\ =\ relayConfigVar;}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \}}
-
-\end{DoxyCode}
-
-
-\doxysubsubsection{Member Function Documentation}
-\Hypertarget{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup_a622e3bd65304d3fc345ce24529ace200_a622e3bd65304d3fc345ce24529ace200}\index{TransportSetup@{TransportSetup}!Execute@{Execute}}
-\index{Execute@{Execute}!TransportSetup@{TransportSetup}}
-\doxyparagraph{\texorpdfstring{Execute()}{Execute()}}
-{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup_a622e3bd65304d3fc345ce24529ace200_a622e3bd65304d3fc345ce24529ace200} 
-void Execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}}]{sm}{}\end{DoxyParamCaption})}
-
-
-
-Implements \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}.
-
-
-
-Definition at line \mbox{\hyperlink{_transport_setup_8cs_source_l00030}{30}} of file \mbox{\hyperlink{_transport_setup_8cs_source}{Transport\+Setup.\+cs}}.
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ var\ netcodeConfig\ =\ m\_NetcodeConfigVar.Value;}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ var\ transportConfig\ =\ m\_TransportConfigVar.Value;}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ var\ relayConfig\ =\ m\_RelayConfigVar.Value;}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ var\ isWeb\ =\ Application.platform\ ==\ RuntimePlatform.WebGLPlayer;}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ var\ transport\ =\ NetworkManager.Singleton.GetComponent<UnityTransport>();}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ transport.UseEncryption\ =\ transportConfig.UseEncryption;}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ transport.UseWebSockets\ =\ transportConfig.UseWebSockets\ ||\ isWeb;}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ transport\ encryption\ ...}}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (transportConfig.UseEncryption)}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ NotImplementedException(\textcolor{stringliteral}{"{}TODO:\ encryption\ ...\ set\ secrets\ etc"{}});}
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (relayConfig.UseRelay)}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ connectionType\ =\ transport.UseWebSockets\ ?\ \textcolor{stringliteral}{"{}wss"{}}\ :\ transport.UseEncryption\ ?\ \textcolor{stringliteral}{"{}dtls"{}}\ :\ \textcolor{stringliteral}{"{}udp"{}};}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transport.SetRelayServerData(netcodeConfig.Role\ ==\ NetcodeRole.Client}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ \textcolor{keyword}{new}\ RelayServerData(relayConfig.JoinAllocation,\ connectionType)}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keyword}{new}\ RelayServerData(relayConfig.HostAllocation,\ connectionType));}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transport.SetConnectionData(transportConfig.Address,\ transportConfig.Port,\ transportConfig.ServerListenAddress);}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ m\_NetcodeConfigVar\ =\ netcodeConfigVar;}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ m\_TransportConfigVar\ =\ transportConfigVar;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ m\_RelayConfigVar\ =\ relayConfigVar;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \}}
 
 \end{DoxyCode}

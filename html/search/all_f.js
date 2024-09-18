@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['relayclearallocationdata_0',['RelayClearAllocationData',['../class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_clear_allocation_data.html',1,'CodeSmile::Statemachine::Services::Relay::Actions']]],
-  ['relayconfig_1',['RelayConfig',['../struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config.html',1,'CodeSmile::Statemachine::Netcode']]],
-  ['relaycreateorjoinallocation_2',['RelayCreateOrJoinAllocation',['../class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_create_or_join_allocation.html',1,'CodeSmile::Statemachine::Services::Relay::Actions']]]
+  ['region_0',['Region',['../struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_acd36fd0cc39d6e14f5ddbcb7c5f093df.html#acd36fd0cc39d6e14f5ddbcb7c5f093df',1,'CodeSmile::Statemachine::Netcode::RelayConfig']]],
+  ['relayclearallocationdata_1',['RelayClearAllocationData',['../class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_clear_allocation_data.html',1,'RelayClearAllocationData'],['../class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_clear_allocation_data_a9c70f3cb64ffd477a95358d1302989f0.html#a9c70f3cb64ffd477a95358d1302989f0',1,'CodeSmile.Statemachine.Services.Relay.Actions.RelayClearAllocationData.RelayClearAllocationData()']]],
+  ['relayconfig_2',['RelayConfig',['../struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config.html',1,'CodeSmile::Statemachine::Netcode']]],
+  ['relaycreateorjoinallocation_3',['RelayCreateOrJoinAllocation',['../class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_create_or_join_allocation.html',1,'RelayCreateOrJoinAllocation'],['../class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_create_or_join_allocation_aacd400723f365644b258d7a55f798c52.html#aacd400723f365644b258d7a55f798c52',1,'CodeSmile.Statemachine.Services.Relay.Actions.RelayCreateOrJoinAllocation.RelayCreateOrJoinAllocation()']]],
+  ['role_4',['Role',['../struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_adb50f35bfa9e23b2421bf2f287104c89.html#adb50f35bfa9e23b2421bf2f287104c89',1,'CodeSmile::Statemachine::Netcode::NetcodeConfig']]],
+  ['runtimescene_5',['RuntimeScene',['../class_code_smile_1_1_utility_1_1_scene_reference_aff18baebbcb8cb9df3c377963fe01ca5.html#aff18baebbcb8cb9df3c377963fe01ca5',1,'CodeSmile::Utility::SceneReference']]]
 ];

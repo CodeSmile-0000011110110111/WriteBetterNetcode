@@ -1,0 +1,5 @@
+<map id="SceneReference" name="SceneReference">
+<area shape="rect" id="Node000001" title="Creates a new instance." alt="" coords="5,5,122,32"/>
+<area shape="rect" id="Node000002" href="$class_code_smile_1_1_utility_1_1_scene_reference_a755e7a04dbc0bc114ebd52997a9a2a42.html#a755e7a04dbc0bc114ebd52997a9a2a42" title="Call this from the MonoBehaviour that owns the SceneReference. Call it in OnValidate to ensure the Sc..." alt="" coords="170,5,255,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,16,154,16,154,21,122,21"/>
+</map>
