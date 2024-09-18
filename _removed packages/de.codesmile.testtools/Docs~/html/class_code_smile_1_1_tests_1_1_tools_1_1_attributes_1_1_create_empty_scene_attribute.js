@@ -1,4 +1,0 @@
-var class_code_smile_1_1_tests_1_1_tools_1_1_attributes_1_1_create_empty_scene_attribute =
-[
-    [ "CreateEmptySceneAttribute", "class_code_smile_1_1_tests_1_1_tools_1_1_attributes_1_1_create_empty_scene_attribute_a5b5d99733d28f04ab6facb76bb84215a.html#a5b5d99733d28f04ab6facb76bb84215a", null ]
-];
