@@ -2,13 +2,12 @@
 \hypertarget{class_code_smile_1_1_utility_1_1_scene_reference}{}\label{class_code_smile_1_1_utility_1_1_scene_reference}\index{SceneReference@{SceneReference}}
 
 
-Allows drag \& drop of scene assets in the Inspector and serializes the scene\textquotesingle{}s name for runtime scene loading.  
+Represents a Scene\+Asset at runtime by serializing only the scene name and path at runtime, while in the editor it works with a Scene\+Asset reference. Allows drag \& drop of scene assets in the Inspector.  
 
 
 
 
-Inheritance diagram for Scene\+Reference\+:
-\nopagebreak
+Inheritance diagram for Scene\+Reference\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -17,8 +16,7 @@ Inheritance diagram for Scene\+Reference\+:
 \end{figure}
 
 
-Collaboration diagram for Scene\+Reference\+:
-\nopagebreak
+Collaboration diagram for Scene\+Reference\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -28,47 +26,29 @@ Collaboration diagram for Scene\+Reference\+:
 \doxysubsubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference_ade68ed5b8593bf923b0bf7be6539fa16_ade68ed5b8593bf923b0bf7be6539fa16}{Scene\+Reference}} ()
+\begin{DoxyCompactList}\small\item\em Creates a new instance. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference_a66aa9658cf134ff8002520efd8e3687a_a66aa9658cf134ff8002520efd8e3687a}{Scene\+Reference}} (Scene scene)
-\item 
-\Hypertarget{class_code_smile_1_1_utility_1_1_scene_reference_a28f250de206b1764c446bd97127b2f07}\label{class_code_smile_1_1_utility_1_1_scene_reference_a28f250de206b1764c446bd97127b2f07} 
-override Boolean {\bfseries Equals} (Object obj)
-\item 
-Boolean \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference_a209768cb751022dfb5521bc017437d31_a209768cb751022dfb5521bc017437d31}{Equals}} (\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{Scene\+Reference}} other)
-\item 
-\Hypertarget{class_code_smile_1_1_utility_1_1_scene_reference_ab86e9330a2bab918bbad0e2cbadb58a8}\label{class_code_smile_1_1_utility_1_1_scene_reference_ab86e9330a2bab918bbad0e2cbadb58a8} 
-override Int32 {\bfseries Get\+Hash\+Code} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Creates a new instance from a Scene struct. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference_a755e7a04dbc0bc114ebd52997a9a2a42_a755e7a04dbc0bc114ebd52997a9a2a42}{On\+Validate}} ()
-\begin{DoxyCompactList}\small\item\em Call this from the Mono\+Behaviour that owns the \doxylink{class_code_smile_1_1_utility_1_1_scene_reference}{Scene\+Reference}. Call it in On\+Validate to ensure the Scene\+Name is always in sync with the Scene\+Asset. \end{DoxyCompactList}\item 
-\Hypertarget{class_code_smile_1_1_utility_1_1_scene_reference_a012fbb0f39e57c0a44ec83dd408fcda3}\label{class_code_smile_1_1_utility_1_1_scene_reference_a012fbb0f39e57c0a44ec83dd408fcda3} 
-override String {\bfseries To\+String} ()
-\end{DoxyCompactItemize}
-\doxysubsubsubsection*{Static Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\Hypertarget{class_code_smile_1_1_utility_1_1_scene_reference_a06379707ee4b2d9420d874930da6f197}\label{class_code_smile_1_1_utility_1_1_scene_reference_a06379707ee4b2d9420d874930da6f197} 
-static Boolean {\bfseries operator!=} (\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{Scene\+Reference}} left, \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{Scene\+Reference}} right)
-\item 
-\Hypertarget{class_code_smile_1_1_utility_1_1_scene_reference_aa0db46ee4a7d2487614f9c4a0c818323}\label{class_code_smile_1_1_utility_1_1_scene_reference_aa0db46ee4a7d2487614f9c4a0c818323} 
-static Boolean {\bfseries operator==} (\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{Scene\+Reference}} left, \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{Scene\+Reference}} right)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Call this from the Mono\+Behaviour that owns the \doxylink{class_code_smile_1_1_utility_1_1_scene_reference}{Scene\+Reference}. Call it in On\+Validate to ensure the Scene\+Name is always in sync with the Scene\+Asset. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsubsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
 Boolean \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference_a72b69dfb0ae31ece894fe6a5afec26e9_a72b69dfb0ae31ece894fe6a5afec26e9}{Is\+Valid}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
+\begin{DoxyCompactList}\small\item\em Is true if the scene path is valid. \end{DoxyCompactList}\item 
 Scene \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference_aff18baebbcb8cb9df3c377963fe01ca5_aff18baebbcb8cb9df3c377963fe01ca5}{Runtime\+Scene}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
+\begin{DoxyCompactList}\small\item\em Returns the (runtime) Scene instance using the scene\textquotesingle{}s path. \end{DoxyCompactList}\item 
 String \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference_a2272f5b2fd9e0e48f4eff862c6b2ad03_a2272f5b2fd9e0e48f4eff862c6b2ad03}{Scene\+Name}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \begin{DoxyCompactList}\small\item\em The scene name of the assigned Scene\+Asset. \end{DoxyCompactList}\item 
 String \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference_a5328a67159866ccb2f4f0f9caf1f6102_a5328a67159866ccb2f4f0f9caf1f6102}{Scene\+Path}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The path to the scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsubsection{Detailed Description}
-Allows drag \& drop of scene assets in the Inspector and serializes the scene\textquotesingle{}s name for runtime scene loading. 
+Represents a Scene\+Asset at runtime by serializing only the scene name and path at runtime, while in the editor it works with a Scene\+Asset reference. Allows drag \& drop of scene assets in the Inspector. 
 
-Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00018}{18}} of file \mbox{\hyperlink{_scene_reference_8cs_source}{Scene\+Reference.\+cs}}.
+Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00019}{19}} of file \mbox{\hyperlink{_scene_reference_8cs_source}{Scene\+Reference.\+cs}}.
 
 
 
@@ -81,19 +61,34 @@ Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00018}{18}} of 
 
 
 
-Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00033}{33}} of file \mbox{\hyperlink{_scene_reference_8cs_source}{Scene\+Reference.\+cs}}.
+Creates a new instance. 
+
+
+
+Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00060}{60}} of file \mbox{\hyperlink{_scene_reference_8cs_source}{Scene\+Reference.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#if\ UNITY\_EDITOR }}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ no\ need\ to\ unsubscribe\ these\ events}}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ PostProcessor.OnSceneAssetChanged\ +=\ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference_a755e7a04dbc0bc114ebd52997a9a2a42_a755e7a04dbc0bc114ebd52997a9a2a42}{OnValidate}};}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ EditorApplication.playModeStateChanged\ +=\ OnPlayModeStateChanged;}
-\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif }}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#if\ UNITY\_EDITOR }}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ no\ need\ to\ unsubscribe\ these\ events}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ PostProcessor.OnSceneAssetChanged\ +=\ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference_a755e7a04dbc0bc114ebd52997a9a2a42_a755e7a04dbc0bc114ebd52997a9a2a42}{OnValidate}};}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ EditorApplication.playModeStateChanged\ +=\ OnPlayModeStateChanged;}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#endif }}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}}
 
 \end{DoxyCode}
+
+
+References \mbox{\hyperlink{_scene_reference_8cs_source_l00093}{Scene\+Reference.\+On\+Validate()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=267pt]{class_code_smile_1_1_utility_1_1_scene_reference_ade68ed5b8593bf923b0bf7be6539fa16_ade68ed5b8593bf923b0bf7be6539fa16_cgraph}
+\end{center}
+\end{figure}
 \Hypertarget{class_code_smile_1_1_utility_1_1_scene_reference_a66aa9658cf134ff8002520efd8e3687a_a66aa9658cf134ff8002520efd8e3687a}\index{SceneReference@{SceneReference}!SceneReference@{SceneReference}}
 \index{SceneReference@{SceneReference}!SceneReference@{SceneReference}}
 \doxyparagraph{\texorpdfstring{SceneReference()}{SceneReference()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
@@ -102,41 +97,28 @@ Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00033}{33}} of 
 
 
 
-Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00042}{42}} of file \mbox{\hyperlink{_scene_reference_8cs_source}{Scene\+Reference.\+cs}}.
+Creates a new instance from a Scene struct. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00073}{73}} of file \mbox{\hyperlink{_scene_reference_8cs_source}{Scene\+Reference.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ m\_SceneName\ =\ scene.name;}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ScenePath\ =\ scene.path;}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ m\_SceneName\ =\ scene.name;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ScenePath\ =\ scene.path;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
 
 \end{DoxyCode}
 
 
 \doxysubsubsection{Member Function Documentation}
-\Hypertarget{class_code_smile_1_1_utility_1_1_scene_reference_a209768cb751022dfb5521bc017437d31_a209768cb751022dfb5521bc017437d31}\index{SceneReference@{SceneReference}!Equals@{Equals}}
-\index{Equals@{Equals}!SceneReference@{SceneReference}}
-\doxyparagraph{\texorpdfstring{Equals()}{Equals()}}
-{\footnotesize\ttfamily \label{class_code_smile_1_1_utility_1_1_scene_reference_a209768cb751022dfb5521bc017437d31_a209768cb751022dfb5521bc017437d31} 
-Boolean Equals (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{Scene\+Reference}}}]{other}{}\end{DoxyParamCaption})}
-
-
-
-Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00048}{48}} of file \mbox{\hyperlink{_scene_reference_8cs_source}{Scene\+Reference.\+cs}}.
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ReferenceEquals(\textcolor{keyword}{null},\ other))}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ReferenceEquals(\textcolor{keyword}{this},\ other))}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_ScenePath\ ==\ other.m\_ScenePath;}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}}
-
-\end{DoxyCode}
 \Hypertarget{class_code_smile_1_1_utility_1_1_scene_reference_a755e7a04dbc0bc114ebd52997a9a2a42_a755e7a04dbc0bc114ebd52997a9a2a42}\index{SceneReference@{SceneReference}!OnValidate@{OnValidate}}
 \index{OnValidate@{OnValidate}!SceneReference@{SceneReference}}
 \doxyparagraph{\texorpdfstring{OnValidate()}{OnValidate()}}
@@ -149,35 +131,46 @@ Call this from the Mono\+Behaviour that owns the \doxylink{class_code_smile_1_1_
 
 
 
-Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00062}{62}} of file \mbox{\hyperlink{_scene_reference_8cs_source}{Scene\+Reference.\+cs}}.
+Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00093}{93}} of file \mbox{\hyperlink{_scene_reference_8cs_source}{Scene\+Reference.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#if\ UNITY\_EDITOR }}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ SceneAsset\ =\ m\_SceneAsset;}
-\DoxyCodeLine{00066\ }
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_ScenePath\ !=\ \textcolor{keyword}{null})}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ existsInBuildScenes\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ buildScenes\ =\ EditorBuildSettings.scenes;}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ buildScene\ \textcolor{keywordflow}{in}\ buildScenes)}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (buildScene.enabled\ \&\&\ buildScene.path.ToLower()\ ==\ m\_ScenePath.ToLower())}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ existsInBuildScenes\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ auto-\/add\ to\ build\ index?\ should\ have\ an\ Inspector\ button\ for\ that}}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (existsInBuildScenes\ ==\ \textcolor{keyword}{false})}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.LogWarning(\$\textcolor{stringliteral}{"{}FYI:\ Scene\ '\{m\_SceneName\}'\ is\ not\ in\ the\ build\ index\ yet\ or\ inactive."{}});}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#endif }}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#if\ UNITY\_EDITOR }}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ SceneAsset\ =\ m\_SceneAsset;}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_ScenePath\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ existsInBuildScenes\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ buildScenes\ =\ EditorBuildSettings.scenes;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ buildScene\ \textcolor{keywordflow}{in}\ buildScenes)}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (buildScene.enabled\ \&\&\ buildScene.path.ToLower()\ ==\ m\_ScenePath.ToLower())}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ existsInBuildScenes\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ auto-\/add\ to\ build\ index?\ should\ have\ an\ Inspector\ button\ for\ that}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (existsInBuildScenes\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.LogWarning(\$\textcolor{stringliteral}{"{}FYI:\ Scene\ '\{m\_SceneName\}'\ is\ not\ in\ the\ build\ index\ yet\ or\ inactive."{}});}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#endif }}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \}}
 
 \end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{_scene_reference_8cs_source_l00060}{Scene\+Reference.\+Scene\+Reference()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=267pt]{class_code_smile_1_1_utility_1_1_scene_reference_a755e7a04dbc0bc114ebd52997a9a2a42_a755e7a04dbc0bc114ebd52997a9a2a42_icgraph}
+\end{center}
+\end{figure}
 
 
 \doxysubsubsection{Property Documentation}
@@ -189,7 +182,11 @@ Boolean Is\+Valid\hspace{0.3cm}{\ttfamily [get]}}
 
 
 
-Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00029}{29}} of file \mbox{\hyperlink{_scene_reference_8cs_source}{Scene\+Reference.\+cs}}.
+Is true if the scene path is valid. 
+
+
+
+Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00039}{39}} of file \mbox{\hyperlink{_scene_reference_8cs_source}{Scene\+Reference.\+cs}}.
 
 \Hypertarget{class_code_smile_1_1_utility_1_1_scene_reference_aff18baebbcb8cb9df3c377963fe01ca5_aff18baebbcb8cb9df3c377963fe01ca5}\index{SceneReference@{SceneReference}!RuntimeScene@{RuntimeScene}}
 \index{RuntimeScene@{RuntimeScene}!SceneReference@{SceneReference}}
@@ -199,7 +196,11 @@ Scene Runtime\+Scene\hspace{0.3cm}{\ttfamily [get]}}
 
 
 
-Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00028}{28}} of file \mbox{\hyperlink{_scene_reference_8cs_source}{Scene\+Reference.\+cs}}.
+Returns the (runtime) Scene instance using the scene\textquotesingle{}s path. 
+
+
+
+Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00035}{35}} of file \mbox{\hyperlink{_scene_reference_8cs_source}{Scene\+Reference.\+cs}}.
 
 \Hypertarget{class_code_smile_1_1_utility_1_1_scene_reference_a2272f5b2fd9e0e48f4eff862c6b2ad03_a2272f5b2fd9e0e48f4eff862c6b2ad03}\index{SceneReference@{SceneReference}!SceneName@{SceneName}}
 \index{SceneName@{SceneName}!SceneReference@{SceneReference}}
@@ -213,7 +214,7 @@ The scene name of the assigned Scene\+Asset.
 
 
 
-Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00026}{26}} of file \mbox{\hyperlink{_scene_reference_8cs_source}{Scene\+Reference.\+cs}}.
+Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00027}{27}} of file \mbox{\hyperlink{_scene_reference_8cs_source}{Scene\+Reference.\+cs}}.
 
 \Hypertarget{class_code_smile_1_1_utility_1_1_scene_reference_a5328a67159866ccb2f4f0f9caf1f6102_a5328a67159866ccb2f4f0f9caf1f6102}\index{SceneReference@{SceneReference}!ScenePath@{ScenePath}}
 \index{ScenePath@{ScenePath}!SceneReference@{SceneReference}}
@@ -223,5 +224,9 @@ String Scene\+Path\hspace{0.3cm}{\ttfamily [get]}}
 
 
 
-Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00027}{27}} of file \mbox{\hyperlink{_scene_reference_8cs_source}{Scene\+Reference.\+cs}}.
+The path to the scene. 
+
+
+
+Definition at line \mbox{\hyperlink{_scene_reference_8cs_source_l00031}{31}} of file \mbox{\hyperlink{_scene_reference_8cs_source}{Scene\+Reference.\+cs}}.
 

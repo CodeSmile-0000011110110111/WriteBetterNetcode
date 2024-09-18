@@ -1,15 +1,9 @@
 <map id="PlayerControllerBase" name="PlayerControllerBase">
-<area shape="rect" id="Node000001" title=" " alt="" coords="164,208,307,789"/>
-<area shape="rect" id="Node000005" href="$class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_controller_1_1_dead_player_controller.html" title=" " alt="" coords="5,848,140,1003"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="161,701,104,849,99,848,156,699"/>
-<area shape="rect" id="Node000006" href="$class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_controller_1_1_falling_player_controller.html" title=" " alt="" coords="164,848,307,1003"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="238,804,238,848,233,848,233,804"/>
-<area shape="rect" id="Node000007" href="$class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_controller_1_1_simple_player_controller.html" title=" " alt="" coords="331,837,476,1013"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="315,693,372,836,367,838,310,695"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="29,48,130,117"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,130,167,308,162,309,95,132"/>
-<area shape="rect" id="Node000003" href="$interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_kinematics_actions.html" title=" " alt="" coords="155,5,316,160"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="238,175,238,208,233,208,233,175"/>
-<area shape="rect" id="Node000004" href="$interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_parameters_provider.html" title=" " alt="" coords="341,48,522,117"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="411,132,309,348,304,346,407,130"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="141,123,283,704"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,107,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,87,143,242,138,244,73,89"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="131,5,293,75"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="215,89,215,123,209,123,209,89"/>
+<area shape="rect" id="Node000004" href="$interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_parameters_provider.html" title=" " alt="" coords="317,5,499,75"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="386,89,286,278,281,276,381,86"/>
 </map>

@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Variable.Conditions
 {
+	/// <summary>
+	/// Tests if a variable is not equal to a value or another variable.
+	/// </summary>
 	public sealed class IsNotEqual : ICondition
 	{
 		private readonly VariableBase m_Variable;

@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Conditions
 {
+	/// <summary>
+	/// Logically negates the contained condition (NOT).
+	/// </summary>
 	public sealed class LogicalNot : ICondition
 	{
 		private readonly ICondition m_InnerCondition;

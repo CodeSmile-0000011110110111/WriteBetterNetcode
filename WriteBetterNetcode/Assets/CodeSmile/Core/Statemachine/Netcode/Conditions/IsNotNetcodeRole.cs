@@ -7,8 +7,16 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode.Conditions
 {
-	public class IsNotNetcodeRole : IsNetcodeRole
+	/// <summary>
+	/// Is true if the Netcode variable's role does not match the parameter.
+	/// </summary>
+	public sealed class IsNotNetcodeRole : IsNetcodeRole
 	{
+		/// <summary>
+		/// Creates a new IsNotNetcodeRole condition.
+		/// </summary>
+		/// <param name="netcodeConfigVar"></param>
+		/// <param name="role"></param>
 		public IsNotNetcodeRole(Var<NetcodeConfig> netcodeConfigVar, NetcodeRole role)
 			: base(netcodeConfigVar, role) {}
 

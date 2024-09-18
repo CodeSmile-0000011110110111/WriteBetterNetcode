@@ -8,10 +8,17 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode.Actions
 {
+	/// <summary>
+	/// Calls NetworkManager StartClient/StartHost/StartServer based on the provided config variable.
+	/// </summary>
 	public sealed class NetworkStart : IAction
 	{
 		private readonly Var<NetcodeConfig> m_NetcodeConfigVar;
 
+		/// <summary>
+		/// Creates a NetworkStart action with the config variable specifying the role (Server, Host, Client).
+		/// </summary>
+		/// <param name="netcodeConfigVar"></param>
 		public NetworkStart(Var<NetcodeConfig> netcodeConfigVar) => m_NetcodeConfigVar = netcodeConfigVar;
 
 		public void Execute(FSM sm)

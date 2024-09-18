@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['splitscreenaxis_0',['SplitscreenAxis',['../class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_splitscreen_a30c84d5c2616a73e7e7e6e29eb9a44f4.html#a30c84d5c2616a73e7e7e6e29eb9a44f4',1,'CodeSmile::MultiPal::Cinecam::Splitscreen']]]
+  ['netcoderole_0',['NetcodeRole',['../namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312.html#a082348110bf92ea1e3b5cf782c9c2312',1,'CodeSmile::Statemachine::Netcode']]]
 ];

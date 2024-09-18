@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Actions
 {
 	/// <summary>
-	///     Generic Action that simply executes a lambda.
+	///     Generic Action that executes a lambda (System.Action).
 	/// </summary>
 	/// <remarks>
 	///     This allows for quick and dirty tests but should be avoided for production code, as using a custom
@@ -21,9 +21,19 @@ namespace CodeSmile.Statemachine.Actions
 
 		private LambdaAction() {} // forbidden default ctor
 
+		/// <summary>
+		/// Creates action with a System.Action callback.
+		/// </summary>
+		/// <param name="callback"></param>
 		public LambdaAction(Action callback)
 			: this(null, callback) {}
 
+		/// <summary>
+		/// Creates a named action with a System.Action callback.
+		/// </summary>
+		/// <param name="name">Meaningful display/debug name.</param>
+		/// <param name="callback"></param>
+		/// <exception cref="ArgumentNullException"></exception>
 		public LambdaAction(String name, Action callback)
 		{
 			if (callback == null)

@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Variable.Actions
 {
+	/// <summary>
+	/// Subtracts variable by a value.
+	/// </summary>
 	public sealed class SubValue : IAction
 	{
 		private readonly VariableBase m_Variable;

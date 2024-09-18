@@ -1,9 +1,9 @@
 <map id="PlayerControllerBase" name="PlayerControllerBase">
-<area shape="rect" id="Node000001" title=" " alt="" coords="141,208,283,789"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,48,107,117"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,130,143,308,138,309,71,132"/>
-<area shape="rect" id="Node000003" href="$interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_kinematics_actions.html" title=" " alt="" coords="131,5,293,160"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="215,175,215,208,209,208,209,175"/>
-<area shape="rect" id="Node000004" href="$interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_parameters_provider.html" title=" " alt="" coords="317,48,499,117"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="388,132,286,348,281,346,383,130"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="141,123,283,704"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,107,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,87,143,242,138,244,73,89"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="131,5,293,75"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="215,89,215,123,209,123,209,89"/>
+<area shape="rect" id="Node000004" href="$interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_parameters_provider.html" title=" " alt="" coords="317,5,499,75"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="386,89,286,278,281,276,381,86"/>
 </map>

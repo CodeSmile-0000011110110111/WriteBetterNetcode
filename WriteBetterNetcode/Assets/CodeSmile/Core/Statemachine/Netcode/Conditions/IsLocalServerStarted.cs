@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode.Conditions
 {
+	/// <summary>
+	/// Is true after NetworkManager StartServer is called and until server stops or a transport failure occurs.
+	/// </summary>
 	public class IsLocalServerStarted : ICondition
 	{
 		private Boolean m_IsServerStarted;

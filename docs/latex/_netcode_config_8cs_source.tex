@@ -12,38 +12,37 @@
 \DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00008}00008\ }
 \DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00009}00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode}{CodeSmile.Statemachine.Netcode}}}
 \DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00010}00010\ \{}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00011}00011\ \ \ \ \ [Serializable]}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00012}\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{00012}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{NetcodeConfig}}}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00013}00013\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00014}00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ NetcodeRole\ Role;}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00015}00015\ }
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Byte\ is\ deliberate!\ Relay\ limit\ is\ 100\ connections}}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Byte\ MaxConnections;}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00018}00018\ }
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{NetcodeConfig}}\ FromCmdArgs()\ =>\ \textcolor{keyword}{new}()}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ Role\ =\ GetRoleFromCmdArgs(),}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ MaxConnections\ =\ (Byte)\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.GetInt(nameof(MaxConnections)),}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00024}00024\ }
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ NetcodeRole\ GetRoleFromCmdArgs()}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ var\ role\ =\ NetcodeRole.None;}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00028}00028\ }
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.Exists(NetcodeRole.Server.ToString()))}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ role\ =\ NetcodeRole.Server;}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.Exists(NetcodeRole.Host.ToString()))}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ role\ =\ NetcodeRole.Host;}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.Exists(NetcodeRole.Client.ToString()))}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ role\ =\ NetcodeRole.Client;}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00035}00035\ }
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ role;}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00038}00038\ }
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ String\ ToString()\ =>\ \$\textcolor{stringliteral}{"{}\{nameof(NetcodeConfig)\}("{}}\ +}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$\textcolor{stringliteral}{"{}\{nameof(Role)\}=\{Role\},\ "{}}\ +}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$\textcolor{stringliteral}{"{}\{nameof(MaxConnections)\}=\{MaxConnections\})"{}};}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00042}00042\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00043}00043\ \}}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00014}00014\ \ \ \ \ [Serializable]}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00015}\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{00015}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{NetcodeConfig}}}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00016}00016\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00020}\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_adb50f35bfa9e23b2421bf2f287104c89_adb50f35bfa9e23b2421bf2f287104c89}{00020}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_a082348110bf92ea1e3b5cf782c9c2312}{NetcodeRole}}\ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_adb50f35bfa9e23b2421bf2f287104c89_adb50f35bfa9e23b2421bf2f287104c89}{Role}};}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00029}\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a5bda5277af6612e21ebe147ddcd5b630_a5bda5277af6612e21ebe147ddcd5b630}{00029}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Byte\ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a5bda5277af6612e21ebe147ddcd5b630_a5bda5277af6612e21ebe147ddcd5b630}{MaxConnections}};}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00035}\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a8ef954534c21c943bcb4afc8838d6b7e_a8ef954534c21c943bcb4afc8838d6b7e}{00035}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{NetcodeConfig}}\ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a8ef954534c21c943bcb4afc8838d6b7e_a8ef954534c21c943bcb4afc8838d6b7e}{FromCmdArgs}}()\ =>\ \textcolor{keyword}{new}()}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_adb50f35bfa9e23b2421bf2f287104c89_adb50f35bfa9e23b2421bf2f287104c89}{Role}}\ =\ GetRoleFromCmdArgs(),}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a5bda5277af6612e21ebe147ddcd5b630_a5bda5277af6612e21ebe147ddcd5b630}{MaxConnections}}\ =\ (Byte)\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_ae0e2e7391ee3a4fde07a151f58e54531_ae0e2e7391ee3a4fde07a151f58e54531}{GetInt}}(nameof(\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a5bda5277af6612e21ebe147ddcd5b630_a5bda5277af6612e21ebe147ddcd5b630}{MaxConnections}})),}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_a082348110bf92ea1e3b5cf782c9c2312}{NetcodeRole}}\ GetRoleFromCmdArgs()}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ var\ role\ =\ \mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_a082348110bf92ea1e3b5cf782c9c2312}{NetcodeRole}}.None;}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_a79095917ed7ee571c506ef9848e3e80f_a79095917ed7ee571c506ef9848e3e80f}{Exists}}(\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_a082348110bf92ea1e3b5cf782c9c2312}{NetcodeRole}}.Server.ToString()))}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ role\ =\ \mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_a082348110bf92ea1e3b5cf782c9c2312}{NetcodeRole}}.Server;}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_a79095917ed7ee571c506ef9848e3e80f_a79095917ed7ee571c506ef9848e3e80f}{Exists}}(\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_a082348110bf92ea1e3b5cf782c9c2312}{NetcodeRole}}.Host.ToString()))}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ role\ =\ \mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_a082348110bf92ea1e3b5cf782c9c2312}{NetcodeRole}}.Host;}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_a79095917ed7ee571c506ef9848e3e80f_a79095917ed7ee571c506ef9848e3e80f}{Exists}}(\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_a082348110bf92ea1e3b5cf782c9c2312}{NetcodeRole}}.Client.ToString()))}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ role\ =\ \mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_a082348110bf92ea1e3b5cf782c9c2312}{NetcodeRole}}.Client;}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ role;}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ String\ ToString()\ =>\ \$\textcolor{stringliteral}{"{}\{nameof(NetcodeConfig)\}("{}}\ +}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$\textcolor{stringliteral}{"{}\{nameof(Role)\}=\{Role\},\ "{}}\ +}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$\textcolor{stringliteral}{"{}\{nameof(MaxConnections)\}=\{MaxConnections\})"{}};}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00058}00058\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_netcode_config_8cs_source_l00059}00059\ \}}
 
 \end{DoxyCode}

@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Conditions
 {
+	/// <summary>
+	/// Logically combines the contained conditions with OR.
+	/// </summary>
 	public sealed class LogicalOr : ICondition
 	{
 		private readonly ICondition[] m_InnerConditions;

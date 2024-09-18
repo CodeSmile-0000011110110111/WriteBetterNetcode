@@ -28,6 +28,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="steffen portrait codesmile logo larger top-left-64x62.png"/></td>
   <td id="projectalign">
    <div id="projectname">CodeSmile MultiPal<span id="projectnumber">&#160;0.6</span>
    </div>
@@ -114,57 +115,61 @@ $(function(){initNavTree('_transport_setup_8cs_source.html',''); initResizable(t
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_code_smile_1_1_statemachine_1_1_netcode_1_1_actions.html">CodeSmile.Statemachine.Netcode.Actions</a></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
-<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup.html">   13</a></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup.html">TransportSetup</a> : <a class="code hl_interface" href="interface_code_smile_1_1_statemachine_1_1_i_action.html">IAction</a></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    {</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <span class="keyword">private</span> readonly <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_var.html">Var&lt;NetcodeConfig&gt;</a> m_NetcodeConfigVar;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keyword">private</span> readonly <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_var.html">Var&lt;TransportConfig&gt;</a> m_TransportConfigVar;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="keyword">private</span> readonly <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_var.html">Var&lt;RelayConfig&gt;</a> m_RelayConfigVar;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keyword">private</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup.html">TransportSetup</a>() {} <span class="comment">// forbidden default ctor</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keyword">public</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup.html">TransportSetup</a>(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_var.html">Var&lt;NetcodeConfig&gt;</a> netcodeConfigVar,</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_var.html">Var&lt;TransportConfig&gt;</a> transportConfigVar,</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>            <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_var.html">Var&lt;RelayConfig&gt;</a> relayConfigVar)</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            m_NetcodeConfigVar = netcodeConfigVar;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            m_TransportConfigVar = transportConfigVar;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            m_RelayConfigVar = relayConfigVar;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        }</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keyword">public</span> <span class="keywordtype">void</span> Execute(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m.html">FSM</a> sm)</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        {</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            var netcodeConfig = m_NetcodeConfigVar.Value;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            var transportConfig = m_TransportConfigVar.Value;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            var relayConfig = m_RelayConfigVar.Value;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            var isWeb = Application.platform == RuntimePlatform.WebGLPlayer;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            var transport = NetworkManager.Singleton.GetComponent&lt;UnityTransport&gt;();</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            transport.UseEncryption = transportConfig.UseEncryption;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            transport.UseWebSockets = transportConfig.UseWebSockets || isWeb;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            <span class="comment">// TODO: transport encryption ...</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            <span class="keywordflow">if</span> (transportConfig.UseEncryption)</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                <span class="keywordflow">throw</span> <span class="keyword">new</span> NotImplementedException(<span class="stringliteral">&quot;TODO: encryption ... set secrets etc&quot;</span>);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            <span class="keywordflow">if</span> (relayConfig.UseRelay)</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            {</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                var connectionType = transport.UseWebSockets ? <span class="stringliteral">&quot;wss&quot;</span> : transport.UseEncryption ? <span class="stringliteral">&quot;dtls&quot;</span> : <span class="stringliteral">&quot;udp&quot;</span>;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                transport.SetRelayServerData(netcodeConfig.Role == NetcodeRole.Client</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                    ? <span class="keyword">new</span> RelayServerData(relayConfig.JoinAllocation, connectionType)</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                    : <span class="keyword">new</span> RelayServerData(relayConfig.HostAllocation, connectionType));</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            }</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                transport.SetConnectionData(transportConfig.Address, transportConfig.Port, transportConfig.ServerListenAddress);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        }</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup.html">   17</a></span>    <span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class </span><a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup.html">TransportSetup</a> : <a class="code hl_interface" href="interface_code_smile_1_1_statemachine_1_1_i_action.html">IAction</a></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keyword">private</span> readonly <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_var.html">Var&lt;NetcodeConfig&gt;</a> m_NetcodeConfigVar;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <span class="keyword">private</span> readonly <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_var.html">Var&lt;TransportConfig&gt;</a> m_TransportConfigVar;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keyword">private</span> readonly <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_var.html">Var&lt;RelayConfig&gt;</a> m_RelayConfigVar;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keyword">private</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup.html">TransportSetup</a>() {} <span class="comment">// forbidden default ctor</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup_a245f0aeeb3057bcfc32fee305263f30f.html#a245f0aeeb3057bcfc32fee305263f30f">   31</a></span>        <span class="keyword">public</span> <a class="code hl_function" href="class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup_a245f0aeeb3057bcfc32fee305263f30f.html#a245f0aeeb3057bcfc32fee305263f30f">TransportSetup</a>(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_var.html">Var&lt;NetcodeConfig&gt;</a> netcodeConfigVar,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_var.html">Var&lt;TransportConfig&gt;</a> transportConfigVar,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_var.html">Var&lt;RelayConfig&gt;</a> relayConfigVar)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            m_NetcodeConfigVar = netcodeConfigVar;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            m_TransportConfigVar = transportConfigVar;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            m_RelayConfigVar = relayConfigVar;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        }</div>
 </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keyword">public</span> <span class="keywordtype">void</span> Execute(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m.html">FSM</a> sm)</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            var netcodeConfig = m_NetcodeConfigVar.Value;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>            var transportConfig = m_TransportConfigVar.Value;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            var relayConfig = m_RelayConfigVar.Value;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            var isWeb = Application.platform == RuntimePlatform.WebGLPlayer;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            var transport = NetworkManager.Singleton.GetComponent&lt;UnityTransport&gt;();</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            transport.UseEncryption = transportConfig.UseEncryption;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            transport.UseWebSockets = transportConfig.UseWebSockets || isWeb;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            <span class="comment">// TODO: transport encryption ...</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <span class="keywordflow">if</span> (transportConfig.UseEncryption)</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                <span class="keywordflow">throw</span> <span class="keyword">new</span> NotImplementedException(<span class="stringliteral">&quot;TODO: encryption ... set secrets etc&quot;</span>);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            <span class="keywordflow">if</span> (relayConfig.UseRelay)</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                var connectionType = transport.UseWebSockets ? <span class="stringliteral">&quot;wss&quot;</span> : transport.UseEncryption ? <span class="stringliteral">&quot;dtls&quot;</span> : <span class="stringliteral">&quot;udp&quot;</span>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                transport.SetRelayServerData(netcodeConfig.Role == <a class="code hl_enumeration" href="namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312.html#a082348110bf92ea1e3b5cf782c9c2312">NetcodeRole</a>.Client</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                    ? <span class="keyword">new</span> RelayServerData(relayConfig.JoinAllocation, connectionType)</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                    : <span class="keyword">new</span> RelayServerData(relayConfig.HostAllocation, connectionType));</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            }</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                transport.SetConnectionData(transportConfig.Address, transportConfig.Port, transportConfig.ServerListenAddress);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        }</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    }</div>
+</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>}</div>
 <div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_html"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m.html">CodeSmile.Statemachine.FSM</a></div><div class="ttdoc">Represents a finite-statemachine with a set of local and global variables indexed by name.</div><div class="ttdef"><b>Definition</b> <a href="_f_s_m_8_transition_8cs_source.html#l00010">FSM.Transition.cs:11</a></div></div>
-<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup_html"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup.html">CodeSmile.Statemachine.Netcode.Actions.TransportSetup</a></div><div class="ttdef"><b>Definition</b> <a href="#l00013">TransportSetup.cs:14</a></div></div>
-<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_var_html"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_var.html">CodeSmile.Statemachine.Var</a></div><div class="ttdef"><b>Definition</b> <a href="_variables_8cs_source.html#l00163">Variables.cs:164</a></div></div>
-<div class="ttc" id="ainterface_code_smile_1_1_statemachine_1_1_i_action_html"><div class="ttname"><a href="interface_code_smile_1_1_statemachine_1_1_i_action.html">CodeSmile.Statemachine.IAction</a></div><div class="ttdef"><b>Definition</b> <a href="_interfaces_8cs_source.html#l00060">Interfaces.cs:61</a></div></div>
+<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup_a245f0aeeb3057bcfc32fee305263f30f_html_a245f0aeeb3057bcfc32fee305263f30f"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup_a245f0aeeb3057bcfc32fee305263f30f.html#a245f0aeeb3057bcfc32fee305263f30f">CodeSmile.Statemachine.Netcode.Actions.TransportSetup.TransportSetup</a></div><div class="ttdeci">TransportSetup(Var&lt; NetcodeConfig &gt; netcodeConfigVar, Var&lt; TransportConfig &gt; transportConfigVar, Var&lt; RelayConfig &gt; relayConfigVar)</div><div class="ttdoc">Creates a new TransportSetup action.</div><div class="ttdef"><b>Definition</b> <a href="#l00031">TransportSetup.cs:31</a></div></div>
+<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup_html"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup.html">CodeSmile.Statemachine.Netcode.Actions.TransportSetup</a></div><div class="ttdoc">Configures NetworkManager's Transport from config variables.</div><div class="ttdef"><b>Definition</b> <a href="#l00017">TransportSetup.cs:18</a></div></div>
+<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_var_html"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_var.html">CodeSmile.Statemachine.Var</a></div><div class="ttdoc">Represents a generic (struct) FSM variable.</div><div class="ttdef"><b>Definition</b> <a href="_variables_8cs_source.html#l00307">Variables.cs:308</a></div></div>
+<div class="ttc" id="ainterface_code_smile_1_1_statemachine_1_1_i_action_html"><div class="ttname"><a href="interface_code_smile_1_1_statemachine_1_1_i_action.html">CodeSmile.Statemachine.IAction</a></div><div class="ttdoc">Marks a class as a FSM Action.</div><div class="ttdef"><b>Definition</b> <a href="_interfaces_8cs_source.html#l00071">Interfaces.cs:72</a></div></div>
 <div class="ttc" id="anamespace_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_html"><div class="ttname"><a href="namespace_code_smile_1_1_statemachine_1_1_netcode_1_1_actions.html">CodeSmile.Statemachine.Netcode.Actions</a></div><div class="ttdef"><b>Definition</b> <a href="_network_start_8cs_source.html#l00009">NetworkStart.cs:10</a></div></div>
+<div class="ttc" id="anamespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_html_a082348110bf92ea1e3b5cf782c9c2312"><div class="ttname"><a href="namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312.html#a082348110bf92ea1e3b5cf782c9c2312">CodeSmile.Statemachine.Netcode.NetcodeRole</a></div><div class="ttdeci">NetcodeRole</div><div class="ttdoc">The role we want to play as, with None signaling undecided or intention to stop playing in the curren...</div><div class="ttdef"><b>Definition</b> <a href="_netcode_role_8cs_source.html#l00012">NetcodeRole.cs:13</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

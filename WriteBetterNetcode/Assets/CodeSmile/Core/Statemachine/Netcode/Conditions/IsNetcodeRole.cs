@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode.Conditions
 {
+	/// <summary>
+	/// Tests if the config variable's NetcodeRole matches the parameter.
+	/// </summary>
 	public class IsNetcodeRole : ICondition
 	{
 		private readonly Var<NetcodeConfig> m_netcodeConfigVar;
@@ -14,6 +17,11 @@ namespace CodeSmile.Statemachine.Netcode.Conditions
 
 		private IsNetcodeRole() {} // forbidden ctor
 
+		/// <summary>
+		/// Creates a new IsNetcodeRole condition.
+		/// </summary>
+		/// <param name="netcodeConfigVar"></param>
+		/// <param name="role"></param>
 		public IsNetcodeRole(Var<NetcodeConfig> netcodeConfigVar, NetcodeRole role)
 		{
 			m_netcodeConfigVar = netcodeConfigVar;

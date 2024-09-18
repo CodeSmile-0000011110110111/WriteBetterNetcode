@@ -5,16 +5,17 @@
 \DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
 \DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
 \DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00003}00003\ }
-\DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }UnityEditor;}
-\DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }UnityEngine;}
-\DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00006}00006\ }
-\DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00007}00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_components_1_1_utility}{CodeSmile.Components.Utility}}}
-\DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00008}00008\ \{}
+\DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00008}00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_components_1_1_utility}{CodeSmile.Components.Utility}}}
+\DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00009}00009\ \{}
 \DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00016}00016\ \ \ \ \ [DisallowMultipleComponent]}
 \DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00017}00017\ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{class\ }PressKeyToQuit\ :\ MonoBehaviour}
 \DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00018}00018\ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ [Tooltip(\textcolor{stringliteral}{"{}The\ key\ that\ will\ quit\ if\ Ctrl+Alt\ /\ Cmd+Option\ are\ also\ held\ down."{}})]}
-\DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ KeyCode\ QuitKey\ =\ KeyCode.Escape;}
+\DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ KeyCode\ m\_QuitKey\ =\ KeyCode.Escape;}
 \DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00021}00021\ }
 \DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Awake()}
 \DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \{}
@@ -34,7 +35,7 @@
 \DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!cmd\ \&\&\ !ctrl)}
 \DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00039}00039\ }
-\DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Input.GetKeyDown(QuitKey))}
+\DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Input.GetKeyDown(m\_QuitKey))}
 \DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Application.Quit();}
 \DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_press_key_to_quit_8cs_source_l00043}00043\ \ \ \ \ \}}

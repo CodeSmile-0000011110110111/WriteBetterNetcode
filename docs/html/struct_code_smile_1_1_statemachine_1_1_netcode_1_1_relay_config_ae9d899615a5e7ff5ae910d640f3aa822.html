@@ -28,6 +28,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="steffen portrait codesmile logo larger top-left-64x62.png"/></td>
   <td id="projectalign">
    <div id="projectname">CodeSmile MultiPal<span id="projectnumber">&#160;0.6</span>
    </div>
@@ -118,14 +119,27 @@ $(function(){initNavTree('struct_code_smile_1_1_statemachine_1_1_netcode_1_1_rel
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_relay_config_8cs_source.html#l00039">39</a> of file <a class="el" href="_relay_config_8cs_source.html">RelayConfig.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   40</span>        {</div>
-<div class="line"><span class="lineno">   41</span>            HostAllocation = alloc;</div>
-<div class="line"><span class="lineno">   42</span>            JoinAllocation = <span class="keyword">null</span>;</div>
-<div class="line"><span class="lineno">   43</span>            JoinCode = joinCode;</div>
-<div class="line"><span class="lineno">   44</span>            <span class="comment">// TODO: invoke event here</span></div>
-<div class="line"><span class="lineno">   45</span>        }</div>
+<p>Server: assign both the received allocation and the received join code. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">alloc</td><td></td></tr>
+    <tr><td class="paramname">joinCode</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_relay_config_8cs_source.html#l00080">80</a> of file <a class="el" href="_relay_config_8cs_source.html">RelayConfig.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   81</span>        {</div>
+<div class="line"><span class="lineno">   82</span>            <a class="code hl_property" href="struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a672944c107b462fc6f98e6a95dda914b.html#a672944c107b462fc6f98e6a95dda914b">HostAllocation</a> = alloc;</div>
+<div class="line"><span class="lineno">   83</span>            <a class="code hl_property" href="struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a341c481b1e1061ba2619c1fa91aa0eda.html#a341c481b1e1061ba2619c1fa91aa0eda">JoinAllocation</a> = <span class="keyword">null</span>;</div>
+<div class="line"><span class="lineno">   84</span>            <a class="code hl_property" href="struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_acfa1fae6351f68beb78887c59bd5eef0.html#acfa1fae6351f68beb78887c59bd5eef0">JoinCode</a> = joinCode;</div>
+<div class="line"><span class="lineno">   85</span>        }</div>
+<div class="ttc" id="astruct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a341c481b1e1061ba2619c1fa91aa0eda_html_a341c481b1e1061ba2619c1fa91aa0eda"><div class="ttname"><a href="struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a341c481b1e1061ba2619c1fa91aa0eda.html#a341c481b1e1061ba2619c1fa91aa0eda">CodeSmile.Statemachine.Netcode.RelayConfig.JoinAllocation</a></div><div class="ttdeci">JoinAllocation JoinAllocation</div><div class="ttdoc">The JoinAllocation instance is set by the client only.</div><div class="ttdef"><b>Definition</b> <a href="_relay_config_8cs_source.html#l00054">RelayConfig.cs:54</a></div></div>
+<div class="ttc" id="astruct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a672944c107b462fc6f98e6a95dda914b_html_a672944c107b462fc6f98e6a95dda914b"><div class="ttname"><a href="struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a672944c107b462fc6f98e6a95dda914b.html#a672944c107b462fc6f98e6a95dda914b">CodeSmile.Statemachine.Netcode.RelayConfig.HostAllocation</a></div><div class="ttdeci">Allocation HostAllocation</div><div class="ttdoc">The HostAllocation instance is set by the server only.</div><div class="ttdef"><b>Definition</b> <a href="_relay_config_8cs_source.html#l00050">RelayConfig.cs:50</a></div></div>
+<div class="ttc" id="astruct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_acfa1fae6351f68beb78887c59bd5eef0_html_acfa1fae6351f68beb78887c59bd5eef0"><div class="ttname"><a href="struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_acfa1fae6351f68beb78887c59bd5eef0.html#acfa1fae6351f68beb78887c59bd5eef0">CodeSmile.Statemachine.Netcode.RelayConfig.JoinCode</a></div><div class="ttdeci">String JoinCode</div><div class="ttdoc">The relay join code. Server/Host will assign the join code for read-out by GUI etc....</div><div class="ttdef"><b>Definition</b> <a href="_relay_config_8cs_source.html#l00045">RelayConfig.cs:45</a></div></div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="_relay_config_8cs_source.html#l00050">RelayConfig.HostAllocation</a>, <a class="el" href="_relay_config_8cs_source.html#l00054">RelayConfig.JoinAllocation</a>, and <a class="el" href="_relay_config_8cs_source.html#l00045">RelayConfig.JoinCode</a>.</p>
+
 </div>
 </div>
 </div><!-- contents -->

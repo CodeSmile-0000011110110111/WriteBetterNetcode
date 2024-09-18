@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace CodeSmile.Components.Utility
 {
+	/// <summary>
+	/// Destroys the object if running outside the editor in a release (non-Debug, non-Development) build.
+	/// </summary>
 	[DisallowMultipleComponent]
 	internal sealed class DestroyObjectInReleaseBuilds : MonoBehaviour
 	{

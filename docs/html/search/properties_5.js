@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['name_0',['Name',['../class_code_smile_1_1_statemachine_1_1_f_s_m_a934fa09ba291a97f43720640e4d83f25.html#a934fa09ba291a97f43720640e4d83f25',1,'CodeSmile::Statemachine::FSM']]]
+  ['joinallocation_0',['JoinAllocation',['../struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_a341c481b1e1061ba2619c1fa91aa0eda.html#a341c481b1e1061ba2619c1fa91aa0eda',1,'CodeSmile::Statemachine::Netcode::RelayConfig']]],
+  ['joincode_1',['JoinCode',['../struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_acfa1fae6351f68beb78887c59bd5eef0.html#acfa1fae6351f68beb78887c59bd5eef0',1,'CodeSmile::Statemachine::Netcode::RelayConfig']]]
 ];

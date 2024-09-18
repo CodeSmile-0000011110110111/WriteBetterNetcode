@@ -2,8 +2,12 @@
 \hypertarget{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_stop}{}\label{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_stop}\index{NetworkStop@{NetworkStop}}
 
 
-Inheritance diagram for Network\+Stop\+:
-\nopagebreak
+Stops networking, ie calls Network\+Manager Shutdown().  
+
+
+
+
+Inheritance diagram for Network\+Stop\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +16,7 @@ Inheritance diagram for Network\+Stop\+:
 \end{figure}
 
 
-Collaboration diagram for Network\+Stop\+:
-\nopagebreak
+Collaboration diagram for Network\+Stop\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -23,56 +26,30 @@ Collaboration diagram for Network\+Stop\+:
 \doxysubsubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_stop_a19ab72dafdff8ce27c05ceec120f9561}\label{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_stop_a19ab72dafdff8ce27c05ceec120f9561} 
-{\bfseries Network\+Stop} (Boolean discard\+Message\+Queue=false)
-\item 
-void \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_stop_a622e3bd65304d3fc345ce24529ace200_a622e3bd65304d3fc345ce24529ace200}{Execute}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\end{DoxyCompactItemize}
-\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}}
-\begin{DoxyCompactItemize}
-\item 
-String {\bfseries To\+Debug\+String} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\end{DoxyCompactItemize}
-\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events}{IStatemachine\+Events}}}
-\begin{DoxyCompactItemize}
-\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a5a67bb74ccf99965d72db627baba330e_a5a67bb74ccf99965d72db627baba330e}{On\+Enter\+State}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called when the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} enters a state to which the Action/\+Condition belongs. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a642a9e83527494616d3c56ffc0c2e5d3_a642a9e83527494616d3c56ffc0c2e5d3}{On\+Exit\+State}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called when the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} leaves the state to which the Action/\+Condition belongs. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_ad53b64512d4843ff9f09cb72b1467b8d_ad53b64512d4843ff9f09cb72b1467b8d}{On\+Start}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called before the first evaluation of the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine}. Similar to Start() in a Mono\+Behaviour. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a1dc817ac01153abb1d67f5b7fd1e0594_a1dc817ac01153abb1d67f5b7fd1e0594}{On\+Stop}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called when the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} stops, meaning it reached a State that has no transitions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_stop_a19ab72dafdff8ce27c05ceec120f9561_a19ab72dafdff8ce27c05ceec120f9561}{Network\+Stop}} (Boolean discard\+Message\+Queue=false)
+\begin{DoxyCompactList}\small\item\em Creates a \doxylink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_stop}{Network\+Stop} action. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsubsection{Detailed Description}
+Stops networking, ie calls Network\+Manager Shutdown(). 
 
-
-Definition at line \mbox{\hyperlink{_network_stop_8cs_source_l00011}{11}} of file \mbox{\hyperlink{_network_stop_8cs_source}{Network\+Stop.\+cs}}.
-
-
-
-\doxysubsubsection{Member Function Documentation}
-\Hypertarget{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_stop_a622e3bd65304d3fc345ce24529ace200_a622e3bd65304d3fc345ce24529ace200}\index{NetworkStop@{NetworkStop}!Execute@{Execute}}
-\index{Execute@{Execute}!NetworkStop@{NetworkStop}}
-\doxyparagraph{\texorpdfstring{Execute()}{Execute()}}
-{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_stop_a622e3bd65304d3fc345ce24529ace200_a622e3bd65304d3fc345ce24529ace200} 
-void Execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}}]{sm}{}\end{DoxyParamCaption})}
+Definition at line \mbox{\hyperlink{_network_stop_8cs_source_l00014}{14}} of file \mbox{\hyperlink{_network_stop_8cs_source}{Network\+Stop.\+cs}}.
 
 
 
-Implements \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}.
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_stop_a19ab72dafdff8ce27c05ceec120f9561_a19ab72dafdff8ce27c05ceec120f9561}\index{NetworkStop@{NetworkStop}!NetworkStop@{NetworkStop}}
+\index{NetworkStop@{NetworkStop}!NetworkStop@{NetworkStop}}
+\doxyparagraph{\texorpdfstring{NetworkStop()}{NetworkStop()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_stop_a19ab72dafdff8ce27c05ceec120f9561_a19ab72dafdff8ce27c05ceec120f9561} 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_stop}{Network\+Stop}} (\begin{DoxyParamCaption}\item[{Boolean}]{discard\+Message\+Queue}{ = {\ttfamily false}}\end{DoxyParamCaption})}
 
 
 
-Definition at line \mbox{\hyperlink{_network_stop_8cs_source_l00018}{18}} of file \mbox{\hyperlink{_network_stop_8cs_source}{Network\+Stop.\+cs}}.
+Creates a \doxylink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_stop}{Network\+Stop} action. 
 
 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ var\ net\ =\ NetworkManager.Singleton;}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ net.Shutdown(m\_DiscardMessageQueue);}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \}}
-
-\end{DoxyCode}
+\begin{DoxyParams}{Parameters}
+{\em discard\+Message\+Queue} & \\
+\hline
+\end{DoxyParams}

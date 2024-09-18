@@ -122,7 +122,7 @@ $(function(){initNavTree('class_code_smile_1_1_statemachine_1_1_services_1_1_rel
 <div class="line"><span class="lineno">   28</span>            var config = m_RelayConfigVar.Value;</div>
 <div class="line"><span class="lineno">   29</span>            var relay = RelayService.Instance;</div>
 <div class="line"><span class="lineno">   30</span> </div>
-<div class="line"><span class="lineno">   31</span>            <span class="keywordflow">if</span> (role == NetcodeRole.Server || role == NetcodeRole.Host)</div>
+<div class="line"><span class="lineno">   31</span>            <span class="keywordflow">if</span> (role == <a class="code hl_enumeration" href="namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312.html#a082348110bf92ea1e3b5cf782c9c2312">NetcodeRole</a>.Server || role == <a class="code hl_enumeration" href="namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312.html#a082348110bf92ea1e3b5cf782c9c2312">NetcodeRole</a>.Host)</div>
 <div class="line"><span class="lineno">   32</span>            {</div>
 <div class="line"><span class="lineno">   33</span>                var connections = config.MaxConnections &lt;= 0 ? RelayConfig.MaxRelayConnections : config.MaxConnections;</div>
 <div class="line"><span class="lineno">   34</span>                var allocation = await relay.CreateAllocationAsync(connections, config.Region);</div>
@@ -138,6 +138,7 @@ $(function(){initNavTree('class_code_smile_1_1_statemachine_1_1_services_1_1_rel
 <div class="line"><span class="lineno">   44</span>            <span class="comment">// write back</span></div>
 <div class="line"><span class="lineno">   45</span>            m_RelayConfigVar.Value = config;</div>
 <div class="line"><span class="lineno">   46</span>        }</div>
+<div class="ttc" id="anamespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312_html_a082348110bf92ea1e3b5cf782c9c2312"><div class="ttname"><a href="namespace_code_smile_1_1_statemachine_1_1_netcode_a082348110bf92ea1e3b5cf782c9c2312.html#a082348110bf92ea1e3b5cf782c9c2312">CodeSmile.Statemachine.Netcode.NetcodeRole</a></div><div class="ttdeci">NetcodeRole</div><div class="ttdoc">The role we want to play as, with None signaling undecided or intention to stop playing in the curren...</div><div class="ttdef"><b>Definition</b> <a href="_netcode_role_8cs_source.html#l00012">NetcodeRole.cs:13</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -4,11 +4,11 @@
 \begin{DoxyCompactItemize}
 \item 
 class {\bfseries Destroy\+Object\+In\+Builds}
-\item 
+\begin{DoxyCompactList}\small\item\em Destroys the object if running outside the editor. \end{DoxyCompactList}\item 
 class {\bfseries Destroy\+Object\+In\+Release\+Builds}
-\item 
+\begin{DoxyCompactList}\small\item\em Destroys the object if running outside the editor in a release (non-\/\+Debug, non-\/\+Development) build. \end{DoxyCompactList}\item 
 class {\bfseries Destroy\+Object\+On\+Awake}
-\item 
+\begin{DoxyCompactList}\small\item\em Always destroys this object. Use for information-\/only objects, eg dividers or notes. \end{DoxyCompactList}\item 
 class {\bfseries Dont\+Destroy\+On\+Load}
 \begin{DoxyCompactList}\small\item\em Marks the Game\+Object this script is on as "{}\+Don\textquotesingle{}t Destroy On Load"{}. \end{DoxyCompactList}\item 
 class {\bfseries Dont\+Destroy\+On\+Load\+All\+Children}
@@ -16,8 +16,8 @@ class {\bfseries Dont\+Destroy\+On\+Load\+All\+Children}
 class \mbox{\hyperlink{class_code_smile_1_1_components_1_1_utility_1_1_mono_singleton}{Mono\+Singleton}}
 \begin{DoxyCompactList}\small\item\em Slim and safe Mono\+Behaviour Singleton with guaranteed lifetime from first instantiation to application quit. Safeguarded against instance duplication, instance re-\/assignment and premature destruction. \end{DoxyCompactList}\item 
 class {\bfseries Ping\+On\+Enter\+Playmode}
-\item 
+\begin{DoxyCompactList}\small\item\em Pings (expands and highlights) the object when entering playmode (editor-\/only). Useful mostly to ensure the hierarchy is always expanded to a specific (possibly deeply nested) object. \end{DoxyCompactList}\item 
 class {\bfseries Press\+Key\+To\+Quit}
-\begin{DoxyCompactList}\small\item\em Hooks the Escape key to Application.\+Quit. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Hooks the given keycode to Application.\+Quit. \end{DoxyCompactList}\item 
 class {\bfseries Set\+As\+Play\+Mode\+Start\+Scene}
 \begin{DoxyCompactList}\small\item\em Sets the scene with this script in it as the Play\+Mode start scene. Allows to enter Play\+Mode with a scene other than the one currently being edited to avoid frequent scene switching for testing. \end{DoxyCompactList}\end{DoxyCompactItemize}

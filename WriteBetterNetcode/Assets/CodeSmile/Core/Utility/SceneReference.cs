@@ -12,7 +12,8 @@ using Object = System.Object;
 namespace CodeSmile.Utility
 {
 	/// <summary>
-	///     Allows drag & drop of scene assets in the Inspector and serializes the scene's name for runtime scene loading.
+	///     Represents a SceneAsset at runtime by serializing only the scene name and path at runtime, while in the editor
+	///     it works with a SceneAsset reference. Allows drag & drop of scene assets in the Inspector.
 	/// </summary>
 	[Serializable]
 	public sealed class SceneReference : IEquatable<SceneReference>
@@ -24,12 +25,38 @@ namespace CodeSmile.Utility
 		///     The scene name of the assigned SceneAsset.
 		/// </summary>
 		public String SceneName => m_SceneName;
+		/// <summary>
+		///     The path to the scene.
+		/// </summary>
 		public String ScenePath => m_ScenePath;
+		/// <summary>
+		///     Returns the (runtime) Scene instance using the scene's path.
+		/// </summary>
 		public Scene RuntimeScene => SceneManager.GetSceneByPath(m_ScenePath);
-		public Boolean IsValid => String.IsNullOrWhiteSpace(m_ScenePath) == false;
+		/// <summary>
+		///     Is true if the scene path is valid.
+		/// </summary>
+		public Boolean IsValid => RuntimeScene.IsValid();
+
+		/// <summary>
+		///     equality operator
+		/// </summary>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
+		/// <returns></returns>
 		public static Boolean operator ==(SceneReference left, SceneReference right) => Equals(left, right);
+
+		/// <summary>
+		///     inequality operator
+		/// </summary>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
+		/// <returns></returns>
 		public static Boolean operator !=(SceneReference left, SceneReference right) => !Equals(left, right);
 
+		/// <summary>
+		///     Creates a new instance.
+		/// </summary>
 		public SceneReference()
 		{
 #if UNITY_EDITOR
@@ -39,6 +66,10 @@ namespace CodeSmile.Utility
 #endif
 		}
 
+		/// <summary>
+		///     Creates a new instance from a Scene struct.
+		/// </summary>
+		/// <param name="scene"></param>
 		public SceneReference(Scene scene)
 		{
 			m_SceneName = scene.name;
@@ -94,8 +125,15 @@ namespace CodeSmile.Utility
 #if UNITY_EDITOR
 		[SerializeField] private SceneAsset m_SceneAsset;
 
+		/// <summary>
+		///     Creates a new instance from a SceneAsset (editor-only).
+		/// </summary>
+		/// <param name="sceneAsset"></param>
 		public SceneReference(SceneAsset sceneAsset) => SceneAsset = sceneAsset;
 
+		/// <summary>
+		///     The SceneAsset reference (editor-only).
+		/// </summary>
 		public SceneAsset SceneAsset
 		{
 			get => m_SceneAsset;

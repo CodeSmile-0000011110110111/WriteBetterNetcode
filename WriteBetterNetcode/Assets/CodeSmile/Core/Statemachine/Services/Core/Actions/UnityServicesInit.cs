@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Services.Core.Actions
 {
+	/// <summary>
+	/// Initialize Unity Gaming Services. This must be called before any other service call.
+	/// </summary>
 	public sealed class UnityServicesInit : IAsyncAction
 	{
 		public async Task ExecuteAsync(FSM sm)

@@ -2,13 +2,12 @@
 \hypertarget{class_code_smile_1_1_statemachine_1_1_conditions_1_1_lambda_condition}{}\label{class_code_smile_1_1_statemachine_1_1_conditions_1_1_lambda_condition}\index{LambdaCondition@{LambdaCondition}}
 
 
-Generic Condition that simply executes a lambda. Provides static methods for related operators AND, OR, NOT.  
+Generic Condition that simply executes a lambda (System.\+Func\texorpdfstring{$<$}{<}bool\texorpdfstring{$>$}{>}).  
 
 
 
 
-Inheritance diagram for Lambda\+Condition\+:
-\nopagebreak
+Inheritance diagram for Lambda\+Condition\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -17,8 +16,7 @@ Inheritance diagram for Lambda\+Condition\+:
 \end{figure}
 
 
-Collaboration diagram for Lambda\+Condition\+:
-\nopagebreak
+Collaboration diagram for Lambda\+Condition\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -29,29 +27,13 @@ Collaboration diagram for Lambda\+Condition\+:
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_conditions_1_1_lambda_condition_a6d750c147a2aaf4090d5922f8daa2eed_a6d750c147a2aaf4090d5922f8daa2eed}{Lambda\+Condition}} (Func$<$ Boolean $>$ callback)
-\item 
+\begin{DoxyCompactList}\small\item\em Creates a \doxylink{class_code_smile_1_1_statemachine_1_1_conditions_1_1_lambda_condition}{Lambda\+Condition} with a callback returning a bool. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_conditions_1_1_lambda_condition_ad794e25a884c2f246246640e96dab545_ad794e25a884c2f246246640e96dab545}{Lambda\+Condition}} (String name, Func$<$ Boolean $>$ callback)
-\item 
-Boolean \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_conditions_1_1_lambda_condition_a0010b6eb156b59a0727ea74f3a781c24_a0010b6eb156b59a0727ea74f3a781c24}{Is\+Satisfied}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\item 
-String \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_conditions_1_1_lambda_condition_a0e6db7f5857c623082a89540a8a3f1a4_a0e6db7f5857c623082a89540a8a3f1a4}{To\+Debug\+String}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\end{DoxyCompactItemize}
-\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_condition}{ICondition}}}
-\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events}{IStatemachine\+Events}}}
-\begin{DoxyCompactItemize}
-\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a5a67bb74ccf99965d72db627baba330e_a5a67bb74ccf99965d72db627baba330e}{On\+Enter\+State}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called when the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} enters a state to which the Action/\+Condition belongs. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a642a9e83527494616d3c56ffc0c2e5d3_a642a9e83527494616d3c56ffc0c2e5d3}{On\+Exit\+State}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called when the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} leaves the state to which the Action/\+Condition belongs. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_ad53b64512d4843ff9f09cb72b1467b8d_ad53b64512d4843ff9f09cb72b1467b8d}{On\+Start}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called before the first evaluation of the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine}. Similar to Start() in a Mono\+Behaviour. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a1dc817ac01153abb1d67f5b7fd1e0594_a1dc817ac01153abb1d67f5b7fd1e0594}{On\+Stop}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called when the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} stops, meaning it reached a State that has no transitions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates a named \doxylink{class_code_smile_1_1_statemachine_1_1_conditions_1_1_lambda_condition}{Lambda\+Condition} with a callback returning a bool. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsubsection{Detailed Description}
-Generic Condition that simply executes a lambda. Provides static methods for related operators AND, OR, NOT. 
+Generic Condition that simply executes a lambda (System.\+Func\texorpdfstring{$<$}{<}bool\texorpdfstring{$>$}{>}). 
 
 This allows for quick and dirty tests but should be avoided for production code, as using a custom \doxylink{interface_code_smile_1_1_statemachine_1_1_i_condition}{ICondition} implementation will provide re-\/usability and make the intent of the Condition clear, specifically in logs. 
 
@@ -68,11 +50,20 @@ Definition at line \mbox{\hyperlink{_lambda_condition_8cs_source_l00017}{17}} of
 
 
 
-Definition at line \mbox{\hyperlink{_lambda_condition_8cs_source_l00024}{24}} of file \mbox{\hyperlink{_lambda_condition_8cs_source}{Lambda\+Condition.\+cs}}.
+Creates a \doxylink{class_code_smile_1_1_statemachine_1_1_conditions_1_1_lambda_condition}{Lambda\+Condition} with a callback returning a bool. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_lambda_condition_8cs_source_l00028}{28}} of file \mbox{\hyperlink{_lambda_condition_8cs_source}{Lambda\+Condition.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keyword}{this}(\textcolor{keyword}{null},\ callback)\ \{\}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keyword}{this}(\textcolor{keyword}{null},\ callback)\ \{\}}
 
 \end{DoxyCode}
 \Hypertarget{class_code_smile_1_1_statemachine_1_1_conditions_1_1_lambda_condition_ad794e25a884c2f246246640e96dab545_ad794e25a884c2f246246640e96dab545}\index{LambdaCondition@{LambdaCondition}!LambdaCondition@{LambdaCondition}}
@@ -83,39 +74,32 @@ Definition at line \mbox{\hyperlink{_lambda_condition_8cs_source_l00024}{24}} of
 
 
 
-Definition at line \mbox{\hyperlink{_lambda_condition_8cs_source_l00027}{27}} of file \mbox{\hyperlink{_lambda_condition_8cs_source}{Lambda\+Condition.\+cs}}.
+Creates a named \doxylink{class_code_smile_1_1_statemachine_1_1_conditions_1_1_lambda_condition}{Lambda\+Condition} with a callback returning a bool. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Meaningful display/debug name.\\
+\hline
+{\em callback} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Argument\+Null\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{_lambda_condition_8cs_source_l00037}{37}} of file \mbox{\hyperlink{_lambda_condition_8cs_source}{Lambda\+Condition.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (callback\ ==\ \textcolor{keyword}{null})}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(callback));}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Name\ =\ name;}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Callback\ =\ callback;}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (callback\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(callback));}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Name\ =\ name;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Callback\ =\ callback;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \}}
 
 \end{DoxyCode}
-
-
-\doxysubsubsection{Member Function Documentation}
-\Hypertarget{class_code_smile_1_1_statemachine_1_1_conditions_1_1_lambda_condition_a0010b6eb156b59a0727ea74f3a781c24_a0010b6eb156b59a0727ea74f3a781c24}\index{LambdaCondition@{LambdaCondition}!IsSatisfied@{IsSatisfied}}
-\index{IsSatisfied@{IsSatisfied}!LambdaCondition@{LambdaCondition}}
-\doxyparagraph{\texorpdfstring{IsSatisfied()}{IsSatisfied()}}
-{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_conditions_1_1_lambda_condition_a0010b6eb156b59a0727ea74f3a781c24_a0010b6eb156b59a0727ea74f3a781c24} 
-Boolean Is\+Satisfied (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}}]{sm}{}\end{DoxyParamCaption})}
-
-
-
-Implements \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_condition}{ICondition}}.
-
-\Hypertarget{class_code_smile_1_1_statemachine_1_1_conditions_1_1_lambda_condition_a0e6db7f5857c623082a89540a8a3f1a4_a0e6db7f5857c623082a89540a8a3f1a4}\index{LambdaCondition@{LambdaCondition}!ToDebugString@{ToDebugString}}
-\index{ToDebugString@{ToDebugString}!LambdaCondition@{LambdaCondition}}
-\doxyparagraph{\texorpdfstring{ToDebugString()}{ToDebugString()}}
-{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_conditions_1_1_lambda_condition_a0e6db7f5857c623082a89540a8a3f1a4_a0e6db7f5857c623082a89540a8a3f1a4} 
-String To\+Debug\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}}]{sm}{}\end{DoxyParamCaption})}
-
-
-
-Implements \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_condition}{ICondition}}.
-

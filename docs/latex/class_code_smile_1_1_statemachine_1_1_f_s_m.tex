@@ -7,8 +7,7 @@ Represents a finite-\/statemachine with a set of local and global variables inde
 
 
 
-Collaboration diagram for FSM\+:
-\nopagebreak
+Collaboration diagram for FSM\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -33,9 +32,6 @@ class \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transitio
 \begin{DoxyCompactList}\small\item\em Creates a named \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} instance. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a0d8cbfe9a74df3d78e5757f99dad4297_a0d8cbfe9a74df3d78e5757f99dad4297}{Start}} ()
 \begin{DoxyCompactList}\small\item\em Initializes (starts) the statemachine. \end{DoxyCompactList}\item 
-\Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_a012fbb0f39e57c0a44ec83dd408fcda3}\label{class_code_smile_1_1_statemachine_1_1_f_s_m_a012fbb0f39e57c0a44ec83dd408fcda3} 
-override String {\bfseries To\+String} ()
-\item 
 void \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_aec0783b5a136e042adcc47bae4fe5291_aec0783b5a136e042adcc47bae4fe5291}{Update}} ()
 \begin{DoxyCompactList}\small\item\em Evaluates the statemachine\textquotesingle{}s states and their transitions. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a00753da46802ebeb4e160e16a9b62b5e_a00753da46802ebeb4e160e16a9b62b5e}{With\+States}} (params \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state}{State}}\mbox{[}$\,$\mbox{]} states)
@@ -73,7 +69,7 @@ static \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_conditions_1_1_log
 \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state}{State}} \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a8ece463f6647d84ca267a574ed3e8e5e_a8ece463f6647d84ca267a574ed3e8e5e}{Active\+State}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \begin{DoxyCompactList}\small\item\em The currently active \doxylink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state}{State}. \end{DoxyCompactList}\item 
 Int32 \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_aa84653af26f8718c2845404b8dedc8d6_aa84653af26f8718c2845404b8dedc8d6}{Active\+State\+Index}} = -\/1\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
+\begin{DoxyCompactList}\small\item\em Index of currently active state. Is -\/1 for invalid state (eg not started). \end{DoxyCompactList}\item 
 Boolean \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a9d648e3a9084912f514aa198c0a2551b_a9d648e3a9084912f514aa198c0a2551b}{Allow\+Multiple\+State\+Changes}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \begin{DoxyCompactList}\small\item\em If true, evaluation continues after a state change occured. If false, a state change will exit Evaluate(). \end{DoxyCompactList}\item 
 Boolean \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a4b5171e406dd682d56cc67d73a1ca5fd_a4b5171e406dd682d56cc67d73a1ca5fd}{Did\+Change\+State}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
@@ -81,13 +77,13 @@ Boolean \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a4b5171e406
 Boolean \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a19267b3360dcc6697b935b50164ce6cf_a19267b3360dcc6697b935b50164ce6cf}{Is\+Stopped}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \begin{DoxyCompactList}\small\item\em Is true if the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} reached a "{}final state"{}, a state without any transitions. \end{DoxyCompactList}\item 
 Boolean \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a1c487dbaa542d1fe109a408f9b62acd6_a1c487dbaa542d1fe109a408f9b62acd6}{Logging}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
+\begin{DoxyCompactList}\small\item\em If true, will print \doxylink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM} execution logs for debugging purposes. \end{DoxyCompactList}\item 
 Int32 \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a733e667d065f1dd77f38198a6fd590bc_a733e667d065f1dd77f38198a6fd590bc}{Max\+State\+Changes\+Per\+Evaluate}} = 100\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \begin{DoxyCompactList}\small\item\em How many state changes may occur in a single Evaluate() before execution is interrupted. \end{DoxyCompactList}\item 
 String \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a934fa09ba291a97f43720640e4d83f25_a934fa09ba291a97f43720640e4d83f25}{Name}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \begin{DoxyCompactList}\small\item\em Name of the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state}{State}}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_ab6515d4de34057a6bde4dfbe91a432d8_ab6515d4de34057a6bde4dfbe91a432d8}{States}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
+\begin{DoxyCompactList}\small\item\em The list of states in the statemachine. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_variables}{Variables}} \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a89b5540d6f3b27f75c2f12b366f0c7e5_a89b5540d6f3b27f75c2f12b366f0c7e5}{Static\+Vars}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \begin{DoxyCompactList}\small\item\em Global variables are available for all statemachines (be mindful!). \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_variables}{Variables}} \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_aecdc4cbca08005602bcacb82c95cdca6_aecdc4cbca08005602bcacb82c95cdca6}{Vars}} = new()\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
@@ -241,10 +237,9 @@ Definition at line \mbox{\hyperlink{_f_s_m_8_static_8cs_source_l00026}{26}} of f
 \end{DoxyCode}
 
 
-Referenced by \mbox{\hyperlink{_f_s_m_8cs_source_l00118}{FSM.\+With\+States()}}.
+Referenced by \mbox{\hyperlink{_f_s_m_8cs_source_l00128}{FSM.\+With\+States()}}.
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -369,32 +364,32 @@ Initializes (starts) the statemachine.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00148}{148}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
+Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00158}{158}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsStarted)}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\$\textcolor{stringliteral}{"{}FSM\ '\{Name\}':\ Start()\ must\ only\ be\ called\ once"{}});}
-\DoxyCodeLine{00152\ }
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ ActiveStateIndex\ =\ 0;}
-\DoxyCodeLine{00154\ }
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ ApplyLoggingToAllStates(Logging);}
-\DoxyCodeLine{00156\ }
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ state\ \textcolor{keywordflow}{in}\ States)}
-\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ state.OnStart(\textcolor{keyword}{this});}
-\DoxyCodeLine{00159\ }
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ ValidateStatemachine();}
-\DoxyCodeLine{00161\ }
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a8ece463f6647d84ca267a574ed3e8e5e_a8ece463f6647d84ca267a574ed3e8e5e}{ActiveState}}.OnEnterState(\textcolor{keyword}{this});}
-\DoxyCodeLine{00163\ }
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsStarted)}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\$\textcolor{stringliteral}{"{}FSM\ '\{Name\}':\ Start()\ must\ only\ be\ called\ once"{}});}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_aa84653af26f8718c2845404b8dedc8d6_aa84653af26f8718c2845404b8dedc8d6}{ActiveStateIndex}}\ =\ 0;}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ ApplyLoggingToAllStates(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a1c487dbaa542d1fe109a408f9b62acd6_a1c487dbaa542d1fe109a408f9b62acd6}{Logging}});}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ state\ \textcolor{keywordflow}{in}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_ab6515d4de34057a6bde4dfbe91a432d8_ab6515d4de34057a6bde4dfbe91a432d8}{States}})}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ state.OnStart(\textcolor{keyword}{this});}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ ValidateStatemachine();}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a8ece463f6647d84ca267a574ed3e8e5e_a8ece463f6647d84ca267a574ed3e8e5e}{ActiveState}}.OnEnterState(\textcolor{keyword}{this});}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \}}
 
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{_f_s_m_8cs_source_l00055}{FSM.\+Active\+State}}.
+References \mbox{\hyperlink{_f_s_m_8cs_source_l00065}{FSM.\+Active\+State}}, \mbox{\hyperlink{_f_s_m_8cs_source_l00034}{FSM.\+Active\+State\+Index}}, \mbox{\hyperlink{_f_s_m_8cs_source_l00040}{FSM.\+Logging}}, and \mbox{\hyperlink{_f_s_m_8cs_source_l00052}{FSM.\+States}}.
 
 \Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_aec0783b5a136e042adcc47bae4fe5291_aec0783b5a136e042adcc47bae4fe5291}\index{FSM@{FSM}!Update@{Update}}
 \index{Update@{Update}!FSM@{FSM}}
@@ -408,54 +403,61 @@ Evaluates the statemachine\textquotesingle{}s states and their transitions.
 
 
 
-Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00178}{178}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
+Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00188}{188}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ ThrowIfStatemachineNotStarted();}
-\DoxyCodeLine{00181\ }
-\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a19267b3360dcc6697b935b50164ce6cf_a19267b3360dcc6697b935b50164ce6cf}{IsStopped}})}
-\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00184\ }
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ var\ iterations\ =\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a9d648e3a9084912f514aa198c0a2551b_a9d648e3a9084912f514aa198c0a2551b}{AllowMultipleStateChanges}}\ ?\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a733e667d065f1dd77f38198a6fd590bc_a733e667d065f1dd77f38198a6fd590bc}{MaxStateChangesPerEvaluate}}\ :\ 0;}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}}
-\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Debug.Log(\$"{}[\{Time.frameCount\}]\ FSM\ Update:\ iteration\ \#\{MaxStateChangesPerEvaluate-\/iterations\}"{});}}
-\DoxyCodeLine{00189\ }
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a4b5171e406dd682d56cc67d73a1ca5fd_a4b5171e406dd682d56cc67d73a1ca5fd}{DidChangeState}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ ThrowIfStatemachineNotStarted();}
 \DoxyCodeLine{00191\ }
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ updatingState\ =\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a8ece463f6647d84ca267a574ed3e8e5e_a8ece463f6647d84ca267a574ed3e8e5e}{ActiveState}};}
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updatingState.Update(\textcolor{keyword}{this});}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a19267b3360dcc6697b935b50164ce6cf_a19267b3360dcc6697b935b50164ce6cf}{IsStopped}})}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{00194\ }
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a4b5171e406dd682d56cc67d73a1ca5fd_a4b5171e406dd682d56cc67d73a1ca5fd}{DidChangeState}})}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updatingState.OnExitState(\textcolor{keyword}{this});}
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a8ece463f6647d84ca267a574ed3e8e5e_a8ece463f6647d84ca267a574ed3e8e5e}{ActiveState}}.OnEnterState(\textcolor{keyword}{this});}
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InvokeOnStateChangeEvent(updatingState);}
-\DoxyCodeLine{00200\ }
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a8ece463f6647d84ca267a574ed3e8e5e_a8ece463f6647d84ca267a574ed3e8e5e}{ActiveState}}.IsFinalState())}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Stop();}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InvokeOnStoppedEvent();}
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00206\ }
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ iterations-\/-\/;}
-\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00209\ }
-\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a19267b3360dcc6697b935b50164ce6cf_a19267b3360dcc6697b935b50164ce6cf}{IsStopped}}\ ||\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a4b5171e406dd682d56cc67d73a1ca5fd_a4b5171e406dd682d56cc67d73a1ca5fd}{DidChangeState}}\ ==\ \textcolor{keyword}{false})}
-\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00212\ }
-\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a9d648e3a9084912f514aa198c0a2551b_a9d648e3a9084912f514aa198c0a2551b}{AllowMultipleStateChanges}})}
-\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WarnIfIterationsExceeded(iterations);}
-\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{while}\ (iterations\ >\ 0);}
-\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ var\ iterations\ =\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a9d648e3a9084912f514aa198c0a2551b_a9d648e3a9084912f514aa198c0a2551b}{AllowMultipleStateChanges}}\ ?\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a733e667d065f1dd77f38198a6fd590bc_a733e667d065f1dd77f38198a6fd590bc}{MaxStateChangesPerEvaluate}}\ :\ 0;}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Debug.Log(\$"{}[\{Time.frameCount\}]\ FSM\ Update:\ iteration\ \#\{MaxStateChangesPerEvaluate-\/iterations\}"{});}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a4b5171e406dd682d56cc67d73a1ca5fd_a4b5171e406dd682d56cc67d73a1ca5fd}{DidChangeState}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ updatingState\ =\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a8ece463f6647d84ca267a574ed3e8e5e_a8ece463f6647d84ca267a574ed3e8e5e}{ActiveState}};}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updatingState.\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a85f2deb1cf8b0d00c326783a978137d7_a85f2deb1cf8b0d00c326783a978137d7}{Update}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a4b5171e406dd682d56cc67d73a1ca5fd_a4b5171e406dd682d56cc67d73a1ca5fd}{DidChangeState}})}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updatingState.OnExitState(\textcolor{keyword}{this});}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a8ece463f6647d84ca267a574ed3e8e5e_a8ece463f6647d84ca267a574ed3e8e5e}{ActiveState}}.OnEnterState(\textcolor{keyword}{this});}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InvokeOnStateChangeEvent(updatingState);}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a8ece463f6647d84ca267a574ed3e8e5e_a8ece463f6647d84ca267a574ed3e8e5e}{ActiveState}}.\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a69d5b2d251d4f8f5663ff2adc397e1e9_a69d5b2d251d4f8f5663ff2adc397e1e9}{IsFinalState}}())}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Stop();}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InvokeOnStoppedEvent();}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ iterations-\/-\/;}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a19267b3360dcc6697b935b50164ce6cf_a19267b3360dcc6697b935b50164ce6cf}{IsStopped}}\ ||\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a4b5171e406dd682d56cc67d73a1ca5fd_a4b5171e406dd682d56cc67d73a1ca5fd}{DidChangeState}}\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a9d648e3a9084912f514aa198c0a2551b_a9d648e3a9084912f514aa198c0a2551b}{AllowMultipleStateChanges}})}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WarnIfIterationsExceeded(iterations);}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{while}\ (iterations\ >\ 0);}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \}}
 
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{_f_s_m_8cs_source_l00055}{FSM.\+Active\+State}}, \mbox{\hyperlink{_f_s_m_8cs_source_l00081}{FSM.\+Allow\+Multiple\+State\+Changes}}, \mbox{\hyperlink{_f_s_m_8cs_source_l00090}{FSM.\+Did\+Change\+State}}, \mbox{\hyperlink{_f_s_m_8cs_source_l00085}{FSM.\+Is\+Stopped}}, and \mbox{\hyperlink{_f_s_m_8cs_source_l00077}{FSM.\+Max\+State\+Changes\+Per\+Evaluate}}.
+References \mbox{\hyperlink{_f_s_m_8cs_source_l00065}{FSM.\+Active\+State}}, \mbox{\hyperlink{_f_s_m_8cs_source_l00091}{FSM.\+Allow\+Multiple\+State\+Changes}}, \mbox{\hyperlink{_f_s_m_8cs_source_l00100}{FSM.\+Did\+Change\+State}}, \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a69d5b2d251d4f8f5663ff2adc397e1e9_a69d5b2d251d4f8f5663ff2adc397e1e9}{FSM.\+State.\+Is\+Final\+State()}}, \mbox{\hyperlink{_f_s_m_8cs_source_l00095}{FSM.\+Is\+Stopped}}, \mbox{\hyperlink{_f_s_m_8cs_source_l00087}{FSM.\+Max\+State\+Changes\+Per\+Evaluate}}, and \mbox{\hyperlink{_f_s_m_8_state_8cs_source_l00127}{FSM.\+State.\+Update()}}.
 
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{class_code_smile_1_1_statemachine_1_1_f_s_m_aec0783b5a136e042adcc47bae4fe5291_aec0783b5a136e042adcc47bae4fe5291_cgraph}
+\end{center}
+\end{figure}
 \Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_a00753da46802ebeb4e160e16a9b62b5e_a00753da46802ebeb4e160e16a9b62b5e}\index{FSM@{FSM}!WithStates@{WithStates}}
 \index{WithStates@{WithStates}!FSM@{FSM}}
 \doxyparagraph{\texorpdfstring{WithStates()}{WithStates()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
@@ -481,22 +483,26 @@ Provides the states for the statemachine. Must only be called once per statemach
 \end{DoxyExceptions}
 
 
-Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00132}{132}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
+Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00142}{142}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (States\ !=\ \textcolor{keyword}{null})}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}States\ already\ set!"{}});}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (states\ ==\ \textcolor{keyword}{null})}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(states));}
-\DoxyCodeLine{00138\ }
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ m\_States\ =\ states;}
-\DoxyCodeLine{00140\ }
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_ab6515d4de34057a6bde4dfbe91a432d8_ab6515d4de34057a6bde4dfbe91a432d8}{States}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}States\ already\ set!"{}});}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (states\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(states));}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ m\_States\ =\ states;}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \}}
 
 \end{DoxyCode}
+
+
+References \mbox{\hyperlink{_f_s_m_8cs_source_l00052}{FSM.\+States}}.
+
 \Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_a4f9aee773fd83bf3206c1ed36dbfa3e6_a4f9aee773fd83bf3206c1ed36dbfa3e6}\index{FSM@{FSM}!WithStates@{WithStates}}
 \index{WithStates@{WithStates}!FSM@{FSM}}
 \doxyparagraph{\texorpdfstring{WithStates()}{WithStates()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
@@ -519,36 +525,34 @@ Ideal for use with Enum.\+Get\+Names().
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00118}{118}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
+Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00128}{128}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ var\ states\ =\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_acd66df1ec5e184afe1a5d624a672462c_acd66df1ec5e184afe1a5d624a672462c}{CreateStates}}(stateNames);}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a4f9aee773fd83bf3206c1ed36dbfa3e6_a4f9aee773fd83bf3206c1ed36dbfa3e6}{WithStates}}(states);}
-\DoxyCodeLine{00122\ }
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ var\ states\ =\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_acd66df1ec5e184afe1a5d624a672462c_acd66df1ec5e184afe1a5d624a672462c}{CreateStates}}(stateNames);}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a4f9aee773fd83bf3206c1ed36dbfa3e6_a4f9aee773fd83bf3206c1ed36dbfa3e6}{WithStates}}(states);}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \}}
 
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{_f_s_m_8_static_8cs_source_l00026}{FSM.\+Create\+States()}}, and \mbox{\hyperlink{_f_s_m_8cs_source_l00118}{FSM.\+With\+States()}}.
+References \mbox{\hyperlink{_f_s_m_8_static_8cs_source_l00026}{FSM.\+Create\+States()}}, and \mbox{\hyperlink{_f_s_m_8cs_source_l00128}{FSM.\+With\+States()}}.
 
 
 
-Referenced by \mbox{\hyperlink{_f_s_m_8cs_source_l00118}{FSM.\+With\+States()}}.
+Referenced by \mbox{\hyperlink{_f_s_m_8cs_source_l00128}{FSM.\+With\+States()}}.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=254pt]{class_code_smile_1_1_statemachine_1_1_f_s_m_a4f9aee773fd83bf3206c1ed36dbfa3e6_a4f9aee773fd83bf3206c1ed36dbfa3e6_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -570,22 +574,22 @@ The currently active \doxylink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_s
 
 Only use this after calling \doxylink{class_code_smile_1_1_statemachine_1_1_f_s_m_a0d8cbfe9a74df3d78e5757f99dad4297_a0d8cbfe9a74df3d78e5757f99dad4297}{Start()}.
 
-Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00054}{54}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
+Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00064}{64}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ThrowIfStatemachineNotStarted();}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ States[ActiveStateIndex];}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ThrowIfStatemachineNotStarted();}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_ab6515d4de34057a6bde4dfbe91a432d8_ab6515d4de34057a6bde4dfbe91a432d8}{States}}[\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_aa84653af26f8718c2845404b8dedc8d6_aa84653af26f8718c2845404b8dedc8d6}{ActiveStateIndex}}];}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \}}
 
 \end{DoxyCode}
 
 
-Referenced by \mbox{\hyperlink{_f_s_m_8cs_source_l00148}{FSM.\+Start()}}, and \mbox{\hyperlink{_f_s_m_8cs_source_l00178}{FSM.\+Update()}}.
+Referenced by \mbox{\hyperlink{_f_s_m_8cs_source_l00158}{FSM.\+Start()}}, and \mbox{\hyperlink{_f_s_m_8cs_source_l00188}{FSM.\+Update()}}.
 
 \Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_aa84653af26f8718c2845404b8dedc8d6_aa84653af26f8718c2845404b8dedc8d6}\index{FSM@{FSM}!ActiveStateIndex@{ActiveStateIndex}}
 \index{ActiveStateIndex@{ActiveStateIndex}!FSM@{FSM}}
@@ -595,13 +599,21 @@ Int32 Active\+State\+Index = -\/1\hspace{0.3cm}{\ttfamily [get]}}
 
 
 
-Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00031}{31}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
+Index of currently active state. Is -\/1 for invalid state (eg not started). 
+
+
+
+Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00034}{34}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00031\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}\ =\ -\/1;}
+\DoxyCodeLine{00034\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}\ =\ -\/1;}
 
 \end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{_f_s_m_8cs_source_l00158}{FSM.\+Start()}}.
+
 \Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_a9d648e3a9084912f514aa198c0a2551b_a9d648e3a9084912f514aa198c0a2551b}\index{FSM@{FSM}!AllowMultipleStateChanges@{AllowMultipleStateChanges}}
 \index{AllowMultipleStateChanges@{AllowMultipleStateChanges}!FSM@{FSM}}
 \doxyparagraph{\texorpdfstring{AllowMultipleStateChanges}{AllowMultipleStateChanges}}
@@ -614,16 +626,16 @@ If true, evaluation continues after a state change occured. If false, a state ch
 
 
 
-Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00081}{81}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
+Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00091}{91}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00081\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{00091\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
 
 \end{DoxyCode}
 
 
-Referenced by \mbox{\hyperlink{_f_s_m_8cs_source_l00178}{FSM.\+Update()}}.
+Referenced by \mbox{\hyperlink{_f_s_m_8cs_source_l00188}{FSM.\+Update()}}.
 
 \Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_a4b5171e406dd682d56cc67d73a1ca5fd_a4b5171e406dd682d56cc67d73a1ca5fd}\index{FSM@{FSM}!DidChangeState@{DidChangeState}}
 \index{DidChangeState@{DidChangeState}!FSM@{FSM}}
@@ -637,16 +649,16 @@ In addition to the On\+State\+Change event this can be used to check if a state 
 
 
 
-Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00090}{90}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
+Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00100}{100}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00090\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{00100\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
 
 \end{DoxyCode}
 
 
-Referenced by \mbox{\hyperlink{_f_s_m_8cs_source_l00178}{FSM.\+Update()}}.
+Referenced by \mbox{\hyperlink{_f_s_m_8cs_source_l00188}{FSM.\+Update()}}.
 
 \Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_a19267b3360dcc6697b935b50164ce6cf_a19267b3360dcc6697b935b50164ce6cf}\index{FSM@{FSM}!IsStopped@{IsStopped}}
 \index{IsStopped@{IsStopped}!FSM@{FSM}}
@@ -660,11 +672,11 @@ Is true if the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} re
 
 
 
-Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00085}{85}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
+Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00095}{95}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
 
 
 
-Referenced by \mbox{\hyperlink{_f_s_m_8cs_source_l00178}{FSM.\+Update()}}.
+Referenced by \mbox{\hyperlink{_f_s_m_8cs_source_l00188}{FSM.\+Update()}}.
 
 \Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_a1c487dbaa542d1fe109a408f9b62acd6_a1c487dbaa542d1fe109a408f9b62acd6}\index{FSM@{FSM}!Logging@{Logging}}
 \index{Logging@{Logging}!FSM@{FSM}}
@@ -674,20 +686,28 @@ Boolean Logging\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
 
 
 
-Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00032}{32}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
+If true, will print \doxylink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM} execution logs for debugging purposes. 
+
+
+
+Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00039}{39}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ =>\ m\_Logging;}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_Logging\ =\ value;}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ApplyLoggingToAllStates(m\_Logging);}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ =>\ m\_Logging;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_Logging\ =\ value;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ApplyLoggingToAllStates(m\_Logging);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \}}
 
 \end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{_f_s_m_8cs_source_l00158}{FSM.\+Start()}}.
+
 \Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_a733e667d065f1dd77f38198a6fd590bc_a733e667d065f1dd77f38198a6fd590bc}\index{FSM@{FSM}!MaxStateChangesPerEvaluate@{MaxStateChangesPerEvaluate}}
 \index{MaxStateChangesPerEvaluate@{MaxStateChangesPerEvaluate}!FSM@{FSM}}
 \doxyparagraph{\texorpdfstring{MaxStateChangesPerEvaluate}{MaxStateChangesPerEvaluate}}
@@ -700,16 +720,16 @@ How many state changes may occur in a single Evaluate() before execution is inte
 
 The value is intended to prevent infinite loops.
 
-Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00077}{77}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
+Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00087}{87}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00077\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}\ =\ 100;}
+\DoxyCodeLine{00087\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}\ =\ 100;}
 
 \end{DoxyCode}
 
 
-Referenced by \mbox{\hyperlink{_f_s_m_8cs_source_l00178}{FSM.\+Update()}}.
+Referenced by \mbox{\hyperlink{_f_s_m_8cs_source_l00188}{FSM.\+Update()}}.
 
 \Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_a934fa09ba291a97f43720640e4d83f25_a934fa09ba291a97f43720640e4d83f25}\index{FSM@{FSM}!Name@{Name}}
 \index{Name@{Name}!FSM@{FSM}}
@@ -723,11 +743,11 @@ Name of the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine}.
 
 
 
-Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00048}{48}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
+Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00058}{58}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00048\ \{\ \textcolor{keyword}{get};\ \}}
+\DoxyCodeLine{00058\ \{\ \textcolor{keyword}{get};\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_ab6515d4de34057a6bde4dfbe91a432d8_ab6515d4de34057a6bde4dfbe91a432d8}\index{FSM@{FSM}!States@{States}}
@@ -738,7 +758,15 @@ Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00048}{48}} of file \mbox
 
 
 
-Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00042}{42}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
+The list of states in the statemachine. 
+
+
+
+Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00052}{52}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{_f_s_m_8cs_source_l00158}{FSM.\+Start()}}, and \mbox{\hyperlink{_f_s_m_8cs_source_l00142}{FSM.\+With\+States()}}.
 
 \Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_a89b5540d6f3b27f75c2f12b366f0c7e5_a89b5540d6f3b27f75c2f12b366f0c7e5}\index{FSM@{FSM}!StaticVars@{StaticVars}}
 \index{StaticVars@{StaticVars}!FSM@{FSM}}
@@ -752,7 +780,7 @@ Global variables are available for all statemachines (be mindful!).
 
 
 
-Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00066}{66}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
+Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00076}{76}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
 
 \Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_aecdc4cbca08005602bcacb82c95cdca6_aecdc4cbca08005602bcacb82c95cdca6}\index{FSM@{FSM}!Vars@{Vars}}
 \index{Vars@{Vars}!FSM@{FSM}}
@@ -766,11 +794,11 @@ These variables are unique to the \doxylink{namespace_code_smile_1_1_statemachin
 
 
 
-Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00071}{71}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
+Definition at line \mbox{\hyperlink{_f_s_m_8cs_source_l00081}{81}} of file \mbox{\hyperlink{_f_s_m_8cs_source}{FSM.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00071\ \{\ \textcolor{keyword}{get};\ \}\ =\ \textcolor{keyword}{new}();}
+\DoxyCodeLine{00081\ \{\ \textcolor{keyword}{get};\ \}\ =\ \textcolor{keyword}{new}();}
 
 \end{DoxyCode}
 

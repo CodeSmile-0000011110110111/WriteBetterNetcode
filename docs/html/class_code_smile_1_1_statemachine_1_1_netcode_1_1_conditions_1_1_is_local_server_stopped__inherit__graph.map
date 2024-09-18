@@ -1,9 +1,9 @@
 <map id="IsLocalServerStopped" name="IsLocalServerStopped">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,485,143,555"/>
-<area shape="rect" id="Node000002" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_server_started.html" title=" " alt="" coords="8,325,140,437"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,452,77,486,71,486,71,452"/>
-<area shape="rect" id="Node000003" href="$interface_code_smile_1_1_statemachine_1_1_i_condition.html" title=" " alt="" coords="16,187,132,277"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="77,292,77,325,71,325,71,292"/>
-<area shape="rect" id="Node000004" href="$interface_code_smile_1_1_statemachine_1_1_i_statemachine_events.html" title="Event methods that the Statemachine calls at specific times." alt="" coords="7,5,141,139"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="77,153,77,187,71,187,71,153"/>
+<area shape="rect" id="Node000001" title="Tests if the server is not in the started state." alt="" coords="5,357,143,427"/>
+<area shape="rect" id="Node000002" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_server_started.html" title="Is true after NetworkManager StartServer is called and until server stops or a transport failure occu..." alt="" coords="8,240,140,309"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,324,77,358,71,358,71,324"/>
+<area shape="rect" id="Node000003" href="$interface_code_smile_1_1_statemachine_1_1_i_condition.html" title="Marks a class as a FSM Condition." alt="" coords="39,123,109,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="77,207,77,240,71,240,71,207"/>
+<area shape="rect" id="Node000004" href="$interface_code_smile_1_1_statemachine_1_1_i_statemachine_events.html" title="Event methods that the Statemachine calls at specific times." alt="" coords="7,5,141,75"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="77,90,77,123,71,123,71,90"/>
 </map>

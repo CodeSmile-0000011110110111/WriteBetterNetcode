@@ -10,7 +10,11 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode.Actions
 {
-	public class TransportSetup : IAction
+	/// <summary>
+	/// Configures NetworkManager's Transport from config variables.
+	/// </summary>
+	/// <remarks>Supports all aspects of Transport configuration, eg with or without Relay, WebSockets, etc.</remarks>
+	public sealed class TransportSetup : IAction
 	{
 		private readonly Var<NetcodeConfig> m_NetcodeConfigVar;
 		private readonly Var<TransportConfig> m_TransportConfigVar;
@@ -18,6 +22,12 @@ namespace CodeSmile.Statemachine.Netcode.Actions
 
 		private TransportSetup() {} // forbidden default ctor
 
+		/// <summary>
+		/// Creates a new TransportSetup action.
+		/// </summary>
+		/// <param name="netcodeConfigVar"></param>
+		/// <param name="transportConfigVar"></param>
+		/// <param name="relayConfigVar"></param>
 		public TransportSetup(Var<NetcodeConfig> netcodeConfigVar,
 			Var<TransportConfig> transportConfigVar,
 			Var<RelayConfig> relayConfigVar)

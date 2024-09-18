@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode.Conditions
 {
+	/// <summary>
+	/// Tests if the client that this script executes on is not connected to a network session.
+	/// </summary>
 	public sealed class IsLocalClientDisconnected : IsLocalClientConnected
 	{
 		public override Boolean IsSatisfied(FSM sm) => !base.IsSatisfied(sm);

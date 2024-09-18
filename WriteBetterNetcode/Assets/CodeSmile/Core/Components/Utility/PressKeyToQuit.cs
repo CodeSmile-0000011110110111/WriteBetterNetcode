@@ -1,23 +1,23 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using System;
 using UnityEditor;
 using UnityEngine;
 
 namespace CodeSmile.Components.Utility
 {
 	/// <summary>
-	///     Hooks the Escape key to Application.Quit.
-	///     <remarks>
-	///         It annoys me that builds no longer support Alt+F4 and thus there is no way
-	///         to quit a build except going through Task Manager.
-	///     </remarks>
+	///     Hooks the given keycode to Application.Quit.
 	/// </summary>
+	/// <remarks>
+	///     Builds do not support Alt+F4 so there is no way to quickly quit a build without a script like this one.
+	/// </remarks>
 	[DisallowMultipleComponent]
 	internal sealed class PressKeyToQuit : MonoBehaviour
 	{
 		[Tooltip("The key that will quit if Ctrl+Alt / Cmd+Option are also held down.")]
-		public KeyCode QuitKey = KeyCode.Escape;
+		[SerializeField] private KeyCode m_QuitKey = KeyCode.Escape;
 
 		private void Awake()
 		{
@@ -37,7 +37,7 @@ namespace CodeSmile.Components.Utility
 			if (!cmd && !ctrl)
 				return;
 
-			if (Input.GetKeyDown(QuitKey))
+			if (Input.GetKeyDown(m_QuitKey))
 				Application.Quit();
 		}
 	}

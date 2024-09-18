@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Variable.Actions
 {
+	/// <summary>
+	/// Decrements an integer variable by 1.
+	/// </summary>
 	public sealed class DecValue : IAction
 	{
 		private readonly IntVar m_Variable;

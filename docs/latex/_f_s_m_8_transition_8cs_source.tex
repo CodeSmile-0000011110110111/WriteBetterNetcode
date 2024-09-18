@@ -15,206 +15,206 @@
 \DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00011}00011\ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00015}\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{00015}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}}}
 \DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ String\ Name\ \{\ \textcolor{keyword}{get};\ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_condition}{ICondition}}[]\ Conditions\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}[]\ Actions\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state}{State}}\ GotoState\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00021}00021\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state}{State}}\ ErrorGotoState\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}[]\ ErrorActions\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00020}\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a934fa09ba291a97f43720640e4d83f25_a934fa09ba291a97f43720640e4d83f25}{00020}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a934fa09ba291a97f43720640e4d83f25_a934fa09ba291a97f43720640e4d83f25}{Name}}\ \{\ \textcolor{keyword}{get};\ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_condition}{ICondition}}[]\ Conditions\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}[]\ Actions\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ State\ GotoState\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
 \DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00024}00024\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keyword}{static}\ Boolean\ ConditionsSatisfied(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ sm,\ String\ transitionName,\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_condition}{ICondition}}[]\ conditions,\ Boolean\ logging,}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Boolean\ useLogicalOr\ =\ \textcolor{keyword}{false})}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ condition\ \textcolor{keywordflow}{in}\ conditions)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ satisfied\ =\ condition.IsSatisfied(sm);}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00031}00031\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (logging)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LogCondition(sm,\ transitionName,\ condition,\ satisfied);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ State\ ErrorGotoState\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ IAction[]\ ErrorActions\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keyword}{static}\ Boolean\ ConditionsSatisfied(FSM\ sm,\ String\ transitionName,\ ICondition[]\ conditions,\ Boolean\ logging,}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Boolean\ useLogicalOr\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ condition\ \textcolor{keywordflow}{in}\ conditions)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ satisfied\ =\ condition.IsSatisfied(sm);}
 \DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00034}00034\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ early\ out\ checks}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (useLogicalOr)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (satisfied)\ \textcolor{comment}{//\ OR:\ if\ one\ is\ true}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!satisfied)\ \textcolor{comment}{//\ AND:\ if\ none\ are\ false}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00044}00044\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ we\ get\ here:\ OR\ =\ all\ condition\ were\ false\ /\ AND\ =\ all\ conditions\ were\ true}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ useLogicalOr\ ?\ false\ :\ \textcolor{keyword}{true};}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00048}00048\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keyword}{static}\ async\ \textcolor{keywordtype}{void}\ ExecuteActions(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ sm,\ String\ transitionName,\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}[]\ actions,\ Boolean\ logging\ =\ \textcolor{keyword}{false})}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (actions\ ==\ \textcolor{keyword}{null})}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00053}00053\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ actionCount\ =\ actions.Length;}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (actionCount\ ==\ 0)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00057}00057\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (var\ i\ =\ 0;\ i\ <\ actionCount;\ i++)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ action\ =\ actions[i];}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00061}00061\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (logging)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LogExecuteAction(sm,\ transitionName,\ action);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (logging)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LogCondition(sm,\ transitionName,\ condition,\ satisfied);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ early\ out\ checks}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (useLogicalOr)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (satisfied)\ \textcolor{comment}{//\ OR:\ if\ one\ is\ true}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!satisfied)\ \textcolor{comment}{//\ AND:\ if\ none\ are\ false}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ we\ get\ here:\ OR\ =\ all\ condition\ were\ false\ /\ AND\ =\ all\ conditions\ were\ true}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ useLogicalOr\ ?\ false\ :\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keyword}{static}\ async\ \textcolor{keywordtype}{void}\ ExecuteActions(FSM\ sm,\ String\ transitionName,\ IAction[]\ actions,\ Boolean\ logging\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (actions\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ actionCount\ =\ actions.Length;}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (actionCount\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (var\ i\ =\ 0;\ i\ <\ actionCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ action\ =\ actions[i];}
 \DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00064}00064\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (action\ is\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_async_action}{IAsyncAction}}\ asyncAction)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ asyncAction.ExecuteAsync(sm);}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ action.Execute(sm);}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00071}00071\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00076}\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a5cff3a67b77de17d053a190f241aa753_a5cff3a67b77de17d053a190f241aa753}{00076}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a5cff3a67b77de17d053a190f241aa753_a5cff3a67b77de17d053a190f241aa753}{Transition}}()}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ this(null)\ \{\}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00078}00078\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00088}\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_aa8372cfd9affcb5de0c2b6c8ccff3876_aa8372cfd9affcb5de0c2b6c8ccff3876}{00088}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_aa8372cfd9affcb5de0c2b6c8ccff3876_aa8372cfd9affcb5de0c2b6c8ccff3876}{Transition}}(String\ transitionName)\ =>\ Name\ =\ transitionName;}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00089}00089\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ String\ ToString()\ =>\ \$\textcolor{stringliteral}{"{}Transition(\{Name\})"{}};}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00091}00091\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}}\ ToState(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state}{State}}\ gotoState)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (GotoState\ !=\ \textcolor{keyword}{null})}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}GotoState\ already\ set"{}});}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00096}00096\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GotoState\ =\ gotoState;}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00100}00100\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}}\ ToErrorState(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state}{State}}\ errorState)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (logging)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LogExecuteAction(sm,\ transitionName,\ action);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (action\ is\ IAsyncAction\ asyncAction)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ asyncAction.ExecuteAsync(sm);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ action.Execute(sm);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00079}\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a5cff3a67b77de17d053a190f241aa753_a5cff3a67b77de17d053a190f241aa753}{00079}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a5cff3a67b77de17d053a190f241aa753_a5cff3a67b77de17d053a190f241aa753}{Transition}}()}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ this(null)\ \{\}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00091}\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_aa8372cfd9affcb5de0c2b6c8ccff3876_aa8372cfd9affcb5de0c2b6c8ccff3876}{00091}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_aa8372cfd9affcb5de0c2b6c8ccff3876_aa8372cfd9affcb5de0c2b6c8ccff3876}{Transition}}(String\ transitionName)\ =>\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a934fa09ba291a97f43720640e4d83f25_a934fa09ba291a97f43720640e4d83f25}{Name}}\ =\ transitionName;}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ String\ ToString()\ =>\ \$\textcolor{stringliteral}{"{}Transition(\{Name\})"{}};}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00101}\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_af3fa3c9f1644ed30ef52a76b50c931db_af3fa3c9f1644ed30ef52a76b50c931db}{00101}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_af3fa3c9f1644ed30ef52a76b50c931db_af3fa3c9f1644ed30ef52a76b50c931db}{ToState}}(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state}{State}}\ gotoState)}
 \DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ErrorGotoState\ !=\ \textcolor{keyword}{null})}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}ErrorGotoState\ already\ set"{}});}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (GotoState\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}GotoState\ already\ set"{}});}
 \DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00105}00105\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ErrorGotoState\ =\ errorState;}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GotoState\ =\ gotoState;}
 \DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
 \DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00109}00109\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a5cff3a67b77de17d053a190f241aa753_a5cff3a67b77de17d053a190f241aa753}{Transition}}\ AddToStates(params\ State[]\ states)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (states\ ==\ \textcolor{keyword}{null})}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(states));}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00114}00114\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ state\ \textcolor{keywordflow}{in}\ states)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ state.AddTransitions(\textcolor{keyword}{this});}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00117}00117\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00116}\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_aeded3c408085a4bb095016f685cd0510_aeded3c408085a4bb095016f685cd0510}{00116}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_aeded3c408085a4bb095016f685cd0510_aeded3c408085a4bb095016f685cd0510}{ToErrorState}}(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state}{State}}\ errorState)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ErrorGotoState\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}ErrorGotoState\ already\ set"{}});}
 \DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00120}00120\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a5cff3a67b77de17d053a190f241aa753_a5cff3a67b77de17d053a190f241aa753}{Transition}}\ WithConditions(params\ ICondition[]\ conditions)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Conditions\ !=\ \textcolor{keyword}{null})}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}Conditions\ already\ set"{}});}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00125}00125\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Conditions\ =\ conditions\ ??\ \textcolor{keyword}{new}\ ICondition[0];}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00129}00129\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a5cff3a67b77de17d053a190f241aa753_a5cff3a67b77de17d053a190f241aa753}{Transition}}\ WithActions(params\ IAction[]\ actions)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Actions\ !=\ \textcolor{keyword}{null})}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}Actions\ already\ set"{}});}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00134}00134\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Actions\ =\ actions\ ??\ \textcolor{keyword}{new}\ IAction[0];}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ErrorGotoState\ =\ errorState;}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00134}\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_af557b85e68629ef9dbd9b2a2b1719fda_af557b85e68629ef9dbd9b2a2b1719fda}{00134}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_af557b85e68629ef9dbd9b2a2b1719fda_af557b85e68629ef9dbd9b2a2b1719fda}{AddToStates}}(params\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state}{State}}[]\ states)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (states\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(states));}
 \DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00138}00138\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a5cff3a67b77de17d053a190f241aa753_a5cff3a67b77de17d053a190f241aa753}{Transition}}\ WithErrorActions(params\ IAction[]\ errorActions)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ErrorActions\ !=\ \textcolor{keyword}{null})}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}ErrorActions\ already\ set"{}});}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00143}00143\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ErrorActions\ =\ errorActions\ ??\ \textcolor{keyword}{new}\ IAction[0];}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00147}00147\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_aec0783b5a136e042adcc47bae4fe5291_aec0783b5a136e042adcc47bae4fe5291}{Update}}(FSM\ sm)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ logging\ =\ sm.ActiveState.Logging;}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ConditionsSatisfied(sm,\ Name,\ Conditions,\ logging))}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ExecuteActionsWithErrorHandling(sm,\ Actions,\ logging);}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00154}00154\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (GotoState\ !=\ \textcolor{keyword}{null})}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (logging)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LogStateChange(sm,\ GotoState,\ Name);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ state\ \textcolor{keywordflow}{in}\ states)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ state.AddTransitions(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00151}\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a218e846a60a3fc46221701a61d15e5e7_a218e846a60a3fc46221701a61d15e5e7}{00151}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a218e846a60a3fc46221701a61d15e5e7_a218e846a60a3fc46221701a61d15e5e7}{WithConditions}}(params\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_condition}{ICondition}}[]\ conditions)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Conditions\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}Conditions\ already\ set"{}});}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Conditions\ =\ conditions\ ??\ \textcolor{keyword}{new}\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_condition}{ICondition}}[0];}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00159}00159\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sm.SetActiveState(GotoState);}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00164}00164\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ ExecuteActionsWithErrorHandling(FSM\ sm,\ IAction[]\ actions,\ Boolean\ logging)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ExecuteActions(sm,\ Name,\ actions,\ logging);}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ErrorActions\ !=\ \textcolor{keyword}{null}\ ||\ ErrorGotoState\ !=\ \textcolor{keyword}{null})}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.LogWarning(\$\textcolor{stringliteral}{"{}\{sm.ActiveState.Name\}\ [\{Name\}]:\ ERROR\ =>\ \{e\}"{}});}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00176}00176\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ExecuteActions(sm,\ Name,\ ErrorActions,\ logging);}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00178}00178\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ErrorGotoState\ !=\ \textcolor{keyword}{null})}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (logging)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LogStateChange(sm,\ ErrorGotoState,\ Name);}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00183}00183\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sm.SetActiveState(ErrorGotoState);}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00191}00191\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ OnStart(FSM\ sm)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Conditions\ ==\ \textcolor{keyword}{null})}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Conditions\ =\ \textcolor{keyword}{new}\ ICondition[0];}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Actions\ ==\ \textcolor{keyword}{null})}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Actions\ =\ \textcolor{keyword}{new}\ IAction[0];}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00198}00198\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ condition\ \textcolor{keywordflow}{in}\ Conditions)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ condition.\mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_ad53b64512d4843ff9f09cb72b1467b8d_ad53b64512d4843ff9f09cb72b1467b8d}{OnStart}}(sm);}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ action\ \textcolor{keywordflow}{in}\ Actions)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ action.OnStart(sm);}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00204}00204\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ OnStop(FSM\ sm)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ condition\ \textcolor{keywordflow}{in}\ Conditions)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ condition.OnStop(sm);}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ action\ \textcolor{keywordflow}{in}\ Actions)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ action.OnStop(sm);}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00212}00212\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ OnEnterState(FSM\ sm)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ condition\ \textcolor{keywordflow}{in}\ Conditions)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ condition.OnEnterState(sm);}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ action\ \textcolor{keywordflow}{in}\ Actions)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ action.OnEnterState(sm);}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00166}\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a2fab4c3641601d86a88e61da8c834df2_a2fab4c3641601d86a88e61da8c834df2}{00166}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a2fab4c3641601d86a88e61da8c834df2_a2fab4c3641601d86a88e61da8c834df2}{WithActions}}(params\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}[]\ actions)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Actions\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}Actions\ already\ set"{}});}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Actions\ =\ actions\ ??\ \textcolor{keyword}{new}\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}[0];}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00181}\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a1d3c20a7352d93e605bf22d1e50f06bc_a1d3c20a7352d93e605bf22d1e50f06bc}{00181}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a1d3c20a7352d93e605bf22d1e50f06bc_a1d3c20a7352d93e605bf22d1e50f06bc}{WithErrorActions}}(params\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}[]\ errorActions)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ErrorActions\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}ErrorActions\ already\ set"{}});}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ErrorActions\ =\ errorActions\ ??\ \textcolor{keyword}{new}\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}[0];}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_aec0783b5a136e042adcc47bae4fe5291_aec0783b5a136e042adcc47bae4fe5291}{Update}}(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ sm)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ logging\ =\ sm.\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a8ece463f6647d84ca267a574ed3e8e5e_a8ece463f6647d84ca267a574ed3e8e5e}{ActiveState}}.\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a1c487dbaa542d1fe109a408f9b62acd6_a1c487dbaa542d1fe109a408f9b62acd6}{Logging}};}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ConditionsSatisfied(sm,\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a934fa09ba291a97f43720640e4d83f25_a934fa09ba291a97f43720640e4d83f25}{Name}},\ Conditions,\ logging))}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ExecuteActionsWithErrorHandling(sm,\ Actions,\ logging);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (GotoState\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (logging)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LogStateChange(sm,\ GotoState,\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a934fa09ba291a97f43720640e4d83f25_a934fa09ba291a97f43720640e4d83f25}{Name}});}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sm.SetActiveState(GotoState);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ ExecuteActionsWithErrorHandling(FSM\ sm,\ IAction[]\ actions,\ Boolean\ logging)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ExecuteActions(sm,\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a934fa09ba291a97f43720640e4d83f25_a934fa09ba291a97f43720640e4d83f25}{Name}},\ actions,\ logging);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ErrorActions\ !=\ \textcolor{keyword}{null}\ ||\ ErrorGotoState\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.LogWarning(\$\textcolor{stringliteral}{"{}\{sm.ActiveState.Name\}\ [\{Name\}]:\ ERROR\ =>\ \{e\}"{}});}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00218}00218\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ExecuteActions(sm,\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a934fa09ba291a97f43720640e4d83f25_a934fa09ba291a97f43720640e4d83f25}{Name}},\ ErrorActions,\ logging);}
 \DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00220}00220\ }
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ OnExitState(FSM\ sm)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ condition\ \textcolor{keywordflow}{in}\ Conditions)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ condition.OnExitState(sm);}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ action\ \textcolor{keywordflow}{in}\ Actions)}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ action.OnExitState(sm);}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00228}00228\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00229}00229\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00230}00230\ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ErrorGotoState\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (logging)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LogStateChange(sm,\ ErrorGotoState,\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a934fa09ba291a97f43720640e4d83f25_a934fa09ba291a97f43720640e4d83f25}{Name}});}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00225}00225\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sm.SetActiveState(ErrorGotoState);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00233}00233\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ OnStart(FSM\ sm)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Conditions\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Conditions\ =\ \textcolor{keyword}{new}\ ICondition[0];}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Actions\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Actions\ =\ \textcolor{keyword}{new}\ IAction[0];}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ condition\ \textcolor{keywordflow}{in}\ Conditions)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ condition.OnStart(sm);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ action\ \textcolor{keywordflow}{in}\ Actions)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ action.OnStart(sm);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ OnStop(FSM\ sm)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ condition\ \textcolor{keywordflow}{in}\ Conditions)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ condition.OnStop(sm);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ action\ \textcolor{keywordflow}{in}\ Actions)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ action.OnStop(sm);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00254}00254\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ OnEnterState(FSM\ sm)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ condition\ \textcolor{keywordflow}{in}\ Conditions)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ condition.OnEnterState(sm);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ action\ \textcolor{keywordflow}{in}\ Actions)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ action.OnEnterState(sm);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00262}00262\ }
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ OnExitState(FSM\ sm)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ condition\ \textcolor{keywordflow}{in}\ Conditions)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ condition.OnExitState(sm);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ action\ \textcolor{keywordflow}{in}\ Actions)}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ action.OnExitState(sm);}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00270}00270\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00271}00271\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_f_s_m_8_transition_8cs_source_l00272}00272\ \}}
 
 \end{DoxyCode}

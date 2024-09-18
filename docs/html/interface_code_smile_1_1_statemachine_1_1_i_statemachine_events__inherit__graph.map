@@ -1,99 +1,99 @@
 <map id="IStatemachineEvents" name="IStatemachineEvents">
-<area shape="rect" id="Node000001" title="Event methods that the Statemachine calls at specific times." alt="" coords="2719,5,2854,139"/>
-<area shape="rect" id="Node000002" href="$interface_code_smile_1_1_statemachine_1_1_i_action.html" title=" " alt="" coords="1270,187,1386,277"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2705,85,1386,227,1386,222,2704,80"/>
-<area shape="rect" id="Node000023" href="$interface_code_smile_1_1_statemachine_1_1_i_condition.html" title=" " alt="" coords="4257,187,4373,277"/>
-<area shape="poly" id="edge22_Node000001_Node000023" title=" " alt="" coords="2869,79,4257,222,4257,227,2868,84"/>
-<area shape="rect" id="Node000003" href="$class_code_smile_1_1_statemachine_1_1_actions_1_1_compound_action.html" title=" " alt="" coords="5,379,136,512"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1255,238,993,247,646,264,476,277,327,291,213,308,174,318,149,328,122,351,101,380,96,377,118,347,147,323,173,313,212,303,327,286,476,271,646,259,993,242,1255,233"/>
-<area shape="rect" id="Node000004" href="$class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action.html" title="Generic Action that simply executes a lambda." alt="" coords="161,379,277,512"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="1255,239,1021,249,718,267,571,279,442,293,344,310,311,318,289,328,264,351,245,381,240,378,260,348,287,323,309,313,343,304,442,288,571,274,718,262,1021,244,1255,233"/>
-<area shape="rect" id="Node000005" href="$interface_code_smile_1_1_statemachine_1_1_i_async_action.html" title=" " alt="" coords="301,411,417,480"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="1255,235,1066,237,823,249,701,260,590,277,497,299,460,312,431,328,410,345,394,366,371,412,367,410,389,364,406,341,428,323,458,307,495,294,589,271,701,255,823,243,1066,232,1255,230"/>
-<area shape="rect" id="Node000009" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_start.html" title=" " alt="" coords="441,400,548,491"/>
-<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="1255,236,1091,241,887,255,785,266,693,282,616,302,586,314,562,328,544,343,530,361,510,401,505,399,525,358,540,339,558,323,583,309,614,297,692,277,785,261,886,249,1091,236,1255,231"/>
-<area shape="rect" id="Node000010" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_stop.html" title=" " alt="" coords="573,400,678,491"/>
-<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="1256,238,1118,246,952,262,871,274,797,288,736,306,692,328,675,343,661,361,641,402,636,399,656,358,671,339,689,323,734,301,796,283,870,269,951,257,1118,241,1255,233"/>
-<area shape="rect" id="Node000011" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_set_netcode_role.html" title=" " alt="" coords="703,389,828,501"/>
-<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="1256,243,1150,255,1029,273,917,297,873,312,842,328,812,356,790,391,785,388,808,353,838,323,871,307,916,292,1028,267,1149,249,1255,237"/>
-<area shape="rect" id="Node000012" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup.html" title=" " alt="" coords="852,400,972,491"/>
-<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="1256,240,1193,248,1122,264,1051,290,1017,307,986,327,968,343,954,362,931,402,926,399,949,359,964,340,982,323,1014,302,1049,285,1121,259,1192,243,1255,234"/>
-<area shape="rect" id="Node000013" href="$class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_clear_allocation_data.html" title=" " alt="" coords="996,400,1175,491"/>
-<area shape="poly" id="edge12_Node000002_Node000013" title=" " alt="" coords="1259,276,1188,327,1152,364,1120,402,1116,398,1148,360,1185,323,1256,271"/>
-<area shape="rect" id="Node000014" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_add_value.html" title=" " alt="" coords="1199,347,1315,544"/>
-<area shape="poly" id="edge13_Node000002_Node000014" title=" " alt="" coords="1311,292,1292,348,1287,346,1306,291"/>
-<area shape="rect" id="Node000015" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_dec_value.html" title=" " alt="" coords="1339,400,1455,491"/>
-<area shape="poly" id="edge14_Node000002_Node000015" title=" " alt="" coords="1350,290,1385,399,1380,401,1344,292"/>
-<area shape="rect" id="Node000016" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_div_value.html" title=" " alt="" coords="1479,347,1595,544"/>
-<area shape="poly" id="edge15_Node000002_Node000016" title=" " alt="" coords="1400,269,1436,294,1469,323,1487,345,1482,348,1465,327,1432,298,1397,274"/>
-<area shape="rect" id="Node000017" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_inc_value.html" title=" " alt="" coords="1619,400,1735,491"/>
-<area shape="poly" id="edge16_Node000002_Node000017" title=" " alt="" coords="1401,240,1451,251,1505,268,1559,291,1608,323,1640,359,1663,399,1658,402,1636,362,1605,327,1557,296,1503,273,1449,256,1400,246"/>
-<area shape="rect" id="Node000018" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_mul_value.html" title=" " alt="" coords="1759,347,1875,544"/>
-<area shape="poly" id="edge17_Node000002_Node000018" title=" " alt="" coords="1401,230,1478,235,1569,249,1616,261,1663,277,1707,298,1748,323,1771,345,1768,349,1745,327,1704,302,1661,282,1615,266,1568,254,1478,240,1401,235"/>
-<area shape="rect" id="Node000019" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_set_false.html" title=" " alt="" coords="1899,389,2015,501"/>
-<area shape="poly" id="edge18_Node000002_Node000019" title=" " alt="" coords="1401,235,1522,245,1665,262,1797,288,1850,304,1888,323,1918,353,1940,388,1935,391,1914,356,1885,328,1848,309,1796,293,1664,268,1522,251,1401,240"/>
-<area shape="rect" id="Node000020" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_set_true.html" title=" " alt="" coords="2039,389,2155,501"/>
-<area shape="poly" id="edge19_Node000002_Node000020" title=" " alt="" coords="1401,232,1551,239,1735,254,1826,266,1909,281,1978,300,2028,323,2059,353,2080,388,2075,391,2054,356,2025,328,1976,305,1907,286,1825,271,1734,259,1550,244,1400,238"/>
-<area shape="rect" id="Node000021" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_set_value.html" title=" " alt="" coords="2179,336,2295,555"/>
-<area shape="poly" id="edge20_Node000002_Node000021" title=" " alt="" coords="1401,231,1579,234,1804,247,1917,258,2020,274,2106,296,2140,309,2168,323,2183,334,2179,339,2165,328,2138,313,2104,301,2019,279,1916,263,1804,252,1579,239,1401,236"/>
-<area shape="rect" id="Node000022" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_sub_value.html" title=" " alt="" coords="2319,347,2435,544"/>
-<area shape="poly" id="edge21_Node000002_Node000022" title=" " alt="" coords="1401,234,1622,245,1906,264,2164,290,2255,305,2287,314,2308,323,2333,345,2329,349,2305,328,2285,319,2254,311,2163,295,1905,269,1622,250,1401,239"/>
-<area shape="rect" id="Node000006" href="$class_code_smile_1_1_statemachine_1_1_services_1_1_authentication_1_1_actions_1_1_sign_in_anonymously.html" title=" " alt="" coords="148,624,276,693"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="336,494,290,567,244,626,239,623,286,564,331,492"/>
-<area shape="rect" id="Node000007" href="$class_code_smile_1_1_statemachine_1_1_services_1_1_core_1_1_actions_1_1_unity_services_init.html" title=" " alt="" coords="301,624,417,693"/>
-<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="361,494,361,624,356,624,356,494"/>
-<area shape="rect" id="Node000008" href="$class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_create_or_join_allocation.html" title=" " alt="" coords="441,613,637,704"/>
-<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="384,491,405,528,431,564,481,611,477,615,427,567,401,531,379,494"/>
-<area shape="rect" id="Node000024" href="$class_code_smile_1_1_statemachine_1_1_conditions_1_1_compound_condition.html" title=" " alt="" coords="2459,379,2607,512"/>
-<area shape="poly" id="edge23_Node000023_Node000024" title=" " alt="" coords="4242,236,3879,240,3369,253,3115,265,2890,281,2718,302,2658,314,2620,328,2590,351,2567,381,2563,377,2587,347,2617,323,2656,309,2717,296,2890,275,3114,260,3369,248,3879,235,4242,231"/>
-<area shape="rect" id="Node000025" href="$class_code_smile_1_1_statemachine_1_1_conditions_1_1_lambda_condition.html" title="Generic Condition that simply executes a lambda. Provides static methods for related operators AND,..." alt="" coords="2631,379,2763,512"/>
-<area shape="poly" id="edge24_Node000023_Node000025" title=" " alt="" coords="4242,237,3909,241,3448,255,3219,267,3017,283,2863,303,2810,315,2776,328,2748,351,2727,381,2723,378,2744,347,2773,323,2808,310,2862,298,3017,277,3219,262,3448,250,3909,236,4242,231"/>
-<area shape="rect" id="Node000026" href="$class_code_smile_1_1_statemachine_1_1_conditions_1_1_logical_and.html" title=" " alt="" coords="2787,347,2903,544"/>
-<area shape="poly" id="edge25_Node000023_Node000026" title=" " alt="" coords="4242,237,3936,243,3519,257,3313,269,3132,285,2994,304,2946,315,2916,328,2892,349,2888,345,2913,323,2944,310,2993,299,3131,279,3313,264,3519,252,3936,237,4242,231"/>
-<area shape="rect" id="Node000027" href="$class_code_smile_1_1_statemachine_1_1_conditions_1_1_logical_nand.html" title=" " alt="" coords="2927,347,3043,544"/>
-<area shape="poly" id="edge26_Node000023_Node000027" title=" " alt="" coords="4242,237,3964,245,3591,261,3408,273,3247,288,3125,306,3083,317,3056,328,3032,349,3028,345,3053,323,3081,311,3124,301,3247,283,3408,268,3591,256,3964,240,4242,232"/>
-<area shape="rect" id="Node000028" href="$class_code_smile_1_1_statemachine_1_1_conditions_1_1_logical_nor.html" title=" " alt="" coords="3067,347,3183,544"/>
-<area shape="poly" id="edge27_Node000023_Node000028" title=" " alt="" coords="4242,238,3992,247,3664,265,3503,277,3363,291,3256,308,3219,318,3196,328,3172,349,3169,345,3193,323,3218,313,3255,303,3362,286,3503,272,3663,260,3992,242,4242,233"/>
-<area shape="rect" id="Node000029" href="$class_code_smile_1_1_statemachine_1_1_conditions_1_1_logical_not.html" title=" " alt="" coords="3207,347,3323,544"/>
-<area shape="poly" id="edge28_Node000023_Node000029" title=" " alt="" coords="4242,239,4020,250,3736,269,3479,295,3387,311,3356,319,3336,328,3312,349,3309,345,3333,323,3354,314,3386,305,3478,290,3736,264,4020,245,4241,234"/>
-<area shape="rect" id="Node000030" href="$class_code_smile_1_1_statemachine_1_1_conditions_1_1_logical_or.html" title=" " alt="" coords="3347,347,3463,544"/>
-<area shape="poly" id="edge29_Node000023_Node000030" title=" " alt="" coords="4242,236,4064,239,3838,252,3726,263,3623,279,3537,300,3503,313,3476,328,3452,349,3449,345,3473,323,3501,308,3536,295,3622,274,3725,258,3838,246,4063,234,4242,230"/>
-<area shape="rect" id="Node000031" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_listening.html" title=" " alt="" coords="3487,411,3579,480"/>
-<area shape="poly" id="edge30_Node000023_Node000031" title=" " alt="" coords="4242,237,4087,242,3895,256,3801,268,3715,283,3644,303,3594,328,3575,345,3561,367,3543,412,3538,410,3556,364,3571,342,3590,323,3642,298,3714,278,3800,262,3895,251,4087,237,4242,231"/>
-<area shape="rect" id="Node000032" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_client_connected.html" title=" " alt="" coords="3604,389,3753,501"/>
-<area shape="poly" id="edge31_Node000023_Node000032" title=" " alt="" coords="4242,241,4123,253,3984,271,3855,295,3804,311,3767,328,3734,356,3708,391,3704,388,3730,353,3764,323,3802,306,3854,290,3984,265,4123,247,4241,236"/>
-<area shape="rect" id="Node000034" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_client_started.html" title=" " alt="" coords="3778,389,3907,501"/>
-<area shape="poly" id="edge32_Node000023_Node000034" title=" " alt="" coords="4242,237,4169,243,4085,258,3999,285,3958,304,3920,327,3890,357,3868,391,3864,388,3886,353,3917,323,3956,300,3997,280,4084,253,4169,238,4241,232"/>
-<area shape="rect" id="Node000036" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_server_started.html" title=" " alt="" coords="3931,389,4063,501"/>
-<area shape="poly" id="edge33_Node000023_Node000036" title=" " alt="" coords="4243,251,4159,280,4116,301,4076,327,4048,357,4025,391,4021,388,4044,354,4073,323,4113,296,4157,275,4241,246"/>
-<area shape="rect" id="Node000038" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_netcode_role.html" title=" " alt="" coords="4087,389,4203,501"/>
-<area shape="poly" id="edge34_Node000023_Node000038" title=" " alt="" coords="4253,289,4218,327,4175,391,4171,388,4214,324,4249,285"/>
-<area shape="rect" id="Node000040" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_network_manager_singleton_assigned.html" title=" " alt="" coords="4228,403,4401,488"/>
-<area shape="poly" id="edge35_Node000023_Node000040" title=" " alt="" coords="4317,292,4317,403,4312,403,4312,292"/>
-<area shape="rect" id="Node000041" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_network_offline.html" title=" " alt="" coords="4426,411,4531,480"/>
-<area shape="poly" id="edge36_Node000023_Node000041" title=" " alt="" coords="4381,286,4415,324,4444,368,4466,410,4462,412,4440,370,4411,327,4377,290"/>
-<area shape="rect" id="Node000042" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_not_listening.html" title=" " alt="" coords="4555,411,4650,480"/>
-<area shape="poly" id="edge37_Node000023_Node000042" title=" " alt="" coords="4388,245,4427,257,4469,274,4509,296,4546,323,4563,343,4577,366,4596,410,4591,412,4572,368,4559,346,4542,327,4506,300,4466,279,4425,262,4386,251"/>
-<area shape="rect" id="Node000043" href="$class_code_smile_1_1_statemachine_1_1_services_1_1_authentication_1_1_conditions_1_1_is_signed_in.html" title=" " alt="" coords="4674,411,4766,480"/>
-<area shape="poly" id="edge38_Node000023_Node000043" title=" " alt="" coords="4388,233,4452,240,4525,256,4598,282,4633,301,4664,323,4683,343,4697,365,4715,410,4710,412,4692,368,4678,346,4661,327,4630,305,4596,287,4524,261,4451,245,4387,238"/>
-<area shape="rect" id="Node000045" href="$class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_conditions_1_1_is_relay_enabled.html" title=" " alt="" coords="4790,400,4911,491"/>
-<area shape="poly" id="edge39_Node000023_Node000045" title=" " alt="" coords="4388,238,4489,250,4603,269,4708,293,4750,307,4780,323,4799,339,4814,358,4837,399,4832,402,4810,361,4795,343,4777,328,4748,312,4707,298,4602,274,4488,256,4387,243"/>
-<area shape="rect" id="Node000046" href="$class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_conditions_1_1_is_relay_ready.html" title=" " alt="" coords="4936,400,5048,491"/>
-<area shape="poly" id="edge40_Node000023_Node000046" title=" " alt="" coords="4388,234,4520,243,4677,259,4755,271,4825,285,4883,302,4925,323,4944,339,4959,358,4980,399,4976,402,4955,361,4940,343,4923,328,4881,307,4823,290,4754,276,4677,264,4519,248,4388,239"/>
-<area shape="rect" id="Node000047" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_conditions_1_1_is_equal.html" title=" " alt="" coords="5073,336,5189,555"/>
-<area shape="poly" id="edge41_Node000023_Node000047" title=" " alt="" coords="4388,232,4547,237,4745,252,4843,263,4933,279,5007,298,5061,323,5075,334,5072,338,5059,328,5006,304,4931,284,4842,269,4745,257,4547,243,4388,237"/>
-<area shape="rect" id="Node000048" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_conditions_1_1_is_false.html" title=" " alt="" coords="5213,389,5329,501"/>
-<area shape="poly" id="edge42_Node000023_Node000048" title=" " alt="" coords="4388,230,4575,232,4815,244,4935,255,5045,272,5136,294,5173,308,5203,323,5219,336,5233,353,5254,388,5250,391,5229,356,5216,340,5200,328,5171,312,5135,299,5044,277,4934,261,4814,249,4575,237,4388,235"/>
-<area shape="rect" id="Node000049" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_conditions_1_1_is_greater.html" title=" " alt="" coords="5353,347,5469,544"/>
-<area shape="poly" id="edge43_Node000023_Node000049" title=" " alt="" coords="4388,233,4619,244,4918,262,5063,274,5190,288,5287,305,5321,314,5343,323,5367,345,5364,349,5340,328,5319,319,5286,310,5189,294,5062,280,4917,268,4619,249,4388,239"/>
-<area shape="rect" id="Node000050" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_conditions_1_1_is_greater_or_equal.html" title=" " alt="" coords="5493,347,5625,544"/>
-<area shape="poly" id="edge44_Node000023_Node000050" title=" " alt="" coords="4388,233,4647,242,4990,259,5158,272,5305,286,5418,303,5457,313,5483,323,5509,345,5506,349,5480,328,5455,318,5417,308,5304,291,5157,277,4989,265,4647,247,4387,238"/>
-<area shape="rect" id="Node000051" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_conditions_1_1_is_less.html" title=" " alt="" coords="5649,347,5765,544"/>
-<area shape="poly" id="edge45_Node000023_Node000051" title=" " alt="" coords="4388,232,4678,239,5071,254,5264,266,5434,281,5564,300,5609,311,5639,323,5664,345,5660,349,5636,328,5608,316,5563,305,5434,287,5264,271,5071,259,4678,244,4387,237"/>
-<area shape="rect" id="Node000052" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_conditions_1_1_is_less_or_equal.html" title=" " alt="" coords="5789,347,5905,544"/>
-<area shape="poly" id="edge46_Node000023_Node000052" title=" " alt="" coords="4387,231,4705,236,5142,251,5359,262,5549,278,5695,298,5746,310,5779,323,5804,345,5800,349,5776,328,5744,315,5694,303,5549,283,5359,268,5142,256,4705,242,4387,237"/>
-<area shape="rect" id="Node000053" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_conditions_1_1_is_not_equal.html" title=" " alt="" coords="5929,325,6045,565"/>
-<area shape="poly" id="edge47_Node000023_Node000053" title=" " alt="" coords="4387,231,4733,234,5214,247,5454,259,5665,275,5826,296,5883,308,5919,323,5930,332,5927,336,5916,328,5881,314,5825,301,5664,280,5453,264,5214,252,4733,240,4387,236"/>
-<area shape="rect" id="Node000054" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_conditions_1_1_is_true.html" title=" " alt="" coords="6069,389,6185,501"/>
-<area shape="poly" id="edge48_Node000023_Node000054" title=" " alt="" coords="4387,230,4760,232,5285,244,5548,255,5780,271,5957,294,6019,307,6059,323,6076,336,6090,353,6111,389,6106,391,6086,356,6072,340,6056,328,6017,312,5957,299,5779,276,5548,260,5285,249,4760,238,4387,236"/>
+<area shape="rect" id="Node000001" title="Event methods that the Statemachine calls at specific times." alt="" coords="2415,5,2550,75"/>
+<area shape="rect" id="Node000002" href="$interface_code_smile_1_1_statemachine_1_1_i_action.html" title="Marks a class as a FSM Action." alt="" coords="1225,123,1279,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2401,52,1279,156,1278,151,2400,46"/>
+<area shape="rect" id="Node000023" href="$interface_code_smile_1_1_statemachine_1_1_i_condition.html" title="Marks a class as a FSM Condition." alt="" coords="3727,123,3796,192"/>
+<area shape="poly" id="edge22_Node000001_Node000023" title=" " alt="" coords="2565,46,3727,150,3727,156,2564,51"/>
+<area shape="rect" id="Node000003" href="$class_code_smile_1_1_statemachine_1_1_actions_1_1_compound_action.html" title="Used to combine multiple FSM actions into a single, named action." alt="" coords="5,240,136,331"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1211,162,1000,167,691,180,528,191,376,204,246,221,149,243,136,247,135,242,147,237,245,216,375,199,528,185,690,175,1000,162,1211,157"/>
+<area shape="rect" id="Node000004" href="$class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action.html" title="Generic Action that executes a lambda (System.Action)." alt="" coords="160,240,275,331"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="1210,162,1023,168,754,182,614,192,483,206,371,222,287,243,276,247,274,242,286,237,370,217,482,200,613,187,753,176,1022,163,1210,157"/>
+<area shape="rect" id="Node000005" href="$interface_code_smile_1_1_statemachine_1_1_i_async_action.html" title="Marks a class as an asynchronous (awaitable) FSM Action." alt="" coords="299,251,389,320"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="1211,162,1042,168,806,182,684,192,570,206,474,222,402,242,382,253,380,249,400,238,473,217,570,200,684,187,806,176,1042,163,1210,157"/>
+<area shape="rect" id="Node000009" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_start.html" title="Calls NetworkManager StartClient/StartHost/StartServer based on the provided config variable." alt="" coords="413,251,520,320"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="1210,163,1065,172,868,188,673,212,592,226,533,242,511,253,509,248,531,238,591,221,672,206,868,183,1065,167,1210,158"/>
+<area shape="rect" id="Node000010" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_stop.html" title="Stops networking, ie calls NetworkManager Shutdown()." alt="" coords="545,251,650,320"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="1211,161,1111,163,973,174,896,184,817,198,739,218,664,242,642,253,640,248,662,238,737,213,816,193,895,179,973,168,1111,158,1211,155"/>
+<area shape="rect" id="Node000011" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_set_netcode_role.html" title="Sets the role in the NetcodeConfig var to the given value (Server, Host, Client or None)." alt="" coords="675,251,800,320"/>
+<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="1211,164,1135,172,1034,186,923,209,813,242,790,253,787,248,811,238,922,204,1033,181,1134,166,1210,159"/>
+<area shape="rect" id="Node000012" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup.html" title="Configures NetworkManager&#39;s Transport from config variables." alt="" coords="824,251,944,320"/>
+<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="1211,169,1095,196,1025,217,957,242,936,253,933,248,955,238,1024,212,1093,191,1210,164"/>
+<area shape="rect" id="Node000013" href="$class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_clear_allocation_data.html" title="Clears the allocations from the RelayConfig variable." alt="" coords="968,251,1147,320"/>
+<area shape="poly" id="edge12_Node000002_Node000013" title=" " alt="" coords="1214,186,1110,253,1107,249,1211,182"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="1171,251,1240,320"/>
+<area shape="poly" id="edge13_Node000002_Node000014" title=" " alt="" coords="1237,206,1220,252,1215,250,1232,205"/>
+<area shape="rect" id="Node000015" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_dec_value.html" title="Decrements an integer variable by 1." alt="" coords="1264,251,1333,320"/>
+<area shape="poly" id="edge14_Node000002_Node000015" title=" " alt="" coords="1272,205,1289,250,1284,252,1267,206"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="1358,251,1421,320"/>
+<area shape="poly" id="edge15_Node000002_Node000016" title=" " alt="" coords="1292,189,1347,238,1360,251,1356,254,1344,242,1288,193"/>
+<area shape="rect" id="Node000017" href="$class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_inc_value.html" title="Increments an integer value by 1." alt="" coords="1445,251,1507,320"/>
+<area shape="poly" id="edge16_Node000002_Node000017" title=" " alt="" coords="1294,170,1361,197,1433,238,1447,249,1444,253,1431,242,1359,202,1292,175"/>
+<area shape="rect" id="Node000018" title=" " alt="" coords="1532,251,1599,320"/>
+<area shape="poly" id="edge17_Node000002_Node000018" title=" " alt="" coords="1294,163,1400,188,1461,209,1520,238,1535,249,1532,253,1517,242,1459,214,1398,193,1293,168"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="1623,251,1689,320"/>
+<area shape="poly" id="edge18_Node000002_Node000019" title=" " alt="" coords="1294,158,1358,165,1440,178,1528,202,1571,218,1612,238,1628,249,1625,253,1609,242,1569,223,1526,207,1438,184,1358,170,1293,163"/>
+<area shape="rect" id="Node000020" title=" " alt="" coords="1713,251,1770,320"/>
+<area shape="poly" id="edge19_Node000002_Node000020" title=" " alt="" coords="1294,155,1373,158,1478,169,1534,179,1592,194,1648,213,1701,238,1717,249,1713,253,1699,242,1646,218,1590,199,1533,184,1477,174,1373,163,1294,160"/>
+<area shape="rect" id="Node000021" title=" " alt="" coords="1794,251,1859,320"/>
+<area shape="poly" id="edge20_Node000002_Node000021" title=" " alt="" coords="1294,159,1404,169,1546,185,1685,208,1741,222,1783,238,1799,249,1796,253,1780,242,1739,227,1684,214,1546,191,1403,174,1293,164"/>
+<area shape="rect" id="Node000022" title=" " alt="" coords="1884,251,1953,320"/>
+<area shape="poly" id="edge21_Node000002_Node000022" title=" " alt="" coords="1294,158,1421,167,1589,182,1754,206,1822,220,1872,238,1889,248,1886,253,1870,242,1820,226,1754,211,1589,188,1420,172,1294,164"/>
+<area shape="rect" id="Node000006" href="$class_code_smile_1_1_statemachine_1_1_services_1_1_authentication_1_1_actions_1_1_sign_in_anonymously.html" title="Calls SignInAnonymouslyAsync." alt="" coords="137,379,265,448"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="297,332,241,381,237,377,293,328"/>
+<area shape="rect" id="Node000007" href="$class_code_smile_1_1_statemachine_1_1_services_1_1_core_1_1_actions_1_1_unity_services_init.html" title="Initialize Unity Gaming Services. This must be called before any other service call." alt="" coords="289,379,399,448"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="347,335,347,379,341,379,341,335"/>
+<area shape="rect" id="Node000008" href="$class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_create_or_join_allocation.html" title="Initializes Relay. Depending on role (server/host or client) this may create an allocation or will tr..." alt="" coords="423,379,619,448"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="400,327,403,328,473,377,470,381,400,333,397,331"/>
+<area shape="rect" id="Node000024" href="$class_code_smile_1_1_statemachine_1_1_conditions_1_1_compound_condition.html" title="Used to combine multiple FSM conditions into a single, named condition." alt="" coords="1978,240,2126,331"/>
+<area shape="poly" id="edge23_Node000023_Node000024" title=" " alt="" coords="3712,161,3409,162,2951,170,2708,180,2480,195,2284,215,2204,228,2138,243,2127,246,2125,241,2137,237,2203,223,2283,210,2479,189,2708,175,2951,165,3408,156,3712,156"/>
+<area shape="rect" id="Node000025" href="$class_code_smile_1_1_statemachine_1_1_conditions_1_1_lambda_condition.html" title="Generic Condition that simply executes a lambda (System.Func&lt;bool&gt;)." alt="" coords="2150,240,2282,331"/>
+<area shape="poly" id="edge24_Node000023_Node000025" title=" " alt="" coords="3712,161,3435,162,3022,172,2805,182,2601,196,2426,216,2354,229,2295,243,2282,247,2281,242,2294,237,2353,223,2425,211,2600,191,2805,176,3022,166,3435,157,3712,156"/>
+<area shape="rect" id="Node000026" href="$class_code_smile_1_1_statemachine_1_1_conditions_1_1_logical_and.html" title="Logically ANDs the contained conditions." alt="" coords="2307,251,2419,320"/>
+<area shape="poly" id="edge25_Node000023_Node000026" title=" " alt="" coords="3712,161,3457,162,3084,171,2888,181,2705,196,2548,216,2484,228,2432,243,2408,253,2406,248,2430,237,2482,223,2547,211,2704,191,2888,176,3084,166,3457,157,3712,156"/>
+<area shape="rect" id="Node000027" href="$class_code_smile_1_1_statemachine_1_1_conditions_1_1_logical_nand.html" title="Logically combines the contained conditions with NAND (NOT AND)." alt="" coords="2443,251,2546,320"/>
+<area shape="poly" id="edge26_Node000023_Node000027" title=" " alt="" coords="3712,161,3479,163,3143,173,2967,183,2802,197,2662,217,2605,229,2558,242,2537,253,2534,248,2556,238,2603,224,2661,212,2802,192,2966,178,3142,168,3479,158,3712,156"/>
+<area shape="rect" id="Node000028" href="$class_code_smile_1_1_statemachine_1_1_conditions_1_1_logical_nor.html" title="Logically combines the contained conditions with NOR (NOT OR)." alt="" coords="2570,251,2662,320"/>
+<area shape="poly" id="edge27_Node000023_Node000028" title=" " alt="" coords="3712,161,3499,164,3196,174,3038,185,2892,199,2767,218,2716,229,2674,242,2654,253,2652,248,2672,238,2714,224,2766,213,2891,193,3038,179,3196,169,3499,158,3712,156"/>
+<area shape="rect" id="Node000029" href="$class_code_smile_1_1_statemachine_1_1_conditions_1_1_logical_not.html" title="Logically negates the contained condition (NOT)." alt="" coords="2686,251,2791,320"/>
+<area shape="poly" id="edge28_Node000023_Node000029" title=" " alt="" coords="3712,162,3521,168,3257,181,3121,192,2994,205,2885,222,2805,243,2783,253,2781,248,2803,237,2884,217,2993,200,3120,187,3257,176,3521,163,3712,157"/>
+<area shape="rect" id="Node000030" href="$class_code_smile_1_1_statemachine_1_1_conditions_1_1_logical_or.html" title="Logically combines the contained conditions with OR." alt="" coords="2816,251,2928,320"/>
+<area shape="poly" id="edge29_Node000023_Node000030" title=" " alt="" coords="3712,163,3546,171,3322,186,3100,210,3009,225,2941,243,2918,253,2916,248,2939,237,3008,220,3099,205,3322,181,3546,166,3712,158"/>
+<area shape="rect" id="Node000031" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_listening.html" title="Checks if NetworkManager&#39;s IsListening property is true (eg tests if online or offline)." alt="" coords="2952,251,3027,320"/>
+<area shape="poly" id="edge30_Node000023_Node000031" title=" " alt="" coords="3712,163,3564,170,3367,185,3175,208,3097,224,3040,242,3022,253,3019,249,3038,238,3096,219,3174,203,3367,179,3563,165,3712,158"/>
+<area shape="rect" id="Node000032" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_client_connected.html" title="Tests if the client that this script executes on is currently connected to a network session." alt="" coords="3051,251,3200,320"/>
+<area shape="poly" id="edge31_Node000023_Node000032" title=" " alt="" coords="3712,163,3618,170,3493,184,3352,207,3281,223,3213,243,3185,253,3183,248,3211,237,3280,218,3351,202,3492,178,3617,165,3712,158"/>
+<area shape="rect" id="Node000034" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_client_started.html" title="Is true after NetworkManager StartClient has been called until the client stops or a transport failur..." alt="" coords="3225,251,3354,320"/>
+<area shape="poly" id="edge32_Node000023_Node000034" title=" " alt="" coords="3712,166,3555,191,3460,213,3366,242,3343,253,3341,248,3364,238,3459,208,3554,185,3711,161"/>
+<area shape="rect" id="Node000036" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_server_started.html" title="Is true after NetworkManager StartServer is called and until server stops or a transport failure occu..." alt="" coords="3378,251,3510,320"/>
+<area shape="poly" id="edge33_Node000023_Node000036" title=" " alt="" coords="3713,175,3623,203,3522,242,3501,253,3498,248,3520,238,3622,198,3712,170"/>
+<area shape="rect" id="Node000038" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_netcode_role.html" title="Tests if the config variable&#39;s NetcodeRole matches the parameter." alt="" coords="3534,251,3650,320"/>
+<area shape="poly" id="edge34_Node000023_Node000038" title=" " alt="" coords="3716,195,3638,253,3635,249,3713,191"/>
+<area shape="rect" id="Node000040" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_network_manager_singleton_assigned.html" title="Is true once NetworkManager singleton no longer returns null." alt="" coords="3675,243,3848,328"/>
+<area shape="poly" id="edge35_Node000023_Node000040" title=" " alt="" coords="3764,207,3764,243,3759,243,3759,207"/>
+<area shape="rect" id="Node000041" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_network_offline.html" title="Tests if network is fully offline &#45; the server/host is not immediately offline after calling Shutdown..." alt="" coords="3873,251,3978,320"/>
+<area shape="poly" id="edge36_Node000023_Node000041" title=" " alt="" coords="3809,192,3884,249,3881,253,3806,196"/>
+<area shape="rect" id="Node000042" href="$class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_not_listening.html" title="Is true if the NetworkManager IsListening state is false (offline)." alt="" coords="4002,251,4097,320"/>
+<area shape="poly" id="edge37_Node000023_Node000042" title=" " alt="" coords="3811,169,3897,196,3945,215,3992,238,4009,248,4007,253,3989,242,3943,220,3895,201,3809,174"/>
+<area shape="rect" id="Node000043" href="$class_code_smile_1_1_statemachine_1_1_services_1_1_authentication_1_1_conditions_1_1_is_signed_in.html" title="Is true if services are initialized and user is signed in." alt="" coords="4121,251,4194,320"/>
+<area shape="poly" id="edge38_Node000023_Node000043" title=" " alt="" coords="3812,160,3874,167,3951,182,4032,205,4111,238,4127,249,4124,253,4108,242,4031,210,3949,187,3873,173,3811,165"/>
+<area shape="rect" id="Node000045" href="$class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_conditions_1_1_is_relay_enabled.html" title="Is true if the relay configuration has relay enabled." alt="" coords="4218,251,4339,320"/>
+<area shape="poly" id="edge39_Node000023_Node000045" title=" " alt="" coords="3811,159,3889,167,3989,181,4099,204,4208,238,4231,248,4228,253,4206,242,4098,209,3988,186,3888,172,3810,164"/>
+<area shape="rect" id="Node000046" href="$class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_conditions_1_1_is_relay_ready.html" title="Is true if RelayConfig has an allocation, be it a Host or Join allocation." alt="" coords="4364,251,4476,320"/>
+<area shape="poly" id="edge40_Node000023_Node000046" title=" " alt="" coords="3811,156,3912,159,4049,170,4202,195,4279,214,4353,238,4376,248,4373,253,4351,242,4277,219,4201,200,4048,176,3912,164,3811,161"/>
+<area shape="rect" id="Node000047" title=" " alt="" coords="4500,251,4556,320"/>
+<area shape="poly" id="edge41_Node000023_Node000047" title=" " alt="" coords="3811,157,3960,163,4159,176,4259,186,4353,200,4431,217,4489,238,4505,249,4502,253,4487,242,4430,222,4352,205,4259,191,4158,181,3960,168,3810,162"/>
+<area shape="rect" id="Node000048" title=" " alt="" coords="4581,251,4635,320"/>
+<area shape="poly" id="edge42_Node000023_Node000048" title=" " alt="" coords="3811,156,3975,160,4197,172,4310,183,4415,197,4504,215,4569,238,4585,249,4582,253,4567,242,4503,220,4414,202,4310,188,4197,178,3975,166,3811,162"/>
+<area shape="rect" id="Node000049" title=" " alt="" coords="4659,251,4725,320"/>
+<area shape="poly" id="edge43_Node000023_Node000049" title=" " alt="" coords="3811,156,3990,159,4235,171,4361,181,4477,195,4576,214,4649,238,4666,249,4663,253,4647,242,4575,219,4476,200,4360,186,4235,176,3990,165,3811,161"/>
+<area shape="rect" id="Node000050" title=" " alt="" coords="4749,251,4862,320"/>
+<area shape="poly" id="edge44_Node000023_Node000050" title=" " alt="" coords="3811,157,4004,163,4274,176,4414,187,4544,200,4655,217,4738,237,4762,248,4759,253,4736,243,4654,222,4543,206,4413,192,4274,182,4004,168,3811,162"/>
+<area shape="rect" id="Node000051" title=" " alt="" coords="4887,251,4937,320"/>
+<area shape="poly" id="edge45_Node000023_Node000051" title=" " alt="" coords="3811,157,4049,166,4383,181,4697,205,4810,220,4850,229,4876,238,4891,249,4888,253,4873,242,4848,234,4809,225,4696,210,4383,187,4049,171,3811,163"/>
+<area shape="rect" id="Node000052" title=" " alt="" coords="4962,251,5059,320"/>
+<area shape="poly" id="edge46_Node000023_Node000052" title=" " alt="" coords="3811,156,4042,158,4374,168,4547,178,4709,192,4847,212,4904,224,4950,238,4972,248,4970,253,4948,242,4903,229,4846,217,4708,197,4547,183,4374,173,4042,163,3811,161"/>
+<area shape="rect" id="Node000053" title=" " alt="" coords="5083,251,5159,320"/>
+<area shape="poly" id="edge47_Node000023_Node000053" title=" " alt="" coords="3811,157,4086,165,4481,181,4857,205,4993,220,5041,228,5073,238,5091,248,5089,253,5071,242,5040,234,4993,225,4856,210,4481,186,4086,170,3811,162"/>
+<area shape="rect" id="Node000054" title=" " alt="" coords="5184,251,5232,320"/>
+<area shape="poly" id="edge48_Node000023_Node000054" title=" " alt="" coords="3811,157,4106,161,4534,174,4749,185,4941,199,5088,216,5140,226,5173,238,5188,249,5185,253,5171,242,5138,231,5087,221,4940,204,4749,190,4533,180,4105,167,3811,162"/>
 </map>

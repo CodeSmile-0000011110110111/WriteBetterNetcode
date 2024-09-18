@@ -18,14 +18,37 @@ namespace CodeSmile.Statemachine
 			private Transition[] m_Transitions;
 
 			internal Transition[] Transitions => m_Transitions;
+
+			/// <summary>
+			/// The State's name.
+			/// </summary>
 			public String Name { get; }
+			/// <summary>
+			/// Whether this state has logging enabled.
+			/// </summary>
 			public Boolean Logging { get; set; }
 
+			/// <summary>
+			/// Equality operator
+			/// </summary>
+			/// <param name="left"></param>
+			/// <param name="right"></param>
+			/// <returns></returns>
 			public static Boolean operator ==(State left, State right) => Equals(left, right);
+			/// <summary>
+			/// Inequality operator
+			/// </summary>
+			/// <param name="left"></param>
+			/// <param name="right"></param>
+			/// <returns></returns>
 			public static Boolean operator !=(State left, State right) => !Equals(left, right);
 
 			private State() {} // forbidden default ctor
 
+			/// <summary>
+			/// Create a new named state.
+			/// </summary>
+			/// <param name="stateName"></param>
 			public State(String stateName) => Name = stateName;
 
 			public Boolean Equals(State other)
@@ -40,16 +63,36 @@ namespace CodeSmile.Statemachine
 
 			public override String ToString() => $"State({Name})";
 
+			/// <summary>
+			/// Add an empty transition to this state.
+			/// </summary>
+			/// <returns></returns>
 			public Transition AddTransition() => AddTransition(new Transition());
 
+			/// <summary>
+			/// Add a named transition to this state.
+			/// </summary>
+			/// <param name="transitionName"></param>
+			/// <returns></returns>
 			public Transition AddTransition(String transitionName) => AddTransition(new Transition(transitionName));
 
+			/// <summary>
+			/// Add the given transition.
+			/// </summary>
+			/// <param name="transition"></param>
+			/// <returns></returns>
 			public Transition AddTransition(Transition transition)
 			{
 				AddTransitions(transition);
 				return transition;
 			}
 
+			/// <summary>
+			/// Add multiple transitions.
+			/// </summary>
+			/// <param name="transitions"></param>
+			/// <returns></returns>
+			/// <exception cref="ArgumentException"></exception>
 			public State AddTransitions(params Transition[] transitions)
 			{
 				if (transitions == null || transitions.Length == 0)
@@ -70,8 +113,17 @@ namespace CodeSmile.Statemachine
 				return this;
 			}
 
+			/// <summary>
+			/// Is true if the State has no conditions. It is a so-called final state from which there is no return.
+			/// Such a state ends the statemachine.
+			/// </summary>
+			/// <returns></returns>
 			public Boolean IsFinalState() => Transitions.Length == 0;
 
+			/// <summary>
+			/// Updating the state will update all its transitions.
+			/// </summary>
+			/// <param name="sm"></param>
 			public void Update(FSM sm)
 			{
 				foreach (var transition in Transitions)

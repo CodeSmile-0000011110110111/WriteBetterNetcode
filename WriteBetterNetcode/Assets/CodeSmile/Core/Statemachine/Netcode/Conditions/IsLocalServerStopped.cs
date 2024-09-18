@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode.Conditions
 {
+	/// <summary>
+	/// Tests if the server is not in the started state.
+	/// </summary>
 	public sealed class IsLocalServerStopped : IsLocalServerStarted
 	{
 		public override Boolean IsSatisfied(FSM sm) => !base.IsSatisfied(sm);

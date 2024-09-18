@@ -1,0 +1,9 @@
+<map id="GetInt" name="GetInt">
+<area shape="rect" id="Node000001" title="Gets the argument&#39;s value. If the argument was not specified, returns the default value." alt="" coords="296,80,352,107"/>
+<area shape="rect" id="Node000002" href="$struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a8ef954534c21c943bcb4afc8838d6b7e.html#a8ef954534c21c943bcb4afc8838d6b7e" title="Create a NetcodeConfig from command line parameters. Omitted parameters will use default values." alt="" coords="14,5,239,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="281,76,247,63,212,51,214,46,249,57,283,71"/>
+<area shape="rect" id="Node000003" href="$struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_aee8c740c5bf1c5ae8ba8a93cbec1e6ed.html#aee8c740c5bf1c5ae8ba8a93cbec1e6ed" title="Creates a RelayConfig from command line arguments. Omitted parameters will use default values." alt="" coords="14,72,239,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="280,96,239,96,239,91,280,91"/>
+<area shape="rect" id="Node000004" href="$struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a2eda7e08f5a1c19078e54ec81951abbc.html#a2eda7e08f5a1c19078e54ec81951abbc" title="Creates a TransportConfig instance from current NetworkManager Transport settings and then have comma..." alt="" coords="5,139,248,197"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="282,115,249,129,218,141,216,136,247,124,280,110"/>
+</map>

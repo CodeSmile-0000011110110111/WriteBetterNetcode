@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Variable.Actions
 {
+	/// <summary>
+	/// Multiplies variable by a value.
+	/// </summary>
 	public sealed class MulValue : IAction
 	{
 		private readonly VariableBase m_Variable;

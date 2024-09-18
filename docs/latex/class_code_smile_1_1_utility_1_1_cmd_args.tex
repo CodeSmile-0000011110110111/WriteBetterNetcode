@@ -2,8 +2,12 @@
 \hypertarget{class_code_smile_1_1_utility_1_1_cmd_args}{}\label{class_code_smile_1_1_utility_1_1_cmd_args}\index{CmdArgs@{CmdArgs}}
 
 
-Collaboration diagram for Cmd\+Args\+:
-\nopagebreak
+Parses command line arguments.  
+
+
+
+
+Collaboration diagram for Cmd\+Args\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -13,33 +17,159 @@ Collaboration diagram for Cmd\+Args\+:
 \doxysubsubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{class_code_smile_1_1_utility_1_1_cmd_args_a79095917ed7ee571c506ef9848e3e80f}\label{class_code_smile_1_1_utility_1_1_cmd_args_a79095917ed7ee571c506ef9848e3e80f} 
-static Boolean {\bfseries Exists} (String key)
-\item 
-\Hypertarget{class_code_smile_1_1_utility_1_1_cmd_args_a460999834701529d77ac7702cf95c878}\label{class_code_smile_1_1_utility_1_1_cmd_args_a460999834701529d77ac7702cf95c878} 
-static Boolean {\bfseries Get\+Bool} (String key, Boolean default\+Value=default)
-\item 
-\Hypertarget{class_code_smile_1_1_utility_1_1_cmd_args_ab2fe1255cc55d7030750808740444dc5}\label{class_code_smile_1_1_utility_1_1_cmd_args_ab2fe1255cc55d7030750808740444dc5} 
-static Single {\bfseries Get\+Float} (String key, Single default\+Value=default)
-\item 
-\Hypertarget{class_code_smile_1_1_utility_1_1_cmd_args_ae0e2e7391ee3a4fde07a151f58e54531}\label{class_code_smile_1_1_utility_1_1_cmd_args_ae0e2e7391ee3a4fde07a151f58e54531} 
-static Int32 {\bfseries Get\+Int} (String key, Int32 default\+Value=default)
-\item 
-\Hypertarget{class_code_smile_1_1_utility_1_1_cmd_args_aaa3660e842edbad17a4550bd67e365df}\label{class_code_smile_1_1_utility_1_1_cmd_args_aaa3660e842edbad17a4550bd67e365df} 
-static String {\bfseries Get\+String} (String key, String default\+Value=null)
-\item 
+static Boolean \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_a79095917ed7ee571c506ef9848e3e80f_a79095917ed7ee571c506ef9848e3e80f}{Exists}} (String key)
+\begin{DoxyCompactList}\small\item\em Does an argument with the given key exist? \end{DoxyCompactList}\item 
+static Boolean \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_a460999834701529d77ac7702cf95c878_a460999834701529d77ac7702cf95c878}{Get\+Bool}} (String key, Boolean default\+Value=default)
+\begin{DoxyCompactList}\small\item\em Gets the argument\textquotesingle{}s value. If the argument was not specified, returns the default value. \end{DoxyCompactList}\item 
+static Single \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_ab2fe1255cc55d7030750808740444dc5_ab2fe1255cc55d7030750808740444dc5}{Get\+Float}} (String key, Single default\+Value=default)
+\begin{DoxyCompactList}\small\item\em Gets the argument\textquotesingle{}s value. If the argument was not specified, returns the default value. \end{DoxyCompactList}\item 
+static Int32 \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_ae0e2e7391ee3a4fde07a151f58e54531_ae0e2e7391ee3a4fde07a151f58e54531}{Get\+Int}} (String key, Int32 default\+Value=default)
+\begin{DoxyCompactList}\small\item\em Gets the argument\textquotesingle{}s value. If the argument was not specified, returns the default value. \end{DoxyCompactList}\item 
+static String \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_aaa3660e842edbad17a4550bd67e365df_aaa3660e842edbad17a4550bd67e365df}{Get\+String}} (String key, String default\+Value=null)
+\begin{DoxyCompactList}\small\item\em Gets the argument\textquotesingle{}s value. If the argument was not specified, returns the default value. \end{DoxyCompactList}\item 
 static void \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_a9f1ad868b1cd6b2201b73076f7af4b4c_a9f1ad868b1cd6b2201b73076f7af4b4c}{Log}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Debug.\+Logs the current command line. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsubsection{Detailed Description}
+Parses command line arguments. 
 
-
-Definition at line \mbox{\hyperlink{_cmd_args_8cs_source_l00013}{13}} of file \mbox{\hyperlink{_cmd_args_8cs_source}{Cmd\+Args.\+cs}}.
+Definition at line \mbox{\hyperlink{_cmd_args_8cs_source_l00016}{16}} of file \mbox{\hyperlink{_cmd_args_8cs_source}{Cmd\+Args.\+cs}}.
 
 
 
 \doxysubsubsection{Member Function Documentation}
+\Hypertarget{class_code_smile_1_1_utility_1_1_cmd_args_a79095917ed7ee571c506ef9848e3e80f_a79095917ed7ee571c506ef9848e3e80f}\index{CmdArgs@{CmdArgs}!Exists@{Exists}}
+\index{Exists@{Exists}!CmdArgs@{CmdArgs}}
+\doxyparagraph{\texorpdfstring{Exists()}{Exists()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_utility_1_1_cmd_args_a79095917ed7ee571c506ef9848e3e80f_a79095917ed7ee571c506ef9848e3e80f} 
+static Boolean Exists (\begin{DoxyParamCaption}\item[{String}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Does an argument with the given key exist? 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_code_smile_1_1_utility_1_1_cmd_args_a460999834701529d77ac7702cf95c878_a460999834701529d77ac7702cf95c878}\index{CmdArgs@{CmdArgs}!GetBool@{GetBool}}
+\index{GetBool@{GetBool}!CmdArgs@{CmdArgs}}
+\doxyparagraph{\texorpdfstring{GetBool()}{GetBool()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_utility_1_1_cmd_args_a460999834701529d77ac7702cf95c878_a460999834701529d77ac7702cf95c878} 
+static Boolean Get\+Bool (\begin{DoxyParamCaption}\item[{String}]{key}{, }\item[{Boolean}]{default\+Value}{ = {\ttfamily default}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Gets the argument\textquotesingle{}s value. If the argument was not specified, returns the default value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & \\
+\hline
+{\em default\+Value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Referenced by \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_aee8c740c5bf1c5ae8ba8a93cbec1e6ed_aee8c740c5bf1c5ae8ba8a93cbec1e6ed}{Relay\+Config.\+From\+Cmd\+Args()}}, and \mbox{\hyperlink{_transport_config_8cs_source_l00065}{Transport\+Config.\+From\+Network\+Manager\+With\+Cmd\+Arg\+Overrides()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=349pt]{class_code_smile_1_1_utility_1_1_cmd_args_a460999834701529d77ac7702cf95c878_a460999834701529d77ac7702cf95c878_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_code_smile_1_1_utility_1_1_cmd_args_ab2fe1255cc55d7030750808740444dc5_ab2fe1255cc55d7030750808740444dc5}\index{CmdArgs@{CmdArgs}!GetFloat@{GetFloat}}
+\index{GetFloat@{GetFloat}!CmdArgs@{CmdArgs}}
+\doxyparagraph{\texorpdfstring{GetFloat()}{GetFloat()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_utility_1_1_cmd_args_ab2fe1255cc55d7030750808740444dc5_ab2fe1255cc55d7030750808740444dc5} 
+static Single Get\+Float (\begin{DoxyParamCaption}\item[{String}]{key}{, }\item[{Single}]{default\+Value}{ = {\ttfamily default}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Gets the argument\textquotesingle{}s value. If the argument was not specified, returns the default value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & \\
+\hline
+{\em default\+Value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_code_smile_1_1_utility_1_1_cmd_args_ae0e2e7391ee3a4fde07a151f58e54531_ae0e2e7391ee3a4fde07a151f58e54531}\index{CmdArgs@{CmdArgs}!GetInt@{GetInt}}
+\index{GetInt@{GetInt}!CmdArgs@{CmdArgs}}
+\doxyparagraph{\texorpdfstring{GetInt()}{GetInt()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_utility_1_1_cmd_args_ae0e2e7391ee3a4fde07a151f58e54531_ae0e2e7391ee3a4fde07a151f58e54531} 
+static Int32 Get\+Int (\begin{DoxyParamCaption}\item[{String}]{key}{, }\item[{Int32}]{default\+Value}{ = {\ttfamily default}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Gets the argument\textquotesingle{}s value. If the argument was not specified, returns the default value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & \\
+\hline
+{\em default\+Value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Referenced by \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config_a8ef954534c21c943bcb4afc8838d6b7e_a8ef954534c21c943bcb4afc8838d6b7e}{Netcode\+Config.\+From\+Cmd\+Args()}}, \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_aee8c740c5bf1c5ae8ba8a93cbec1e6ed_aee8c740c5bf1c5ae8ba8a93cbec1e6ed}{Relay\+Config.\+From\+Cmd\+Args()}}, and \mbox{\hyperlink{_transport_config_8cs_source_l00065}{Transport\+Config.\+From\+Network\+Manager\+With\+Cmd\+Arg\+Overrides()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{class_code_smile_1_1_utility_1_1_cmd_args_ae0e2e7391ee3a4fde07a151f58e54531_ae0e2e7391ee3a4fde07a151f58e54531_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_code_smile_1_1_utility_1_1_cmd_args_aaa3660e842edbad17a4550bd67e365df_aaa3660e842edbad17a4550bd67e365df}\index{CmdArgs@{CmdArgs}!GetString@{GetString}}
+\index{GetString@{GetString}!CmdArgs@{CmdArgs}}
+\doxyparagraph{\texorpdfstring{GetString()}{GetString()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_utility_1_1_cmd_args_aaa3660e842edbad17a4550bd67e365df_aaa3660e842edbad17a4550bd67e365df} 
+static String Get\+String (\begin{DoxyParamCaption}\item[{String}]{key}{, }\item[{String}]{default\+Value}{ = {\ttfamily null}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Gets the argument\textquotesingle{}s value. If the argument was not specified, returns the default value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & \\
+\hline
+{\em default\+Value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Referenced by \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config_aee8c740c5bf1c5ae8ba8a93cbec1e6ed_aee8c740c5bf1c5ae8ba8a93cbec1e6ed}{Relay\+Config.\+From\+Cmd\+Args()}}, and \mbox{\hyperlink{_transport_config_8cs_source_l00065}{Transport\+Config.\+From\+Network\+Manager\+With\+Cmd\+Arg\+Overrides()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_code_smile_1_1_utility_1_1_cmd_args_aaa3660e842edbad17a4550bd67e365df_aaa3660e842edbad17a4550bd67e365df_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{class_code_smile_1_1_utility_1_1_cmd_args_a9f1ad868b1cd6b2201b73076f7af4b4c_a9f1ad868b1cd6b2201b73076f7af4b4c}\index{CmdArgs@{CmdArgs}!Log@{Log}}
 \index{Log@{Log}!CmdArgs@{CmdArgs}}
 \doxyparagraph{\texorpdfstring{Log()}{Log()}}
@@ -48,20 +178,24 @@ static void Log (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3c
 
 
 
-Definition at line \mbox{\hyperlink{_cmd_args_8cs_source_l00022}{22}} of file \mbox{\hyperlink{_cmd_args_8cs_source}{Cmd\+Args.\+cs}}.
+Debug.\+Logs the current command line. 
+
+
+
+Definition at line \mbox{\hyperlink{_cmd_args_8cs_source_l00028}{28}} of file \mbox{\hyperlink{_cmd_args_8cs_source}{Cmd\+Args.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ var\ sb\ =\ \textcolor{keyword}{new}\ StringBuilder(\textcolor{stringliteral}{"{}CmdArgs:\ "{}});}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ var\ cmdArgs\ =\ Environment.GetCommandLineArgs();}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ arg\ \textcolor{keywordflow}{in}\ cmdArgs)}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sb.Append(arg.ToLower());}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sb.Append(\textcolor{stringliteral}{"{}\ "{}});}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(sb.ToString());}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ var\ sb\ =\ \textcolor{keyword}{new}\ StringBuilder(\textcolor{stringliteral}{"{}CmdArgs:\ "{}});}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ var\ cmdArgs\ =\ Environment.GetCommandLineArgs();}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ arg\ \textcolor{keywordflow}{in}\ cmdArgs)}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sb.Append(arg.ToLower());}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sb.Append(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(sb.ToString());}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \}}
 
 \end{DoxyCode}

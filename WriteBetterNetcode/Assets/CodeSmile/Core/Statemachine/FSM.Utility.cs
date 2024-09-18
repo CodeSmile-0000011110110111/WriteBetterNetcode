@@ -12,16 +12,17 @@ namespace CodeSmile.Statemachine
 {
 	public sealed partial class FSM
 	{
-		public static void LogCondition(FSM sm, String transitionName, ICondition condition, Boolean satisfied) => Debug.Log(
+
+		internal static void LogCondition(FSM sm, String transitionName, ICondition condition, Boolean satisfied) => Debug.Log(
 			$"{LogPrefix(sm, transitionName)}: {(satisfied ? "TRUE" : "false")} == ({condition.ToDebugString(sm)})");
 
-		public static void LogExecuteAction(FSM sm, String transitionName, IAction action) => Debug.Log(
+		internal static void LogExecuteAction(FSM sm, String transitionName, IAction action) => Debug.Log(
 			$"{LogPrefix(sm, transitionName)}: Execute{(action is IAsyncAction ? "Async" : "")}({action.ToDebugString(sm)})");
 
-		public static void LogStateChange(FSM sm, State toState, String transitionName) =>
+		internal static void LogStateChange(FSM sm, State toState, String transitionName) =>
 			Debug.Log($"{LogPrefix(sm, transitionName)} ===> {toState.Name}");
 
-		private static String LogPrefix(FSM sm, String transitionName) =>
+		internal static String LogPrefix(FSM sm, String transitionName) =>
 			$"<{Time.frameCount}> {sm.ActiveState.Name} [{(String.IsNullOrEmpty(transitionName) ? "" : transitionName)}]";
 
 #if UNITY_EDITOR
@@ -32,6 +33,12 @@ namespace CodeSmile.Statemachine
 		};
 #endif
 
+		/// <summary>
+		/// Dump the FSM to PlantUML format for diagram generation.
+		/// </summary>
+		/// <param name="showCurrentTruthValues"></param>
+		/// <returns></returns>
+		/// <exception cref="Exception"></exception>
 		public String ToPlantUml(Boolean showCurrentTruthValues = false)
 		{
 			// disable logging for dump

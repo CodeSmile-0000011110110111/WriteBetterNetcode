@@ -8,14 +8,30 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode
 {
+	/// <summary>
+	///     DTO that provides configuration options for Transport setup and NetworkManager.
+	/// </summary>
 	[Serializable]
 	public struct NetcodeConfig
 	{
+		/// <summary>
+		///     The Role we want to play as.
+		/// </summary>
 		public NetcodeRole Role;
 
-		// Byte is deliberate! Relay limit is 100 connections
+		/// <summary>
+		///     Limits the maximum number of allowed connections.
+		/// </summary>
+		/// <remarks>
+		///     Byte is deliberate, since Relay limit is 100 connections and a Netcode project with >250 clients is outside
+		///     its intended scope.
+		/// </remarks>
 		public Byte MaxConnections;
 
+		/// <summary>
+		/// Create a NetcodeConfig from command line parameters. Omitted parameters will use default values.
+		/// </summary>
+		/// <returns></returns>
 		public static NetcodeConfig FromCmdArgs() => new()
 		{
 			Role = GetRoleFromCmdArgs(),

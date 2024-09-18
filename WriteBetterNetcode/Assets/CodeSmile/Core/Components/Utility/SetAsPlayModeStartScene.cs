@@ -23,7 +23,7 @@ namespace CodeSmile.Components.Utility
 	{
 #if UNITY_EDITOR
 		[MenuItem("Tools/CodeSmile/Reset Playmode StartScene")]
-		public static void MenuItem() => EditorSceneManager.playModeStartScene = null;
+		public static void ResetPlayModeStartScene() => EditorSceneManager.playModeStartScene = null;
 
 		private const String PlayModeScenePathKey = "CodeSmile.EnterPlayModeStartScenePath";
 

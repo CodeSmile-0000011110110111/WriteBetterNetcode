@@ -21,10 +21,10 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l00017}00017\ }
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l00018}\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_input}{00018}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_input}{CodeSmile.MultiPal.Input}}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l00019}00019\ \{}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l00020}\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input}{00020}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{partial\ class\ }@\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input}{GeneratedInput}}:\ IInputActionCollection2,\ IDisposable}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l00020}00020\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{partial\ class\ }@GeneratedInput:\ IInputActionCollection2,\ IDisposable}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l00021}00021\ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ InputActionAsset\ asset\ \{\ \textcolor{keyword}{get};\ \}}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ @\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input}{GeneratedInput}}()}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ @GeneratedInput()}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ asset\ =\ InputActionAsset.FromJson(\textcolor{stringliteral}{@"{}\{}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l00026}00026\ \textcolor{stringliteral}{\ \ \ \ "{}"{}name"{}"{}:\ "{}"{}InputActions"{}"{},}}
@@ -1221,7 +1221,7 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01217}01217\ \ \ \ \ \ \ \ \ \ \ \ \ m\_PlayerUI\_Down\ =\ m\_PlayerUI.FindAction(\textcolor{stringliteral}{"{}Down"{}},\ throwIfNotFound:\ \textcolor{keyword}{true});}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01218}01218\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01219}01219\ }
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01220}01220\ \ \ \ \ \ \ \ \ \string~@\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input}{GeneratedInput}}()}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01220}01220\ \ \ \ \ \ \ \ \ \string~@GeneratedInput()}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01221}01221\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01222}01222\ \ \ \ \ \ \ \ \ \ \ \ \ UnityEngine.Debug.Assert(!m\_Pairing.enabled,\ \textcolor{stringliteral}{"{}This\ will\ cause\ a\ leak\ and\ performance\ issues,\ GeneratedInput.Pairing.Disable()\ has\ not\ been\ called."{}});}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01223}01223\ \ \ \ \ \ \ \ \ \ \ \ \ UnityEngine.Debug.Assert(!m\_UI.enabled,\ \textcolor{stringliteral}{"{}This\ will\ cause\ a\ leak\ and\ performance\ issues,\ GeneratedInput.UI.Disable()\ has\ not\ been\ called."{}});}
@@ -1291,18 +1291,18 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01287}01287\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ List<IPairingActions>\ m\_PairingActionsCallbackInterfaces\ =\ \textcolor{keyword}{new}\ List<IPairingActions>();}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01288}01288\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ InputAction\ m\_Pairing\_Join;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01289}01289\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ InputAction\ m\_Pairing\_Leave;}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01290}\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_pairing_actions}{01290}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_pairing_actions}{PairingActions}}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01290}01290\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{struct\ }PairingActions}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01291}01291\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01292}01292\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ @\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input}{GeneratedInput}}\ m\_Wrapper;}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01293}01293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_pairing_actions}{PairingActions}}(@\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input}{GeneratedInput}}\ wrapper)\ \{\ m\_Wrapper\ =\ wrapper;\ \}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01292}01292\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ @GeneratedInput\ m\_Wrapper;}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01293}01293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ PairingActions(@GeneratedInput\ wrapper)\ \{\ m\_Wrapper\ =\ wrapper;\ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01294}01294\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ InputAction\ @Join\ =>\ m\_Wrapper.m\_Pairing\_Join;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01295}01295\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ InputAction\ @Leave\ =>\ m\_Wrapper.m\_Pairing\_Leave;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01296}01296\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ InputActionMap\ Get()\ \{\ \textcolor{keywordflow}{return}\ m\_Wrapper.m\_Pairing;\ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01297}01297\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Enable()\ \{\ Get().Enable();\ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01298}01298\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Disable()\ \{\ Get().Disable();\ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01299}01299\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ enabled\ =>\ Get().enabled;}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01300}01300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ implicit\ \textcolor{keyword}{operator}\ InputActionMap(\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_pairing_actions}{PairingActions}}\ \textcolor{keyword}{set})\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{set}.Get();\ \}}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01301}01301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ AddCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_pairing_actions}{IPairingActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01300}01300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ implicit\ \textcolor{keyword}{operator}\ InputActionMap(PairingActions\ \textcolor{keyword}{set})\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{set}.Get();\ \}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01301}01301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ AddCallbacks(IPairingActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01302}01302\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01303}01303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance\ ==\ \textcolor{keyword}{null}\ ||\ m\_Wrapper.m\_PairingActionsCallbackInterfaces.Contains(instance))\ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01304}01304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_Wrapper.m\_PairingActionsCallbackInterfaces.Add(instance);}
@@ -1314,7 +1314,7 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01310}01310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Leave.canceled\ +=\ instance.OnLeave;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01311}01311\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01312}01312\ }
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01313}01313\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ UnregisterCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_pairing_actions}{IPairingActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01313}01313\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ UnregisterCallbacks(IPairingActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01314}01314\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01315}01315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Join.started\ -\/=\ instance.OnJoin;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01316}01316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Join.performed\ -\/=\ instance.OnJoin;}
@@ -1324,13 +1324,13 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01320}01320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Leave.canceled\ -\/=\ instance.OnLeave;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01321}01321\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01322}01322\ }
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01323}01323\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ RemoveCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_pairing_actions}{IPairingActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01323}01323\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ RemoveCallbacks(IPairingActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01324}01324\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01325}01325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_Wrapper.m\_PairingActionsCallbackInterfaces.Remove(instance))}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01326}01326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnregisterCallbacks(instance);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01327}01327\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01328}01328\ }
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01329}01329\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_pairing_actions}{IPairingActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01329}01329\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetCallbacks(IPairingActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01330}01330\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01331}01331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ item\ \textcolor{keywordflow}{in}\ m\_Wrapper.m\_PairingActionsCallbackInterfaces)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01332}01332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnregisterCallbacks(item);}
@@ -1338,7 +1338,7 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01334}01334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AddCallbacks(instance);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01335}01335\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01336}01336\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01337}01337\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_pairing_actions}{PairingActions}}\ @Pairing\ =>\ \textcolor{keyword}{new}\ \mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_pairing_actions}{PairingActions}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01337}01337\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ PairingActions\ @Pairing\ =>\ \textcolor{keyword}{new}\ PairingActions(\textcolor{keyword}{this});}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01338}01338\ }
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01339}01339\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ UI}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01340}01340\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ InputActionMap\ m\_UI;}
@@ -1353,10 +1353,10 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01349}01349\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ InputAction\ m\_UI\_ScrollWheel;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01350}01350\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ InputAction\ m\_UI\_TrackedDevicePosition;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01351}01351\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ InputAction\ m\_UI\_TrackedDeviceOrientation;}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01352}\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_u_i_actions}{01352}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_u_i_actions}{UIActions}}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01352}01352\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{struct\ }UIActions}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01353}01353\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01354}01354\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ @\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input}{GeneratedInput}}\ m\_Wrapper;}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01355}01355\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_u_i_actions}{UIActions}}(@\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input}{GeneratedInput}}\ wrapper)\ \{\ m\_Wrapper\ =\ wrapper;\ \}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01354}01354\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ @GeneratedInput\ m\_Wrapper;}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01355}01355\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ UIActions(@GeneratedInput\ wrapper)\ \{\ m\_Wrapper\ =\ wrapper;\ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01356}01356\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ InputAction\ @Navigate\ =>\ m\_Wrapper.m\_UI\_Navigate;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01357}01357\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ InputAction\ @Submit\ =>\ m\_Wrapper.m\_UI\_Submit;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01358}01358\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ InputAction\ @Cancel\ =>\ m\_Wrapper.m\_UI\_Cancel;}
@@ -1371,8 +1371,8 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01367}01367\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Enable()\ \{\ Get().Enable();\ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01368}01368\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Disable()\ \{\ Get().Disable();\ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01369}01369\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ enabled\ =>\ Get().enabled;}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01370}01370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ implicit\ \textcolor{keyword}{operator}\ InputActionMap(\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_u_i_actions}{UIActions}}\ \textcolor{keyword}{set})\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{set}.Get();\ \}}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01371}01371\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ AddCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_u_i_actions}{IUIActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01370}01370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ implicit\ \textcolor{keyword}{operator}\ InputActionMap(UIActions\ \textcolor{keyword}{set})\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{set}.Get();\ \}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01371}01371\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ AddCallbacks(IUIActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01372}01372\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01373}01373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance\ ==\ \textcolor{keyword}{null}\ ||\ m\_Wrapper.m\_UIActionsCallbackInterfaces.Contains(instance))\ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01374}01374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_Wrapper.m\_UIActionsCallbackInterfaces.Add(instance);}
@@ -1408,7 +1408,7 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01404}01404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @TrackedDeviceOrientation.canceled\ +=\ instance.OnTrackedDeviceOrientation;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01405}01405\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01406}01406\ }
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01407}01407\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ UnregisterCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_u_i_actions}{IUIActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01407}01407\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ UnregisterCallbacks(IUIActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01408}01408\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01409}01409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Navigate.started\ -\/=\ instance.OnNavigate;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01410}01410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Navigate.performed\ -\/=\ instance.OnNavigate;}
@@ -1442,13 +1442,13 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01438}01438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @TrackedDeviceOrientation.canceled\ -\/=\ instance.OnTrackedDeviceOrientation;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01439}01439\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01440}01440\ }
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01441}01441\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ RemoveCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_u_i_actions}{IUIActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01441}01441\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ RemoveCallbacks(IUIActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01442}01442\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01443}01443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_Wrapper.m\_UIActionsCallbackInterfaces.Remove(instance))}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01444}01444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnregisterCallbacks(instance);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01445}01445\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01446}01446\ }
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01447}01447\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_u_i_actions}{IUIActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01447}01447\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetCallbacks(IUIActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01448}01448\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01449}01449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ item\ \textcolor{keywordflow}{in}\ m\_Wrapper.m\_UIActionsCallbackInterfaces)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01450}01450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnregisterCallbacks(item);}
@@ -1456,7 +1456,7 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01452}01452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AddCallbacks(instance);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01453}01453\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01454}01454\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01455}01455\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_u_i_actions}{UIActions}}\ @UI\ =>\ \textcolor{keyword}{new}\ \mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_u_i_actions}{UIActions}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01455}01455\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ UIActions\ @UI\ =>\ \textcolor{keyword}{new}\ UIActions(\textcolor{keyword}{this});}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01456}01456\ }
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01457}01457\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ PlayerKinematics}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01458}01458\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ InputActionMap\ m\_PlayerKinematics;}
@@ -1466,10 +1466,10 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01462}01462\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ InputAction\ m\_PlayerKinematics\_Crouch;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01463}01463\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ InputAction\ m\_PlayerKinematics\_Jump;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01464}01464\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ InputAction\ m\_PlayerKinematics\_Sprint;}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01465}\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_kinematics_actions}{01465}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_kinematics_actions}{PlayerKinematicsActions}}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01465}01465\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{struct\ }PlayerKinematicsActions}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01466}01466\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01467}01467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ @\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input}{GeneratedInput}}\ m\_Wrapper;}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01468}01468\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_kinematics_actions}{PlayerKinematicsActions}}(@\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input}{GeneratedInput}}\ wrapper)\ \{\ m\_Wrapper\ =\ wrapper;\ \}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01467}01467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ @GeneratedInput\ m\_Wrapper;}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01468}01468\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ PlayerKinematicsActions(@GeneratedInput\ wrapper)\ \{\ m\_Wrapper\ =\ wrapper;\ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01469}01469\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ InputAction\ @Move\ =>\ m\_Wrapper.m\_PlayerKinematics\_Move;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01470}01470\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ InputAction\ @Look\ =>\ m\_Wrapper.m\_PlayerKinematics\_Look;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01471}01471\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ InputAction\ @Crouch\ =>\ m\_Wrapper.m\_PlayerKinematics\_Crouch;}
@@ -1479,8 +1479,8 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01475}01475\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Enable()\ \{\ Get().Enable();\ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01476}01476\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Disable()\ \{\ Get().Disable();\ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01477}01477\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ enabled\ =>\ Get().enabled;}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01478}01478\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ implicit\ \textcolor{keyword}{operator}\ InputActionMap(\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_kinematics_actions}{PlayerKinematicsActions}}\ \textcolor{keyword}{set})\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{set}.Get();\ \}}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01479}01479\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ AddCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_kinematics_actions}{IPlayerKinematicsActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01478}01478\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ implicit\ \textcolor{keyword}{operator}\ InputActionMap(PlayerKinematicsActions\ \textcolor{keyword}{set})\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{set}.Get();\ \}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01479}01479\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ AddCallbacks(IPlayerKinematicsActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01480}01480\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01481}01481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance\ ==\ \textcolor{keyword}{null}\ ||\ m\_Wrapper.m\_PlayerKinematicsActionsCallbackInterfaces.Contains(instance))\ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01482}01482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_Wrapper.m\_PlayerKinematicsActionsCallbackInterfaces.Add(instance);}
@@ -1501,7 +1501,7 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01497}01497\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Sprint.canceled\ +=\ instance.OnSprint;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01498}01498\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01499}01499\ }
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01500}01500\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ UnregisterCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_kinematics_actions}{IPlayerKinematicsActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01500}01500\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ UnregisterCallbacks(IPlayerKinematicsActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01501}01501\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01502}01502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Move.started\ -\/=\ instance.OnMove;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01503}01503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Move.performed\ -\/=\ instance.OnMove;}
@@ -1520,13 +1520,13 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01516}01516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Sprint.canceled\ -\/=\ instance.OnSprint;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01517}01517\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01518}01518\ }
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01519}01519\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ RemoveCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_kinematics_actions}{IPlayerKinematicsActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01519}01519\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ RemoveCallbacks(IPlayerKinematicsActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01520}01520\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01521}01521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_Wrapper.m\_PlayerKinematicsActionsCallbackInterfaces.Remove(instance))}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01522}01522\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnregisterCallbacks(instance);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01523}01523\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01524}01524\ }
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01525}01525\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_kinematics_actions}{IPlayerKinematicsActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01525}01525\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetCallbacks(IPlayerKinematicsActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01526}01526\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01527}01527\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ item\ \textcolor{keywordflow}{in}\ m\_Wrapper.m\_PlayerKinematicsActionsCallbackInterfaces)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01528}01528\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnregisterCallbacks(item);}
@@ -1534,25 +1534,25 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01530}01530\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AddCallbacks(instance);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01531}01531\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01532}01532\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01533}01533\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_kinematics_actions}{PlayerKinematicsActions}}\ @PlayerKinematics\ =>\ \textcolor{keyword}{new}\ \mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_kinematics_actions}{PlayerKinematicsActions}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01533}01533\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ PlayerKinematicsActions\ @PlayerKinematics\ =>\ \textcolor{keyword}{new}\ PlayerKinematicsActions(\textcolor{keyword}{this});}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01534}01534\ }
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01535}01535\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ PlayerInteraction}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01536}01536\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ InputActionMap\ m\_PlayerInteraction;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01537}01537\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ List<IPlayerInteractionActions>\ m\_PlayerInteractionActionsCallbackInterfaces\ =\ \textcolor{keyword}{new}\ List<IPlayerInteractionActions>();}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01538}01538\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ InputAction\ m\_PlayerInteraction\_Attack;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01539}01539\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ InputAction\ m\_PlayerInteraction\_Interact;}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01540}\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_interaction_actions}{01540}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_interaction_actions}{PlayerInteractionActions}}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01540}01540\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{struct\ }PlayerInteractionActions}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01541}01541\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01542}01542\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ @\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input}{GeneratedInput}}\ m\_Wrapper;}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01543}01543\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_interaction_actions}{PlayerInteractionActions}}(@\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input}{GeneratedInput}}\ wrapper)\ \{\ m\_Wrapper\ =\ wrapper;\ \}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01542}01542\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ @GeneratedInput\ m\_Wrapper;}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01543}01543\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ PlayerInteractionActions(@GeneratedInput\ wrapper)\ \{\ m\_Wrapper\ =\ wrapper;\ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01544}01544\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ InputAction\ @Attack\ =>\ m\_Wrapper.m\_PlayerInteraction\_Attack;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01545}01545\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ InputAction\ @Interact\ =>\ m\_Wrapper.m\_PlayerInteraction\_Interact;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01546}01546\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ InputActionMap\ Get()\ \{\ \textcolor{keywordflow}{return}\ m\_Wrapper.m\_PlayerInteraction;\ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01547}01547\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Enable()\ \{\ Get().Enable();\ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01548}01548\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Disable()\ \{\ Get().Disable();\ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01549}01549\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ enabled\ =>\ Get().enabled;}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01550}01550\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ implicit\ \textcolor{keyword}{operator}\ InputActionMap(\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_interaction_actions}{PlayerInteractionActions}}\ \textcolor{keyword}{set})\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{set}.Get();\ \}}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01551}01551\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ AddCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_interaction_actions}{IPlayerInteractionActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01550}01550\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ implicit\ \textcolor{keyword}{operator}\ InputActionMap(PlayerInteractionActions\ \textcolor{keyword}{set})\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{set}.Get();\ \}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01551}01551\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ AddCallbacks(IPlayerInteractionActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01552}01552\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01553}01553\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance\ ==\ \textcolor{keyword}{null}\ ||\ m\_Wrapper.m\_PlayerInteractionActionsCallbackInterfaces.Contains(instance))\ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01554}01554\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_Wrapper.m\_PlayerInteractionActionsCallbackInterfaces.Add(instance);}
@@ -1564,7 +1564,7 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01560}01560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Interact.canceled\ +=\ instance.OnInteract;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01561}01561\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01562}01562\ }
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01563}01563\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ UnregisterCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_interaction_actions}{IPlayerInteractionActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01563}01563\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ UnregisterCallbacks(IPlayerInteractionActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01564}01564\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01565}01565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Attack.started\ -\/=\ instance.OnAttack;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01566}01566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Attack.performed\ -\/=\ instance.OnAttack;}
@@ -1574,13 +1574,13 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01570}01570\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Interact.canceled\ -\/=\ instance.OnInteract;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01571}01571\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01572}01572\ }
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01573}01573\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ RemoveCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_interaction_actions}{IPlayerInteractionActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01573}01573\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ RemoveCallbacks(IPlayerInteractionActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01574}01574\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01575}01575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_Wrapper.m\_PlayerInteractionActionsCallbackInterfaces.Remove(instance))}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01576}01576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnregisterCallbacks(instance);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01577}01577\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01578}01578\ }
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01579}01579\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_interaction_actions}{IPlayerInteractionActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01579}01579\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetCallbacks(IPlayerInteractionActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01580}01580\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01581}01581\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ item\ \textcolor{keywordflow}{in}\ m\_Wrapper.m\_PlayerInteractionActionsCallbackInterfaces)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01582}01582\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnregisterCallbacks(item);}
@@ -1588,7 +1588,7 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01584}01584\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AddCallbacks(instance);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01585}01585\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01586}01586\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01587}01587\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_interaction_actions}{PlayerInteractionActions}}\ @PlayerInteraction\ =>\ \textcolor{keyword}{new}\ \mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_interaction_actions}{PlayerInteractionActions}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01587}01587\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ PlayerInteractionActions\ @PlayerInteraction\ =>\ \textcolor{keyword}{new}\ PlayerInteractionActions(\textcolor{keyword}{this});}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01588}01588\ }
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01589}01589\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ PlayerUI}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01590}01590\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ InputActionMap\ m\_PlayerUI;}
@@ -1598,10 +1598,10 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01594}01594\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ InputAction\ m\_PlayerUI\_Next;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01595}01595\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ InputAction\ m\_PlayerUI\_Up;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01596}01596\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ InputAction\ m\_PlayerUI\_Down;}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01597}\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_u_i_actions}{01597}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_u_i_actions}{PlayerUIActions}}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01597}01597\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{struct\ }PlayerUIActions}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01598}01598\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01599}01599\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ @\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input}{GeneratedInput}}\ m\_Wrapper;}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01600}01600\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_u_i_actions}{PlayerUIActions}}(@\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input}{GeneratedInput}}\ wrapper)\ \{\ m\_Wrapper\ =\ wrapper;\ \}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01599}01599\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ @GeneratedInput\ m\_Wrapper;}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01600}01600\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ PlayerUIActions(@GeneratedInput\ wrapper)\ \{\ m\_Wrapper\ =\ wrapper;\ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01601}01601\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ InputAction\ @RequestMenu\ =>\ m\_Wrapper.m\_PlayerUI\_RequestMenu;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01602}01602\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ InputAction\ @Previous\ =>\ m\_Wrapper.m\_PlayerUI\_Previous;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01603}01603\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ InputAction\ @Next\ =>\ m\_Wrapper.m\_PlayerUI\_Next;}
@@ -1611,8 +1611,8 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01607}01607\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Enable()\ \{\ Get().Enable();\ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01608}01608\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Disable()\ \{\ Get().Disable();\ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01609}01609\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ enabled\ =>\ Get().enabled;}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01610}01610\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ implicit\ \textcolor{keyword}{operator}\ InputActionMap(\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_u_i_actions}{PlayerUIActions}}\ \textcolor{keyword}{set})\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{set}.Get();\ \}}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01611}01611\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ AddCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_u_i_actions}{IPlayerUIActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01610}01610\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ implicit\ \textcolor{keyword}{operator}\ InputActionMap(PlayerUIActions\ \textcolor{keyword}{set})\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{set}.Get();\ \}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01611}01611\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ AddCallbacks(IPlayerUIActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01612}01612\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01613}01613\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance\ ==\ \textcolor{keyword}{null}\ ||\ m\_Wrapper.m\_PlayerUIActionsCallbackInterfaces.Contains(instance))\ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01614}01614\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_Wrapper.m\_PlayerUIActionsCallbackInterfaces.Add(instance);}
@@ -1633,7 +1633,7 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01629}01629\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Down.canceled\ +=\ instance.OnDown;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01630}01630\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01631}01631\ }
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01632}01632\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ UnregisterCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_u_i_actions}{IPlayerUIActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01632}01632\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ UnregisterCallbacks(IPlayerUIActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01633}01633\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01634}01634\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @RequestMenu.started\ -\/=\ instance.OnRequestMenu;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01635}01635\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @RequestMenu.performed\ -\/=\ instance.OnRequestMenu;}
@@ -1652,13 +1652,13 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01648}01648\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Down.canceled\ -\/=\ instance.OnDown;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01649}01649\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01650}01650\ }
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01651}01651\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ RemoveCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_u_i_actions}{IPlayerUIActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01651}01651\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ RemoveCallbacks(IPlayerUIActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01652}01652\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01653}01653\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_Wrapper.m\_PlayerUIActionsCallbackInterfaces.Remove(instance))}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01654}01654\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnregisterCallbacks(instance);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01655}01655\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01656}01656\ }
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01657}01657\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetCallbacks(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_u_i_actions}{IPlayerUIActions}}\ instance)}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01657}01657\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetCallbacks(IPlayerUIActions\ instance)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01658}01658\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01659}01659\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ item\ \textcolor{keywordflow}{in}\ m\_Wrapper.m\_PlayerUIActionsCallbackInterfaces)}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01660}01660\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnregisterCallbacks(item);}
@@ -1666,7 +1666,7 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01662}01662\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AddCallbacks(instance);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01663}01663\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01664}01664\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01665}01665\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_u_i_actions}{PlayerUIActions}}\ @PlayerUI\ =>\ \textcolor{keyword}{new}\ \mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_u_i_actions}{PlayerUIActions}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01665}01665\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ PlayerUIActions\ @PlayerUI\ =>\ \textcolor{keyword}{new}\ PlayerUIActions(\textcolor{keyword}{this});}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01666}01666\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{int}\ m\_KeyboardMouseSchemeIndex\ =\ -\/1;}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01667}01667\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ InputControlScheme\ KeyboardMouseScheme}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01668}01668\ \ \ \ \ \ \ \ \ \{}
@@ -1712,12 +1712,12 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01708}01708\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ asset.controlSchemes[m\_XRSchemeIndex];}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01709}01709\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01710}01710\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01711}\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_pairing_actions}{01711}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_pairing_actions}{IPairingActions}}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01711}01711\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{interface\ }IPairingActions}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01712}01712\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01713}01713\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ OnJoin(InputAction.CallbackContext\ context);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01714}01714\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ OnLeave(InputAction.CallbackContext\ context);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01715}01715\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01716}\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_u_i_actions}{01716}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_u_i_actions}{IUIActions}}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01716}01716\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{interface\ }IUIActions}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01717}01717\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01718}01718\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ OnNavigate(InputAction.CallbackContext\ context);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01719}01719\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ OnSubmit(InputAction.CallbackContext\ context);}
@@ -1730,7 +1730,7 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01726}01726\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ OnTrackedDevicePosition(InputAction.CallbackContext\ context);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01727}01727\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ OnTrackedDeviceOrientation(InputAction.CallbackContext\ context);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01728}01728\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01729}\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_kinematics_actions}{01729}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_kinematics_actions}{IPlayerKinematicsActions}}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01729}01729\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{interface\ }IPlayerKinematicsActions}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01730}01730\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01731}01731\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ OnMove(InputAction.CallbackContext\ context);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01732}01732\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ OnLook(InputAction.CallbackContext\ context);}
@@ -1738,12 +1738,12 @@
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01734}01734\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ OnJump(InputAction.CallbackContext\ context);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01735}01735\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ OnSprint(InputAction.CallbackContext\ context);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01736}01736\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01737}\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_interaction_actions}{01737}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_interaction_actions}{IPlayerInteractionActions}}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01737}01737\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{interface\ }IPlayerInteractionActions}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01738}01738\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01739}01739\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ OnAttack(InputAction.CallbackContext\ context);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01740}01740\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ OnInteract(InputAction.CallbackContext\ context);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01741}01741\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01742}\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_u_i_actions}{01742}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_u_i_actions}{IPlayerUIActions}}}
+\DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01742}01742\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{interface\ }IPlayerUIActions}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01743}01743\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01744}01744\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ OnRequestMenu(InputAction.CallbackContext\ context);}
 \DoxyCodeLine{\Hypertarget{_generated_input_8cs_source_l01745}01745\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ OnPrevious(InputAction.CallbackContext\ context);}

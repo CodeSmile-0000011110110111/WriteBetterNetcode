@@ -2,8 +2,12 @@
 \hypertarget{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_start}{}\label{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_start}\index{NetworkStart@{NetworkStart}}
 
 
-Inheritance diagram for Network\+Start\+:
-\nopagebreak
+Calls Network\+Manager Start\+Client/\+Start\+Host/\+Start\+Server based on the provided config variable.  
+
+
+
+
+Inheritance diagram for Network\+Start\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +16,7 @@ Inheritance diagram for Network\+Start\+:
 \end{figure}
 
 
-Collaboration diagram for Network\+Start\+:
-\nopagebreak
+Collaboration diagram for Network\+Start\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -23,77 +26,30 @@ Collaboration diagram for Network\+Start\+:
 \doxysubsubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_start_a9a3baa74461935939fd0f54383335e78}\label{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_start_a9a3baa74461935939fd0f54383335e78} 
-{\bfseries Network\+Start} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_var}{Var}}$<$ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{Netcode\+Config}} $>$ netcode\+Config\+Var)
-\item 
-void \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_start_a622e3bd65304d3fc345ce24529ace200_a622e3bd65304d3fc345ce24529ace200}{Execute}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\end{DoxyCompactItemize}
-\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}}
-\begin{DoxyCompactItemize}
-\item 
-String {\bfseries To\+Debug\+String} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\end{DoxyCompactItemize}
-\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events}{IStatemachine\+Events}}}
-\begin{DoxyCompactItemize}
-\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a5a67bb74ccf99965d72db627baba330e_a5a67bb74ccf99965d72db627baba330e}{On\+Enter\+State}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called when the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} enters a state to which the Action/\+Condition belongs. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a642a9e83527494616d3c56ffc0c2e5d3_a642a9e83527494616d3c56ffc0c2e5d3}{On\+Exit\+State}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called when the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} leaves the state to which the Action/\+Condition belongs. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_ad53b64512d4843ff9f09cb72b1467b8d_ad53b64512d4843ff9f09cb72b1467b8d}{On\+Start}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called before the first evaluation of the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine}. Similar to Start() in a Mono\+Behaviour. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a1dc817ac01153abb1d67f5b7fd1e0594_a1dc817ac01153abb1d67f5b7fd1e0594}{On\+Stop}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called when the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} stops, meaning it reached a State that has no transitions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_start_a9a3baa74461935939fd0f54383335e78_a9a3baa74461935939fd0f54383335e78}{Network\+Start}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_var}{Var}}$<$ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{Netcode\+Config}} $>$ netcode\+Config\+Var)
+\begin{DoxyCompactList}\small\item\em Creates a \doxylink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_start}{Network\+Start} action with the config variable specifying the role (Server, Host, Client). \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsubsection{Detailed Description}
+Calls Network\+Manager Start\+Client/\+Start\+Host/\+Start\+Server based on the provided config variable. 
 
-
-Definition at line \mbox{\hyperlink{_network_start_8cs_source_l00011}{11}} of file \mbox{\hyperlink{_network_start_8cs_source}{Network\+Start.\+cs}}.
-
-
-
-\doxysubsubsection{Member Function Documentation}
-\Hypertarget{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_start_a622e3bd65304d3fc345ce24529ace200_a622e3bd65304d3fc345ce24529ace200}\index{NetworkStart@{NetworkStart}!Execute@{Execute}}
-\index{Execute@{Execute}!NetworkStart@{NetworkStart}}
-\doxyparagraph{\texorpdfstring{Execute()}{Execute()}}
-{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_start_a622e3bd65304d3fc345ce24529ace200_a622e3bd65304d3fc345ce24529ace200} 
-void Execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}}]{sm}{}\end{DoxyParamCaption})}
+Definition at line \mbox{\hyperlink{_network_start_8cs_source_l00014}{14}} of file \mbox{\hyperlink{_network_start_8cs_source}{Network\+Start.\+cs}}.
 
 
 
-Implements \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}.
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_start_a9a3baa74461935939fd0f54383335e78_a9a3baa74461935939fd0f54383335e78}\index{NetworkStart@{NetworkStart}!NetworkStart@{NetworkStart}}
+\index{NetworkStart@{NetworkStart}!NetworkStart@{NetworkStart}}
+\doxyparagraph{\texorpdfstring{NetworkStart()}{NetworkStart()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_start_a9a3baa74461935939fd0f54383335e78_a9a3baa74461935939fd0f54383335e78} 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_start}{Network\+Start}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_var}{Var}}$<$ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{Netcode\+Config}} $>$}]{netcode\+Config\+Var}{}\end{DoxyParamCaption})}
 
 
 
-Definition at line \mbox{\hyperlink{_network_start_8cs_source_l00017}{17}} of file \mbox{\hyperlink{_network_start_8cs_source}{Network\+Start.\+cs}}.
+Creates a \doxylink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_start}{Network\+Start} action with the config variable specifying the role (Server, Host, Client). 
 
 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ var\ succeeded\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ var\ net\ =\ NetworkManager.Singleton;}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ var\ role\ =\ m\_NetcodeConfigVar.Value.Role;}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (role)}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ NetcodeRole.Client:}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ succeeded\ =\ net.StartClient();}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ NetcodeRole.Host:}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ succeeded\ =\ net.StartHost();}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ NetcodeRole.Server:}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ succeeded\ =\ net.StartServer();}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ NetcodeRole.None:}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentOutOfRangeException(nameof(role));}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (succeeded\ ==\ \textcolor{keyword}{false})}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ Exception(\$\textcolor{stringliteral}{"{}NetworkManager.Start\{role\}\ failed"{}});}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}}
-
-\end{DoxyCode}
+\begin{DoxyParams}{Parameters}
+{\em netcode\+Config\+Var} & \\
+\hline
+\end{DoxyParams}

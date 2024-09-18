@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Actions
 {
+	/// <summary>
+	/// Used to combine multiple FSM actions into a single, named action.
+	/// </summary>
 	public sealed class CompoundAction : IAction
 	{
 		private readonly String m_Name;
@@ -15,9 +18,19 @@ namespace CodeSmile.Statemachine.Actions
 
 		private CompoundAction() {}
 
+		/// <summary>
+		/// Create a combined action from one or more actions.
+		/// </summary>
+		/// <param name="actions"></param>
 		public CompoundAction(params IAction[] actions)
 			: this(null, actions) {}
 
+		/// <summary>
+		/// Create a combined action from one or more actions.
+		/// </summary>
+		/// <param name="name">The display/debug name of the combined action.</param>
+		/// <param name="actions"></param>
+		/// <exception cref="ArgumentException">Thrown if no actions provided.</exception>
 		public CompoundAction(String name, params IAction[] actions)
 		{
 			if (actions == null || actions.Length == 0)

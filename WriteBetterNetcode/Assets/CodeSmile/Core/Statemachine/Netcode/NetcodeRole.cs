@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Netcode
 {
+	/// <summary>
+	/// The role we want to play as, with None signaling undecided or intention to stop playing in the current role.
+	/// </summary>
 	public enum NetcodeRole
 	{
 		None,

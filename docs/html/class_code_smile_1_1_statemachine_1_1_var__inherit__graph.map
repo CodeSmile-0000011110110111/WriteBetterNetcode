@@ -1,7 +1,7 @@
 <map id="Var&lt; T &gt;" name="Var&lt; T &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="83,379,196,640"/>
-<area shape="rect" id="Node000002" href="$class_code_smile_1_1_statemachine_1_1_variable_base.html" title=" " alt="" coords="5,5,119,331"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,344,112,378,107,380,99,345"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="143,133,293,203"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="210,217,172,380,167,378,204,216"/>
+<area shape="rect" id="Node000001" title="Represents a generic (struct) FSM variable." alt="" coords="83,165,196,299"/>
+<area shape="rect" id="Node000002" href="$class_code_smile_1_1_statemachine_1_1_variable_base.html" title="Base class for all FSM variables." alt="" coords="5,5,119,117"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,130,112,165,107,167,91,132"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="143,27,293,96"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="198,111,172,167,167,164,194,109"/>
 </map>

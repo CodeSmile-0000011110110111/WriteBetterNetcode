@@ -126,15 +126,31 @@ $(function(){initNavTree('class_code_smile_1_1_statemachine_1_1_variable_base_a1
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_variables_8cs_source.html#l00064">64</a> of file <a class="el" href="_variables_8cs_source.html">Variables.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   65</span>        {</div>
-<div class="line"><span class="lineno">   66</span>            <span class="keywordflow">if</span> (left is IntVar leftInt &amp;&amp; right is IntVar rightInt)</div>
-<div class="line"><span class="lineno">   67</span>                <span class="keywordflow">return</span> leftInt &gt; rightInt;</div>
-<div class="line"><span class="lineno">   68</span>            <span class="keywordflow">if</span> (left is FloatVar leftFloat &amp;&amp; right is FloatVar rightFloat)</div>
-<div class="line"><span class="lineno">   69</span>                <span class="keywordflow">return</span> leftFloat &gt; rightFloat;</div>
-<div class="line"><span class="lineno">   70</span> </div>
-<div class="line"><span class="lineno">   71</span>            <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException(GetCompareExceptionMessage(left, right, <span class="stringliteral">&quot;&gt;&quot;</span>));</div>
-<div class="line"><span class="lineno">   72</span>        }</div>
+<p>greater operator </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">left</td><td></td></tr>
+    <tr><td class="paramname">right</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">InvalidOperationException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_variables_8cs_source.html#l00161">161</a> of file <a class="el" href="_variables_8cs_source.html">Variables.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  162</span>        {</div>
+<div class="line"><span class="lineno">  163</span>            <span class="keywordflow">if</span> (left is IntVar leftInt &amp;&amp; right is IntVar rightInt)</div>
+<div class="line"><span class="lineno">  164</span>                <span class="keywordflow">return</span> leftInt &gt; rightInt;</div>
+<div class="line"><span class="lineno">  165</span>            <span class="keywordflow">if</span> (left is FloatVar leftFloat &amp;&amp; right is FloatVar rightFloat)</div>
+<div class="line"><span class="lineno">  166</span>                <span class="keywordflow">return</span> leftFloat &gt; rightFloat;</div>
+<div class="line"><span class="lineno">  167</span> </div>
+<div class="line"><span class="lineno">  168</span>            <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException(GetCompareExceptionMessage(left, right, <span class="stringliteral">&quot;&gt;&quot;</span>));</div>
+<div class="line"><span class="lineno">  169</span>        }</div>
 </div><!-- fragment -->
 </div>
 </div>

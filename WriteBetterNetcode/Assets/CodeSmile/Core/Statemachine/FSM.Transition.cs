@@ -14,6 +14,9 @@ namespace CodeSmile.Statemachine
 		/// </summary>
 		public sealed class Transition
 		{
+			/// <summary>
+			/// The transition's name.
+			/// </summary>
 			public String Name { get; }
 			internal ICondition[] Conditions { get; private set; }
 			internal IAction[] Actions { get; private set; }
@@ -89,6 +92,12 @@ namespace CodeSmile.Statemachine
 
 			public override String ToString() => $"Transition({Name})";
 
+			/// <summary>
+			/// Sets the destination state.
+			/// </summary>
+			/// <param name="gotoState"></param>
+			/// <returns></returns>
+			/// <exception cref="InvalidOperationException"></exception>
 			public Transition ToState(State gotoState)
 			{
 				if (GotoState != null)
@@ -98,6 +107,12 @@ namespace CodeSmile.Statemachine
 				return this;
 			}
 
+			/// <summary>
+			/// Sets the error state.
+			/// </summary>
+			/// <param name="errorState"></param>
+			/// <returns></returns>
+			/// <exception cref="InvalidOperationException"></exception>
 			public Transition ToErrorState(State errorState)
 			{
 				if (ErrorGotoState != null)
@@ -107,6 +122,15 @@ namespace CodeSmile.Statemachine
 				return this;
 			}
 
+			/// <summary>
+			/// Adds a transition to multiple states (re-use).
+			/// </summary>
+			/// <remarks>
+			/// This will not create copies of the transition or its actions/conditions.
+			/// </remarks>
+			/// <param name="states"></param>
+			/// <returns></returns>
+			/// <exception cref="ArgumentNullException"></exception>
 			public Transition AddToStates(params State[] states)
 			{
 				if (states == null)
@@ -118,6 +142,12 @@ namespace CodeSmile.Statemachine
 				return this;
 			}
 
+			/// <summary>
+			/// Add conditions to the transition.
+			/// </summary>
+			/// <param name="conditions"></param>
+			/// <returns></returns>
+			/// <exception cref="InvalidOperationException"></exception>
 			public Transition WithConditions(params ICondition[] conditions)
 			{
 				if (Conditions != null)
@@ -127,6 +157,12 @@ namespace CodeSmile.Statemachine
 				return this;
 			}
 
+			/// <summary>
+			/// Add actions to the transition.
+			/// </summary>
+			/// <param name="actions"></param>
+			/// <returns></returns>
+			/// <exception cref="InvalidOperationException"></exception>
 			public Transition WithActions(params IAction[] actions)
 			{
 				if (Actions != null)
@@ -136,6 +172,12 @@ namespace CodeSmile.Statemachine
 				return this;
 			}
 
+			/// <summary>
+			/// Add error actions that run when an exception occurs.
+			/// </summary>
+			/// <param name="errorActions"></param>
+			/// <returns></returns>
+			/// <exception cref="InvalidOperationException"></exception>
 			public Transition WithErrorActions(params IAction[] errorActions)
 			{
 				if (ErrorActions != null)

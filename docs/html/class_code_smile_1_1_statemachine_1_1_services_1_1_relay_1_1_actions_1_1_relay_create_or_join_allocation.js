@@ -1,0 +1,4 @@
+var class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_create_or_join_allocation =
+[
+    [ "RelayCreateOrJoinAllocation", "class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_create_or_join_allocation_aacd400723f365644b258d7a55f798c52.html#aacd400723f365644b258d7a55f798c52", null ]
+];

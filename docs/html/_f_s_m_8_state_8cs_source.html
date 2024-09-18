@@ -28,6 +28,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="steffen portrait codesmile logo larger top-left-64x62.png"/></td>
   <td id="projectalign">
    <div id="projectname">CodeSmile MultiPal<span id="projectnumber">&#160;0.6</span>
    </div>
@@ -120,109 +121,124 @@ $(function(){initNavTree('_f_s_m_8_state_8cs_source.html',''); initResizable(tru
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>            <span class="keyword">private</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">Transition</a>[] m_Transitions;</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            <span class="keyword">internal</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">Transition</a>[] Transitions =&gt; m_Transitions;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            <span class="keyword">public</span> String Name { <span class="keyword">get</span>; }</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            <span class="keyword">public</span> Boolean Logging { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            <span class="keyword">public</span> <span class="keyword">static</span> Boolean operator ==(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html">State</a> left, <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html">State</a> right) =&gt; Equals(left, right);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            <span class="keyword">public</span> <span class="keyword">static</span> Boolean operator !=(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html">State</a> left, <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html">State</a> right) =&gt; !Equals(left, right);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            <span class="keyword">private</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html">State</a>() {} <span class="comment">// forbidden default ctor</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            <span class="keyword">public</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html">State</a>(String stateName) =&gt; Name = stateName;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a934fa09ba291a97f43720640e4d83f25.html#a934fa09ba291a97f43720640e4d83f25">   25</a></span>            <span class="keyword">public</span> String <a class="code hl_property" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a934fa09ba291a97f43720640e4d83f25.html#a934fa09ba291a97f43720640e4d83f25">Name</a> { <span class="keyword">get</span>; }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a1c487dbaa542d1fe109a408f9b62acd6.html#a1c487dbaa542d1fe109a408f9b62acd6">   29</a></span>            <span class="keyword">public</span> Boolean <a class="code hl_property" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a1c487dbaa542d1fe109a408f9b62acd6.html#a1c487dbaa542d1fe109a408f9b62acd6">Logging</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            <span class="keyword">public</span> Boolean Equals(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html">State</a> other)</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            {</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                <span class="keywordflow">if</span> (ReferenceEquals(<span class="keyword">null</span>, other))</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                <span class="keywordflow">if</span> (ReferenceEquals(<span class="keyword">this</span>, other))</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                <span class="keywordflow">return</span> Name == other.Name;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            }</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            <span class="keyword">public</span> <span class="keyword">override</span> String ToString() =&gt; $<span class="stringliteral">&quot;State({Name})&quot;</span>;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>            <span class="keyword">public</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">Transition</a> AddTransition() =&gt; AddTransition(<span class="keyword">new</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">Transition</a>());</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            <span class="keyword">public</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">Transition</a> AddTransition(String transitionName) =&gt; AddTransition(<span class="keyword">new</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">Transition</a>(transitionName));</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            <span class="keyword">public</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">Transition</a> AddTransition(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">Transition</a> transition)</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            {</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                AddTransitions(transition);</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                <span class="keywordflow">return</span> transition;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            }</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            <span class="keyword">public</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html">State</a> AddTransitions(params <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">Transition</a>[] transitions)</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                <span class="keywordflow">if</span> (transitions == <span class="keyword">null</span> || transitions.Length == 0)</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                    <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentException(<span class="stringliteral">&quot;transitions null or empty&quot;</span>);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                <span class="keywordflow">if</span> (m_Transitions == <span class="keyword">null</span>)</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                    m_Transitions = transitions;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                {</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                    var startIndex = m_Transitions.Length;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                    var addCount = transitions.Length;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                    Array.Resize(ref m_Transitions, startIndex + addCount);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            <span class="keyword">public</span> <span class="keyword">static</span> Boolean operator ==(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html">State</a> left, <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html">State</a> right) =&gt; Equals(left, right);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            <span class="keyword">public</span> <span class="keyword">static</span> Boolean operator !=(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html">State</a> left, <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html">State</a> right) =&gt; !Equals(left, right);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            <span class="keyword">private</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html">State</a>() {} <span class="comment">// forbidden default ctor</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_ac9d3f4e7aa07ce4c56f6cec2dbd86b06.html#ac9d3f4e7aa07ce4c56f6cec2dbd86b06">   52</a></span>            <span class="keyword">public</span> <a class="code hl_function" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_ac9d3f4e7aa07ce4c56f6cec2dbd86b06.html#ac9d3f4e7aa07ce4c56f6cec2dbd86b06">State</a>(String stateName) =&gt; <a class="code hl_property" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a934fa09ba291a97f43720640e4d83f25.html#a934fa09ba291a97f43720640e4d83f25">Name</a> = stateName;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <span class="keyword">public</span> Boolean Equals(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html">State</a> other)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                <span class="keywordflow">if</span> (ReferenceEquals(<span class="keyword">null</span>, other))</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                <span class="keywordflow">if</span> (ReferenceEquals(<span class="keyword">this</span>, other))</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                <span class="keywordflow">return</span> <a class="code hl_property" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a934fa09ba291a97f43720640e4d83f25.html#a934fa09ba291a97f43720640e4d83f25">Name</a> == other.<a class="code hl_property" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a934fa09ba291a97f43720640e4d83f25.html#a934fa09ba291a97f43720640e4d83f25">Name</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            <span class="keyword">public</span> <span class="keyword">override</span> String ToString() =&gt; $<span class="stringliteral">&quot;State({Name})&quot;</span>;</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                    <span class="keywordflow">for</span> (var i = 0; i &lt; addCount; i++)</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                        m_Transitions[startIndex + i] = transitions[i];</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                }</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            }</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            <span class="keyword">public</span> Boolean IsFinalState() =&gt; Transitions.Length == 0;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_code_smile_1_1_statemachine_1_1_f_s_m_aec0783b5a136e042adcc47bae4fe5291.html#aec0783b5a136e042adcc47bae4fe5291">Update</a>(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m.html">FSM</a> sm)</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            {</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                <span class="keywordflow">foreach</span> (var transition <span class="keywordflow">in</span> Transitions)</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                {</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                    transition.Update(sm);</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                    <span class="comment">// stop evaluating further transitions if the current transition caused a state change</span></div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                    <span class="keywordflow">if</span> (sm.DidChangeState)</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                }</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            }</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            <span class="keyword">internal</span> <span class="keywordtype">void</span> OnStart(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m.html">FSM</a> sm)</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            {</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                <span class="keywordflow">if</span> (m_Transitions == <span class="keyword">null</span>)</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                    m_Transitions = <span class="keyword">new</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">Transition</a>[0];</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                <span class="keywordflow">foreach</span> (var transition <span class="keywordflow">in</span> Transitions)</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                    transition.OnStart(sm);</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            }</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            <span class="keyword">internal</span> <span class="keywordtype">void</span> OnStop(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m.html">FSM</a> sm)</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            {</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                <span class="keywordflow">foreach</span> (var transition <span class="keywordflow">in</span> Transitions)</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                    transition.OnStop(sm);</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            }</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            <span class="keyword">internal</span> <span class="keywordtype">void</span> OnExitState(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m.html">FSM</a> sm)</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>            {</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                <span class="keywordflow">foreach</span> (var transition <span class="keywordflow">in</span> Transitions)</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                    transition.OnExitState(sm);</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>            }</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            <span class="keyword">internal</span> <span class="keywordtype">void</span> OnEnterState(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m.html">FSM</a> sm)</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            {</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                <span class="keywordflow">foreach</span> (var transition <span class="keywordflow">in</span> Transitions)</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                    transition.OnEnterState(sm);</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            }</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            <span class="keyword">public</span> <span class="keyword">override</span> Boolean Equals(Object obj) =&gt; ReferenceEquals(<span class="keyword">this</span>, obj) || obj is <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html">State</a> other &amp;&amp; Equals(other);</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            <span class="keyword">public</span> <span class="keyword">override</span> Int32 GetHashCode() =&gt; Name.GetHashCode();</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a1570e3d280a79ed8b62ecf9cd58cb56d.html#a1570e3d280a79ed8b62ecf9cd58cb56d">   70</a></span>            <span class="keyword">public</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">Transition</a> <a class="code hl_function" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a1570e3d280a79ed8b62ecf9cd58cb56d.html#a1570e3d280a79ed8b62ecf9cd58cb56d">AddTransition</a>() =&gt; <a class="code hl_function" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a1570e3d280a79ed8b62ecf9cd58cb56d.html#a1570e3d280a79ed8b62ecf9cd58cb56d">AddTransition</a>(<span class="keyword">new</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">Transition</a>());</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a0d813aba80516c1f2abd363bff9a5707.html#a0d813aba80516c1f2abd363bff9a5707">   77</a></span>            <span class="keyword">public</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">Transition</a> <a class="code hl_function" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a0d813aba80516c1f2abd363bff9a5707.html#a0d813aba80516c1f2abd363bff9a5707">AddTransition</a>(String transitionName) =&gt; <a class="code hl_function" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a0d813aba80516c1f2abd363bff9a5707.html#a0d813aba80516c1f2abd363bff9a5707">AddTransition</a>(<span class="keyword">new</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">Transition</a>(transitionName));</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="foldopen" id="foldopen00084" data-start="{" data-end="}">
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a22719f0687e4179c3c6575211b684fa5.html#a22719f0687e4179c3c6575211b684fa5">   84</a></span>            <span class="keyword">public</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">Transition</a> <a class="code hl_function" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a22719f0687e4179c3c6575211b684fa5.html#a22719f0687e4179c3c6575211b684fa5">AddTransition</a>(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">Transition</a> transition)</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                <a class="code hl_function" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a77ca8c698438c489e528395e04d7346f.html#a77ca8c698438c489e528395e04d7346f">AddTransitions</a>(transition);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                <span class="keywordflow">return</span> transition;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            }</div>
 </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    }</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>}</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="foldopen" id="foldopen00096" data-start="{" data-end="}">
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a77ca8c698438c489e528395e04d7346f.html#a77ca8c698438c489e528395e04d7346f">   96</a></span>            <span class="keyword">public</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html">State</a> <a class="code hl_function" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a77ca8c698438c489e528395e04d7346f.html#a77ca8c698438c489e528395e04d7346f">AddTransitions</a>(params <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">Transition</a>[] transitions)</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                <span class="keywordflow">if</span> (transitions == <span class="keyword">null</span> || transitions.Length == 0)</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                    <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentException(<span class="stringliteral">&quot;transitions null or empty&quot;</span>);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                <span class="keywordflow">if</span> (m_Transitions == <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                    m_Transitions = transitions;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                    var startIndex = m_Transitions.Length;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                    var addCount = transitions.Length;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                    Array.Resize(ref m_Transitions, startIndex + addCount);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                    <span class="keywordflow">for</span> (var i = 0; i &lt; addCount; i++)</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                        m_Transitions[startIndex + i] = transitions[i];</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                }</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            }</div>
+</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a69d5b2d251d4f8f5663ff2adc397e1e9.html#a69d5b2d251d4f8f5663ff2adc397e1e9">  121</a></span>            <span class="keyword">public</span> Boolean <a class="code hl_function" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a69d5b2d251d4f8f5663ff2adc397e1e9.html#a69d5b2d251d4f8f5663ff2adc397e1e9">IsFinalState</a>() =&gt; Transitions.Length == 0;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="foldopen" id="foldopen00127" data-start="{" data-end="}">
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a85f2deb1cf8b0d00c326783a978137d7.html#a85f2deb1cf8b0d00c326783a978137d7">  127</a></span>            <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a85f2deb1cf8b0d00c326783a978137d7.html#a85f2deb1cf8b0d00c326783a978137d7">Update</a>(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m.html">FSM</a> sm)</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            {</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                <span class="keywordflow">foreach</span> (var transition <span class="keywordflow">in</span> Transitions)</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                {</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>                    transition.Update(sm);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                    <span class="comment">// stop evaluating further transitions if the current transition caused a state change</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>                    <span class="keywordflow">if</span> (sm.DidChangeState)</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>                }</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>            }</div>
+</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>            <span class="keyword">internal</span> <span class="keywordtype">void</span> OnStart(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m.html">FSM</a> sm)</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>            {</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>                <span class="keywordflow">if</span> (m_Transitions == <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>                    m_Transitions = <span class="keyword">new</span> <a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">Transition</a>[0];</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>                <span class="keywordflow">foreach</span> (var transition <span class="keywordflow">in</span> Transitions)</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>                    transition.OnStart(sm);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>            }</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>            <span class="keyword">internal</span> <span class="keywordtype">void</span> OnStop(<a class="code hl_class" href="class_code_smile_1_1_statemachine_1_1_f_s_m.html">FSM</a> sm)</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>            {</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                <span class="keywordflow">foreach</span> (var transition <span class="keywordflow">in</span> Transitions)</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                    transition.OnStop(sm);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            }</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            <span class="keyword">internal</span> <span class="keywordtype">void</span> OnExitState(FSM sm)</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            {</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>                <span class="keywordflow">foreach</span> (var transition <span class="keywordflow">in</span> Transitions)</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>                    transition.OnExitState(sm);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>            }</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>            <span class="keyword">internal</span> <span class="keywordtype">void</span> OnEnterState(FSM sm)</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>            {</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>                <span class="keywordflow">foreach</span> (var transition <span class="keywordflow">in</span> Transitions)</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>                    transition.OnEnterState(sm);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>            }</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>            <span class="keyword">public</span> <span class="keyword">override</span> Boolean Equals(Object obj) =&gt; ReferenceEquals(<span class="keyword">this</span>, obj) || obj is State other &amp;&amp; Equals(other);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>            <span class="keyword">public</span> <span class="keyword">override</span> Int32 GetHashCode() =&gt; <a class="code hl_property" href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a934fa09ba291a97f43720640e4d83f25.html#a934fa09ba291a97f43720640e4d83f25">Name</a>.GetHashCode();</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        }</div>
+</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    }</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>}</div>
+<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a0d813aba80516c1f2abd363bff9a5707_html_a0d813aba80516c1f2abd363bff9a5707"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a0d813aba80516c1f2abd363bff9a5707.html#a0d813aba80516c1f2abd363bff9a5707">CodeSmile.Statemachine.FSM.State.AddTransition</a></div><div class="ttdeci">Transition AddTransition(String transitionName)</div><div class="ttdoc">Add a named transition to this state.</div></div>
+<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a1570e3d280a79ed8b62ecf9cd58cb56d_html_a1570e3d280a79ed8b62ecf9cd58cb56d"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a1570e3d280a79ed8b62ecf9cd58cb56d.html#a1570e3d280a79ed8b62ecf9cd58cb56d">CodeSmile.Statemachine.FSM.State.AddTransition</a></div><div class="ttdeci">Transition AddTransition()</div><div class="ttdoc">Add an empty transition to this state.</div></div>
+<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a1c487dbaa542d1fe109a408f9b62acd6_html_a1c487dbaa542d1fe109a408f9b62acd6"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a1c487dbaa542d1fe109a408f9b62acd6.html#a1c487dbaa542d1fe109a408f9b62acd6">CodeSmile.Statemachine.FSM.State.Logging</a></div><div class="ttdeci">Boolean Logging</div><div class="ttdoc">Whether this state has logging enabled.</div><div class="ttdef"><b>Definition</b> <a href="#l00029">FSM.State.cs:29</a></div></div>
+<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a22719f0687e4179c3c6575211b684fa5_html_a22719f0687e4179c3c6575211b684fa5"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a22719f0687e4179c3c6575211b684fa5.html#a22719f0687e4179c3c6575211b684fa5">CodeSmile.Statemachine.FSM.State.AddTransition</a></div><div class="ttdeci">Transition AddTransition(Transition transition)</div><div class="ttdoc">Add the given transition.</div><div class="ttdef"><b>Definition</b> <a href="#l00084">FSM.State.cs:84</a></div></div>
+<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a69d5b2d251d4f8f5663ff2adc397e1e9_html_a69d5b2d251d4f8f5663ff2adc397e1e9"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a69d5b2d251d4f8f5663ff2adc397e1e9.html#a69d5b2d251d4f8f5663ff2adc397e1e9">CodeSmile.Statemachine.FSM.State.IsFinalState</a></div><div class="ttdeci">Boolean IsFinalState()</div><div class="ttdoc">Is true if the State has no conditions. It is a so-called final state from which there is no return....</div></div>
+<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a77ca8c698438c489e528395e04d7346f_html_a77ca8c698438c489e528395e04d7346f"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a77ca8c698438c489e528395e04d7346f.html#a77ca8c698438c489e528395e04d7346f">CodeSmile.Statemachine.FSM.State.AddTransitions</a></div><div class="ttdeci">State AddTransitions(params Transition[] transitions)</div><div class="ttdoc">Add multiple transitions.</div><div class="ttdef"><b>Definition</b> <a href="#l00096">FSM.State.cs:96</a></div></div>
+<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a85f2deb1cf8b0d00c326783a978137d7_html_a85f2deb1cf8b0d00c326783a978137d7"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a85f2deb1cf8b0d00c326783a978137d7.html#a85f2deb1cf8b0d00c326783a978137d7">CodeSmile.Statemachine.FSM.State.Update</a></div><div class="ttdeci">void Update(FSM sm)</div><div class="ttdoc">Updating the state will update all its transitions.</div><div class="ttdef"><b>Definition</b> <a href="#l00127">FSM.State.cs:127</a></div></div>
+<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a934fa09ba291a97f43720640e4d83f25_html_a934fa09ba291a97f43720640e4d83f25"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_a934fa09ba291a97f43720640e4d83f25.html#a934fa09ba291a97f43720640e4d83f25">CodeSmile.Statemachine.FSM.State.Name</a></div><div class="ttdeci">String Name</div><div class="ttdoc">The State's name.</div><div class="ttdef"><b>Definition</b> <a href="#l00025">FSM.State.cs:25</a></div></div>
+<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_ac9d3f4e7aa07ce4c56f6cec2dbd86b06_html_ac9d3f4e7aa07ce4c56f6cec2dbd86b06"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_ac9d3f4e7aa07ce4c56f6cec2dbd86b06.html#ac9d3f4e7aa07ce4c56f6cec2dbd86b06">CodeSmile.Statemachine.FSM.State.State</a></div><div class="ttdeci">State(String stateName)</div><div class="ttdoc">Create a new named state.</div></div>
 <div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_html"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state.html">CodeSmile.Statemachine.FSM.State</a></div><div class="ttdoc">Represents a state in a statemachine.</div><div class="ttdef"><b>Definition</b> <a href="#l00016">FSM.State.cs:17</a></div></div>
 <div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_html"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition.html">CodeSmile.Statemachine.FSM.Transition</a></div><div class="ttdoc">Represents a transition in a statemachine. A transition can also be a self-transition that does not c...</div><div class="ttdef"><b>Definition</b> <a href="_f_s_m_8_transition_8cs_source.html#l00015">FSM.Transition.cs:16</a></div></div>
-<div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_aec0783b5a136e042adcc47bae4fe5291_html_aec0783b5a136e042adcc47bae4fe5291"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m_aec0783b5a136e042adcc47bae4fe5291.html#aec0783b5a136e042adcc47bae4fe5291">CodeSmile.Statemachine.FSM.Update</a></div><div class="ttdeci">void Update()</div><div class="ttdoc">Evaluates the statemachine's states and their transitions.</div><div class="ttdef"><b>Definition</b> <a href="_f_s_m_8cs_source.html#l00178">FSM.cs:178</a></div></div>
 <div class="ttc" id="aclass_code_smile_1_1_statemachine_1_1_f_s_m_html"><div class="ttname"><a href="class_code_smile_1_1_statemachine_1_1_f_s_m.html">CodeSmile.Statemachine.FSM</a></div><div class="ttdoc">Represents a finite-statemachine with a set of local and global variables indexed by name.</div><div class="ttdef"><b>Definition</b> <a href="_f_s_m_8_transition_8cs_source.html#l00010">FSM.Transition.cs:11</a></div></div>
 <div class="ttc" id="anamespace_code_smile_1_1_statemachine_html"><div class="ttname"><a href="namespace_code_smile_1_1_statemachine.html">CodeSmile.Statemachine</a></div><div class="ttdef"><b>Definition</b> <a href="_compound_action_8cs_source.html#l00009">CompoundAction.cs:10</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

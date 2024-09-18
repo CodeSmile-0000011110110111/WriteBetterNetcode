@@ -10,6 +10,9 @@ using UnityEngine;
 
 namespace CodeSmile.Utility
 {
+	/// <summary>
+	///     Parses command line arguments.
+	/// </summary>
 	public static class CmdArgs
 	{
 		private const NumberStyles IntStyle = NumberStyles.Integer | NumberStyles.AllowThousands;
@@ -19,6 +22,9 @@ namespace CodeSmile.Utility
 		private static Dictionary<String, String> s_Args;
 		private static IDictionary<String, String> Args => s_Args != null ? s_Args : s_Args = ParseCmdLineArgs();
 
+		/// <summary>
+		///     Debug.Logs the current command line.
+		/// </summary>
 		public static void Log()
 		{
 			var sb = new StringBuilder("CmdArgs: ");
@@ -32,20 +38,49 @@ namespace CodeSmile.Utility
 			Debug.Log(sb.ToString());
 		}
 
+		/// <summary>
+		///     Does an argument with the given key exist?
+		/// </summary>
+		/// <param name="key"></param>
+		/// <returns></returns>
 		public static Boolean Exists(String key) => Args.ContainsKey(key.ToLower());
 
+		/// <summary>
+		///     Gets the argument's value. If the argument was not specified, returns the default value.
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="defaultValue"></param>
+		/// <returns></returns>
 		public static String GetString(String key, String defaultValue = null) =>
 			Args.TryGetValue(key.ToLower(), out var val) ? val : defaultValue;
 
+		/// <summary>
+		///     Gets the argument's value. If the argument was not specified, returns the default value.
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="defaultValue"></param>
+		/// <returns></returns>
 		public static Boolean GetBool(String key, Boolean defaultValue = default) =>
 			Args.TryGetValue(key.ToLower(), out var str)
 				? TryParseBool(str, defaultValue)
 				: defaultValue;
 
+		/// <summary>
+		///     Gets the argument's value. If the argument was not specified, returns the default value.
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="defaultValue"></param>
+		/// <returns></returns>
 		public static Int32 GetInt(String key, Int32 defaultValue = default) => Args.TryGetValue(key.ToLower(), out var str)
 			? TryParseInt(str, defaultValue)
 			: defaultValue;
 
+		/// <summary>
+		///     Gets the argument's value. If the argument was not specified, returns the default value.
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="defaultValue"></param>
+		/// <returns></returns>
 		public static Single GetFloat(String key, Single defaultValue = default) => Args.TryGetValue(key.ToLower(), out var str)
 			? TryParseFloat(str, defaultValue)
 			: defaultValue;

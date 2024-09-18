@@ -9,6 +9,10 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Services.Relay.Actions
 {
+	/// <summary>
+	///     Initializes Relay. Depending on role (server/host or client) this may create an allocation or
+	///     will try to join one with a join code.
+	/// </summary>
 	public sealed class RelayCreateOrJoinAllocation : IAsyncAction
 	{
 		private readonly Var<RelayConfig> m_RelayConfigVar;
@@ -16,6 +20,11 @@ namespace CodeSmile.Statemachine.Services.Relay.Actions
 
 		private RelayCreateOrJoinAllocation() {}
 
+		/// <summary>
+		/// Create a new instance with parameters provided in the given variables.
+		/// </summary>
+		/// <param name="netcodeConfigVar"></param>
+		/// <param name="relayConfigVar"></param>
 		public RelayCreateOrJoinAllocation(Var<NetcodeConfig> netcodeConfigVar, Var<RelayConfig> relayConfigVar)
 		{
 			m_NetcodeConfigVar = netcodeConfigVar;

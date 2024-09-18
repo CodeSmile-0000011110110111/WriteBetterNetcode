@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace CodeSmile.Statemachine.Conditions
 {
+	/// <summary>
+	/// Used to combine multiple FSM conditions into a single, named condition.
+	/// </summary>
 	public sealed class CompoundCondition : ICondition
 	{
 		private readonly String m_Name;
@@ -15,9 +18,19 @@ namespace CodeSmile.Statemachine.Conditions
 
 		private CompoundCondition() {}
 
+		/// <summary>
+		/// Create a combined condition from one or more conditions.
+		/// </summary>
+		/// <param name="conditions"></param>
 		public CompoundCondition(params ICondition[] conditions)
 			: this(null, conditions) {}
 
+		/// <summary>
+		/// Create a named combined condition from one or more conditions.
+		/// </summary>
+		/// <param name="name">Meaningful display/debug name.</param>
+		/// <param name="conditions"></param>
+		/// <exception cref="ArgumentException"></exception>
 		public CompoundCondition(String name, params ICondition[] conditions)
 		{
 			if (conditions == null || conditions.Length == 0)

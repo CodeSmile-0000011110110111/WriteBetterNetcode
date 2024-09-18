@@ -2,49 +2,31 @@ var hierarchy =
 [
     [ "NetworkManagerExt", "class_code_smile_1_1_extensions_1_1_netcode_1_1_network_manager_ext.html", null ],
     [ "AvatarAnimatorParameters", "class_code_smile_1_1_multi_pal_1_1_animation_1_1_avatar_animator_parameters.html", null ],
-    [ "IAnimatorController", "interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_controller.html", [
-      [ "KyleAnimatorController", "class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller.html", null ]
-    ] ],
+    [ "IAnimatorController", "interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_controller.html", null ],
     [ "IAnimatorParametersProvider", "interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_parameters_provider.html", [
-      [ "PlayerControllerBase", "class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base.html", [
-        [ "DeadPlayerController", "class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_controller_1_1_dead_player_controller.html", null ],
-        [ "FallingPlayerController", "class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_controller_1_1_falling_player_controller.html", null ],
-        [ "SimplePlayerController", "class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_controller_1_1_simple_player_controller.html", null ]
-      ] ]
-    ] ],
-    [ "GeneratedInput.IPairingActions", "interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_pairing_actions.html", [
-      [ "InputUsers", "class_code_smile_1_1_multi_pal_1_1_input_1_1_input_users.html", null ]
-    ] ],
-    [ "GeneratedInput.IPlayerInteractionActions", "interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_interaction_actions.html", [
-      [ "PlayerInteraction", "class_code_smile_1_1_multi_pal_1_1_players_1_1_player_interaction.html", null ]
-    ] ],
-    [ "GeneratedInput.IPlayerKinematicsActions", "interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_kinematics_actions.html", [
       [ "PlayerControllerBase", "class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base.html", null ]
     ] ],
-    [ "GeneratedInput.IPlayerUIActions", "interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_u_i_actions.html", [
+    [ "GeneratedInput.IPairingActions", null, [
+      [ "InputUsers", "class_code_smile_1_1_multi_pal_1_1_input_1_1_input_users.html", null ]
+    ] ],
+    [ "GeneratedInput.IPlayerInteractionActions", null, [
+      [ "PlayerInteraction", "class_code_smile_1_1_multi_pal_1_1_players_1_1_player_interaction.html", null ]
+    ] ],
+    [ "GeneratedInput.IPlayerKinematicsActions", null, [
+      [ "PlayerControllerBase", "class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base.html", null ]
+    ] ],
+    [ "GeneratedInput.IPlayerUIActions", null, [
       [ "PlayerUi", "class_code_smile_1_1_multi_pal_1_1_players_1_1_player_ui.html", null ]
     ] ],
-    [ "GeneratedInput.IUIActions", "interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_u_i_actions.html", null ],
-    [ "GeneratedInput.PairingActions", "struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_pairing_actions.html", null ],
-    [ "GeneratedInput.PlayerInteractionActions", "struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_interaction_actions.html", null ],
-    [ "GeneratedInput.PlayerKinematicsActions", "struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_kinematics_actions.html", null ],
-    [ "GeneratedInput.PlayerUIActions", "struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_player_u_i_actions.html", null ],
-    [ "GeneratedInput.UIActions", "struct_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_u_i_actions.html", null ],
     [ "IPlayerComponent", "interface_code_smile_1_1_multi_pal_1_1_players_1_1_i_player_component.html", [
       [ "Player", "class_code_smile_1_1_multi_pal_1_1_players_1_1_player.html", null ],
       [ "PlayerCamera", "class_code_smile_1_1_multi_pal_1_1_players_1_1_player_camera.html", null ],
       [ "PlayerInteraction", "class_code_smile_1_1_multi_pal_1_1_players_1_1_player_interaction.html", null ],
       [ "PlayerUi", "class_code_smile_1_1_multi_pal_1_1_players_1_1_player_ui.html", null ]
     ] ],
-    [ "INetworkEventListener", "interface_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_i_network_event_listener.html", [
-      [ "ExampleEventListener", "class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_example_event_listener.html", null ],
-      [ "NetworkEventListener", "class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_listener.html", null ]
-    ] ],
-    [ "NetworkEventData", "struct_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_data.html", null ],
     [ "AdditiveScene", "class_code_smile_1_1_multi_pal_1_1_scene_1_1_additive_scene.html", null ],
     [ "Constants", "class_code_smile_1_1_multi_pal_1_1_settings_1_1_constants.html", null ],
     [ "Hitpoints", "class_code_smile_1_1_multi_pal_1_1_stats_1_1_hitpoints.html", null ],
-    [ "NewTestScript", "class_code_smile_1_1_multi_pal_1_1_tests_1_1_new_test_script.html", null ],
     [ "FSM", "class_code_smile_1_1_statemachine_1_1_f_s_m.html", null ],
     [ "FSM.StateChangeEventArgs", "struct_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state_change_event_args.html", null ],
     [ "FSM.StatemachineStoppedEventArgs", "struct_code_smile_1_1_statemachine_1_1_f_s_m_1_1_statemachine_stopped_event_args.html", null ],
@@ -63,15 +45,8 @@ var hierarchy =
         [ "SetNetcodeRole", "class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_set_netcode_role.html", null ],
         [ "TransportSetup", "class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup.html", null ],
         [ "RelayClearAllocationData", "class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_clear_allocation_data.html", null ],
-        [ "AddValue", "class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_add_value.html", null ],
         [ "DecValue", "class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_dec_value.html", null ],
-        [ "DivValue", "class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_div_value.html", null ],
-        [ "IncValue", "class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_inc_value.html", null ],
-        [ "MulValue", "class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_mul_value.html", null ],
-        [ "SetFalse", "class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_set_false.html", null ],
-        [ "SetTrue", "class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_set_true.html", null ],
-        [ "SetValue", "class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_set_value.html", null ],
-        [ "SubValue", "class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_sub_value.html", null ]
+        [ "IncValue", "class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_inc_value.html", null ]
       ] ],
       [ "ICondition", "interface_code_smile_1_1_statemachine_1_1_i_condition.html", [
         [ "CompoundCondition", "class_code_smile_1_1_statemachine_1_1_conditions_1_1_compound_condition.html", null ],
@@ -101,22 +76,12 @@ var hierarchy =
           [ "IsNotSignedIn", "class_code_smile_1_1_statemachine_1_1_services_1_1_authentication_1_1_conditions_1_1_is_not_signed_in.html", null ]
         ] ],
         [ "IsRelayEnabled", "class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_conditions_1_1_is_relay_enabled.html", null ],
-        [ "IsRelayReady", "class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_conditions_1_1_is_relay_ready.html", null ],
-        [ "IsEqual", "class_code_smile_1_1_statemachine_1_1_variable_1_1_conditions_1_1_is_equal.html", null ],
-        [ "IsFalse", "class_code_smile_1_1_statemachine_1_1_variable_1_1_conditions_1_1_is_false.html", null ],
-        [ "IsGreater", "class_code_smile_1_1_statemachine_1_1_variable_1_1_conditions_1_1_is_greater.html", null ],
-        [ "IsGreaterOrEqual", "class_code_smile_1_1_statemachine_1_1_variable_1_1_conditions_1_1_is_greater_or_equal.html", null ],
-        [ "IsLess", "class_code_smile_1_1_statemachine_1_1_variable_1_1_conditions_1_1_is_less.html", null ],
-        [ "IsLessOrEqual", "class_code_smile_1_1_statemachine_1_1_variable_1_1_conditions_1_1_is_less_or_equal.html", null ],
-        [ "IsNotEqual", "class_code_smile_1_1_statemachine_1_1_variable_1_1_conditions_1_1_is_not_equal.html", null ],
-        [ "IsTrue", "class_code_smile_1_1_statemachine_1_1_variable_1_1_conditions_1_1_is_true.html", null ]
+        [ "IsRelayReady", "class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_conditions_1_1_is_relay_ready.html", null ]
       ] ]
     ] ],
     [ "NetcodeConfig", "struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config.html", null ],
     [ "RelayConfig", "struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config.html", null ],
     [ "TransportConfig", "struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config.html", null ],
-    [ "StatemachineTests", "class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests.html", null ],
-    [ "StatemachineVariableTests", "class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_variable_tests.html", null ],
     [ "Var< CodeSmile.Statemachine.Netcode.NetcodeConfig >", "class_code_smile_1_1_statemachine_1_1_var.html", null ],
     [ "Var< CodeSmile.Statemachine.Netcode.RelayConfig >", "class_code_smile_1_1_statemachine_1_1_var.html", null ],
     [ "Var< CodeSmile.Statemachine.Netcode.TransportConfig >", "class_code_smile_1_1_statemachine_1_1_var.html", null ],
@@ -131,9 +96,6 @@ var hierarchy =
     ] ],
     [ "Variables", "class_code_smile_1_1_statemachine_1_1_variables.html", null ],
     [ "CmdArgs", "class_code_smile_1_1_utility_1_1_cmd_args.html", null ],
-    [ "IDisposable", null, [
-      [ "GeneratedInput", "class_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input.html", null ]
-    ] ],
     [ "IEnumerable", null, [
       [ "CouchPlayers", "class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players.html", null ],
       [ "PrefabsListBase", "class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base.html", [
@@ -149,9 +111,6 @@ var hierarchy =
       [ "IntVar", "class_code_smile_1_1_statemachine_1_1_int_var.html", null ],
       [ "Var< T >", "class_code_smile_1_1_statemachine_1_1_var.html", null ],
       [ "SceneReference", "class_code_smile_1_1_utility_1_1_scene_reference.html", null ]
-    ] ],
-    [ "IInputActionCollection2", null, [
-      [ "GeneratedInput", "class_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input.html", null ]
     ] ],
     [ "MonoBehaviour", null, [
       [ "NetworkEventLogger", "class_code_smile_1_1_components_1_1_netcode_1_1_network_event_logger.html", null ],
@@ -178,11 +137,6 @@ var hierarchy =
       [ "PlayerCamera", "class_code_smile_1_1_multi_pal_1_1_players_1_1_player_camera.html", null ],
       [ "PlayerInteraction", "class_code_smile_1_1_multi_pal_1_1_players_1_1_player_interaction.html", null ],
       [ "PlayerUi", "class_code_smile_1_1_multi_pal_1_1_players_1_1_player_ui.html", null ],
-      [ "KyleAnimationEventHandler", "class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animation_event_handler.html", null ],
-      [ "KyleAnimatorController", "class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller.html", null ],
-      [ "CustomNamedMessageHandler", "class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_custom_named_message_handler.html", null ],
-      [ "ExampleEventListener", "class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_example_event_listener.html", null ],
-      [ "NetworkEventListener", "class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_listener.html", null ],
       [ "ClientSceneLoader", "class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader.html", null ],
       [ "ServerSceneLoader", "class_code_smile_1_1_multi_pal_1_1_scene_1_1_server_scene_loader.html", null ],
       [ "PlayerStats", "class_code_smile_1_1_multi_pal_1_1_stats_1_1_player_stats.html", null ],
@@ -198,9 +152,6 @@ var hierarchy =
       [ "SceneManagerNoSingleLoad", "class_code_smile_1_1_multi_pal_1_1_utility_1_1_scene_manager_no_single_load.html", null ]
     ] ],
     [ "ScriptableObject", null, [
-      [ "NetworkEventBase", "class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base.html", [
-        [ "ExampleNetworkEvent", "class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_example_network_event.html", null ]
-      ] ],
       [ "GameStateBase", "class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base.html", [
         [ "LaunchScreenState", "class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_launch_screen_state.html", null ],
         [ "MenuScreenState", "class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_menu_screen_state.html", null ],

@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Conditions
 {
 	/// <summary>
-	///     Generic Condition that simply executes a lambda. Provides static methods for related operators AND, OR, NOT.
+	///     Generic Condition that simply executes a lambda (System.Func&lt;bool&gt;).
 	/// </summary>
 	/// <remarks>
 	///     This allows for quick and dirty tests but should be avoided for production code, as using a custom ICondition
@@ -21,9 +21,19 @@ namespace CodeSmile.Statemachine.Conditions
 
 		private LambdaCondition() {} // forbidden default ctor
 
+		/// <summary>
+		/// Creates a LambdaCondition with a callback returning a bool.
+		/// </summary>
+		/// <param name="callback"></param>
 		public LambdaCondition(Func<Boolean> callback)
 			: this(null, callback) {}
 
+		/// <summary>
+		/// Creates a named LambdaCondition with a callback returning a bool.
+		/// </summary>
+		/// <param name="name">Meaningful display/debug name.</param>
+		/// <param name="callback"></param>
+		/// <exception cref="ArgumentNullException"></exception>
 		public LambdaCondition(String name, Func<Boolean> callback)
 		{
 			if (callback == null)

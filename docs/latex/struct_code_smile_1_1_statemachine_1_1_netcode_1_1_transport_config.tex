@@ -2,46 +2,44 @@
 \hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}{}\label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}\index{TransportConfig@{TransportConfig}}
 
 
-Collaboration diagram for Transport\+Config\+:
-\nopagebreak
+DTO that provides Transport configuration options.  
+
+
+
+
+Collaboration diagram for Transport\+Config\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=233pt]{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsubsubsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a012fbb0f39e57c0a44ec83dd408fcda3}\label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a012fbb0f39e57c0a44ec83dd408fcda3} 
-override String {\bfseries To\+String} ()
-\end{DoxyCompactItemize}
 \doxysubsubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 static \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}{Transport\+Config}} \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a75bccb77ee47e59bcea9f5e8520c6203_a75bccb77ee47e59bcea9f5e8520c6203}{From\+Network\+Manager}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Creates a \doxylink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}{Transport\+Config} instance from current Network\+Manager Transport settings. Use this to get the Transport values set in the Inspector. \end{DoxyCompactList}\item 
 static \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}{Transport\+Config}} \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a2eda7e08f5a1c19078e54ec81951abbc_a2eda7e08f5a1c19078e54ec81951abbc}{From\+Network\+Manager\+With\+Cmd\+Arg\+Overrides}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates a \doxylink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}{Transport\+Config} instance from current Network\+Manager Transport settings and then have command line arguments (if specified) override each setting. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 String \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a59ea01f052d1a1cdcd46b7652a31eb7b_a59ea01f052d1a1cdcd46b7652a31eb7b}{Address}}
-\item 
+\begin{DoxyCompactList}\small\item\em The IP address (v4 or v6) to connect to. \end{DoxyCompactList}\item 
 UInt16 \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_abd00b91d5bf24c2777bdc3914e79aab6_abd00b91d5bf24c2777bdc3914e79aab6}{Port}}
-\item 
+\begin{DoxyCompactList}\small\item\em The port number for the connection. \end{DoxyCompactList}\item 
 String \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a03775f06d92fb83569002e10810fceb3_a03775f06d92fb83569002e10810fceb3}{Server\+Listen\+Address}}
-\item 
+\begin{DoxyCompactList}\small\item\em The Server\+Listen\+Address. Should be 0.\+0.\+0.\+0 for publicly accessible games. Use 127.\+0.\+0.\+1 to allow only instances running on the same machine to join. (Default) \end{DoxyCompactList}\item 
 Boolean \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a62db694b6512e6b4b6e06ce93985355b_a62db694b6512e6b4b6e06ce93985355b}{Use\+Encryption}}
-\item 
+\begin{DoxyCompactList}\small\item\em Enables transport-\/level encryption. \end{DoxyCompactList}\item 
 Boolean \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_af1d14d4c96fa7268a4beeacc9c25793f_af1d14d4c96fa7268a4beeacc9c25793f}{Use\+Web\+Sockets}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Enables Web\+Socket support. Must be enabled for web Clients and the server that web Clients connect to. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsubsection{Detailed Description}
+DTO that provides Transport configuration options. 
 
-
-Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00014}{14}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00017}{17}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
 
 
 
@@ -54,24 +52,46 @@ static \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_trans
 
 
 
-Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00022}{22}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+Creates a \doxylink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}{Transport\+Config} instance from current Network\+Manager Transport settings. Use this to get the Transport values set in the Inspector. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00046}{46}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ var\ transport\ =\ NetworkManager.Singleton.GetTransport();}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ var\ connData\ =\ transport.ConnectionData;}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ TransportConfig}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Address\ =\ connData.Address,}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Port\ =\ connData.Port,}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ServerListenAddress\ =\ connData.ServerListenAddress,}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UseEncryption\ =\ transport.UseEncryption,}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UseWebSockets\ =\ transport.UseWebSockets,}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ var\ transport\ =\ NetworkManager.Singleton.GetTransport();}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ var\ connData\ =\ transport.ConnectionData;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ TransportConfig}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a59ea01f052d1a1cdcd46b7652a31eb7b_a59ea01f052d1a1cdcd46b7652a31eb7b}{Address}}\ =\ connData.Address,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_abd00b91d5bf24c2777bdc3914e79aab6_abd00b91d5bf24c2777bdc3914e79aab6}{Port}}\ =\ connData.Port,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a03775f06d92fb83569002e10810fceb3_a03775f06d92fb83569002e10810fceb3}{ServerListenAddress}}\ =\ connData.ServerListenAddress,}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a62db694b6512e6b4b6e06ce93985355b_a62db694b6512e6b4b6e06ce93985355b}{UseEncryption}}\ =\ transport.UseEncryption,}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_af1d14d4c96fa7268a4beeacc9c25793f_af1d14d4c96fa7268a4beeacc9c25793f}{UseWebSockets}}\ =\ transport.UseWebSockets,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
 
 \end{DoxyCode}
+
+
+References \mbox{\hyperlink{_transport_config_8cs_source_l00022}{Transport\+Config.\+Address}}, \mbox{\hyperlink{_transport_config_8cs_source_l00026}{Transport\+Config.\+Port}}, \mbox{\hyperlink{_transport_config_8cs_source_l00031}{Transport\+Config.\+Server\+Listen\+Address}}, \mbox{\hyperlink{_transport_config_8cs_source_l00035}{Transport\+Config.\+Use\+Encryption}}, and \mbox{\hyperlink{_transport_config_8cs_source_l00039}{Transport\+Config.\+Use\+Web\+Sockets}}.
+
+
+
+Referenced by \mbox{\hyperlink{_transport_config_8cs_source_l00065}{Transport\+Config.\+From\+Network\+Manager\+With\+Cmd\+Arg\+Overrides()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a75bccb77ee47e59bcea9f5e8520c6203_a75bccb77ee47e59bcea9f5e8520c6203_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a2eda7e08f5a1c19078e54ec81951abbc_a2eda7e08f5a1c19078e54ec81951abbc}\index{TransportConfig@{TransportConfig}!FromNetworkManagerWithCmdArgOverrides@{FromNetworkManagerWithCmdArgOverrides}}
 \index{FromNetworkManagerWithCmdArgOverrides@{FromNetworkManagerWithCmdArgOverrides}!TransportConfig@{TransportConfig}}
 \doxyparagraph{\texorpdfstring{FromNetworkManagerWithCmdArgOverrides()}{FromNetworkManagerWithCmdArgOverrides()}}
@@ -80,24 +100,42 @@ static \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_trans
 
 
 
-Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00036}{36}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+Creates a \doxylink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}{Transport\+Config} instance from current Network\+Manager Transport settings and then have command line arguments (if specified) override each setting. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00065}{65}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ var\ config\ =\ FromNetworkManager();}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ config.Address\ =\ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.GetString(nameof(Address),\ config.Address);}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ config.Port\ =\ (UInt16)\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.GetInt(nameof(Port),\ config.Port);}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ config.ServerListenAddress\ =}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.GetString(nameof(ServerListenAddress),\ config.ServerListenAddress);}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ config.UseEncryption\ =}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.GetBool(nameof(UseEncryption),\ config.UseEncryption);}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ config.UseWebSockets\ =}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.GetBool(nameof(UseWebSockets),\ config.UseWebSockets);}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ config;}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ var\ config\ =\ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a75bccb77ee47e59bcea9f5e8520c6203_a75bccb77ee47e59bcea9f5e8520c6203}{FromNetworkManager}}();}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ config.Address\ =\ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_aaa3660e842edbad17a4550bd67e365df_aaa3660e842edbad17a4550bd67e365df}{GetString}}(nameof(\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a59ea01f052d1a1cdcd46b7652a31eb7b_a59ea01f052d1a1cdcd46b7652a31eb7b}{Address}}),\ config.Address);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ config.Port\ =\ (UInt16)\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_ae0e2e7391ee3a4fde07a151f58e54531_ae0e2e7391ee3a4fde07a151f58e54531}{GetInt}}(nameof(\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_abd00b91d5bf24c2777bdc3914e79aab6_abd00b91d5bf24c2777bdc3914e79aab6}{Port}}),\ config.Port);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ config.ServerListenAddress\ =}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_aaa3660e842edbad17a4550bd67e365df_aaa3660e842edbad17a4550bd67e365df}{GetString}}(nameof(\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a03775f06d92fb83569002e10810fceb3_a03775f06d92fb83569002e10810fceb3}{ServerListenAddress}}),\ config.ServerListenAddress);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ config.UseEncryption\ =}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_a460999834701529d77ac7702cf95c878_a460999834701529d77ac7702cf95c878}{GetBool}}(nameof(\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a62db694b6512e6b4b6e06ce93985355b_a62db694b6512e6b4b6e06ce93985355b}{UseEncryption}}),\ config.UseEncryption);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ config.UseWebSockets\ =}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_a460999834701529d77ac7702cf95c878_a460999834701529d77ac7702cf95c878}{GetBool}}(nameof(\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_af1d14d4c96fa7268a4beeacc9c25793f_af1d14d4c96fa7268a4beeacc9c25793f}{UseWebSockets}}),\ config.UseWebSockets);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ config;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
 
 \end{DoxyCode}
+
+
+References \mbox{\hyperlink{_transport_config_8cs_source_l00022}{Transport\+Config.\+Address}}, \mbox{\hyperlink{_transport_config_8cs_source_l00046}{Transport\+Config.\+From\+Network\+Manager()}}, \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_a460999834701529d77ac7702cf95c878_a460999834701529d77ac7702cf95c878}{Cmd\+Args.\+Get\+Bool()}}, \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_ae0e2e7391ee3a4fde07a151f58e54531_ae0e2e7391ee3a4fde07a151f58e54531}{Cmd\+Args.\+Get\+Int()}}, \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args_aaa3660e842edbad17a4550bd67e365df_aaa3660e842edbad17a4550bd67e365df}{Cmd\+Args.\+Get\+String()}}, \mbox{\hyperlink{_transport_config_8cs_source_l00026}{Transport\+Config.\+Port}}, \mbox{\hyperlink{_transport_config_8cs_source_l00031}{Transport\+Config.\+Server\+Listen\+Address}}, \mbox{\hyperlink{_transport_config_8cs_source_l00035}{Transport\+Config.\+Use\+Encryption}}, and \mbox{\hyperlink{_transport_config_8cs_source_l00039}{Transport\+Config.\+Use\+Web\+Sockets}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a2eda7e08f5a1c19078e54ec81951abbc_a2eda7e08f5a1c19078e54ec81951abbc_cgraph}
+\end{center}
+\end{figure}
 
 
 \doxysubsubsection{Member Data Documentation}
@@ -109,7 +147,15 @@ String Address}
 
 
 
-Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00016}{16}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+The IP address (v4 or v6) to connect to. 
+
+
+
+Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00022}{22}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{_transport_config_8cs_source_l00046}{Transport\+Config.\+From\+Network\+Manager()}}, and \mbox{\hyperlink{_transport_config_8cs_source_l00065}{Transport\+Config.\+From\+Network\+Manager\+With\+Cmd\+Arg\+Overrides()}}.
 
 \Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_abd00b91d5bf24c2777bdc3914e79aab6_abd00b91d5bf24c2777bdc3914e79aab6}\index{TransportConfig@{TransportConfig}!Port@{Port}}
 \index{Port@{Port}!TransportConfig@{TransportConfig}}
@@ -119,7 +165,15 @@ UInt16 Port}
 
 
 
-Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00017}{17}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+The port number for the connection. 
+
+
+
+Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00026}{26}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{_transport_config_8cs_source_l00046}{Transport\+Config.\+From\+Network\+Manager()}}, and \mbox{\hyperlink{_transport_config_8cs_source_l00065}{Transport\+Config.\+From\+Network\+Manager\+With\+Cmd\+Arg\+Overrides()}}.
 
 \Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a03775f06d92fb83569002e10810fceb3_a03775f06d92fb83569002e10810fceb3}\index{TransportConfig@{TransportConfig}!ServerListenAddress@{ServerListenAddress}}
 \index{ServerListenAddress@{ServerListenAddress}!TransportConfig@{TransportConfig}}
@@ -129,7 +183,15 @@ String Server\+Listen\+Address}
 
 
 
-Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00018}{18}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+The Server\+Listen\+Address. Should be 0.\+0.\+0.\+0 for publicly accessible games. Use 127.\+0.\+0.\+1 to allow only instances running on the same machine to join. (Default) 
+
+
+
+Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00031}{31}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{_transport_config_8cs_source_l00046}{Transport\+Config.\+From\+Network\+Manager()}}, and \mbox{\hyperlink{_transport_config_8cs_source_l00065}{Transport\+Config.\+From\+Network\+Manager\+With\+Cmd\+Arg\+Overrides()}}.
 
 \Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a62db694b6512e6b4b6e06ce93985355b_a62db694b6512e6b4b6e06ce93985355b}\index{TransportConfig@{TransportConfig}!UseEncryption@{UseEncryption}}
 \index{UseEncryption@{UseEncryption}!TransportConfig@{TransportConfig}}
@@ -139,7 +201,15 @@ Boolean Use\+Encryption}
 
 
 
-Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00019}{19}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+Enables transport-\/level encryption. 
+
+
+
+Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00035}{35}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{_transport_config_8cs_source_l00046}{Transport\+Config.\+From\+Network\+Manager()}}, and \mbox{\hyperlink{_transport_config_8cs_source_l00065}{Transport\+Config.\+From\+Network\+Manager\+With\+Cmd\+Arg\+Overrides()}}.
 
 \Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_af1d14d4c96fa7268a4beeacc9c25793f_af1d14d4c96fa7268a4beeacc9c25793f}\index{TransportConfig@{TransportConfig}!UseWebSockets@{UseWebSockets}}
 \index{UseWebSockets@{UseWebSockets}!TransportConfig@{TransportConfig}}
@@ -149,5 +219,13 @@ Boolean Use\+Web\+Sockets}
 
 
 
-Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00020}{20}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+Enables Web\+Socket support. Must be enabled for web Clients and the server that web Clients connect to. 
+
+
+
+Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00039}{39}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{_transport_config_8cs_source_l00046}{Transport\+Config.\+From\+Network\+Manager()}}, and \mbox{\hyperlink{_transport_config_8cs_source_l00065}{Transport\+Config.\+From\+Network\+Manager\+With\+Cmd\+Arg\+Overrides()}}.
 

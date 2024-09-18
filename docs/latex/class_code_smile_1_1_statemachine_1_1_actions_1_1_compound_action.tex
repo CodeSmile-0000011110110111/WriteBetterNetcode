@@ -2,8 +2,12 @@
 \hypertarget{class_code_smile_1_1_statemachine_1_1_actions_1_1_compound_action}{}\label{class_code_smile_1_1_statemachine_1_1_actions_1_1_compound_action}\index{CompoundAction@{CompoundAction}}
 
 
-Inheritance diagram for Compound\+Action\+:
-\nopagebreak
+Used to combine multiple \doxylink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM} actions into a single, named action.  
+
+
+
+
+Inheritance diagram for Compound\+Action\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +16,7 @@ Inheritance diagram for Compound\+Action\+:
 \end{figure}
 
 
-Collaboration diagram for Compound\+Action\+:
-\nopagebreak
+Collaboration diagram for Compound\+Action\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -24,31 +27,15 @@ Collaboration diagram for Compound\+Action\+:
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_actions_1_1_compound_action_a79ccc616a4062117d6bdd4178fdd26db_a79ccc616a4062117d6bdd4178fdd26db}{Compound\+Action}} (params \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}\mbox{[}$\,$\mbox{]} actions)
-\item 
+\begin{DoxyCompactList}\small\item\em Create a combined action from one or more actions. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_actions_1_1_compound_action_a9ab1fa56fdd1152cc479576d4684946c_a9ab1fa56fdd1152cc479576d4684946c}{Compound\+Action}} (String name, params \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}\mbox{[}$\,$\mbox{]} actions)
-\item 
-void \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_actions_1_1_compound_action_a622e3bd65304d3fc345ce24529ace200_a622e3bd65304d3fc345ce24529ace200}{Execute}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\item 
-String \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_actions_1_1_compound_action_a0e6db7f5857c623082a89540a8a3f1a4_a0e6db7f5857c623082a89540a8a3f1a4}{To\+Debug\+String}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\end{DoxyCompactItemize}
-\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}}
-\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events}{IStatemachine\+Events}}}
-\begin{DoxyCompactItemize}
-\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a5a67bb74ccf99965d72db627baba330e_a5a67bb74ccf99965d72db627baba330e}{On\+Enter\+State}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called when the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} enters a state to which the Action/\+Condition belongs. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a642a9e83527494616d3c56ffc0c2e5d3_a642a9e83527494616d3c56ffc0c2e5d3}{On\+Exit\+State}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called when the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} leaves the state to which the Action/\+Condition belongs. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_ad53b64512d4843ff9f09cb72b1467b8d_ad53b64512d4843ff9f09cb72b1467b8d}{On\+Start}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called before the first evaluation of the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine}. Similar to Start() in a Mono\+Behaviour. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a1dc817ac01153abb1d67f5b7fd1e0594_a1dc817ac01153abb1d67f5b7fd1e0594}{On\+Stop}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
-\begin{DoxyCompactList}\small\item\em Called when the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} stops, meaning it reached a State that has no transitions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Create a combined action from one or more actions. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsubsection{Detailed Description}
+Used to combine multiple \doxylink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM} actions into a single, named action. 
 
-
-Definition at line \mbox{\hyperlink{_compound_action_8cs_source_l00011}{11}} of file \mbox{\hyperlink{_compound_action_8cs_source}{Compound\+Action.\+cs}}.
+Definition at line \mbox{\hyperlink{_compound_action_8cs_source_l00014}{14}} of file \mbox{\hyperlink{_compound_action_8cs_source}{Compound\+Action.\+cs}}.
 
 
 
@@ -61,11 +48,20 @@ Definition at line \mbox{\hyperlink{_compound_action_8cs_source_l00011}{11}} of 
 
 
 
-Definition at line \mbox{\hyperlink{_compound_action_8cs_source_l00018}{18}} of file \mbox{\hyperlink{_compound_action_8cs_source}{Compound\+Action.\+cs}}.
+Create a combined action from one or more actions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actions} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_compound_action_8cs_source_l00025}{25}} of file \mbox{\hyperlink{_compound_action_8cs_source}{Compound\+Action.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keyword}{this}(\textcolor{keyword}{null},\ actions)\ \{\}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keyword}{this}(\textcolor{keyword}{null},\ actions)\ \{\}}
 
 \end{DoxyCode}
 \Hypertarget{class_code_smile_1_1_statemachine_1_1_actions_1_1_compound_action_a9ab1fa56fdd1152cc479576d4684946c_a9ab1fa56fdd1152cc479576d4684946c}\index{CompoundAction@{CompoundAction}!CompoundAction@{CompoundAction}}
@@ -76,57 +72,32 @@ Definition at line \mbox{\hyperlink{_compound_action_8cs_source_l00018}{18}} of 
 
 
 
-Definition at line \mbox{\hyperlink{_compound_action_8cs_source_l00021}{21}} of file \mbox{\hyperlink{_compound_action_8cs_source}{Compound\+Action.\+cs}}.
+Create a combined action from one or more actions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The display/debug name of the combined action.\\
+\hline
+{\em actions} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Argument\+Exception} & Thrown if no actions provided.\\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{_compound_action_8cs_source_l00034}{34}} of file \mbox{\hyperlink{_compound_action_8cs_source}{Compound\+Action.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (actions\ ==\ \textcolor{keyword}{null}\ ||\ actions.Length\ ==\ 0)}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}actions\ null\ or\ empty"{}});}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Name\ =\ name;}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Actions\ =\ actions;}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \}}
-
-\end{DoxyCode}
-
-
-\doxysubsubsection{Member Function Documentation}
-\Hypertarget{class_code_smile_1_1_statemachine_1_1_actions_1_1_compound_action_a622e3bd65304d3fc345ce24529ace200_a622e3bd65304d3fc345ce24529ace200}\index{CompoundAction@{CompoundAction}!Execute@{Execute}}
-\index{Execute@{Execute}!CompoundAction@{CompoundAction}}
-\doxyparagraph{\texorpdfstring{Execute()}{Execute()}}
-{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_actions_1_1_compound_action_a622e3bd65304d3fc345ce24529ace200_a622e3bd65304d3fc345ce24529ace200} 
-void Execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}}]{sm}{}\end{DoxyParamCaption})}
-
-
-
-Implements \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}.
-
-\Hypertarget{class_code_smile_1_1_statemachine_1_1_actions_1_1_compound_action_a0e6db7f5857c623082a89540a8a3f1a4_a0e6db7f5857c623082a89540a8a3f1a4}\index{CompoundAction@{CompoundAction}!ToDebugString@{ToDebugString}}
-\index{ToDebugString@{ToDebugString}!CompoundAction@{CompoundAction}}
-\doxyparagraph{\texorpdfstring{ToDebugString()}{ToDebugString()}}
-{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_actions_1_1_compound_action_a0e6db7f5857c623082a89540a8a3f1a4_a0e6db7f5857c623082a89540a8a3f1a4} 
-String To\+Debug\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}}]{sm}{}\end{DoxyParamCaption})}
-
-
-
-Implements \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}.
-
-
-
-Definition at line \mbox{\hyperlink{_compound_action_8cs_source_l00032}{32}} of file \mbox{\hyperlink{_compound_action_8cs_source}{Compound\+Action.\+cs}}.
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (String.IsNullOrWhiteSpace(m\_Name)\ ==\ \textcolor{keyword}{false})}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_Name;}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ var\ sb\ =\ \textcolor{keyword}{new}\ StringBuilder();}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ action\ \textcolor{keywordflow}{in}\ m\_Actions)}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sb.AppendLine(action.ToDebugString(sm));}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sb.ToString();}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (actions\ ==\ \textcolor{keyword}{null}\ ||\ actions.Length\ ==\ 0)}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}actions\ null\ or\ empty"{}});}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Name\ =\ name;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Actions\ =\ actions;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \}}
 
 \end{DoxyCode}

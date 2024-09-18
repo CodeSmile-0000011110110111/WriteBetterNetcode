@@ -18,6 +18,9 @@ namespace CodeSmile.Components.Registry
 	[DisallowMultipleComponent]
 	public sealed class ComponentsRegistry : MonoBehaviour
 	{
+		/// <summary>
+		/// Event raised when assignment occurs, including null.
+		/// </summary>
 		public static event Action<Type, Component> OnComponentAssigned;
 
 		private static Dictionary<Type, Component> s_Components;

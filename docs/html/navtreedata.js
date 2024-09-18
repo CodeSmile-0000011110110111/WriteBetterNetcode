@@ -27,12 +27,17 @@ var NAVTREE =
   [ "CodeSmile MultiPal", "index.html", [
     [ "WriteBetterNetcode", "index.html", null ],
     [ "CodeSmile MultiPal - Getting Started", "md__u_1_2_netcode_2_write_better_netcode_2_write_better_netcode_2_assets_2_code_smile_2_multi_pal_2_r_e_a_d_m_e.html", null ],
+    [ "Package Members", "namespacemembers.html", [
+      [ "All", "namespacemembers.html", null ],
+      [ "Enumerations", "namespacemembers_enum.html", null ]
+    ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
         [ "Functions", "functions_func.html", null ],
+        [ "Variables", "functions_vars.html", null ],
         [ "Enumerations", "functions_enum.html", null ],
         [ "Properties", "functions_prop.html", null ],
         [ "Events", "functions_evnt.html", null ]
@@ -43,7 +48,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"annotated.html",
+"struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a59ea01f052d1a1cdcd46b7652a31eb7b.html#a59ea01f052d1a1cdcd46b7652a31eb7b"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
