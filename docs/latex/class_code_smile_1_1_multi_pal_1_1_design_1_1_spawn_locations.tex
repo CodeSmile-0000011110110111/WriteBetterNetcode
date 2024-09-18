@@ -1,0 +1,108 @@
+\doxysubsection{Spawn\+Locations Class Reference}
+\hypertarget{class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_locations}{}\label{class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_locations}\index{SpawnLocations@{SpawnLocations}}
+
+
+Inheritance diagram for Spawn\+Locations\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_locations__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Spawn\+Locations\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_locations__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_location}{Spawn\+Location}} \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_locations_ae6d54d589bb772247f894bc4e4675904_ae6d54d589bb772247f894bc4e4675904}{Get\+Random\+Spawn\+Location}} (Int32 player\+Index)
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+static Int32 \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_locations_ac5e5b8bbada57da14817a8bcc77351bd_ac5e5b8bbada57da14817a8bcc77351bd}{Count}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+static Action$<$ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_locations}{Spawn\+Locations}} $>$ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_locations_a1a36afe2633316831464c3d433b355c3_a1a36afe2633316831464c3d433b355c3}{On\+Spawn\+Locations\+Changed}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_spawn_locations_8_editor_8cs_source_l00012}{12}} of file \mbox{\hyperlink{_spawn_locations_8_editor_8cs_source}{Spawn\+Locations.\+Editor.\+cs}}.
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_locations_ae6d54d589bb772247f894bc4e4675904_ae6d54d589bb772247f894bc4e4675904}\index{SpawnLocations@{SpawnLocations}!GetRandomSpawnLocation@{GetRandomSpawnLocation}}
+\index{GetRandomSpawnLocation@{GetRandomSpawnLocation}!SpawnLocations@{SpawnLocations}}
+\doxyparagraph{\texorpdfstring{GetRandomSpawnLocation()}{GetRandomSpawnLocation()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_locations_ae6d54d589bb772247f894bc4e4675904_ae6d54d589bb772247f894bc4e4675904} 
+\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_location}{Spawn\+Location}} Get\+Random\+Spawn\+Location (\begin{DoxyParamCaption}\item[{Int32}]{player\+Index}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_spawn_locations_8cs_source_l00072}{72}} of file \mbox{\hyperlink{_spawn_locations_8cs_source}{Spawn\+Locations.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_AllSpawnLocations.Count\ ==\ 0)}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.LogWarning(\textcolor{stringliteral}{"{}No\ SpawnLocations\ available."{}});}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Int32\ MaxIterations\ =\ 250;\ \textcolor{comment}{//\ infinite\ loop\ safeguard}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ var\ iterations\ =\ 0;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ SpawnLocation\ location;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ randomIndex\ =\ Random.Range(0,\ m\_AllSpawnLocations.Count);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ location\ =\ m\_AllSpawnLocations[randomIndex];}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (++iterations\ <\ MaxIterations)}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{while}\ (location\ ==\ \textcolor{keyword}{null}\ ||\ location.IsPlayerAllowed(playerIndex)\ ==\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ location;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsubsection{Property Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_locations_ac5e5b8bbada57da14817a8bcc77351bd_ac5e5b8bbada57da14817a8bcc77351bd}\index{SpawnLocations@{SpawnLocations}!Count@{Count}}
+\index{Count@{Count}!SpawnLocations@{SpawnLocations}}
+\doxyparagraph{\texorpdfstring{Count}{Count}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_locations_ac5e5b8bbada57da14817a8bcc77351bd_ac5e5b8bbada57da14817a8bcc77351bd} 
+Int32 Count\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}
+
+
+
+Definition at line \mbox{\hyperlink{_spawn_locations_8cs_source_l00023}{23}} of file \mbox{\hyperlink{_spawn_locations_8cs_source}{Spawn\+Locations.\+cs}}.
+
+
+
+\doxysubsubsection{Event Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_locations_a1a36afe2633316831464c3d433b355c3_a1a36afe2633316831464c3d433b355c3}\index{SpawnLocations@{SpawnLocations}!OnSpawnLocationsChanged@{OnSpawnLocationsChanged}}
+\index{OnSpawnLocationsChanged@{OnSpawnLocationsChanged}!SpawnLocations@{SpawnLocations}}
+\doxyparagraph{\texorpdfstring{OnSpawnLocationsChanged}{OnSpawnLocationsChanged}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_locations_a1a36afe2633316831464c3d433b355c3_a1a36afe2633316831464c3d433b355c3} 
+Action$<$\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_design_1_1_spawn_locations}{Spawn\+Locations}}$>$ On\+Spawn\+Locations\+Changed\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_spawn_locations_8cs_source_l00017}{17}} of file \mbox{\hyperlink{_spawn_locations_8cs_source}{Spawn\+Locations.\+cs}}.
+

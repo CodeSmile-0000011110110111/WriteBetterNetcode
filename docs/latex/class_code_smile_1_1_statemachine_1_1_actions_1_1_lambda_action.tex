@@ -1,0 +1,121 @@
+\doxysubsection{Lambda\+Action Class Reference}
+\hypertarget{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action}{}\label{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action}\index{LambdaAction@{LambdaAction}}
+
+
+Generic Action that simply executes a lambda.  
+
+
+
+
+Inheritance diagram for Lambda\+Action\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Lambda\+Action\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action_a59da467e1ad6791bbc7e7fdd5844129a_a59da467e1ad6791bbc7e7fdd5844129a}{Lambda\+Action}} (Action callback)
+\item 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action_a18dedd449850bfc0ffe340046b7a6fd4_a18dedd449850bfc0ffe340046b7a6fd4}{Lambda\+Action}} (String name, Action callback)
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action_a622e3bd65304d3fc345ce24529ace200_a622e3bd65304d3fc345ce24529ace200}{Execute}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
+\item 
+String \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action_a0e6db7f5857c623082a89540a8a3f1a4_a0e6db7f5857c623082a89540a8a3f1a4}{To\+Debug\+String}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
+\end{DoxyCompactItemize}
+\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}}
+\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events}{IStatemachine\+Events}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a5a67bb74ccf99965d72db627baba330e_a5a67bb74ccf99965d72db627baba330e}{On\+Enter\+State}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
+\begin{DoxyCompactList}\small\item\em Called when the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} enters a state to which the Action/\+Condition belongs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a642a9e83527494616d3c56ffc0c2e5d3_a642a9e83527494616d3c56ffc0c2e5d3}{On\+Exit\+State}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
+\begin{DoxyCompactList}\small\item\em Called when the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} leaves the state to which the Action/\+Condition belongs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_ad53b64512d4843ff9f09cb72b1467b8d_ad53b64512d4843ff9f09cb72b1467b8d}{On\+Start}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
+\begin{DoxyCompactList}\small\item\em Called before the first evaluation of the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine}. Similar to Start() in a Mono\+Behaviour. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a1dc817ac01153abb1d67f5b7fd1e0594_a1dc817ac01153abb1d67f5b7fd1e0594}{On\+Stop}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}} sm)
+\begin{DoxyCompactList}\small\item\em Called when the \doxylink{namespace_code_smile_1_1_statemachine}{Statemachine} stops, meaning it reached a State that has no transitions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Generic Action that simply executes a lambda. 
+
+This allows for quick and dirty tests but should be avoided for production code, as using a custom \doxylink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction} implementation will provide re-\/usability and make the intent of the Action clear, specifically in logs. 
+
+Definition at line \mbox{\hyperlink{_lambda_action_8cs_source_l00017}{17}} of file \mbox{\hyperlink{_lambda_action_8cs_source}{Lambda\+Action.\+cs}}.
+
+
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action_a59da467e1ad6791bbc7e7fdd5844129a_a59da467e1ad6791bbc7e7fdd5844129a}\index{LambdaAction@{LambdaAction}!LambdaAction@{LambdaAction}}
+\index{LambdaAction@{LambdaAction}!LambdaAction@{LambdaAction}}
+\doxyparagraph{\texorpdfstring{LambdaAction()}{LambdaAction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action_a59da467e1ad6791bbc7e7fdd5844129a_a59da467e1ad6791bbc7e7fdd5844129a} 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action}{Lambda\+Action}} (\begin{DoxyParamCaption}\item[{Action}]{callback}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_lambda_action_8cs_source_l00024}{24}} of file \mbox{\hyperlink{_lambda_action_8cs_source}{Lambda\+Action.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keyword}{this}(\textcolor{keyword}{null},\ callback)\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action_a18dedd449850bfc0ffe340046b7a6fd4_a18dedd449850bfc0ffe340046b7a6fd4}\index{LambdaAction@{LambdaAction}!LambdaAction@{LambdaAction}}
+\index{LambdaAction@{LambdaAction}!LambdaAction@{LambdaAction}}
+\doxyparagraph{\texorpdfstring{LambdaAction()}{LambdaAction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action_a18dedd449850bfc0ffe340046b7a6fd4_a18dedd449850bfc0ffe340046b7a6fd4} 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action}{Lambda\+Action}} (\begin{DoxyParamCaption}\item[{String}]{name}{, }\item[{Action}]{callback}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_lambda_action_8cs_source_l00027}{27}} of file \mbox{\hyperlink{_lambda_action_8cs_source}{Lambda\+Action.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (callback\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(callback));}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Name\ =\ name;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Callback\ =\ callback;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action_a622e3bd65304d3fc345ce24529ace200_a622e3bd65304d3fc345ce24529ace200}\index{LambdaAction@{LambdaAction}!Execute@{Execute}}
+\index{Execute@{Execute}!LambdaAction@{LambdaAction}}
+\doxyparagraph{\texorpdfstring{Execute()}{Execute()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action_a622e3bd65304d3fc345ce24529ace200_a622e3bd65304d3fc345ce24529ace200} 
+void Execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}}]{sm}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}.
+
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action_a0e6db7f5857c623082a89540a8a3f1a4_a0e6db7f5857c623082a89540a8a3f1a4}\index{LambdaAction@{LambdaAction}!ToDebugString@{ToDebugString}}
+\index{ToDebugString@{ToDebugString}!LambdaAction@{LambdaAction}}
+\doxyparagraph{\texorpdfstring{ToDebugString()}{ToDebugString()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action_a0e6db7f5857c623082a89540a8a3f1a4_a0e6db7f5857c623082a89540a8a3f1a4} 
+String To\+Debug\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}}]{sm}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}.
+

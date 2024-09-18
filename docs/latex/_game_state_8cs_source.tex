@@ -1,0 +1,119 @@
+\doxysubsection{Game\+State.\+cs}
+\hypertarget{_game_state_8cs_source}{}\label{_game_state_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/GameState/GameState.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/GameState/GameState.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_components_1_1_registry}{CodeSmile.Components.Registry}};}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_scene}{CodeSmile.MultiPal.Scene}};}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_settings}{CodeSmile.MultiPal.Settings}};}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_utility}{CodeSmile.Utility}};}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00010}00010\ \textcolor{keyword}{using\ }System.Linq;}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00011}00011\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00012}00012\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00014}\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_game_state}{00014}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_game_state}{CodeSmile.MultiPal.GameState}}}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00016}00016\ \ \ \ \ [DisallowMultipleComponent]}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00017}\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_game_state_1_1_game_state}{00017}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_game_state_1_1_game_state}{GameState}}\ :\ MonoBehaviour}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00018}00018\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base}{GameStateBase}}[]\ m\_GameStates\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base}{GameStateBase}}[0];}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Int32\ m\_ActiveStateIndex\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Boolean\ m\_StateChangeInProgress;}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base}{GameStateBase}}\ ActiveState\ =>\ m\_ActiveStateIndex\ >=\ 0\ ?\ m\_GameStates[m\_ActiveStateIndex]\ :\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Awake()}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_GameStates.Length\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}no\ game\ states\ assigned!"{}});}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_components_1_1_registry_1_1_components_registry}{ComponentsRegistry}}.Set(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Start()\ =>\ SetActiveGameState(0);}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ LateUpdate()}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_StateChangeInProgress\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TryChangeState();}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ TryChangeState()}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ var\ activeState\ =\ ActiveState;}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (activeState\ !=\ \textcolor{keyword}{null}\ \&\&\ activeState.ConditionsSatisfied())}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ stateIndex\ =\ GetStateIndex(activeState.NextState);}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetActiveGameState(stateIndex);}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Int32\ GetStateIndex(\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base}{GameStateBase}}\ state)\ =>\ Array.IndexOf(m\_GameStates,\ state);}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ async\ \textcolor{keywordtype}{void}\ SetActiveGameState(Int32\ stateIndex)}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (stateIndex\ <\ 0\ ||\ stateIndex\ >=\ m\_GameStates.Length)}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ IndexOutOfRangeException(\$\textcolor{stringliteral}{"{}stateIndex\ \{stateIndex\}\ out\ of\ range\ (has\ \{m\_GameStates.Length\}\ states)"{}});}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_StateChangeInProgress)}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}can't\ change\ GameState\ again\ -\/\ previous\ change\ still\ in\ progress!"{}});}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ var\ newGameState\ =\ m\_GameStates[stateIndex];}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ var\ currentState\ =\ ActiveState;}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (currentState\ ==\ newGameState)}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.LogWarning(\$\textcolor{stringliteral}{"{}tried\ to\ change\ GameState\ to\ already\ active\ state\ \{newGameState\}\ -\/\ ignoring"{}});}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ m\_StateChangeInProgress\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ActiveStateIndex\ =\ stateIndex;}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ currentState?.OnExitState(newGameState);}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ newGameState.OnEnterState(currentState);}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(\$\textcolor{stringliteral}{"{}<color=cyan>\ =================\ GameState\ \{newGameState.name\}\ =================</color>"{}});}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(\$\textcolor{stringliteral}{"{}[\{Time.frameCount\}]\ \{newGameState.name\}\ scene\ loading\ begins\ ..."{}});}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ unloadScenes\ =\ GetScenesToUnload(currentState?.ClientSceneRefs,\ newGameState.ClientScenes);}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ clientSceneLoader\ =\ \mbox{\hyperlink{class_code_smile_1_1_components_1_1_registry_1_1_components_registry}{ComponentsRegistry}}.Get<\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader}{ClientSceneLoader}}>();}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ clientSceneLoader.UnloadScenesAsync(unloadScenes);}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ clientSceneLoader.LoadScenesAsync(newGameState.ClientSceneRefs);}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ unloadScenes\ =\ GetScenesToUnload(currentState?.ServerSceneRefs,\ newGameState.ServerScenes);}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ serverSceneLoader\ =\ \mbox{\hyperlink{class_code_smile_1_1_components_1_1_registry_1_1_components_registry}{ComponentsRegistry}}.Get<\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_scene_1_1_server_scene_loader}{ServerSceneLoader}}>();}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ serverSceneLoader.UnloadScenesAsync(unloadScenes);}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ serverSceneLoader.LoadScenesAsync(newGameState.ServerSceneRefs);}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ m\_StateChangeInProgress\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(\$\textcolor{stringliteral}{"{}[\{Time.frameCount\}]\ \{newGameState.name\}\ scene\ loading\ completed!"{}});}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{SceneReference}}[]\ GetScenesToUnload(\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{SceneReference}}[]\ loadedSceneRefs,\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_scene_1_1_additive_scene}{AdditiveScene}}[]\ scenesToLoad)}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ first\ state\ will\ have\ nothing\ to\ unload}}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (loadedSceneRefs\ ==\ \textcolor{keyword}{null}\ ||\ loadedSceneRefs.Length\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{SceneReference}}[0];}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ var\ unloadSceneRefs\ =\ \textcolor{keyword}{new}\ List<SceneReference>();}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (var\ i\ =\ 0;\ i\ <\ loadedSceneRefs.Length;\ i++)}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ alreadyLoadedScene\ =\ scenesToLoad.SingleOrDefault(scene\ =>\ scene.Reference\ ==\ loadedSceneRefs[i]);}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (alreadyLoadedScene\ ==\ \textcolor{keyword}{null}\ ||\ alreadyLoadedScene.ForceReload)}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ unloadSceneRefs.Add(loadedSceneRefs[i]);}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ unloadSceneRefs.ToArray();}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00112}00112\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_state_8cs_source_l00113}00113\ \}}
+
+\end{DoxyCode}

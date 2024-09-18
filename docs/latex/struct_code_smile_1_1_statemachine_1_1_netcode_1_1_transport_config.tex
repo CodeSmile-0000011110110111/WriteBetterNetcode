@@ -1,0 +1,153 @@
+\doxysubsection{Transport\+Config Struct Reference}
+\hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}{}\label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}\index{TransportConfig@{TransportConfig}}
+
+
+Collaboration diagram for Transport\+Config\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a012fbb0f39e57c0a44ec83dd408fcda3}\label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a012fbb0f39e57c0a44ec83dd408fcda3} 
+override String {\bfseries To\+String} ()
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}{Transport\+Config}} \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a75bccb77ee47e59bcea9f5e8520c6203_a75bccb77ee47e59bcea9f5e8520c6203}{From\+Network\+Manager}} ()
+\item 
+static \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}{Transport\+Config}} \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a2eda7e08f5a1c19078e54ec81951abbc_a2eda7e08f5a1c19078e54ec81951abbc}{From\+Network\+Manager\+With\+Cmd\+Arg\+Overrides}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a59ea01f052d1a1cdcd46b7652a31eb7b_a59ea01f052d1a1cdcd46b7652a31eb7b}{Address}}
+\item 
+UInt16 \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_abd00b91d5bf24c2777bdc3914e79aab6_abd00b91d5bf24c2777bdc3914e79aab6}{Port}}
+\item 
+String \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a03775f06d92fb83569002e10810fceb3_a03775f06d92fb83569002e10810fceb3}{Server\+Listen\+Address}}
+\item 
+Boolean \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a62db694b6512e6b4b6e06ce93985355b_a62db694b6512e6b4b6e06ce93985355b}{Use\+Encryption}}
+\item 
+Boolean \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_af1d14d4c96fa7268a4beeacc9c25793f_af1d14d4c96fa7268a4beeacc9c25793f}{Use\+Web\+Sockets}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00014}{14}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a75bccb77ee47e59bcea9f5e8520c6203_a75bccb77ee47e59bcea9f5e8520c6203}\index{TransportConfig@{TransportConfig}!FromNetworkManager@{FromNetworkManager}}
+\index{FromNetworkManager@{FromNetworkManager}!TransportConfig@{TransportConfig}}
+\doxyparagraph{\texorpdfstring{FromNetworkManager()}{FromNetworkManager()}}
+{\footnotesize\ttfamily \label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a75bccb77ee47e59bcea9f5e8520c6203_a75bccb77ee47e59bcea9f5e8520c6203} 
+static \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}{Transport\+Config}} From\+Network\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00022}{22}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ var\ transport\ =\ NetworkManager.Singleton.GetTransport();}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ var\ connData\ =\ transport.ConnectionData;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ TransportConfig}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Address\ =\ connData.Address,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Port\ =\ connData.Port,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ServerListenAddress\ =\ connData.ServerListenAddress,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UseEncryption\ =\ transport.UseEncryption,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UseWebSockets\ =\ transport.UseWebSockets,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a2eda7e08f5a1c19078e54ec81951abbc_a2eda7e08f5a1c19078e54ec81951abbc}\index{TransportConfig@{TransportConfig}!FromNetworkManagerWithCmdArgOverrides@{FromNetworkManagerWithCmdArgOverrides}}
+\index{FromNetworkManagerWithCmdArgOverrides@{FromNetworkManagerWithCmdArgOverrides}!TransportConfig@{TransportConfig}}
+\doxyparagraph{\texorpdfstring{FromNetworkManagerWithCmdArgOverrides()}{FromNetworkManagerWithCmdArgOverrides()}}
+{\footnotesize\ttfamily \label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a2eda7e08f5a1c19078e54ec81951abbc_a2eda7e08f5a1c19078e54ec81951abbc} 
+static \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}{Transport\+Config}} From\+Network\+Manager\+With\+Cmd\+Arg\+Overrides (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00036}{36}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ var\ config\ =\ FromNetworkManager();}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ config.Address\ =\ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.GetString(nameof(Address),\ config.Address);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ config.Port\ =\ (UInt16)\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.GetInt(nameof(Port),\ config.Port);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ config.ServerListenAddress\ =}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.GetString(nameof(ServerListenAddress),\ config.ServerListenAddress);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ config.UseEncryption\ =}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.GetBool(nameof(UseEncryption),\ config.UseEncryption);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ config.UseWebSockets\ =}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}.GetBool(nameof(UseWebSockets),\ config.UseWebSockets);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ config;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a59ea01f052d1a1cdcd46b7652a31eb7b_a59ea01f052d1a1cdcd46b7652a31eb7b}\index{TransportConfig@{TransportConfig}!Address@{Address}}
+\index{Address@{Address}!TransportConfig@{TransportConfig}}
+\doxyparagraph{\texorpdfstring{Address}{Address}}
+{\footnotesize\ttfamily \label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a59ea01f052d1a1cdcd46b7652a31eb7b_a59ea01f052d1a1cdcd46b7652a31eb7b} 
+String Address}
+
+
+
+Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00016}{16}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+
+\Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_abd00b91d5bf24c2777bdc3914e79aab6_abd00b91d5bf24c2777bdc3914e79aab6}\index{TransportConfig@{TransportConfig}!Port@{Port}}
+\index{Port@{Port}!TransportConfig@{TransportConfig}}
+\doxyparagraph{\texorpdfstring{Port}{Port}}
+{\footnotesize\ttfamily \label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_abd00b91d5bf24c2777bdc3914e79aab6_abd00b91d5bf24c2777bdc3914e79aab6} 
+UInt16 Port}
+
+
+
+Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00017}{17}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+
+\Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a03775f06d92fb83569002e10810fceb3_a03775f06d92fb83569002e10810fceb3}\index{TransportConfig@{TransportConfig}!ServerListenAddress@{ServerListenAddress}}
+\index{ServerListenAddress@{ServerListenAddress}!TransportConfig@{TransportConfig}}
+\doxyparagraph{\texorpdfstring{ServerListenAddress}{ServerListenAddress}}
+{\footnotesize\ttfamily \label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a03775f06d92fb83569002e10810fceb3_a03775f06d92fb83569002e10810fceb3} 
+String Server\+Listen\+Address}
+
+
+
+Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00018}{18}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+
+\Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a62db694b6512e6b4b6e06ce93985355b_a62db694b6512e6b4b6e06ce93985355b}\index{TransportConfig@{TransportConfig}!UseEncryption@{UseEncryption}}
+\index{UseEncryption@{UseEncryption}!TransportConfig@{TransportConfig}}
+\doxyparagraph{\texorpdfstring{UseEncryption}{UseEncryption}}
+{\footnotesize\ttfamily \label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_a62db694b6512e6b4b6e06ce93985355b_a62db694b6512e6b4b6e06ce93985355b} 
+Boolean Use\+Encryption}
+
+
+
+Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00019}{19}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+
+\Hypertarget{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_af1d14d4c96fa7268a4beeacc9c25793f_af1d14d4c96fa7268a4beeacc9c25793f}\index{TransportConfig@{TransportConfig}!UseWebSockets@{UseWebSockets}}
+\index{UseWebSockets@{UseWebSockets}!TransportConfig@{TransportConfig}}
+\doxyparagraph{\texorpdfstring{UseWebSockets}{UseWebSockets}}
+{\footnotesize\ttfamily \label{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config_af1d14d4c96fa7268a4beeacc9c25793f_af1d14d4c96fa7268a4beeacc9c25793f} 
+Boolean Use\+Web\+Sockets}
+
+
+
+Definition at line \mbox{\hyperlink{_transport_config_8cs_source_l00020}{20}} of file \mbox{\hyperlink{_transport_config_8cs_source}{Transport\+Config.\+cs}}.
+

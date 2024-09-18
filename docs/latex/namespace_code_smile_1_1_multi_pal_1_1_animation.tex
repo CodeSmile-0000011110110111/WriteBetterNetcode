@@ -1,0 +1,53 @@
+\doxysubsection{Code\+Smile.\+Multi\+Pal.\+Animation Namespace Reference}
+\hypertarget{namespace_code_smile_1_1_multi_pal_1_1_animation}{}\label{namespace_code_smile_1_1_multi_pal_1_1_animation}\index{CodeSmile.MultiPal.Animation@{CodeSmile.MultiPal.Animation}}
+\doxysubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_animation_1_1_avatar_animator_parameters}{Avatar\+Animator\+Parameters}}
+\item 
+interface \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_controller}{IAnimator\+Controller}}
+\item 
+interface \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_parameters_provider}{IAnimator\+Parameters\+Provider}}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Animator\+Common\+Flags} \+: byte \{ \newline
+{\bfseries Is\+Grounded} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 0
+, {\bfseries Is\+Falling} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1
+, {\bfseries Is\+Dying} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 2
+, {\bfseries Trigger\+Jump} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 4
+, \newline
+{\bfseries Trigger\+Crouch} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 5
+, {\bfseries Trigger\+Attack} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 6
+, {\bfseries Trigger\+Interact} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 7
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Enumeration Type Documentation}
+\Hypertarget{namespace_code_smile_1_1_multi_pal_1_1_animation_a178e4ef1fc278a9e9ee1a1d23eb82a2b_a178e4ef1fc278a9e9ee1a1d23eb82a2b}\index{CodeSmile.MultiPal.Animation@{CodeSmile.MultiPal.Animation}!AnimatorCommonFlags@{AnimatorCommonFlags}}
+\index{AnimatorCommonFlags@{AnimatorCommonFlags}!CodeSmile.MultiPal.Animation@{CodeSmile.MultiPal.Animation}}
+\doxyparagraph{\texorpdfstring{AnimatorCommonFlags}{AnimatorCommonFlags}}
+{\footnotesize\ttfamily \label{namespace_code_smile_1_1_multi_pal_1_1_animation_a178e4ef1fc278a9e9ee1a1d23eb82a2b_a178e4ef1fc278a9e9ee1a1d23eb82a2b} 
+enum Animator\+Common\+Flags \+: byte}
+
+
+
+Definition at line \mbox{\hyperlink{_avatar_animator_parameters_8cs_source_l00087}{87}} of file \mbox{\hyperlink{_avatar_animator_parameters_8cs_source}{Avatar\+Animator\+Parameters.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00088\ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ IsGrounded\ =\ 1\ <<\ 0,}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ IsFalling\ =\ 1\ <<\ 1,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ IsDying\ =\ 1\ <<\ 2,}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ tbd}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ TriggerJump\ =\ 1\ <<\ 4,}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ TriggerCrouch\ =\ 1\ <<\ 5,}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ TriggerAttack\ =\ 1\ <<\ 6,}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ TriggerInteract\ =\ 1\ <<\ 7,}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+
+\end{DoxyCode}

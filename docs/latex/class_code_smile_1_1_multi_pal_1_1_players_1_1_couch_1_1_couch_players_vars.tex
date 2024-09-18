@@ -1,0 +1,87 @@
+\doxysubsection{Couch\+Players\+Vars Class Reference}
+\hypertarget{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players_vars}{}\label{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players_vars}\index{CouchPlayersVars@{CouchPlayersVars}}
+
+
+Inheritance diagram for Couch\+Players\+Vars\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=191pt]{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players_vars__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Couch\+Players\+Vars\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=191pt]{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players_vars__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players_vars_a2f72890288ada4a8683c369e354daa54_a2f72890288ada4a8683c369e354daa54}{On\+Network\+Despawn}} ()
+\item 
+override void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players_vars_a56278d8158012880cae932534752eaf6_a56278d8158012880cae932534752eaf6}{On\+Network\+Spawn}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_couch_players_vars_8cs_source_l00013}{13}} of file \mbox{\hyperlink{_couch_players_vars_8cs_source}{Couch\+Players\+Vars.\+cs}}.
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players_vars_a2f72890288ada4a8683c369e354daa54_a2f72890288ada4a8683c369e354daa54}\index{CouchPlayersVars@{CouchPlayersVars}!OnNetworkDespawn@{OnNetworkDespawn}}
+\index{OnNetworkDespawn@{OnNetworkDespawn}!CouchPlayersVars@{CouchPlayersVars}}
+\doxyparagraph{\texorpdfstring{OnNetworkDespawn()}{OnNetworkDespawn()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players_vars_a2f72890288ada4a8683c369e354daa54_a2f72890288ada4a8683c369e354daa54} 
+override void On\+Network\+Despawn (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_couch_players_vars_8cs_source_l00050}{50}} of file \mbox{\hyperlink{_couch_players_vars_8cs_source}{Couch\+Players\+Vars.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ base.OnNetworkDespawn();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsOwner\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AssumeRemainingRemotePlayersLeaveOnDespawn();}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_RemotePlayerReferences.OnListChanged\ -\/=\ OnRemotePlayerReferencesChanged;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players_vars_a56278d8158012880cae932534752eaf6_a56278d8158012880cae932534752eaf6}\index{CouchPlayersVars@{CouchPlayersVars}!OnNetworkSpawn@{OnNetworkSpawn}}
+\index{OnNetworkSpawn@{OnNetworkSpawn}!CouchPlayersVars@{CouchPlayersVars}}
+\doxyparagraph{\texorpdfstring{OnNetworkSpawn()}{OnNetworkSpawn()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players_vars_a56278d8158012880cae932534752eaf6_a56278d8158012880cae932534752eaf6} 
+override void On\+Network\+Spawn (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_couch_players_vars_8cs_source_l00030}{30}} of file \mbox{\hyperlink{_couch_players_vars_8cs_source}{Couch\+Players\+Vars.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ base.OnNetworkSpawn();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsOwner\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ couch\ players\ spawns\ before\ individual\ remote\ players}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StartCoroutine(JoinExistingRemotePlayersAfterDelay());}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_RemotePlayerReferences.OnListChanged\ +=\ OnRemotePlayerReferencesChanged;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}

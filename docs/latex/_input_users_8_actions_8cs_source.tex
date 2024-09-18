@@ -1,0 +1,183 @@
+\doxysubsection{Input\+Users.\+Actions.\+cs}
+\hypertarget{_input_users_8_actions_8cs_source}{}\label{_input_users_8_actions_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Input/InputUsers.Actions.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Input/InputUsers.Actions.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_settings}{CodeSmile.MultiPal.Settings}};}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }System.Text;}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00010}00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_input}{CodeSmile.MultiPal.Input}}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00012}00012\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{partial\ class\ }InputUsers}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00013}00013\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00014}00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ GeneratedInput[]\ m\_GeneratedInputs\ =\ \textcolor{keyword}{new}\ GeneratedInput[\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_constants}{Constants}}.MaxCouchPlayers];}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Boolean\ AllPairingEnabled}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ input\ \textcolor{keywordflow}{in}\ m\_GeneratedInputs)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ pairing\ =\ input.Pairing;}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pairing.Enable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pairing.Join.Enable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pairing.Leave.Disable();\ \textcolor{comment}{//\ leave\ is\ enabled\ only\ after\ joining}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pairing.Disable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pairing.Join.Disable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pairing.Leave.Disable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Boolean\ AllUiEnabled}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ input\ \textcolor{keywordflow}{in}\ m\_GeneratedInputs)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ input.UI.Enable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ input.UI.Disable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Boolean\ AllPlayerKinematicsEnabled}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ input\ \textcolor{keywordflow}{in}\ m\_GeneratedInputs)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ input.PlayerKinematics.Enable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ input.PlayerKinematics.Disable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Boolean\ AllPlayerInteractionEnabled}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ input\ \textcolor{keywordflow}{in}\ m\_GeneratedInputs)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ input.PlayerInteraction.Enable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ input.PlayerInteraction.Disable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Boolean\ AllPlayerUiEnabled}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ enable\ or\ disable\ everyone's\ Player\ inputs}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ input\ \textcolor{keywordflow}{in}\ m\_GeneratedInputs)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ input.PlayerUI.Enable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ input.PlayerUI.Disable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetUiCallback(Int32\ playerIndex,\ GeneratedInput.IUIActions\ callback)\ =>}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ m\_GeneratedInputs[playerIndex].UI.SetCallbacks(callback);}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetUiEnabled(Int32\ playerIndex,\ Boolean\ enable)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ var\ ui\ =\ m\_GeneratedInputs[playerIndex].UI;}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (enable)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ui.Enable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ui.Disable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//LogActionEnabledness(\$"{}\{playerIndex\}\ =>\ UI\ \{(enable\ ?\ "{}enable"{}\ :\ "{}disable"{})\}\(\backslash\)n"{});}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetPlayerKinematicsCallback(Int32\ playerIndex,\ GeneratedInput.IPlayerKinematicsActions\ callback)\ =>}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ m\_GeneratedInputs[playerIndex].PlayerKinematics.SetCallbacks(callback);}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetPlayerKinematicsEnabled(Int32\ playerIndex,\ Boolean\ enable)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ var\ playerKinematics\ =\ m\_GeneratedInputs[playerIndex].PlayerKinematics;}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (enable)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playerKinematics.Enable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playerKinematics.Disable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//LogActionEnabledness(\$"{}\{playerIndex\}\ =>\ Kinematics\ \{(enable\ ?\ "{}enable"{}\ :\ "{}disable"{})\}\(\backslash\)n"{});}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetPlayerInteractionCallback(Int32\ playerIndex,\ GeneratedInput.IPlayerInteractionActions\ callback)\ =>}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ m\_GeneratedInputs[playerIndex].PlayerInteraction.SetCallbacks(callback);}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetPlayerInteractionEnabled(Int32\ playerIndex,\ Boolean\ enable)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ var\ playerInteraction\ =\ m\_GeneratedInputs[playerIndex].PlayerInteraction;}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (enable)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playerInteraction.Enable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playerInteraction.Disable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//LogActionEnabledness(\$"{}\{playerIndex\}\ =>\ Interaction\ \{(enable\ ?\ "{}enable"{}\ :\ "{}disable"{})\}\(\backslash\)n"{});}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetPlayerUiCallback(Int32\ playerIndex,\ GeneratedInput.IPlayerUIActions\ callback)\ =>}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ m\_GeneratedInputs[playerIndex].PlayerUI.SetCallbacks(callback);}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetPlayerUiEnabled(Int32\ playerIndex,\ Boolean\ enable)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ var\ playerUi\ =\ m\_GeneratedInputs[playerIndex].PlayerUI;}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (enable)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playerUi.Enable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playerUi.Disable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//LogActionEnabledness(\$"{}\{playerIndex\}\ =>\ PlayerUI\ \{(enable\ ?\ "{}enable"{}\ :\ "{}disable"{})\}\(\backslash\)n"{});}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetPlayerUiRequestMenuEnabled(Int32\ playerIndex,\ Boolean\ enable)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ var\ requestMenuAction\ =\ m\_GeneratedInputs[playerIndex].PlayerUI.RequestMenu;}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (enable)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requestMenuAction.Enable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requestMenuAction.Disable();}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00158}00158\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ LogActionEnabledness(String\ prefix)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ var\ sb\ =\ \textcolor{keyword}{new}\ StringBuilder(prefix);}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (var\ i\ =\ 0;\ i\ <\ m\_GeneratedInputs.Length;\ i++)}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ input\ =\ m\_GeneratedInputs[i];}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ move\ =\ input.PlayerKinematics.Move;}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ kinematics\ =\ input.PlayerKinematics.enabled\ ?\ \textcolor{stringliteral}{"{}ON"{}}\ :\ \textcolor{stringliteral}{"{}-\/-\/"{}};}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ interaction\ =\ input.PlayerInteraction.enabled\ ?\ \textcolor{stringliteral}{"{}ON"{}}\ :\ \textcolor{stringliteral}{"{}-\/-\/"{}};}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ playerUi\ =\ input.PlayerUI.enabled\ ?\ \textcolor{stringliteral}{"{}ON"{}}\ :\ \textcolor{stringliteral}{"{}-\/-\/"{}};}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ ui\ =\ input.UI.enabled\ ?\ \textcolor{stringliteral}{"{}ON"{}}\ :\ \textcolor{stringliteral}{"{}-\/-\/"{}};}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ pairing\ =\ input.Pairing.enabled\ ?\ \textcolor{stringliteral}{"{}ON"{}}\ :\ \textcolor{stringliteral}{"{}-\/-\/"{}};}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sb.AppendLine(\$\textcolor{stringliteral}{"{}[\{i\}]\ Kinematics:\ \{kinematics\}\ Interaction:\ \{interaction\}\ "{}}\ +}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$\textcolor{stringliteral}{"{}PlayerUI:\ \{playerUi\}\ UI:\ \{ui\}\ Pairing:\ \{pairing\}"{}});}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(sb.ToString());}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00175}00175\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00176}00176\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_input_users_8_actions_8cs_source_l00177}00177\ \}}
+
+\end{DoxyCode}

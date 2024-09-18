@@ -1,0 +1,67 @@
+\doxysubsection{Game\+State\+Base.\+cs}
+\hypertarget{_game_state_base_8cs_source}{}\label{_game_state_base_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Settings/GameStateBase.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Settings/GameStateBase.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_scene}{CodeSmile.MultiPal.Scene}};}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_utility}{CodeSmile.Utility}};}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }System.Linq;}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00010}00010\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00012}00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_settings}{CodeSmile.MultiPal.Settings}}}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00013}00013\ \{}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00014}00014\ \ \ \ \ [Serializable]}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00015}\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base}{00015}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{abstract}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base}{GameStateBase}}\ :\ ScriptableObject}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00016}00016\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{const}\ String\ MenuRoot\ =\ \textcolor{stringliteral}{"{}CodeSmile/Game\ States/"{}};}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ may\ have\ multiple\ exit\ states}}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_condition_base}{GameStateConditionBase}}\ m\_NextStateCondition;}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base}{GameStateBase}}\ m\_NextState;}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ [Tooltip(\textcolor{stringliteral}{"{}These\ scenes\ will\ be\ loaded\ or\ remain\ loaded\ and\ synchronized\ among\ clients\ when\ entering\ this\ state.\ "{}}\ +}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Only\ the\ server\ (host)\ will\ load\ these\ scenes.\ IMPORTANT:\ Running\ network\ session\ required\ when\ "{}}\ +}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}entering\ this\ state!"{}})]}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ List<AdditiveScene>\ m\_ServerScenes\ =\ \textcolor{keyword}{new}();}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ [Tooltip(\textcolor{stringliteral}{"{}These\ scenes\ will\ be\ loaded\ or\ remain\ loaded\ on\ client-\/side\ when\ entering\ this\ state.\ "{}}\ +}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}The\ contents\ of\ these\ scenes\ are\ not\ synchronized\ with\ other\ clients\ or\ the\ server."{}})]}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ List<AdditiveScene>\ m\_ClientScenes\ =\ \textcolor{keyword}{new}();}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_condition_base}{GameStateConditionBase}}\ NextStateCondition\ =>\ m\_NextStateCondition;}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base}{GameStateBase}}\ NextState\ =>\ m\_NextState;}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_scene_1_1_additive_scene}{AdditiveScene}}[]\ ClientScenes\ =>\ m\_ClientScenes.ToArray();}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_scene_1_1_additive_scene}{AdditiveScene}}[]\ ServerScenes\ =>\ m\_ServerScenes.ToArray();}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{SceneReference}}[]\ ClientSceneRefs\ =>\ m\_ClientScenes.Select(a\ =>\ a.Reference).ToArray();}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{SceneReference}}[]\ ServerSceneRefs\ =>\ m\_ServerScenes.Select(a\ =>\ a.Reference).ToArray();}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ OnValidate()}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ serverScene\ \textcolor{keywordflow}{in}\ m\_ServerScenes)}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ serverScene.Reference.\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference_a755e7a04dbc0bc114ebd52997a9a2a42_a755e7a04dbc0bc114ebd52997a9a2a42}{OnValidate}}();}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ clientScene\ \textcolor{keywordflow}{in}\ m\_ClientScenes)}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ clientScene.Reference.OnValidate();}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ Boolean\ ConditionsSatisfied()\ =>\ m\_NextStateCondition\ !=\ \textcolor{keyword}{null}\ \&\&\ m\_NextStateCondition.IsSatisfied();}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ OnEnterState(\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base}{GameStateBase}}\ fromState)}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_NextStateCondition\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_NextStateCondition.OnEnterState();}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ OnExitState(\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_base}{GameStateBase}}\ nextState)}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_NextStateCondition\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_NextStateCondition.OnExitState();}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00060}00060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_state_base_8cs_source_l00061}00061\ \}}
+
+\end{DoxyCode}

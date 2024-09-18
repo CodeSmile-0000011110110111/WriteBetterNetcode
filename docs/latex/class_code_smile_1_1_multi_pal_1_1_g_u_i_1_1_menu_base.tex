@@ -1,0 +1,168 @@
+\doxysubsection{Menu\+Base Class Reference}
+\hypertarget{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base}{}\label{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base}\index{MenuBase@{MenuBase}}
+
+
+Inheritance diagram for Menu\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Menu\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_a130bc36524c72ad408ecd7338f1e0070_a130bc36524c72ad408ecd7338f1e0070}{Hide}} ()
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_ace79e5f49885e486e8e1d48ff0666476_ace79e5f49885e486e8e1d48ff0666476}{Show}} ()
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_a7f2c684dd31369f3f3b8179e916acdbb_a7f2c684dd31369f3f3b8179e916acdbb}{Toggle\+Visible}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_affb6ac8f8f08d515a8b74f5c213c2c52}\label{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_affb6ac8f8f08d515a8b74f5c213c2c52} 
+virtual void {\bfseries Awake} ()
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Visual\+Element \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_a711038d9017cfe6307a5efbed26c574b_a711038d9017cfe6307a5efbed26c574b}{m\+\_\+\+Root}}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Boolean \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_ad2141afee66b84c68ca2ddd11274364b_ad2141afee66b84c68ca2ddd11274364b}{Is\+Hidden}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Boolean \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_ae182bcaae2fe662a302b888e7b64a8f9_ae182bcaae2fe662a302b888e7b64a8f9}{Is\+Visible}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Int32 \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_a7551db10a654cdcca006b60c201282e2_a7551db10a654cdcca006b60c201282e2}{Menu\+Player\+Index}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_menu_base_8cs_source_l00014}{14}} of file \mbox{\hyperlink{_menu_base_8cs_source}{Menu\+Base.\+cs}}.
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_a130bc36524c72ad408ecd7338f1e0070_a130bc36524c72ad408ecd7338f1e0070}\index{MenuBase@{MenuBase}!Hide@{Hide}}
+\index{Hide@{Hide}!MenuBase@{MenuBase}}
+\doxyparagraph{\texorpdfstring{Hide()}{Hide()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_a130bc36524c72ad408ecd7338f1e0070_a130bc36524c72ad408ecd7338f1e0070} 
+void Hide (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_menu_base_8cs_source_l00030}{30}} of file \mbox{\hyperlink{_menu_base_8cs_source}{Menu\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Root.style.display\ =\ StyleKeyword.None;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ SetMenuInputEnabled(\textcolor{keyword}{false});}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_ace79e5f49885e486e8e1d48ff0666476_ace79e5f49885e486e8e1d48ff0666476}\index{MenuBase@{MenuBase}!Show@{Show}}
+\index{Show@{Show}!MenuBase@{MenuBase}}
+\doxyparagraph{\texorpdfstring{Show()}{Show()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_ace79e5f49885e486e8e1d48ff0666476_ace79e5f49885e486e8e1d48ff0666476} 
+void Show (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_menu_base_8cs_source_l00024}{24}} of file \mbox{\hyperlink{_menu_base_8cs_source}{Menu\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Root.style.display\ =\ StyleKeyword.Initial;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ SetMenuInputEnabled(\textcolor{keyword}{true});}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_a7f2c684dd31369f3f3b8179e916acdbb_a7f2c684dd31369f3f3b8179e916acdbb}\index{MenuBase@{MenuBase}!ToggleVisible@{ToggleVisible}}
+\index{ToggleVisible@{ToggleVisible}!MenuBase@{MenuBase}}
+\doxyparagraph{\texorpdfstring{ToggleVisible()}{ToggleVisible()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_a7f2c684dd31369f3f3b8179e916acdbb_a7f2c684dd31369f3f3b8179e916acdbb} 
+void Toggle\+Visible (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_menu_base_8cs_source_l00036}{36}} of file \mbox{\hyperlink{_menu_base_8cs_source}{Menu\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsHidden)}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Show();}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Hide();}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_a711038d9017cfe6307a5efbed26c574b_a711038d9017cfe6307a5efbed26c574b}\index{MenuBase@{MenuBase}!m\_Root@{m\_Root}}
+\index{m\_Root@{m\_Root}!MenuBase@{MenuBase}}
+\doxyparagraph{\texorpdfstring{m\_Root}{m\_Root}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_a711038d9017cfe6307a5efbed26c574b_a711038d9017cfe6307a5efbed26c574b} 
+Visual\+Element m\+\_\+\+Root\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_menu_base_8cs_source_l00016}{16}} of file \mbox{\hyperlink{_menu_base_8cs_source}{Menu\+Base.\+cs}}.
+
+
+
+\doxysubsubsection{Property Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_ad2141afee66b84c68ca2ddd11274364b_ad2141afee66b84c68ca2ddd11274364b}\index{MenuBase@{MenuBase}!IsHidden@{IsHidden}}
+\index{IsHidden@{IsHidden}!MenuBase@{MenuBase}}
+\doxyparagraph{\texorpdfstring{IsHidden}{IsHidden}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_ad2141afee66b84c68ca2ddd11274364b_ad2141afee66b84c68ca2ddd11274364b} 
+Boolean Is\+Hidden\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Definition at line \mbox{\hyperlink{_menu_base_8cs_source_l00018}{18}} of file \mbox{\hyperlink{_menu_base_8cs_source}{Menu\+Base.\+cs}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_ae182bcaae2fe662a302b888e7b64a8f9_ae182bcaae2fe662a302b888e7b64a8f9}\index{MenuBase@{MenuBase}!IsVisible@{IsVisible}}
+\index{IsVisible@{IsVisible}!MenuBase@{MenuBase}}
+\doxyparagraph{\texorpdfstring{IsVisible}{IsVisible}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_ae182bcaae2fe662a302b888e7b64a8f9_ae182bcaae2fe662a302b888e7b64a8f9} 
+Boolean Is\+Visible\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Definition at line \mbox{\hyperlink{_menu_base_8cs_source_l00019}{19}} of file \mbox{\hyperlink{_menu_base_8cs_source}{Menu\+Base.\+cs}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_a7551db10a654cdcca006b60c201282e2_a7551db10a654cdcca006b60c201282e2}\index{MenuBase@{MenuBase}!MenuPlayerIndex@{MenuPlayerIndex}}
+\index{MenuPlayerIndex@{MenuPlayerIndex}!MenuBase@{MenuBase}}
+\doxyparagraph{\texorpdfstring{MenuPlayerIndex}{MenuPlayerIndex}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base_a7551db10a654cdcca006b60c201282e2_a7551db10a654cdcca006b60c201282e2} 
+Int32 Menu\+Player\+Index\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Definition at line \mbox{\hyperlink{_menu_base_8cs_source_l00020}{20}} of file \mbox{\hyperlink{_menu_base_8cs_source}{Menu\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+
+\end{DoxyCode}

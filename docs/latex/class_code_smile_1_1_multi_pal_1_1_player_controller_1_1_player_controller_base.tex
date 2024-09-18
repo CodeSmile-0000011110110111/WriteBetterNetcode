@@ -1,0 +1,519 @@
+\doxysubsection{Player\+Controller\+Base Class Reference}
+\hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base}{}\label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base}\index{PlayerControllerBase@{PlayerControllerBase}}
+
+
+Inheritance diagram for Player\+Controller\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Player\+Controller\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_ab240d741aeb72d6e3769fb13499e868f_ab240d741aeb72d6e3769fb13499e868f}{On\+Crouch}} (Input\+Action.\+Callback\+Context context)
+\item 
+virtual void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a99b769ad8a6898505baa088ea851677c_a99b769ad8a6898505baa088ea851677c}{On\+Jump}} (Input\+Action.\+Callback\+Context context)
+\item 
+virtual void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a0f5e9f410d1b51486e9106ab1a7de5c2_a0f5e9f410d1b51486e9106ab1a7de5c2}{On\+Look}} (Input\+Action.\+Callback\+Context context)
+\item 
+virtual void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_aacde3aabcb6fb7254ccdf5df46af98a4_aacde3aabcb6fb7254ccdf5df46af98a4}{On\+Move}} (Input\+Action.\+Callback\+Context context)
+\item 
+virtual void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a18494383df836c97f9c4ccf9a57ed07b_a18494383df836c97f9c4ccf9a57ed07b}{On\+Sprint}} (Input\+Action.\+Callback\+Context context)
+\end{DoxyCompactItemize}
+\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_kinematics_actions}{Generated\+Input.\+IPlayer\+Kinematics\+Actions}}}
+\doxysubsubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a678e66228c0453fbbe74a605bcc27c51_a678e66228c0453fbbe74a605bcc27c51}{Move}} ()
+\begin{DoxyCompactList}\small\item\em Moves character with velocity. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a1aac1c9a4ae04ef3e2fbf26b0aa570cc_a1aac1c9a4ae04ef3e2fbf26b0aa570cc}{On\+Disable}} ()
+\begin{DoxyCompactList}\small\item\em Must call base.\+Awake() when overridden! \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a34316462014f78aba29c389590f6b104_a34316462014f78aba29c389590f6b104}{On\+Enable}} ()
+\begin{DoxyCompactList}\small\item\em Must call base.\+Awake() when overridden! \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a92bb2d391c3299b9cac91a0436487bb7_a92bb2d391c3299b9cac91a0436487bb7}{Rotate}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Input\+Axis \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a505a0e957079cf93c3061f7c142c657d_a505a0e957079cf93c3061f7c142c657d}{m\+\_\+\+Forward}} = Input\+Axis.\+Default\+Momentary
+\item 
+Input\+Axis \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_ad3d564d7e896fa9e5408705511776e3d_ad3d564d7e896fa9e5408705511776e3d}{m\+\_\+\+Pan}} = Default\+Pan
+\item 
+Input\+Axis \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_acb2a4323576ab54317de0ba0bc28ec94_acb2a4323576ab54317de0ba0bc28ec94}{m\+\_\+\+Roll}} = Default\+Roll
+\item 
+Input\+Axis \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a3846ee5b8a49b66ae69c0a6d1a3d3210_a3846ee5b8a49b66ae69c0a6d1a3d3210}{m\+\_\+\+Sideways}} = Input\+Axis.\+Default\+Momentary
+\item 
+Input\+Axis \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a621ae2e6584139890744b19a547cbca3_a621ae2e6584139890744b19a547cbca3}{m\+\_\+\+Tilt}} = Default\+Tilt
+\item 
+Input\+Axis \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a36a774a63d301803b8fbb8b4b5227799_a36a774a63d301803b8fbb8b4b5227799}{m\+\_\+\+Vertical}} = Input\+Axis.\+Default\+Momentary
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_animation_1_1_avatar_animator_parameters}{Avatar\+Animator\+Parameters}} \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_aff0b9a8223bb06b2068ee16e4f40be18_aff0b9a8223bb06b2068ee16e4f40be18}{Animator\+Parameters}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Transform \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a49486783b9769acf17f066952c765f20_a49486783b9769acf17f066952c765f20}{Camera\+Target}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Character\+Controller \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a43922e22a284170fdcdd06f7ec545ea5_a43922e22a284170fdcdd06f7ec545ea5}{Char\+Controller}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The target\textquotesingle{}s character controller -\/ if one is being used. \end{DoxyCompactList}\item 
+Vector3 \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a679052001e913f2ea3efc4a082f48c10_a679052001e913f2ea3efc4a082f48c10}{Look\+Sensitivity}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Transform \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_ab313106c426cffa9f40a71a0a35a0631_ab313106c426cffa9f40a71a0a35a0631}{Motion\+Target}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Vector3 \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_ad8cae6c5c6b6716c756ec3eadfda8548_ad8cae6c5c6b6716c756ec3eadfda8548}{Move\+Sensitivity}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Int32 \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_ae06966a1d0c0e78e5b4b4aba89eb866d_ae06966a1d0c0e78e5b4b4aba89eb866d}{Player\+Index}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Vector3 \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_af8c81063d0d740c6958ccc043ed51b2c_af8c81063d0d740c6958ccc043ed51b2c}{Velocity}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\doxyparagraph*{Properties inherited from \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_parameters_provider}{IAnimator\+Parameters\+Provider}}}
+
+
+\doxysubsubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00017}{17}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a678e66228c0453fbbe74a605bcc27c51_a678e66228c0453fbbe74a605bcc27c51}\index{PlayerControllerBase@{PlayerControllerBase}!Move@{Move}}
+\index{Move@{Move}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{Move()}{Move()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a678e66228c0453fbbe74a605bcc27c51_a678e66228c0453fbbe74a605bcc27c51} 
+void Move (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Moves character with velocity. 
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00187}{187}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Velocity\ !=\ Vector3.zero)}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a43922e22a284170fdcdd06f7ec545ea5_a43922e22a284170fdcdd06f7ec545ea5}{CharController}}.Move(Velocity);}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MotionTarget.forward\ =\ Velocity.normalized;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_player_controller_base_8cs_source_l00063}{Player\+Controller\+Base.\+Char\+Controller}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_ab240d741aeb72d6e3769fb13499e868f_ab240d741aeb72d6e3769fb13499e868f}\index{PlayerControllerBase@{PlayerControllerBase}!OnCrouch@{OnCrouch}}
+\index{OnCrouch@{OnCrouch}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{OnCrouch()}{OnCrouch()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_ab240d741aeb72d6e3769fb13499e868f_ab240d741aeb72d6e3769fb13499e868f} 
+virtual void On\+Crouch (\begin{DoxyParamCaption}\item[{Input\+Action.\+Callback\+Context}]{context}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_kinematics_actions}{Generated\+Input.\+IPlayer\+Kinematics\+Actions}}.
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00084}{84}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00084\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a1aac1c9a4ae04ef3e2fbf26b0aa570cc_a1aac1c9a4ae04ef3e2fbf26b0aa570cc}\index{PlayerControllerBase@{PlayerControllerBase}!OnDisable@{OnDisable}}
+\index{OnDisable@{OnDisable}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{OnDisable()}{OnDisable()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a1aac1c9a4ae04ef3e2fbf26b0aa570cc_a1aac1c9a4ae04ef3e2fbf26b0aa570cc} 
+virtual void On\+Disable (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Must call base.\+Awake() when overridden! 
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00129}{129}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ var\ inputUsers\ =\ \mbox{\hyperlink{class_code_smile_1_1_components_1_1_registry_1_1_components_registry}{ComponentsRegistry}}.Get<\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_input_1_1_input_users}{InputUsers}}>();}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ inputUsers.SetPlayerKinematicsCallback(PlayerIndex,\ \textcolor{keyword}{null});}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ character\ controller\ may\ be\ on\ a\ different\ object}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a43922e22a284170fdcdd06f7ec545ea5_a43922e22a284170fdcdd06f7ec545ea5}{CharController}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CharController.enabled\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a43922e22a284170fdcdd06f7ec545ea5_a43922e22a284170fdcdd06f7ec545ea5}{CharController}}\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_player_controller_base_8cs_source_l00063}{Player\+Controller\+Base.\+Char\+Controller}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a34316462014f78aba29c389590f6b104_a34316462014f78aba29c389590f6b104}\index{PlayerControllerBase@{PlayerControllerBase}!OnEnable@{OnEnable}}
+\index{OnEnable@{OnEnable}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{OnEnable()}{OnEnable()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a34316462014f78aba29c389590f6b104_a34316462014f78aba29c389590f6b104} 
+virtual void On\+Enable (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Must call base.\+Awake() when overridden! 
+
+
+
+Reimplemented in \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_controller_1_1_simple_player_controller_ad34f3aa16da2426e67c8ecc8a0b08008_ad34f3aa16da2426e67c8ecc8a0b08008}{Simple\+Player\+Controller}}.
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00097}{97}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ placed\ at\ root,\ assume\ "{}standalone"{}\ mode}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (transform.parent\ ==\ \textcolor{keyword}{null}\ ||\ MotionTarget\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MotionTarget\ =\ transform;}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ TryMoveCharacterControllerToTarget(MotionTarget);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ character\ controller\ may\ be\ on\ a\ different\ object}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a43922e22a284170fdcdd06f7ec545ea5_a43922e22a284170fdcdd06f7ec545ea5}{CharController}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CharController.enabled\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ apply\ initial\ values}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (CameraTarget\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_Tilt.Value\ =\ CameraTarget.rotation.eulerAngles.x;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_Tilt.Validate();}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (MotionTarget\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_Pan.Value\ =\ MotionTarget.rotation.eulerAngles.y;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_Pan.Validate();}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ var\ inputUsers\ =\ \mbox{\hyperlink{class_code_smile_1_1_components_1_1_registry_1_1_components_registry}{ComponentsRegistry}}.Get<\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_input_1_1_input_users}{InputUsers}}>();}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ inputUsers.SetPlayerKinematicsCallback(PlayerIndex,\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_player_controller_base_8cs_source_l00063}{Player\+Controller\+Base.\+Char\+Controller}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a99b769ad8a6898505baa088ea851677c_a99b769ad8a6898505baa088ea851677c}\index{PlayerControllerBase@{PlayerControllerBase}!OnJump@{OnJump}}
+\index{OnJump@{OnJump}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{OnJump()}{OnJump()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a99b769ad8a6898505baa088ea851677c_a99b769ad8a6898505baa088ea851677c} 
+virtual void On\+Jump (\begin{DoxyParamCaption}\item[{Input\+Action.\+Callback\+Context}]{context}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_kinematics_actions}{Generated\+Input.\+IPlayer\+Kinematics\+Actions}}.
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00085}{85}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00085\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a0f5e9f410d1b51486e9106ab1a7de5c2_a0f5e9f410d1b51486e9106ab1a7de5c2}\index{PlayerControllerBase@{PlayerControllerBase}!OnLook@{OnLook}}
+\index{OnLook@{OnLook}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{OnLook()}{OnLook()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a0f5e9f410d1b51486e9106ab1a7de5c2_a0f5e9f410d1b51486e9106ab1a7de5c2} 
+virtual void On\+Look (\begin{DoxyParamCaption}\item[{Input\+Action.\+Callback\+Context}]{context}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_kinematics_actions}{Generated\+Input.\+IPlayer\+Kinematics\+Actions}}.
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00082}{82}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00082\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_aacde3aabcb6fb7254ccdf5df46af98a4_aacde3aabcb6fb7254ccdf5df46af98a4}\index{PlayerControllerBase@{PlayerControllerBase}!OnMove@{OnMove}}
+\index{OnMove@{OnMove}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{OnMove()}{OnMove()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_aacde3aabcb6fb7254ccdf5df46af98a4_aacde3aabcb6fb7254ccdf5df46af98a4} 
+virtual void On\+Move (\begin{DoxyParamCaption}\item[{Input\+Action.\+Callback\+Context}]{context}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_kinematics_actions}{Generated\+Input.\+IPlayer\+Kinematics\+Actions}}.
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00081}{81}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00081\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a18494383df836c97f9c4ccf9a57ed07b_a18494383df836c97f9c4ccf9a57ed07b}\index{PlayerControllerBase@{PlayerControllerBase}!OnSprint@{OnSprint}}
+\index{OnSprint@{OnSprint}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{OnSprint()}{OnSprint()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a18494383df836c97f9c4ccf9a57ed07b_a18494383df836c97f9c4ccf9a57ed07b} 
+virtual void On\+Sprint (\begin{DoxyParamCaption}\item[{Input\+Action.\+Callback\+Context}]{context}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_kinematics_actions}{Generated\+Input.\+IPlayer\+Kinematics\+Actions}}.
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00086}{86}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00086\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a92bb2d391c3299b9cac91a0436487bb7_a92bb2d391c3299b9cac91a0436487bb7}\index{PlayerControllerBase@{PlayerControllerBase}!Rotate@{Rotate}}
+\index{Rotate@{Rotate}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{Rotate()}{Rotate()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a92bb2d391c3299b9cac91a0436487bb7_a92bb2d391c3299b9cac91a0436487bb7} 
+void Rotate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00196}{196}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Target.localRotation\ =\ Rotation;}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Target.Rotate(0f,\ m\_Pan.Value,\ 0f);}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a505a0e957079cf93c3061f7c142c657d_a505a0e957079cf93c3061f7c142c657d}\index{PlayerControllerBase@{PlayerControllerBase}!m\_Forward@{m\_Forward}}
+\index{m\_Forward@{m\_Forward}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{m\_Forward}{m\_Forward}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a505a0e957079cf93c3061f7c142c657d_a505a0e957079cf93c3061f7c142c657d} 
+Input\+Axis m\+\_\+\+Forward = Input\+Axis.\+Default\+Momentary\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00023}{23}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_ad3d564d7e896fa9e5408705511776e3d_ad3d564d7e896fa9e5408705511776e3d}\index{PlayerControllerBase@{PlayerControllerBase}!m\_Pan@{m\_Pan}}
+\index{m\_Pan@{m\_Pan}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{m\_Pan}{m\_Pan}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_ad3d564d7e896fa9e5408705511776e3d_ad3d564d7e896fa9e5408705511776e3d} 
+Input\+Axis m\+\_\+\+Pan = Default\+Pan\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00029}{29}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_acb2a4323576ab54317de0ba0bc28ec94_acb2a4323576ab54317de0ba0bc28ec94}\index{PlayerControllerBase@{PlayerControllerBase}!m\_Roll@{m\_Roll}}
+\index{m\_Roll@{m\_Roll}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{m\_Roll}{m\_Roll}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_acb2a4323576ab54317de0ba0bc28ec94_acb2a4323576ab54317de0ba0bc28ec94} 
+Input\+Axis m\+\_\+\+Roll = Default\+Roll\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00031}{31}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a3846ee5b8a49b66ae69c0a6d1a3d3210_a3846ee5b8a49b66ae69c0a6d1a3d3210}\index{PlayerControllerBase@{PlayerControllerBase}!m\_Sideways@{m\_Sideways}}
+\index{m\_Sideways@{m\_Sideways}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{m\_Sideways}{m\_Sideways}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a3846ee5b8a49b66ae69c0a6d1a3d3210_a3846ee5b8a49b66ae69c0a6d1a3d3210} 
+Input\+Axis m\+\_\+\+Sideways = Input\+Axis.\+Default\+Momentary\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00021}{21}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a621ae2e6584139890744b19a547cbca3_a621ae2e6584139890744b19a547cbca3}\index{PlayerControllerBase@{PlayerControllerBase}!m\_Tilt@{m\_Tilt}}
+\index{m\_Tilt@{m\_Tilt}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{m\_Tilt}{m\_Tilt}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a621ae2e6584139890744b19a547cbca3_a621ae2e6584139890744b19a547cbca3} 
+Input\+Axis m\+\_\+\+Tilt = Default\+Tilt\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00027}{27}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a36a774a63d301803b8fbb8b4b5227799_a36a774a63d301803b8fbb8b4b5227799}\index{PlayerControllerBase@{PlayerControllerBase}!m\_Vertical@{m\_Vertical}}
+\index{m\_Vertical@{m\_Vertical}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{m\_Vertical}{m\_Vertical}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a36a774a63d301803b8fbb8b4b5227799_a36a774a63d301803b8fbb8b4b5227799} 
+Input\+Axis m\+\_\+\+Vertical = Input\+Axis.\+Default\+Momentary\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00022}{22}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+
+
+\doxysubsubsection{Property Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_aff0b9a8223bb06b2068ee16e4f40be18_aff0b9a8223bb06b2068ee16e4f40be18}\index{PlayerControllerBase@{PlayerControllerBase}!AnimatorParameters@{AnimatorParameters}}
+\index{AnimatorParameters@{AnimatorParameters}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{AnimatorParameters}{AnimatorParameters}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_aff0b9a8223bb06b2068ee16e4f40be18_aff0b9a8223bb06b2068ee16e4f40be18} 
+\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_animation_1_1_avatar_animator_parameters}{Avatar\+Animator\+Parameters}} Animator\+Parameters\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Implements \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_parameters_provider}{IAnimator\+Parameters\+Provider}}.
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00039}{39}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00039\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a49486783b9769acf17f066952c765f20_a49486783b9769acf17f066952c765f20}\index{PlayerControllerBase@{PlayerControllerBase}!CameraTarget@{CameraTarget}}
+\index{CameraTarget@{CameraTarget}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{CameraTarget}{CameraTarget}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a49486783b9769acf17f066952c765f20_a49486783b9769acf17f066952c765f20} 
+Transform Camera\+Target\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00058}{58}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00058\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a43922e22a284170fdcdd06f7ec545ea5_a43922e22a284170fdcdd06f7ec545ea5}\index{PlayerControllerBase@{PlayerControllerBase}!CharController@{CharController}}
+\index{CharController@{CharController}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{CharController}{CharController}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a43922e22a284170fdcdd06f7ec545ea5_a43922e22a284170fdcdd06f7ec545ea5} 
+Character\+Controller Char\+Controller\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+The target\textquotesingle{}s character controller -\/ if one is being used. 
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00063}{63}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00063\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{_player_controller_base_8cs_source_l00187}{Player\+Controller\+Base.\+Move()}}, \mbox{\hyperlink{_player_controller_base_8cs_source_l00129}{Player\+Controller\+Base.\+On\+Disable()}}, and \mbox{\hyperlink{_player_controller_base_8cs_source_l00097}{Player\+Controller\+Base.\+On\+Enable()}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a679052001e913f2ea3efc4a082f48c10_a679052001e913f2ea3efc4a082f48c10}\index{PlayerControllerBase@{PlayerControllerBase}!LookSensitivity@{LookSensitivity}}
+\index{LookSensitivity@{LookSensitivity}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{LookSensitivity}{LookSensitivity}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_a679052001e913f2ea3efc4a082f48c10_a679052001e913f2ea3efc4a082f48c10} 
+Vector3 Look\+Sensitivity\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00074}{74}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ =>\ m\_LookSensitivity;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ =>\ m\_LookSensitivity\ =\ value;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_ab313106c426cffa9f40a71a0a35a0631_ab313106c426cffa9f40a71a0a35a0631}\index{PlayerControllerBase@{PlayerControllerBase}!MotionTarget@{MotionTarget}}
+\index{MotionTarget@{MotionTarget}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{MotionTarget}{MotionTarget}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_ab313106c426cffa9f40a71a0a35a0631_ab313106c426cffa9f40a71a0a35a0631} 
+Transform Motion\+Target\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00057}{57}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00057\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_ad8cae6c5c6b6716c756ec3eadfda8548_ad8cae6c5c6b6716c756ec3eadfda8548}\index{PlayerControllerBase@{PlayerControllerBase}!MoveSensitivity@{MoveSensitivity}}
+\index{MoveSensitivity@{MoveSensitivity}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{MoveSensitivity}{MoveSensitivity}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_ad8cae6c5c6b6716c756ec3eadfda8548_ad8cae6c5c6b6716c756ec3eadfda8548} 
+Vector3 Move\+Sensitivity\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00069}{69}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ =>\ m\_MoveSensitivity;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ =>\ m\_MoveSensitivity\ =\ value;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_ae06966a1d0c0e78e5b4b4aba89eb866d_ae06966a1d0c0e78e5b4b4aba89eb866d}\index{PlayerControllerBase@{PlayerControllerBase}!PlayerIndex@{PlayerIndex}}
+\index{PlayerIndex@{PlayerIndex}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{PlayerIndex}{PlayerIndex}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_ae06966a1d0c0e78e5b4b4aba89eb866d_ae06966a1d0c0e78e5b4b4aba89eb866d} 
+Int32 Player\+Index\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00079}{79}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00079\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_af8c81063d0d740c6958ccc043ed51b2c_af8c81063d0d740c6958ccc043ed51b2c}\index{PlayerControllerBase@{PlayerControllerBase}!Velocity@{Velocity}}
+\index{Velocity@{Velocity}!PlayerControllerBase@{PlayerControllerBase}}
+\doxyparagraph{\texorpdfstring{Velocity}{Velocity}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_player_controller_1_1_player_controller_base_af8c81063d0d740c6958ccc043ed51b2c_af8c81063d0d740c6958ccc043ed51b2c} 
+Vector3 Velocity\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Definition at line \mbox{\hyperlink{_player_controller_base_8cs_source_l00065}{65}} of file \mbox{\hyperlink{_player_controller_base_8cs_source}{Player\+Controller\+Base.\+cs}}.
+

@@ -1,0 +1,54 @@
+\doxysubsection{Relay\+Create\+Or\+Join\+Allocation.\+cs}
+\hypertarget{_relay_create_or_join_allocation_8cs_source}{}\label{_relay_create_or_join_allocation_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/Core/Statemachine/Services/Relay/Actions/RelayCreateOrJoinAllocation.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/Core/Statemachine/Services/Relay/Actions/RelayCreateOrJoinAllocation.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode}{CodeSmile.Statemachine.Netcode}};}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.Threading.Tasks;}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }Unity.Services.Relay;}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00010}00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions}{CodeSmile.Statemachine.Services.Relay.Actions}}}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00012}\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_create_or_join_allocation}{00012}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_create_or_join_allocation}{RelayCreateOrJoinAllocation}}\ :\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_async_action}{IAsyncAction}}}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00013}00013\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00014}00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_var}{Var<RelayConfig>}}\ m\_RelayConfigVar;}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_var}{Var<NetcodeConfig>}}\ m\_NetcodeConfigVar;}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_create_or_join_allocation}{RelayCreateOrJoinAllocation}}()\ \{\}}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_create_or_join_allocation}{RelayCreateOrJoinAllocation}}(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_var}{Var<NetcodeConfig>}}\ netcodeConfigVar,\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_var}{Var<RelayConfig>}}\ relayConfigVar)}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ m\_NetcodeConfigVar\ =\ netcodeConfigVar;}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ m\_RelayConfigVar\ =\ relayConfigVar;}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ async\ Task\ ExecuteAsync(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ sm)}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ var\ role\ =\ m\_NetcodeConfigVar.Value.Role;}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ var\ config\ =\ m\_RelayConfigVar.Value;}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ var\ relay\ =\ RelayService.Instance;}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (role\ ==\ NetcodeRole.Server\ ||\ role\ ==\ NetcodeRole.Host)}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ connections\ =\ config.MaxConnections\ <=\ 0\ ?\ RelayConfig.MaxRelayConnections\ :\ config.MaxConnections;}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ allocation\ =\ await\ relay.CreateAllocationAsync(connections,\ config.Region);}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ joinCode\ =\ await\ relay.GetJoinCodeAsync(allocation.AllocationId);}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ config.SetHostAllocation(allocation,\ joinCode);}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ joinAlloc\ =\ await\ relay.JoinAllocationAsync(config.JoinCode);}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ config.SetJoinAllocation(joinAlloc);}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ write\ back}}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ m\_RelayConfigVar.Value\ =\ config;}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00047}00047\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_relay_create_or_join_allocation_8cs_source_l00048}00048\ \}}
+
+\end{DoxyCode}

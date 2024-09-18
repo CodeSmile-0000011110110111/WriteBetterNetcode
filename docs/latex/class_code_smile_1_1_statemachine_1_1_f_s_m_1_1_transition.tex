@@ -1,0 +1,239 @@
+\doxysubsection{FSM.\+Transition Class Reference}
+\hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{}\label{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}\index{FSM.Transition@{FSM.Transition}}
+
+
+Represents a transition in a statemachine. A transition can also be a self-\/transition that does not change state.  
+
+
+
+
+Collaboration diagram for FSM.\+Transition\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a5cff3a67b77de17d053a190f241aa753_a5cff3a67b77de17d053a190f241aa753}{Transition}} ()
+\begin{DoxyCompactList}\small\item\em Creates an unnamed transition that executes its actions if its conditions are satisfied. If Goto\+State is non-\/null will also change state if conditions are satisfied. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_aa8372cfd9affcb5de0c2b6c8ccff3876_aa8372cfd9affcb5de0c2b6c8ccff3876}{Transition}} (String transition\+Name)
+\begin{DoxyCompactList}\small\item\em Creates a named transition that executes its actions if its conditions are satisfied. If Goto\+State is non-\/null will also change state if conditions are satisfied. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}} \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_af557b85e68629ef9dbd9b2a2b1719fda_af557b85e68629ef9dbd9b2a2b1719fda}{Add\+To\+States}} (params \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state}{State}}\mbox{[}$\,$\mbox{]} states)
+\item 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}} \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_aeded3c408085a4bb095016f685cd0510_aeded3c408085a4bb095016f685cd0510}{To\+Error\+State}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state}{State}} error\+State)
+\item 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}} \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_af3fa3c9f1644ed30ef52a76b50c931db_af3fa3c9f1644ed30ef52a76b50c931db}{To\+State}} (\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state}{State}} goto\+State)
+\item 
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a012fbb0f39e57c0a44ec83dd408fcda3}\label{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a012fbb0f39e57c0a44ec83dd408fcda3} 
+override String {\bfseries To\+String} ()
+\item 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}} \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a2fab4c3641601d86a88e61da8c834df2_a2fab4c3641601d86a88e61da8c834df2}{With\+Actions}} (params \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}\mbox{[}$\,$\mbox{]} actions)
+\item 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}} \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a218e846a60a3fc46221701a61d15e5e7_a218e846a60a3fc46221701a61d15e5e7}{With\+Conditions}} (params \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_condition}{ICondition}}\mbox{[}$\,$\mbox{]} conditions)
+\item 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}} \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a1d3c20a7352d93e605bf22d1e50f06bc_a1d3c20a7352d93e605bf22d1e50f06bc}{With\+Error\+Actions}} (params \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}\mbox{[}$\,$\mbox{]} error\+Actions)
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a934fa09ba291a97f43720640e4d83f25_a934fa09ba291a97f43720640e4d83f25}{Name}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Represents a transition in a statemachine. A transition can also be a self-\/transition that does not change state. 
+
+Definition at line \mbox{\hyperlink{_f_s_m_8_transition_8cs_source_l00015}{15}} of file \mbox{\hyperlink{_f_s_m_8_transition_8cs_source}{FSM.\+Transition.\+cs}}.
+
+
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a5cff3a67b77de17d053a190f241aa753_a5cff3a67b77de17d053a190f241aa753}\index{FSM.Transition@{FSM.Transition}!Transition@{Transition}}
+\index{Transition@{Transition}!FSM.Transition@{FSM.Transition}}
+\doxyparagraph{\texorpdfstring{Transition()}{Transition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a5cff3a67b77de17d053a190f241aa753_a5cff3a67b77de17d053a190f241aa753} 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Creates an unnamed transition that executes its actions if its conditions are satisfied. If Goto\+State is non-\/null will also change state if conditions are satisfied. 
+
+
+
+Definition at line \mbox{\hyperlink{_f_s_m_8_transition_8cs_source_l00076}{76}} of file \mbox{\hyperlink{_f_s_m_8_transition_8cs_source}{FSM.\+Transition.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keyword}{this}(\textcolor{keyword}{null})\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_aa8372cfd9affcb5de0c2b6c8ccff3876_aa8372cfd9affcb5de0c2b6c8ccff3876}\index{FSM.Transition@{FSM.Transition}!Transition@{Transition}}
+\index{Transition@{Transition}!FSM.Transition@{FSM.Transition}}
+\doxyparagraph{\texorpdfstring{Transition()}{Transition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_aa8372cfd9affcb5de0c2b6c8ccff3876_aa8372cfd9affcb5de0c2b6c8ccff3876} 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}} (\begin{DoxyParamCaption}\item[{String}]{transition\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Creates a named transition that executes its actions if its conditions are satisfied. If Goto\+State is non-\/null will also change state if conditions are satisfied. 
+
+The transition name should be used to annotate or summarize the purpose of the transition. The name is also instrumental for debugging and appears in diagrams. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em transition\+Name} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_af557b85e68629ef9dbd9b2a2b1719fda_af557b85e68629ef9dbd9b2a2b1719fda}\index{FSM.Transition@{FSM.Transition}!AddToStates@{AddToStates}}
+\index{AddToStates@{AddToStates}!FSM.Transition@{FSM.Transition}}
+\doxyparagraph{\texorpdfstring{AddToStates()}{AddToStates()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_af557b85e68629ef9dbd9b2a2b1719fda_af557b85e68629ef9dbd9b2a2b1719fda} 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}} Add\+To\+States (\begin{DoxyParamCaption}\item[{params \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state}{State}}\mbox{[}$\,$\mbox{]}}]{states}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_f_s_m_8_transition_8cs_source_l00110}{110}} of file \mbox{\hyperlink{_f_s_m_8_transition_8cs_source}{FSM.\+Transition.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (states\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(states));}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ state\ \textcolor{keywordflow}{in}\ states)}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ state.AddTransitions(\textcolor{keyword}{this});}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_aeded3c408085a4bb095016f685cd0510_aeded3c408085a4bb095016f685cd0510}\index{FSM.Transition@{FSM.Transition}!ToErrorState@{ToErrorState}}
+\index{ToErrorState@{ToErrorState}!FSM.Transition@{FSM.Transition}}
+\doxyparagraph{\texorpdfstring{ToErrorState()}{ToErrorState()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_aeded3c408085a4bb095016f685cd0510_aeded3c408085a4bb095016f685cd0510} 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}} To\+Error\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state}{State}}}]{error\+State}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_f_s_m_8_transition_8cs_source_l00101}{101}} of file \mbox{\hyperlink{_f_s_m_8_transition_8cs_source}{FSM.\+Transition.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ErrorGotoState\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}ErrorGotoState\ already\ set"{}});}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ErrorGotoState\ =\ errorState;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_af3fa3c9f1644ed30ef52a76b50c931db_af3fa3c9f1644ed30ef52a76b50c931db}\index{FSM.Transition@{FSM.Transition}!ToState@{ToState}}
+\index{ToState@{ToState}!FSM.Transition@{FSM.Transition}}
+\doxyparagraph{\texorpdfstring{ToState()}{ToState()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_af3fa3c9f1644ed30ef52a76b50c931db_af3fa3c9f1644ed30ef52a76b50c931db} 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}} To\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_state}{State}}}]{goto\+State}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_f_s_m_8_transition_8cs_source_l00092}{92}} of file \mbox{\hyperlink{_f_s_m_8_transition_8cs_source}{FSM.\+Transition.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (GotoState\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}GotoState\ already\ set"{}});}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GotoState\ =\ gotoState;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a2fab4c3641601d86a88e61da8c834df2_a2fab4c3641601d86a88e61da8c834df2}\index{FSM.Transition@{FSM.Transition}!WithActions@{WithActions}}
+\index{WithActions@{WithActions}!FSM.Transition@{FSM.Transition}}
+\doxyparagraph{\texorpdfstring{WithActions()}{WithActions()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a2fab4c3641601d86a88e61da8c834df2_a2fab4c3641601d86a88e61da8c834df2} 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}} With\+Actions (\begin{DoxyParamCaption}\item[{params \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}\mbox{[}$\,$\mbox{]}}]{actions}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_f_s_m_8_transition_8cs_source_l00130}{130}} of file \mbox{\hyperlink{_f_s_m_8_transition_8cs_source}{FSM.\+Transition.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Actions\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}Actions\ already\ set"{}});}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Actions\ =\ actions\ ??\ \textcolor{keyword}{new}\ IAction[0];}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a218e846a60a3fc46221701a61d15e5e7_a218e846a60a3fc46221701a61d15e5e7}\index{FSM.Transition@{FSM.Transition}!WithConditions@{WithConditions}}
+\index{WithConditions@{WithConditions}!FSM.Transition@{FSM.Transition}}
+\doxyparagraph{\texorpdfstring{WithConditions()}{WithConditions()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a218e846a60a3fc46221701a61d15e5e7_a218e846a60a3fc46221701a61d15e5e7} 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}} With\+Conditions (\begin{DoxyParamCaption}\item[{params \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_condition}{ICondition}}\mbox{[}$\,$\mbox{]}}]{conditions}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_f_s_m_8_transition_8cs_source_l00121}{121}} of file \mbox{\hyperlink{_f_s_m_8_transition_8cs_source}{FSM.\+Transition.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Conditions\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}Conditions\ already\ set"{}});}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Conditions\ =\ conditions\ ??\ \textcolor{keyword}{new}\ ICondition[0];}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a1d3c20a7352d93e605bf22d1e50f06bc_a1d3c20a7352d93e605bf22d1e50f06bc}\index{FSM.Transition@{FSM.Transition}!WithErrorActions@{WithErrorActions}}
+\index{WithErrorActions@{WithErrorActions}!FSM.Transition@{FSM.Transition}}
+\doxyparagraph{\texorpdfstring{WithErrorActions()}{WithErrorActions()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a1d3c20a7352d93e605bf22d1e50f06bc_a1d3c20a7352d93e605bf22d1e50f06bc} 
+\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition}{Transition}} With\+Error\+Actions (\begin{DoxyParamCaption}\item[{params \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}\mbox{[}$\,$\mbox{]}}]{error\+Actions}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_f_s_m_8_transition_8cs_source_l00139}{139}} of file \mbox{\hyperlink{_f_s_m_8_transition_8cs_source}{FSM.\+Transition.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ErrorActions\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}ErrorActions\ already\ set"{}});}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ErrorActions\ =\ errorActions\ ??\ \textcolor{keyword}{new}\ IAction[0];}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsubsection{Property Documentation}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a934fa09ba291a97f43720640e4d83f25_a934fa09ba291a97f43720640e4d83f25}\index{FSM.Transition@{FSM.Transition}!Name@{Name}}
+\index{Name@{Name}!FSM.Transition@{FSM.Transition}}
+\doxyparagraph{\texorpdfstring{Name}{Name}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_f_s_m_1_1_transition_a934fa09ba291a97f43720640e4d83f25_a934fa09ba291a97f43720640e4d83f25} 
+String Name\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Definition at line \mbox{\hyperlink{_f_s_m_8_transition_8cs_source_l00017}{17}} of file \mbox{\hyperlink{_f_s_m_8_transition_8cs_source}{FSM.\+Transition.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00017\ \{\ \textcolor{keyword}{get};\ \}}
+
+\end{DoxyCode}

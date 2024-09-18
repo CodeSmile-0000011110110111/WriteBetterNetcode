@@ -1,0 +1,203 @@
+\doxysubsection{Statemachine\+Tests Class Reference}
+\hypertarget{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests}{}\label{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests}\index{StatemachineTests@{StatemachineTests}}
+
+
+Collaboration diagram for Statemachine\+Tests\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_adeaa2202a0308f52669ec9cd7c377cad_adeaa2202a0308f52669ec9cd7c377cad}{FSM\+\_\+\+Invalid\+Statemachine\+Name\+\_\+\+Throws}} (String fsm\+Name)
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_a07388cac46941c1cef53b62a5221ab33_a07388cac46941c1cef53b62a5221ab33}{FSM\+\_\+\+Invalid\+State\+Name\+\_\+\+Throws}} (String state\+Name)
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_a31ffe951b4bbdb03f9f9e2a31815a94d_a31ffe951b4bbdb03f9f9e2a31815a94d}{FSM\+\_\+\+Logical\+Or\+Condition\+\_\+\+Expected\+Outcome}} (Boolean condition1, Boolean condition2, Boolean expected)
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_accee18ecfafa5ef392df5b4ad5ef7799_accee18ecfafa5ef392df5b4ad5ef7799}{FSM\+\_\+\+Non\+Existing\+Goto\+State\+\_\+\+Throws}} ()
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_a3465fa24156895848650ea50260afd28_a3465fa24156895848650ea50260afd28}{FSM\+\_\+\+Start\+End\+States\+\_\+\+Runs\+To\+End\+And\+Raises\+State\+Change\+Event}} ()
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_a1c70cb2370fdac121a5ba7026bbf7c45_a1c70cb2370fdac121a5ba7026bbf7c45}{FSM\+\_\+\+Start\+Not\+Called\+Before\+Evaluate\+\_\+\+Throws}} ()
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_a4e86f45d5e2f95b687731829e3a75d1e_a4e86f45d5e2f95b687731829e3a75d1e}{FSM\+\_\+\+State\+Change\+\_\+\+Invokes\+State\+Change\+Event}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_statemachine_tests_8cs_source_l00011}{11}} of file \mbox{\hyperlink{_statemachine_tests_8cs_source}{Statemachine\+Tests.\+cs}}.
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_adeaa2202a0308f52669ec9cd7c377cad_adeaa2202a0308f52669ec9cd7c377cad}\index{StatemachineTests@{StatemachineTests}!FSM\_InvalidStatemachineName\_Throws@{FSM\_InvalidStatemachineName\_Throws}}
+\index{FSM\_InvalidStatemachineName\_Throws@{FSM\_InvalidStatemachineName\_Throws}!StatemachineTests@{StatemachineTests}}
+\doxyparagraph{\texorpdfstring{FSM\_InvalidStatemachineName\_Throws()}{FSM\_InvalidStatemachineName\_Throws()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_adeaa2202a0308f52669ec9cd7c377cad_adeaa2202a0308f52669ec9cd7c377cad} 
+void FSM\+\_\+\+Invalid\+Statemachine\+Name\+\_\+\+Throws (\begin{DoxyParamCaption}\item[{String}]{fsm\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_statemachine_tests_8cs_source_l00014}{14}} of file \mbox{\hyperlink{_statemachine_tests_8cs_source}{Statemachine\+Tests.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#if\ DEBUG\ ||\ DEVELOPMENT\_BUILD }}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ Assert.Throws<ArgumentException>(()\ =>\ \textcolor{keyword}{new}\ FSM(fsmName).WithStates(\textcolor{stringliteral}{"{}state"{}}).Start());}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#endif }}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_a07388cac46941c1cef53b62a5221ab33_a07388cac46941c1cef53b62a5221ab33}\index{StatemachineTests@{StatemachineTests}!FSM\_InvalidStateName\_Throws@{FSM\_InvalidStateName\_Throws}}
+\index{FSM\_InvalidStateName\_Throws@{FSM\_InvalidStateName\_Throws}!StatemachineTests@{StatemachineTests}}
+\doxyparagraph{\texorpdfstring{FSM\_InvalidStateName\_Throws()}{FSM\_InvalidStateName\_Throws()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_a07388cac46941c1cef53b62a5221ab33_a07388cac46941c1cef53b62a5221ab33} 
+void FSM\+\_\+\+Invalid\+State\+Name\+\_\+\+Throws (\begin{DoxyParamCaption}\item[{String}]{state\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_statemachine_tests_8cs_source_l00022}{22}} of file \mbox{\hyperlink{_statemachine_tests_8cs_source}{Statemachine\+Tests.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#if\ DEBUG\ ||\ DEVELOPMENT\_BUILD }}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ Assert.Throws<ArgumentException>(()\ =>\ \textcolor{keyword}{new}\ FSM(\textcolor{stringliteral}{"{}FSM"{}}).WithStates(stateName).Start());}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#endif }}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_a31ffe951b4bbdb03f9f9e2a31815a94d_a31ffe951b4bbdb03f9f9e2a31815a94d}\index{StatemachineTests@{StatemachineTests}!FSM\_LogicalOrCondition\_ExpectedOutcome@{FSM\_LogicalOrCondition\_ExpectedOutcome}}
+\index{FSM\_LogicalOrCondition\_ExpectedOutcome@{FSM\_LogicalOrCondition\_ExpectedOutcome}!StatemachineTests@{StatemachineTests}}
+\doxyparagraph{\texorpdfstring{FSM\_LogicalOrCondition\_ExpectedOutcome()}{FSM\_LogicalOrCondition\_ExpectedOutcome()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_a31ffe951b4bbdb03f9f9e2a31815a94d_a31ffe951b4bbdb03f9f9e2a31815a94d} 
+void FSM\+\_\+\+Logical\+Or\+Condition\+\_\+\+Expected\+Outcome (\begin{DoxyParamCaption}\item[{Boolean}]{condition1}{, }\item[{Boolean}]{condition2}{, }\item[{Boolean}]{expected}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_statemachine_tests_8cs_source_l00088}{88}} of file \mbox{\hyperlink{_statemachine_tests_8cs_source}{Statemachine\+Tests.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ var\ actual\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ var\ state\ =\ FSM.CreateState(\textcolor{stringliteral}{"{}START"{}});}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ state.AddTransition()}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithConditions(FSM.OR(}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FSM.Condition(()\ =>\ condition1),}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FSM.Condition(()\ =>\ condition2)))}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithActions(FSM.Action(()\ =>\ actual\ =\ \textcolor{keyword}{true}));}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ FSM(\textcolor{stringliteral}{"{}Test\ FSM"{}}).WithStates(state).Start().Update();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ Assert.AreEqual(expected,\ actual);}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_accee18ecfafa5ef392df5b4ad5ef7799_accee18ecfafa5ef392df5b4ad5ef7799}\index{StatemachineTests@{StatemachineTests}!FSM\_NonExistingGotoState\_Throws@{FSM\_NonExistingGotoState\_Throws}}
+\index{FSM\_NonExistingGotoState\_Throws@{FSM\_NonExistingGotoState\_Throws}!StatemachineTests@{StatemachineTests}}
+\doxyparagraph{\texorpdfstring{FSM\_NonExistingGotoState\_Throws()}{FSM\_NonExistingGotoState\_Throws()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_accee18ecfafa5ef392df5b4ad5ef7799_accee18ecfafa5ef392df5b4ad5ef7799} 
+void FSM\+\_\+\+Non\+Existing\+Goto\+State\+\_\+\+Throws (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_statemachine_tests_8cs_source_l00038}{38}} of file \mbox{\hyperlink{_statemachine_tests_8cs_source}{Statemachine\+Tests.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#if\ DEBUG\ ||\ DEVELOPMENT\_BUILD }}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ Assert.Throws<ArgumentException>(()\ =>}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ state\ =\ FSM.CreateState(\textcolor{stringliteral}{"{}X"{}});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ state.AddTransition().ToState(FSM.CreateState(\textcolor{stringliteral}{"{}?"{}}));}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ FSM(\textcolor{stringliteral}{"{}FSM"{}}).WithStates(state).Start();}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#endif }}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_a3465fa24156895848650ea50260afd28_a3465fa24156895848650ea50260afd28}\index{StatemachineTests@{StatemachineTests}!FSM\_StartEndStates\_RunsToEndAndRaisesStateChangeEvent@{FSM\_StartEndStates\_RunsToEndAndRaisesStateChangeEvent}}
+\index{FSM\_StartEndStates\_RunsToEndAndRaisesStateChangeEvent@{FSM\_StartEndStates\_RunsToEndAndRaisesStateChangeEvent}!StatemachineTests@{StatemachineTests}}
+\doxyparagraph{\texorpdfstring{FSM\_StartEndStates\_RunsToEndAndRaisesStateChangeEvent()}{FSM\_StartEndStates\_RunsToEndAndRaisesStateChangeEvent()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_a3465fa24156895848650ea50260afd28_a3465fa24156895848650ea50260afd28} 
+void FSM\+\_\+\+Start\+End\+States\+\_\+\+Runs\+To\+End\+And\+Raises\+State\+Change\+Event (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_statemachine_tests_8cs_source_l00051}{51}} of file \mbox{\hyperlink{_statemachine_tests_8cs_source}{Statemachine\+Tests.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ var\ didExecuteActions\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ var\ sm\ =\ \textcolor{keyword}{new}\ FSM(\textcolor{stringliteral}{"{}FSM"{}}).WithStates(\textcolor{stringliteral}{"{}START"{}},\ \textcolor{stringliteral}{"{}END"{}});}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ sm.States[0].AddTransition().ToState(sm.States[1]).WithActions(FSM.Action(()\ =>\ didExecuteActions\ =\ \textcolor{keyword}{true}));}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ sm.Start().Update();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ Assert.AreEqual(sm.States[1],\ sm.ActiveState);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ Assert.IsTrue(sm.IsStopped);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ Assert.IsTrue(didExecuteActions);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_a1c70cb2370fdac121a5ba7026bbf7c45_a1c70cb2370fdac121a5ba7026bbf7c45}\index{StatemachineTests@{StatemachineTests}!FSM\_StartNotCalledBeforeEvaluate\_Throws@{FSM\_StartNotCalledBeforeEvaluate\_Throws}}
+\index{FSM\_StartNotCalledBeforeEvaluate\_Throws@{FSM\_StartNotCalledBeforeEvaluate\_Throws}!StatemachineTests@{StatemachineTests}}
+\doxyparagraph{\texorpdfstring{FSM\_StartNotCalledBeforeEvaluate\_Throws()}{FSM\_StartNotCalledBeforeEvaluate\_Throws()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_a1c70cb2370fdac121a5ba7026bbf7c45_a1c70cb2370fdac121a5ba7026bbf7c45} 
+void FSM\+\_\+\+Start\+Not\+Called\+Before\+Evaluate\+\_\+\+Throws (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_statemachine_tests_8cs_source_l00030}{30}} of file \mbox{\hyperlink{_statemachine_tests_8cs_source}{Statemachine\+Tests.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#if\ DEBUG\ ||\ DEVELOPMENT\_BUILD }}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ Assert.Throws<InvalidOperationException>(()\ =>\ \textcolor{keyword}{new}\ FSM(\textcolor{stringliteral}{"{}FSM"{}}).WithStates(\textcolor{stringliteral}{"{}X"{}}).Update());}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif }}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_a4e86f45d5e2f95b687731829e3a75d1e_a4e86f45d5e2f95b687731829e3a75d1e}\index{StatemachineTests@{StatemachineTests}!FSM\_StateChange\_InvokesStateChangeEvent@{FSM\_StateChange\_InvokesStateChangeEvent}}
+\index{FSM\_StateChange\_InvokesStateChangeEvent@{FSM\_StateChange\_InvokesStateChangeEvent}!StatemachineTests@{StatemachineTests}}
+\doxyparagraph{\texorpdfstring{FSM\_StateChange\_InvokesStateChangeEvent()}{FSM\_StateChange\_InvokesStateChangeEvent()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_statemachine_1_1_tests_1_1_statemachine_tests_a4e86f45d5e2f95b687731829e3a75d1e_a4e86f45d5e2f95b687731829e3a75d1e} 
+void FSM\+\_\+\+State\+Change\+\_\+\+Invokes\+State\+Change\+Event (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_statemachine_tests_8cs_source_l00066}{66}} of file \mbox{\hyperlink{_statemachine_tests_8cs_source}{Statemachine\+Tests.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ var\ sm\ =\ \textcolor{keyword}{new}\ FSM(\textcolor{stringliteral}{"{}FSM"{}}).WithStates(\textcolor{stringliteral}{"{}START"{}},\ \textcolor{stringliteral}{"{}END"{}});}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ sm.States[0].AddTransition().ToState(sm.States[1]);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ var\ didInvokeStateChangedEvent\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ sm.OnStateChange\ +=\ args\ =>}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ didInvokeStateChangedEvent\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Assert.AreEqual(args.PreviousState,\ sm.States[0]);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Assert.AreEqual(args.ActiveState,\ sm.States[1]);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ sm.Start().Update();}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ Assert.IsTrue(didInvokeStateChangedEvent);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}

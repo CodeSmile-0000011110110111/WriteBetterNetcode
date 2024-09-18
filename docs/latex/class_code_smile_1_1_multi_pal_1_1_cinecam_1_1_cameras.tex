@@ -1,0 +1,177 @@
+\doxysubsection{Cameras Class Reference}
+\hypertarget{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras}{}\label{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras}\index{Cameras@{Cameras}}
+
+
+Inheritance diagram for Cameras\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Cameras\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_a4e444c65be2cac5bb46c8932bb0e8370_a4e444c65be2cac5bb46c8932bb0e8370}{Destroy\+Player\+Cinecams}} (Int32 player\+Index)
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_ab15c9b6c418fcce911921b31dca1da6d_ab15c9b6c418fcce911921b31dca1da6d}{Instantiate\+Player\+Cinecams}} (Int32 player\+Index, \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_player_camera_prefabs}{Player\+Camera\+Prefabs}} prefabs)
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_adad75f8b3a3443de63df93d8b7eb48e3_adad75f8b3a3443de63df93d8b7eb48e3}{Switch\+To\+Next\+Cinecam}} (Int32 player\+Index)
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Camera \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_aa6956e9f97eeee8d750cd81a5c7977d0_aa6956e9f97eeee8d750cd81a5c7977d0}{Active\+Other\+Camera}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Cinemachine\+Camera\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_a5bd4f735b83e0cedc6adcb70e6eb92bb_a5bd4f735b83e0cedc6adcb70e6eb92bb}{Player\+Not\+Joined\+Cinecams}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Camera\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_aff5cf0936a4a13caec7397a0bc2c27aa_aff5cf0936a4a13caec7397a0bc2c27aa}{Player\+Split\+Cameras}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_splitscreen}{Splitscreen}} \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_a20117dc6ce556246f3f554511497210f_a20117dc6ce556246f3f554511497210f}{Splitscreen}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_cameras_8cs_source_l00018}{18}} of file \mbox{\hyperlink{_cameras_8cs_source}{Cameras.\+cs}}.
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_a4e444c65be2cac5bb46c8932bb0e8370_a4e444c65be2cac5bb46c8932bb0e8370}\index{Cameras@{Cameras}!DestroyPlayerCinecams@{DestroyPlayerCinecams}}
+\index{DestroyPlayerCinecams@{DestroyPlayerCinecams}!Cameras@{Cameras}}
+\doxyparagraph{\texorpdfstring{DestroyPlayerCinecams()}{DestroyPlayerCinecams()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_a4e444c65be2cac5bb46c8932bb0e8370_a4e444c65be2cac5bb46c8932bb0e8370} 
+void Destroy\+Player\+Cinecams (\begin{DoxyParamCaption}\item[{Int32}]{player\+Index}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_cameras_8cs_source_l00241}{241}} of file \mbox{\hyperlink{_cameras_8cs_source}{Cameras.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ playerCinecam\ \textcolor{keywordflow}{in}\ m\_PlayerCinecams[playerIndex])}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Destroy(playerCinecam.gameObject);}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ m\_PlayerCinecams[playerIndex].Clear();}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_ab15c9b6c418fcce911921b31dca1da6d_ab15c9b6c418fcce911921b31dca1da6d}\index{Cameras@{Cameras}!InstantiatePlayerCinecams@{InstantiatePlayerCinecams}}
+\index{InstantiatePlayerCinecams@{InstantiatePlayerCinecams}!Cameras@{Cameras}}
+\doxyparagraph{\texorpdfstring{InstantiatePlayerCinecams()}{InstantiatePlayerCinecams()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_ab15c9b6c418fcce911921b31dca1da6d_ab15c9b6c418fcce911921b31dca1da6d} 
+void Instantiate\+Player\+Cinecams (\begin{DoxyParamCaption}\item[{Int32}]{player\+Index}{, }\item[{\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_player_camera_prefabs}{Player\+Camera\+Prefabs}}}]{prefabs}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_cameras_8cs_source_l00221}{221}} of file \mbox{\hyperlink{_cameras_8cs_source}{Cameras.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ var\ parent\ =\ m\_PlayerCinecamRoot\ !=\ \textcolor{keyword}{null}\ ?\ m\_PlayerCinecamRoot\ :\ transform;}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (var\ cinecamIndex\ =\ 0;\ cinecamIndex\ <\ prefabs.Count;\ cinecamIndex++)}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ cameraPrefab\ =\ prefabs[cinecamIndex];}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ cameraObj\ =\ Instantiate(cameraPrefab,\ parent);}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cameraObj.name\ =\ \$\textcolor{stringliteral}{"{}Player\ \#\{playerIndex\}:\ [\{cinecamIndex\}]\ \{cameraObj.name.Replace("{}}(Clone)\textcolor{stringliteral}{"{},\ "{}}\textcolor{stringliteral}{"{})\}"{}};}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ cinecam\ =\ cameraObj.GetComponent<CinemachineCamera>();}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cinecam.OutputChannel\ =\ (OutputChannels)(1\ <<\ playerIndex\ +\ 1);}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_PlayerCinecams[playerIndex].Add(cinecam);}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ make\ first\ one\ active\ -\/\ player's\ cinecams\ should\ all\ share\ same\ priority\ otherwise\ this\ won't\ work}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ m\_PlayerCinecams[playerIndex][0].Prioritize();}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_adad75f8b3a3443de63df93d8b7eb48e3_adad75f8b3a3443de63df93d8b7eb48e3}\index{Cameras@{Cameras}!SwitchToNextCinecam@{SwitchToNextCinecam}}
+\index{SwitchToNextCinecam@{SwitchToNextCinecam}!Cameras@{Cameras}}
+\doxyparagraph{\texorpdfstring{SwitchToNextCinecam()}{SwitchToNextCinecam()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_adad75f8b3a3443de63df93d8b7eb48e3_adad75f8b3a3443de63df93d8b7eb48e3} 
+void Switch\+To\+Next\+Cinecam (\begin{DoxyParamCaption}\item[{Int32}]{player\+Index}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_cameras_8cs_source_l00281}{281}} of file \mbox{\hyperlink{_cameras_8cs_source}{Cameras.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ var\ cinecams\ =\ m\_PlayerCinecams[playerIndex];}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (var\ i\ =\ 0;\ i\ <\ cinecams.Count;\ i++)}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ cinecam\ =\ cinecams[i];}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cinecam.IsLive)}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ nextActiveCinecamIndex\ =\ i\ +\ 1;}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (nextActiveCinecamIndex\ >=\ cinecams.Count)}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nextActiveCinecamIndex\ =\ 0;}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cinecams[nextActiveCinecamIndex].Prioritize();}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsubsection{Property Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_aa6956e9f97eeee8d750cd81a5c7977d0_aa6956e9f97eeee8d750cd81a5c7977d0}\index{Cameras@{Cameras}!ActiveOtherCamera@{ActiveOtherCamera}}
+\index{ActiveOtherCamera@{ActiveOtherCamera}!Cameras@{Cameras}}
+\doxyparagraph{\texorpdfstring{ActiveOtherCamera}{ActiveOtherCamera}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_aa6956e9f97eeee8d750cd81a5c7977d0_aa6956e9f97eeee8d750cd81a5c7977d0} 
+Camera Active\+Other\+Camera\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Definition at line \mbox{\hyperlink{_cameras_8cs_source_l00050}{50}} of file \mbox{\hyperlink{_cameras_8cs_source}{Cameras.\+cs}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_a5bd4f735b83e0cedc6adcb70e6eb92bb_a5bd4f735b83e0cedc6adcb70e6eb92bb}\index{Cameras@{Cameras}!PlayerNotJoinedCinecams@{PlayerNotJoinedCinecams}}
+\index{PlayerNotJoinedCinecams@{PlayerNotJoinedCinecams}!Cameras@{Cameras}}
+\doxyparagraph{\texorpdfstring{PlayerNotJoinedCinecams}{PlayerNotJoinedCinecams}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_a5bd4f735b83e0cedc6adcb70e6eb92bb_a5bd4f735b83e0cedc6adcb70e6eb92bb} 
+Cinemachine\+Camera \mbox{[}$\,$\mbox{]} Player\+Not\+Joined\+Cinecams\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Definition at line \mbox{\hyperlink{_cameras_8cs_source_l00047}{47}} of file \mbox{\hyperlink{_cameras_8cs_source}{Cameras.\+cs}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_aff5cf0936a4a13caec7397a0bc2c27aa_aff5cf0936a4a13caec7397a0bc2c27aa}\index{Cameras@{Cameras}!PlayerSplitCameras@{PlayerSplitCameras}}
+\index{PlayerSplitCameras@{PlayerSplitCameras}!Cameras@{Cameras}}
+\doxyparagraph{\texorpdfstring{PlayerSplitCameras}{PlayerSplitCameras}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_aff5cf0936a4a13caec7397a0bc2c27aa_aff5cf0936a4a13caec7397a0bc2c27aa} 
+Camera \mbox{[}$\,$\mbox{]} Player\+Split\+Cameras\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Definition at line \mbox{\hyperlink{_cameras_8cs_source_l00048}{48}} of file \mbox{\hyperlink{_cameras_8cs_source}{Cameras.\+cs}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_a20117dc6ce556246f3f554511497210f_a20117dc6ce556246f3f554511497210f}\index{Cameras@{Cameras}!Splitscreen@{Splitscreen}}
+\index{Splitscreen@{Splitscreen}!Cameras@{Cameras}}
+\doxyparagraph{\texorpdfstring{Splitscreen}{Splitscreen}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras_a20117dc6ce556246f3f554511497210f_a20117dc6ce556246f3f554511497210f} 
+\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_splitscreen}{Splitscreen}} \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_splitscreen}{Splitscreen}}\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Definition at line \mbox{\hyperlink{_cameras_8cs_source_l00052}{52}} of file \mbox{\hyperlink{_cameras_8cs_source}{Cameras.\+cs}}.
+

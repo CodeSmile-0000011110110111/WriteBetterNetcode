@@ -1,0 +1,120 @@
+\doxysubsection{Network\+Event\+Base Class Reference}
+\hypertarget{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base}{}\label{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base}\index{NetworkEventBase@{NetworkEventBase}}
+
+
+Inheritance diagram for Network\+Event\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Network\+Event\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=293pt]{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base_ad632f1f2492e931d2a612b21a006a75d_ad632f1f2492e931d2a612b21a006a75d}{Receive}} ()
+\item 
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base_aa3ae3c2b399501e4ca585dbdd841247b}\label{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base_aa3ae3c2b399501e4ca585dbdd841247b} 
+void {\bfseries Register} (\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_i_network_event_listener}{INetwork\+Event\+Listener}} listener)
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base_a8b72cd9e4cf2fc7f4f17179d4bad00dc_a8b72cd9e4cf2fc7f4f17179d4bad00dc}{Send}} ()
+\item 
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base_a0f9c8e66c1a397ed6f5d3b85c8c67030}\label{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base_a0f9c8e66c1a397ed6f5d3b85c8c67030} 
+void {\bfseries Unregister} (\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_i_network_event_listener}{INetwork\+Event\+Listener}} listener)
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base_ae0a1971d24b447511741cc2c90595e3f_ae0a1971d24b447511741cc2c90595e3f}{Invoke}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_data}{Network\+Event\+Data}} \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base_add04e9b33dd1c228ec96995695089439_add04e9b33dd1c228ec96995695089439}{Network\+Event\+Data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_network_event_base_8cs_source_l00015}{15}} of file \mbox{\hyperlink{_network_event_base_8cs_source}{Network\+Event\+Base.\+cs}}.
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base_ae0a1971d24b447511741cc2c90595e3f_ae0a1971d24b447511741cc2c90595e3f}\index{NetworkEventBase@{NetworkEventBase}!Invoke@{Invoke}}
+\index{Invoke@{Invoke}!NetworkEventBase@{NetworkEventBase}}
+\doxyparagraph{\texorpdfstring{Invoke()}{Invoke()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base_ae0a1971d24b447511741cc2c90595e3f_ae0a1971d24b447511741cc2c90595e3f} 
+void Invoke (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_network_event_base_8cs_source_l00021}{21}} of file \mbox{\hyperlink{_network_event_base_8cs_source}{Network\+Event\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (var\ i\ =\ m\_Listeners.Count\ -\/\ 1;\ i\ >=\ 0;\ i-\/-\/)}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_Listeners[i].OnNetworkEvent(NetworkEventData);}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base_ad632f1f2492e931d2a612b21a006a75d_ad632f1f2492e931d2a612b21a006a75d}\index{NetworkEventBase@{NetworkEventBase}!Receive@{Receive}}
+\index{Receive@{Receive}!NetworkEventBase@{NetworkEventBase}}
+\doxyparagraph{\texorpdfstring{Receive()}{Receive()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base_ad632f1f2492e931d2a612b21a006a75d_ad632f1f2492e931d2a612b21a006a75d} 
+void Receive (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_event_base_8cs_source_l00042}{42}} of file \mbox{\hyperlink{_network_event_base_8cs_source}{Network\+Event\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ Tests.NetworkEventData.Receive(\textcolor{keyword}{new}\ FastBufferReader());}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base_a8b72cd9e4cf2fc7f4f17179d4bad00dc_a8b72cd9e4cf2fc7f4f17179d4bad00dc}\index{NetworkEventBase@{NetworkEventBase}!Send@{Send}}
+\index{Send@{Send}!NetworkEventBase@{NetworkEventBase}}
+\doxyparagraph{\texorpdfstring{Send()}{Send()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base_a8b72cd9e4cf2fc7f4f17179d4bad00dc_a8b72cd9e4cf2fc7f4f17179d4bad00dc} 
+void Send (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_event_base_8cs_source_l00037}{37}} of file \mbox{\hyperlink{_network_event_base_8cs_source}{Network\+Event\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ Tests.NetworkEventData.Send(\textcolor{keyword}{new}\ FastBufferWriter());}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base_add04e9b33dd1c228ec96995695089439_add04e9b33dd1c228ec96995695089439}\index{NetworkEventBase@{NetworkEventBase}!NetworkEventData@{NetworkEventData}}
+\index{NetworkEventData@{NetworkEventData}!NetworkEventBase@{NetworkEventBase}}
+\doxyparagraph{\texorpdfstring{NetworkEventData}{NetworkEventData}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base_add04e9b33dd1c228ec96995695089439_add04e9b33dd1c228ec96995695089439} 
+\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_data}{Network\+Event\+Data}} \mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_data}{Network\+Event\+Data}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_network_event_base_8cs_source_l00019}{19}} of file \mbox{\hyperlink{_network_event_base_8cs_source}{Network\+Event\+Base.\+cs}}.
+

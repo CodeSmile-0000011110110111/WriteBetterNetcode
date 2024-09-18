@@ -1,0 +1,192 @@
+\doxysubsection{Netcode\+State Class Reference}
+\hypertarget{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state}{}\label{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state}\index{NetcodeState@{NetcodeState}}
+
+
+Inheritance diagram for Netcode\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=195pt]{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Netcode\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=195pt]{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries State} \{ \newline
+{\bfseries Initializing}
+, {\bfseries Offline}
+, {\bfseries Relay\+Starting}
+, {\bfseries Network\+Starting}
+, \newline
+{\bfseries Server\+Online}
+, {\bfseries Client\+Online}
+, {\bfseries Client\+Playing}
+, {\bfseries Network\+Stopping}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_adc87276390df80d5d6d14695d76e7306_adc87276390df80d5d6d14695d76e7306}{Request\+Start}} (\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{Netcode\+Config}} netcode\+Config, \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}{Transport\+Config}} transport\+Config, \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config}{Relay\+Config}} relay\+Config=default)
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_a3c658f86eeb187bdfd3dfeb3854105e5_a3c658f86eeb187bdfd3dfeb3854105e5}{Request\+Stop\+Network}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Boolean \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_a3586a72ff3b64b60564b2ac0972803f0_a3586a72ff3b64b60564b2ac0972803f0}{Is\+Online}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+Action$<$ String $>$ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_afca6dd1abad9ca44234e6645d97269d2_afca6dd1abad9ca44234e6645d97269d2}{Relay\+Join\+Code\+Available}}
+\item 
+Action$<$ Netcode\+Role $>$ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_afcdebca55e58aceb1ff0d3381c6e17af_afcdebca55e58aceb1ff0d3381c6e17af}{Went\+Offline}}
+\item 
+Action$<$ Netcode\+Role $>$ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_a9a29799ed97d2471d6d458dcf7d22d8b_a9a29799ed97d2471d6d458dcf7d22d8b}{Went\+Online}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_netcode_state_8cs_source_l00025}{25}} of file \mbox{\hyperlink{_netcode_state_8cs_source}{Netcode\+State.\+cs}}.
+
+
+
+\doxysubsubsection{Member Enumeration Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_a5d74787dedbc4e11c1ab15bf487e61f8_a5d74787dedbc4e11c1ab15bf487e61f8}\index{NetcodeState@{NetcodeState}!State@{State}}
+\index{State@{State}!NetcodeState@{NetcodeState}}
+\doxyparagraph{\texorpdfstring{State}{State}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_a5d74787dedbc4e11c1ab15bf487e61f8_a5d74787dedbc4e11c1ab15bf487e61f8} 
+enum State}
+
+
+
+Definition at line \mbox{\hyperlink{_netcode_state_8cs_source_l00031}{31}} of file \mbox{\hyperlink{_netcode_state_8cs_source}{Netcode\+State.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ Initializing,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ Offline,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ RelayStarting,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ NetworkStarting,}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ ServerOnline,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ ClientOnline,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ ClientPlaying,}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ NetworkStopping,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_adc87276390df80d5d6d14695d76e7306_adc87276390df80d5d6d14695d76e7306}\index{NetcodeState@{NetcodeState}!RequestStart@{RequestStart}}
+\index{RequestStart@{RequestStart}!NetcodeState@{NetcodeState}}
+\doxyparagraph{\texorpdfstring{RequestStart()}{RequestStart()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_adc87276390df80d5d6d14695d76e7306_adc87276390df80d5d6d14695d76e7306} 
+void Request\+Start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{Netcode\+Config}}}]{netcode\+Config}{, }\item[{\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}{Transport\+Config}}}]{transport\+Config}{, }\item[{\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config}{Relay\+Config}}}]{relay\+Config}{ = {\ttfamily default}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_netcode_state_8cs_source_l00240}{240}} of file \mbox{\hyperlink{_netcode_state_8cs_source}{Netcode\+State.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (netcodeConfig.Role\ ==\ NetcodeRole.None)}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}cannot\ start\ without\ role"{}});}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(netcodeConfig);}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(transportConfig);}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (relayConfig.UseRelay)}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(relayConfig);}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ m\_NetcodeConfigVar.Value\ =\ netcodeConfig;}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ m\_TransportConfigVar.Value\ =\ transportConfig;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ m\_RelayConfigVar.Value\ =\ relayConfig;}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_a3c658f86eeb187bdfd3dfeb3854105e5_a3c658f86eeb187bdfd3dfeb3854105e5}\index{NetcodeState@{NetcodeState}!RequestStopNetwork@{RequestStopNetwork}}
+\index{RequestStopNetwork@{RequestStopNetwork}!NetcodeState@{NetcodeState}}
+\doxyparagraph{\texorpdfstring{RequestStopNetwork()}{RequestStopNetwork()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_a3c658f86eeb187bdfd3dfeb3854105e5_a3c658f86eeb187bdfd3dfeb3854105e5} 
+void Request\+Stop\+Network (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_netcode_state_8cs_source_l00256}{256}} of file \mbox{\hyperlink{_netcode_state_8cs_source}{Netcode\+State.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ var\ netcodeConfig\ =\ m\_NetcodeConfigVar.Value;}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ netcodeConfig.Role\ =\ NetcodeRole.None;}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ m\_NetcodeConfigVar.Value\ =\ netcodeConfig;}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsubsection{Property Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_a3586a72ff3b64b60564b2ac0972803f0_a3586a72ff3b64b60564b2ac0972803f0}\index{NetcodeState@{NetcodeState}!IsOnline@{IsOnline}}
+\index{IsOnline@{IsOnline}!NetcodeState@{NetcodeState}}
+\doxyparagraph{\texorpdfstring{IsOnline}{IsOnline}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_a3586a72ff3b64b60564b2ac0972803f0_a3586a72ff3b64b60564b2ac0972803f0} 
+Boolean Is\+Online\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Definition at line \mbox{\hyperlink{_netcode_state_8cs_source_l00048}{48}} of file \mbox{\hyperlink{_netcode_state_8cs_source}{Netcode\+State.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsubsection{Event Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_afca6dd1abad9ca44234e6645d97269d2_afca6dd1abad9ca44234e6645d97269d2}\index{NetcodeState@{NetcodeState}!RelayJoinCodeAvailable@{RelayJoinCodeAvailable}}
+\index{RelayJoinCodeAvailable@{RelayJoinCodeAvailable}!NetcodeState@{NetcodeState}}
+\doxyparagraph{\texorpdfstring{RelayJoinCodeAvailable}{RelayJoinCodeAvailable}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_afca6dd1abad9ca44234e6645d97269d2_afca6dd1abad9ca44234e6645d97269d2} 
+Action$<$String$>$ Relay\+Join\+Code\+Available}
+
+
+
+Definition at line \mbox{\hyperlink{_netcode_state_8cs_source_l00029}{29}} of file \mbox{\hyperlink{_netcode_state_8cs_source}{Netcode\+State.\+cs}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_afcdebca55e58aceb1ff0d3381c6e17af_afcdebca55e58aceb1ff0d3381c6e17af}\index{NetcodeState@{NetcodeState}!WentOffline@{WentOffline}}
+\index{WentOffline@{WentOffline}!NetcodeState@{NetcodeState}}
+\doxyparagraph{\texorpdfstring{WentOffline}{WentOffline}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_afcdebca55e58aceb1ff0d3381c6e17af_afcdebca55e58aceb1ff0d3381c6e17af} 
+Action$<$Netcode\+Role$>$ Went\+Offline}
+
+
+
+Definition at line \mbox{\hyperlink{_netcode_state_8cs_source_l00027}{27}} of file \mbox{\hyperlink{_netcode_state_8cs_source}{Netcode\+State.\+cs}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_a9a29799ed97d2471d6d458dcf7d22d8b_a9a29799ed97d2471d6d458dcf7d22d8b}\index{NetcodeState@{NetcodeState}!WentOnline@{WentOnline}}
+\index{WentOnline@{WentOnline}!NetcodeState@{NetcodeState}}
+\doxyparagraph{\texorpdfstring{WentOnline}{WentOnline}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state_a9a29799ed97d2471d6d458dcf7d22d8b_a9a29799ed97d2471d6d458dcf7d22d8b} 
+Action$<$Netcode\+Role$>$ Went\+Online}
+
+
+
+Definition at line \mbox{\hyperlink{_netcode_state_8cs_source_l00028}{28}} of file \mbox{\hyperlink{_netcode_state_8cs_source}{Netcode\+State.\+cs}}.
+

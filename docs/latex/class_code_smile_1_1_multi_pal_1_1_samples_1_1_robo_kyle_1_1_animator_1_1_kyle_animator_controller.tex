@@ -1,0 +1,168 @@
+\doxysubsection{Kyle\+Animator\+Controller Class Reference}
+\hypertarget{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller}{}\label{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller}\index{KyleAnimatorController@{KyleAnimatorController}}
+
+
+Inheritance diagram for Kyle\+Animator\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Kyle\+Animator\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+async void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller_a33db15053af3322e8fd6c230fa47c1c3_a33db15053af3322e8fd6c230fa47c1c3}{Init}} (Int32 player\+Index, Boolean is\+Owner)
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller_a1a5f736ccd8196091a54410a55fc9b43_a1a5f736ccd8196091a54410a55fc9b43}{On\+Player\+Death}} (Int32 player\+Index, Boolean is\+Owner)
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller_a83c87faa31dc90d24ed20bd05583d280_a83c87faa31dc90d24ed20bd05583d280}{On\+Player\+Respawn}} (Int32 player\+Index, Boolean is\+Owner)
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller_ad73cab41c4d0dc93c1611934da9816b5_ad73cab41c4d0dc93c1611934da9816b5}{Remote\+Animator\+Parameters\+Received}} (Byte\mbox{[}$\,$\mbox{]} animator\+Parameters)
+\end{DoxyCompactItemize}
+\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_controller}{IAnimator\+Controller}}}
+\doxysubsubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Boolean \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller_ae9dcf794bc0477d4f3a8a5a10bc183d4_ae9dcf794bc0477d4f3a8a5a10bc183d4}{Is\+Owner}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Int32 \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller_ae06966a1d0c0e78e5b4b4aba89eb866d_ae06966a1d0c0e78e5b4b4aba89eb866d}{Player\+Index}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\doxyparagraph*{Properties inherited from \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_controller}{IAnimator\+Controller}}}
+
+
+\doxysubsubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_kyle_animator_controller_8cs_source_l00016}{16}} of file \mbox{\hyperlink{_kyle_animator_controller_8cs_source}{Kyle\+Animator\+Controller.\+cs}}.
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller_a33db15053af3322e8fd6c230fa47c1c3_a33db15053af3322e8fd6c230fa47c1c3}\index{KyleAnimatorController@{KyleAnimatorController}!Init@{Init}}
+\index{Init@{Init}!KyleAnimatorController@{KyleAnimatorController}}
+\doxyparagraph{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller_a33db15053af3322e8fd6c230fa47c1c3_a33db15053af3322e8fd6c230fa47c1c3} 
+async void Init (\begin{DoxyParamCaption}\item[{Int32}]{player\+Index}{, }\item[{Boolean}]{is\+Owner}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_controller}{IAnimator\+Controller}}.
+
+
+
+Definition at line \mbox{\hyperlink{_kyle_animator_controller_8cs_source_l00037}{37}} of file \mbox{\hyperlink{_kyle_animator_controller_8cs_source}{Kyle\+Animator\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ PlayerIndex\ =\ playerIndex;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ IsOwner\ =\ isOwner;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_AnimParams\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_AnimParams\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_animation_1_1_avatar_animator_parameters}{AvatarAnimatorParameters}}();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isOwner)}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ hook\ up\ with\ character\ controller}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ controllers\ =\ await\ \mbox{\hyperlink{class_code_smile_1_1_components_1_1_registry_1_1_components_registry}{ComponentsRegistry}}.GetAsync<PlayerControllers>();}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ controllers.SetAnimatorParameters(playerIndex,\ m\_AnimParams);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_ClientSide.AnimatorParameters\ =\ m\_AnimParams;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller_a1a5f736ccd8196091a54410a55fc9b43_a1a5f736ccd8196091a54410a55fc9b43}\index{KyleAnimatorController@{KyleAnimatorController}!OnPlayerDeath@{OnPlayerDeath}}
+\index{OnPlayerDeath@{OnPlayerDeath}!KyleAnimatorController@{KyleAnimatorController}}
+\doxyparagraph{\texorpdfstring{OnPlayerDeath()}{OnPlayerDeath()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller_a1a5f736ccd8196091a54410a55fc9b43_a1a5f736ccd8196091a54410a55fc9b43} 
+void On\+Player\+Death (\begin{DoxyParamCaption}\item[{Int32}]{player\+Index}{, }\item[{Boolean}]{is\+Owner}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_controller}{IAnimator\+Controller}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller_a83c87faa31dc90d24ed20bd05583d280_a83c87faa31dc90d24ed20bd05583d280}\index{KyleAnimatorController@{KyleAnimatorController}!OnPlayerRespawn@{OnPlayerRespawn}}
+\index{OnPlayerRespawn@{OnPlayerRespawn}!KyleAnimatorController@{KyleAnimatorController}}
+\doxyparagraph{\texorpdfstring{OnPlayerRespawn()}{OnPlayerRespawn()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller_a83c87faa31dc90d24ed20bd05583d280_a83c87faa31dc90d24ed20bd05583d280} 
+void On\+Player\+Respawn (\begin{DoxyParamCaption}\item[{Int32}]{player\+Index}{, }\item[{Boolean}]{is\+Owner}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_controller}{IAnimator\+Controller}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller_ad73cab41c4d0dc93c1611934da9816b5_ad73cab41c4d0dc93c1611934da9816b5}\index{KyleAnimatorController@{KyleAnimatorController}!RemoteAnimatorParametersReceived@{RemoteAnimatorParametersReceived}}
+\index{RemoteAnimatorParametersReceived@{RemoteAnimatorParametersReceived}!KyleAnimatorController@{KyleAnimatorController}}
+\doxyparagraph{\texorpdfstring{RemoteAnimatorParametersReceived()}{RemoteAnimatorParametersReceived()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller_ad73cab41c4d0dc93c1611934da9816b5_ad73cab41c4d0dc93c1611934da9816b5} 
+void Remote\+Animator\+Parameters\+Received (\begin{DoxyParamCaption}\item[{Byte\mbox{[}$\,$\mbox{]}}]{animator\+Parameters}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_controller}{IAnimator\+Controller}}.
+
+
+
+Definition at line \mbox{\hyperlink{_kyle_animator_controller_8cs_source_l00058}{58}} of file \mbox{\hyperlink{_kyle_animator_controller_8cs_source}{Kyle\+Animator\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_AnimParams\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_AnimParams.Parameters\ =\ animatorParameters;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsubsection{Property Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller_ae9dcf794bc0477d4f3a8a5a10bc183d4_ae9dcf794bc0477d4f3a8a5a10bc183d4}\index{KyleAnimatorController@{KyleAnimatorController}!IsOwner@{IsOwner}}
+\index{IsOwner@{IsOwner}!KyleAnimatorController@{KyleAnimatorController}}
+\doxyparagraph{\texorpdfstring{IsOwner}{IsOwner}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller_ae9dcf794bc0477d4f3a8a5a10bc183d4_ae9dcf794bc0477d4f3a8a5a10bc183d4} 
+Boolean Is\+Owner\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Implements \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_controller}{IAnimator\+Controller}}.
+
+
+
+Definition at line \mbox{\hyperlink{_kyle_animator_controller_8cs_source_l00034}{34}} of file \mbox{\hyperlink{_kyle_animator_controller_8cs_source}{Kyle\+Animator\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller_ae06966a1d0c0e78e5b4b4aba89eb866d_ae06966a1d0c0e78e5b4b4aba89eb866d}\index{KyleAnimatorController@{KyleAnimatorController}!PlayerIndex@{PlayerIndex}}
+\index{PlayerIndex@{PlayerIndex}!KyleAnimatorController@{KyleAnimatorController}}
+\doxyparagraph{\texorpdfstring{PlayerIndex}{PlayerIndex}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller_ae06966a1d0c0e78e5b4b4aba89eb866d_ae06966a1d0c0e78e5b4b4aba89eb866d} 
+Int32 Player\+Index\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Implements \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_controller}{IAnimator\+Controller}}.
+
+
+
+Definition at line \mbox{\hyperlink{_kyle_animator_controller_8cs_source_l00035}{35}} of file \mbox{\hyperlink{_kyle_animator_controller_8cs_source}{Kyle\+Animator\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
+
+\end{DoxyCode}

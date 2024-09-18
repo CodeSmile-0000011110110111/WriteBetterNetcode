@@ -1,0 +1,7 @@
+<map id="PlayerCamera" name="PlayerCamera">
+<area shape="rect" id="Node000001" title=" " alt="" coords="59,187,197,299"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,37,107,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,119,107,186,102,188,74,121"/>
+<area shape="rect" id="Node000003" href="$interface_code_smile_1_1_multi_pal_1_1_players_1_1_i_player_component.html" title=" " alt="" coords="131,5,269,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="169,153,154,188,149,186,164,151"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="VariableBase" name="VariableBase">
+<area shape="rect" id="Node000001" title=" " alt="" coords="211,5,324,331"/>
+<area shape="rect" id="Node000002" href="$class_code_smile_1_1_statemachine_1_1_bool_var.html" title=" " alt="" coords="5,421,119,683"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,261,167,319,132,380,112,423,107,420,128,377,163,316,200,258"/>
+<area shape="rect" id="Node000003" href="$class_code_smile_1_1_statemachine_1_1_float_var.html" title=" " alt="" coords="143,379,256,725"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="239,346,233,380,227,379,233,345"/>
+<area shape="rect" id="Node000004" href="$class_code_smile_1_1_statemachine_1_1_int_var.html" title=" " alt="" coords="280,379,393,725"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="302,345,308,379,303,380,297,346"/>
+<area shape="rect" id="Node000005" href="$class_code_smile_1_1_statemachine_1_1_var.html" title=" " alt="" coords="417,421,531,683"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="335,257,373,315,408,377,429,420,424,423,404,380,368,318,330,260"/>
+</map>

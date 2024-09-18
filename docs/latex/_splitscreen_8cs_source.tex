@@ -1,0 +1,149 @@
+\doxysubsection{Splitscreen.\+cs}
+\hypertarget{_splitscreen_8cs_source}{}\label{_splitscreen_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Cinecam/Splitscreen.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Cinecam/Splitscreen.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_components_1_1_registry}{CodeSmile.Components.Registry}};}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_players_1_1_couch}{CodeSmile.MultiPal.Players.Couch}};}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_settings}{CodeSmile.MultiPal.Settings}};}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00011}00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_cinecam}{CodeSmile.MultiPal.Cinecam}}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00022}00022\ \ \ \ \ [DisallowMultipleComponent]}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00023}\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_splitscreen}{00023}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_splitscreen}{Splitscreen}}\ :\ MonoBehaviour}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00024}00024\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00025}\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_splitscreen_a30c84d5c2616a73e7e7e6e29eb9a44f4_a30c84d5c2616a73e7e7e6e29eb9a44f4}{00025}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_splitscreen_a30c84d5c2616a73e7e7e6e29eb9a44f4_a30c84d5c2616a73e7e7e6e29eb9a44f4}{SplitscreenAxis}}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ Disabled,}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ Horizontal,}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ Vertical,}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_splitscreen_a30c84d5c2616a73e7e7e6e29eb9a44f4_a30c84d5c2616a73e7e7e6e29eb9a44f4a8a4ec9cfaa0a4f67a270b8741f45184b}{HorizontalAndVertical}},}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ [Tooltip(\textcolor{stringliteral}{"{}Set\ to\ 'HorizontalAndVertical'\ to\ create\ a\ 4-\/way\ split\ even\ for\ just\ one\ and\ two\ players.\ "{}}\ +}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}3\ and\ 4\ players\ split\ will\ automatically\ 'upgrade'\ to\ a\ 4-\/way\ split."{}})]}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_splitscreen_a30c84d5c2616a73e7e7e6e29eb9a44f4_a30c84d5c2616a73e7e7e6e29eb9a44f4}{SplitscreenAxis}}\ m\_SplitscreenAxis\ =\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_splitscreen_a30c84d5c2616a73e7e7e6e29eb9a44f4_a30c84d5c2616a73e7e7e6e29eb9a44f4}{SplitscreenAxis}}.Vertical;}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_cameras}{Cameras}}\ m\_Cameras;}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_splitscreen_a30c84d5c2616a73e7e7e6e29eb9a44f4_a30c84d5c2616a73e7e7e6e29eb9a44f4}{SplitscreenAxis}}\ SplitAxis}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ =>\ m\_SplitscreenAxis;}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_SplitscreenAxis\ !=\ value)}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_SplitscreenAxis\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ couchPlayers\ =\ \mbox{\hyperlink{class_code_smile_1_1_components_1_1_registry_1_1_components_registry}{ComponentsRegistry}}.Get<\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players}{CouchPlayers}}>();}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (couchPlayers\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UpdateSplitscreen(couchPlayers);}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Awake()\ =>\ m\_Cameras\ =\ GetComponent<Cameras>();}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ UpdateSplitscreen(\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players}{CouchPlayers}}\ couchPlayers)}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ var\ firstTwoPlayers\ =\ AreOnlyFirstTwoPlayersPlaying(couchPlayers);}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ var\ playerCount\ =\ couchPlayers.PlayerCount;}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((playerCount\ <=\ 1\ ||\ m\_SplitscreenAxis\ ==\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_splitscreen_a30c84d5c2616a73e7e7e6e29eb9a44f4_a30c84d5c2616a73e7e7e6e29eb9a44f4}{SplitscreenAxis}}.Disabled)\ \&\&}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_SplitscreenAxis\ !=\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_splitscreen_a30c84d5c2616a73e7e7e6e29eb9a44f4_a30c84d5c2616a73e7e7e6e29eb9a44f4}{SplitscreenAxis}}.HorizontalAndVertical)}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableSinglePlayerCamera();}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (firstTwoPlayers\ \&\&\ m\_SplitscreenAxis\ ==\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_splitscreen_a30c84d5c2616a73e7e7e6e29eb9a44f4_a30c84d5c2616a73e7e7e6e29eb9a44f4}{SplitscreenAxis}}.Horizontal)}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableHorizontalSplitscreen();}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (firstTwoPlayers\ \&\&\ m\_SplitscreenAxis\ ==\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_cinecam_1_1_splitscreen_a30c84d5c2616a73e7e7e6e29eb9a44f4_a30c84d5c2616a73e7e7e6e29eb9a44f4}{SplitscreenAxis}}.Vertical)}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableVerticalSplitscreen();}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ 4-\/way\ split\ if\ set\ to\ both\ H/V,\ automatically\ for\ 3+\ players,\ or\ if\ players\ 3\ or\ 4\ remain\ ingame}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableFourWaySplitscreen();}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Boolean\ AreOnlyFirstTwoPlayersPlaying(\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players}{CouchPlayers}}\ couchPlayers)\ =>}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ couchPlayers.PlayerCount\ ==\ 2\ \&\&\ couchPlayers[0]\ !=\ \textcolor{keyword}{null}\ \&\&\ couchPlayers[1]\ !=\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ EnableSinglePlayerCamera()}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ SetSingleplayerCameraActive();}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Cameras.PlayerSplitCameras[0].rect\ =\ \textcolor{keyword}{new}\ Rect(Vector2.zero,\ Vector2.one);}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ EnableHorizontalSplitscreen()}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ SetTwoPlayerCamerasActive();}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0\ =\ top,\ 1\ =\ bottom}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ var\ playerCameras\ =\ m\_Cameras.PlayerSplitCameras;}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ var\ viewportSize\ =\ \textcolor{keyword}{new}\ Vector2(1f,\ 0.5f);}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ playerCameras[0].rect\ =\ \textcolor{keyword}{new}\ Rect(\textcolor{keyword}{new}\ Vector2(0f,\ 0.5f),\ viewportSize);}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ playerCameras[1].rect\ =\ \textcolor{keyword}{new}\ Rect(Vector2.zero,\ viewportSize);}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ EnableVerticalSplitscreen()}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ SetTwoPlayerCamerasActive();}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0\ =\ left,\ 1\ =\ right}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ var\ playerCameras\ =\ m\_Cameras.PlayerSplitCameras;}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ var\ viewportSize\ =\ \textcolor{keyword}{new}\ Vector2(0.5f,\ 1f);}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ playerCameras[0].rect\ =\ \textcolor{keyword}{new}\ Rect(Vector2.zero,\ viewportSize);}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ playerCameras[1].rect\ =\ \textcolor{keyword}{new}\ Rect(\textcolor{keyword}{new}\ Vector2(0.5f,\ 0f),\ viewportSize);}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ EnableFourWaySplitscreen()}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ SetAllPlayerCamerasActive();}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0\ =\ top\ left,\ 1\ =\ top\ right,\ 2\ =\ bottom\ left,\ 3\ =\ bottom\ right}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ var\ cameras\ =\ m\_Cameras.PlayerSplitCameras;}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ var\ viewportSize\ =\ \textcolor{keyword}{new}\ Vector2(0.5f,\ 0.5f);}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ cameras[0].rect\ =\ \textcolor{keyword}{new}\ Rect(\textcolor{keyword}{new}\ Vector2(0f,\ 0.5f),\ viewportSize);}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ cameras[1].rect\ =\ \textcolor{keyword}{new}\ Rect(\textcolor{keyword}{new}\ Vector2(0.5f,\ 0.5f),\ viewportSize);}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ cameras[2].rect\ =\ \textcolor{keyword}{new}\ Rect(\textcolor{keyword}{new}\ Vector2(0f,\ 0f),\ viewportSize);}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ cameras[3].rect\ =\ \textcolor{keyword}{new}\ Rect(\textcolor{keyword}{new}\ Vector2(0.5f,\ 0f),\ viewportSize);}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ SetSingleplayerCameraActive()}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ var\ playerCameras\ =\ m\_Cameras.PlayerSplitCameras;}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ var\ notJoinedCameras\ =\ m\_Cameras.PlayerNotJoinedCinecams;}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (var\ playerIndex\ =\ 0;\ playerIndex\ <\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_constants}{Constants}}.MaxCouchPlayers;\ playerIndex++)}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playerCameras[playerIndex].gameObject.SetActive(playerIndex\ ==\ 0);}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ notJoinedCameras[playerIndex].gameObject.SetActive(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00134}00134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ SetTwoPlayerCamerasActive()}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ var\ playerCameras\ =\ m\_Cameras.PlayerSplitCameras;}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ var\ notJoinedCameras\ =\ m\_Cameras.PlayerNotJoinedCinecams;}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (var\ playerIndex\ =\ 0;\ playerIndex\ <\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_constants}{Constants}}.MaxCouchPlayers;\ playerIndex++)}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playerCameras[playerIndex].gameObject.SetActive(playerIndex\ ==\ 0\ ||\ playerIndex\ ==\ 1);}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ notJoinedCameras[playerIndex].gameObject.SetActive(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ SetAllPlayerCamerasActive()}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00148}00148\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ var\ couchPlayers\ =\ \mbox{\hyperlink{class_code_smile_1_1_components_1_1_registry_1_1_components_registry}{ComponentsRegistry}}.Get<\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players}{CouchPlayers}}>();}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ var\ playerCameras\ =\ m\_Cameras.PlayerSplitCameras;}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ var\ notJoinedCameras\ =\ m\_Cameras.PlayerNotJoinedCinecams;}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (var\ playerIndex\ =\ 0;\ playerIndex\ <\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_constants}{Constants}}.MaxCouchPlayers;\ playerIndex++)}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playerCameras[playerIndex].gameObject.SetActive(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ isPlaying\ =\ couchPlayers[playerIndex]\ !=\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ notJoinedCameras[playerIndex].gameObject.SetActive(!isPlaying);}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00160}00160\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_splitscreen_8cs_source_l00161}00161\ \}}
+
+\end{DoxyCode}

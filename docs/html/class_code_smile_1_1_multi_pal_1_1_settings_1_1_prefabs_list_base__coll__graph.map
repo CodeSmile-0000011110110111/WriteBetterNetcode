@@ -1,0 +1,7 @@
+<map id="PrefabsListBase" name="PrefabsListBase">
+<area shape="rect" id="Node000001" title=" " alt="" coords="16,123,224,272"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,115,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,88,94,122,89,124,76,90"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="139,5,224,75"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="165,90,151,124,147,122,160,88"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Splitscreen" name="Splitscreen">
+<area shape="rect" id="Node000001" title="Dynamically splits the screen based on number of currently joined players. Splitscreen behaviour is a..." alt="" coords="5,123,143,192"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="23,5,125,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,90,77,123,71,123,71,90"/>
+</map>

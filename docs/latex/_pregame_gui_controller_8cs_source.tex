@@ -1,0 +1,28 @@
+\doxysubsection{Pregame\+Gui\+Controller.\+cs}
+\hypertarget{_pregame_gui_controller_8cs_source}{}\label{_pregame_gui_controller_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/GUI/PregameGuiController.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/GUI/PregameGuiController.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00007}00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_g_u_i}{CodeSmile.MultiPal.GUI}}}
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00008}00008\ \{}
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00009}00009\ \ \ \ \ [DisallowMultipleComponent]}
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00010}\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_pregame_gui_controller}{00010}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_pregame_gui_controller}{PregameGuiController}}\ :\ MonoBehaviour}
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00011}00011\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00012}00012\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_dev_main_menu}{DevMainMenu}}\ m\_MainMenu;}
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00014}00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Awake()\ =>\ ThrowIfNotAssigned<DevMainMenu>(m\_MainMenu);}
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ ThrowIfNotAssigned<T>(Component\ component)\ where\ T\ :\ Component}
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (component\ ==\ \textcolor{keyword}{null}\ ||\ component\ is\ not\ T)}
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ MissingReferenceException(\$\textcolor{stringliteral}{"{}\{typeof(T).Name\}\ not\ assigned"{}});}
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00021}00021\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_pregame_gui_controller_8cs_source_l00022}00022\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,132 @@
+\doxysubsection{Prefabs\+List\+Base Class Reference}
+\hypertarget{class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base}{}\label{class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base}\index{PrefabsListBase@{PrefabsListBase}}
+
+
+Inheritance diagram for Prefabs\+List\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Prefabs\+List\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base_a008c8e4a2b3246b30982de4596d98968}\label{class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base_a008c8e4a2b3246b30982de4596d98968} 
+IEnumerator {\bfseries Get\+Enumerator} ()
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base_a96da5ba9c8a31695aba74b662b7d758e_a96da5ba9c8a31695aba74b662b7d758e}{Validate\+Prefabs\+Have\+Component$<$ T $>$}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ Game\+Object $>$ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base_a239ecd683667e9ebd9dad589d032a61a_a239ecd683667e9ebd9dad589d032a61a}{m\+\_\+\+Prefabs}} = new()
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Int32 \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base_ac5e5b8bbada57da14817a8bcc77351bd_ac5e5b8bbada57da14817a8bcc77351bd}{Count}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Game\+Object \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base_ac8687d8ee7d1af5274515ae6c7c4ed23_ac8687d8ee7d1af5274515ae6c7c4ed23}{this\mbox{[}\+Int32 index\mbox{]}}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_prefabs_list_base_8cs_source_l00012}{12}} of file \mbox{\hyperlink{_prefabs_list_base_8cs_source}{Prefabs\+List\+Base.\+cs}}.
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base_a96da5ba9c8a31695aba74b662b7d758e_a96da5ba9c8a31695aba74b662b7d758e}\index{PrefabsListBase@{PrefabsListBase}!ValidatePrefabsHaveComponent$<$ T $>$@{ValidatePrefabsHaveComponent$<$ T $>$}}
+\index{ValidatePrefabsHaveComponent$<$ T $>$@{ValidatePrefabsHaveComponent$<$ T $>$}!PrefabsListBase@{PrefabsListBase}}
+\doxyparagraph{\texorpdfstring{ValidatePrefabsHaveComponent$<$ T $>$()}{ValidatePrefabsHaveComponent< T >()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base_a96da5ba9c8a31695aba74b662b7d758e_a96da5ba9c8a31695aba74b662b7d758e} 
+void Validate\+Prefabs\+Have\+Component$<$ T $>$ (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{Desc}
+\item[Type Constraints]\begin{description}
+\item[{\em T} : {\em Component}]\end{description}
+\end{Desc}
+
+
+Definition at line \mbox{\hyperlink{_prefabs_list_base_8cs_source_l00031}{31}} of file \mbox{\hyperlink{_prefabs_list_base_8cs_source}{Prefabs\+List\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ Component}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#if\ DEBUG\ ||\ DEVELOPMENT\_BUILD }}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ prefab\ \textcolor{keywordflow}{in}\ m\_Prefabs)}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (prefab.TryGetComponent<T>(out\ var\ \_)\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.LogError(\$\textcolor{stringliteral}{"{}\{prefab.name\}\ is\ missing\ required\ \{nameof(T)\}\ component"{}});}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif }}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base_a239ecd683667e9ebd9dad589d032a61a_a239ecd683667e9ebd9dad589d032a61a}\index{PrefabsListBase@{PrefabsListBase}!m\_Prefabs@{m\_Prefabs}}
+\index{m\_Prefabs@{m\_Prefabs}!PrefabsListBase@{PrefabsListBase}}
+\doxyparagraph{\texorpdfstring{m\_Prefabs}{m\_Prefabs}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base_a239ecd683667e9ebd9dad589d032a61a_a239ecd683667e9ebd9dad589d032a61a} 
+List$<$Game\+Object$>$ m\+\_\+\+Prefabs = new()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_prefabs_list_base_8cs_source_l00014}{14}} of file \mbox{\hyperlink{_prefabs_list_base_8cs_source}{Prefabs\+List\+Base.\+cs}}.
+
+
+
+\doxysubsubsection{Property Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base_ac5e5b8bbada57da14817a8bcc77351bd_ac5e5b8bbada57da14817a8bcc77351bd}\index{PrefabsListBase@{PrefabsListBase}!Count@{Count}}
+\index{Count@{Count}!PrefabsListBase@{PrefabsListBase}}
+\doxyparagraph{\texorpdfstring{Count}{Count}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base_ac5e5b8bbada57da14817a8bcc77351bd_ac5e5b8bbada57da14817a8bcc77351bd} 
+Int32 Count\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Definition at line \mbox{\hyperlink{_prefabs_list_base_8cs_source_l00028}{28}} of file \mbox{\hyperlink{_prefabs_list_base_8cs_source}{Prefabs\+List\+Base.\+cs}}.
+
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base_ac8687d8ee7d1af5274515ae6c7c4ed23_ac8687d8ee7d1af5274515ae6c7c4ed23}\index{PrefabsListBase@{PrefabsListBase}!this\mbox{[}Int32 index\mbox{]}@{this[Int32 index]}}
+\index{this\mbox{[}Int32 index\mbox{]}@{this[Int32 index]}!PrefabsListBase@{PrefabsListBase}}
+\doxyparagraph{\texorpdfstring{this[Int32 index]}{this[Int32 index]}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_settings_1_1_prefabs_list_base_ac8687d8ee7d1af5274515ae6c7c4ed23_ac8687d8ee7d1af5274515ae6c7c4ed23} 
+Game\+Object this\mbox{[}Int32 index\mbox{]}\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Definition at line \mbox{\hyperlink{_prefabs_list_base_8cs_source_l00015}{15}} of file \mbox{\hyperlink{_prefabs_list_base_8cs_source}{Prefabs\+List\+Base.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ <\ 0\ ||\ index\ >=\ m\_Prefabs.Count)}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.LogWarning(\$\textcolor{stringliteral}{"{}index\ \{index\}\ out\ of\ bounds!\ Returning\ null"{}});}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_Prefabs[index];}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,269 @@
+\doxysubsection{Netcode\+State.\+cs}
+\hypertarget{_netcode_state_8cs_source}{}\label{_netcode_state_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Netcode/NetcodeState.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Netcode/NetcodeState.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_components_1_1_registry}{CodeSmile.Components.Registry}};}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine}{CodeSmile.Statemachine}};}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_actions}{CodeSmile.Statemachine.Actions}};}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode}{CodeSmile.Statemachine.Netcode}};}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_1_1_actions}{CodeSmile.Statemachine.Netcode.Actions}};}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions}{CodeSmile.Statemachine.Netcode.Conditions}};}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00010}00010\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_services_1_1_authentication_1_1_actions}{CodeSmile.Statemachine.Services.Authentication.Actions}};}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00011}00011\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_services_1_1_authentication_1_1_conditions}{CodeSmile.Statemachine.Services.Authentication.Conditions}};}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00012}00012\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_services_1_1_core_1_1_actions}{CodeSmile.Statemachine.Services.Core.Actions}};}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00013}00013\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions}{CodeSmile.Statemachine.Services.Relay.Actions}};}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00014}00014\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_conditions}{CodeSmile.Statemachine.Services.Relay.Conditions}};}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00015}00015\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_variable_1_1_actions}{CodeSmile.Statemachine.Variable.Actions}};}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00016}00016\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_variable_1_1_conditions}{CodeSmile.Statemachine.Variable.Conditions}};}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00017}00017\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00018}00018\ \textcolor{keyword}{using\ }System.IO;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00019}00019\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00020}00020\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00022}00022\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_netcode}{CodeSmile.MultiPal.Netcode}}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00023}00023\ \{}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00024}00024\ \ \ \ \ [DisallowMultipleComponent]}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00025}\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state}{00025}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state}{NetcodeState}}\ :\ MonoBehaviour}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00026}00026\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{event}\ Action<NetcodeRole>\ WentOffline;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{event}\ Action<NetcodeRole>\ WentOnline;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{event}\ Action<String>\ RelayJoinCodeAvailable;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{enum}\ State}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ Initializing,}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ Offline,}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ RelayStarting,}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ NetworkStarting,}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ ServerOnline,}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ ClientOnline,}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ ClientPlaying,}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ NetworkStopping,}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ m\_Statemachine;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_var}{Var<NetcodeConfig>}}\ m\_NetcodeConfigVar;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_var}{Var<RelayConfig>}}\ m\_RelayConfigVar;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_var}{Var<TransportConfig>}}\ m\_TransportConfigVar;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Boolean\ IsOnline\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Awake()}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_components_1_1_registry_1_1_components_registry}{ComponentsRegistry}}.Set(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ WentOnline\ +=\ OnWentOnline;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ WentOffline\ +=\ OnWentOffline;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ SetupStatemachine();}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnDestroy()}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ WentOnline\ -\/=\ OnWentOnline;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ WentOffline\ -\/=\ OnWentOffline;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Start()}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Statemachine.\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a0d8cbfe9a74df3d78e5757f99dad4297_a0d8cbfe9a74df3d78e5757f99dad4297}{Start}}();}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ remove\ this\ ...}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ puml\ =\ m\_Statemachine.ToPlantUml();}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ File.WriteAllText(\$\textcolor{stringliteral}{"{}\{Application.dataPath\}/../../PlantUML\ Diagrams/\{GetType().FullName\}.puml"{}},}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$\textcolor{stringliteral}{"{}@startuml\(\backslash\)n\(\backslash\)n!theme\ blueprint\(\backslash\)nhide\ empty\ description\(\backslash\)n\(\backslash\)n\{puml\}\(\backslash\)n\(\backslash\)n@enduml"{}});}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.LogWarning(e);}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Update()\ =>\ m\_Statemachine.\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_aec0783b5a136e042adcc47bae4fe5291_aec0783b5a136e042adcc47bae4fe5291}{Update}}();}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnWentOnline(NetcodeRole\ role)\ =>\ IsOnline\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnWentOffline(NetcodeRole\ role)\ =>\ IsOnline\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ SetupStatemachine()}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Statemachine\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}(\$\textcolor{stringliteral}{"{}\{nameof(NetcodeState)\}Machine"{}})}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a4f9aee773fd83bf3206c1ed36dbfa3e6_a4f9aee773fd83bf3206c1ed36dbfa3e6}{WithStates}}(Enum.GetNames(typeof(State)));}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Statemachine.AllowMultipleStateChanges\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ var\ states\ =\ m\_Statemachine.States;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ var\ initState\ =\ states[(Int32)State.Initializing];}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ var\ offlineState\ =\ states[(Int32)State.Offline];}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ var\ relayStartState\ =\ states[(Int32)State.RelayStarting];}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ var\ networkStartState\ =\ states[(Int32)State.NetworkStarting];}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ var\ serverOnlineState\ =\ states[(Int32)State.ServerOnline];}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ var\ clientOnlineState\ =\ states[(Int32)State.ClientOnline];}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ var\ clientPlayingState\ =\ states[(Int32)State.ClientPlaying];}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ var\ networkStopState\ =\ states[(Int32)State.NetworkStopping];}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ m\_NetcodeConfigVar\ =\ m\_Statemachine.\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_aecdc4cbca08005602bcacb82c95cdca6_aecdc4cbca08005602bcacb82c95cdca6}{Vars}}.DefineVar<\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{NetcodeConfig}}>();}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ m\_RelayConfigVar\ =\ m\_Statemachine.\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_aecdc4cbca08005602bcacb82c95cdca6_aecdc4cbca08005602bcacb82c95cdca6}{Vars}}.DefineVar<\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config}{RelayConfig}}>();}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ m\_TransportConfigVar\ =\ m\_Statemachine.\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_aecdc4cbca08005602bcacb82c95cdca6_aecdc4cbca08005602bcacb82c95cdca6}{Vars}}.DefineVar<\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}{TransportConfig}}>();}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ var\ relayInitOnceVar\ =\ m\_Statemachine.\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_aecdc4cbca08005602bcacb82c95cdca6_aecdc4cbca08005602bcacb82c95cdca6}{Vars}}.DefineBool(\textcolor{stringliteral}{"{}RelayInitOnce"{}});}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ testing}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//m\_Statemachine.Logging\ =\ true;}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Statemachine.OnStateChange\ +=\ args\ =>\ Debug.Log(\$\textcolor{stringliteral}{"{}<color=olive>[\{Time.frameCount\}]\ \{m\_Statemachine\}\ changed\ "{}}\ +}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$\textcolor{stringliteral}{"{}from\ \{args.PreviousState\}\ to\ \{args.ActiveState\}</color>"{}});}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ var\ invokeWentOnline\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action}{LambdaAction}}(\$\textcolor{stringliteral}{"{}\{nameof(WentOnline)\}.Invoke"{}},}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ()\ =>\ WentOnline?.Invoke(m\_NetcodeConfigVar.Value.Role));}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ var\ invokeWentOffline\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action}{LambdaAction}}(\$\textcolor{stringliteral}{"{}\{nameof(WentOffline)\}.Invoke"{}},}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ()\ =>\ WentOffline?.Invoke(m\_NetcodeConfigVar.Value.Role));}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ var\ tryInvokeRelayJoinCodeAvailable\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_actions_1_1_lambda_action}{LambdaAction}}(nameof(TryInvokeRelayJoinCodeAvailable),}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ()\ =>\ TryInvokeRelayJoinCodeAvailable());}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ var\ resetNetcodeState\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_actions_1_1_compound_action}{CompoundAction}}(\textcolor{stringliteral}{"{}ResetNetcodeState"{}},}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_set_false}{SetFalse}}(relayInitOnceVar),}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_set_netcode_role}{SetNetcodeRole}}(m\_NetcodeConfigVar,\ NetcodeRole.None),}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_clear_allocation_data}{RelayClearAllocationData}}(m\_RelayConfigVar),}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ invokeWentOffline);}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ TODO\ (MAJOR\ ONES)}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00129}00129\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ *\ -\/\ forward\ events\ (eg\ join\ code\ available)}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00130}00130\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ *\ \ \ \ \ \ route\ through\ config\ object\ ...\ BUT:\ config\ is\ a\ struct}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00131}00131\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ *\ -\/\ Var<T>\ allow\ classes?}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00132}00132\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ *\ -\/\ correct\ error\ handling\ for\ compound\ actions\ etc\ because\ they\ call\ the\ non-\/catching\ T\ methods!}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00133}00133\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ *\ -\/\ support\ client\ connection\ dis-\/approval\ (received\ client\ disconnect\ event\ with\ reason)}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00134}00134\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Init\ state}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ initState.AddTransition(\textcolor{stringliteral}{"{}Init\ Completed"{}})}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ToState(offlineState)}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithConditions(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_network_manager_singleton_assigned}{IsNetworkManagerSingletonAssigned}}());}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Offline\ state}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ offlineState.AddTransition(\textcolor{stringliteral}{"{}Start\ with\ Relay"{}})}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ToState(relayStartState)}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithConditions(}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_not_netcode_role}{IsNotNetcodeRole}}(m\_NetcodeConfigVar,\ NetcodeRole.None),}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_conditions_1_1_is_relay_enabled}{IsRelayEnabled}}(m\_RelayConfigVar))}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithActions(invokeWentOnline);}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ offlineState.AddTransition(\textcolor{stringliteral}{"{}Start\ w/o\ Relay"{}})}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ToState(networkStartState)}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithConditions(}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_not_netcode_role}{IsNotNetcodeRole}}(m\_NetcodeConfigVar,\ NetcodeRole.None),}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}.\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_a432025a014c061c5c7f3ef1dc2d6372d_a432025a014c061c5c7f3ef1dc2d6372d}{NOT}}(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_conditions_1_1_is_relay_enabled}{IsRelayEnabled}}(m\_RelayConfigVar)))}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithActions(invokeWentOnline);}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Relay\ state}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ relayStartState.AddTransition(\textcolor{stringliteral}{"{}Relay\ Alloc/Join"{}})}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithConditions(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_variable_1_1_conditions_1_1_is_false}{IsFalse}}(relayInitOnceVar))}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithActions(}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_variable_1_1_actions_1_1_set_true}{SetTrue}}(relayInitOnceVar),}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_services_1_1_core_1_1_actions_1_1_unity_services_init}{UnityServicesInit}}(),}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_services_1_1_authentication_1_1_actions_1_1_sign_in_anonymously}{SignInAnonymously}}(),}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_actions_1_1_relay_create_or_join_allocation}{RelayCreateOrJoinAllocation}}(m\_NetcodeConfigVar,\ m\_RelayConfigVar))}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ToErrorState(offlineState)}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithErrorActions(resetNetcodeState);}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ relayStartState.AddTransition(\textcolor{stringliteral}{"{}Relay\ Started"{}})}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ToState(networkStartState)}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithConditions(}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_services_1_1_authentication_1_1_conditions_1_1_is_signed_in}{IsSignedIn}}(),}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_services_1_1_relay_1_1_conditions_1_1_is_relay_ready}{IsRelayReady}}(m\_RelayConfigVar))}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithActions(tryInvokeRelayJoinCodeAvailable);}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ NetworkStart\ state}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ networkStartState.AddTransition(\textcolor{stringliteral}{"{}Cancel\ Net\ Start"{}})}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ToState(offlineState)}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithConditions(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_netcode_role}{IsNetcodeRole}}(m\_NetcodeConfigVar,\ NetcodeRole.None))}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithActions(resetNetcodeState);}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ networkStartState.AddTransition(\textcolor{stringliteral}{"{}Network\ Starting"{}})}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithConditions(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_not_listening}{IsNotListening}}())}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithActions(}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_transport_setup}{TransportSetup}}(m\_NetcodeConfigVar,\ m\_TransportConfigVar,\ m\_RelayConfigVar),}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_start}{NetworkStart}}(m\_NetcodeConfigVar))}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ToErrorState(offlineState)}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithErrorActions(resetNetcodeState);}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ networkStartState.AddTransition(\textcolor{stringliteral}{"{}Server\ started"{}})}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ToState(serverOnlineState)}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithConditions(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_server_started}{IsLocalServerStarted}}());}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ networkStartState.AddTransition(\textcolor{stringliteral}{"{}Client\ started"{}})}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ToState(clientOnlineState)}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithConditions(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_client_started}{IsLocalClientStarted}}());}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Server\ States}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ serverOnlineState.AddTransition(\textcolor{stringliteral}{"{}Server\ stopped"{}})}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ToState(networkStopState)}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithConditions(}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}.\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_ab789b134285d05fced1112a72d86727e_ab789b134285d05fced1112a72d86727e}{OR}}(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_server_stopped}{IsLocalServerStopped}}(),}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_netcode_role}{IsNetcodeRole}}(m\_NetcodeConfigVar,\ NetcodeRole.None)))}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithActions(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_stop}{NetworkStop}}());}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00202}00202\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Client\ States}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ clientOnlineState.AddTransition(\textcolor{stringliteral}{"{}Client\ connected"{}})}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ToState(clientPlayingState)}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithConditions(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_client_connected}{IsLocalClientConnected}}());}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ clientOnlineState.AddTransition(\textcolor{stringliteral}{"{}Client\ stopped"{}})}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ToState(networkStopState)}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithConditions(}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}.\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_ab789b134285d05fced1112a72d86727e_ab789b134285d05fced1112a72d86727e}{OR}}(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_client_stopped}{IsLocalClientStopped}}(),}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_netcode_role}{IsNetcodeRole}}(m\_NetcodeConfigVar,\ NetcodeRole.None)))}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithActions(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_stop}{NetworkStop}}());}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ clientPlayingState.AddTransition(\textcolor{stringliteral}{"{}Client\ disconnected\ or\ stopped"{}})}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ToState(networkStopState)}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithConditions(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}.\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m_ab789b134285d05fced1112a72d86727e_ab789b134285d05fced1112a72d86727e}{OR}}(}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_client_disconnected}{IsLocalClientDisconnected}}(),}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_client_stopped}{IsLocalClientStopped}}(),}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_netcode_role}{IsNetcodeRole}}(m\_NetcodeConfigVar,\ NetcodeRole.None)))}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithActions(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_actions_1_1_network_stop}{NetworkStop}}());}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Stopping\ state}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ networkStopState.AddTransition(\textcolor{stringliteral}{"{}Network\ stopped"{}})}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ToState(offlineState)}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithConditions(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_network_offline}{IsNetworkOffline}}())}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .WithActions(resetNetcodeState);}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00227}00227\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00228}00228\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00229}00229\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ TryInvokeRelayJoinCodeAvailable()}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00230}00230\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ var\ role\ =\ m\_NetcodeConfigVar.Value.Role;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (role\ ==\ NetcodeRole.Server\ ||\ role\ ==\ NetcodeRole.Host)}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ joinCode\ =\ m\_RelayConfigVar.Value.JoinCode;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (String.IsNullOrEmpty(joinCode)\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RelayJoinCodeAvailable?.Invoke(joinCode);}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00238}00238\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00240}00240\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ RequestStart(\mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_netcode_config}{NetcodeConfig}}\ netcodeConfig,}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_transport_config}{TransportConfig}}\ transportConfig,\ \mbox{\hyperlink{struct_code_smile_1_1_statemachine_1_1_netcode_1_1_relay_config}{RelayConfig}}\ relayConfig\ =\ \textcolor{keywordflow}{default})}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00242}00242\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (netcodeConfig.Role\ ==\ NetcodeRole.None)}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}cannot\ start\ without\ role"{}});}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00245}00245\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(netcodeConfig);}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(transportConfig);}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (relayConfig.UseRelay)}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(relayConfig);}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00250}00250\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ m\_NetcodeConfigVar.Value\ =\ netcodeConfig;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ m\_TransportConfigVar.Value\ =\ transportConfig;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ m\_RelayConfigVar.Value\ =\ relayConfig;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00254}00254\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00255}00255\ }
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00256}00256\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ RequestStopNetwork()}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00257}00257\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ var\ netcodeConfig\ =\ m\_NetcodeConfigVar.Value;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ netcodeConfig.Role\ =\ NetcodeRole.None;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ m\_NetcodeConfigVar.Value\ =\ netcodeConfig;}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00261}00261\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00262}00262\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_netcode_state_8cs_source_l00263}00263\ \}}
+
+\end{DoxyCode}

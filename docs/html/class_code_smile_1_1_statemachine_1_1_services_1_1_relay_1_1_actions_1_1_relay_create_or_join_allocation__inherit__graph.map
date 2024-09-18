@@ -1,0 +1,9 @@
+<map id="RelayCreateOrJoinAllocation" name="RelayCreateOrJoinAllocation">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,443,201,533"/>
+<area shape="rect" id="Node000002" href="$interface_code_smile_1_1_statemachine_1_1_i_async_action.html" title=" " alt="" coords="45,325,161,395"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,409,106,443,101,443,101,409"/>
+<area shape="rect" id="Node000003" href="$interface_code_smile_1_1_statemachine_1_1_i_action.html" title=" " alt="" coords="45,187,161,277"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="106,293,106,326,101,326,101,293"/>
+<area shape="rect" id="Node000004" href="$interface_code_smile_1_1_statemachine_1_1_i_statemachine_events.html" title="Event methods that the Statemachine calls at specific times." alt="" coords="36,5,171,139"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="106,153,106,187,101,187,101,153"/>
+</map>

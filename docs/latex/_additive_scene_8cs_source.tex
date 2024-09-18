@@ -1,0 +1,31 @@
+\doxysubsection{Additive\+Scene.\+cs}
+\hypertarget{_additive_scene_8cs_source}{}\label{_additive_scene_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Scene/AdditiveScene.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Scene/AdditiveScene.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_utility}{CodeSmile.Utility}};}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00009}\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_scene}{00009}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_scene}{CodeSmile.MultiPal.Scene}}}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00011}00011\ \ \ \ \ [Serializable]}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00012}\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_scene_1_1_additive_scene}{00012}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_scene_1_1_additive_scene}{AdditiveScene}}}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00013}00013\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00014}00014\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{SceneReference}}\ m\_SceneReference;}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ [Tooltip(\textcolor{stringliteral}{"{}If\ enabled\ and\ the\ scene\ is\ already\ loaded,\ it\ will\ be\ unloaded\ and\ loaded\ again\ to\ reset\ its\ state.\ "{}}\ +}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Default\ is\ to\ leave\ already\ loaded\ scenes\ intact."{}})]}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ Boolean\ m\_ForceReload;}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ [Tooltip("{}If\ enabled,\ bypasses\ the\ 'scene\ already\ loaded'\ check\ thus\ allowing\ multiple\ identical\ scenes\ to\ be\ "{}\ +}}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ "{}loaded\ simulataneously.\ Use\ with\ caution."{})]}}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ [SerializeField]\ private\ Boolean\ m\_AllowMultiple\ =\ false;}}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{SceneReference}}\ Reference\ =>\ m\_SceneReference;}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Boolean\ ForceReload\ =>\ m\_ForceReload;}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_additive_scene_8cs_source_l00025}00025\ \}}
+
+\end{DoxyCode}

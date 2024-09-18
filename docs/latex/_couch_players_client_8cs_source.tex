@@ -1,0 +1,67 @@
+\doxysubsection{Couch\+Players\+Client.\+cs}
+\hypertarget{_couch_players_client_8cs_source}{}\label{_couch_players_client_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Players/Couch/CouchPlayersClient.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Players/Couch/CouchPlayersClient.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_settings}{CodeSmile.MultiPal.Settings}};}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }System.Threading.Tasks;}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }Unity.Netcode;}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00011}00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_players_1_1_couch}{CodeSmile.MultiPal.Players.Couch}}}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00013}00013\ \ \ \ \ [DisallowMultipleComponent]}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00014}00014\ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{class\ }CouchPlayersClient\ :\ NetworkBehaviour}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00015}00015\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ TaskCompletionSource<Player>[]\ m\_SpawnTcs\ =}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ TaskCompletionSource<Player>[\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_constants}{Constants}}.MaxCouchPlayers];}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ CouchPlayers\ m\_CouchPlayers;}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ CouchPlayersServer\ m\_ServerSide;}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Awake()}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ m\_CouchPlayers\ =\ GetComponent<CouchPlayers>();}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ServerSide\ =\ GetComponent<CouchPlayersServer>();}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ Task<Player>\ Spawn(Int32\ playerIndex,\ Int32\ avatarIndex)}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_SpawnTcs[playerIndex]\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ Exception(\$\textcolor{stringliteral}{"{}player\ \{playerIndex\}\ spawn\ in\ progress"{}});}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ServerSide.SpawnPlayerServerRpc(OwnerClientId,\ (Byte)playerIndex,\ (Byte)avatarIndex);}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ m\_SpawnTcs[playerIndex]\ =\ \textcolor{keyword}{new}\ TaskCompletionSource<Player>();}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_SpawnTcs[playerIndex].Task;}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ [Rpc(SendTo.Owner,\ DeferLocal\ =\ \textcolor{keyword}{true})]}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ DidSpawnPlayerClientRpc(NetworkObjectReference\ playerRef,\ Byte\ playerIndex)}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ should\ not\ fail\ thus\ no\ error\ check}}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ playerRef.TryGet(out\ var\ playerObj);}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ var\ player\ =\ playerObj.GetComponent<Player>();}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Debug.Log(\$"{}did\ spawn:\ \{player.name\}\ P\{playerIndex\}\ ID:\{playerObj.NetworkObjectId\}"{});}}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ end\ awaitable\ task,\ and\ discard}}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ m\_SpawnTcs[playerIndex].SetResult(player);}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ m\_SpawnTcs[playerIndex]\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ Despawn(Int32\ playerIndex,\ NetworkObject\ playerObj)}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Despawn\ may\ get\ invoked\ when\ session\ stopped,\ thus\ object\ may\ already\ be\ despawned}}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (playerObj.IsSpawned)}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_ServerSide.DespawnPlayerServerRpc((Byte)playerIndex,\ playerObj);}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00060}00060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_couch_players_client_8cs_source_l00061}00061\ \}}
+
+\end{DoxyCode}

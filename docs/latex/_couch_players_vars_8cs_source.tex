@@ -1,0 +1,101 @@
+\doxysubsection{Couch\+Players\+Vars.\+cs}
+\hypertarget{_couch_players_vars_8cs_source}{}\label{_couch_players_vars_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Players/Couch/CouchPlayersVars.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Players/Couch/CouchPlayersVars.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.Collections;}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }Unity.Netcode;}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00010}00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_players_1_1_couch}{CodeSmile.MultiPal.Players.Couch}}}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00012}00012\ \ \ \ \ [DisallowMultipleComponent]}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00013}\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players_vars}{00013}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players_vars}{CouchPlayersVars}}\ :\ NetworkBehaviour}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00014}00014\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ NetworkList<NetworkObjectReference>\ m\_RemotePlayerReferences;}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players}{CouchPlayers}}\ m\_CouchPlayers;}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Awake()}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ m\_CouchPlayers\ =\ GetComponent<CouchPlayers>();}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ var\ empty\ =\ \textcolor{keyword}{new}\ NetworkObjectReference[]\ \{\ \textcolor{keywordflow}{default},\ \textcolor{keywordflow}{default},\ \textcolor{keywordflow}{default},\ \textcolor{keywordflow}{default}\ \};}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ m\_RemotePlayerReferences\ =\ \textcolor{keyword}{new}\ NetworkList<NetworkObjectReference>(empty);}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ SetPlayerReference(Int32\ playerIndex,\ NetworkObject\ playerObj)\ =>}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ m\_RemotePlayerReferences[playerIndex]\ =\ playerObj;}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ OnNetworkSpawn()}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ base.OnNetworkSpawn();}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsOwner\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ couch\ players\ spawns\ before\ individual\ remote\ players}}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StartCoroutine(JoinExistingRemotePlayersAfterDelay());}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_RemotePlayerReferences.OnListChanged\ +=\ OnRemotePlayerReferencesChanged;}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ IEnumerator\ JoinExistingRemotePlayersAfterDelay()}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ yield\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ WaitForEndOfFrame();}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ JoinAllExistingRemotePlayers();}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ OnNetworkDespawn()}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ base.OnNetworkDespawn();}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsOwner\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AssumeRemainingRemotePlayersLeaveOnDespawn();}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_RemotePlayerReferences.OnListChanged\ -\/=\ OnRemotePlayerReferencesChanged;}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ JoinAllExistingRemotePlayers()}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (var\ playerIndex\ =\ 0;\ playerIndex\ <\ m\_RemotePlayerReferences.Count;\ playerIndex++)}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ playerReference\ =\ m\_RemotePlayerReferences[playerIndex];}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (playerReference.TryGet(out\ var\ playerObj))}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_CouchPlayers.RemotePlayerJoined(playerIndex,\ playerObj.GetComponent<\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_player}{Player}}>());}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ AssumeRemainingRemotePlayersLeaveOnDespawn()}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (var\ playerIndex\ =\ 0;\ playerIndex\ <\ m\_RemotePlayerReferences.Count;\ playerIndex++)}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ playerReference\ =\ m\_RemotePlayerReferences[playerIndex];}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (playerReference.TryGet(out\ var\ \_))}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_CouchPlayers.RemotePlayerLeft(playerIndex);}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnRemotePlayerReferencesChanged(NetworkListEvent<NetworkObjectReference>\ changeEvent)}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (changeEvent.Type\ ==\ NetworkListEvent<NetworkObjectReference>.EventType.Value)}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ playerIndex\ =\ changeEvent.Index;}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(\$\textcolor{stringliteral}{"{}Remote\ Player\ \{playerIndex\}\ changed\ with\ NetObjID:\ "{}}\ +\ changeEvent.Value.NetworkObjectId);}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (changeEvent.Value.TryGet(out\ var\ playerObj))}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_CouchPlayers.RemotePlayerJoined(playerIndex,\ playerObj.GetComponent<\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_player}{Player}}>());}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_CouchPlayers.RemotePlayerLeft(playerIndex);}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00094}00094\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_couch_players_vars_8cs_source_l00095}00095\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,44 @@
+\doxysubsection{Interfaces.\+cs}
+\hypertarget{_interfaces_8cs_source}{}\label{_interfaces_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/Core/Statemachine/Interfaces.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/Core/Statemachine/Interfaces.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.Threading.Tasks;}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00009}00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine}{CodeSmile.Statemachine}}}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00014}\mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events}{00014}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events}{IStatemachineEvents}}}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00015}00015\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00021}\mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_ad53b64512d4843ff9f09cb72b1467b8d_ad53b64512d4843ff9f09cb72b1467b8d}{00021}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_ad53b64512d4843ff9f09cb72b1467b8d_ad53b64512d4843ff9f09cb72b1467b8d}{OnStart}}(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ sm)\ \{\}}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00033}\mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a1dc817ac01153abb1d67f5b7fd1e0594_a1dc817ac01153abb1d67f5b7fd1e0594}{00033}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a1dc817ac01153abb1d67f5b7fd1e0594_a1dc817ac01153abb1d67f5b7fd1e0594}{OnStop}}(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ sm)\ \{\}}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00040}\mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a5a67bb74ccf99965d72db627baba330e_a5a67bb74ccf99965d72db627baba330e}{00040}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a5a67bb74ccf99965d72db627baba330e_a5a67bb74ccf99965d72db627baba330e}{OnEnterState}}(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ sm)\ \{\}}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00051}\mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a642a9e83527494616d3c56ffc0c2e5d3_a642a9e83527494616d3c56ffc0c2e5d3}{00051}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events_a642a9e83527494616d3c56ffc0c2e5d3_a642a9e83527494616d3c56ffc0c2e5d3}{OnExitState}}(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ sm)\ \{\}}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00052}00052\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00054}\mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_condition}{00054}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_condition}{ICondition}}\ :\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events}{IStatemachineEvents}}}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00055}00055\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ Boolean\ IsSatisfied(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ sm);}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ String\ ToDebugString(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ sm)\ =>\ GetType().Name;}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00058}00058\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00060}\mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{00060}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}\ :\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_statemachine_events}{IStatemachineEvents}}}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00061}00061\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Execute(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ sm)\ \{\}}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ String\ ToDebugString(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ sm)\ =>\ GetType().Name;}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00064}00064\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00066}\mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_async_action}{00066}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_async_action}{IAsyncAction}}\ :\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_action}{IAction}}}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00067}00067\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ Task\ ExecuteAsync(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ sm);}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00069}00069\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_interfaces_8cs_source_l00070}00070\ \}}
+
+\end{DoxyCode}

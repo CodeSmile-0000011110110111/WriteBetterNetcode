@@ -1,0 +1,7 @@
+<map id="RelayClearAllocationData" name="RelayClearAllocationData">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,325,184,416"/>
+<area shape="rect" id="Node000002" href="$interface_code_smile_1_1_statemachine_1_1_i_action.html" title=" " alt="" coords="37,187,153,277"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,292,97,326,92,326,92,292"/>
+<area shape="rect" id="Node000003" href="$interface_code_smile_1_1_statemachine_1_1_i_statemachine_events.html" title="Event methods that the Statemachine calls at specific times." alt="" coords="27,5,162,139"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="97,153,97,187,92,187,92,153"/>
+</map>

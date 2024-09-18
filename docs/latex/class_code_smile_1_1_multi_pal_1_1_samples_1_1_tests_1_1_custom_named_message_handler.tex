@@ -1,0 +1,58 @@
+\doxysubsection{Custom\+Named\+Message\+Handler Class Reference}
+\hypertarget{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_custom_named_message_handler}{}\label{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_custom_named_message_handler}\index{CustomNamedMessageHandler@{CustomNamedMessageHandler}}
+
+
+Inheritance diagram for Custom\+Named\+Message\+Handler\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_custom_named_message_handler__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Custom\+Named\+Message\+Handler\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_custom_named_message_handler__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_custom_named_message_handler_a5845e09867ba3445f1caf25a980491b3_a5845e09867ba3445f1caf25a980491b3}{Send\+Message}} (Guid in\+Game\+Identifier)
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_custom_named_message_handler_8cs_source_l00012}{12}} of file \mbox{\hyperlink{_custom_named_message_handler_8cs_source}{Custom\+Named\+Message\+Handler.\+cs}}.
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_custom_named_message_handler_a5845e09867ba3445f1caf25a980491b3_a5845e09867ba3445f1caf25a980491b3}\index{CustomNamedMessageHandler@{CustomNamedMessageHandler}!SendMessage@{SendMessage}}
+\index{SendMessage@{SendMessage}!CustomNamedMessageHandler@{CustomNamedMessageHandler}}
+\doxyparagraph{\texorpdfstring{SendMessage()}{SendMessage()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_custom_named_message_handler_a5845e09867ba3445f1caf25a980491b3_a5845e09867ba3445f1caf25a980491b3} 
+void Send\+Message (\begin{DoxyParamCaption}\item[{Guid}]{in\+Game\+Identifier}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_custom_named_message_handler_8cs_source_l00046}{46}} of file \mbox{\hyperlink{_custom_named_message_handler_8cs_source}{Custom\+Named\+Message\+Handler.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ var\ content\ =\ \textcolor{keyword}{new}\ ForceNetworkSerializeByMemcpy<Guid>(inGameIdentifier);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ payload\ =\ \textcolor{keyword}{new}\ FastBufferWriter(1100,\ Allocator.Temp);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ payload.WriteValueSafe(content);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ SendMessageInternal(payload);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}

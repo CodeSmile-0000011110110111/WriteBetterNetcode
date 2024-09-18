@@ -1,0 +1,5 @@
+<map id="SceneReference" name="SceneReference">
+<area shape="rect" id="Node000001" title="Allows drag &amp; drop of scene assets in the Inspector and serializes the scene&#39;s name for runtime scene..." alt="" coords="39,123,165,427"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,199,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,90,105,123,99,123,99,90"/>
+</map>

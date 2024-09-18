@@ -1,0 +1,42 @@
+\doxysubsection{On\+Went\+Online.\+cs}
+\hypertarget{_on_went_online_8cs_source}{}\label{_on_went_online_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Settings/GameStates/OnWentOnline.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Settings/GameStates/OnWentOnline.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_components_1_1_registry}{CodeSmile.Components.Registry}};}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_netcode}{CodeSmile.MultiPal.Netcode}};}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode}{CodeSmile.Statemachine.Netcode}};}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00011}00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states}{CodeSmile.MultiPal.Settings.GameStates}}}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00013}00013\ \ \ \ \ [CreateAssetMenu(fileName\ =\ nameof(OnWentOnline),\ menuName\ =\ GameStateBase.MenuRoot\ +\ nameof(OnWentOnline),}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00014}00014\ \ \ \ \ \ \ \ \ order\ =\ 0)]}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00015}\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_went_online}{00015}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_went_online}{OnWentOnline}}\ :\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_condition_base}{GameStateConditionBase}}}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00016}00016\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Boolean\ m\_IsOnline;}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ OnEnterState()}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ m\_IsOnline\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ var\ netcodeState\ =\ \mbox{\hyperlink{class_code_smile_1_1_components_1_1_registry_1_1_components_registry}{ComponentsRegistry}}.Get<\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state}{NetcodeState}}>();}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ netcodeState.WentOnline\ +=\ WentOnline;}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ OnExitState()}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ var\ netcodeState\ =\ \mbox{\hyperlink{class_code_smile_1_1_components_1_1_registry_1_1_components_registry}{ComponentsRegistry}}.Get<\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state}{NetcodeState}}>();}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ netcodeState.WentOnline\ -\/=\ WentOnline;}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ WentOnline(NetcodeRole\ role)\ =>\ m\_IsOnline\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ Boolean\ IsSatisfied()\ =>\ m\_IsOnline;}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00035}00035\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_on_went_online_8cs_source_l00036}00036\ \}}
+
+\end{DoxyCode}

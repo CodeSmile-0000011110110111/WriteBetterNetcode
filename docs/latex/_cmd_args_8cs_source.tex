@@ -1,0 +1,105 @@
+\doxysubsection{Cmd\+Args.\+cs}
+\hypertarget{_cmd_args_8cs_source}{}\label{_cmd_args_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/Core/Utility/CmdArgs.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/Core/Utility/CmdArgs.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }System.Globalization;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }System.Text;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00011}\mbox{\hyperlink{namespace_code_smile_1_1_utility}{00011}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_utility}{CodeSmile.Utility}}}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00013}\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{00013}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_cmd_args}{CmdArgs}}}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00014}00014\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{const}\ NumberStyles\ IntStyle\ =\ NumberStyles.Integer\ |\ NumberStyles.AllowThousands;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{const}\ NumberStyles\ FloatStyle\ =\ NumberStyles.Float\ |\ NumberStyles.AllowThousands;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ readonly\ CultureInfo\ Culture\ =\ CultureInfo.InvariantCulture;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ Dictionary<String,\ String>\ s\_Args;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ IDictionary<String,\ String>\ Args\ =>\ s\_Args\ !=\ \textcolor{keyword}{null}\ ?\ s\_Args\ :\ s\_Args\ =\ ParseCmdLineArgs();}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Log()}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ var\ sb\ =\ \textcolor{keyword}{new}\ StringBuilder(\textcolor{stringliteral}{"{}CmdArgs:\ "{}});}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ var\ cmdArgs\ =\ Environment.GetCommandLineArgs();}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ arg\ \textcolor{keywordflow}{in}\ cmdArgs)}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sb.Append(arg.ToLower());}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sb.Append(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(sb.ToString());}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ Boolean\ Exists(String\ key)\ =>\ Args.ContainsKey(key.ToLower());}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ String\ GetString(String\ key,\ String\ defaultValue\ =\ \textcolor{keyword}{null})\ =>}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ Args.TryGetValue(key.ToLower(),\ out\ var\ val)\ ?\ val\ :\ defaultValue;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ Boolean\ GetBool(String\ key,\ Boolean\ defaultValue\ =\ \textcolor{keywordflow}{default})\ =>}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ Args.TryGetValue(key.ToLower(),\ out\ var\ str)}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ TryParseBool(str,\ defaultValue)}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ defaultValue;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ Int32\ GetInt(String\ key,\ Int32\ defaultValue\ =\ \textcolor{keywordflow}{default})\ =>\ Args.TryGetValue(key.ToLower(),\ out\ var\ str)}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ ?\ TryParseInt(str,\ defaultValue)}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ :\ defaultValue;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ Single\ GetFloat(String\ key,\ Single\ defaultValue\ =\ \textcolor{keywordflow}{default})\ =>\ Args.TryGetValue(key.ToLower(),\ out\ var\ str)}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ ?\ TryParseFloat(str,\ defaultValue)}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ :\ defaultValue;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ Boolean\ TryParseBool(String\ str,\ Boolean\ defaultValue)\ =>}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ Boolean.TryParse(str,\ out\ var\ val)\ ?\ val\ :\ defaultValue;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ Single\ TryParseFloat(String\ str,\ Single\ defaultValue)\ =>}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ Single.TryParse(str,\ FloatStyle,\ Culture,\ out\ var\ val)}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ val}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ defaultValue;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ Int32\ TryParseInt(String\ str,\ Int32\ defaultValue)\ =>}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ Int32.TryParse(str,\ IntStyle,\ Culture,\ out\ var\ val)\ ?\ val\ :\ defaultValue;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ Dictionary<String,\ String>\ ParseCmdLineArgs()}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ var\ parsedArgs\ =\ \textcolor{keyword}{new}\ Dictionary<String,\ String>();}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ var\ cmdArgs\ =\ Environment.GetCommandLineArgs();}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ var\ argCount\ =\ cmdArgs.Length;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ make\ all\ lowercase}}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (var\ i\ =\ 0;\ i\ <\ argCount;\ ++i)}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmdArgs[i]\ =\ cmdArgs[i].ToLower();}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ parse}}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (var\ i\ =\ 0;\ i\ <\ argCount;\ ++i)}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ argKey\ =\ cmdArgs[i];}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (argKey.StartsWith(\textcolor{stringliteral}{"{}-\/"{}}))}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ last\ argKey\ may\ not\ have\ a\ value}}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ argValue\ =\ i\ <\ argCount\ -\/\ 1\ ?\ cmdArgs[i\ +\ 1]\ :\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ don't\ use\ the\ next\ argKey\ as\ the\ value}}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ argValue\ =\ argValue?.StartsWith(\textcolor{stringliteral}{"{}-\/"{}})\ ??\ \textcolor{keyword}{false}\ ?\ null\ :\ argValue;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ remove\ the\ leading\ argKey\ dash}}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ argKey\ =\ argKey.Substring(1,\ argKey.Length\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (parsedArgs.ContainsKey(argKey)\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ parsedArgs.Add(argKey,\ argValue);}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (Application.isEditor\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.LogWarning(\$\textcolor{stringliteral}{"{}Duplicate\ argument:\ -\/\{argKey\}"{}});}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ parsedArgs;}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00098}00098\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_cmd_args_8cs_source_l00099}00099\ \}}
+
+\end{DoxyCode}

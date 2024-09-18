@@ -1,0 +1,244 @@
+\doxysubsection{Network\+Event\+Logger.\+cs}
+\hypertarget{_network_event_logger_8cs_source}{}\label{_network_event_logger_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/Core/Components/Netcode/NetworkEventLogger.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/Core/Components/Netcode/NetworkEventLogger.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.Collections;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }System.Text;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }Unity.Netcode;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00011}\mbox{\hyperlink{namespace_code_smile}{00011}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_components_1_1_netcode}{CodeSmile.Components.Netcode}}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00019}00019\ \ \ \ \ [DisallowMultipleComponent]}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00020}\mbox{\hyperlink{class_code_smile_1_1_components_1_1_netcode_1_1_network_event_logger}{00020}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_components_1_1_netcode_1_1_network_event_logger}{NetworkEventLogger}}\ :\ MonoBehaviour}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00021}00021\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ Boolean\ m\_LogPropertyChanges\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ Boolean\ m\_LogSceneEvents\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ Color32\ m\_LogTextColor\ =\ Color.gray;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Boolean\ m\_ListeningState;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Boolean\ m\_ShutdownInProgressState;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Boolean\ m\_IsClientState;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Boolean\ m\_IsConnectedClientState;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Boolean\ m\_IsApprovedState;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Boolean\ m\_IsHostState;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Boolean\ m\_IsServerState;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Awake()}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00036}00036\ \textcolor{preprocessor}{\#if\ !UNITY\_EDITOR\ \&\&\ !DEBUG\ \&\&\ !DEVELOPMENT\_BUILD}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ Destroy(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00038}00038\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ var\ net\ =\ GetComponent<NetworkManager>();}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (net\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ NullReferenceException(\$\textcolor{stringliteral}{"{}NetworkManager\ component\ not\ found\ on\ object:\ \{gameObject.name\}"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ListeningState\ =\ net.IsListening;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ShutdownInProgressState\ =\ net.ShutdownInProgress;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ net.OnServerStarted\ +=\ OnServerStarted;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ net.OnServerStopped\ +=\ OnServerStopped;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ net.OnClientStarted\ +=\ OnClientStarted;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ net.OnClientStopped\ +=\ OnClientStopped;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ net.OnClientConnectedCallback\ +=\ OnClientConnected;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ net.OnClientDisconnectCallback\ +=\ OnClientDisconnect;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ net.OnConnectionEvent\ +=\ OnConnectionEvent;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ net.OnTransportFailure\ +=\ OnTransportFailure;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Netcode\ 2.0+}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//net.OnSessionOwnerPromoted\ +=\ OnSessionOwnerPromoted;}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00056}00056\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnDestroy()}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ var\ net\ =\ NetworkManager.Singleton;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (net\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ net.OnServerStarted\ -\/=\ OnServerStarted;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ net.OnServerStopped\ -\/=\ OnServerStopped;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ net.OnClientStarted\ -\/=\ OnClientStarted;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ net.OnClientStopped\ -\/=\ OnClientStopped;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ net.OnClientConnectedCallback\ -\/=\ OnClientConnected;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ net.OnClientDisconnectCallback\ -\/=\ OnClientDisconnect;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ net.OnConnectionEvent\ -\/=\ OnConnectionEvent;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ net.OnTransportFailure\ -\/=\ OnTransportFailure;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//net.OnSessionOwnerPromoted\ -\/=\ OnSessionOwnerPromoted;}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ sceneManager\ =\ net.SceneManager;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sceneManager\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sceneManager.OnSceneEvent\ -\/=\ OnSceneEvent;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Update()}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_LogPropertyChanges)}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LogPropertyChanges();}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ RegisterSceneEventCallback(Boolean\ \textcolor{keyword}{register})}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ var\ sceneManager\ =\ NetworkManager.Singleton?.SceneManager;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sceneManager\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sceneManager.OnSceneEvent\ -\/=\ OnSceneEvent;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_LogSceneEvents\ \&\&\ \textcolor{keyword}{register})}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sceneManager.OnSceneEvent\ +=\ OnSceneEvent;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ LogPropertyChanges()}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ var\ net\ =\ NetworkManager.Singleton;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (net\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (net.IsListening\ !=\ m\_ListeningState)}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_ListeningState\ =\ net.IsListening;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log(\$\textcolor{stringliteral}{"{}IsListening\ =\ \{net.IsListening\}"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (net.ShutdownInProgress\ !=\ m\_ShutdownInProgressState)}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_ShutdownInProgressState\ =\ net.ShutdownInProgress;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log(\$\textcolor{stringliteral}{"{}ShutdownInProgress\ =\ \{net.ShutdownInProgress\}"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (net.IsClient\ !=\ m\_IsClientState)}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_IsClientState\ =\ net.IsClient;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log(\$\textcolor{stringliteral}{"{}IsClient\ =\ \{net.IsClient\}"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (net.IsHost\ !=\ m\_IsHostState)}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_IsHostState\ =\ net.IsHost;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log(\$\textcolor{stringliteral}{"{}IsHost\ =\ \{net.IsHost\}"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (net.IsServer\ !=\ m\_IsServerState)}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_IsServerState\ =\ net.IsServer;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log(\$\textcolor{stringliteral}{"{}IsServer\ =\ \{net.IsServer\}"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (net.IsApproved\ !=\ m\_IsApprovedState)}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_IsApprovedState\ =\ net.IsApproved;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log(\$\textcolor{stringliteral}{"{}IsApproved\ =\ \{net.IsApproved\}"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (net.IsConnectedClient\ !=\ m\_IsConnectedClientState)}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_IsConnectedClientState\ =\ net.IsConnectedClient;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log(\$\textcolor{stringliteral}{"{}IsConnectedClient\ =\ \{net.IsConnectedClient\}"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnServerStarted()}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ Log(\textcolor{stringliteral}{"{}OnServerStarted()"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ RegisterSceneEventCallback(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnServerStopped(Boolean\ isHost)}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ Log(\$\textcolor{stringliteral}{"{}OnServerStopped(isHost:\ \{isHost\})"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ RegisterSceneEventCallback(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnClientStarted()}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ Log(\textcolor{stringliteral}{"{}OnClientStarted()"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ RegisterSceneEventCallback(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00158}00158\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnClientStopped(Boolean\ isHost)}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ Log(\$\textcolor{stringliteral}{"{}OnClientStopped(isHost:\ \{isHost\})"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ RegisterSceneEventCallback(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00164}00164\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnClientConnected(UInt64\ clientId)\ =>\ Log(\$\textcolor{stringliteral}{"{}OnClientConnected(clientId:\ \{clientId\})"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00165}00165\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnClientDisconnect(UInt64\ clientId)\ =>\ Log(\$\textcolor{stringliteral}{"{}OnClientDisconnect(clientId:\ \{clientId\})"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnConnectionEvent(NetworkManager\ net,\ ConnectionEventData\ data)\ =>\ Log(}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \$\textcolor{stringliteral}{"{}OnConnectionEvent(\{data.EventType\}:\ ClientId\ =\ \{data.ClientId\})"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00170}00170\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnTransportFailure()\ =>\ Log(\textcolor{stringliteral}{"{}OnTransportFailure()"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnSessionOwnerPromoted(UInt64\ sessionownerpromoted)\ =>}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ Log(\$\textcolor{stringliteral}{"{}OnSessionOwnerPromoted(sessionownerpromoted:\ \{sessionownerpromoted\})"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00175}00175\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnSceneEvent(SceneEvent\ sceneEvent)}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00176}00176\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ var\ completed\ =\ String.Empty;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ var\ timedOut\ =\ String.Empty;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ var\ completedCount\ =\ sceneEvent.ClientsThatCompleted?.Count;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ var\ timedOutCount\ =\ sceneEvent.ClientsThatTimedOut?.Count;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (completedCount\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ first\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ sb\ =\ \textcolor{keyword}{new}\ StringBuilder();}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ clientId\ \textcolor{keywordflow}{in}\ sceneEvent.ClientsThatCompleted)}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sb.Append(\$\textcolor{stringliteral}{"{}\{(first\ ?\ "{}}\textcolor{stringliteral}{"{}\ :\ "{}},\ \textcolor{stringliteral}{"{})\}\{clientId\}"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ completed\ =\ \$\textcolor{stringliteral}{"{}(completed\ clientIDs:\ \{sb\})"{}};}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (timedOutCount\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ first\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ sb\ =\ \textcolor{keyword}{new}\ StringBuilder();}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ clientId\ \textcolor{keywordflow}{in}\ sceneEvent.ClientsThatTimedOut)}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sb.Append(\$\textcolor{stringliteral}{"{}\{(first\ ?\ "{}}\textcolor{stringliteral}{"{}\ :\ "{}},\ \textcolor{stringliteral}{"{})\}\{clientId\}"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ timedOut\ =\ \$\textcolor{stringliteral}{"{}<color=red>(TIMEOUT\ clientIDs:\ \{sb\})<color>"{}};}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00202}00202\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ var\ role\ =\ sceneEvent.ClientId\ ==\ 0\ ?\ \textcolor{stringliteral}{"{}Server"{}}\ :\ \$\textcolor{stringliteral}{"{}Client\ \{sceneEvent.ClientId\}"{}};}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ Log(\$\textcolor{stringliteral}{"{}\{role\}\ Scene:\ \{sceneEvent.SceneEventType\}\ \{sceneEvent.SceneName\}\ (\{sceneEvent.LoadSceneMode\})\ "{}}\ +}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$\textcolor{stringliteral}{"{}\{completed\}\ \{timedOut\}"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00206}00206\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00208}00208\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Log(String\ message)}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00209}00209\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ var\ localTick\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ var\ serverTick\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ var\ frameCount\ =\ Time.frameCount;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ var\ net\ =\ NetworkManager.Singleton;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (net)}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ localTick\ =\ net.LocalTime.Tick;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ serverTick\ =\ net.ServerTime.Tick;}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ var\ color\ =\ \$\textcolor{stringliteral}{"{}<color=\#\{m\_LogTextColor.r:x02\}\{m\_LogTextColor.g:x02\}\{m\_LogTextColor.b:x02\}>"{}};}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(\$\textcolor{stringliteral}{"{}\{color\}[L:\{localTick\}|S:\{serverTick\}|F:\{frameCount\}]\ \{message\}</color>"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00223}00223\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00225}00225\ \textcolor{preprocessor}{\#if\ UNITY\_EDITOR}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00226}00226\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Reset()}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00227}00227\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ var\ net\ =\ GetComponent<NetworkManager>();}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (net\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.LogWarning(\$\textcolor{stringliteral}{"{}\{nameof(NetworkEventLogger)\}\ must\ be\ added\ to\ the\ NetworkManager\ object!"{}});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StartCoroutine(DestroyComponentAfterDelay());}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00234}00234\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00236}00236\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ IEnumerator\ DestroyComponentAfterDelay()}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00237}00237\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ yield\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ DestroyImmediate(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00241}00241\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00242}00242\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00243}00243\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_logger_8cs_source_l00244}00244\ \}}
+
+\end{DoxyCode}

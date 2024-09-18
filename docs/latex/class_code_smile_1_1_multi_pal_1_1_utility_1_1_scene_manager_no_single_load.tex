@@ -1,0 +1,57 @@
+\doxysubsection{Scene\+Manager\+No\+Single\+Load Class Reference}
+\hypertarget{class_code_smile_1_1_multi_pal_1_1_utility_1_1_scene_manager_no_single_load}{}\label{class_code_smile_1_1_multi_pal_1_1_utility_1_1_scene_manager_no_single_load}\index{SceneManagerNoSingleLoad@{SceneManagerNoSingleLoad}}
+
+
+Inheritance diagram for Scene\+Manager\+No\+Single\+Load\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{class_code_smile_1_1_multi_pal_1_1_utility_1_1_scene_manager_no_single_load__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Scene\+Manager\+No\+Single\+Load\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{class_code_smile_1_1_multi_pal_1_1_utility_1_1_scene_manager_no_single_load__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override Async\+Operation \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_utility_1_1_scene_manager_no_single_load_a0acdf1db2c5d3e5b8f33782ace26caec_a0acdf1db2c5d3e5b8f33782ace26caec}{Load\+Scene\+Async\+By\+Name\+Or\+Index}} (String scene\+Name, Int32 scene\+Build\+Index, Load\+Scene\+Parameters parameters, Boolean must\+Complete\+Next\+Frame)
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_scene_manager_no_single_load_8cs_source_l00011}{11}} of file \mbox{\hyperlink{_scene_manager_no_single_load_8cs_source}{Scene\+Manager\+No\+Single\+Load.\+cs}}.
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_utility_1_1_scene_manager_no_single_load_a0acdf1db2c5d3e5b8f33782ace26caec_a0acdf1db2c5d3e5b8f33782ace26caec}\index{SceneManagerNoSingleLoad@{SceneManagerNoSingleLoad}!LoadSceneAsyncByNameOrIndex@{LoadSceneAsyncByNameOrIndex}}
+\index{LoadSceneAsyncByNameOrIndex@{LoadSceneAsyncByNameOrIndex}!SceneManagerNoSingleLoad@{SceneManagerNoSingleLoad}}
+\doxyparagraph{\texorpdfstring{LoadSceneAsyncByNameOrIndex()}{LoadSceneAsyncByNameOrIndex()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_utility_1_1_scene_manager_no_single_load_a0acdf1db2c5d3e5b8f33782ace26caec_a0acdf1db2c5d3e5b8f33782ace26caec} 
+override Async\+Operation Load\+Scene\+Async\+By\+Name\+Or\+Index (\begin{DoxyParamCaption}\item[{String}]{scene\+Name}{, }\item[{Int32}]{scene\+Build\+Index}{, }\item[{Load\+Scene\+Parameters}]{parameters}{, }\item[{Boolean}]{must\+Complete\+Next\+Frame}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_scene_manager_no_single_load_8cs_source_l00023}{23}} of file \mbox{\hyperlink{_scene_manager_no_single_load_8cs_source}{Scene\+Manager\+No\+Single\+Load.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (parameters.loadSceneMode\ ==\ LoadSceneMode.Single)}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ NotSupportedException(\$\textcolor{stringliteral}{"{}Scene\ 'sceneName'\ single-\/load\ =>\ \{SingleSceneLoadNotSupportedMessage\}"{}});}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ base.LoadSceneAsyncByNameOrIndex(sceneName,\ sceneBuildIndex,\ parameters,\ mustCompleteNextFrame);}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}

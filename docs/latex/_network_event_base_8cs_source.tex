@@ -1,0 +1,60 @@
+\doxysubsection{Network\+Event\+Base.\+cs}
+\hypertarget{_network_event_base_8cs_source}{}\label{_network_event_base_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Samples/Tests/NetworkEventBase.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Samples/Tests/NetworkEventBase.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }Unity.Netcode;}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00009}00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_samples_1_1_tests}{CodeSmile.MultiPal.Samples.Tests}}}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00011}00011\ \ \ \ \ \textcolor{comment}{//\ FIXME:\ what's\ the\ benefit\ of\ having\ this\ as\ SO?}}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00012}00012\ \ \ \ \ \textcolor{comment}{//\ FIXME:\ make\ base\ generic\ type\ with\ generic\ params}}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00014}00014\ \ \ \ \ \textcolor{comment}{//[CreateAssetMenu(fileName\ =\ "{}FILENAME"{},\ menuName\ =\ "{}MENUNAME"{},\ order\ =\ 0)]}}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00015}\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base}{00015}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{abstract}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_base}{NetworkEventBase}}\ :\ ScriptableObject}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00016}00016\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ List<INetworkEventListener>\ m\_Listeners\ =\ \textcolor{keyword}{new}();}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_data}{NetworkEventData}}\ \mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_data}{NetworkEventData}};}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keywordtype}{void}\ Invoke()}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (var\ i\ =\ m\_Listeners.Count\ -\/\ 1;\ i\ >=\ 0;\ i-\/-\/)}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_Listeners[i].OnNetworkEvent(\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_data}{NetworkEventData}});}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Register(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_i_network_event_listener}{INetworkEventListener}}\ listener)\ =>\ m\_Listeners.Add(listener);}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Unregister(\mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_i_network_event_listener}{INetworkEventListener}}\ listener)\ =>\ m\_Listeners.Remove(listener);}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ send\ writer}}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ receive\ reader}}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ went\ online/offline\ =>\ (un)register\ events,\ enable\ send/receive}}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ invoke\ the\ custom\ event\ with\ custom\ parameters}}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Send()}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ Tests.NetworkEventData.Send(\textcolor{keyword}{new}\ FastBufferWriter());}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Receive()}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ Tests.NetworkEventData.Receive(\textcolor{keyword}{new}\ FastBufferReader());}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00046}00046\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00048}\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_data}{00048}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_network_event_data}{NetworkEventData}}}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00049}00049\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{object}\ Data;}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Send(FastBufferWriter\ fastBufferWriter)\ \{\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ System.NotImplementedException();\ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Receive(FastBufferReader\ fastBufferReader)\ \{\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ System.NotImplementedException();\ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_network_event_base_8cs_source_l00054}00054\ \}}
+
+\end{DoxyCode}
