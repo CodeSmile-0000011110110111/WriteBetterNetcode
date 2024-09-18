@@ -1,0 +1,105 @@
+\doxysubsection{Kyle\+Animator\+Controller.\+cs}
+\hypertarget{_kyle_animator_controller_8cs_source}{}\label{_kyle_animator_controller_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Samples/RoboKyle/Animator/KyleAnimatorController.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Samples/RoboKyle/Animator/KyleAnimatorController.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_components_1_1_registry}{CodeSmile.Components.Registry}};}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_animation}{CodeSmile.MultiPal.Animation}};}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_player_controller}{CodeSmile.MultiPal.PlayerController}};}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_players}{CodeSmile.MultiPal.Players}};}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00010}00010\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00012}00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator}{CodeSmile.MultiPal.Samples.RoboKyle.Animator}}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00013}00013\ \{}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00014}00014\ \ \ \ \ [DisallowMultipleComponent]}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00015}00015\ \ \ \ \ [RequireComponent(typeof(UnityEngine.Animator))]}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00016}\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller}{00016}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animator_controller}{KyleAnimatorController}}\ :\ MonoBehaviour,\ \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_controller}{IAnimatorController}}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00017}00017\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ UnityEngine.Animator\ m\_Animator;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_animation_1_1_avatar_animator_parameters}{AvatarAnimatorParameters}}\ m\_AnimParams;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_player_client}{PlayerClient}}\ m\_ClientSide;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Int32\ m\_ParamMoveSpeed;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Int32\ m\_ParamInputMagnitude;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Int32\ m\_ParamIsGrounded;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Int32\ m\_ParamIsFalling;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Int32\ m\_ParamTriggerJump;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Single\ InputMagnitude\ \{\ \textcolor{keyword}{set}\ =>\ m\_Animator.SetFloat(m\_ParamInputMagnitude,\ value);\ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Single\ MoveSpeed\ \{\ \textcolor{keyword}{set}\ =>\ m\_Animator.SetFloat(m\_ParamMoveSpeed,\ value);\ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Boolean\ IsGrounded\ \{\ \textcolor{keyword}{set}\ =>\ m\_Animator.SetBool(m\_ParamIsGrounded,\ value);\ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Boolean\ IsFalling\ \{\ \textcolor{keyword}{set}\ =>\ m\_Animator.SetBool(m\_ParamIsFalling,\ value);\ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Boolean\ TriggerJump\ \{\ \textcolor{keyword}{set}\ =>\ m\_Animator.SetBool(m\_ParamTriggerJump,\ value);\ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Boolean\ IsOwner\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Int32\ PlayerIndex\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{private}\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ async\ \textcolor{keywordtype}{void}\ Init(Int32\ playerIndex,\ Boolean\ isOwner)}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ PlayerIndex\ =\ playerIndex;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ IsOwner\ =\ isOwner;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_AnimParams\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_AnimParams\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_animation_1_1_avatar_animator_parameters}{AvatarAnimatorParameters}}();}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isOwner)}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ hook\ up\ with\ character\ controller}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ controllers\ =\ await\ \mbox{\hyperlink{class_code_smile_1_1_components_1_1_registry_1_1_components_registry}{ComponentsRegistry}}.GetAsync<PlayerControllers>();}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ controllers.SetAnimatorParameters(playerIndex,\ m\_AnimParams);}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_ClientSide.AnimatorParameters\ =\ m\_AnimParams;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ OnPlayerDeath(Int32\ playerIndex,\ Boolean\ isOwner)\ =>\ m\_Animator.enabled\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ OnPlayerRespawn(Int32\ playerIndex,\ Boolean\ isOwner)\ =>\ m\_Animator.enabled\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ RemoteAnimatorParametersReceived(Byte[]\ animatorParameters)}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_AnimParams\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_AnimParams.Parameters\ =\ animatorParameters;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Awake()}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ClientSide\ =\ GetComponentInParent<PlayerClient>();}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Animator\ =\ GetComponent<UnityEngine.Animator>();}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ParamInputMagnitude\ =\ UnityEngine.Animator.StringToHash(\textcolor{stringliteral}{"{}InputMagnitude"{}});}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ParamMoveSpeed\ =\ UnityEngine.Animator.StringToHash(\textcolor{stringliteral}{"{}MoveSpeed"{}});}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ParamIsGrounded\ =\ UnityEngine.Animator.StringToHash(\textcolor{stringliteral}{"{}IsGrounded"{}});}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ParamIsFalling\ =\ UnityEngine.Animator.StringToHash(\textcolor{stringliteral}{"{}IsFalling"{}});}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ParamTriggerJump\ =\ UnityEngine.Animator.StringToHash(\textcolor{stringliteral}{"{}TriggerJump"{}});}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnEnable()\ =>\ m\_ClientSide.AnimatorController\ =\ \textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnDisable()}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ReferenceEquals(m\_ClientSide.AnimatorController,\ \textcolor{keyword}{this}))}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_ClientSide.AnimatorController\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_ClientSide.AnimatorParameters\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ LateUpdate()}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_AnimParams\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MoveSpeed\ =\ m\_AnimParams.MoveSpeed;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InputMagnitude\ =\ m\_AnimParams.InputMagnitude;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IsGrounded\ =\ m\_AnimParams.IsGrounded;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IsFalling\ =\ m\_AnimParams.IsFalling;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TriggerJump\ =\ m\_AnimParams.TriggerJump;}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00098}00098\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animator_controller_8cs_source_l00099}00099\ \}}
+
+\end{DoxyCode}

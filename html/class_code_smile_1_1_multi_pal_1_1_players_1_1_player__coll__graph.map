@@ -1,0 +1,7 @@
+<map id="Player" name="Player">
+<area shape="rect" id="Node000001" title=" " alt="" coords="43,187,235,512"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,37,121,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,120,97,186,92,187,74,121"/>
+<area shape="rect" id="Node000003" href="$interface_code_smile_1_1_multi_pal_1_1_players_1_1_i_player_component.html" title=" " alt="" coords="146,5,285,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,154,186,188,181,186,191,152"/>
+</map>

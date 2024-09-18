@@ -1,0 +1,92 @@
+\doxysubsection{On\+Went\+Online Class Reference}
+\hypertarget{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_went_online}{}\label{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_went_online}\index{OnWentOnline@{OnWentOnline}}
+
+
+Inheritance diagram for On\+Went\+Online\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_went_online__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for On\+Went\+Online\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_went_online__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_went_online_a1fd1e8fdb7d143c59fbc4bc00c4b4e6e}\label{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_went_online_a1fd1e8fdb7d143c59fbc4bc00c4b4e6e} 
+override Boolean {\bfseries Is\+Satisfied} ()
+\item 
+override void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_went_online_a78119f9fc901808e3a1157e3105e74c0_a78119f9fc901808e3a1157e3105e74c0}{On\+Enter\+State}} ()
+\item 
+override void \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_went_online_a4eb69f591821cff400335aaa79936e18_a4eb69f591821cff400335aaa79936e18}{On\+Exit\+State}} ()
+\end{DoxyCompactItemize}
+\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_condition_base}{Game\+State\+Condition\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+Boolean {\bfseries Is\+Satisfied} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_on_went_online_8cs_source_l00015}{15}} of file \mbox{\hyperlink{_on_went_online_8cs_source}{On\+Went\+Online.\+cs}}.
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_went_online_a78119f9fc901808e3a1157e3105e74c0_a78119f9fc901808e3a1157e3105e74c0}\index{OnWentOnline@{OnWentOnline}!OnEnterState@{OnEnterState}}
+\index{OnEnterState@{OnEnterState}!OnWentOnline@{OnWentOnline}}
+\doxyparagraph{\texorpdfstring{OnEnterState()}{OnEnterState()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_went_online_a78119f9fc901808e3a1157e3105e74c0_a78119f9fc901808e3a1157e3105e74c0} 
+override void On\+Enter\+State (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_condition_base}{Game\+State\+Condition\+Base}}.
+
+
+
+Definition at line \mbox{\hyperlink{_on_went_online_8cs_source_l00019}{19}} of file \mbox{\hyperlink{_on_went_online_8cs_source}{On\+Went\+Online.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ m\_IsOnline\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ var\ netcodeState\ =\ \mbox{\hyperlink{class_code_smile_1_1_components_1_1_registry_1_1_components_registry}{ComponentsRegistry}}.Get<\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state}{NetcodeState}}>();}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ netcodeState.WentOnline\ +=\ WentOnline;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_went_online_a4eb69f591821cff400335aaa79936e18_a4eb69f591821cff400335aaa79936e18}\index{OnWentOnline@{OnWentOnline}!OnExitState@{OnExitState}}
+\index{OnExitState@{OnExitState}!OnWentOnline@{OnWentOnline}}
+\doxyparagraph{\texorpdfstring{OnExitState()}{OnExitState()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_states_1_1_on_went_online_a4eb69f591821cff400335aaa79936e18_a4eb69f591821cff400335aaa79936e18} 
+override void On\+Exit\+State (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_game_state_condition_base}{Game\+State\+Condition\+Base}}.
+
+
+
+Definition at line \mbox{\hyperlink{_on_went_online_8cs_source_l00026}{26}} of file \mbox{\hyperlink{_on_went_online_8cs_source}{On\+Went\+Online.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ var\ netcodeState\ =\ \mbox{\hyperlink{class_code_smile_1_1_components_1_1_registry_1_1_components_registry}{ComponentsRegistry}}.Get<\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_netcode_1_1_netcode_state}{NetcodeState}}>();}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ netcodeState.WentOnline\ -\/=\ WentOnline;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,49 @@
+\doxysubsection{Is\+Local\+Server\+Started.\+cs}
+\hypertarget{_is_local_server_started_8cs_source}{}\label{_is_local_server_started_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/Core/Statemachine/Netcode/Conditions/IsLocalServerStarted.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/Core/Statemachine/Netcode/Conditions/IsLocalServerStarted.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }Unity.Netcode;}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00009}00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions}{CodeSmile.Statemachine.Netcode.Conditions}}}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00011}\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_server_started}{00011}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_server_started}{IsLocalServerStarted}}\ :\ \mbox{\hyperlink{interface_code_smile_1_1_statemachine_1_1_i_condition}{ICondition}}}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00012}00012\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00013}00013\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Boolean\ m\_IsServerStarted;}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00015}\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_server_started_ad53b64512d4843ff9f09cb72b1467b8d_ad53b64512d4843ff9f09cb72b1467b8d}{00015}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_server_started_ad53b64512d4843ff9f09cb72b1467b8d_ad53b64512d4843ff9f09cb72b1467b8d}{OnStart}}(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ sm)}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ m\_IsServerStarted\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ var\ net\ =\ NetworkManager.Singleton;}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ net.OnServerStarted\ +=\ OnServerStartedEvent;}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ net.OnServerStopped\ +=\ OnServerStoppedEvent;}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ net.OnTransportFailure\ +=\ OnTransportFailureEvent;}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00025}\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_server_started_a1dc817ac01153abb1d67f5b7fd1e0594_a1dc817ac01153abb1d67f5b7fd1e0594}{00025}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_local_server_started_a1dc817ac01153abb1d67f5b7fd1e0594_a1dc817ac01153abb1d67f5b7fd1e0594}{OnStop}}(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ sm)}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ var\ net\ =\ NetworkManager.Singleton;}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (net)}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ net.OnServerStarted\ -\/=\ OnServerStartedEvent;}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ net.OnServerStopped\ -\/=\ OnServerStoppedEvent;}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ net.OnTransportFailure\ -\/=\ OnTransportFailureEvent;}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ Boolean\ IsSatisfied(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ sm)\ =>\ m\_IsServerStarted;}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnServerStartedEvent()\ =>\ m\_IsServerStarted\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnServerStoppedEvent(Boolean\ isHost)\ =>\ m\_IsServerStarted\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnTransportFailureEvent()\ =>\ m\_IsServerStarted\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00042}00042\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_is_local_server_started_8cs_source_l00043}00043\ \}}
+
+\end{DoxyCode}

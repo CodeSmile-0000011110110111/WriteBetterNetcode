@@ -1,0 +1,87 @@
+\doxysubsection{Custom\+Named\+Message\+Handler.\+cs}
+\hypertarget{_custom_named_message_handler_8cs_source}{}\label{_custom_named_message_handler_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Samples/Tests/CustomNamedMessageHandler.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Samples/Tests/CustomNamedMessageHandler.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }Unity.Collections;}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }Unity.Netcode;}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00010}\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_samples_1_1_tests}{00010}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_samples_1_1_tests}{CodeSmile.MultiPal.Samples.Tests}}}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00012}\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_custom_named_message_handler}{00012}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_custom_named_message_handler}{CustomNamedMessageHandler}}\ :\ MonoBehaviour}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00013}00013\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00014}00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ String\ kMessageName\ =\ nameof(\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_tests_1_1_custom_named_message_handler}{CustomNamedMessageHandler}});}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ NetworkManager\ NetworkManager\ =>\ NetworkManager.Singleton;}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ IsServer\ =>\ NetworkManager.Singleton.IsServer;}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{comment}{//public\ override\ void\ OnNetworkSpawn()}}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ OnEnable()}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ NetworkManager.CustomMessagingManager.RegisterNamedMessageHandler(kMessageName,\ ReceiveMessageInternal);}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsServer)}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NetworkManager.OnClientConnectedCallback\ +=\ OnClientConnectedCallback;}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ guid\ =\ Guid.NewGuid();}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(\$\textcolor{stringliteral}{"{}<color=yellow>Client\ sending\ GUID\ (\{guid\})\ to\ server.</color>"{}});}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SendMessage(guid);}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{comment}{//public\ override\ void\ OnNetworkDespawn()}}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ OnDisable()}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (NetworkManager\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NetworkManager.CustomMessagingManager?.UnregisterNamedMessageHandler(kMessageName);}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NetworkManager.OnClientDisconnectCallback\ -\/=\ OnClientConnectedCallback;}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnClientConnectedCallback(UInt64\ obj)\ =>\ SendMessage(Guid.NewGuid());}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SendMessage(Guid\ inGameIdentifier)}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ var\ content\ =\ \textcolor{keyword}{new}\ ForceNetworkSerializeByMemcpy<Guid>(inGameIdentifier);}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ payload\ =\ \textcolor{keyword}{new}\ FastBufferWriter(1100,\ Allocator.Temp);}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ payload.WriteValueSafe(content);}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ SendMessageInternal(payload);}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ SendMessageInternal(FastBufferWriter\ payload)}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ var\ msgManager\ =\ NetworkManager.CustomMessagingManager;}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsServer)}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ msgManager.SendNamedMessageToAll(kMessageName,\ payload);}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ msgManager.SendNamedMessage(kMessageName,\ NetworkManager.ServerClientId,\ payload);}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ ReceiveMessageInternal(UInt64\ senderId,\ FastBufferReader\ payload)}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ var\ content\ =\ \textcolor{keyword}{new}\ ForceNetworkSerializeByMemcpy<Guid>(\textcolor{keyword}{new}\ Guid());}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ payload.ReadValueSafe(out\ content);}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ OnMessageReceived(senderId,\ content);}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnMessageReceived(UInt64\ senderId,\ ForceNetworkSerializeByMemcpy<Guid>\ content)}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsServer)}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(\$\textcolor{stringliteral}{"{}<color=red>Sever\ received\ GUID\ (\{content.Value\})\ from\ client\ (\{senderId\})</color>"{}});}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(\$\textcolor{stringliteral}{"{}<color=red>Client\ received\ GUID\ (\{content.Value\})\ from\ the\ server.</color>"{}});}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00080}00080\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_custom_named_message_handler_8cs_source_l00081}00081\ \}}
+
+\end{DoxyCode}

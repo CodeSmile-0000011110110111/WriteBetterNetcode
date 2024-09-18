@@ -1,0 +1,64 @@
+\doxysubsection{Player\+Stats.\+cs}
+\hypertarget{_player_stats_8cs_source}{}\label{_player_stats_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Stats/PlayerStats.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Stats/PlayerStats.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_components_1_1_registry}{CodeSmile.Components.Registry}};}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_players_1_1_couch}{CodeSmile.MultiPal.Players.Couch}};}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_settings}{CodeSmile.MultiPal.Settings}};}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00011}00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_stats}{CodeSmile.MultiPal.Stats}}}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00013}00013\ \ \ \ \ [DisallowMultipleComponent]}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00014}\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_stats_1_1_player_stats}{00014}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_stats_1_1_player_stats}{PlayerStats}}\ :\ MonoBehaviour}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00015}00015\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ GameObject[]\ m\_PlayerStatsObjects\ =\ \textcolor{keyword}{new}\ GameObject[\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_settings_1_1_constants}{Constants}}.MaxCouchPlayers];}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Awake()\ =>\ \mbox{\hyperlink{class_code_smile_1_1_components_1_1_registry_1_1_components_registry}{ComponentsRegistry}}.Set(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Start()}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ CouchPlayers.OnLocalCouchPlayersSpawn\ +=\ OnLocalCouchPlayersSpawn;}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ CouchPlayers.OnLocalCouchPlayersDespawn\ +=\ OnLocalCouchPlayersDespawn;}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnLocalCouchPlayersSpawn(\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players}{CouchPlayers}}\ couchPlayers)}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ couchPlayers.OnCouchPlayerJoining\ +=\ OnCouchPlayerJoining;}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ couchPlayers.OnCouchPlayerLeft\ +=\ OnCouchPlayerLeft;}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnLocalCouchPlayersDespawn(\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players}{CouchPlayers}}\ couchPlayers)}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ couchPlayers.OnCouchPlayerJoining\ -\/=\ OnCouchPlayerJoining;}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ couchPlayers.OnCouchPlayerLeft\ -\/=\ OnCouchPlayerLeft;}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnCouchPlayerJoining(\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players}{CouchPlayers}}\ couchPlayers,\ Int32\ playerIndex)\ =>\ CreateStatsObject(playerIndex);}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnCouchPlayerLeft(\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_couch_1_1_couch_players}{CouchPlayers}}\ couchPlayers,\ Int32\ playerIndex)\ =>\ DestroyStatsObject(playerIndex);}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ CreateStatsObject(Int32\ playerIndex)}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ var\ statsObj\ =\ \textcolor{keyword}{new}\ GameObject(\$\textcolor{stringliteral}{"{}Player\{playerIndex\}\ Stats"{}},\ typeof(HitpointsStat));}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ statsObj.transform.parent\ =\ transform;}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ m\_PlayerStatsObjects[playerIndex]\ =\ statsObj;}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ DestroyStatsObject(Int32\ playerIndex)}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ var\ statsObj\ =\ m\_PlayerStatsObjects[playerIndex];}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (statsObj\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_PlayerStatsObjects[playerIndex]\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Destroy(statsObj);}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00057}00057\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_stats_8cs_source_l00058}00058\ \}}
+
+\end{DoxyCode}

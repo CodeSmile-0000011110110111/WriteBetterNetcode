@@ -1,0 +1,36 @@
+\doxysubsection{Dont\+Destroy\+On\+Load\+All\+Children.\+cs}
+\hypertarget{_dont_destroy_on_load_all_children_8cs_source}{}\label{_dont_destroy_on_load_all_children_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/Core/Components/Utility/DontDestroyOnLoadAllChildren.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/Core/Components/Utility/DontDestroyOnLoadAllChildren.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00008}00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_components_1_1_utility}{CodeSmile.Components.Utility}}}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00009}00009\ \{}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00017}00017\ \ \ \ \ [DisallowMultipleComponent]}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00018}00018\ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{class\ }DontDestroyOnLoadAllChildren\ :\ MonoBehaviour}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00019}00019\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Start()}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ need\ a\ separate\ list\ to\ preserve\ child\ sort\ order}}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ var\ children\ =\ \textcolor{keyword}{new}\ List<Transform>();}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (var\ i\ =\ 0;\ i\ <\ transform.childCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ children.Add(transform.GetChild(i));}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ child\ \textcolor{keywordflow}{in}\ children)}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child.parent\ =\ \textcolor{keyword}{null};\ \textcolor{comment}{//\ DDoL\ only\ works\ on\ root\ game\ objects}}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DontDestroyOnLoad(child.gameObject);}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ Destroy(gameObject);}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00036}00036\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dont_destroy_on_load_all_children_8cs_source_l00037}00037\ \}}
+
+\end{DoxyCode}

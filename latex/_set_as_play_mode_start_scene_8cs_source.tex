@@ -1,0 +1,114 @@
+\doxysubsection{Set\+As\+Play\+Mode\+Start\+Scene.\+cs}
+\hypertarget{_set_as_play_mode_start_scene_8cs_source}{}\label{_set_as_play_mode_start_scene_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/Core/Components/Utility/SetAsPlayModeStartScene.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/Core/Components/Utility/SetAsPlayModeStartScene.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }UnityEditor.SceneManagement;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }UnityEngine.SceneManagement;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00010}00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_components_1_1_utility}{CodeSmile.Components.Utility}}}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00020}00020\ \ \ \ \ [ExecuteAlways]}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00021}00021\ \ \ \ \ [DisallowMultipleComponent]}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00022}00022\ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{class\ }SetAsPlayModeStartScene\ :\ MonoBehaviour}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00023}00023\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00024}00024\ \textcolor{preprocessor}{\#if\ UNITY\_EDITOR}}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ [MenuItem(\textcolor{stringliteral}{"{}Tools/CodeSmile/Reset\ Playmode\ StartScene"{}})]}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ MenuItem()\ =>\ EditorSceneManager.playModeStartScene\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{const}\ String\ PlayModeScenePathKey\ =\ \textcolor{stringliteral}{"{}CodeSmile.EnterPlayModeStartScenePath"{}};}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Boolean\ m\_IsPlayModeStartSceneClosing;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnEnable()}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ RegisterCallbacks();}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ SetActiveSceneAsPlayModeStartScene();}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnDisable()\ =>\ SetActiveSceneAsPlayModeStartScene();}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ SetActiveSceneAsPlayModeStartScene()}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_IsPlayModeStartSceneClosing\ ||\ EditorApplication.isPlayingOrWillChangePlaymode)}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (enabled\ \&\&\ gameObject.activeInHierarchy)}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ scenePath\ =\ SceneManager.GetActiveScene().path;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ sceneAsset\ =\ AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath);}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (EditorSceneManager.playModeStartScene\ !=\ sceneAsset)}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EditorPrefs.SetString(PlayModeScenePathKey,\ scenePath);}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EditorSceneManager.playModeStartScene\ =\ sceneAsset;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(\$\textcolor{stringliteral}{"{}PlayMode\ StartScene\ is\ now:\ \{sceneAsset.name\}"{}});}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (EditorSceneManager.playModeStartScene\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EditorPrefs.SetString(PlayModeScenePathKey,\ \textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EditorSceneManager.playModeStartScene\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(\textcolor{stringliteral}{"{}PlayMode\ StartScene\ is\ now:\ (active\ scene)"{}});}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ RegisterCallbacks()}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ EditorSceneManager.sceneClosing\ -\/=\ OnSceneClosing;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ EditorSceneManager.sceneClosing\ +=\ OnSceneClosing;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ EditorSceneManager.sceneClosed\ -\/=\ OnSceneClosed;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ EditorSceneManager.sceneClosed\ +=\ OnSceneClosed;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ EditorApplication.playModeStateChanged\ -\/=\ OnPlayModeStateChanged;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ EditorApplication.playModeStateChanged\ +=\ OnPlayModeStateChanged;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ AssemblyReloadEvents.afterAssemblyReload\ -\/=\ OnAfterAssemblyReload;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ AssemblyReloadEvents.afterAssemblyReload\ +=\ OnAfterAssemblyReload;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ UnregisterCallbacks()}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ EditorSceneManager.sceneClosing\ -\/=\ OnSceneClosing;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ EditorSceneManager.sceneClosed\ -\/=\ OnSceneClosed;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ EditorApplication.playModeStateChanged\ -\/=\ OnPlayModeStateChanged;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ AssemblyReloadEvents.afterAssemblyReload\ -\/=\ OnAfterAssemblyReload;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnSceneClosing(Scene\ scene,\ Boolean\ removingscene)\ =>\ m\_IsPlayModeStartSceneClosing\ =}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ m\_IsPlayModeStartSceneClosing\ ||\ EditorSceneManager.playModeStartScene?.name\ ==\ scene.name;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnSceneClosed(Scene\ scene)}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_IsPlayModeStartSceneClosing)}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnregisterCallbacks();}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnAfterAssemblyReload()\ =>\ RestorePlayModeStartScene();}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnPlayModeStateChanged(PlayModeStateChange\ state)}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (state\ ==\ PlayModeStateChange.EnteredEditMode)}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RegisterCallbacks();}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RestorePlayModeStartScene();}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ [InitializeOnLoadMethod]}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ RestorePlayModeStartScene()}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ var\ scenePath\ =\ EditorPrefs.GetString(PlayModeScenePathKey,\ \textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ var\ startScene\ =\ scenePath\ !=\ \textcolor{keyword}{null}\ ?\ AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath)\ :\ null;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ EditorSceneManager.playModeStartScene\ =\ startScene;}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00112}00112\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Awake()\ =>\ Destroy(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00114}00114\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00115}00115\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_set_as_play_mode_start_scene_8cs_source_l00116}00116\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,5 @@
+<map id="PlayerClient" name="PlayerClient">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,123,183,277"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="36,5,152,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,90,97,123,91,123,91,90"/>
+</map>

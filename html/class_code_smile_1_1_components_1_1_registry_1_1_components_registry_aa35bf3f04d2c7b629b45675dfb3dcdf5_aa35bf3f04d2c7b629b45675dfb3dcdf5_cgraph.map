@@ -1,0 +1,5 @@
+<map id="GetAsync&lt; T &gt;" name="GetAsync&lt; T &gt;">
+<area shape="rect" id="Node000001" title="Gets a component from the registry, awaitable." alt="" coords="5,5,116,32"/>
+<area shape="rect" id="Node000002" href="$class_code_smile_1_1_components_1_1_registry_1_1_components_registry_a3099a2cc959312861668f0062e8de10d.html#a3099a2cc959312861668f0062e8de10d" title="Get a component from the registry. Returns null if no such component is currently registered." alt="" coords="164,5,237,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,16,148,16,148,21,116,21"/>
+</map>

@@ -1,0 +1,122 @@
+\doxysubsection{Client\+Scene\+Loader Class Reference}
+\hypertarget{class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader}{}\label{class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader}\index{ClientSceneLoader@{ClientSceneLoader}}
+
+
+Inheritance diagram for Client\+Scene\+Loader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Client\+Scene\+Loader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Boolean \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader_a032149028eecc276373bddf5759b4f57_a032149028eecc276373bddf5759b4f57}{Is\+Scene\+Loaded}} (String scene\+Name)
+\item 
+Async\+Operation \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader_a617045aca3611fa6b79589d72ab55fb4_a617045aca3611fa6b79589d72ab55fb4}{Load\+Scene\+Async}} (\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{Scene\+Reference}} scene\+Ref)
+\item 
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader_a8808ba953ed8b352236047f5cae7f7ce}\label{class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader_a8808ba953ed8b352236047f5cae7f7ce} 
+async Task {\bfseries Load\+Scenes\+Async} (\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{Scene\+Reference}}\mbox{[}$\,$\mbox{]} scenes)
+\item 
+Async\+Operation \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader_a72d3661ea9ba8a219ece5a2002a2de63_a72d3661ea9ba8a219ece5a2002a2de63}{Unload\+Scene\+Async}} (\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{Scene\+Reference}} scene\+Ref)
+\item 
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader_a51574ff14295f89e516756cc495595bb}\label{class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader_a51574ff14295f89e516756cc495595bb} 
+async Task {\bfseries Unload\+Scenes\+Async} (\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{Scene\+Reference}}\mbox{[}$\,$\mbox{]} scenes)
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_client_scene_loader_8cs_source_l00016}{16}} of file \mbox{\hyperlink{_client_scene_loader_8cs_source}{Client\+Scene\+Loader.\+cs}}.
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader_a032149028eecc276373bddf5759b4f57_a032149028eecc276373bddf5759b4f57}\index{ClientSceneLoader@{ClientSceneLoader}!IsSceneLoaded@{IsSceneLoaded}}
+\index{IsSceneLoaded@{IsSceneLoaded}!ClientSceneLoader@{ClientSceneLoader}}
+\doxyparagraph{\texorpdfstring{IsSceneLoaded()}{IsSceneLoaded()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader_a032149028eecc276373bddf5759b4f57_a032149028eecc276373bddf5759b4f57} 
+Boolean Is\+Scene\+Loaded (\begin{DoxyParamCaption}\item[{String}]{scene\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_client_scene_loader_8cs_source_l00106}{106}} of file \mbox{\hyperlink{_client_scene_loader_8cs_source}{Client\+Scene\+Loader.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_LoadedScenes\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ sceneReference\ \textcolor{keywordflow}{in}\ m\_LoadedScenes)}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sceneReference.SceneName.Equals(sceneName)\ ||\ sceneReference.ScenePath.Equals(sceneName))}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader_a617045aca3611fa6b79589d72ab55fb4_a617045aca3611fa6b79589d72ab55fb4}\index{ClientSceneLoader@{ClientSceneLoader}!LoadSceneAsync@{LoadSceneAsync}}
+\index{LoadSceneAsync@{LoadSceneAsync}!ClientSceneLoader@{ClientSceneLoader}}
+\doxyparagraph{\texorpdfstring{LoadSceneAsync()}{LoadSceneAsync()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader_a617045aca3611fa6b79589d72ab55fb4_a617045aca3611fa6b79589d72ab55fb4} 
+Async\+Operation Load\+Scene\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{Scene\+Reference}}}]{scene\+Ref}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_client_scene_loader_8cs_source_l00047}{47}} of file \mbox{\hyperlink{_client_scene_loader_8cs_source}{Client\+Scene\+Loader.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sceneRef\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_LoadedScenes.Contains(sceneRef))}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(\$\textcolor{stringliteral}{"{}<color=green>Client\ LoadScene:\ \{sceneRef.SceneName\}</color>"{}});}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ m\_LoadedScenes.Add(sceneRef);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ SceneManager.LoadSceneAsync(sceneRef.ScenePath,\ LoadSceneMode.Additive);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader_a72d3661ea9ba8a219ece5a2002a2de63_a72d3661ea9ba8a219ece5a2002a2de63}\index{ClientSceneLoader@{ClientSceneLoader}!UnloadSceneAsync@{UnloadSceneAsync}}
+\index{UnloadSceneAsync@{UnloadSceneAsync}!ClientSceneLoader@{ClientSceneLoader}}
+\doxyparagraph{\texorpdfstring{UnloadSceneAsync()}{UnloadSceneAsync()}}
+{\footnotesize\ttfamily \label{class_code_smile_1_1_multi_pal_1_1_scene_1_1_client_scene_loader_a72d3661ea9ba8a219ece5a2002a2de63_a72d3661ea9ba8a219ece5a2002a2de63} 
+Async\+Operation Unload\+Scene\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{Scene\+Reference}}}]{scene\+Ref}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_client_scene_loader_8cs_source_l00034}{34}} of file \mbox{\hyperlink{_client_scene_loader_8cs_source}{Client\+Scene\+Loader.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sceneRef\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_LoadedScenes.Contains(sceneRef)\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(\$\textcolor{stringliteral}{"{}<color=orange>Client\ UnloadScene:\ \{sceneRef.SceneName\}</color>"{}});}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ m\_LoadedScenes.Remove(sceneRef);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ SceneManager.UnloadSceneAsync(sceneRef.ScenePath);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,5 @@
+<map id="SpawnLocations" name="SpawnLocations">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,123,205,235"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="55,5,156,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,90,108,123,103,123,103,90"/>
+</map>

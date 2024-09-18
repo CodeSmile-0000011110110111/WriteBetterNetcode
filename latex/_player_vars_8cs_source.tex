@@ -1,0 +1,57 @@
+\doxysubsection{Player\+Vars.\+cs}
+\hypertarget{_player_vars_8cs_source}{}\label{_player_vars_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Players/PlayerVars.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Players/PlayerVars.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }Unity.Netcode;}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00009}00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_players}{CodeSmile.MultiPal.Players}}}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00011}00011\ \ \ \ \ [DisallowMultipleComponent]}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00012}00012\ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{class\ }PlayerVars\ :\ NetworkBehaviour,\ IPlayerComponent}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00013}00013\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00014}00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ NetworkVariable<Byte>\ m\_AvatarIndexVar\ =\ \textcolor{keyword}{new}();}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ NetworkVariable<Single>\ m\_Hitpoints\ =\ \textcolor{keyword}{new}();}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Player\ m\_Player;}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ PlayerAvatar\ m\_Avatar;}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ Byte\ AvatarIndex}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ =>\ m\_AvatarIndexVar.Value;}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ =>\ AvatarIndexChangeServerRpc(value);}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ OnPlayerSpawn(Int32\ playerIndex,\ Boolean\ isOwner)\ \{\}}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ OnPlayerDespawn(Int32\ playerIndex,\ Boolean\ isOwner)\ \{\}}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Awake()}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Player\ =\ GetComponent<Player>();}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Avatar\ =\ GetComponent<PlayerAvatar>();}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ [Rpc(SendTo.Server)]}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ AvatarIndexChangeServerRpc(Byte\ avatarIndex)\ =>\ m\_AvatarIndexVar.Value\ =\ avatarIndex;}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ OnNetworkSpawn()}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ base.OnNetworkSpawn();}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ m\_AvatarIndexVar.OnValueChanged\ +=\ m\_Avatar.OnAvatarIndexChanged;}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ OnNetworkDespawn()}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ base.OnNetworkDespawn();}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ m\_AvatarIndexVar.OnValueChanged\ -\/=\ m\_Avatar.OnAvatarIndexChanged;}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00050}00050\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_vars_8cs_source_l00051}00051\ \}}
+
+\end{DoxyCode}

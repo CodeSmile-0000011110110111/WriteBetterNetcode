@@ -1,0 +1,3 @@
+<map id="FSM.Transition" name="FSM.Transition">
+<area shape="rect" id="Node000001" title="Represents a transition in a statemachine. A transition can also be a self&#45;transition that does not c..." alt="" coords="5,5,148,501"/>
+</map>

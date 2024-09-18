@@ -1,0 +1,5 @@
+<map id="GameState" name="GameState">
+<area shape="rect" id="Node000001" title=" " alt="" coords="11,123,101,192"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,107,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,90,59,123,53,123,53,90"/>
+</map>

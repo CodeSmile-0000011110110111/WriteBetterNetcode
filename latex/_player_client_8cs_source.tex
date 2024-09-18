@@ -1,0 +1,77 @@
+\doxysubsection{Player\+Client.\+cs}
+\hypertarget{_player_client_8cs_source}{}\label{_player_client_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Players/PlayerClient.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Players/PlayerClient.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_animation}{CodeSmile.MultiPal.Animation}};}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }Unity.Netcode;}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00010}00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_players}{CodeSmile.MultiPal.Players}}}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00012}00012\ \ \ \ \ [DisallowMultipleComponent]}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00013}\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_player_client}{00013}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_player_client}{PlayerClient}}\ :\ NetworkBehaviour}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00014}00014\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_players_1_1_player}{Player}}\ m\_Player;}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ PlayerServer\ m\_ServerSide;}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_controller}{IAnimatorController}}\ m\_AnimatorController;}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_animation_1_1_avatar_animator_parameters}{AvatarAnimatorParameters}}\ m\_AnimatorParameters;}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{interface_code_smile_1_1_multi_pal_1_1_animation_1_1_i_animator_controller}{IAnimatorController}}\ AnimatorController}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ =>\ m\_AnimatorController;}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ =>\ m\_AnimatorController\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_animation_1_1_avatar_animator_parameters}{AvatarAnimatorParameters}}\ AnimatorParameters}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ =>\ m\_AnimatorParameters;}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ =>\ m\_AnimatorParameters\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Awake()}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Player\ =\ GetComponent<Player>();}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ServerSide\ =\ GetComponent<PlayerServer>();}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ OnNetworkSpawn()}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ base.OnNetworkSpawn();}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsOwner)}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NetworkManager.NetworkTickSystem.Tick\ +=\ OnNetworkTick;}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ OnNetworkDespawn()}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ base.OnNetworkDespawn();}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsOwner)}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NetworkManager.NetworkTickSystem.Tick\ -\/=\ OnNetworkTick;}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnNetworkTick()}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_AnimatorParameters\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SyncAnimatorParametersToNonOwnersRpc(m\_AnimatorParameters.Parameters);}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ [Rpc(SendTo.NotOwner,\ DeferLocal\ =\ \textcolor{keyword}{true})]}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ SyncAnimatorParametersToNonOwnersRpc(Byte[]\ animatorParameters)}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_AnimatorController\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_AnimatorController.RemoteAnimatorParametersReceived(animatorParameters);}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ [Rpc(SendTo.ClientsAndHost,\ DeferLocal\ =\ \textcolor{keyword}{true})]}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ KillPlayerClientRpc()\ =>\ m\_Player.Die();}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ [Rpc(SendTo.ClientsAndHost,\ DeferLocal\ =\ \textcolor{keyword}{true})]}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ RespawnPlayerClientRpc()\ =>\ m\_Player.Respawn();}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00070}00070\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_client_8cs_source_l00071}00071\ \}}
+
+\end{DoxyCode}

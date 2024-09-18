@@ -1,0 +1,9 @@
+<map id="PlayerInteraction" name="PlayerInteraction">
+<area shape="rect" id="Node000001" title=" " alt="" coords="131,187,269,320"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,37,107,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,117,150,185,145,188,90,120"/>
+<area shape="rect" id="Node000003" href="$interface_code_smile_1_1_multi_pal_1_1_players_1_1_i_player_component.html" title=" " alt="" coords="131,5,269,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="203,153,203,187,197,187,197,153"/>
+<area shape="rect" id="Node000004" href="$interface_code_smile_1_1_multi_pal_1_1_input_1_1_generated_input_1_1_i_player_interaction_actions.html" title=" " alt="" coords="293,27,451,117"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="322,130,265,189,261,185,318,126"/>
+</map>

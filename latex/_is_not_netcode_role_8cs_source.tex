@@ -1,0 +1,25 @@
+\doxysubsection{Is\+Not\+Netcode\+Role.\+cs}
+\hypertarget{_is_not_netcode_role_8cs_source}{}\label{_is_not_netcode_role_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/Core/Statemachine/Netcode/Conditions/IsNotNetcodeRole.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/Core/Statemachine/Netcode/Conditions/IsNotNetcodeRole.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00008}00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions}{CodeSmile.Statemachine.Netcode.Conditions}}}
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00009}00009\ \{}
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00010}\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_not_netcode_role}{00010}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_not_netcode_role}{IsNotNetcodeRole}}\ :\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_netcode_role}{IsNetcodeRole}}}
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00011}00011\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00012}00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_netcode_1_1_conditions_1_1_is_not_netcode_role}{IsNotNetcodeRole}}(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_var}{Var<NetcodeConfig>}}\ netcodeConfigVar,\ NetcodeRole\ role)}
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ :\ base(netcodeConfigVar,\ role)\ \{\}}
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ Boolean\ IsSatisfied(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ sm)\ =>\ !base.IsSatisfied(sm);}
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ String\ ToDebugString(\mbox{\hyperlink{class_code_smile_1_1_statemachine_1_1_f_s_m}{FSM}}\ sm)\ =>\ \$\textcolor{stringliteral}{"{}\{nameof(IsNetcodeRole)\}\ !=\ \{m\_Role\}"{}};}
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00018}00018\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_is_not_netcode_role_8cs_source_l00019}00019\ \}}
+
+\end{DoxyCode}

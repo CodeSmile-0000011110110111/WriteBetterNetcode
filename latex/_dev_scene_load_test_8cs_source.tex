@@ -1,0 +1,97 @@
+\doxysubsection{Dev\+Scene\+Load\+Test.\+cs}
+\hypertarget{_dev_scene_load_test_8cs_source}{}\label{_dev_scene_load_test_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/GUI/DevSceneLoadTest.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/GUI/DevSceneLoadTest.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_components_1_1_registry}{CodeSmile.Components.Registry}};}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_scene}{CodeSmile.MultiPal.Scene}};}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_code_smile_1_1_utility}{CodeSmile.Utility}};}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }Unity.Netcode;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00010}00010\ \textcolor{keyword}{using\ }UnityEngine.UIElements;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00012}00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_g_u_i}{CodeSmile.MultiPal.GUI}}}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00013}00013\ \{}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00014}00014\ \ \ \ \ [DisallowMultipleComponent]}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00015}\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_dev_scene_load_test}{00015}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_dev_scene_load_test}{DevSceneLoadTest}}\ :\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_g_u_i_1_1_menu_base}{MenuBase}}}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00016}00016\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{SceneReference}}\ m\_Scene1;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{SceneReference}}\ m\_Scene2;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference}{SceneReference}}\ m\_Scene3;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Button\ LoadButton1\ =>\ m\_Root.Q<Button>(\textcolor{stringliteral}{"{}Load1"{}});}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Button\ LoadButton2\ =>\ m\_Root.Q<Button>(\textcolor{stringliteral}{"{}Load2"{}});}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Button\ LoadButton3\ =>\ m\_Root.Q<Button>(\textcolor{stringliteral}{"{}Load3"{}});}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Button\ UnloadButton1\ =>\ m\_Root.Q<Button>(\textcolor{stringliteral}{"{}Unload1"{}});}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Button\ UnloadButton2\ =>\ m\_Root.Q<Button>(\textcolor{stringliteral}{"{}Unload2"{}});}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Button\ UnloadButton3\ =>\ m\_Root.Q<Button>(\textcolor{stringliteral}{"{}Unload3"{}});}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Button\ LoadAllButton\ =>\ m\_Root.Q<Button>(\textcolor{stringliteral}{"{}LoadAll"{}});}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Button\ UnloadAllButton\ =>\ m\_Root.Q<Button>(\textcolor{stringliteral}{"{}UnloadAll"{}});}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Button\ ProvokeErrorButton\ =>\ m\_Root.Q<Button>(\textcolor{stringliteral}{"{}ProvokeError"{}});}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_scene_1_1_server_scene_loader}{ServerSceneLoader}}\ SceneLoader\ =>\ \mbox{\hyperlink{class_code_smile_1_1_components_1_1_registry_1_1_components_registry}{ComponentsRegistry}}.Get<\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_scene_1_1_server_scene_loader}{ServerSceneLoader}}>();}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnEnable()\ =>\ RegisterGuiEvents();}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnDisable()\ =>\ UnregisterGuiEvents();}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Start()}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ var\ isServer\ =\ NetworkManager.Singleton?.IsServer;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isServer\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Hide();}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnValidate()}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Scene1.\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference_a755e7a04dbc0bc114ebd52997a9a2a42_a755e7a04dbc0bc114ebd52997a9a2a42}{OnValidate}}();}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Scene2.\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference_a755e7a04dbc0bc114ebd52997a9a2a42_a755e7a04dbc0bc114ebd52997a9a2a42}{OnValidate}}();}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Scene3.\mbox{\hyperlink{class_code_smile_1_1_utility_1_1_scene_reference_a755e7a04dbc0bc114ebd52997a9a2a42_a755e7a04dbc0bc114ebd52997a9a2a42}{OnValidate}}();}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ RegisterGuiEvents()}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ LoadButton1.clicked\ +=\ OnLoadButton1Clicked;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ LoadButton2.clicked\ +=\ OnLoadButton2Clicked;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ LoadButton3.clicked\ +=\ OnLoadButton3Clicked;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ UnloadButton1.clicked\ +=\ OnUnloadButton1Clicked;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ UnloadButton2.clicked\ +=\ OnUnloadButton2Clicked;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ UnloadButton3.clicked\ +=\ OnUnloadButton3Clicked;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ LoadAllButton.clicked\ +=\ OnLoadAllButtonClicked;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ UnloadAllButton.clicked\ +=\ OnUnloadAllButtonClicked;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ ProvokeErrorButton.clicked\ +=\ OnProvokeErrorButtonClicked;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ UnregisterGuiEvents()}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ LoadButton1.clicked\ -\/=\ OnLoadButton1Clicked;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ LoadButton2.clicked\ -\/=\ OnLoadButton2Clicked;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ LoadButton3.clicked\ -\/=\ OnLoadButton3Clicked;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ UnloadButton1.clicked\ -\/=\ OnUnloadButton1Clicked;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ UnloadButton2.clicked\ -\/=\ OnUnloadButton2Clicked;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ UnloadButton3.clicked\ -\/=\ OnUnloadButton3Clicked;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ LoadAllButton.clicked\ -\/=\ OnLoadAllButtonClicked;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ UnloadAllButton.clicked\ -\/=\ OnUnloadAllButtonClicked;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ ProvokeErrorButton.clicked\ -\/=\ OnProvokeErrorButtonClicked;}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnLoadButton1Clicked()\ =>\ SceneLoader.LoadScenesAsync(\textcolor{keyword}{new}[]\ \{\ m\_Scene1\ \});}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnLoadButton2Clicked()\ =>\ SceneLoader.LoadScenesAsync(\textcolor{keyword}{new}[]\ \{\ m\_Scene2\ \});}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnLoadButton3Clicked()\ =>\ SceneLoader.LoadScenesAsync(\textcolor{keyword}{new}[]\ \{\ m\_Scene3\ \});}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnLoadAllButtonClicked()\ =>\ SceneLoader.LoadScenesAsync(\textcolor{keyword}{new}[]\ \{\ m\_Scene1,\ m\_Scene2,\ m\_Scene3\ \});}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnUnloadButton1Clicked()\ =>\ SceneLoader.UnloadScenesAsync(\textcolor{keyword}{new}[]\ \{\ m\_Scene1\ \});}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnUnloadButton2Clicked()\ =>\ SceneLoader.UnloadScenesAsync(\textcolor{keyword}{new}[]\ \{\ m\_Scene2\ \});}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnUnloadButton3Clicked()\ =>\ SceneLoader.UnloadScenesAsync(\textcolor{keyword}{new}[]\ \{\ m\_Scene3\ \});}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnUnloadAllButtonClicked()\ =>\ SceneLoader.UnloadScenesAsync(\textcolor{keyword}{new}[]\ \{\ m\_Scene1,\ m\_Scene2,\ m\_Scene3\ \});}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnProvokeErrorButtonClicked()}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ OnLoadAllButtonClicked();}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ OnUnloadAllButtonClicked();}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00090}00090\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dev_scene_load_test_8cs_source_l00091}00091\ \}}
+
+\end{DoxyCode}

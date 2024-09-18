@@ -1,0 +1,105 @@
+\doxysubsection{Avatar\+Animator\+Parameters.\+cs}
+\hypertarget{_avatar_animator_parameters_8cs_source}{}\label{_avatar_animator_parameters_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Animation/AvatarAnimatorParameters.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Animation/AvatarAnimatorParameters.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.Runtime.CompilerServices;}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00009}00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_animation}{CodeSmile.MultiPal.Animation}}}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00011}\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_animation_1_1_avatar_animator_parameters}{00011}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_animation_1_1_avatar_animator_parameters}{AvatarAnimatorParameters}}}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00012}00012\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00013}00013\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{const}\ Int32\ MinParameterCount\ =\ 3;}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{const}\ Int32\ InputMagnitudeIndex\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{const}\ Int32\ MoveSpeedIndex\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{const}\ Int32\ CommonFlagsIndex\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ Byte[]\ m\_Parameters;}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Byte[]\ Parameters}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ =>\ m\_Parameters;}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ =>\ m\_Parameters\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Single\ InputMagnitude}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ =>\ ConvertToFloat(m\_Parameters[InputMagnitudeIndex]);}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ =>\ m\_Parameters[InputMagnitudeIndex]\ =\ ConvertToByte(value);}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Single\ MoveSpeed}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ =>\ ConvertToFloat(m\_Parameters[MoveSpeedIndex]);}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ =>\ m\_Parameters[MoveSpeedIndex]\ =\ ConvertToByte(value);}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Boolean\ IsGrounded}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ =>\ IsFlagSet(m\_Parameters[CommonFlagsIndex],\ (Byte)AnimatorCommonFlags.IsGrounded);}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ =>\ m\_Parameters[CommonFlagsIndex]\ =}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (Byte)SetOrClearFlag(value,\ m\_Parameters[CommonFlagsIndex],\ (Byte)AnimatorCommonFlags.IsGrounded);}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Boolean\ IsFalling}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ =>\ IsFlagSet(m\_Parameters[CommonFlagsIndex],\ (Byte)AnimatorCommonFlags.IsFalling);}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ =>\ m\_Parameters[CommonFlagsIndex]\ =}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (Byte)SetOrClearFlag(value,\ m\_Parameters[CommonFlagsIndex],\ (Byte)AnimatorCommonFlags.IsFalling);}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Boolean\ TriggerJump}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ =>\ IsFlagSet(m\_Parameters[CommonFlagsIndex],\ (Byte)AnimatorCommonFlags.TriggerJump);}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ =>\ m\_Parameters[CommonFlagsIndex]\ =}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (Byte)SetOrClearFlag(value,\ m\_Parameters[CommonFlagsIndex],\ (Byte)AnimatorCommonFlags.TriggerJump);}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Boolean\ TriggerCrouch}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ =>\ IsFlagSet(m\_Parameters[CommonFlagsIndex],\ (Byte)AnimatorCommonFlags.TriggerCrouch);}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ =>\ m\_Parameters[CommonFlagsIndex]\ =}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (Byte)SetOrClearFlag(value,\ m\_Parameters[CommonFlagsIndex],\ (Byte)AnimatorCommonFlags.TriggerCrouch);}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ [MethodImpl(MethodImplOptions.AggressiveInlining)]}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ Boolean\ IsFlagSet(Int32\ flags,\ Int32\ flag)\ =>\ (flags\ \&\ flag)\ !=\ 0;}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ [MethodImpl(MethodImplOptions.AggressiveInlining)]}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ Int32\ SetOrClearFlag(Boolean\ value,\ Int32\ flags,\ Int32\ flag)\ =>\ value\ ?\ flags\ |\ flag\ :\ flags\ \&\ \string~flag;}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ [MethodImpl(MethodImplOptions.AggressiveInlining)]}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ Byte\ ConvertToByte(Single\ value)\ =>\ (Byte)Mathf.Min(Byte.MaxValue,\ value\ *\ Byte.MaxValue\ +\ 0.5f);}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ [MethodImpl(MethodImplOptions.AggressiveInlining)]}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ Single\ ConvertToFloat(Byte\ value)\ =>\ value\ /\ (Single)Byte.MaxValue;}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_animation_1_1_avatar_animator_parameters}{AvatarAnimatorParameters}}(Int32\ parameterCount\ =\ MinParameterCount)}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (parameterCount\ <\ MinParameterCount)}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\$\textcolor{stringliteral}{"{}at\ least\ \{MinParameterCount\}\ parameters\ required"{}});}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Parameters\ =\ \textcolor{keyword}{new}\ Byte[parameterCount];}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00085}00085\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00087}00087\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{enum}\ AnimatorCommonFlags\ :\ \textcolor{keywordtype}{byte}}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00088}00088\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ IsGrounded\ =\ 1\ <<\ 0,}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ IsFalling\ =\ 1\ <<\ 1,}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ IsDying\ =\ 1\ <<\ 2,}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ tbd}}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ TriggerJump\ =\ 1\ <<\ 4,}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ TriggerCrouch\ =\ 1\ <<\ 5,}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ TriggerAttack\ =\ 1\ <<\ 6,}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ TriggerInteract\ =\ 1\ <<\ 7,}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00098}00098\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_avatar_animator_parameters_8cs_source_l00099}00099\ \}}
+
+\end{DoxyCode}

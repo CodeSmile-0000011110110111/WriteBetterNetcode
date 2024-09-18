@@ -1,0 +1,44 @@
+\doxysubsection{Kyle\+Animation\+Event\+Handler.\+cs}
+\hypertarget{_kyle_animation_event_handler_8cs_source}{}\label{_kyle_animation_event_handler_8cs_source}\index{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Samples/RoboKyle/Animator/KyleAnimationEventHandler.cs@{U:/Netcode/WriteBetterNetcode/WriteBetterNetcode/Assets/CodeSmile/MultiPal/Scripts/Runtime/Samples/RoboKyle/Animator/KyleAnimationEventHandler.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2021-\/2024\ Steffen\ Itterheim}}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00002}00002\ \textcolor{comment}{//\ Refer\ to\ included\ LICENSE\ file\ for\ terms\ and\ conditions.}}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }Random\ =\ UnityEngine.Random;}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00009}\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_samples}{00009}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator}{CodeSmile.MultiPal.Samples.RoboKyle.Animator}}}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00011}00011\ \ \ \ \ [DisallowMultipleComponent]}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00012}\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animation_event_handler}{00012}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{sealed}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_code_smile_1_1_multi_pal_1_1_samples_1_1_robo_kyle_1_1_animator_1_1_kyle_animation_event_handler}{KyleAnimationEventHandler}}\ :\ MonoBehaviour}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00013}00013\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00014}00014\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ AudioClip\ m\_LandingAudioClip;}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ AudioClip[]\ m\_FootstepAudioClips;}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ [SerializeField]\ [Range(0f,\ 1f)]\ \textcolor{keyword}{private}\ Single\ m\_FootstepAudioVolume\ =\ 0.5f;}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ [SerializeField]\ \textcolor{keyword}{private}\ Single\ m\_ClipMinWeight\ =\ 0.5f;}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnFootstep(AnimationEvent\ animationEvent)}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (animationEvent.animatorClipInfo.weight\ >\ m\_ClipMinWeight)}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_FootstepAudioClips.Length\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ index\ =\ Random.Range(0,\ m\_FootstepAudioClips.Length);}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ clip\ =\ m\_FootstepAudioClips[index];}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AudioSource.PlayClipAtPoint(clip,\ transform.position,\ m\_FootstepAudioVolume);}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OnLand(AnimationEvent\ animationEvent)}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (animationEvent.animatorClipInfo.weight\ >\ m\_ClipMinWeight)}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AudioSource.PlayClipAtPoint(m\_LandingAudioClip,\ transform.position,\ m\_FootstepAudioVolume);}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_kyle_animation_event_handler_8cs_source_l00038}00038\ \}}
+
+\end{DoxyCode}
