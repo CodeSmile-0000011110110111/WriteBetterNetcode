@@ -57,6 +57,18 @@ namespace CodeSmile.MultiPal.Input
 
 		private void Start() => PairUnpairedDevicesWithHostUser();
 
+		private void CreateInputActions()
+		{
+			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
+			{
+				var input = new GeneratedInput();
+				input.Pairing.SetCallbacks(this);
+				input.UI.Enable();
+
+				m_GeneratedInputs[playerIndex] = input;
+			}
+		}
+
 		private void CreateInputUsers()
 		{
 			// create users up-front to ensure indexes range from 0-3
@@ -72,27 +84,9 @@ namespace CodeSmile.MultiPal.Input
 			if (HostUser.valid == false)
 				return;
 
-			var firstDevice = true;
 			var unpairedDevices = InputUser.GetUnpairedInputDevices();
 			foreach (var device in unpairedDevices)
-			{
 				HostUser = InputUser.PerformPairingWithDevice(device, HostUser);
-
-				if (firstDevice)
-					firstDevice = false;
-			}
-		}
-
-		private void CreateInputActions()
-		{
-			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
-			{
-				var input = new GeneratedInput();
-				input.Pairing.SetCallbacks(this);
-				input.UI.Enable();
-
-				m_GeneratedInputs[playerIndex] = input;
-			}
 		}
 
 		private void OnDeviceChange(InputDevice device, InputDeviceChange change)

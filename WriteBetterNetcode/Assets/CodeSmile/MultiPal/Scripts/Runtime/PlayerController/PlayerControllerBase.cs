@@ -180,23 +180,5 @@ namespace CodeSmile.MultiPal.PlayerController
 			dest.includeLayers = source.includeLayers;
 			dest.excludeLayers = source.excludeLayers;
 		}
-
-		/// <summary>
-		///     Moves character with velocity.
-		/// </summary>
-		protected void Move()
-		{
-			if (Velocity != Vector3.zero)
-			{
-				CharController.Move(Velocity);
-				MotionTarget.forward = Velocity.normalized;
-			}
-		}
-
-		protected void Rotate()
-		{
-			//Target.localRotation = Rotation;
-			//Target.Rotate(0f, m_Pan.Value, 0f);
-		}
 	}
 }

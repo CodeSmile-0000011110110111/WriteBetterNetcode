@@ -120,6 +120,9 @@ namespace CodeSmile.MultiPal.PlayerController
 
 		public void InstantiatePlayerControllers(Int32 playerIndex)
 		{
+			// prevent instantiated controllers from being enabled right away, this could be costly and cause issues
+			gameObject.SetActive(false);
+
 			var prefabs = m_ControllerPrefabs;
 			for (var ctrlIndex = 0; ctrlIndex < prefabs.Count; ctrlIndex++)
 			{
@@ -135,6 +138,9 @@ namespace CodeSmile.MultiPal.PlayerController
 
 			// make sure first controller is valid
 			m_ActiveControllerIndexes[playerIndex] = m_DefaultControllerIndex;
+
+			// re-enable ourselves
+			gameObject.SetActive(true);
 		}
 
 		public void SetPlayerControllerTargets(Int32 playerIndex, Transform motionTarget, Transform rotationTarget)
