@@ -80,3 +80,7 @@ WriteBetterNetcode/Assets/StarterAssets.meta
 WriteBetterNetcode/Assets/StarterAssets/*
 WriteBetterNetcode/Packages/com.unity.asset-store-tools.meta
 WriteBetterNetcode/Packages/com.unity.asset-store-tools/
+
+# Synty Assets (commercial)
+/WriteBetterNetcode/[Aa]ssets/_Synty.meta
+/WriteBetterNetcode/[Aa]ssets/_Synty/*
