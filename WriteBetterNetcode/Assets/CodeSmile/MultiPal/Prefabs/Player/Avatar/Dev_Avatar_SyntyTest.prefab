@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5615815007780928290}
   - component: {fileID: -1828357186823500144}
   - component: {fileID: 8499738734839574339}
+  - component: {fileID: 978896221432024690}
   m_Layer: 3
   m_Name: Dev_Avatar_SyntyTest
   m_TagString: Player
@@ -95,6 +96,27 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2f310d72fcf71c643acb85db135dbec0, type: 3}
   m_FootstepAudioVolume: 0.5
   m_ClipMinWeight: 0.5
+--- !u!114 &978896221432024690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3862277631971027947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f015ac13bc8243a29a4b4fb575dca813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LinkedRenderer: {fileID: 6601515465245534580}
+  m_RootBone: {fileID: 6513469197312204426}
+  m_BonePrimitive: 3
+  m_HipBonePrimitiveScale: 0.25
+  m_BonePrimitiveScale: 0.5
+  m_AutoUpdateBones: 0
+  m_ClickToCreateBones: 0
+  m_ClickToDestroyBones: 0
+  m_BonePrimitives: []
 --- !u!1 &5630455173897179636
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +405,11 @@ PrefabInstance:
       addedObject: {fileID: 7248698195602912299}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddc4cd0622acc4847817cc15268b4a19, type: 3}
+--- !u!4 &6513469197312204426 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4844984119303382, guid: ddc4cd0622acc4847817cc15268b4a19, type: 3}
+  m_PrefabInstance: {fileID: 6518199346853413468}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6513770334001490172 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4719508149463712, guid: ddc4cd0622acc4847817cc15268b4a19, type: 3}
@@ -391,5 +418,10 @@ Transform:
 --- !u!4 &6519929533416913060 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4005077195242232, guid: ddc4cd0622acc4847817cc15268b4a19, type: 3}
+  m_PrefabInstance: {fileID: 6518199346853413468}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &6601515465245534580 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 137360423104326440, guid: ddc4cd0622acc4847817cc15268b4a19, type: 3}
   m_PrefabInstance: {fileID: 6518199346853413468}
   m_PrefabAsset: {fileID: 0}
