@@ -82,7 +82,12 @@ namespace CodeSmile.MultiPal.Samples.Tests
 
 			if (m_ClickToDestroyBones || m_ClickToCreateBones || m_AutoUpdateBones)
 			{
-				m_ClickToDestroyBones = false;
+				if (m_ClickToDestroyBones)
+				{
+					m_ClickToDestroyBones = false;
+					m_AutoUpdateBones = false;
+				}
+
 				DestroyBonePrimitives();
 			}
 
