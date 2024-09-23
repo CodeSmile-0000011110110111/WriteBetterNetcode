@@ -1034,6 +1034,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!114 &88062336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1046,7 +1048,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -1064,6 +1069,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!1 &94268890
@@ -1900,7 +1906,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -1918,6 +1927,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &131496774
@@ -1943,6 +1953,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &134187678
 GameObject:
   m_ObjectHideFlags: 0
@@ -2095,7 +2107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -2113,6 +2128,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &134187685
@@ -2138,6 +2154,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &139437660
 GameObject:
   m_ObjectHideFlags: 0
@@ -2605,7 +2623,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -2623,6 +2644,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &156382605
@@ -2648,6 +2670,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &159057690
 GameObject:
   m_ObjectHideFlags: 0
@@ -2800,7 +2824,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -2818,6 +2845,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &159057697
@@ -2843,6 +2871,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &167637698
 GameObject:
   m_ObjectHideFlags: 0
@@ -3502,7 +3532,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -3520,6 +3553,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &203323761
@@ -3545,6 +3579,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &217849932
 GameObject:
   m_ObjectHideFlags: 0
@@ -5311,7 +5347,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -5329,6 +5368,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &279933642
@@ -5354,6 +5394,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &288293057
 GameObject:
   m_ObjectHideFlags: 0
@@ -6383,7 +6425,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -6401,6 +6446,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &440688962
@@ -6426,6 +6472,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &477222191
 GameObject:
   m_ObjectHideFlags: 0
@@ -7041,7 +7089,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -7059,6 +7110,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &510618589
@@ -7084,6 +7136,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &513688237
 GameObject:
   m_ObjectHideFlags: 0
@@ -8382,7 +8436,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -8400,6 +8457,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &641522013
@@ -8425,6 +8483,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &654937144
 GameObject:
   m_ObjectHideFlags: 0
@@ -9448,7 +9508,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -9466,6 +9529,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &709102703
@@ -9491,6 +9555,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &732495825
 GameObject:
   m_ObjectHideFlags: 0
@@ -9764,7 +9830,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -9782,6 +9851,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &748661469
@@ -9807,6 +9877,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &751298631
 GameObject:
   m_ObjectHideFlags: 0
@@ -9959,7 +10031,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -9977,6 +10052,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &751298638
@@ -10002,6 +10078,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &757009045
 GameObject:
   m_ObjectHideFlags: 0
@@ -12321,7 +12399,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -12339,6 +12420,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &1030340254
@@ -12364,6 +12446,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1030870601
 GameObject:
   m_ObjectHideFlags: 0
@@ -12654,7 +12738,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -12672,6 +12759,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &1035211121
@@ -12697,6 +12785,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1036977692
 GameObject:
   m_ObjectHideFlags: 0
@@ -13449,7 +13539,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -13467,6 +13560,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &1094575138
@@ -13492,6 +13586,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1117713786
 GameObject:
   m_ObjectHideFlags: 0
@@ -13644,7 +13740,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -13662,6 +13761,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &1117713793
@@ -13687,6 +13787,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1128349844
 GameObject:
   m_ObjectHideFlags: 0
@@ -14440,7 +14542,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -14458,6 +14563,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &1181009727
@@ -14483,6 +14589,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1203138585
 GameObject:
   m_ObjectHideFlags: 0
@@ -14635,7 +14743,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -14653,6 +14764,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &1203138592
@@ -14678,6 +14790,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1204991769
 GameObject:
   m_ObjectHideFlags: 0
@@ -15251,7 +15365,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -15269,6 +15386,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &1302008469
@@ -15294,6 +15412,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1306120117
 GameObject:
   m_ObjectHideFlags: 0
@@ -15756,7 +15876,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -15774,6 +15897,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &1326509966
@@ -15799,6 +15923,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1326558975
 GameObject:
   m_ObjectHideFlags: 0
@@ -16434,7 +16560,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -16452,6 +16581,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &1394848784
@@ -16477,6 +16607,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1409231556
 GameObject:
   m_ObjectHideFlags: 0
@@ -18715,7 +18847,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -18733,6 +18868,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &1684922614
@@ -18758,6 +18894,189 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
+--- !u!1001 &1704669787
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 177638, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_Name
+      value: '[Graphy]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439282, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_ScaleFactor
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439282, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439282, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439282, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439282, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439282, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_ReferencePixelsPerUnit
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11480938, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_toggleModeCtrl
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_audioModuleState
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_toggleActiveCtrl
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_toggleModeKeyCode
+      value: 96
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_advancedModuleState
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_cautionFpsThreshold
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_graphModuleOffset.y
+      value: 170
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_graphModulePosition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_toggleActiveKeyCode
+      value: 95
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_advancedModulePosition
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 22323726, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22323726, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22415034, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -188.60156
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22493042, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -362.89844
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
 --- !u!1 &1710303179
 GameObject:
   m_ObjectHideFlags: 0
@@ -19443,7 +19762,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -19461,6 +19783,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &1823328719
@@ -19486,6 +19809,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1847413021
 GameObject:
   m_ObjectHideFlags: 0
@@ -19810,7 +20135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -19828,6 +20156,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &1854075793
@@ -19853,6 +20182,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1869230972
 GameObject:
   m_ObjectHideFlags: 0
@@ -20714,7 +21045,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -20732,6 +21066,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &1912046404
@@ -20757,6 +21092,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1924063753
 GameObject:
   m_ObjectHideFlags: 0
@@ -21332,7 +21669,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -21350,6 +21690,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &1994655200
@@ -21375,6 +21716,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &2005306941
 GameObject:
   m_ObjectHideFlags: 0
@@ -22798,7 +23141,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -22816,6 +23162,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!114 &2111778330
@@ -22841,6 +23188,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -22851,3 +23200,4 @@ SceneRoots:
   - {fileID: 633853510}
   - {fileID: 772385763}
   - {fileID: 1435225053}
+  - {fileID: 1704669787}

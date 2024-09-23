@@ -44,8 +44,8 @@ PlayerSettings:
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1024
   defaultScreenHeight: 768
-  defaultScreenWidthWeb: 960
-  defaultScreenHeightWeb: 600
+  defaultScreenWidthWeb: 1128
+  defaultScreenHeightWeb: 615
   m_StereoRenderingPath: 0
   m_ActiveColorSpace: 1
   unsupportedMSAAFallback: 0
@@ -142,8 +142,8 @@ PlayerSettings:
   tvOSBundleVersion: 1.0
   bundleVersion: 0.6.0
   preloadedAssets:
-  - {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   - {fileID: 11400000, guid: 9541b54912603f54e854b5843529b072, type: 2}
+  - {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c47825600, type: 3}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -187,7 +187,7 @@ PlayerSettings:
   CreateWallpaper: 0
   androidSplitApplicationBinary: 0
   keepLoadedShadersAlive: 0
-  StripUnusedMeshComponents: 0
+  StripUnusedMeshComponents: 1
   strictShaderVariantMatching: 0
   VertexChannelCompressionMask: 4054
   iPhoneSdkVersion: 988
@@ -518,9 +518,14 @@ PlayerSettings:
       m_Height: 720
       m_Kind: 1
       m_SubKind: 
-  m_BuildTargetBatching: []
+  m_BuildTargetBatching:
+  - m_BuildTarget: WebGL
+    m_StaticBatching: 1
+    m_DynamicBatching: 1
   m_BuildTargetShaderSettings: []
-  m_BuildTargetGraphicsJobs: []
+  m_BuildTargetGraphicsJobs:
+  - m_BuildTarget: WebGLSupport
+    m_GraphicsJobs: 0
   m_BuildTargetGraphicsJobMode: []
   m_BuildTargetGraphicsAPIs:
   - m_BuildTarget: iOSSupport
@@ -538,7 +543,8 @@ PlayerSettings:
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
   openGLRequireES32: 0
-  m_TemplateCustomTags: {}
+  m_TemplateCustomTags:
+    PRODUCT_DESCRIPTION: MultiPal
   mobileMTRendering:
     Android: 1
     iPhone: 1
@@ -829,7 +835,8 @@ PlayerSettings:
   platformArchitecture: {}
   scriptingBackend:
     Android: 1
-  il2cppCompilerConfiguration: {}
+  il2cppCompilerConfiguration:
+    WebGL: 0
   il2cppCodeGeneration: {}
   il2cppStacktraceInformation: {}
   managedStrippingLevel:
