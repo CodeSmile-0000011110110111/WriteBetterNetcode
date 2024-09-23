@@ -19,12 +19,12 @@ namespace CodeSmile.Components.Registry
 	public sealed class ComponentsRegistry : MonoBehaviour
 	{
 		/// <summary>
-		/// Event raised when assignment occurs, including null.
+		///     Event raised when assignment occurs, including null.
 		/// </summary>
 		public static event Action<Type, Component> OnComponentAssigned;
 
-		private static Dictionary<Type, Component> s_Components;
-		private static Dictionary<Type, List<TaskCompletionSource<Object>>> s_AwaitingAssignmentSources;
+		private static Dictionary<Type, Component> s_Components = new();
+		private static Dictionary<Type, List<TaskCompletionSource<Object>>> s_AwaitingAssignmentSources = new();
 
 		/// <summary>
 		///     Get a component from the registry. Returns null if no such component is currently registered.
@@ -35,7 +35,7 @@ namespace CodeSmile.Components.Registry
 		/// <typeparam name="T"></typeparam>
 		/// <returns></returns>
 		public static T Get<T>() where T : Component =>
-			s_Components.ContainsKey(typeof(T)) ? s_Components[typeof(T)] as T : null;
+			s_Components.TryGetValue(typeof(T), out var component) ? component as T : null;
 
 		/// <summary>
 		///     Gets a component from the registry, awaitable.
@@ -48,9 +48,8 @@ namespace CodeSmile.Components.Registry
 		public static async Task<T> GetAsync<T>() where T : Component
 		{
 			// if already assigned, return instantly
-			var component = Get<T>();
-			if (component != null)
-				return component;
+			if (s_Components.TryGetValue(typeof(T), out var component))
+				return component as T;
 
 			// create entry for type in awaitables
 			if (s_AwaitingAssignmentSources.ContainsKey(typeof(T)) == false)
@@ -84,7 +83,7 @@ namespace CodeSmile.Components.Registry
 			if (s_AwaitingAssignmentSources.TryGetValue(typeof(T), out var awaitables))
 			{
 				foreach (var completionSource in awaitables)
-					completionSource.SetResult(component);
+					completionSource?.SetResult(component);
 
 				s_AwaitingAssignmentSources.Remove(typeof(T));
 			}
@@ -94,8 +93,8 @@ namespace CodeSmile.Components.Registry
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
 		private static void ResetStaticFields()
 		{
-			s_Components = new Dictionary<Type, Component>();
-			s_AwaitingAssignmentSources = new Dictionary<Type, List<TaskCompletionSource<Object>>>();
+			s_Components = new();
+			s_AwaitingAssignmentSources = new();
 			OnComponentAssigned = null;
 		}
 
