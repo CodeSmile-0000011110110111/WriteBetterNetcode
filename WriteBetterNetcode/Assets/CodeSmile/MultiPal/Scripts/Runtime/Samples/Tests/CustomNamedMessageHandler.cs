@@ -14,25 +14,28 @@ namespace CodeSmile.MultiPal.Samples.Tests
 		private readonly String kMessageName = nameof(CustomNamedMessageHandler);
 
 		private NetworkManager NetworkManager => NetworkManager.Singleton;
-		private bool IsServer => NetworkManager.Singleton.IsServer;
+		private Boolean IsServer => NetworkManager.Singleton.IsServer;
 
 		//public override void OnNetworkSpawn()
-		void OnEnable()
+		private void OnEnable()
 		{
-			NetworkManager.CustomMessagingManager.RegisterNamedMessageHandler(kMessageName, ReceiveMessageInternal);
-
-			if (IsServer)
-				NetworkManager.OnClientConnectedCallback += OnClientConnectedCallback;
-			else
+			if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsListening)
 			{
-				var guid = Guid.NewGuid();
-				Debug.Log($"<color=yellow>Client sending GUID ({guid}) to server.</color>");
-				SendMessage(guid);
+				NetworkManager.CustomMessagingManager.RegisterNamedMessageHandler(kMessageName, ReceiveMessageInternal);
+
+				if (IsServer)
+					NetworkManager.OnClientConnectedCallback += OnClientConnectedCallback;
+				else
+				{
+					var guid = Guid.NewGuid();
+					Debug.Log($"<color=yellow>Client sending GUID ({guid}) to server.</color>");
+					SendMessage(guid);
+				}
 			}
 		}
 
 		//public override void OnNetworkDespawn()
-		void OnDisable()
+		private void OnDisable()
 		{
 			if (NetworkManager != null)
 			{
