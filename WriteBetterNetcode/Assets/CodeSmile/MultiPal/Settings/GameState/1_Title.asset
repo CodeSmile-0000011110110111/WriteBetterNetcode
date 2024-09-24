@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d441dd28599d4601ba378fbdb245274c, type: 3}
-  m_Name: 0_LaunchScreenState
+  m_Script: {fileID: 11500000, guid: 6c695fd26cae44559cd0289d0a0d1f2e, type: 3}
+  m_Name: 1_Title
   m_EditorClassIdentifier: 
   m_NextStateCondition: {fileID: 11400000, guid: 3f0f13f5492ad4447a7ead17e8c9aa2c, type: 2}
-  m_NextState: {fileID: 11400000, guid: 8962f8fd08df4b240a9682216fb78c86, type: 2}
+  m_NextState: {fileID: 11400000, guid: 0caad488cee824043b076a918d29a8a3, type: 2}
   m_ServerScenes: []
   m_ClientScenes:
   - m_SceneReference:
-      m_SceneName: +000_LaunchScreen
-      m_ScenePath: Assets/CodeSmile/MultiPal/Scenes/+000_LaunchScreen.unity
-      m_SceneAsset: {fileID: 102900000, guid: 5e750ae4c94a0c9499de043250824ef5, type: 3}
+      m_SceneName: +000_TitleScreen
+      m_ScenePath: Assets/CodeSmile/MultiPal/Scenes/+000_TitleScreen.unity
+      m_SceneAsset: {fileID: 102900000, guid: 4c56a6262b2108241899f8226b3feac8, type: 3}
     m_ForceReload: 0

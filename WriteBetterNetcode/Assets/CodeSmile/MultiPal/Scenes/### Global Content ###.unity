@@ -707,11 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86500ef660da4c1a809f19bf72860e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_GameStates:
-  - {fileID: 11400000, guid: 491f0c9b883316041ad53967cb4144fb, type: 2}
-  - {fileID: 11400000, guid: 8962f8fd08df4b240a9682216fb78c86, type: 2}
-  - {fileID: 11400000, guid: 02f1be5f912188b46a4ffc83203321c8, type: 2}
-  - {fileID: 11400000, guid: 6258255dfa88d1f43a333377aff862ba, type: 2}
+  m_GameStates: {fileID: 11400000, guid: be0fecdd82adbc149a07f8b2debee0e2, type: 2}
 --- !u!114 &849229793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1156,6 +1152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593a2fe42fa9d37498c96f9a383b6521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NetworkManagerExpanded: 0
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 2697057450401653007}

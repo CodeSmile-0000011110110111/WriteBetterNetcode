@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c050faa183b84a0eaf204ab7095f7448, type: 3}
-  m_Name: 2_MenuScreenState
+  m_Script: {fileID: 11500000, guid: 6c695fd26cae44559cd0289d0a0d1f2e, type: 3}
+  m_Name: 2_Menu
   m_EditorClassIdentifier: 
   m_NextStateCondition: {fileID: 11400000, guid: 85e16f6619482704c8a43e1ddcdd1e5c, type: 2}
-  m_NextState: {fileID: 11400000, guid: 6258255dfa88d1f43a333377aff862ba, type: 2}
+  m_NextState: {fileID: 11400000, guid: ed3af041ec114ef4dac098a3ed00023d, type: 2}
   m_ServerScenes: []
   m_ClientScenes:
   - m_SceneReference:

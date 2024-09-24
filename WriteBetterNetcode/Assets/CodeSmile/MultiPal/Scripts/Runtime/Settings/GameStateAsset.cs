@@ -11,14 +11,14 @@ using UnityEngine;
 
 namespace CodeSmile.MultiPal.Settings
 {
-	[Serializable]
-	public abstract class GameStateBase : ScriptableObject
+	[CreateAssetMenu(fileName = nameof(GameStateAsset), order = 1, menuName = MenuRoot + nameof(GameStateAsset))]
+	public class GameStateAsset : ScriptableObject
 	{
-		public const String MenuRoot = "CodeSmile/Game States/";
+		public const String MenuRoot = "CodeSmile/";
 
 		// TODO: may have multiple exit states
 		[SerializeField] private GameStateConditionBase m_NextStateCondition;
-		[SerializeField] private GameStateBase m_NextState;
+		[SerializeField] private GameStateAsset m_NextState;
 
 		[Tooltip("These scenes will be loaded or remain loaded and synchronized among clients when entering this state. " +
 		         "Only the server (host) will load these scenes. IMPORTANT: Running network session required when " +
@@ -29,7 +29,7 @@ namespace CodeSmile.MultiPal.Settings
 		         "The contents of these scenes are not synchronized with other clients or the server.")]
 		[SerializeField] private List<AdditiveScene> m_ClientScenes = new();
 		public GameStateConditionBase NextStateCondition => m_NextStateCondition;
-		public GameStateBase NextState => m_NextState;
+		public GameStateAsset NextState => m_NextState;
 
 		public AdditiveScene[] ClientScenes => m_ClientScenes.ToArray();
 		public AdditiveScene[] ServerScenes => m_ServerScenes.ToArray();
@@ -46,13 +46,13 @@ namespace CodeSmile.MultiPal.Settings
 
 		public virtual Boolean ConditionsSatisfied() => m_NextStateCondition != null && m_NextStateCondition.IsSatisfied();
 
-		public virtual void OnEnterState(GameStateBase fromState)
+		public virtual void OnEnterState(GameStateAsset fromState)
 		{
 			if (m_NextStateCondition != null)
 				m_NextStateCondition.OnEnterState();
 		}
 
-		public virtual void OnExitState(GameStateBase nextState)
+		public virtual void OnExitState(GameStateAsset nextState)
 		{
 			if (m_NextStateCondition != null)
 				m_NextStateCondition.OnExitState();

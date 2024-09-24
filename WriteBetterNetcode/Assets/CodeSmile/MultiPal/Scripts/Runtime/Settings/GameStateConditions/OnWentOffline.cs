@@ -8,9 +8,9 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Settings.GameStates
+namespace CodeSmile.MultiPal.Settings.SampleGameStates
 {
-	[CreateAssetMenu(fileName = nameof(OnWentOffline), menuName = GameStateBase.MenuRoot + nameof(OnWentOffline),
+	[CreateAssetMenu(fileName = nameof(OnWentOffline), menuName = GameStateAsset.MenuRoot + nameof(OnWentOffline),
 		order = 0)]
 	public sealed class OnWentOffline : GameStateConditionBase
 	{

@@ -1,23 +1,27 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/CodeSmile/MultiPal/GUI/USS/Button.uss?fileID=7433441132597879392&amp;guid=d37e4269193f54644a6cb977bfb4f1da&amp;type=3#Button" />
-    <engine:VisualElement style="flex-grow: 1; width: 50%; align-self: center;">
-        <engine:GroupBox text="Singleplayer" name="SingleplayerGroup" style="border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
-            <engine:Button text="Offline" name="OfflineSingleplayerButton" />
-            <engine:Button text="Host Alone" name="HostedSingleplayerButton" />
-        </engine:GroupBox>
-        <engine:GroupBox text="Host Multiplayer" style="border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
-            <engine:Toggle label="Allow Web Clients (TCP WebSockets)" name="AllowWebClientsToggle" style="flex-direction: row-reverse; align-self: flex-start; margin-left: 160px;" />
-            <engine:Button text="Relay" name="HostRelayButton" enable-rich-text="false" enabled="true" />
-            <engine:Button text="Direct IP" name="HostDirectButton" enable-rich-text="false" />
-        </engine:GroupBox>
-        <engine:GroupBox text="Join Multiplayer with Relay" name="GroupBox" style="border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
-            <engine:TextField label="Join Code" placeholder-text="&lt;enter join code&gt;" name="JoinCodeField" />
-            <engine:Button text="Join Relay" enable-rich-text="false" name="JoinRelayButton" />
-        </engine:GroupBox>
-        <engine:GroupBox text="Join Multiplayer with Address" name="GroupBox" style="border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
-            <engine:TextField label="Address" placeholder-text="&lt;enter IP address&gt;" name="AddressField" value="127.0.0.1" />
-            <engine:TextField label="Port" placeholder-text="&lt;enter port number&gt;" name="PortField" value="7777" />
-            <engine:Button text="Join Direct IP" enable-rich-text="false" name="JoinDirectButton" />
-        </engine:GroupBox>
+    <engine:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: row; align-items: center;">
+        <engine:VisualElement style="flex-grow: 1;">
+            <engine:GroupBox text="Singleplayer" name="SingleplayerGroup" style="border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+                <engine:Button text="Offline" name="OfflineSingleplayerButton" />
+                <engine:Button text="Host Alone" name="HostedSingleplayerButton" />
+            </engine:GroupBox>
+            <engine:GroupBox text="Host Multiplayer" style="border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+                <engine:Toggle label="Enable Web Clients" name="AllowWebClientsToggle" style="flex-direction: row-reverse; align-self: flex-start; margin-left: 8px; margin-top: 2px; margin-right: 4px;" />
+                <engine:Button text="Host Relay" name="HostRelayButton" enable-rich-text="false" enabled="true" />
+                <engine:Button text="Host  IP" name="HostDirectButton" enable-rich-text="false" />
+            </engine:GroupBox>
+        </engine:VisualElement>
+        <engine:VisualElement style="flex-grow: 1;">
+            <engine:GroupBox text="Join Multiplayer with Relay" name="GroupBox" style="border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+                <engine:TextField label="Join Code" placeholder-text="&lt;enter join code&gt;" name="JoinCodeField" tooltip="6 digit relay join code provided by host" />
+                <engine:Button text="Join Relay" enable-rich-text="false" name="JoinRelayButton" />
+            </engine:GroupBox>
+            <engine:GroupBox text="Join Multiplayer with Address" name="GroupBox" style="border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+                <engine:TextField label="Address" placeholder-text="&lt;enter IP address&gt;" name="AddressField" value="127.0.0.1" tooltip="IP v4 or v6 address, no domain names" />
+                <engine:TextField label="Port" placeholder-text="&lt;enter port number&gt;" name="PortField" value="7777" tooltip="Host&apos;s port in the range 1024 to 65535. Default: 7777" />
+                <engine:Button text="Join IP" enable-rich-text="false" name="JoinDirectButton" />
+            </engine:GroupBox>
+        </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

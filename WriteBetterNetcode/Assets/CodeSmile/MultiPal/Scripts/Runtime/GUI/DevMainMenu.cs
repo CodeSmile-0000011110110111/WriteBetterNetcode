@@ -102,7 +102,11 @@ namespace CodeSmile.MultiPal.GUI
 			PortField.UnregisterValueChangedCallback(OnPortFieldChanged);
 		}
 
-		private void OnOfflineSingleplayerButtonClicked() => throw new NotImplementedException();
+		private void OnOfflineSingleplayerButtonClicked()
+		{
+			StartOfflineSingleplayer();
+		}
+
 
 		private void OnHostedSingleplayerButtonClicked() => StartHost(false, true);
 
@@ -141,6 +145,12 @@ namespace CodeSmile.MultiPal.GUI
 		private void OnHostDirectButtonClicked() => StartHost(false);
 		private void OnJoinRelayButtonClicked() => JoinWithRelay(JoinCodeField.text);
 		private void OnJoinDirectButtonClicked() => JoinWithAddress(AddressField.text, PortField.text);
+
+		private void StartOfflineSingleplayer()
+		{
+			var gameState = ComponentsRegistry.Get<GameState.GameState>();
+			gameState.StartOfflineSingleplayer_Hack();
+		}
 
 		private void StartHost(Boolean withRelay, Boolean hostAlone = false)
 		{

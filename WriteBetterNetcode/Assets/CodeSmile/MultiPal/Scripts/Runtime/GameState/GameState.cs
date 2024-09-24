@@ -16,21 +16,15 @@ namespace CodeSmile.MultiPal.GameState
 	[DisallowMultipleComponent]
 	public sealed class GameState : MonoBehaviour
 	{
-		[SerializeField] private GameStateBase[] m_GameStates = new GameStateBase[0];
+		[SerializeField] private GameStates m_GameStates;
 
 		private Int32 m_ActiveStateIndex = -1;
 
 		private Boolean m_StateChangeInProgress;
 
-		private GameStateBase ActiveState => m_ActiveStateIndex >= 0 ? m_GameStates[m_ActiveStateIndex] : null;
+		private GameStateAsset ActiveState => m_ActiveStateIndex >= 0 ? m_GameStates[m_ActiveStateIndex] : null;
 
-		private void Awake()
-		{
-			if (m_GameStates.Length == 0)
-				throw new ArgumentException("no game states assigned!");
-
-			ComponentsRegistry.Set(this);
-		}
+		private void Awake() => ComponentsRegistry.Set(this);
 
 		private void Start() => SetActiveGameState(0);
 
@@ -45,18 +39,15 @@ namespace CodeSmile.MultiPal.GameState
 			var activeState = ActiveState;
 			if (activeState != null && activeState.ConditionsSatisfied())
 			{
-				var stateIndex = GetStateIndex(activeState.NextState);
+				var stateIndex = m_GameStates.GetStateIndex(activeState.NextState);
 				SetActiveGameState(stateIndex);
 			}
 		}
 
-		private Int32 GetStateIndex(GameStateBase state) => Array.IndexOf(m_GameStates, state);
+		public void StartOfflineSingleplayer_Hack() => SetActiveGameState(m_GameStates.OfflineSingleplayerStateIndex);
 
 		private async void SetActiveGameState(Int32 stateIndex)
 		{
-			if (stateIndex < 0 || stateIndex >= m_GameStates.Length)
-				throw new IndexOutOfRangeException($"stateIndex {stateIndex} out of range (has {m_GameStates.Length} states)");
-
 			if (m_StateChangeInProgress)
 				throw new InvalidOperationException("can't change GameState again - previous change still in progress!");
 

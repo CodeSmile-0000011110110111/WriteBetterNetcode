@@ -7,9 +7,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace CodeSmile.MultiPal.Settings.GameStates
+namespace CodeSmile.MultiPal.Settings.SampleGameStates
 {
-	[CreateAssetMenu(fileName = nameof(OnTimeoutCondition), menuName = GameStateBase.MenuRoot + nameof(OnTimeoutCondition),
+	[CreateAssetMenu(fileName = nameof(OnTimeoutCondition), menuName = GameStateAsset.MenuRoot + nameof(OnTimeoutCondition),
 		order = 0)]
 	public sealed class OnTimeoutCondition : GameStateConditionBase
 	{
