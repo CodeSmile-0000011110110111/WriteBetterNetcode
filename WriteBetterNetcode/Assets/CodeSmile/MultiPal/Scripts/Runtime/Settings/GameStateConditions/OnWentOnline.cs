@@ -8,7 +8,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Settings.SampleGameStates
+namespace CodeSmile.MultiPal.Settings.GameStateConditions
 {
 	[CreateAssetMenu(fileName = nameof(OnWentOnline), menuName = GameStateAsset.MenuRoot + nameof(OnWentOnline),
 		order = 0)]
