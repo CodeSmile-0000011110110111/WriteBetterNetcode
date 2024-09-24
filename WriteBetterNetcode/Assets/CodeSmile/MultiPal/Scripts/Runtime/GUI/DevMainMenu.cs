@@ -31,8 +31,6 @@ namespace CodeSmile.MultiPal.GUI
 			TransportConfig transportConfig, RelayConfig relayConfig)
 		{
 			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
-			Debug.Log($"netcodeState: {netcodeState}");
-
 			netcodeState.RequestStart(netcodeConfig, transportConfig, relayConfig);
 		}
 
@@ -40,12 +38,14 @@ namespace CodeSmile.MultiPal.GUI
 		{
 			base.Awake();
 
+			/*
 #if UNITY_WEBGL && !UNITY_EDITOR
 			// can't host on the web
 			AllowWebClientsToggle.SetEnabled(false);
 			HostRelayButton.SetEnabled(false);
 			HostDirectButton.SetEnabled(false);
 #endif
+			*/
 		}
 
 		private void Start() => RegisterNetcodeStateEvents();

@@ -20,14 +20,12 @@ state state1 {
 		state1_trans0 : IsNetcodeRole != None
 		state1_trans0 : IsRelayEnabled
 		state1_trans0 : ....
-		state1_trans0 : WentOnline.Invoke
 	}
 	state "Start w/o Relay" as state1_trans1
 	state state1_trans1 #line.dotted {
 		state1_trans1 : IsNetcodeRole != None
 		state1_trans1 : NOT(IsRelayEnabled)
 		state1_trans1 : ....
-		state1_trans1 : WentOnline.Invoke
 	}
 }
 state "RelayStarting" as state2
@@ -66,6 +64,7 @@ state state3 {
 		state3_trans1 : ....
 		state3_trans1 : TransportSetup
 		state3_trans1 : NetworkStart
+		state3_trans1 : WentOnline.Invoke
 		state3_trans1 : ....
 		state3_trans1 : ==== ""ERR -> {Offline}""
 		state3_trans1 : ==== + ""ResetNetcodeState""

@@ -143,15 +143,13 @@ namespace CodeSmile.MultiPal.Netcode
 				.ToState(relayStartState)
 				.WithConditions(
 					new IsNotNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None),
-					new IsRelayEnabled(m_RelayConfigVar))
-				.WithActions(invokeWentOnline);
+					new IsRelayEnabled(m_RelayConfigVar));
 
 			offlineState.AddTransition("Start w/o Relay")
 				.ToState(networkStartState)
 				.WithConditions(
 					new IsNotNetcodeRole(m_NetcodeConfigVar, NetcodeRole.None),
-					FSM.NOT(new IsRelayEnabled(m_RelayConfigVar)))
-				.WithActions(invokeWentOnline);
+					FSM.NOT(new IsRelayEnabled(m_RelayConfigVar)));
 
 			// Relay state
 			relayStartState.AddTransition("Relay Alloc/Join")
@@ -181,7 +179,8 @@ namespace CodeSmile.MultiPal.Netcode
 				.WithConditions(new IsNotListening())
 				.WithActions(
 					new TransportSetup(m_NetcodeConfigVar, m_TransportConfigVar, m_RelayConfigVar),
-					new NetworkStart(m_NetcodeConfigVar))
+					new NetworkStart(m_NetcodeConfigVar),
+					invokeWentOnline)
 				.ToErrorState(offlineState)
 				.WithErrorActions(resetNetcodeState);
 
