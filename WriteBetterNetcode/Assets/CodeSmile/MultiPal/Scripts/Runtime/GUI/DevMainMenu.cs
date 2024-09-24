@@ -16,6 +16,8 @@ namespace CodeSmile.MultiPal.GUI
 	[RequireComponent(typeof(UIDocument))]
 	public class DevMainMenu : MenuBase
 	{
+		private Button OfflineSingleplayerButton => m_Root.Q<Button>("OfflineSingleplayerButton");
+		private Button HostedSingleplayerButton => m_Root.Q<Button>("HostedSingleplayerButton");
 		private Toggle AllowWebClientsToggle => m_Root.Q<Toggle>("AllowWebClientsToggle");
 		private Button HostRelayButton => m_Root.Q<Button>("HostRelayButton");
 		private Button HostDirectButton => m_Root.Q<Button>("HostDirectButton");
@@ -34,11 +36,9 @@ namespace CodeSmile.MultiPal.GUI
 			netcodeState.RequestStart(netcodeConfig, transportConfig, relayConfig);
 		}
 
-		protected override void Awake()
-		{
-			base.Awake();
+		protected override void Awake() => base.Awake();
 
-			/*
+		/*
 #if UNITY_WEBGL && !UNITY_EDITOR
 			// can't host on the web
 			AllowWebClientsToggle.SetEnabled(false);
@@ -46,8 +46,6 @@ namespace CodeSmile.MultiPal.GUI
 			HostDirectButton.SetEnabled(false);
 #endif
 			*/
-		}
-
 		private void Start() => RegisterNetcodeStateEvents();
 		private void OnDestroy() => UnregisterNetcodeStateEvents();
 
@@ -80,6 +78,8 @@ namespace CodeSmile.MultiPal.GUI
 
 		private void RegisterGuiEvents()
 		{
+			OfflineSingleplayerButton.clicked += OnOfflineSingleplayerButtonClicked;
+			HostedSingleplayerButton.clicked += OnHostedSingleplayerButtonClicked;
 			HostRelayButton.clicked += OnHostRelayButtonClicked;
 			HostDirectButton.clicked += OnHostDirectButtonClicked;
 			JoinRelayButton.clicked += OnJoinRelayButtonClicked;
@@ -91,6 +91,8 @@ namespace CodeSmile.MultiPal.GUI
 
 		private void UnregisterGuiEvents()
 		{
+			OfflineSingleplayerButton.clicked -= OnOfflineSingleplayerButtonClicked;
+			HostedSingleplayerButton.clicked -= OnHostedSingleplayerButtonClicked;
 			HostRelayButton.clicked -= OnHostRelayButtonClicked;
 			HostDirectButton.clicked -= OnHostDirectButtonClicked;
 			JoinRelayButton.clicked -= OnJoinRelayButtonClicked;
@@ -99,6 +101,10 @@ namespace CodeSmile.MultiPal.GUI
 			AddressField.UnregisterValueChangedCallback(OnAddressFieldChanged);
 			PortField.UnregisterValueChangedCallback(OnPortFieldChanged);
 		}
+
+		private void OnOfflineSingleplayerButtonClicked() => throw new NotImplementedException();
+
+		private void OnHostedSingleplayerButtonClicked() => StartHost(false, true);
 
 		private void OnJoinCodeChanged(ChangeEvent<String> evt)
 		{
@@ -136,13 +142,14 @@ namespace CodeSmile.MultiPal.GUI
 		private void OnJoinRelayButtonClicked() => JoinWithRelay(JoinCodeField.text);
 		private void OnJoinDirectButtonClicked() => JoinWithAddress(AddressField.text, PortField.text);
 
-		private void StartHost(Boolean withRelay)
+		private void StartHost(Boolean withRelay, Boolean hostAlone = false)
 		{
 			var netcodeConfig = NetcodeConfig.FromCmdArgs();
 			netcodeConfig.Role = NetcodeRole.Host;
 
 			var transportConfig = TransportConfig.FromNetworkManagerWithCmdArgOverrides();
-			transportConfig.ServerListenAddress = "0.0.0.0";
+			transportConfig.Port = hostAlone ? UInt16.MinValue : transportConfig.Port;
+			transportConfig.ServerListenAddress = hostAlone ? "127.0.0.1" : "0.0.0.0";
 			transportConfig.UseWebSockets = AllowWebClientsToggle.value;
 
 			var relayConfig = RelayConfig.FromCmdArgs();
