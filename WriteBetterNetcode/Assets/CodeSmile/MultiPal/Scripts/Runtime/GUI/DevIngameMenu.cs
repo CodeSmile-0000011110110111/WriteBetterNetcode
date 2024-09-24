@@ -3,6 +3,7 @@
 
 using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Netcode;
+using CodeSmile.MultiPal.Settings;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -46,7 +47,11 @@ namespace CodeSmile.MultiPal.GUI
 		private void OnExitMenuButtonClicked()
 		{
 			Hide();
-			ComponentsRegistry.Get<NetcodeState>().RequestStopNetwork();
+			var netcodeState = ComponentsRegistry.Get<NetcodeState>();
+			netcodeState.RequestStopNetwork();
+
+			var gameState  = ComponentsRegistry.Get<GameState.GameState>();
+			gameState.StopOfflineSingleplayer_Hack();
 		}
 
 		private void OnExitDesktopButtonClicked()

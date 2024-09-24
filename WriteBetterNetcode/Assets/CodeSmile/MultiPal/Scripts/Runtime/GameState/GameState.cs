@@ -46,6 +46,17 @@ namespace CodeSmile.MultiPal.GameState
 
 		public void StartOfflineSingleplayer_Hack() => SetActiveGameState(m_GameStates.OfflineSingleplayerStateIndex);
 
+		public void StopOfflineSingleplayer_Hack()
+		{
+			var activeState = ActiveState;
+			if (activeState == null)
+				return;
+
+			var isOffline = m_GameStates.GetStateIndex(activeState) == m_GameStates.OfflineSingleplayerStateIndex;
+			if (isOffline)
+				SetActiveGameState(m_GameStates.PregameMenuStateIndex);
+		}
+
 		private async void SetActiveGameState(Int32 stateIndex)
 		{
 			if (m_StateChangeInProgress)

@@ -11,6 +11,7 @@ namespace CodeSmile.MultiPal.Settings
 	public sealed class GameStates : ScriptableObject
 	{
 		[SerializeField] private GameStateAsset[] m_States = new GameStateAsset[0];
+		[SerializeField] private Int32 m_PregameMenuStateIndex = 2;
 		[SerializeField] private Int32 m_OfflineSingleplayerStateIndex = 4;
 		public GameStateAsset this[Int32 stateIndex]
 		{
@@ -22,6 +23,7 @@ namespace CodeSmile.MultiPal.Settings
 				return m_States[stateIndex];
 			}
 		}
+		public Int32 PregameMenuStateIndex => m_PregameMenuStateIndex;
 		public Int32 OfflineSingleplayerStateIndex => m_OfflineSingleplayerStateIndex;
 
 		private void OnEnable()
