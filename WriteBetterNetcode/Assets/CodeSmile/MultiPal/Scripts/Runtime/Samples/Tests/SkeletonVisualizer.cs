@@ -4,8 +4,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.EditorCoroutines.Editor;
 using UnityEditor;
 using UnityEngine;
+using Object = System.Object;
 
 namespace CodeSmile.MultiPal.Samples.Tests
 {
@@ -39,7 +41,7 @@ namespace CodeSmile.MultiPal.Samples.Tests
 
 			var primitive = GameObject.CreatePrimitive(m_BonePrimitive);
 			if (primitive.TryGetComponent<SphereCollider>(out var collider))
-				Destroy(collider);
+				collider.DestroyInAnyMode();
 
 			var distanceToParent = m_HipBonePrimitiveScale;
 			var direction = Vector3.forward;
@@ -74,7 +76,7 @@ namespace CodeSmile.MultiPal.Samples.Tests
 #endif
 
 #if UNITY_EDITOR
-		private void OnValidate() => StartCoroutine(DelayedValidation());
+		private void OnValidate() => EditorCoroutineUtility.StartCoroutine(DelayedValidation(), this);
 
 		private IEnumerator DelayedValidation()
 		{
