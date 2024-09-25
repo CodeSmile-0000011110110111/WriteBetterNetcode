@@ -5,7 +5,6 @@ using CodeSmile.Components.Registry;
 using CodeSmile.Extensions.Netcode;
 using CodeSmile.MultiPal.Design;
 using System;
-using System.Threading.Tasks;
 using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
@@ -43,7 +42,6 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 		private void SpawnPlayerServerSide(UInt64 ownerId, Byte playerIndex, Byte avatarIndex)
 		{
-			Debug.Log("SpawnPlayerServerSide");
 			var position = Vector3.zero;
 			var rotation = Quaternion.identity;
 			var spawnLocations = ComponentsRegistry.Get<SpawnLocations>();

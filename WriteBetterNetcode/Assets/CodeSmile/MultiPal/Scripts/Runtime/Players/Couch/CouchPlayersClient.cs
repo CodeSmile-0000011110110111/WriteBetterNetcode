@@ -21,7 +21,10 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 		private Boolean IsOffline => NetworkManagerExt.IsOffline;
 
-		private void Awake() => m_ServerSide = GetComponent<CouchPlayersServer>();
+		private void Awake()
+		{
+			m_ServerSide = GetComponent<CouchPlayersServer>();
+		}
 
 		internal async Task<Player> SpawnPlayer(Int32 playerIndex, Int32 avatarIndex)
 		{
@@ -49,7 +52,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 		{
 			var player = playerObj.GetComponent<Player>();
 
-			// end awaitable task, and discard
+			// end awaitable task
 			m_SpawnTcs[playerIndex].SetResult(player);
 		}
 

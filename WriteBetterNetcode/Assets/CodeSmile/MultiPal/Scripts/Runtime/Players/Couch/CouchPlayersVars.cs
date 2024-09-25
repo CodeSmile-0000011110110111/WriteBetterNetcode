@@ -23,7 +23,6 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 			var empty = new NetworkObjectReference[] { default, default, default, default };
 			m_RemotePlayerReferences = new NetworkList<NetworkObjectReference>(empty);
-			Debug.Log($"AWAKE m_RemotePlayerReferences={m_RemotePlayerReferences}");
 		}
 
 		internal void SetPlayerReference(Int32 playerIndex, NetworkObject playerObj)

@@ -66,13 +66,22 @@ namespace CodeSmile.MultiPal.Players.Couch
 		private void OnEnable()
 		{
 			if (IsOffline)
-				OnNetworkSpawn();
+				StartCoroutine(CallOnNetworkSpawnAfterDelay());
 		}
 
 		private void OnDisable()
 		{
 			if (IsOffline)
 				OnNetworkDespawn();
+		}
+
+		private IEnumerator CallOnNetworkSpawnAfterDelay()
+		{
+			// WebGL builds require a little delay to ensure correct execution order of events,
+			// eg we would otherwise call SpawnPlayer before that component's Awake ran for whatever reason
+			yield return new WaitForEndOfFrame();
+
+			OnNetworkSpawn();
 		}
 
 		private void SetCouchPlayersDebugName() => gameObject.name =
@@ -84,7 +93,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 				                         $"ID:{m_Players[playerIndex].NetworkObjectId}) " +
 				                         $"P{playerIndex}{suffix}");
 
-		public override void OnNetworkSpawn()
+		public override async void OnNetworkSpawn()
 		{
 			base.OnNetworkSpawn();
 
@@ -105,7 +114,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 				OnLocalCouchPlayersSpawn?.Invoke(this);
 
-				StartSpawnPlayers();
+				await StartSpawnPlayers();
 			}
 		}
 
@@ -140,15 +149,15 @@ namespace CodeSmile.MultiPal.Players.Couch
 				DespawnPlayer(playerIndex);
 		}
 
-		private void OnUserInputDevicePaired(InputUser user, InputDevice device) => TrySpawnPlayer(user);
+		private async void OnUserInputDevicePaired(InputUser user, InputDevice device) => await TrySpawnPlayer(user);
 		private void OnUserInputDeviceUnpaired(InputUser user, InputDevice device) => DespawnPlayer(user.index);
 
-		private void OnSpawnLocationsChanged(SpawnLocations spawnLocations)
+		private async void OnSpawnLocationsChanged(SpawnLocations spawnLocations)
 		{
 			if (SpawnLocations.Count > 0)
 			{
 				SpawnLocations.OnSpawnLocationsChanged -= OnSpawnLocationsChanged;
-				StartSpawnPlayers();
+				await StartSpawnPlayers();
 			}
 		}
 
@@ -156,7 +165,6 @@ namespace CodeSmile.MultiPal.Players.Couch
 		{
 			if (IsOwner || IsOffline)
 			{
-				Debug.Log($"StartSpawnPlayers, locations: {SpawnLocations.Count}");
 				if (SpawnLocations.Count == 0)
 					SpawnLocations.OnSpawnLocationsChanged += OnSpawnLocationsChanged;
 				else
@@ -188,13 +196,10 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 		private async Task SpawnPlayer(Int32 playerIndex, Int32 avatarIndex)
 		{
-			Debug.Log("SpawnPlayer");
-
 			m_PlayerStatus[playerIndex] = Status.Spawning;
 			OnCouchPlayerJoining?.Invoke(this, playerIndex);
 
 			var player = await m_ClientSide.SpawnPlayer(playerIndex, avatarIndex);
-			Debug.Log($"SpawnPlayer await returned: {player}");
 
 			m_Players[playerIndex] = player;
 			m_PlayerStatus[playerIndex] = Status.Spawned;
