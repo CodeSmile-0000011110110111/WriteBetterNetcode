@@ -5,6 +5,7 @@ using CodeSmile.Components.Registry;
 using CodeSmile.Extensions.Netcode;
 using CodeSmile.MultiPal.Design;
 using System;
+using System.Threading.Tasks;
 using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;

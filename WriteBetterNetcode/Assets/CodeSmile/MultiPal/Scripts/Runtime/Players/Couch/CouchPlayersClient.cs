@@ -4,7 +4,6 @@
 using CodeSmile.Extensions.Netcode;
 using CodeSmile.MultiPal.Settings;
 using System;
-using System.Collections;
 using System.Threading.Tasks;
 using Unity.Netcode;
 using UnityEditor;
@@ -18,50 +17,24 @@ namespace CodeSmile.MultiPal.Players.Couch
 		private readonly TaskCompletionSource<Player>[] m_SpawnTcs =
 			new TaskCompletionSource<Player>[Constants.MaxCouchPlayers];
 
-		private Int32 m_ActiveTcsCount;
 		private CouchPlayersServer m_ServerSide;
 
 		private Boolean IsOffline => NetworkManagerExt.IsOffline;
 
-		private void Awake()
-		{
-			m_ServerSide = GetComponent<CouchPlayersServer>();
-		}
+		private void Awake() => m_ServerSide = GetComponent<CouchPlayersServer>();
 
-		private void Update()
-		{
-			CheckSpawnTasksForCompletion();
-		}
-
-		private void CheckSpawnTasksForCompletion()
-		{
-			// had to do the cleanup this way to support offline mode where everything happens instantaneously
-			// and thus the completion source is already completed when it is returned
-			// could be resolved with Task.Run => https://devblogs.microsoft.com/premier-developer/the-danger-of-taskcompletionsourcet-class/
-			if (m_ActiveTcsCount > 0)
-			{
-				for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
-				{
-					var spawnTcs = m_SpawnTcs[playerIndex];
-					if (spawnTcs != null && spawnTcs.Task.IsCompleted)
-					{
-						m_SpawnTcs[playerIndex] = null;
-						m_ActiveTcsCount--;
-					}
-				}
-			}
-		}
-
-		internal Task<Player> SpawnPlayer(Int32 playerIndex, Int32 avatarIndex)
+		internal async Task<Player> SpawnPlayer(Int32 playerIndex, Int32 avatarIndex)
 		{
 			if (m_SpawnTcs[playerIndex] != null)
 				throw new Exception($"player {playerIndex} spawn in progress");
 
-			m_ActiveTcsCount++;
 			m_SpawnTcs[playerIndex] = new TaskCompletionSource<Player>();
 			m_ServerSide.SpawnPlayer(OwnerClientId, (Byte)playerIndex, (Byte)avatarIndex);
 
-			return m_SpawnTcs[playerIndex].Task;
+			var result = await m_SpawnTcs[playerIndex].Task;
+			m_SpawnTcs[playerIndex] = null;
+
+			return result;
 		}
 
 		internal void DidSpawnPlayer(NetworkObject playerObj, Byte playerIndex)
