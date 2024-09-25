@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Extensions.Netcode;
 using System;
 using System.Collections;
 using Unity.Netcode;
@@ -13,8 +14,8 @@ namespace CodeSmile.MultiPal.Players.Couch
 	public sealed class CouchPlayersVars : NetworkBehaviour
 	{
 		private NetworkList<NetworkObjectReference> m_RemotePlayerReferences;
-
 		private CouchPlayers m_CouchPlayers;
+		private Boolean IsOffline => NetworkManagerExt.IsOffline;
 
 		private void Awake()
 		{
@@ -22,10 +23,16 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 			var empty = new NetworkObjectReference[] { default, default, default, default };
 			m_RemotePlayerReferences = new NetworkList<NetworkObjectReference>(empty);
+			Debug.Log($"AWAKE m_RemotePlayerReferences={m_RemotePlayerReferences}");
 		}
 
-		internal void SetPlayerReference(Int32 playerIndex, NetworkObject playerObj) =>
+		internal void SetPlayerReference(Int32 playerIndex, NetworkObject playerObj)
+		{
+			if (IsOffline)
+				return;
+
 			m_RemotePlayerReferences[playerIndex] = playerObj;
+		}
 
 		public override void OnNetworkSpawn()
 		{
@@ -53,7 +60,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 			if (IsOwner == false)
 			{
-				AssumeRemainingRemotePlayersLeaveOnDespawn();
+				EmulateRemotePlayersLeaveOnDespawn();
 				m_RemotePlayerReferences.OnListChanged -= OnRemotePlayerReferencesChanged;
 			}
 		}
@@ -68,7 +75,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 			}
 		}
 
-		private void AssumeRemainingRemotePlayersLeaveOnDespawn()
+		private void EmulateRemotePlayersLeaveOnDespawn()
 		{
 			for (var playerIndex = 0; playerIndex < m_RemotePlayerReferences.Count; playerIndex++)
 			{

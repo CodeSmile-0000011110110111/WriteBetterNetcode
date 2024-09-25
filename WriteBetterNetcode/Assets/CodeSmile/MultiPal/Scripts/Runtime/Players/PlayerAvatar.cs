@@ -35,6 +35,8 @@ namespace CodeSmile.MultiPal.Players
 
 		internal void SetAvatar(Int32 playerIndex, Byte avatarIndex, Boolean isOwner)
 		{
+			Debug.Log($"SetAvatar for {playerIndex} to {avatarIndex}");
+
 			// ignore pre-spawn AvatarIndex value change events, it'll get spawned in OnPlayerSpawn
 			if (playerIndex < 0)
 				return;

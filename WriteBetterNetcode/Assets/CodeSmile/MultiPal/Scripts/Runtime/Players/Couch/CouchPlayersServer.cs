@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Components.Registry;
+using CodeSmile.Extensions.Netcode;
 using CodeSmile.MultiPal.Design;
 using System;
 using Unity.Netcode;
@@ -18,6 +19,8 @@ namespace CodeSmile.MultiPal.Players.Couch
 		private CouchPlayersClient m_ClientSide;
 		private CouchPlayersVars m_Vars;
 
+		private Boolean IsOffline => NetworkManagerExt.IsOffline;
+
 		private void Awake()
 		{
 			if (m_PlayerPrefab == null)
@@ -29,9 +32,17 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 		public override void OnDestroy() => base.OnDestroy();
 
-		[Rpc(SendTo.Server, DeferLocal = true)]
-		internal void SpawnPlayerServerRpc(UInt64 ownerId, Byte playerIndex, Byte avatarIndex)
+		internal void SpawnPlayer(UInt64 ownerId, Byte playerIndex, Byte avatarIndex)
 		{
+			if (IsOffline)
+				SpawnPlayerServerSide(ownerId, playerIndex, avatarIndex);
+			else
+				SpawnPlayerServerRpc(ownerId, playerIndex, avatarIndex);
+		}
+
+		private void SpawnPlayerServerSide(UInt64 ownerId, Byte playerIndex, Byte avatarIndex)
+		{
+			Debug.Log("SpawnPlayerServerSide");
 			var position = Vector3.zero;
 			var rotation = Quaternion.identity;
 			var spawnLocations = ComponentsRegistry.Get<SpawnLocations>();
@@ -45,26 +56,46 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 			var playerGo = Instantiate(m_PlayerPrefab, position, rotation);
 			var playerObj = playerGo.GetComponent<NetworkObject>();
-			playerObj.SpawnWithOwnership(ownerId);
-
-			m_Vars.SetPlayerReference(playerIndex, playerObj);
+			if (IsOffline == false)
+			{
+				playerObj.SpawnWithOwnership(ownerId);
+				m_Vars.SetPlayerReference(playerIndex, playerObj);
+			}
 
 			var player = playerObj.GetComponent<Player>();
 			player.AvatarIndex = avatarIndex;
 
-			m_ClientSide.DidSpawnPlayerClientRpc(playerObj, playerIndex);
+			m_ClientSide.DidSpawnPlayer(playerObj, playerIndex);
 		}
 
 		[Rpc(SendTo.Server, DeferLocal = true)]
-		public void DespawnPlayerServerRpc(Byte playerIndex, NetworkObjectReference playerRef)
+		private void SpawnPlayerServerRpc(UInt64 ownerId, Byte playerIndex, Byte avatarIndex) =>
+			SpawnPlayerServerSide(ownerId, playerIndex, avatarIndex);
+
+		internal void DespawnPlayer(Byte playerIndex, NetworkObject playerObj)
 		{
-			if (playerRef.TryGet(out var playerObj))
-			{
-				m_Vars.SetPlayerReference(playerIndex, null);
-				playerObj.Despawn();
-			}
+			if (IsOffline)
+				DespawnPlayerServerSide(playerIndex, playerObj);
 			else
-				Debug.LogWarning($"could not despawn {playerRef.NetworkObjectId}");
+				DespawnPlayerServerRpc(playerIndex, playerObj);
+		}
+
+		private void DespawnPlayerServerSide(Byte playerIndex, NetworkObject playerObj)
+		{
+			m_Vars.SetPlayerReference(playerIndex, null);
+
+			if (IsOffline)
+				Destroy(playerObj.gameObject);
+			else
+				playerObj.Despawn();
+		}
+
+		[Rpc(SendTo.Server, DeferLocal = true)]
+		private void DespawnPlayerServerRpc(Byte playerIndex, NetworkObjectReference playerRef)
+		{
+			// this should not fail
+			playerRef.TryGet(out var playerObj);
+			DespawnPlayerServerSide(playerIndex, playerObj);
 		}
 	}
 }

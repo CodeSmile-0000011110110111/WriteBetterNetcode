@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Components.Registry;
+using CodeSmile.Extensions.Netcode;
 using CodeSmile.MultiPal.Design;
 using CodeSmile.MultiPal.Input;
 using CodeSmile.MultiPal.Settings;
@@ -40,8 +41,9 @@ namespace CodeSmile.MultiPal.Players.Couch
 		private CouchPlayersVars m_Vars;
 
 		public Player this[Int32 index] => index >= 0 && index < Constants.MaxCouchPlayers ? m_Players[index] : null;
-
 		public Int32 PlayerCount { get; set; }
+
+		private Boolean IsOffline => NetworkManagerExt.IsOffline;
 
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
 		private static void ResetStaticFields()
@@ -61,6 +63,18 @@ namespace CodeSmile.MultiPal.Players.Couch
 			m_PlayerStatus = new Status[Constants.MaxCouchPlayers];
 		}
 
+		private void OnEnable()
+		{
+			if (IsOffline)
+				OnNetworkSpawn();
+		}
+
+		private void OnDisable()
+		{
+			if (IsOffline)
+				OnNetworkDespawn();
+		}
+
 		private void SetCouchPlayersDebugName() => gameObject.name =
 			gameObject.name.Replace("(Clone)", $" (ID:{NetworkObjectId}) {(IsOwner ? "<== LOCAL" : "")}");
 
@@ -76,7 +90,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 			SetCouchPlayersDebugName();
 
-			if (IsOwner)
+			if (IsOwner || IsOffline)
 			{
 				ComponentsRegistry.Set(this);
 
@@ -99,7 +113,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 		{
 			base.OnNetworkDespawn();
 
-			if (IsOwner)
+			if (IsOwner || IsOffline)
 			{
 				DespawnAllPlayers();
 
@@ -138,10 +152,11 @@ namespace CodeSmile.MultiPal.Players.Couch
 			}
 		}
 
-		public async void StartSpawnPlayers()
+		public async Task StartSpawnPlayers()
 		{
-			if (IsOwner)
+			if (IsOwner || IsOffline)
 			{
+				Debug.Log($"StartSpawnPlayers, locations: {SpawnLocations.Count}");
 				if (SpawnLocations.Count == 0)
 					SpawnLocations.OnSpawnLocationsChanged += OnSpawnLocationsChanged;
 				else
@@ -149,7 +164,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 					var inputUsers = ComponentsRegistry.Get<InputUsers>();
 					foreach (var pairedUser in inputUsers.PairedUsers)
 					{
-						// FIXME: spawn multiple at once
+						// FIXME: change to spawn multiple at once
 						var playerIndex = pairedUser.index;
 						var avatarIndex = pairedUser.index;
 						await SpawnPlayer(playerIndex, avatarIndex);
@@ -158,7 +173,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 			}
 		}
 
-		private async void TrySpawnPlayer(InputUser user)
+		private async Task TrySpawnPlayer(InputUser user)
 		{
 			var playerIndex = user.index;
 			if (m_PlayerStatus[playerIndex] != Status.Available)
@@ -173,17 +188,21 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 		private async Task SpawnPlayer(Int32 playerIndex, Int32 avatarIndex)
 		{
+			Debug.Log("SpawnPlayer");
+
 			m_PlayerStatus[playerIndex] = Status.Spawning;
 			OnCouchPlayerJoining?.Invoke(this, playerIndex);
 
-			var player = await m_ClientSide.Spawn(playerIndex, avatarIndex);
+			var player = await m_ClientSide.SpawnPlayer(playerIndex, avatarIndex);
+			Debug.Log($"SpawnPlayer await returned: {player}");
+
 			m_Players[playerIndex] = player;
 			m_PlayerStatus[playerIndex] = Status.Spawned;
 			PlayerCount++;
 
 			SetPlayerDebugName(playerIndex, " <== LOCAL");
 
-			player.OnPlayerSpawn(playerIndex, IsOwner);
+			player.OnPlayerSpawn(playerIndex, IsOwner || IsOffline);
 			OnCouchPlayerJoined?.Invoke(this, playerIndex);
 		}
 
@@ -199,7 +218,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 				PlayerCount--;
 
 				var playerObj = player.GetComponent<NetworkObject>();
-				m_ClientSide.Despawn(playerIndex, playerObj);
+				m_ClientSide.DespawnPlayer(playerIndex, playerObj);
 
 				OnCouchPlayerLeft?.Invoke(this, playerIndex);
 				m_Players[playerIndex] = null;

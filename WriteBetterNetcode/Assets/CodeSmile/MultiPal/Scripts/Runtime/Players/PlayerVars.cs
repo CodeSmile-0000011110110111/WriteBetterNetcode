@@ -20,7 +20,11 @@ namespace CodeSmile.MultiPal.Players
 		internal Byte AvatarIndex
 		{
 			get => m_AvatarIndexVar.Value;
-			set => AvatarIndexChangeServerRpc(value);
+			set
+			{
+				Debug.Log($"AvatarIndex setter: {value}");
+				AvatarIndexChangeServerRpc(value);
+			}
 		}
 
 		public void OnPlayerSpawn(Int32 playerIndex, Boolean isOwner) {}

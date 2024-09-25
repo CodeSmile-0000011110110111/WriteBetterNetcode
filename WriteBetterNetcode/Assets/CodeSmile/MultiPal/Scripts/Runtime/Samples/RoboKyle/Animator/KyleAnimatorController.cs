@@ -2,10 +2,12 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Components.Registry;
+using CodeSmile.Extensions.Netcode;
 using CodeSmile.MultiPal.Animation;
 using CodeSmile.MultiPal.PlayerController;
 using CodeSmile.MultiPal.Players;
 using System;
+using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
@@ -37,7 +39,7 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 		public async void Init(Int32 playerIndex, Boolean isOwner)
 		{
 			PlayerIndex = playerIndex;
-			IsOwner = isOwner;
+			IsOwner = isOwner || NetworkManagerExt.IsOffline;
 
 			if (m_AnimParams == null)
 				m_AnimParams = new AvatarAnimatorParameters();
