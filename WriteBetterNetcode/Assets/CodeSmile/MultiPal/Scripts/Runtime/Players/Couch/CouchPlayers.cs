@@ -42,7 +42,6 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 		public Player this[Int32 index] => index >= 0 && index < Constants.MaxCouchPlayers ? m_Players[index] : null;
 		public Int32 PlayerCount { get; set; }
-
 		private Boolean IsOffline => NetworkManagerExt.IsOffline;
 
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -74,6 +73,8 @@ namespace CodeSmile.MultiPal.Players.Couch
 			if (IsOffline)
 				OnNetworkDespawn();
 		}
+
+		public Boolean IsPlaying(Int32 playerIndex) => m_PlayerStatus[playerIndex] == Status.Spawned;
 
 		private IEnumerator CallOnNetworkSpawnAfterDelay()
 		{

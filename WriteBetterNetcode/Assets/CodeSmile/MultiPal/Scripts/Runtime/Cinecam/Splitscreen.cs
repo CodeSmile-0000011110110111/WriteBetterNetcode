@@ -153,7 +153,7 @@ namespace CodeSmile.MultiPal.Cinecam
 			{
 				playerCameras[playerIndex].gameObject.SetActive(true);
 
-				var isPlaying = couchPlayers[playerIndex] != null;
+				var isPlaying = couchPlayers.IsPlaying(playerIndex);
 				notJoinedCameras[playerIndex].gameObject.SetActive(!isPlaying);
 			}
 		}
