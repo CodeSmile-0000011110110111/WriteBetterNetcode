@@ -41,7 +41,7 @@ namespace CodeSmile.MultiPal.Players
 
 			if (avatarIndex >= m_AvatarPrefabs.Count)
 			{
-				Debug.LogWarning($"AvatarIndex {avatarIndex} out of bounds, using default Avatar");
+				Debug.LogWarning($"AvatarIndex {avatarIndex} out of bounds, using first Avatar");
 				avatarIndex = 0;
 			}
 
@@ -49,7 +49,10 @@ namespace CodeSmile.MultiPal.Players
 			if (prefab != null)
 			{
 				if (m_AvatarInstance != null)
+				{
 					Destroy(m_AvatarInstance);
+					m_AnimatorController = null;
+				}
 
 				m_AvatarInstance = Instantiate(prefab, transform);
 				if (m_AvatarInstance.TryGetComponent(out m_AnimatorController))
