@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using Object = System.Object;
 
-namespace CodeSmile.MultiPal
+namespace CodeSmile.MultiPal.Editor
 {
 	public static class AddDefaultMppmTags
 	{

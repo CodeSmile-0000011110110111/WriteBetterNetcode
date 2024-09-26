@@ -9,7 +9,7 @@ using UnityEngine.InputSystem.Utilities;
 
 namespace CodeSmile.MultiPal.Settings.GameStateConditions
 {
-	[CreateAssetMenu(fileName = nameof(OnTimeoutCondition), menuName = GameStateAsset.MenuRoot + nameof(OnTimeoutCondition),
+	[CreateAssetMenu(fileName = nameof(OnTimeoutCondition), menuName = "CodeSmile/" + nameof(OnTimeoutCondition),
 		order = 0)]
 	public sealed class OnTimeoutCondition : GameStateConditionBase
 	{

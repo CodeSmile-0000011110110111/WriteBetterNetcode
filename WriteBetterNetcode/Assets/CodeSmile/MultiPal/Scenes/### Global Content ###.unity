@@ -309,7 +309,6 @@ Transform:
   - {fileID: 259266916}
   - {fileID: 1820493554}
   - {fileID: 837780412}
-  - {fileID: 2131638359}
   - {fileID: 1590707296}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1150,6 +1149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2131638359}
+  - component: {fileID: 2131638360}
   m_Layer: 0
   m_Name: Projectiles
   m_TagString: Untagged
@@ -1165,13 +1165,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2131638358}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 183316230}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2131638360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131638358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2441f66301d246748251687121d81b50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &48163973242718940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1438,5 +1450,6 @@ SceneRoots:
   - {fileID: 1297388102}
   - {fileID: 32025838}
   - {fileID: 1554720487}
+  - {fileID: 2131638359}
   - {fileID: 1331633735}
   - {fileID: 183316230}

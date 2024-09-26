@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace CodeSmile.MultiPal.Settings
 {
-	[CreateAssetMenu(fileName = "Player Controllers", menuName = "CodeSmile/Player Controllers", order = 1)]
+	[CreateAssetMenu(fileName = nameof(PlayerControllerPrefabs), menuName = "CodeSmile/" + nameof(PlayerControllerPrefabs),
+		order = 1)]
 	public sealed class PlayerControllerPrefabs : PrefabsListBase {}
 }

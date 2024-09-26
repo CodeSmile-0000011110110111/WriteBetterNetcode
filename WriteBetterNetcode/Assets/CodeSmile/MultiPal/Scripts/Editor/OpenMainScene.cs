@@ -8,7 +8,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace CodeSmile.MultiPal
+namespace CodeSmile.MultiPal.Editor
 {
 	public static class OpenMainScene
 	{

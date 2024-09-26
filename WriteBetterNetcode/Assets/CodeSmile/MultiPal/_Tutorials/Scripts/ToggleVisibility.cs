@@ -4,13 +4,13 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.Tutorials
+namespace CodeSmile.MultiPal._Tutorials.Scripts
 {
 	public class ToggleVisibility : MonoBehaviour
 	{
 		private void Update()
 		{
-			if (Input.GetKeyDown(KeyCode.Q))
+			if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
 			{
 				var renderers = GetComponentsInChildren<Renderer>();
 				foreach (var renderer in renderers)

@@ -3,6 +3,7 @@
 
 using CodeSmile.MultiPal.Animation;
 using CodeSmile.MultiPal.Settings;
+using CodeSmile.MultiPal.Weapons;
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace CodeSmile.MultiPal.Players
 	internal sealed class PlayerAvatar : MonoBehaviour, IPlayerComponent
 	{
 		[SerializeField] private PlayerAvatarPrefabs m_AvatarPrefabs;
+		[SerializeField] private Int32 m_WeaponAttachmentSlotIndex;
 
 		private Player m_Player;
 		private GameObject m_AvatarInstance;
@@ -62,5 +64,15 @@ namespace CodeSmile.MultiPal.Players
 
 		internal void OnAvatarIndexChanged(Byte _, Byte avatarIndex) =>
 			SetAvatar(m_Player.PlayerIndex, avatarIndex, m_Player.IsOwner);
+
+		public Weapon SetWeapon(GameObject weaponPrefab)
+		{
+			if (m_AvatarInstance == null)
+				return null;
+
+			var attachments = m_AvatarInstance.GetComponent<Attachments>();
+			var weaponObj = attachments?.SetAttachment(m_WeaponAttachmentSlotIndex, weaponPrefab);
+			return weaponObj.GetComponent<Weapon>();
+		}
 	}
 }

@@ -6,6 +6,6 @@ using UnityEngine;
 
 namespace CodeSmile.MultiPal.Settings
 {
-	[CreateAssetMenu(fileName = "Player Cameras", menuName = "CodeSmile/Player Cameras", order = 0)]
+	[CreateAssetMenu(fileName = nameof(PlayerCameraPrefabs), menuName = "CodeSmile/" + nameof(PlayerCameraPrefabs), order = 0)]
 	public sealed class PlayerCameraPrefabs : PrefabsListBase {}
 }

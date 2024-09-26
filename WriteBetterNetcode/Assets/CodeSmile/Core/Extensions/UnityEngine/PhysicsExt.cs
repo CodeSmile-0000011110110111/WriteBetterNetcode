@@ -2,9 +2,10 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using System;
+using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile
+namespace CodeSmile.CodeSmile.Extensions.UnityEngine
 {
 	public static class PhysicsExt
 	{

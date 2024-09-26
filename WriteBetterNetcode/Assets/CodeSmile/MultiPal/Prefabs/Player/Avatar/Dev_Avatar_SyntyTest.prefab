@@ -934,6 +934,7 @@ GameObject:
   - component: {fileID: 5615815007780928290}
   - component: {fileID: -1828357186823500144}
   - component: {fileID: 8499738734839574339}
+  - component: {fileID: 846689746253058921}
   m_Layer: 3
   m_Name: Dev_Avatar_SyntyTest
   m_TagString: Player
@@ -1018,6 +1019,30 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2f310d72fcf71c643acb85db135dbec0, type: 3}
   m_FootstepAudioVolume: 0.5
   m_ClipMinWeight: 0.5
+--- !u!114 &846689746253058921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3862277631971027947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b1722277e840a2a62c596fef9293d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AttachSlots:
+  - {fileID: 4582792213948874936}
+  - {fileID: 6209052884729833645}
+  - {fileID: 9141258904903754556}
+  - {fileID: 4494337539352404912}
+  - {fileID: 5784983221804150335}
+  - {fileID: 8101294845853212079}
+  - {fileID: 2758332690975422729}
+  - {fileID: 5149342900902657543}
+  - {fileID: 1507114425888910748}
+  - {fileID: 5407665544949882394}
+  - {fileID: 4609639482922922708}
 --- !u!1 &3967244187989708043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1490,7 +1515,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.97026986, y: -0.0062989527, z: -0.24193852, w: -0.001570655}
   m_LocalPosition: {x: 13.11913, y: -6.0628157, z: 0.000004735343}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6977182379116831477}
@@ -1976,7 +2001,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.011328123, y: 0.23685996, z: 0.03380652, w: 0.9708894}
   m_LocalPosition: {x: -13.1191435, y: 6.0631785, z: 0.0000025603415}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3824440777337717166}
@@ -2322,7 +2347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114847229407519648, guid: ddc4cd0622acc4847817cc15268b4a19, type: 3}
       propertyPath: shuffleSpeed
-      value: 2
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114847229407519648, guid: ddc4cd0622acc4847817cc15268b4a19, type: 3}
       propertyPath: leatherPrimary.Array.size

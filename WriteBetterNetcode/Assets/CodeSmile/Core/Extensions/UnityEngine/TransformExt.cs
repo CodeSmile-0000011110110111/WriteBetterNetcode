@@ -2,10 +2,11 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using System.Runtime.CompilerServices;
+using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace CodeSmile
+namespace CodeSmile.CodeSmile.Extensions.UnityEngine
 {
 	/// <summary>
 	///     UnityEngine.Transform extension methods

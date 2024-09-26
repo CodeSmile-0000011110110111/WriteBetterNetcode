@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 6943464844093628739}
   - component: {fileID: 1149383071451387854}
   - component: {fileID: 76815592126949633}
+  - component: {fileID: 6885750535737093099}
   - component: {fileID: 3042458565293754045}
   m_Layer: 3
   m_Name: ModularPlayer
@@ -130,6 +131,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!114 &-4641111890979326492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +145,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 1
+  TickSyncChildren: 0
   UseUnreliableDeltas: 1
   SyncPositionX: 1
   SyncPositionY: 1
@@ -160,6 +166,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 1
   InLocalSpace: 1
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 0
   SlerpPosition: 0
 --- !u!114 &-3178060901017069587
@@ -174,6 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e57539d5d75420e988bffc5c04fe2bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!114 &7677853225155770041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e0d30a69db141bfa48eba34a4df68fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!114 &4470226625341274034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +207,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628f4b4cfae6487b99ca1ac5a25141a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  m_EnableTest_RandomlyKillPlayer: 0
+  m_TestTimeToKill: 5
+  m_TestTimeToRespawn: 2.5
 --- !u!114 &2106922819613224051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5486b0ac581440989f6aa8ed61151fac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!114 &1641015571041438194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +275,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AvatarPrefabs: {fileID: 11400000, guid: 8799d1da84b6354418d9ea9f84ffdb75, type: 2}
+  m_WeaponAttachmentSlotIndex: 7
+--- !u!114 &6885750535737093099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6108024806492646982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2acb96f4db4a4d4795c5f9ef0155bbaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_WeaponPrefabs: {fileID: 11400000, guid: 5b7d194f968d3c04da636ff32005cf49, type: 2}
 --- !u!114 &3042458565293754045
 MonoBehaviour:
   m_ObjectHideFlags: 0
