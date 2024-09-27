@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace CodeSmile.MultiPal.Settings
 {
-	[CreateAssetMenu(fileName = nameof(GameStateAsset), order = 1, menuName = "CodeSmile/" + nameof(GameStateAsset))]
+	[CreateAssetMenu(fileName = nameof(GameStateAsset), menuName = "CodeSmile/GameStates/" + nameof(GameStateAsset))]
 	public class GameStateAsset : ScriptableObject
 	{
 		// TODO: may have multiple exit states

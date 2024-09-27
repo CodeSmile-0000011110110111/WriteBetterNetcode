@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CodeSmile.MultiPal.Settings
 {
-	[CreateAssetMenu(fileName = nameof(ProjectileDataAsset), menuName = "CodeSmile/" + nameof(ProjectileDataAsset), order = 0)]
+	[CreateAssetMenu(fileName = nameof(ProjectileDataAsset), menuName = "CodeSmile/Weapons/" + nameof(ProjectileDataAsset))]
 	public sealed class ProjectileDataAsset : ScriptableObject
 	{
 		public ProjectileData Data;
@@ -21,7 +21,7 @@ namespace CodeSmile.MultiPal.Settings
 
 		[Header("Collision")]
 		public GameObject ImpactPrefab;
-		public LayerMask CollidesWithLayers = LayerMask.GetMask("Default", "Player");
+		public LayerMask CollidesWithLayers = int.MaxValue;
 		public QueryTriggerInteraction TriggerCollision = QueryTriggerInteraction.Ignore;
 
 		[Header("Stats")]

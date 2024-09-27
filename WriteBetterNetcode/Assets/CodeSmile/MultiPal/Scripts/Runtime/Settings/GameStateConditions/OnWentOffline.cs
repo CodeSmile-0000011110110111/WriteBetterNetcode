@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace CodeSmile.MultiPal.Settings.GameStateConditions
 {
-	[CreateAssetMenu(fileName = nameof(OnWentOffline), menuName = "CodeSmile/" + nameof(OnWentOffline),
+	[CreateAssetMenu(fileName = nameof(OnWentOffline), menuName = "CodeSmile/GameStates/" + nameof(OnWentOffline),
 		order = 0)]
 	public sealed class OnWentOffline : GameStateConditionBase
 	{

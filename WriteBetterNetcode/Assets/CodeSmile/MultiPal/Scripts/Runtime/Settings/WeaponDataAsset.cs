@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace CodeSmile.MultiPal.Settings
 {
-	[CreateAssetMenu(fileName = nameof(WeaponDataAsset), menuName = "CodeSmile/" + nameof(WeaponDataAsset), order = 0)]
+	[CreateAssetMenu(fileName = nameof(WeaponDataAsset), menuName = "CodeSmile/Weapons/" + nameof(WeaponDataAsset), order = 1)]
 	public sealed class WeaponDataAsset : ScriptableObject
 	{
 		public WeaponData Data;

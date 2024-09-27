@@ -6,6 +6,6 @@ using UnityEngine;
 
 namespace CodeSmile.MultiPal.Settings
 {
-	[CreateAssetMenu(fileName = nameof(WeaponPrefabs), menuName = "CodeSmile/" + nameof(WeaponPrefabs), order = 0)]
+	[CreateAssetMenu(fileName = nameof(WeaponPrefabs), menuName = "CodeSmile/Weapons/" + nameof(WeaponPrefabs))]
 	public sealed class WeaponPrefabs : PrefabsListBase {}
 }

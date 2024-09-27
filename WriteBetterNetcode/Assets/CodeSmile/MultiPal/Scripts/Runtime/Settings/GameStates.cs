@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CodeSmile.MultiPal.Settings
 {
-	[CreateAssetMenu(fileName = nameof(GameStates), menuName = "CodeSmile/" + nameof(GameStates), order = 1)]
+	[CreateAssetMenu(fileName = nameof(GameStates), menuName = "CodeSmile/GameStates/" + nameof(GameStates), order = 0)]
 	public sealed class GameStates : ScriptableObject
 	{
 		[SerializeField] private GameStateAsset[] m_States = new GameStateAsset[0];
