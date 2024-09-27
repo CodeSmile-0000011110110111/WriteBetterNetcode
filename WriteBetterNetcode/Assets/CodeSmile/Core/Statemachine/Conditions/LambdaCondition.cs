@@ -22,14 +22,14 @@ namespace CodeSmile.Statemachine.Conditions
 		private LambdaCondition() {} // forbidden default ctor
 
 		/// <summary>
-		/// Creates a LambdaCondition with a callback returning a bool.
+		///     Creates a LambdaCondition with a callback returning a bool.
 		/// </summary>
 		/// <param name="callback"></param>
 		public LambdaCondition(Func<Boolean> callback)
 			: this(null, callback) {}
 
 		/// <summary>
-		/// Creates a named LambdaCondition with a callback returning a bool.
+		///     Creates a named LambdaCondition with a callback returning a bool.
 		/// </summary>
 		/// <param name="name">Meaningful display/debug name.</param>
 		/// <param name="callback"></param>

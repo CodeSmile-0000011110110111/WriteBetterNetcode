@@ -52,39 +52,41 @@ namespace CodeSmile.Statemachine
 	}
 
 	/// <summary>
-	/// Marks a class as a FSM Condition.
+	///     Marks a class as a FSM Condition.
 	/// </summary>
 	public interface ICondition : IStatemachineEvents
 	{
 		/// <summary>
-		/// Returns true or false to determine the "satisfied" state of the condition.
+		///     Returns true or false to determine the "satisfied" state of the condition.
 		/// </summary>
 		/// <param name="sm"></param>
 		/// <returns></returns>
 		Boolean IsSatisfied(FSM sm);
+
 		String ToDebugString(FSM sm) => GetType().Name;
 	}
 
 	/// <summary>
-	/// Marks a class as a FSM Action.
+	///     Marks a class as a FSM Action.
 	/// </summary>
 	public interface IAction : IStatemachineEvents
 	{
 		/// <summary>
-		/// Executes the action.
+		///     Executes the action.
 		/// </summary>
 		/// <param name="sm"></param>
 		void Execute(FSM sm) {}
+
 		String ToDebugString(FSM sm) => GetType().Name;
 	}
 
 	/// <summary>
-	/// Marks a class as an asynchronous (awaitable) FSM Action.
+	///     Marks a class as an asynchronous (awaitable) FSM Action.
 	/// </summary>
 	public interface IAsyncAction : IAction
 	{
 		/// <summary>
-		/// Executes an action asynchronously (awaitable).
+		///     Executes an action asynchronously (awaitable).
 		/// </summary>
 		/// <param name="sm"></param>
 		/// <returns></returns>

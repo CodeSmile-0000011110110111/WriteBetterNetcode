@@ -28,6 +28,8 @@ namespace CodeSmile.MultiPal.Players
 		private PlayerClient m_ClientSide;
 		private PlayerVars m_Vars;
 		private IPlayerComponent[] m_PlayerComponents;
+
+		private Boolean m_IsDead;
 		public PlayerCamera Camera => m_Camera;
 
 		public Byte AvatarIndex { get => m_Vars.AvatarIndex; set => m_Vars.AvatarIndex = value; }
@@ -106,7 +108,6 @@ namespace CodeSmile.MultiPal.Players
 		internal void SwitchController() => OnSwitchController?.Invoke(PlayerIndex);
 		internal void RequestToggleIngameMenu(Int32 playerIndex) => OnRequestToggleIngameMenu?.Invoke(playerIndex);
 
-		private bool m_IsDead;
 		internal void Die()
 		{
 			if (m_IsDead)

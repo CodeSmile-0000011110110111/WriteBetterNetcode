@@ -11,7 +11,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Netcode.Actions
 {
 	/// <summary>
-	/// Configures NetworkManager's Transport from config variables.
+	///     Configures NetworkManager's Transport from config variables.
 	/// </summary>
 	/// <remarks>Supports all aspects of Transport configuration, eg with or without Relay, WebSockets, etc.</remarks>
 	public sealed class TransportSetup : IAction
@@ -23,7 +23,7 @@ namespace CodeSmile.Statemachine.Netcode.Actions
 		private TransportSetup() {} // forbidden default ctor
 
 		/// <summary>
-		/// Creates a new TransportSetup action.
+		///     Creates a new TransportSetup action.
 		/// </summary>
 		/// <param name="netcodeConfigVar"></param>
 		/// <param name="transportConfigVar"></param>
@@ -56,7 +56,7 @@ namespace CodeSmile.Statemachine.Netcode.Actions
 			{
 				var connectionType = transport.UseWebSockets ? "wss" : transport.UseEncryption ? "dtls" : "udp";
 				transport.SetRelayServerData(netcodeConfig.Role == NetcodeRole.Client
-					? new RelayServerData(relayConfig.JoinAllocation, connectionType)
+					? new(relayConfig.JoinAllocation, connectionType)
 					: new RelayServerData(relayConfig.HostAllocation, connectionType));
 			}
 			else

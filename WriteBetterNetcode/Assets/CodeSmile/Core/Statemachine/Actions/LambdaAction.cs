@@ -22,14 +22,14 @@ namespace CodeSmile.Statemachine.Actions
 		private LambdaAction() {} // forbidden default ctor
 
 		/// <summary>
-		/// Creates action with a System.Action callback.
+		///     Creates action with a System.Action callback.
 		/// </summary>
 		/// <param name="callback"></param>
 		public LambdaAction(Action callback)
 			: this(null, callback) {}
 
 		/// <summary>
-		/// Creates a named action with a System.Action callback.
+		///     Creates a named action with a System.Action callback.
 		/// </summary>
 		/// <param name="name">Meaningful display/debug name.</param>
 		/// <param name="callback"></param>

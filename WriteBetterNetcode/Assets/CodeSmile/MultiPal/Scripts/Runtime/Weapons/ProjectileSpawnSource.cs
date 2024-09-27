@@ -7,7 +7,5 @@ using UnityEngine;
 namespace CodeSmile.MultiPal.Weapons
 {
 	[DisallowMultipleComponent]
-	public sealed class ProjectileSpawnSource : MonoBehaviour
-	{
-	}
+	public sealed class ProjectileSpawnSource : MonoBehaviour {}
 }

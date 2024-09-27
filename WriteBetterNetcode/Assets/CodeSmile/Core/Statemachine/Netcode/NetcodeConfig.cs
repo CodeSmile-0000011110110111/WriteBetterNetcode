@@ -29,7 +29,7 @@ namespace CodeSmile.Statemachine.Netcode
 		public Byte MaxConnections;
 
 		/// <summary>
-		/// Create a NetcodeConfig from command line parameters. Omitted parameters will use default values.
+		///     Create a NetcodeConfig from command line parameters. Omitted parameters will use default values.
 		/// </summary>
 		/// <returns></returns>
 		public static NetcodeConfig FromCmdArgs() => new()

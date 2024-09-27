@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace CodeSmile.MultiPal.Samples.Tests
@@ -10,6 +10,10 @@ namespace CodeSmile.MultiPal.Samples.Tests
 	public sealed class ExampleEventListener : MonoBehaviour, INetworkEventListener
 	{
 		[SerializeField] private ExampleNetworkEvent m_ExampleNetworkEvent;
+
+		public void OnNetworkEvent(NetworkEventData networkEventData) =>
+			Debug.Log($"received network event: {networkEventData}");
+
 		private void OnEnable()
 		{
 			if (m_ExampleNetworkEvent == null)
@@ -19,14 +23,6 @@ namespace CodeSmile.MultiPal.Samples.Tests
 			m_ExampleNetworkEvent.Register(this);
 		}
 
-		private void OnDisable()
-		{
-			m_ExampleNetworkEvent.Unregister(this);
-		}
-
-		public void OnNetworkEvent(NetworkEventData networkEventData)
-		{
-			Debug.Log($"received network event: {networkEventData}");
-		}
+		private void OnDisable() => m_ExampleNetworkEvent.Unregister(this);
 	}
 }

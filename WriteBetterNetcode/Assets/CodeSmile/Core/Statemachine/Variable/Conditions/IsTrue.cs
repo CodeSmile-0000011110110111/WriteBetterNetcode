@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Variable.Conditions
 {
 	/// <summary>
-	/// Tests if a bool variable is true.
+	///     Tests if a bool variable is true.
 	/// </summary>
 	public sealed class IsTrue : ICondition
 	{

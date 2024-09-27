@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Variable.Actions
 {
 	/// <summary>
-	/// Assigns a value to the variable.
+	///     Assigns a value to the variable.
 	/// </summary>
 	public sealed class SetValue : IAction
 	{

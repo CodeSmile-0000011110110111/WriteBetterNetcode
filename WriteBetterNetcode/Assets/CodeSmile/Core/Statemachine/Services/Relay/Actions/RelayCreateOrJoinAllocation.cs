@@ -21,7 +21,7 @@ namespace CodeSmile.Statemachine.Services.Relay.Actions
 		private RelayCreateOrJoinAllocation() {}
 
 		/// <summary>
-		/// Create a new instance with parameters provided in the given variables.
+		///     Create a new instance with parameters provided in the given variables.
 		/// </summary>
 		/// <param name="netcodeConfigVar"></param>
 		/// <param name="relayConfigVar"></param>

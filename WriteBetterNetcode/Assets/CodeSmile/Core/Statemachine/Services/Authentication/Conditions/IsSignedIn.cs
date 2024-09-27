@@ -10,7 +10,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Services.Authentication.Conditions
 {
 	/// <summary>
-	/// Is true if services are initialized and user is signed in.
+	///     Is true if services are initialized and user is signed in.
 	/// </summary>
 	public class IsSignedIn : ICondition
 	{

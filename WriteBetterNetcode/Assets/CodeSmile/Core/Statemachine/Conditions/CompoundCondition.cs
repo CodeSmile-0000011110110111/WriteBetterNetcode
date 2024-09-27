@@ -9,7 +9,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Conditions
 {
 	/// <summary>
-	/// Used to combine multiple FSM conditions into a single, named condition.
+	///     Used to combine multiple FSM conditions into a single, named condition.
 	/// </summary>
 	public sealed class CompoundCondition : ICondition
 	{
@@ -19,14 +19,14 @@ namespace CodeSmile.Statemachine.Conditions
 		private CompoundCondition() {}
 
 		/// <summary>
-		/// Create a combined condition from one or more conditions.
+		///     Create a combined condition from one or more conditions.
 		/// </summary>
 		/// <param name="conditions"></param>
 		public CompoundCondition(params ICondition[] conditions)
 			: this(null, conditions) {}
 
 		/// <summary>
-		/// Create a named combined condition from one or more conditions.
+		///     Create a named combined condition from one or more conditions.
 		/// </summary>
 		/// <param name="name">Meaningful display/debug name.</param>
 		/// <param name="conditions"></param>

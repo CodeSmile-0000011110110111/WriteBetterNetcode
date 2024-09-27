@@ -15,7 +15,7 @@ namespace CodeSmile.Components.Utility
 		[SerializeField] private String m_Tag;
 
 		/// <summary>
-		/// The user-supplied string tag.
+		///     The user-supplied string tag.
 		/// </summary>
 		public String Tag => m_Tag;
 	}

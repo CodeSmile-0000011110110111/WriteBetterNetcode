@@ -9,7 +9,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Netcode.Conditions
 {
 	/// <summary>
-	/// Is true once NetworkManager singleton no longer returns null.
+	///     Is true once NetworkManager singleton no longer returns null.
 	/// </summary>
 	/// <remarks>NetworkManager singleton may be null during Awake/OnEnable depending on the execution order of scripts.</remarks>
 	public sealed class IsNetworkManagerSingletonAssigned : ICondition

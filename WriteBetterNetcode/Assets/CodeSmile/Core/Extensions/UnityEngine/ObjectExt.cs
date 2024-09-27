@@ -15,7 +15,7 @@ namespace CodeSmile.CodeSmile.Extensions.UnityEngine
 	{
 		/// <summary>
 		///     Destroys the object regardless of Edit or Play mode by calling either
-		///		DestroyImmediate or Destroy depending on Application.isPlaying.
+		///     DestroyImmediate or Destroy depending on Application.isPlaying.
 		/// </summary>
 		/// <remarks>
 		///     In Builds it compiles to a direct, inlined call to Object.Destroy() so there

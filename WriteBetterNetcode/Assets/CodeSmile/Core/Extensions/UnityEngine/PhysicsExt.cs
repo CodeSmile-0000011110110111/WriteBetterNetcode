@@ -29,8 +29,10 @@ namespace CodeSmile.CodeSmile.Extensions.UnityEngine
 			{
 				closestHitIndex = 0;
 				for (var i = 1; i < numHits; i++)
+				{
 					if (results[i].distance < results[closestHitIndex].distance)
 						closestHitIndex = i;
+				}
 			}
 
 			return numHits;

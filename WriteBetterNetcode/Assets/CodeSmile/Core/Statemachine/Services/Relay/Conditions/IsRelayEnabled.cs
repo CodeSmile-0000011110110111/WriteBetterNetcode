@@ -9,7 +9,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Services.Relay.Conditions
 {
 	/// <summary>
-	/// Is true if the relay configuration has relay enabled.
+	///     Is true if the relay configuration has relay enabled.
 	/// </summary>
 	public sealed class IsRelayEnabled : ICondition
 	{
@@ -18,7 +18,7 @@ namespace CodeSmile.Statemachine.Services.Relay.Conditions
 		private IsRelayEnabled() {} // forbidden
 
 		/// <summary>
-		/// Creates a new instance.
+		///     Creates a new instance.
 		/// </summary>
 		/// <param name="relayConfig"></param>
 		public IsRelayEnabled(Var<RelayConfig> relayConfig) => m_RelayConfig = relayConfig;

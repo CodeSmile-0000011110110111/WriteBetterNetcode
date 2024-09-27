@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Variable.Actions
 {
 	/// <summary>
-	/// Increments an integer value by 1.
+	///     Increments an integer value by 1.
 	/// </summary>
 	public sealed class IncValue : IAction
 	{

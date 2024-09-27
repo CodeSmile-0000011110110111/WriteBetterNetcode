@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Conditions
 {
 	/// <summary>
-	/// Logically combines the contained conditions with NOR (NOT OR).
+	///     Logically combines the contained conditions with NOR (NOT OR).
 	/// </summary>
 	public sealed class LogicalNor : ICondition
 	{

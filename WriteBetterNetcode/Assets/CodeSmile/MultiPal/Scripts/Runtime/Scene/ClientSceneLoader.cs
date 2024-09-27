@@ -72,7 +72,7 @@ namespace CodeSmile.MultiPal.Scene
 			if (m_CompletionSource != null)
 				throw new InvalidOperationException("scene load/unload still in progress - await the completion!");
 
-			m_CompletionSource = new TaskCompletionSource<Boolean>();
+			m_CompletionSource = new();
 			m_AsyncOperationsCount = scenes.Length;
 
 			for (var i = 0; i < scenes.Length; i++)
@@ -83,7 +83,7 @@ namespace CodeSmile.MultiPal.Scene
 
 				var asyncOp = load ? LoadSceneAsync(scene) : UnloadSceneAsync(scene);
 				if (asyncOp == null)
-					throw new Exception($"async {(load ? "load" : "unload")} of '{scene.SceneName}' returned null");
+					throw new($"async {(load ? "load" : "unload")} of '{scene.SceneName}' returned null");
 
 				asyncOp.completed += OnSceneOperationComplete;
 			}

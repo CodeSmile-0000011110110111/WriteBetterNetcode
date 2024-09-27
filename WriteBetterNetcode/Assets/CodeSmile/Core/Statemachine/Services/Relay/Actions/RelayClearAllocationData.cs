@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Services.Relay.Actions
 {
 	/// <summary>
-	/// Clears the allocations from the RelayConfig variable.
+	///     Clears the allocations from the RelayConfig variable.
 	/// </summary>
 	public sealed class RelayClearAllocationData : IAction
 	{
@@ -17,7 +17,7 @@ namespace CodeSmile.Statemachine.Services.Relay.Actions
 		private RelayClearAllocationData() {}
 
 		/// <summary>
-		/// Creates a new instance.
+		///     Creates a new instance.
 		/// </summary>
 		/// <param name="relayConfigVar"></param>
 		public RelayClearAllocationData(Var<RelayConfig> relayConfigVar) => m_RelayConfigVar = relayConfigVar;

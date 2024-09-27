@@ -213,7 +213,7 @@ namespace CodeSmile.MultiPal.Cinecam
 				m_PlayerSplitCameras[playerIndex].gameObject.SetActive(false);
 				m_PlayerNotJoinedCinecams[playerIndex].gameObject.SetActive(false);
 
-				m_PlayerCinecams[playerIndex] = new List<CinemachineCamera>();
+				m_PlayerCinecams[playerIndex] = new();
 				InstantiatePlayerCinecams(playerIndex, m_PlayerCinecamPrefabs);
 			}
 		}

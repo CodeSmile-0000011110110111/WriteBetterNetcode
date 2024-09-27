@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Variable.Actions
 {
 	/// <summary>
-	/// Adds a value to a variable.
+	///     Adds a value to a variable.
 	/// </summary>
 	public sealed class AddValue : IAction
 	{
@@ -18,7 +18,7 @@ namespace CodeSmile.Statemachine.Variable.Actions
 		private AddValue() {} // forbidden default ctor
 
 		/// <summary>
-		/// Will add the value to the variable.
+		///     Will add the value to the variable.
 		/// </summary>
 		/// <param name="variable"></param>
 		/// <param name="value"></param>
@@ -26,7 +26,7 @@ namespace CodeSmile.Statemachine.Variable.Actions
 			: this(variable, new IntVar(value)) {}
 
 		/// <summary>
-		/// Will add another variable's value to the variable.
+		///     Will add another variable's value to the variable.
 		/// </summary>
 		/// <param name="variable"></param>
 		/// <param name="operand"></param>
@@ -34,7 +34,7 @@ namespace CodeSmile.Statemachine.Variable.Actions
 			: this((VariableBase)variable, operand) {}
 
 		/// <summary>
-		/// Will add an int value to the variable.
+		///     Will add an int value to the variable.
 		/// </summary>
 		/// <remarks>Convenience because not everyone is disciplined in suffixing integral float values with f (eg "1f").</remarks>
 		/// <param name="variable"></param>
@@ -43,7 +43,7 @@ namespace CodeSmile.Statemachine.Variable.Actions
 			: this(variable, new FloatVar(value)) {}
 
 		/// <summary>
-		/// Will add a value to the variable.
+		///     Will add a value to the variable.
 		/// </summary>
 		/// <param name="variable"></param>
 		/// <param name="value"></param>
@@ -51,7 +51,7 @@ namespace CodeSmile.Statemachine.Variable.Actions
 			: this(variable, new FloatVar(value)) {}
 
 		/// <summary>
-		/// Will add another variable's value to the variable.
+		///     Will add another variable's value to the variable.
 		/// </summary>
 		/// <param name="variable"></param>
 		/// <param name="operand"></param>

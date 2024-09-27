@@ -176,8 +176,8 @@ namespace CodeSmile.MultiPal.Scene
 			}
 
 			// task is for awaiting, will get its result when entire queue has been processed
-			m_TaskInProgress = new TaskCompletionSource<Boolean>();
-			m_ScenesProcessing = new Queue<ProcessingScene>();
+			m_TaskInProgress = new();
+			m_ScenesProcessing = new();
 			EnqueueScenes(scenes, operation);
 
 			ProcessNextSceneInQueue();
@@ -190,7 +190,7 @@ namespace CodeSmile.MultiPal.Scene
 		private void EnqueueScenes(SceneReference[] scenes, SceneOperation operation)
 		{
 			foreach (var sceneRef in scenes)
-				m_ScenesProcessing.Enqueue(new ProcessingScene { SceneRef = sceneRef, Operation = operation });
+				m_ScenesProcessing.Enqueue(new() { SceneRef = sceneRef, Operation = operation });
 		}
 
 		private void InternalLoadQueuedSceneAsync(SceneReference sceneRef)
@@ -282,11 +282,11 @@ namespace CodeSmile.MultiPal.Scene
 			{
 				case SceneEventType.LoadComplete:
 					//Debug.Log($"Client loaded sync scene: {sceneEvent.SceneName}");
-					m_SynchedScenes.Add(new SceneReference(sceneEvent.Scene));
+					m_SynchedScenes.Add(new(sceneEvent.Scene));
 					break;
 				case SceneEventType.UnloadComplete:
 					//Debug.Log($"Client unloaded sync scene: {sceneEvent.SceneName}");
-					m_SynchedScenes.Remove(new SceneReference(sceneEvent.Scene));
+					m_SynchedScenes.Remove(new(sceneEvent.Scene));
 					break;
 			}
 		}

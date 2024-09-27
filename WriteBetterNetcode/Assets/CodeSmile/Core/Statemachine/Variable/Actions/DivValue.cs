@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Variable.Actions
 {
 	/// <summary>
-	/// Divides the variable by a value.
+	///     Divides the variable by a value.
 	/// </summary>
 	public sealed class DivValue : IAction
 	{
@@ -18,7 +18,7 @@ namespace CodeSmile.Statemachine.Variable.Actions
 		private DivValue() {} // forbidden default ctor
 
 		/// <summary>
-		/// Divide variable by value.
+		///     Divide variable by value.
 		/// </summary>
 		/// <param name="variable"></param>
 		/// <param name="value"></param>
@@ -26,7 +26,7 @@ namespace CodeSmile.Statemachine.Variable.Actions
 			: this(variable, new IntVar(value)) {}
 
 		/// <summary>
-		/// Divide variable by another variable's value.
+		///     Divide variable by another variable's value.
 		/// </summary>
 		/// <param name="variable"></param>
 		/// <param name="operand"></param>
@@ -34,7 +34,7 @@ namespace CodeSmile.Statemachine.Variable.Actions
 			: this((VariableBase)variable, operand) {}
 
 		/// <summary>
-		/// Divide variable by value.
+		///     Divide variable by value.
 		/// </summary>
 		/// <param name="variable"></param>
 		/// <param name="operand"></param>
@@ -42,7 +42,7 @@ namespace CodeSmile.Statemachine.Variable.Actions
 			: this(variable, new FloatVar(value)) {}
 
 		/// <summary>
-		/// Divide variable by value.
+		///     Divide variable by value.
 		/// </summary>
 		/// <param name="variable"></param>
 		/// <param name="operand"></param>
@@ -50,7 +50,7 @@ namespace CodeSmile.Statemachine.Variable.Actions
 			: this(variable, new FloatVar(value)) {}
 
 		/// <summary>
-		/// Divide variable by another variable's value.
+		///     Divide variable by another variable's value.
 		/// </summary>
 		/// <param name="variable"></param>
 		/// <param name="operand"></param>

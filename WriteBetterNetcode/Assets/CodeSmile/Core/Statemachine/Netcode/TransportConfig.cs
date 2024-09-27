@@ -11,43 +11,43 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Netcode
 {
 	/// <summary>
-	/// DTO that provides Transport configuration options.
+	///     DTO that provides Transport configuration options.
 	/// </summary>
 	[Serializable]
 	public struct TransportConfig
 	{
 		/// <summary>
-		/// The IP address (v4 or v6) to connect to.
+		///     The IP address (v4 or v6) to connect to.
 		/// </summary>
 		public String Address;
 		/// <summary>
-		/// The port number for the connection.
+		///     The port number for the connection.
 		/// </summary>
 		public UInt16 Port;
 		/// <summary>
-		/// The ServerListenAddress. Should be 0.0.0.0 for publicly accessible games.
-		/// Use 127.0.0.1 to allow only instances running on the same machine to join. (Default)
+		///     The ServerListenAddress. Should be 0.0.0.0 for publicly accessible games.
+		///     Use 127.0.0.1 to allow only instances running on the same machine to join. (Default)
 		/// </summary>
 		public String ServerListenAddress;
 		/// <summary>
-		/// Enables transport-level encryption.
+		///     Enables transport-level encryption.
 		/// </summary>
 		public Boolean UseEncryption;
 		/// <summary>
-		/// Enables WebSocket support. Must be enabled for web Clients and the server that web Clients connect to.
+		///     Enables WebSocket support. Must be enabled for web Clients and the server that web Clients connect to.
 		/// </summary>
 		public Boolean UseWebSockets;
 
 		/// <summary>
-		/// Creates a TransportConfig instance from current NetworkManager Transport settings.
-		/// Use this to get the Transport values set in the Inspector.
+		///     Creates a TransportConfig instance from current NetworkManager Transport settings.
+		///     Use this to get the Transport values set in the Inspector.
 		/// </summary>
 		/// <returns></returns>
 		public static TransportConfig FromNetworkManager()
 		{
 			var transport = NetworkManager.Singleton.GetTransport();
 			var connData = transport.ConnectionData;
-			return new TransportConfig
+			return new()
 			{
 				Address = connData.Address,
 				Port = connData.Port,
@@ -58,8 +58,8 @@ namespace CodeSmile.Statemachine.Netcode
 		}
 
 		/// <summary>
-		/// Creates a TransportConfig instance from current NetworkManager Transport settings and then have command line
-		/// arguments (if specified) override each setting.
+		///     Creates a TransportConfig instance from current NetworkManager Transport settings and then have command line
+		///     arguments (if specified) override each setting.
 		/// </summary>
 		/// <returns></returns>
 		public static TransportConfig FromNetworkManagerWithCmdArgOverrides()

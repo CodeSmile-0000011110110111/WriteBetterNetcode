@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Variable.Actions
 {
 	/// <summary>
-	/// Sets a bool variable to true.
+	///     Sets a bool variable to true.
 	/// </summary>
 	public sealed class SetTrue : IAction
 	{

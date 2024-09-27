@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Netcode.Conditions
 {
 	/// <summary>
-	/// Tests if the client is not in the started state.
+	///     Tests if the client is not in the started state.
 	/// </summary>
 	public sealed class IsLocalClientStopped : IsLocalClientStarted
 	{

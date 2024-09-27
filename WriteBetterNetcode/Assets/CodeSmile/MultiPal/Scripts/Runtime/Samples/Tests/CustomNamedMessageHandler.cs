@@ -67,7 +67,7 @@ namespace CodeSmile.MultiPal.Samples.Tests
 
 		private void ReceiveMessageInternal(UInt64 senderId, FastBufferReader payload)
 		{
-			var content = new ForceNetworkSerializeByMemcpy<Guid>(new Guid());
+			var content = new ForceNetworkSerializeByMemcpy<Guid>(new());
 			payload.ReadValueSafe(out content);
 
 			OnMessageReceived(senderId, content);

@@ -53,9 +53,7 @@ namespace CodeSmile.MultiPal.Weapons
 						Instantiate(projectile.Data.ImpactPrefab, nextPosition, Quaternion.LookRotation(hit.normal));
 					}
 					else
-					{
 						projectileTransform.position = nextPosition;
-					}
 				}
 
 				if (endOfLife)
@@ -76,7 +74,7 @@ namespace CodeSmile.MultiPal.Weapons
 			var projectileObj = Instantiate(projectileData.ProjectilePrefab, parent.position, parent.rotation);
 			projectileObj.transform.parent = transform;
 
-			m_Projectiles.Add(new ActiveProjectile
+			m_Projectiles.Add(new()
 			{
 				Transform = projectileObj.transform,
 				Data = projectileData,

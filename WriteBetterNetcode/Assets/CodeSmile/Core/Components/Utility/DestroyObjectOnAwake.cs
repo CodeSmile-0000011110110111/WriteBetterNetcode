@@ -7,7 +7,7 @@ using UnityEngine;
 namespace CodeSmile.Components.Utility
 {
 	/// <summary>
-	/// Always destroys this object. Use for information-only objects, eg dividers or notes.
+	///     Always destroys this object. Use for information-only objects, eg dividers or notes.
 	/// </summary>
 	[DisallowMultipleComponent]
 	internal sealed class DestroyObjectOnAwake : MonoBehaviour

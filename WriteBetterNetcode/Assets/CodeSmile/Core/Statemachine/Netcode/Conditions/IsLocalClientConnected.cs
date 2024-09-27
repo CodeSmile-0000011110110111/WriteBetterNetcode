@@ -9,7 +9,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Netcode.Conditions
 {
 	/// <summary>
-	/// Tests if the client that this script executes on is currently connected to a network session.
+	///     Tests if the client that this script executes on is currently connected to a network session.
 	/// </summary>
 	public class IsLocalClientConnected : ICondition
 	{

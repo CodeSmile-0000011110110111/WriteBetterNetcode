@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Netcode.Actions
 {
 	/// <summary>
-	/// Sets the role in the NetcodeConfig var to the given value (Server, Host, Client or None).
+	///     Sets the role in the NetcodeConfig var to the given value (Server, Host, Client or None).
 	/// </summary>
 	public sealed class SetNetcodeRole : IAction
 	{
@@ -18,7 +18,7 @@ namespace CodeSmile.Statemachine.Netcode.Actions
 		private SetNetcodeRole() {} // forbidden ctor
 
 		/// <summary>
-		/// Creates a new SetNetcodeRole action.
+		///     Creates a new SetNetcodeRole action.
 		/// </summary>
 		/// <param name="roleVar">The config variable to change.</param>
 		/// <param name="role">The role to set.</param>

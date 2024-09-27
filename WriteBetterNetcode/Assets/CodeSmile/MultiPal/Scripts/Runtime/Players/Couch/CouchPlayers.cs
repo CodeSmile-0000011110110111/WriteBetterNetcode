@@ -234,7 +234,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 		internal void RemotePlayerJoined(Int32 playerIndex, Player player)
 		{
 			if (m_Players[playerIndex] != null)
-				throw new Exception($"remote player {playerIndex} already exists");
+				throw new($"remote player {playerIndex} already exists");
 
 			m_Players[playerIndex] = player;
 			m_PlayerStatus[playerIndex] = Status.Spawned;

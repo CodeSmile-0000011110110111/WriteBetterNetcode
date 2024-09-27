@@ -113,7 +113,7 @@ namespace CodeSmile.MultiPal.PlayerController
 		{
 			for (var playerIndex = 0; playerIndex < Constants.MaxCouchPlayers; playerIndex++)
 			{
-				m_Controllers[playerIndex] = new List<PlayerControllerBase>();
+				m_Controllers[playerIndex] = new();
 				m_ActiveControllerIndexes[playerIndex] = -1;
 			}
 		}

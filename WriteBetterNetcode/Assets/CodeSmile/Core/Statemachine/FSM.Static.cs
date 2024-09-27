@@ -32,7 +32,7 @@ namespace CodeSmile.Statemachine
 			var states = new State[stateCount];
 
 			for (var i = 0; i < stateCount; i++)
-				states[i] = new State(stateNames[i]);
+				states[i] = new(stateNames[i]);
 
 			return states;
 		}

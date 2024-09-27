@@ -115,19 +115,20 @@ namespace CodeSmile.Statemachine
 	}
 
 	/// <summary>
-	/// Base class for all FSM variables.
+	///     Base class for all FSM variables.
 	/// </summary>
 	public abstract class VariableBase
 	{
 		/// <summary>
-		/// equality operator
+		///     equality operator
 		/// </summary>
 		/// <param name="left"></param>
 		/// <param name="right"></param>
 		/// <returns></returns>
 		public static Boolean operator ==(VariableBase left, VariableBase right) => Equals(left, right);
+
 		/// <summary>
-		/// inequality operator
+		///     inequality operator
 		/// </summary>
 		/// <param name="left"></param>
 		/// <param name="right"></param>
@@ -135,7 +136,7 @@ namespace CodeSmile.Statemachine
 		public static Boolean operator !=(VariableBase left, VariableBase right) => !Equals(left, right);
 
 		/// <summary>
-		/// less operator
+		///     less operator
 		/// </summary>
 		/// <param name="left"></param>
 		/// <param name="right"></param>
@@ -152,7 +153,7 @@ namespace CodeSmile.Statemachine
 		}
 
 		/// <summary>
-		/// greater operator
+		///     greater operator
 		/// </summary>
 		/// <param name="left"></param>
 		/// <param name="right"></param>
@@ -169,7 +170,7 @@ namespace CodeSmile.Statemachine
 		}
 
 		/// <summary>
-		/// less or equal operator
+		///     less or equal operator
 		/// </summary>
 		/// <param name="left"></param>
 		/// <param name="right"></param>
@@ -186,7 +187,7 @@ namespace CodeSmile.Statemachine
 		}
 
 		/// <summary>
-		/// greater or equal operator
+		///     greater or equal operator
 		/// </summary>
 		/// <param name="left"></param>
 		/// <param name="right"></param>
@@ -209,34 +210,38 @@ namespace CodeSmile.Statemachine
 		public override Int32 GetHashCode() => throw new NotImplementedException();
 
 		/// <summary>
-		/// Assigns the variable's value.
+		///     Assigns the variable's value.
 		/// </summary>
 		/// <param name="variable"></param>
 		public abstract void SetValue(VariableBase variable);
+
 		/// <summary>
-		/// Adds the variable's value.
+		///     Adds the variable's value.
 		/// </summary>
 		/// <param name="variable"></param>
 		public abstract void AddValue(VariableBase variable);
+
 		/// <summary>
-		/// Subtracts the variable's value.
+		///     Subtracts the variable's value.
 		/// </summary>
 		/// <param name="variable"></param>
 		public abstract void SubtractValue(VariableBase variable);
+
 		/// <summary>
-		/// Multiplies with the variable's value.
+		///     Multiplies with the variable's value.
 		/// </summary>
 		/// <param name="variable"></param>
 		public abstract void MultiplyValue(VariableBase variable);
+
 		/// <summary>
-		/// Divides by the variable's value.
+		///     Divides by the variable's value.
 		/// </summary>
 		/// <param name="variable"></param>
 		public abstract void DivideValue(VariableBase variable);
 	}
 
 	/// <summary>
-	/// Represents a boolean FSM variable.
+	///     Represents a boolean FSM variable.
 	/// </summary>
 	public sealed class BoolVar : VariableBase, IEquatable<BoolVar>
 	{
@@ -255,7 +260,7 @@ namespace CodeSmile.Statemachine
 	}
 
 	/// <summary>
-	/// Represents an integer FSM variable.
+	///     Represents an integer FSM variable.
 	/// </summary>
 	public sealed class IntVar : VariableBase, IEquatable<IntVar>
 	{
@@ -278,7 +283,7 @@ namespace CodeSmile.Statemachine
 	}
 
 	/// <summary>
-	/// Represents a float FSM variable.
+	///     Represents a float FSM variable.
 	/// </summary>
 	public sealed class FloatVar : VariableBase, IEquatable<FloatVar>
 	{
@@ -301,7 +306,7 @@ namespace CodeSmile.Statemachine
 	}
 
 	/// <summary>
-	/// Represents a generic (struct) FSM variable.
+	///     Represents a generic (struct) FSM variable.
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	public sealed class Var<T> : VariableBase, IEquatable<Var<T>> where T : struct

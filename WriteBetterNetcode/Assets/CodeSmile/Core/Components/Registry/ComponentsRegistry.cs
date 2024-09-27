@@ -53,7 +53,7 @@ namespace CodeSmile.Components.Registry
 
 			// create entry for type in awaitables
 			if (s_AwaitingAssignmentSources.ContainsKey(typeof(T)) == false)
-				s_AwaitingAssignmentSources[typeof(T)] = new List<TaskCompletionSource<Object>>();
+				s_AwaitingAssignmentSources[typeof(T)] = new();
 
 			// add a new completion source
 			var tcs = new TaskCompletionSource<Object>();

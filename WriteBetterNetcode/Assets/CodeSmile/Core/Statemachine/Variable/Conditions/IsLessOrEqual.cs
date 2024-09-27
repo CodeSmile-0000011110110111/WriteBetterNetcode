@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Variable.Conditions
 {
 	/// <summary>
-	/// Tests if a variable is less than or equal to a value or another variable.
+	///     Tests if a variable is less than or equal to a value or another variable.
 	/// </summary>
 	public sealed class IsLessOrEqual : ICondition
 	{

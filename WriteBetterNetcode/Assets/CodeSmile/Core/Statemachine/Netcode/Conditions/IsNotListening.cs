@@ -9,7 +9,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Netcode.Conditions
 {
 	/// <summary>
-	/// Is true if the NetworkManager IsListening state is false (offline).
+	///     Is true if the NetworkManager IsListening state is false (offline).
 	/// </summary>
 	public sealed class IsNotListening : ICondition
 	{

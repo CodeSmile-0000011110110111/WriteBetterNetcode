@@ -7,7 +7,6 @@ using CodeSmile.MultiPal.Animation;
 using CodeSmile.MultiPal.PlayerController;
 using CodeSmile.MultiPal.Players;
 using System;
-using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
@@ -42,7 +41,7 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 			IsOwner = isOwner || NetworkManagerExt.IsOffline;
 
 			if (m_AnimParams == null)
-				m_AnimParams = new AvatarAnimatorParameters();
+				m_AnimParams = new();
 
 			if (isOwner)
 			{

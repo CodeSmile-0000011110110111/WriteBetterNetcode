@@ -9,7 +9,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Services.Relay.Conditions
 {
 	/// <summary>
-	/// Is true if RelayConfig has an allocation, be it a Host or Join allocation.
+	///     Is true if RelayConfig has an allocation, be it a Host or Join allocation.
 	/// </summary>
 	public sealed class IsRelayReady : ICondition
 	{
@@ -17,7 +17,7 @@ namespace CodeSmile.Statemachine.Services.Relay.Conditions
 		private IsRelayReady() {}
 
 		/// <summary>
-		/// Creates a new instance.
+		///     Creates a new instance.
 		/// </summary>
 		/// <param name="relayConfigVar"></param>
 		public IsRelayReady(Var<RelayConfig> relayConfigVar) => m_RelayConfigVar = relayConfigVar;

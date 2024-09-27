@@ -9,7 +9,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Services.Authentication.Actions
 {
 	/// <summary>
-	/// Calls SignInAnonymouslyAsync.
+	///     Calls SignInAnonymouslyAsync.
 	/// </summary>
 	public sealed class SignInAnonymously : IAsyncAction
 	{

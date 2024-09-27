@@ -102,11 +102,7 @@ namespace CodeSmile.MultiPal.GUI
 			PortField.UnregisterValueChangedCallback(OnPortFieldChanged);
 		}
 
-		private void OnOfflineSingleplayerButtonClicked()
-		{
-			StartOfflineSingleplayer();
-		}
-
+		private void OnOfflineSingleplayerButtonClicked() => StartOfflineSingleplayer();
 
 		private void OnHostedSingleplayerButtonClicked() => StartHost(false, true);
 

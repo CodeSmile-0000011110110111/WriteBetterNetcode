@@ -1,10 +1,12 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using System;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
+using Object = System.Object;
 
 namespace CodeSmile.MultiPal.Samples.Tests
 {
@@ -34,21 +36,15 @@ namespace CodeSmile.MultiPal.Samples.Tests
 
 		// invoke the custom event with custom parameters
 
-		public void Send()
-		{
-			Tests.NetworkEventData.Send(new FastBufferWriter());
-		}
+		public void Send() => NetworkEventData.Send(new());
 
-		public void Receive()
-		{
-			Tests.NetworkEventData.Receive(new FastBufferReader());
-		}
+		public void Receive() => NetworkEventData.Receive(new());
 	}
 
 	public struct NetworkEventData
 	{
-		public object Data;
-		public static void Send(FastBufferWriter fastBufferWriter) { throw new System.NotImplementedException(); }
-		public static void Receive(FastBufferReader fastBufferReader) { throw new System.NotImplementedException(); }
+		public Object Data;
+		public static void Send(FastBufferWriter fastBufferWriter) => throw new NotImplementedException();
+		public static void Receive(FastBufferReader fastBufferReader) => throw new NotImplementedException();
 	}
 }

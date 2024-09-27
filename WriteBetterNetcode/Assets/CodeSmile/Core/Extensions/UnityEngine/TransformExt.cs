@@ -25,7 +25,7 @@ namespace CodeSmile.CodeSmile.Extensions.UnityEngine
 
 		/// <summary>
 		///     Destroys the transform's GameObject regardless of Edit or Play mode.
-		///		Depending on editor vs play mode it calls either DestroyImmediate or Destroy.
+		///     Depending on editor vs play mode it calls either DestroyImmediate or Destroy.
 		/// </summary>
 		/// <remarks>
 		///     In Builds this is a direct inlined call to Object.Destroy and no condition test.
@@ -33,7 +33,7 @@ namespace CodeSmile.CodeSmile.Extensions.UnityEngine
 		/// <remarks>
 		///     Transforms cannot be destroyed, Unity throws an error if you try.
 		///     This extension works under the assumption that the intention is to destroy the
-		///		GameObject so you don't have to remember to do: t.gameObject.Destroy();
+		///     GameObject so you don't have to remember to do: t.gameObject.Destroy();
 		/// </remarks>
 		/// <param name="self"></param>
 #if UNITY_EDITOR

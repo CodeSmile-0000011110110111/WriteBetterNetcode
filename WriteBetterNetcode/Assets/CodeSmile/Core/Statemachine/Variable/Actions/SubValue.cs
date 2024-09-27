@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Variable.Actions
 {
 	/// <summary>
-	/// Subtracts variable by a value.
+	///     Subtracts variable by a value.
 	/// </summary>
 	public sealed class SubValue : IAction
 	{

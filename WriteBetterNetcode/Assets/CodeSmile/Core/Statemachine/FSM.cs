@@ -29,12 +29,12 @@ namespace CodeSmile.Statemachine
 		private Boolean m_Logging;
 
 		/// <summary>
-		/// Index of currently active state. Is -1 for invalid state (eg not started).
+		///     Index of currently active state. Is -1 for invalid state (eg not started).
 		/// </summary>
 		public Int32 ActiveStateIndex { get; private set; } = -1;
 
 		/// <summary>
-		/// If true, will print FSM execution logs for debugging purposes.
+		///     If true, will print FSM execution logs for debugging purposes.
 		/// </summary>
 		public Boolean Logging
 		{
@@ -47,7 +47,7 @@ namespace CodeSmile.Statemachine
 		}
 
 		/// <summary>
-		/// The list of states in the statemachine.
+		///     The list of states in the statemachine.
 		/// </summary>
 		public State[] States => m_States;
 		private Boolean IsStarted => !(ActiveStateIndex < 0);
@@ -233,14 +233,14 @@ namespace CodeSmile.Statemachine
 #endif
 		}
 
-		private void InvokeOnStateChangeEvent(State updatingState) => OnStateChange?.Invoke(new StateChangeEventArgs
+		private void InvokeOnStateChangeEvent(State updatingState) => OnStateChange?.Invoke(new()
 		{
 			Statemachine = this,
 			PreviousState = updatingState,
 			ActiveState = ActiveState,
 		});
 
-		private void InvokeOnStoppedEvent() => OnStopped?.Invoke(new StatemachineStoppedEventArgs
+		private void InvokeOnStoppedEvent() => OnStopped?.Invoke(new()
 		{
 			Statemachine = this,
 			FinalState = ActiveState,

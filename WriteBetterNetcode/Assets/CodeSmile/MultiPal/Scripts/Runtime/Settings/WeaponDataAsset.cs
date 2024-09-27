@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace CodeSmile.MultiPal.Settings
@@ -17,10 +18,10 @@ namespace CodeSmile.MultiPal.Settings
 	{
 		public ProjectileDataAsset Projectile;
 
-		public float ReloadDuration;
-		public float FireRate;
-		public int AmmoPerShot;
-		public int MagazineSize;
+		public Single ReloadDuration;
+		public Single FireRate;
+		public Int32 AmmoPerShot;
+		public Int32 MagazineSize;
 
 		// FIXME: this does not belong inside
 		public WeaponRuntimeData RuntimeData;
@@ -30,7 +31,7 @@ namespace CodeSmile.MultiPal.Settings
 	{
 		public Transform[] ProjectileSpawnPoints;
 
-		public float ReloadCompleteTime;
-		public int MagazineAmmoRemaining;
+		public Single ReloadCompleteTime;
+		public Int32 MagazineAmmoRemaining;
 	}
 }

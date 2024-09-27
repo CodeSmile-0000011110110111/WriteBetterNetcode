@@ -9,7 +9,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Netcode.Actions
 {
 	/// <summary>
-	/// Stops networking, ie calls NetworkManager Shutdown().
+	///     Stops networking, ie calls NetworkManager Shutdown().
 	/// </summary>
 	public sealed class NetworkStop : IAction
 	{
@@ -18,7 +18,7 @@ namespace CodeSmile.Statemachine.Netcode.Actions
 		private NetworkStop() {}
 
 		/// <summary>
-		/// Creates a NetworkStop action.
+		///     Creates a NetworkStop action.
 		/// </summary>
 		/// <param name="discardMessageQueue"></param>
 		public NetworkStop(Boolean discardMessageQueue = false) => m_DiscardMessageQueue = discardMessageQueue;

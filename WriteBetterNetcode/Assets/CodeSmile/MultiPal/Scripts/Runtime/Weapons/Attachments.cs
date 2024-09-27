@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeSmile.MultiPal.Weapons
 {
 	/// <summary>
-	/// Allows to define attachments and then spawn objects into a given attachment slot index. One object per slot.
+	///     Allows to define attachments and then spawn objects into a given attachment slot index. One object per slot.
 	/// </summary>
 	[DisallowMultipleComponent]
 	public class Attachments : MonoBehaviour
@@ -20,8 +20,8 @@ namespace CodeSmile.MultiPal.Weapons
 		private void Awake() => m_AttachedObjects = new GameObject[m_AttachSlots.Length];
 
 		/// <summary>
-		/// Instantiates the prefab object into the given slot. Destroys the already-existing object. If prefab is null,
-		/// will destroy (clear) the attached object.
+		///     Instantiates the prefab object into the given slot. Destroys the already-existing object. If prefab is null,
+		///     will destroy (clear) the attached object.
 		/// </summary>
 		/// <param name="attachmentIndex">The slot to instantiate the object into.</param>
 		/// <param name="prefab">The object to instantiate in the slot. If null the existing object in this slot is destroyed.</param>

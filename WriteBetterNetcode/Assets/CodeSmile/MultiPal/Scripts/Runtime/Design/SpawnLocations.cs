@@ -25,7 +25,7 @@ namespace CodeSmile.MultiPal.Design
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
 		private static void ResetStaticFields()
 		{
-			m_AllSpawnLocations = new List<SpawnLocation>();
+			m_AllSpawnLocations = new();
 			OnSpawnLocationsChanged = null;
 		}
 

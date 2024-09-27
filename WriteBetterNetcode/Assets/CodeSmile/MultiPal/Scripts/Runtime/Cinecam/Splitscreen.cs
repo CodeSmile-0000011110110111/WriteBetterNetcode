@@ -84,7 +84,7 @@ namespace CodeSmile.MultiPal.Cinecam
 		{
 			SetSingleplayerCameraActive();
 
-			m_Cameras.PlayerSplitCameras[0].rect = new Rect(Vector2.zero, Vector2.one);
+			m_Cameras.PlayerSplitCameras[0].rect = new(Vector2.zero, Vector2.one);
 		}
 
 		private void EnableHorizontalSplitscreen()
@@ -94,8 +94,8 @@ namespace CodeSmile.MultiPal.Cinecam
 			// 0 = top, 1 = bottom
 			var playerCameras = m_Cameras.PlayerSplitCameras;
 			var viewportSize = new Vector2(1f, 0.5f);
-			playerCameras[0].rect = new Rect(new Vector2(0f, 0.5f), viewportSize);
-			playerCameras[1].rect = new Rect(Vector2.zero, viewportSize);
+			playerCameras[0].rect = new(new(0f, 0.5f), viewportSize);
+			playerCameras[1].rect = new(Vector2.zero, viewportSize);
 		}
 
 		private void EnableVerticalSplitscreen()
@@ -105,8 +105,8 @@ namespace CodeSmile.MultiPal.Cinecam
 			// 0 = left, 1 = right
 			var playerCameras = m_Cameras.PlayerSplitCameras;
 			var viewportSize = new Vector2(0.5f, 1f);
-			playerCameras[0].rect = new Rect(Vector2.zero, viewportSize);
-			playerCameras[1].rect = new Rect(new Vector2(0.5f, 0f), viewportSize);
+			playerCameras[0].rect = new(Vector2.zero, viewportSize);
+			playerCameras[1].rect = new(new(0.5f, 0f), viewportSize);
 		}
 
 		private void EnableFourWaySplitscreen()
@@ -116,10 +116,10 @@ namespace CodeSmile.MultiPal.Cinecam
 			// 0 = top left, 1 = top right, 2 = bottom left, 3 = bottom right
 			var cameras = m_Cameras.PlayerSplitCameras;
 			var viewportSize = new Vector2(0.5f, 0.5f);
-			cameras[0].rect = new Rect(new Vector2(0f, 0.5f), viewportSize);
-			cameras[1].rect = new Rect(new Vector2(0.5f, 0.5f), viewportSize);
-			cameras[2].rect = new Rect(new Vector2(0f, 0f), viewportSize);
-			cameras[3].rect = new Rect(new Vector2(0.5f, 0f), viewportSize);
+			cameras[0].rect = new(new(0f, 0.5f), viewportSize);
+			cameras[1].rect = new(new(0.5f, 0.5f), viewportSize);
+			cameras[2].rect = new(new(0f, 0f), viewportSize);
+			cameras[3].rect = new(new(0.5f, 0f), viewportSize);
 		}
 
 		private void SetSingleplayerCameraActive()

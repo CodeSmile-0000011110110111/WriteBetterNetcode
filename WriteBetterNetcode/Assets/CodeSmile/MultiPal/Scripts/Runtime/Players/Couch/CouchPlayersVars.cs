@@ -22,7 +22,7 @@ namespace CodeSmile.MultiPal.Players.Couch
 			m_CouchPlayers = GetComponent<CouchPlayers>();
 
 			var empty = new NetworkObjectReference[] { default, default, default, default };
-			m_RemotePlayerReferences = new NetworkList<NetworkObjectReference>(empty);
+			m_RemotePlayerReferences = new(empty);
 		}
 
 		internal void SetPlayerReference(Int32 playerIndex, NetworkObject playerObj)

@@ -7,8 +7,8 @@ using UnityEngine;
 namespace CodeSmile.Components.Utility
 {
 	/// <summary>
-	/// Pings (expands and highlights) the object when entering playmode (editor-only).
-	/// Useful mostly to ensure the hierarchy is always expanded to a specific (possibly deeply nested) object.
+	///     Pings (expands and highlights) the object when entering playmode (editor-only).
+	///     Useful mostly to ensure the hierarchy is always expanded to a specific (possibly deeply nested) object.
 	/// </summary>
 	[DisallowMultipleComponent]
 	internal sealed class PingOnEnterPlaymode : MonoBehaviour

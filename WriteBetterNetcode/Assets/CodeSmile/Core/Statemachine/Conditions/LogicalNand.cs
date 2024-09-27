@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Conditions
 {
 	/// <summary>
-	/// Logically combines the contained conditions with NAND (NOT AND).
+	///     Logically combines the contained conditions with NAND (NOT AND).
 	/// </summary>
 	public sealed class LogicalNand : ICondition
 	{

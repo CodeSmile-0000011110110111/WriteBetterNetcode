@@ -21,17 +21,14 @@ namespace CodeSmile.MultiPal.Players.Couch
 
 		private Boolean IsOffline => NetworkManagerExt.IsOffline;
 
-		private void Awake()
-		{
-			m_ServerSide = GetComponent<CouchPlayersServer>();
-		}
+		private void Awake() => m_ServerSide = GetComponent<CouchPlayersServer>();
 
 		internal async Task<Player> SpawnPlayer(Int32 playerIndex, Int32 avatarIndex)
 		{
 			if (m_SpawnTcs[playerIndex] != null)
-				throw new Exception($"player {playerIndex} spawn in progress");
+				throw new($"player {playerIndex} spawn in progress");
 
-			m_SpawnTcs[playerIndex] = new TaskCompletionSource<Player>();
+			m_SpawnTcs[playerIndex] = new();
 			m_ServerSide.SpawnPlayer(OwnerClientId, (Byte)playerIndex, (Byte)avatarIndex);
 
 			var result = await m_SpawnTcs[playerIndex].Task;

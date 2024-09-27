@@ -9,7 +9,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Conditions
 {
 	/// <summary>
-	/// Logically ANDs the contained conditions.
+	///     Logically ANDs the contained conditions.
 	/// </summary>
 	/// <remarks>Use this within other logical operators, such as OR(AND(..), AND(..))</remarks>
 	public sealed class LogicalAnd : ICondition

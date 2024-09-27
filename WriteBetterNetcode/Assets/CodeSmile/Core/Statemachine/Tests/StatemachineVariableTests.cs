@@ -66,21 +66,21 @@ namespace CodeSmile.Statemachine.Tests
 		// Bool vars
 		[TestCase(true, true)] [TestCase(false, false)]
 		public void BoolVar_IsVarTrue_AsExpected(Boolean value, Boolean expected) =>
-			Assert.AreEqual(expected, new IsTrue(new BoolVar(value)).IsSatisfied(null));
+			Assert.AreEqual(expected, new IsTrue(new(value)).IsSatisfied(null));
 
 		[TestCase(true, false)] [TestCase(false, true)]
 		public void BoolVar_IsVarFalse_AsExpected(Boolean value, Boolean expected) =>
-			Assert.AreEqual(expected, new IsFalse(new BoolVar(value)).IsSatisfied(null));
+			Assert.AreEqual(expected, new IsFalse(new(value)).IsSatisfied(null));
 
 		[TestCase(false, false, true)] [TestCase(true, false, false)]
 		[TestCase(false, true, false)] [TestCase(true, true, true)]
 		public void BoolVar_IsVarEqual_AsExpected(Boolean v1, Boolean v2, Boolean expected) => Assert.AreEqual(expected,
-			new IsEqual(new BoolVar(v1), new BoolVar(v2)).IsSatisfied(null));
+			new IsEqual(new(v1), new BoolVar(v2)).IsSatisfied(null));
 
 		[TestCase(false, false, false)] [TestCase(true, false, true)]
 		[TestCase(false, true, true)] [TestCase(true, true, false)]
 		public void BoolVar_IsVarNotEqual_AsExpected(Boolean v1, Boolean v2, Boolean expected) =>
-			Assert.AreEqual(expected, new IsNotEqual(new BoolVar(v1), v2).IsSatisfied(null));
+			Assert.AreEqual(expected, new IsNotEqual(new(v1), v2).IsSatisfied(null));
 
 		[Test] public void BoolVar_SetVarTrue_IsTrue()
 		{
@@ -142,32 +142,32 @@ namespace CodeSmile.Statemachine.Tests
 		[TestCase(0f, 0f, true)] [TestCase(-1.2345f, 0f, false)]
 		[TestCase(0f, 1.2345f, false)] [TestCase(Single.MinValue, Single.MinValue, true)]
 		public void FloatVar_IsVarEqual_AsExpected(Single v1, Single v2, Boolean expected) =>
-			Assert.AreEqual(expected, new IsEqual(new FloatVar(v1), v2).IsSatisfied(null));
+			Assert.AreEqual(expected, new IsEqual(new(v1), v2).IsSatisfied(null));
 
 		[TestCase(0f, 0f, false)] [TestCase(-1.2345f, 0f, true)]
 		[TestCase(0f, 1.2345f, true)] [TestCase(Single.MinValue, Single.MinValue, false)]
 		public void FloatVar_IsVarNotEqual_AsExpected(Single v1, Single v2, Boolean expected) =>
-			Assert.AreEqual(expected, new IsNotEqual(new FloatVar(v1), v2).IsSatisfied(null));
+			Assert.AreEqual(expected, new IsNotEqual(new(v1), v2).IsSatisfied(null));
 
 		[TestCase(0f, 0f, false)] [TestCase(0f, -1f, true)]
 		[TestCase(0f, 1f, false)] [TestCase(Single.MinValue, Single.MinValue, false)]
 		public void FloatVar_IsGreater_AsExpected(Single v1, Single v2, Boolean expected) =>
-			Assert.AreEqual(expected, new IsGreater(new FloatVar(v1), v2).IsSatisfied(null));
+			Assert.AreEqual(expected, new IsGreater(new(v1), v2).IsSatisfied(null));
 
 		[TestCase(0f, 0f, true)] [TestCase(0f, -1f, true)]
 		[TestCase(0f, 1f, false)] [TestCase(Single.MinValue, Single.MinValue, true)]
 		public void FloatVar_IsGreaterOrEqual_AsExpected(Single v1, Single v2, Boolean expected) => Assert.AreEqual(expected,
-			new IsGreaterOrEqual(new FloatVar(v1), v2).IsSatisfied(null));
+			new IsGreaterOrEqual(new(v1), v2).IsSatisfied(null));
 
 		[TestCase(0f, 0f, false)] [TestCase(0f, -1f, false)]
 		[TestCase(0f, 1f, true)] [TestCase(Single.MinValue, Single.MinValue, false)]
 		public void FloatVar_IsLess_AsExpected(Single v1, Single v2, Boolean expected) =>
-			Assert.AreEqual(expected, new IsLess(new FloatVar(v1), v2).IsSatisfied(null));
+			Assert.AreEqual(expected, new IsLess(new(v1), v2).IsSatisfied(null));
 
 		[TestCase(0f, 0f, true)] [TestCase(0f, -1f, false)]
 		[TestCase(0f, 1f, true)] [TestCase(Single.MinValue, Single.MinValue, true)]
 		public void FloatVar_IsLessOrEqual_AsExpected(Single v1, Single v2, Boolean expected) => Assert.AreEqual(expected,
-			new IsLessOrEqual(new FloatVar(v1), v2).IsSatisfied(null));
+			new IsLessOrEqual(new(v1), v2).IsSatisfied(null));
 
 		[Test] public void FloatVar_SetVarValue_AsExpected()
 		{

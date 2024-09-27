@@ -12,7 +12,6 @@ namespace CodeSmile.Statemachine
 {
 	public sealed partial class FSM
 	{
-
 		internal static void LogCondition(FSM sm, String transitionName, ICondition condition, Boolean satisfied) => Debug.Log(
 			$"{LogPrefix(sm, transitionName)}: {(satisfied ? "TRUE" : "false")} == ({condition.ToDebugString(sm)})");
 
@@ -34,7 +33,7 @@ namespace CodeSmile.Statemachine
 #endif
 
 		/// <summary>
-		/// Dump the FSM to PlantUML format for diagram generation.
+		///     Dump the FSM to PlantUML format for diagram generation.
 		/// </summary>
 		/// <param name="showCurrentTruthValues"></param>
 		/// <returns></returns>
@@ -46,7 +45,7 @@ namespace CodeSmile.Statemachine
 			Logging = false;
 
 			if (!IsStarted)
-				throw new Exception($"FSM '{Name}': can only generate PlantUML after statemachine started");
+				throw new($"FSM '{Name}': can only generate PlantUML after statemachine started");
 
 			var statesBuilder = new StringBuilder();
 			var transBuilder = new StringBuilder();

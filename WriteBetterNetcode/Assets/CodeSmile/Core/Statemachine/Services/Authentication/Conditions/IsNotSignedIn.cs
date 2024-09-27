@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeSmile.Statemachine.Services.Authentication.Conditions
 {
 	/// <summary>
-	/// Is true if user is not signed in (not authenticated) or services are not initialized.
+	///     Is true if user is not signed in (not authenticated) or services are not initialized.
 	/// </summary>
 	public sealed class IsNotSignedIn : IsSignedIn
 	{

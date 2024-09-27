@@ -21,13 +21,13 @@ namespace CodeSmile.MultiPal.Settings
 
 		[Header("Collision")]
 		public GameObject ImpactPrefab;
-		public LayerMask CollidesWithLayers = int.MaxValue;
+		public LayerMask CollidesWithLayers = Int32.MaxValue;
 		public QueryTriggerInteraction TriggerCollision = QueryTriggerInteraction.Ignore;
 
 		[Header("Stats")]
-		public float Damage;
-		public float Speed;
-		public float MaxLifetime;
+		public Single Damage;
+		public Single Speed;
+		public Single MaxLifetime;
 
 		// FIXME: this does not belong inside
 		public ProjectileRuntimeData RuntimeData;
@@ -35,8 +35,8 @@ namespace CodeSmile.MultiPal.Settings
 
 	public struct ProjectileRuntimeData
 	{
-		public float TimeToDie;
-		public ulong OwnerClientId;
-		public int PlayerIndex;
+		public Single TimeToDie;
+		public UInt64 OwnerClientId;
+		public Int32 PlayerIndex;
 	}
 }

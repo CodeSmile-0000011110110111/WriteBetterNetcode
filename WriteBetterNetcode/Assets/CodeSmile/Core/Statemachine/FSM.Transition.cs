@@ -16,7 +16,7 @@ namespace CodeSmile.Statemachine
 		public sealed class Transition
 		{
 			/// <summary>
-			/// The transition's name.
+			///     The transition's name.
 			/// </summary>
 			public String Name { get; }
 			internal ICondition[] Conditions { get; private set; }
@@ -94,7 +94,7 @@ namespace CodeSmile.Statemachine
 			public override String ToString() => $"Transition({Name})";
 
 			/// <summary>
-			/// Sets the destination state.
+			///     Sets the destination state.
 			/// </summary>
 			/// <param name="gotoState"></param>
 			/// <returns></returns>
@@ -109,7 +109,7 @@ namespace CodeSmile.Statemachine
 			}
 
 			/// <summary>
-			/// Sets the error state.
+			///     Sets the error state.
 			/// </summary>
 			/// <param name="errorState"></param>
 			/// <returns></returns>
@@ -124,10 +124,10 @@ namespace CodeSmile.Statemachine
 			}
 
 			/// <summary>
-			/// Adds a transition to multiple states (re-use).
+			///     Adds a transition to multiple states (re-use).
 			/// </summary>
 			/// <remarks>
-			/// This will not create copies of the transition or its actions/conditions.
+			///     This will not create copies of the transition or its actions/conditions.
 			/// </remarks>
 			/// <param name="states"></param>
 			/// <returns></returns>
@@ -144,7 +144,7 @@ namespace CodeSmile.Statemachine
 			}
 
 			/// <summary>
-			/// Add conditions to the transition.
+			///     Add conditions to the transition.
 			/// </summary>
 			/// <param name="conditions"></param>
 			/// <returns></returns>
@@ -159,7 +159,7 @@ namespace CodeSmile.Statemachine
 			}
 
 			/// <summary>
-			/// Add actions to the transition.
+			///     Add actions to the transition.
 			/// </summary>
 			/// <param name="actions"></param>
 			/// <returns></returns>
@@ -174,7 +174,7 @@ namespace CodeSmile.Statemachine
 			}
 
 			/// <summary>
-			/// Add error actions that run when an exception occurs.
+			///     Add error actions that run when an exception occurs.
 			/// </summary>
 			/// <param name="errorActions"></param>
 			/// <returns></returns>

@@ -8,7 +8,6 @@ namespace CodeSmile.MultiPal.Samples.Tests
 {
 	public sealed class ExampleNetworkEvent : NetworkEventBase
 	{
-
 		// send writer
 		// receive reader
 

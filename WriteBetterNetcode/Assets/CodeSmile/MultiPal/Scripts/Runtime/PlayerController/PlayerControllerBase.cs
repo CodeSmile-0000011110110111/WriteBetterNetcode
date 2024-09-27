@@ -40,17 +40,17 @@ namespace CodeSmile.MultiPal.PlayerController
 
 		private static InputAxis DefaultTilt => new()
 		{
-			Value = 0f, Range = new Vector2(-85f, 85f), Wrap = false, Center = 0f,
+			Value = 0f, Range = new(-85f, 85f), Wrap = false, Center = 0f,
 			Restrictions = InputAxis.RestrictionFlags.NoRecentering,
 		};
 		private static InputAxis DefaultPan => new()
 		{
-			Value = 0f, Range = new Vector2(-180f, 180f), Wrap = true, Center = 0f,
+			Value = 0f, Range = new(-180f, 180f), Wrap = true, Center = 0f,
 			Restrictions = InputAxis.RestrictionFlags.NoRecentering,
 		};
 		private static InputAxis DefaultRoll => new()
 		{
-			Value = 0f, Range = new Vector2(-60f, 60f), Wrap = false, Center = 0f,
+			Value = 0f, Range = new(-60f, 60f), Wrap = false, Center = 0f,
 			Restrictions = InputAxis.RestrictionFlags.NoRecentering,
 		};
 
@@ -64,7 +64,7 @@ namespace CodeSmile.MultiPal.PlayerController
 
 		public Vector3 Velocity => CharController != null
 			? CharController.velocity
-			: new Vector3(m_Sideways.Value, m_Vertical.Value, m_Forward.Value);
+			: new(m_Sideways.Value, m_Vertical.Value, m_Forward.Value);
 
 		public Vector3 MoveSensitivity
 		{

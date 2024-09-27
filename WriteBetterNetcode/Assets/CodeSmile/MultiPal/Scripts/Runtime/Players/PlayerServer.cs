@@ -1,6 +1,7 @@
 // Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using System;
 using System.Collections;
 using Unity.Netcode;
 using UnityEditor;
@@ -13,9 +14,9 @@ namespace CodeSmile.MultiPal.Players
 	internal class PlayerServer : NetworkBehaviour
 	{
 		[Header("Test")]
-		[SerializeField] private bool m_EnableTest_RandomlyKillPlayer;
-		[SerializeField][Range(1f, 60f)] private float m_TestTimeToKill = 5f;
-		[SerializeField][Range(1f, 10f)] private float m_TestTimeToRespawn = 2.5f;
+		[SerializeField] private Boolean m_EnableTest_RandomlyKillPlayer;
+		[SerializeField] [Range(1f, 60f)] private Single m_TestTimeToKill = 5f;
+		[SerializeField] [Range(1f, 10f)] private Single m_TestTimeToRespawn = 2.5f;
 
 		private PlayerClient m_ClientSide;
 		private Player m_Player;
