@@ -12,6 +12,7 @@ using UnityEngine;
 namespace CodeSmile.MultiPal.Weapons
 {
 	[DisallowMultipleComponent]
+	[RequireComponent(typeof(ProjectilesClient), typeof(ProjectilesServer))]
 	public sealed class Projectiles : MonoBehaviour
 	{
 		private static readonly RaycastHit[] s_RaycastHits = new RaycastHit[16];
@@ -22,6 +23,42 @@ namespace CodeSmile.MultiPal.Weapons
 
 		private void Update()
 		{
+			/* Networking changes:
+			 - projectiles are net objects or not?
+				yes: server authority, higher traffic
+				no: less traffic
+					client can't destroy bullet that missed locally but hit on server
+					client can't un-destroy bullet that hit locally but missed on server
+				support both?
+					server tells clients about impact either way
+
+				mode determined by ProjectileDataAsset if prefab has NetworkObject component
+
+
+				server auth:
+				FireWeapon
+					start/stop firing RPC to server
+						toggles firing state (automatic), non-automatic same but may ignore stop fire event
+						get position, rotation, projectile from player's weapon
+						net spawn projectile
+
+					server ticks and destroys projectiles (net tick)
+					server sends impacts to clients (not EOL, synched implicitly through Destroy)
+
+				client auth (COOP only!):
+				FireWeapon
+					start/stop firing RPC to everyone
+						get position, rotation, projectile from player's weapon
+							(will cause latency deviation for every client, for coop it's okay
+							(could also send: position, rotation, projectile data)
+						local spawn projectile
+
+					every client ticks and destroys own projectiles (Update)
+					every client sends its projectile impacts to clients
+						EOL: projectiles need to destroy themselves after a set time
+			*/
+
+
 			var currentTime = Time.time;
 			var deltaTime = Time.deltaTime;
 			RaycastHit hit = default;
@@ -64,13 +101,16 @@ namespace CodeSmile.MultiPal.Weapons
 			}
 		}
 
-		public void FireWeapon(WeaponData weaponData)
+		public void FireWeapon(WeaponData weaponData, Transform[] spawnPoints)
 		{
+			if (spawnPoints == null || spawnPoints.Length != 1)
+				throw new ArgumentException("Spawn points must be exactly 1 for now!");
+
 			var projectileData = weaponData.Projectile.Data;
 			var projectileRuntimeData = projectileData.RuntimeData;
 			projectileRuntimeData.TimeToDie = Time.time + projectileData.MaxLifetime;
 
-			var parent = weaponData.RuntimeData.ProjectileSpawnPoints[0];
+			var parent = spawnPoints[0];
 			var projectileObj = Instantiate(projectileData.ProjectilePrefab, parent.position, parent.rotation);
 			projectileObj.transform.parent = transform;
 

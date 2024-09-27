@@ -29,7 +29,6 @@ namespace CodeSmile.MultiPal.Settings
 		public Single Speed;
 		public Single MaxLifetime;
 
-		// FIXME: this does not belong inside
 		public ProjectileRuntimeData RuntimeData;
 	}
 

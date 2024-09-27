@@ -48,10 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4245569884
+  GlobalObjectIdHash: 3962432993
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
-  Ownership: 1
+  Ownership: 0
   AlwaysReplicateAsRoot: 1
   SynchronizeTransform: 0
   ActiveSceneSynchronization: 0
@@ -59,6 +59,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 0
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!114 &1552730354818967529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcac93b2bfc82054b8c929c89fc11a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!114 &3728112273660237586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4023a9d7a4841b5aa65b4a4f1260ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!114 &4262242202822552008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e7de015d834034bbfe8e95fbe71d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   m_PlayerPrefab: {fileID: 6872444309775532367, guid: 8feb565c4942ec546906367ef4c7d50c, type: 3}
 --- !u!114 &3290252194301008303
 MonoBehaviour:
@@ -108,3 +113,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3661b8390244b48ed983ec755320d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1

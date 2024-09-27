@@ -6,7 +6,6 @@ using CodeSmile.MultiPal.Settings;
 using CodeSmile.MultiPal.Weapons;
 using System;
 using System.Collections;
-using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
@@ -20,17 +19,15 @@ namespace CodeSmile.MultiPal.Players
 		private Int32 m_ActiveWeaponIndex;
 		private Projectiles m_Projectiles;
 		private PlayerAvatar m_PlayerAvatar;
+		private PlayerClient m_ClientSide;
 		private Weapon m_ActiveWeapon;
 
-		private UInt64 m_ClientId;
 		private Int32 m_PlayerIndex;
 
 		public void OnPlayerSpawn(Int32 playerIndex, Boolean isOwner)
 		{
 			if (isOwner)
 			{
-				var netObj = GetComponent<NetworkObject>();
-				m_ClientId = netObj.OwnerClientId;
 				m_PlayerIndex = playerIndex;
 
 				StartCoroutine(TestCycleWeapon());
@@ -40,16 +37,25 @@ namespace CodeSmile.MultiPal.Players
 
 		public void OnPlayerDespawn(Int32 playerIndex, Boolean isOwner) => m_ActiveWeapon = null;
 
-		private void Awake() => m_PlayerAvatar = GetComponent<PlayerAvatar>();
+		private void Awake()
+		{
+			m_PlayerAvatar = GetComponent<PlayerAvatar>();
+			m_ClientSide = GetComponent<PlayerClient>();
+		}
+
 		private void Start() => m_Projectiles = ComponentsRegistry.Get<Projectiles>();
 
 		private IEnumerator TestFireWeapon()
 		{
 			while (true)
 			{
-				yield return null;
+				m_ClientSide.StartAttacking();
 
-				FireWeapon();
+				yield return new WaitForSeconds(1f);
+
+				m_ClientSide.StopAttacking();
+
+				yield return new WaitForSeconds(.25f);
 			}
 		}
 
@@ -75,6 +81,18 @@ namespace CodeSmile.MultiPal.Players
 				Debug.LogWarning($"Weapon {weaponPrefab} has no Weapon component");
 		}
 
+		private void StartAttacking()
+		{
+			throw new NotImplementedException();
+
+		}
+
+		private void StopAttacking()
+		{
+			throw new NotImplementedException();
+
+		}
+
 		private void FireWeapon()
 		{
 			if (m_ActiveWeapon != null)
@@ -82,10 +100,7 @@ namespace CodeSmile.MultiPal.Players
 				m_ActiveWeapon.FireAudioVisual();
 
 				var weaponData = m_ActiveWeapon.DataAsset.Data;
-				var projectileData = weaponData.Projectile.Data;
-				projectileData.RuntimeData.OwnerClientId = m_ClientId;
-				projectileData.RuntimeData.PlayerIndex = m_PlayerIndex;
-				m_Projectiles.FireWeapon(weaponData);
+				m_Projectiles.FireWeapon(weaponData, m_ActiveWeapon.ProjectileSpawnPoints);
 			}
 		}
 	}

@@ -67,5 +67,17 @@ namespace CodeSmile.MultiPal.Players
 
 		[Rpc(SendTo.ClientsAndHost, DeferLocal = true)]
 		public void RespawnPlayerClientRpc() => m_Player.Respawn();
+
+		public void StartAttacking()
+		{
+			throw new NotImplementedException();
+
+		}
+
+		public void StopAttacking()
+		{
+			throw new NotImplementedException();
+
+		}
 	}
 }

@@ -14,8 +14,7 @@ namespace CodeSmile.MultiPal.Weapons
 		[SerializeField] private Transform[] m_ProjectileSpawnPoints;
 
 		public WeaponDataAsset DataAsset => m_WeaponDataAsset;
-
-		private void OnEnable() => m_WeaponDataAsset.Data.RuntimeData.ProjectileSpawnPoints = m_ProjectileSpawnPoints;
+		public Transform[] ProjectileSpawnPoints => m_ProjectileSpawnPoints;
 
 		public void FireAudioVisual()
 		{

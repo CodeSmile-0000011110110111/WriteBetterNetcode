@@ -17,19 +17,16 @@ namespace CodeSmile.MultiPal.Settings
 	public sealed class WeaponData
 	{
 		public ProjectileDataAsset Projectile;
+		public Transform[] ProjectileSpawnPoints;
 
 		public Single ReloadDuration;
 		public Single FireRate;
 		public Int32 AmmoPerShot;
 		public Int32 MagazineSize;
-
-		// FIXME: this does not belong inside
-		public WeaponRuntimeData RuntimeData;
 	}
 
 	public struct WeaponRuntimeData
 	{
-		public Transform[] ProjectileSpawnPoints;
 
 		public Single ReloadCompleteTime;
 		public Int32 MagazineAmmoRemaining;
