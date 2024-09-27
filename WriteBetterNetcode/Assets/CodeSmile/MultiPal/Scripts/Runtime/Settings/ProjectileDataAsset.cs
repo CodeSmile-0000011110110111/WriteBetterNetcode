@@ -16,7 +16,15 @@ namespace CodeSmile.MultiPal.Settings
 	[Serializable]
 	public sealed class ProjectileData
 	{
+		[Header("Visualization")]
 		public GameObject ProjectilePrefab;
+
+		[Header("Collision")]
+		public GameObject ImpactPrefab;
+		public LayerMask CollidesWithLayers = LayerMask.GetMask("Default", "Player");
+		public QueryTriggerInteraction TriggerCollision = QueryTriggerInteraction.Ignore;
+
+		[Header("Stats")]
 		public float Damage;
 		public float Speed;
 		public float MaxLifetime;

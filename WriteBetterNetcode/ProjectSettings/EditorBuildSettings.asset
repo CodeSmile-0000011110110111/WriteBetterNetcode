@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/CodeSmile/MultiPal/Scenes/+300_OfflineCouchPlayers.unity
     guid: a297a0c0e57fc804b8e814af6b3894ce
   - enabled: 1
-    path: Assets/CodeSmile/MultiPal/Scenes/Server Test Scenes/+500_SpawnPositions.unity
+    path: Assets/CodeSmile/MultiPal/Scenes/+500_SpawnPositions.unity
     guid: b2ed7f918b9806647870dc25762b1036
   - enabled: 1
     path: Assets/CodeSmile/MultiPal/Scenes/Server Test Scenes/+501_Test1.unity
@@ -39,7 +39,7 @@ EditorBuildSettings:
     path: Assets/CodeSmile/MultiPal/Scenes/Server Test Scenes/+503_Test3.unity
     guid: 087ee7f6473027d4fb99479691123ac7
   - enabled: 1
-    path: Assets/CodeSmile/MultiPal/Scenes/Server Test Scenes/+999_Dev_Content.unity
+    path: Assets/CodeSmile/MultiPal/Scenes/+999_Dev_Content.unity
     guid: 2062f189557df184e8aa4881ef2e4435
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 2675780ee23d2274ba8b0dd691b8be5b, type: 2}

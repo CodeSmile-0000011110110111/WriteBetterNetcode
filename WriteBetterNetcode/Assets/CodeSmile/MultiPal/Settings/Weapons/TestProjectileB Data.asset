@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data:
     ProjectilePrefab: {fileID: 7436969241373201489, guid: 6386abcb7018b07458af79326671b75a, type: 3}
+    ImpactPrefab: {fileID: 4055059536302517146, guid: 97a38c2ec039ca7419bc56e59a66976f, type: 3}
+    CollidesWithLayers:
+      serializedVersion: 2
+      m_Bits: 9
+    TriggerCollision: 1
     Damage: 20
     Speed: 30
     MaxLifetime: 0.3

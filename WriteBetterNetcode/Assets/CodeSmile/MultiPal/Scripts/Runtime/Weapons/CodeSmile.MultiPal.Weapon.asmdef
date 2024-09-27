@@ -1,4 +1,4 @@
 ﻿{
   "name": "CodeSmile.MultiPal.Weapon",
-  "references":[ "GUID:fcdefbebbd09422dbc2d1210c9b54961", "GUID:bee855cae4f74bf40bbf7ba8903d3bb6" ]
+  "references":[ "GUID:fcdefbebbd09422dbc2d1210c9b54961", "GUID:bee855cae4f74bf40bbf7ba8903d3bb6", "GUID:3c6278c25138c994d9865b7d09c695ee" ]
 }
