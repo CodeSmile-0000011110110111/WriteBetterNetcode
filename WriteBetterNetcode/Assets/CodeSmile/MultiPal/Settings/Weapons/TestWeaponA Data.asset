@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data:
     Projectile: {fileID: 11400000, guid: 3149d1123afecd549817810b1b593d43, type: 2}
-    ReloadDuration: 1
+    WeaponFirePrefab: {fileID: 4055059536302517146, guid: 9624dcfb67cc47244b9f5155fec88e94, type: 3}
     FireRate: 0.3
-    AmmoPerShot: 1
+    ShotCount: 0
     MagazineSize: 30
+    AutoReload: 1
+    ReloadDuration: 1

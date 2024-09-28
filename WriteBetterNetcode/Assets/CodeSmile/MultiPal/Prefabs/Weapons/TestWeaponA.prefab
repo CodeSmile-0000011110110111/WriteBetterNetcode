@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -0, z: 0.5}
-  m_LocalScale: {x: 0.1, y: 0.5, z: 0.1}
+  m_LocalScale: {x: 0.24, y: 0.5, z: 0.24}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7776617715997745415}
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_WeaponDataAsset: {fileID: 11400000, guid: 29ab5202e5aed2843bf492ed13fb70c3, type: 2}
   m_ProjectileSpawnPoints:
-  - {fileID: 1040516578673189226}
+  - {fileID: 4121735804227542429}
 --- !u!1 &9038973818880247336
 GameObject:
   m_ObjectHideFlags: 0

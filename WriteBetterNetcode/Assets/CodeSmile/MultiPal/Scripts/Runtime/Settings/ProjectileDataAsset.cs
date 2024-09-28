@@ -22,12 +22,12 @@ namespace CodeSmile.MultiPal.Settings
 		[Header("Collision")]
 		public GameObject ImpactPrefab;
 		public LayerMask CollidesWithLayers = Int32.MaxValue;
-		public QueryTriggerInteraction TriggerCollision = QueryTriggerInteraction.Ignore;
+		public QueryTriggerInteraction TriggerInteraction = QueryTriggerInteraction.Ignore;
 
 		[Header("Stats")]
 		public Single Damage;
 		public Single Speed;
-		public Single MaxLifetime;
+		public Single Lifetime;
 
 		public ProjectileRuntimeData RuntimeData;
 	}

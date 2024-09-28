@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Player Weapons
   m_EditorClassIdentifier: 
   m_Prefabs:
-  - {fileID: 7810492442036582416, guid: b60a0935d43993040917ff6774809dff, type: 3}
   - {fileID: 7810492442036582416, guid: 7285e265e5015284bb4a57bf9719732c, type: 3}
+  - {fileID: 7810492442036582416, guid: b60a0935d43993040917ff6774809dff, type: 3}

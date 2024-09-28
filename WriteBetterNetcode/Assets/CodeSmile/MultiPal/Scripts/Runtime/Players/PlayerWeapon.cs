@@ -2,6 +2,7 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Components.Registry;
+using CodeSmile.MultiPal.Players.Couch;
 using CodeSmile.MultiPal.Settings;
 using CodeSmile.MultiPal.Weapons;
 using System;
@@ -12,14 +13,15 @@ using UnityEngine;
 namespace CodeSmile.MultiPal.Players
 {
 	[DisallowMultipleComponent]
+	[RequireComponent(typeof(PlayerWeaponNetcode))]
 	public sealed class PlayerWeapon : MonoBehaviour, IPlayerComponent
 	{
 		[SerializeField] private WeaponPrefabs m_WeaponPrefabs;
 
 		private Int32 m_ActiveWeaponIndex;
-		private Projectiles m_Projectiles;
+		private ProjectileSpawner m_ProjectileSpawner;
 		private PlayerAvatar m_PlayerAvatar;
-		private PlayerClient m_ClientSide;
+		private PlayerWeaponNetcode m_Netcode;
 		private Weapon m_ActiveWeapon;
 
 		private Int32 m_PlayerIndex;
@@ -40,22 +42,24 @@ namespace CodeSmile.MultiPal.Players
 		private void Awake()
 		{
 			m_PlayerAvatar = GetComponent<PlayerAvatar>();
-			m_ClientSide = GetComponent<PlayerClient>();
+			m_Netcode = GetComponent<PlayerWeaponNetcode>();
 		}
 
-		private void Start() => m_Projectiles = ComponentsRegistry.Get<Projectiles>();
+		private void Start() => m_ProjectileSpawner = ComponentsRegistry.Get<ProjectileSpawner>();
 
 		private IEnumerator TestFireWeapon()
 		{
 			while (true)
 			{
-				m_ClientSide.StartAttacking();
+				m_ActiveWeapon.StartAttacking();
+				m_Netcode.StartAttacking();
 
-				yield return new WaitForSeconds(1f);
+				yield return new WaitForSeconds(3f);
 
-				m_ClientSide.StopAttacking();
+				m_ActiveWeapon.StopAttacking();
+				m_Netcode.StopAttacking();
 
-				yield return new WaitForSeconds(.25f);
+				yield return new WaitForSeconds(1.2f);
 			}
 		}
 
@@ -64,7 +68,7 @@ namespace CodeSmile.MultiPal.Players
 			while (true)
 			{
 				NextWeapon();
-				yield return new WaitForSeconds(2f);
+				yield return new WaitForSeconds(15f);
 			}
 		}
 
@@ -79,29 +83,6 @@ namespace CodeSmile.MultiPal.Players
 
 			if (m_ActiveWeapon == null)
 				Debug.LogWarning($"Weapon {weaponPrefab} has no Weapon component");
-		}
-
-		private void StartAttacking()
-		{
-			throw new NotImplementedException();
-
-		}
-
-		private void StopAttacking()
-		{
-			throw new NotImplementedException();
-
-		}
-
-		private void FireWeapon()
-		{
-			if (m_ActiveWeapon != null)
-			{
-				m_ActiveWeapon.FireAudioVisual();
-
-				var weaponData = m_ActiveWeapon.DataAsset.Data;
-				m_Projectiles.FireWeapon(weaponData, m_ActiveWeapon.ProjectileSpawnPoints);
-			}
 		}
 	}
 }

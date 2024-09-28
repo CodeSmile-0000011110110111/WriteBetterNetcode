@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 1149383071451387854}
   - component: {fileID: 76815592126949633}
   - component: {fileID: 6885750535737093099}
+  - component: {fileID: 4951416721759998132}
   - component: {fileID: 3042458565293754045}
   m_Layer: 3
   m_Name: ModularPlayer
@@ -120,11 +121,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3267979062
+  GlobalObjectIdHash: 1324909063
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 0
-  AlwaysReplicateAsRoot: 0
+  AlwaysReplicateAsRoot: 1
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
   SceneMigrationSynchronization: 1
@@ -289,6 +290,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_WeaponPrefabs: {fileID: 11400000, guid: 5b7d194f968d3c04da636ff32005cf49, type: 2}
+--- !u!114 &4951416721759998132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6108024806492646982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61e1bc84019e4221a04d2f3157ec917b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!114 &3042458565293754045
 MonoBehaviour:
   m_ObjectHideFlags: 0

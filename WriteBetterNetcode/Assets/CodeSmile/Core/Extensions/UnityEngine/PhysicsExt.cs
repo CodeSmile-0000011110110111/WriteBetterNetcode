@@ -9,6 +9,8 @@ namespace CodeSmile.CodeSmile.Extensions.UnityEngine
 {
 	public static class PhysicsExt
 	{
+		private static readonly RaycastHit[] s_RaycastHits = new RaycastHit[8];
+
 		/// <summary>
 		///     Returns the index of the closest (least distant) hit in the results array. Uses RaycastNonAlloc.
 		/// </summary>
@@ -36,6 +38,15 @@ namespace CodeSmile.CodeSmile.Extensions.UnityEngine
 			}
 
 			return numHits;
+		}
+
+		public static Boolean ClosestHit(Ray ray, out RaycastHit hit, Single maxDistance, LayerMask layerMask,
+			QueryTriggerInteraction triggerInteraction)
+		{
+			var hitCount = RaycastNonAllocClosest(ray, s_RaycastHits, out var closestHitIndex, maxDistance, layerMask,
+				triggerInteraction);
+			hit = hitCount > 0 ? s_RaycastHits[closestHitIndex] : default;
+			return hitCount > 0;
 		}
 	}
 }

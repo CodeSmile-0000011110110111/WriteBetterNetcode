@@ -19,13 +19,8 @@ namespace CodeSmile.MultiPal.Players
 		[SerializeField] [Range(1f, 10f)] private Single m_TestTimeToRespawn = 2.5f;
 
 		private PlayerClient m_ClientSide;
-		private Player m_Player;
 
-		private void Awake()
-		{
-			m_ClientSide = GetComponent<PlayerClient>();
-			m_Player = GetComponent<Player>();
-		}
+		private void Awake() => m_ClientSide = GetComponent<PlayerClient>();
 
 		private void OnEnable() => StartCoroutine(TestRandomlyKillPlayer());
 

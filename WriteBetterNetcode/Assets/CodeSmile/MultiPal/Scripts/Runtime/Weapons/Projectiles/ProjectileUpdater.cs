@@ -3,23 +3,20 @@
 
 using CodeSmile.CodeSmile.Extensions.UnityEngine;
 using CodeSmile.Components.Registry;
-using CodeSmile.MultiPal.Settings;
-using System;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 namespace CodeSmile.MultiPal.Weapons
 {
 	[DisallowMultipleComponent]
-	[RequireComponent(typeof(ProjectilesClient), typeof(ProjectilesServer))]
-	public sealed class Projectiles : MonoBehaviour
+	internal sealed class ProjectileUpdater : MonoBehaviour
 	{
-		private static readonly RaycastHit[] s_RaycastHits = new RaycastHit[16];
+		private ProjectileSpawner m_Spawner;
 
-		private readonly List<ActiveProjectile> m_Projectiles = new();
-
-		private void Awake() => ComponentsRegistry.Set(this);
+		private void Awake()
+		{
+			m_Spawner = GetComponent<ProjectileSpawner>();
+		}
 
 		private void Update()
 		{
@@ -58,15 +55,15 @@ namespace CodeSmile.MultiPal.Weapons
 						EOL: projectiles need to destroy themselves after a set time
 			*/
 
-
 			var currentTime = Time.time;
 			var deltaTime = Time.deltaTime;
 			RaycastHit hit = default;
 
-			var projectileCount = m_Projectiles.Count;
+			var projectiles = m_Spawner.Projectiles;
+			var projectileCount = projectiles.Count;
 			for (var i = projectileCount - 1; i >= 0; i--)
 			{
-				var projectile = m_Projectiles[i];
+				var projectile = projectiles[i];
 				var projectileTransform = projectile.Transform;
 				var runtimeData = projectile.RuntimeData;
 				var endOfLife = currentTime >= runtimeData.TimeToDie;
@@ -79,7 +76,9 @@ namespace CodeSmile.MultiPal.Weapons
 					var nextPosition = previousPosition + forward * distanceTravelled;
 
 					var travelRay = new Ray(previousPosition, forward);
-					if (CheckCollision(projectile, travelRay, distanceTravelled, out hit))
+					var layerMask = projectile.Data.CollidesWithLayers;
+					var triggerInteraction = projectile.Data.TriggerInteraction;
+					if (PhysicsExt.ClosestHit(travelRay, out hit, distanceTravelled, layerMask, triggerInteraction))
 					{
 						endOfLife = true;
 
@@ -95,49 +94,10 @@ namespace CodeSmile.MultiPal.Weapons
 
 				if (endOfLife)
 				{
-					Destroy(projectile.Transform.gameObject);
-					m_Projectiles.RemoveAt(i);
+					m_Spawner.DestroyProjectile(projectile);
+					projectiles.RemoveAt(i);
 				}
 			}
-		}
-
-		public void FireWeapon(WeaponData weaponData, Transform[] spawnPoints)
-		{
-			if (spawnPoints == null || spawnPoints.Length != 1)
-				throw new ArgumentException("Spawn points must be exactly 1 for now!");
-
-			var projectileData = weaponData.Projectile.Data;
-			var projectileRuntimeData = projectileData.RuntimeData;
-			projectileRuntimeData.TimeToDie = Time.time + projectileData.MaxLifetime;
-
-			var parent = spawnPoints[0];
-			var projectileObj = Instantiate(projectileData.ProjectilePrefab, parent.position, parent.rotation);
-			projectileObj.transform.parent = transform;
-
-			m_Projectiles.Add(new()
-			{
-				Transform = projectileObj.transform,
-				Data = projectileData,
-				RuntimeData = projectileRuntimeData,
-			});
-		}
-
-		private Boolean CheckCollision(ActiveProjectile projectile, Ray travelRay, Single distance, out RaycastHit hit)
-		{
-			var data = projectile.Data;
-			var numHits = PhysicsExt.RaycastNonAllocClosest(travelRay, s_RaycastHits, out var closestHitIndex,
-				distance, data.CollidesWithLayers, data.TriggerCollision);
-
-			var didHit = numHits > 0;
-			hit = didHit ? s_RaycastHits[closestHitIndex] : default;
-			return didHit;
-		}
-
-		private struct ActiveProjectile
-		{
-			public Transform Transform;
-			public ProjectileData Data;
-			public ProjectileRuntimeData RuntimeData;
 		}
 	}
 }

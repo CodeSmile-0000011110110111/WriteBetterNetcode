@@ -18,7 +18,7 @@ MonoBehaviour:
     CollidesWithLayers:
       serializedVersion: 2
       m_Bits: 9
-    TriggerCollision: 1
+    TriggerInteraction: 1
     Damage: 20
-    Speed: 30
-    MaxLifetime: 0.3
+    Speed: 60
+    Lifetime: 0.6
