@@ -2,9 +2,9 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.Components.Registry;
-using CodeSmile.MultiPal.Players.Couch;
 using CodeSmile.MultiPal.Settings;
 using CodeSmile.MultiPal.Weapons;
+using CodeSmile.MultiPal.Weapons.Projectiles;
 using System;
 using System.Collections;
 using UnityEditor;
@@ -25,12 +25,14 @@ namespace CodeSmile.MultiPal.Players
 		private Weapon m_ActiveWeapon;
 
 		private Int32 m_PlayerIndex;
+		private bool m_IsOwner;
 
 		public void OnPlayerSpawn(Int32 playerIndex, Boolean isOwner)
 		{
 			if (isOwner)
 			{
 				m_PlayerIndex = playerIndex;
+				m_IsOwner = isOwner;
 
 				StartCoroutine(TestCycleWeapon());
 				StartCoroutine(TestFireWeapon());
@@ -51,13 +53,15 @@ namespace CodeSmile.MultiPal.Players
 		{
 			while (true)
 			{
-				m_ActiveWeapon.StartAttacking();
 				m_Netcode.StartAttacking();
+				if (m_IsOwner)
+					StartAttacking();
 
 				yield return new WaitForSeconds(3f);
 
-				m_ActiveWeapon.StopAttacking();
 				m_Netcode.StopAttacking();
+				if (m_IsOwner)
+					StopAttacking();
 
 				yield return new WaitForSeconds(1.2f);
 			}
@@ -83,6 +87,15 @@ namespace CodeSmile.MultiPal.Players
 
 			if (m_ActiveWeapon == null)
 				Debug.LogWarning($"Weapon {weaponPrefab} has no Weapon component");
+		}
+
+		internal void StartAttacking()
+		{
+			m_ActiveWeapon.StartAttacking();
+		}
+		internal void StopAttacking()
+		{
+			m_ActiveWeapon.StopAttacking();
 		}
 	}
 }

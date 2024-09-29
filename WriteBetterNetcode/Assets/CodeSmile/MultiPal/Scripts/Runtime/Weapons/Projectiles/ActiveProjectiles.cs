@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Weapons
+namespace CodeSmile.MultiPal.Weapons.Projectiles
 {
 	internal sealed class ActiveProjectiles : IEnumerable<ActiveProjectile>
 	{

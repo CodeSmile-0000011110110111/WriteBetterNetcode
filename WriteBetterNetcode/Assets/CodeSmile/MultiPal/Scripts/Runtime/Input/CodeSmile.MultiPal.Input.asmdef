@@ -1,6 +1,6 @@
 {
     "name": "CodeSmile.MultiPal.Input",
-    "rootNamespace": "",
+    "rootNamespace": "CodeSmile",
     "references": [
         "GUID:75469ad4d38634e559750d17036d5f7c",
         "GUID:fcdefbebbd09422dbc2d1210c9b54961",

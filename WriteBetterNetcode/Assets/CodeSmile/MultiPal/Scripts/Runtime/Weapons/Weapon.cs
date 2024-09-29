@@ -3,6 +3,7 @@
 
 using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Settings;
+using CodeSmile.MultiPal.Weapons.Projectiles;
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -86,12 +87,7 @@ namespace CodeSmile.MultiPal.Weapons
 			OnReloadStarted?.Invoke(this);
 		}
 
-		public void StartAttacking()
-		{
-			if (m_RuntimeData.IsAttacking == false)
-				m_RuntimeData.IsAttacking = true;
-		}
-
+		public void StartAttacking() => m_RuntimeData.IsAttacking = true;
 		public void StopAttacking() => m_RuntimeData.IsAttacking = false;
 	}
 }

@@ -1,6 +1,6 @@
 {
     "name": "CodeSmile.MultiPal.Cinecam",
-    "rootNamespace": "",
+    "rootNamespace": "CodeSmile",
     "references": [
         "GUID:b660ba037dadb084b951252e81e1ce1a",
         "GUID:b01e7d37c21f68947a05cebbc3f902f2",

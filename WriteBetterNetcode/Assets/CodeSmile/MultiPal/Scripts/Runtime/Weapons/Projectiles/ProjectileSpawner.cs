@@ -7,7 +7,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Weapons
+namespace CodeSmile.MultiPal.Weapons.Projectiles
 {
 	[DisallowMultipleComponent]
 	[RequireComponent(typeof(ProjectileUpdater))]

@@ -1,6 +1,6 @@
 {
     "name": "CodeSmile.MultiPal.GUI",
-    "rootNamespace": "",
+    "rootNamespace": "CodeSmile",
     "references": [
         "GUID:1d6a2152dbbd15c4e9b835110326674a",
         "GUID:b660ba037dadb084b951252e81e1ce1a",

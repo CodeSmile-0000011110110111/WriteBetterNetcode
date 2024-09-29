@@ -1,6 +1,6 @@
 {
-    "name": "CodeSmile.Components.Registry",
-    "rootNamespace": "CodeSmile",
+    "name": "CodeSmileEditor",
+    "rootNamespace": "CodeSmileEditor",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

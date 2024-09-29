@@ -1,6 +1,6 @@
 {
     "name": "CodeSmile.MultiPal.GameState",
-    "rootNamespace": "",
+    "rootNamespace": "CodeSmile",
     "references": [
         "GUID:55745023e0a64982a73b4310ef089975",
         "GUID:fcdefbebbd09422dbc2d1210c9b54961",

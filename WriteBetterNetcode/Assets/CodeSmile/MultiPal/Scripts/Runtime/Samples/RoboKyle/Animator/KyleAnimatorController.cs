@@ -78,7 +78,7 @@ namespace CodeSmile.MultiPal.Samples.RoboKyle.Animator
 
 		private void OnDisable()
 		{
-			if (ReferenceEquals(m_ClientSide.AnimatorController, this))
+			if (m_ClientSide != null && ReferenceEquals(m_ClientSide.AnimatorController, this))
 			{
 				m_ClientSide.AnimatorController = null;
 				m_ClientSide.AnimatorParameters = null;

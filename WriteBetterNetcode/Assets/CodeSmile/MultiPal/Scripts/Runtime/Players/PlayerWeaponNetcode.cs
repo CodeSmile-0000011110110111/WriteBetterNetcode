@@ -3,9 +3,10 @@
 
 using CodeSmile.Extensions.Netcode;
 using Unity.Netcode;
+using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Players.Couch
+namespace CodeSmile.MultiPal.Players
 {
 	[DisallowMultipleComponent]
 	public sealed class PlayerWeaponNetcode : NetworkBehaviour

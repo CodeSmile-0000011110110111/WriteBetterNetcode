@@ -1,6 +1,6 @@
 {
     "name": "CodeSmile.MultiPal.Animation",
-    "rootNamespace": "",
+    "rootNamespace": "CodeSmile",
     "references": [
         "GUID:d35316bc6db54b149c21729b8c247c53",
         "GUID:1491147abca9d7d4bb7105af628b223e"

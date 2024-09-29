@@ -2,11 +2,10 @@
 // Refer to included LICENSE file for terms and conditions.
 
 using CodeSmile.CodeSmile.Extensions.UnityEngine;
-using CodeSmile.Components.Registry;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.MultiPal.Weapons
+namespace CodeSmile.MultiPal.Weapons.Projectiles
 {
 	[DisallowMultipleComponent]
 	internal sealed class ProjectileUpdater : MonoBehaviour
