@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Components.Pool;
 using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Settings;
 using CodeSmile.MultiPal.Weapons.Projectiles;
@@ -20,12 +21,14 @@ namespace CodeSmile.MultiPal.Weapons
 		[SerializeField] private Transform[] m_ProjectileSpawnPoints;
 
 		private ProjectileSpawner m_ProjectileSpawner;
+		private PrefabPool m_PrefabPool;
 		private WeaponData m_Data;
 		private WeaponRuntimeData m_RuntimeData;
 
 		private void Awake()
 		{
 			m_ProjectileSpawner = ComponentsRegistry.Get<ProjectileSpawner>();
+			m_PrefabPool = ComponentsRegistry.Get<PrefabPool>();
 			m_Data = m_WeaponDataAsset.Data;
 			m_RuntimeData = default;
 		}
@@ -71,7 +74,7 @@ namespace CodeSmile.MultiPal.Weapons
 						if (m_Data.WeaponFirePrefab != null)
 						{
 							foreach (var spawnPoint in m_ProjectileSpawnPoints)
-								Instantiate(m_Data.WeaponFirePrefab, spawnPoint.position, spawnPoint.rotation, transform);
+								m_PrefabPool.GetInstance(m_Data.WeaponFirePrefab, spawnPoint.position, spawnPoint.rotation);
 						}
 					}
 					else if (m_Data.AutoReload)

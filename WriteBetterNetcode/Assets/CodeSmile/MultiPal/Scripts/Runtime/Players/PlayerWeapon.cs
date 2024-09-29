@@ -1,10 +1,8 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
-using CodeSmile.Components.Registry;
 using CodeSmile.MultiPal.Settings;
 using CodeSmile.MultiPal.Weapons;
-using CodeSmile.MultiPal.Weapons.Projectiles;
 using System;
 using System.Collections;
 using UnityEditor;
@@ -19,13 +17,12 @@ namespace CodeSmile.MultiPal.Players
 		[SerializeField] private WeaponPrefabs m_WeaponPrefabs;
 
 		private Int32 m_ActiveWeaponIndex;
-		private ProjectileSpawner m_ProjectileSpawner;
 		private PlayerAvatar m_PlayerAvatar;
 		private PlayerWeaponNetcode m_Netcode;
 		private Weapon m_ActiveWeapon;
 
 		private Int32 m_PlayerIndex;
-		private bool m_IsOwner;
+		private Boolean m_IsOwner;
 
 		public void OnPlayerSpawn(Int32 playerIndex, Boolean isOwner)
 		{
@@ -46,8 +43,6 @@ namespace CodeSmile.MultiPal.Players
 			m_PlayerAvatar = GetComponent<PlayerAvatar>();
 			m_Netcode = GetComponent<PlayerWeaponNetcode>();
 		}
-
-		private void Start() => m_ProjectileSpawner = ComponentsRegistry.Get<ProjectileSpawner>();
 
 		private IEnumerator TestFireWeapon()
 		{
@@ -89,13 +84,8 @@ namespace CodeSmile.MultiPal.Players
 				Debug.LogWarning($"Weapon {weaponPrefab} has no Weapon component");
 		}
 
-		internal void StartAttacking()
-		{
-			m_ActiveWeapon.StartAttacking();
-		}
-		internal void StopAttacking()
-		{
-			m_ActiveWeapon.StopAttacking();
-		}
+		internal void StartAttacking() => m_ActiveWeapon.StartAttacking();
+
+		internal void StopAttacking() => m_ActiveWeapon.StopAttacking();
 	}
 }

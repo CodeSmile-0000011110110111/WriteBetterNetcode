@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5040256658394985570}
   - component: {fileID: 9194919948198350187}
   - component: {fileID: 3680013589560354808}
-  - component: {fileID: 3141057562367089457}
   - component: {fileID: -5057289317562591222}
+  - component: {fileID: 1738066143261718637}
   m_Layer: 0
   m_Name: MuzzleFX B
   m_TagString: Untagged
@@ -43,7 +43,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4055059536302517146}
   serializedVersion: 8
-  lengthInSec: 0.05
+  lengthInSec: 0.08
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -4893,18 +4893,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &3141057562367089457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4055059536302517146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ffc66508119e40438c954cc898c76aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &-5057289317562591222
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5002,3 +4990,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1738066143261718637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4055059536302517146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c30076706b41bc9133161e9a716ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

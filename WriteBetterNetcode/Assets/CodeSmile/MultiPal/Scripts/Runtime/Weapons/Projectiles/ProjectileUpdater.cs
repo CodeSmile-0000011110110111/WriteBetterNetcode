@@ -1,6 +1,8 @@
 ﻿// Copyright (C) 2021-2024 Steffen Itterheim
 // Refer to included LICENSE file for terms and conditions.
 
+using CodeSmile.Components.Pool;
+using CodeSmile.Components.Registry;
 using CodeSmile.Extensions.UnityEngine;
 using UnityEditor;
 using UnityEngine;
@@ -11,11 +13,11 @@ namespace CodeSmile.MultiPal.Weapons.Projectiles
 	internal sealed class ProjectileUpdater : MonoBehaviour
 	{
 		private ProjectileSpawner m_Spawner;
+		private PrefabPool m_PrefabPool;
 
-		private void Awake()
-		{
-			m_Spawner = GetComponent<ProjectileSpawner>();
-		}
+		private void Awake() => m_Spawner = GetComponent<ProjectileSpawner>();
+
+		private void Start() => m_PrefabPool = ComponentsRegistry.Get<PrefabPool>();
 
 		private void Update()
 		{
@@ -84,8 +86,8 @@ namespace CodeSmile.MultiPal.Weapons.Projectiles
 						// use less than full distance to keep impact fx a little off-surface (prevent z-fighting)
 						nextPosition = previousPosition + forward * (hit.distance * 0.99f);
 
-						// assumption: impact fx objects destroy themselves
-						Instantiate(projectile.Data.ImpactPrefab, nextPosition, Quaternion.LookRotation(hit.normal));
+						m_PrefabPool.GetInstance(projectile.Data.ImpactPrefab, nextPosition,
+							Quaternion.LookRotation(hit.normal));
 					}
 					else
 						projectileTransform.position = nextPosition;
@@ -93,7 +95,7 @@ namespace CodeSmile.MultiPal.Weapons.Projectiles
 
 				if (endOfLife)
 				{
-					m_Spawner.DestroyProjectile(projectile);
+					m_Spawner.Despawn(projectile);
 					projectiles.RemoveAt(i);
 				}
 			}
