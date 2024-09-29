@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeSmile.CodeSmile.Extensions.UnityEngine
+namespace CodeSmile.Extensions.UnityEngine
 {
 	public static class PhysicsExt
 	{
