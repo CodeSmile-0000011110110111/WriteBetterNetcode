@@ -1,3 +1,5 @@
+# .gitignore COMMON
+
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
@@ -80,3 +82,9 @@ WriteBetterNetcode/Assets/StarterAssets.meta
 WriteBetterNetcode/Assets/StarterAssets/*
 WriteBetterNetcode/Packages/com.unity.asset-store-tools.meta
 WriteBetterNetcode/Packages/com.unity.asset-store-tools/
+
+# Non-Distributable Assets
+/WriteBetterNetcode/[Aa]ssets/_Synty.meta
+/WriteBetterNetcode/[Aa]ssets/_Synty/*
+/WriteBetterNetcode/[Aa]ssets/_NonDist.meta
+/WriteBetterNetcode/[Aa]ssets/_NonDist/*
